@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Dashboard\ucDashboardSummaryView.Designer.cs">
+      <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JobOrder\frmAddJobOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\JobOrder\frmAddJobOrder.Designer.cs">
+      <DependentUpon>frmAddJobOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainForm\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignIn\frmSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +81,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
+      <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SignIn\frmSignIn.resx">
       <DependentUpon>frmSignIn.cs</DependentUpon>
     </EmbeddedResource>

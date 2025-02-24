@@ -1,5 +1,4 @@
-﻿using JOMonitoringApp.Views.MainForm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JOMonitoringApp
+namespace JOMonitoringApp.Views.MainForm
 {
-    public partial class frmSignIn : Form
+    public partial class frmMain : Form
     {
-        public frmSignIn()
+        public frmMain()
         {
             InitializeComponent();
         }
 
-        private void BtnSignIn_Click(object sender, EventArgs e)
+        private void BtnSearch_Click(object sender, EventArgs e)
         {
-            _ = new frmMain().ShowDialog();
+            progressBar1.Visible = true;
         }
     }
 }

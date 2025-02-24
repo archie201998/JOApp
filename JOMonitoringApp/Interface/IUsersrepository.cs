@@ -9,6 +9,6 @@ namespace JOMonitoringApp.Interface
 {
     public interface IUsersRepository : IRepository<UsersModel>
     {
-
+        Byte ValidateLogin(string userName, string password);
     }
 }

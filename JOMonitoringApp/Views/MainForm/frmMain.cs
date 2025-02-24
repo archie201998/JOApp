@@ -12,7 +12,7 @@ namespace JOMonitoringApp.Views.MainForm
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
         }

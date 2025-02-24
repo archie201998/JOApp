@@ -1,15 +1,17 @@
-﻿using JOMonitoringApp.Interface;
+﻿
+using JOMonitoringApp.Interface;
 using JOMonitoringApp.Repository;
 
 namespace JOMonitoringApp
 {
     public class Factory
     {
-        private static readonly GenericCommands mySqlGenericCommands;
 
+        internal static GenericCommands mySqlGenericCommands = new GenericCommands("jo_monitoring_instance");
 
         public static IUsersRepository UsersRepository() => new UsersRepository(mySqlGenericCommands);
 
-       
+
+
     }
 }

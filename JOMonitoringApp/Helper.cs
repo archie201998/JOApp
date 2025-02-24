@@ -16,6 +16,8 @@ namespace AccountingSystem
     {
         internal static byte userId;
 
+        public static byte UserId { get; internal set; }
+
         public static bool HasPermission(string permissionName)
         {
             try
@@ -30,228 +32,8 @@ namespace AccountingSystem
             return false;
         }
 
-        public static void LoadFormIcon(Form form)
-        {
-            //form.Icon = Properties.Resources.accounting;
-        }
-
-        #region Version Control
-
-        public static string GetVersionLog()
-        {
-            string filePath = $"{Application.StartupPath}\\Documents\\updateLog.txt";
-            // Read all text from the file
-            string fileContent = File.ReadAllText(filePath);
-
-            // Display the content
-            return fileContent;
-        }
-
-        #endregion Version Control
-
-        #region Amount to Words
-
-        public class AmountToWords
-        {
-            /// <summary>
-            /// Logic to convert amount to words
-            /// 1. validate input
-            /// 2. separate input number string to 2 parts by "."(if have): integer and decimal
-            /// 3. convert to English words independently
-            /// 4. combine the result
-            /// </summary>
-            /// <param name="strNum">the amount to be converted</param>
-            /// return the converted result
-            public string ConvertAmountToWords(string strNum)
-            {
-                if (string.IsNullOrEmpty(strNum))
-                {
-                    throw new ArgumentException(UtilConst.IllegalMsgEmpty);
-                }
-                // validate the legal input
-                if (!ValidateFormat(strNum))
-                {
-                    throw new ArgumentException(UtilConst.IllegalMsgCommon);
-                }
-
-                // remove comma symbol from string
-                strNum = strNum.Replace(",", string.Empty);
-
-                int integerPart;
-                int decimalPart;
-
-                // separate input number string to 2 parts by "."(if have): integer and decimal
-                try
-                {
-                    int pos = strNum.IndexOf('.');
-
-                    if (pos == -1)
-                    {
-                        integerPart = int.Parse(strNum);
-                        decimalPart = 0;
-                    }
-                    else
-                    {
-                        integerPart = int.Parse(strNum.Substring(0, pos));
-
-                        string strDecimalPart = strNum.Substring(pos + 1);
-                        if (strDecimalPart == "00")
-                        {
-                            strDecimalPart = "0";
-                        }
-                        if ((strDecimalPart.Length == 1) && (strDecimalPart[0] != '0'))
-                        {
-                            strDecimalPart = strDecimalPart + '0';
-                        }
-                        decimalPart = int.Parse(strDecimalPart);
-                    }
-                }
-                catch (OverflowException)
-                {
-                    throw new ArgumentException(UtilConst.IllegalMsgOutOfRange);
-                }
-                catch (FormatException)
-                {
-                    throw new ArgumentException(UtilConst.IllegalMsgCommon);
-                }
-
-                // convert integer part to English words
-                string strIntegerWords = ConvertIntegerPartToWords(integerPart);
-                if (strIntegerWords.Length == 0)
-                {
-                    strIntegerWords = "Zero";
-                }
-
-                // convert decimal part to English words
-                string strDecimalWords = ConvertDecimalPartToWords(decimalPart);
-                if (strDecimalWords.Length == 0)
-                {
-                    strDecimalWords = "Zero";
-                }
-
-                // tidy and combine the result
-                return TidyAndCombineWords(strIntegerWords, strDecimalWords);
-            }
-
-            /// <summary>
-            /// Logic to convert decimal part [0,99] to words
-            /// recursive
-            /// </summary>
-            /// <param name="num">the number to be converted</param>
-            /// return the convert result - string
-            private string ConvertDecimalPartToWords(int num)
-            {
-                string result;
-                if (num == 0) result = "";
-                else if (num < 10) result = UtilConst.BelowTen[num];
-                else if (num < 20) result = UtilConst.BelowTwenty[num - 10];
-                else if (num < 100) result = UtilConst.BelowHundred[num / 10] + " " + ConvertDecimalPartToWords(num % 10);
-                else throw new ArgumentException(UtilConst.IllegalMsgDecimal);
-
-                return result.Trim();
-            }
-
-            /// <summary>
-            /// Logic to convert integer part [0,2147483647] to words
-            /// recursive
-            /// </summary>
-            /// <param name="num">the number to be converted</param>
-            /// return the convert result - string
-            private string ConvertIntegerPartToWords(int num)
-            {
-                string result;
-                if (num == 0) result = "";
-                else if (num < 10) result = UtilConst.BelowTen[num];
-                else if (num < 20) result = UtilConst.BelowTwenty[num - 10];
-                else if (num < 100) result = UtilConst.BelowHundred[num / 10] + " " + ConvertIntegerPartToWords(num % 10);
-                else if (num < 1000) result = ConvertIntegerPartToWords(num / 100) + " Hundred " + ConvertIntegerPartToWords(num % 100);
-                else if (num < 1000000) result = ConvertIntegerPartToWords(num / 1000) + " Thousand " + ConvertIntegerPartToWords(num % 1000);
-                else if (num < 1000000000) result = ConvertIntegerPartToWords(num / 1000000) + " Million " + ConvertIntegerPartToWords(num % 1000000);
-                else result = ConvertIntegerPartToWords(num / 1000000000) + " Billion " + ConvertIntegerPartToWords(num % 1000000000);
-
-                return result.Trim();
-            }
-
-            /// <summary>
-            /// tidy and combine the result string
-            /// </summary>
-            /// <param name="strIntegerWords">integer part words</param>
-            /// <param name="strDecimalWords">decimal part words</param>
-            /// return the combined result string
-            private string TidyAndCombineWords(string strIntegerWords, string strDecimalWords)
-            {
-                if (string.IsNullOrEmpty(strIntegerWords) || string.IsNullOrEmpty(strDecimalWords))
-                {
-                    throw new ArgumentException(UtilConst.IllegalMsgEmpty);
-                }
-
-                string result;
-
-                // deal with dollar&dollars, cent&cents
-                string currancyDollar = " Pesos";
-                if (strIntegerWords == "Zero" || strIntegerWords == "One")
-                {
-                    currancyDollar = " Peso";
-                }
-
-                string currancyCent = " Cents";
-                if (strDecimalWords == "Zero" || strDecimalWords == "One")
-                {
-                    currancyCent = " Cent";
-                }
-
-                // combine the result string
-                if (strDecimalWords == "Zero")
-                {
-                    result = strIntegerWords + currancyDollar;
-                }
-                else if (strIntegerWords == "Zero")
-                {
-                    result = strDecimalWords + currancyCent;
-                }
-                else
-                {
-                    result = strIntegerWords + currancyDollar + " and " + strDecimalWords + currancyCent;
-                }
-
-                return result.Trim();
-            }
-
-            /// <summary>
-            /// Use regular expression to validate input
-            /// positive number, up to 2 decimal
-            /// </summary>
-            /// <param name="input">the amount to be validate</param>
-            /// return the validate result, true or false
-            private bool ValidateFormat(string input)
-            {
-                Regex reg = new Regex("^[0-9,]+([.][0-9]{1,2})?$");
-                if (string.IsNullOrEmpty(input))
-                {
-                    return false;
-                }
-                if (reg.Match(input).Success)
-                {
-                    return true;
-                }
-                return false;
-            }
-        }
-
-        public class UtilConst
-        {
-            public const string IllegalMsgCommon = "Illegal input, please input amount like '123', '123.0', '123.00'";
-            public const string IllegalMsgDecimal = "Illegal decimal";
-            public const string IllegalMsgEmpty = "Input is empty";
-            public const string IllegalMsgOutOfRange = "Illegal input, amount must between 0 and 2147483647.99";
-            public static readonly string[] BelowHundred = { "", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
-            public static readonly string[] BelowTen = { "Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine" };
-            public static readonly string[] BelowTwenty = { "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen" };
-        }
-
-        #endregion Amount to Words
-
-        #region DataGrid Default Styles
+     
+        
 
         public static void DatagridDefaultStyle(DataGridView dgv, Boolean Fill = false)
         {
@@ -343,7 +125,7 @@ namespace AccountingSystem
             if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-        #endregion DataGrid Default Styles
+       
 
         #region Check Box Column Utility Datagrid
 
@@ -412,15 +194,7 @@ namespace AccountingSystem
             }
         }
 
-        public static string GenerateFullAddress(string address, string barangay, string municipality, string province)
-        {
-            string _address = string.IsNullOrEmpty(address) ? string.Empty : $"{address}, ";
-            string _barangay = string.IsNullOrEmpty(barangay) ? string.Empty : $"{barangay}, ";
-            string _municipality = string.IsNullOrEmpty(municipality) ? string.Empty : $"{municipality}, ";
-            string _province = string.IsNullOrEmpty(province) ? string.Empty : $"{province}";
-
-            return $"{_address}{_barangay}{_municipality}{_province}";
-        }
+    
 
         public static void DatagridViewRecordFinder(DataGridView dataGridView, string columnName, string value)
         {
@@ -479,37 +253,6 @@ namespace AccountingSystem
             }
         }
 
-        public static string AddOrdinalSuffix(int number)
-        {
-            if (number < 0)
-                return number.ToString();
-
-            if (number % 100 >= 11 && number % 100 <= 13)
-                return number + "th";
-
-            // Handle the general case
-            switch (number % 10)
-            {
-                case 1: return number + "st";
-                case 2: return number + "nd";
-                case 3: return number + "rd";
-                default: return number + "th";
-            }
-        }
-
-        public static void RemoveTabcontrolTabs(TabControl tabControl)
-        {
-            //Removes tabs to tabcontrol
-            tabControl.Padding = new Point(0, 0);
-            tabControl.ItemSize = new Size(0, 1);
-            tabControl.SizeMode = TabSizeMode.Fixed;
-            tabControl.Appearance = TabAppearance.FlatButtons;
-            tabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
-        }
-
-        #endregion Miscellaneous
-
-        #region Get User Data
 
         public static string GenerateFullName(string prefix, string firstName, string MiddleName, string LastName, string suffix)
         {
@@ -518,6 +261,7 @@ namespace AccountingSystem
             return fullName;
         }
 
+   
         public static Dictionary<string, dynamic> GetUserDataById(int userId)
         {
             var dictUser = new Dictionary<string, dynamic>();

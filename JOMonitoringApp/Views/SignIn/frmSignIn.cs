@@ -30,22 +30,33 @@ namespace JOMonitoringApp
 
         private void ValidateLoginCredentials()
         {
-            //if (!this.ValidateChildren())
-            //{
-            //    Helper.MessageBoxError(GetFormErrors());
-            //    return;
-            //}
-
+            Cursor = Cursors.WaitCursor;
             string username = txtUserName.Text;
             string password = txtPassword.Text;
 
-            Helper.userId = Factory.UsersRepository().ValidateLogin(username, password);
-            txtUserName.SelectAll();
-            txtUserName.Focus();
-            txtPassword.Clear();
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                Helper.MessageBoxError("Please enter both username and password.");
+                return;
+            }
 
-            new frmMain(this).Show();
-            Hide();
+            var userId = Factory.UsersRepository().ValidateLogin(username, password);
+
+            if (userId != 0)
+            {
+                Helper.UserId = userId;
+                var mainForm = new frmMain(this);
+                mainForm.Show();
+                Hide();
+                txtPassword.Clear();
+                txtPassword.PasswordChar = '•';
+                Cursor = Cursors.Default;
+                return;
+            }
+
+            Helper.MessageBoxError("Incorrect username or password.");
+
+            Cursor = Cursors.Default;
 
         }
 
@@ -53,5 +64,7 @@ namespace JOMonitoringApp
         {
             throw new NotImplementedException();
         }
+
+     
     }
 }

@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\UsersModel.cs" />
+    <Compile Include="Repository\Factory.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Repository\GenericCommands.cs" />
+    <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,10 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interface\" />
-    <Folder Include="Model\" />
-    <Folder Include="Repository\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

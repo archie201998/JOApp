@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Views.JobOrder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -158,5 +159,11 @@ namespace JOMonitoringApp.Views.MainForm
             LoadJobOrders();
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }
+
+        private void BtnNew_Click(object sender, EventArgs e)
+        {
+            _ = new frmAddJobOrder().ShowDialog();
+        }
+
     }
 }

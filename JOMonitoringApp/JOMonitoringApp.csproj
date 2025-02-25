@@ -99,16 +99,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HelperLoadRecords.cs" />
+    <Compile Include="Interface\ICustomersRepository.cs" />
+    <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\CustomersModel.cs" />
+    <Compile Include="Model\EmployeeModel.cs" />
     <Compile Include="Model\JobOrdersModel.cs" />
+    <Compile Include="Interface\IParticularsRepository.cs" />
+    <Compile Include="Model\ParticularsModel.cs" />
     <Compile Include="Model\UsersModel.cs" />
+    <Compile Include="Repository\CustomersRepository.cs" />
+    <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\Factory.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
+    <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
       <SubType>UserControl</SubType>
@@ -121,6 +130,12 @@
     </Compile>
     <Compile Include="Views\JobOrder\frmAddJobOrder.Designer.cs">
       <DependentUpon>frmAddJobOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\JobOrder\ucJoborder.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\JobOrder\ucJoborder.Designer.cs">
+      <DependentUpon>ucJoborder.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm\frmMain.cs">
       <SubType>Form</SubType>
@@ -147,6 +162,12 @@
     </Compile>
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\JobOrder\frmAddJobOrder.resx">
+      <DependentUpon>frmAddJobOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
+      <DependentUpon>ucJoborder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

@@ -41,6 +41,27 @@ namespace JOMonitoringApp
 
         }
 
+        internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
+        {
+            cmbx.DataSource = dataTable;
+            cmbx.ValueMember = valueMember;
+            cmbx.DisplayMember = displayMember;
+        }
+
+        internal static void ParticularsCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
+        {
+            cmbx.DataSource = dataTable;
+            cmbx.ValueMember = valueMember;
+            cmbx.DisplayMember = displayMember;
+        }
+
+        internal static void EmployeeCombobox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)
+        {
+            cmbxEmployee.DataSource = dataTable;
+            cmbxEmployee.ValueMember = valueMember;
+            cmbxEmployee.DisplayMember = displayMember;
+        }
+        
         internal static void ComboboxRowLimitFilter(ComboBox comboBox)
         {
             DataTable dataTable = new DataTable();
@@ -69,5 +90,7 @@ namespace JOMonitoringApp
             comboBox.ValueMember = "id";
             comboBox.DisplayMember = "description";
         }
+
+        
     }
 }

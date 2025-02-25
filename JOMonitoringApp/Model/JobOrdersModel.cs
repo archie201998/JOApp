@@ -11,6 +11,7 @@ namespace JOMonitoringApp.Model
         public int ID { get; set; }
         public int CustomerID { get; set; }
         public int ParticularID { get; set; }
+        public int EmployeeId { get; set; }
         public DateTime Date { get; set; }
         public string ORNumber{ get; set; }
         public decimal Amount{ get; set; }

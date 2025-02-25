@@ -50,7 +50,7 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("customers_address", typeof(string)),
                 new DataColumn("particulars_id", typeof(int)),
                 new DataColumn("particulars", typeof(string)),
-                new DataColumn("or_number", typeof(int)),
+                new DataColumn("or_number", typeof(string)),
                 new DataColumn("amount", typeof(decimal)),
                 new DataColumn("prepared_by_user_id", typeof(string)),
                 new DataColumn("prepared_by_user_full_name", typeof(string)),
@@ -68,55 +68,56 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            var parameters = ((string searchKey, bool showInactive, int rowFilter))e.Argument;
+
+            var dataTable = new DataTable();
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.showInactive, parameters.rowFilter);
+            dataTable.Columns.AddRange(JobOrdersColumns());
+
+            int progressCount = 0;
+            int totalProgressCount = dtJobOrders.Rows.Count;
+
+            if (dtJobOrders.Rows.Count < 1) { backgroundWorker1.ReportProgress(100); e.Result = dataTable; return; }
+
+            foreach (DataRow row in dtJobOrders.Rows)
+            {
+                var newRow = dataTable.NewRow();
+                int id = Convert.ToInt32(row["id"]);
+                int customerId = Convert.ToInt32(row["customers_id"]);
+                string date = $"{row["date"]}";
+                string accountNumber = $"{row["account_number"]}";
+                string accountName = $"{row["account_name"]}";
+                string address = $"{row["address"]}";
+                int particularId = Convert.ToInt32(row["particulars_id"]);
+                string particular = $"{row["particular"]}";
+                string orNumber = $"{row["or_number"]}";
+                decimal amount = string.IsNullOrEmpty(row["or_number"].ToString()) ?  0 : Convert.ToDecimal(row["amount"]);
+                int preparedById = Convert.ToInt32(row["prepared_by_id"]);
+                string preparedByName = $"{row["prepared_by"]}";
+
+                newRow["job_orders_id"] = id;
+                newRow["customers_id"] = customerId;
+                newRow["date"] = date;
+                newRow["customers_account_number"] = accountName;
+                newRow["customers_full_name"] = accountName;
+                newRow["customers_address"] = address;
+                newRow["particulars_id"] = particularId;
+                newRow["particulars"] = particular;
+                newRow["or_number"] = orNumber;
+                newRow["amount"] = amount;
+                newRow["prepared_by_user_id"] = preparedById;
+                newRow["prepared_by_user_full_name"] = preparedByName;
+
+                progressCount++;
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+                dataTable.Rows.Add(newRow);
+            }
+
+            e.Result = dataTable;
             try
             {
-                var parameters = ((string searchKey, bool showInactive, int rowFilter))e.Argument;
-
-                var dataTable = new DataTable();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.showInactive, parameters.rowFilter);
-                dataTable.Columns.AddRange(JobOrdersColumns());
-
-                int progressCount = 0;
-                int totalProgressCount = dtJobOrders.Rows.Count;
-
-                if (dtJobOrders.Rows.Count < 1) { backgroundWorker1.ReportProgress(100); e.Result = dataTable; return; }
-
-                foreach (DataRow row in dtJobOrders.Rows)
-                {
-                    var newRow = dataTable.NewRow();
-                    int id = Convert.ToInt32(row["id"]);
-                    int customerId = Convert.ToInt32(row["customers_id"]);
-                    string date = $"{row["date"]}";
-                    string accountNumber = $"{row["account_number"]}";
-                    string accountName = $"{row["account_name"]}";
-                    string address = $"{row["address"]}";
-                    int particularId = Convert.ToInt32(row["particulars_id"]);
-                    string particular = $"{row["particular"]}";
-                    string orNumber = $"{row["or_number"]}";
-                    decimal amount = Convert.ToDecimal(row["amount"]);
-                    int preparedById = Convert.ToInt32(row["prepared_by_id"]);
-                    string preparedByName = $"{row["prepared_by"]}";
-
-                    newRow["job_orders_id"] = id;
-                    newRow["customers_id"] = customerId;
-                    newRow["date"] = date;
-                    newRow["customers_account_number"] = accountName;
-                    newRow["customers_full_name"] = accountName;
-                    newRow["customers_address"] = address;
-                    newRow["particulars_id"] = particularId;
-                    newRow["particulars"] = particular;
-                    newRow["or_number"] = orNumber;
-                    newRow["amount"] = amount;
-                    newRow["prepared_by_user_id"] = preparedById;
-                    newRow["prepared_by_user_full_name"] = preparedByName;
-
-                    progressCount++;
-                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-
-                    dataTable.Rows.Add(newRow);
-                }
-
-                e.Result = dataTable;
+               
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

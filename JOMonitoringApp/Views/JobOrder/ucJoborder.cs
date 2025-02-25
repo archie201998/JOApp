@@ -76,6 +76,7 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 CustomerID = customerId,
                 ParticularID = particularId,
+                EmployeeId = employeeId,
                 Date = date,
                 ORNumber = orNumber,
                 Amount = amount,

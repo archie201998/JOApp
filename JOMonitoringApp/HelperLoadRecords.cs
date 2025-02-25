@@ -21,10 +21,11 @@ namespace JOMonitoringApp
             dataGridView.Columns["date"].HeaderText = "Date";
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["date"].MinimumWidth = 30;
+            dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
             dataGridView.Columns["customers_account_number"].HeaderText = "Account Number";
             dataGridView.Columns["customers_account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["customers_account_number"].MinimumWidth = 100;
-            dataGridView.Columns["customers_full_name"].HeaderText = "Name";
+            dataGridView.Columns["customers_full_name"].HeaderText = "Account Name";
             dataGridView.Columns["customers_address"].HeaderText = "Address";
             dataGridView.Columns["particulars_id"].Visible = false;
             dataGridView.Columns["particulars"].HeaderText = "Particulars";
@@ -37,7 +38,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["amount"].MinimumWidth = 100;
             dataGridView.Columns["prepared_by_user_id"].Visible = false;
-            dataGridView.Columns["prepared_by_user_full_name"].HeaderText = "Name";
+            dataGridView.Columns["prepared_by_user_full_name"].HeaderText = "Prepared By";
 
         }
 

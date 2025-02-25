@@ -15,16 +15,12 @@ namespace JOMonitoringApp.Views.JobOrder
     public partial class ucJoborder : UserControl
     {
 
-       
-
-        private DataTable dtCustomers;
-
         public ucJoborder()
         {
             if (!DesignMode)
             {
                 InitializeComponent();
-                OnLoad();
+                //OnLoad();
             }
         }
 
@@ -56,8 +52,8 @@ namespace JOMonitoringApp.Views.JobOrder
             var dataTable = new DataTable();
             dataTable.Columns.AddRange(dataColumns);
 
-            var dtAccoutnableForm = Factory.CustomersRepository().GetRecords();
-            foreach (DataRow row in dtAccoutnableForm.Rows)
+            var dtCustomers = Factory.CustomersRepository().GetRecords();
+            foreach (DataRow row in dtCustomers.Rows)
             {
                 var newRow = dataTable.NewRow();
                 newRow["id"] = row["id"];

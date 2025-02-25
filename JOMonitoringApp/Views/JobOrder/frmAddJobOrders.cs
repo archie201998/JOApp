@@ -23,14 +23,13 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            if (SaveData())
-            {
-                Helper.MessageBoxSuccess("Job order has been created");
-                this.Close();
-            }
             try
             {
-                
+                if (SaveData())
+                {
+                    Helper.MessageBoxSuccess("Job order has been created");
+                    this.Close();
+                }
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

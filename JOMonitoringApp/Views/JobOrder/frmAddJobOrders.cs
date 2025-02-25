@@ -19,6 +19,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             InitializeComponent();
             ucJoborder = ucJoborder1;
+            ucJoborder.OnLoad();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

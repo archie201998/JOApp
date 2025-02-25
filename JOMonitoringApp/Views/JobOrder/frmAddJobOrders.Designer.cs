@@ -38,7 +38,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(192, 3);
+            this.btnSave.Location = new System.Drawing.Point(174, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
@@ -49,7 +49,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(267, 3);
+            this.btnCancel.Location = new System.Drawing.Point(249, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -64,7 +64,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 218);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(345, 31);
+            this.panel1.Size = new System.Drawing.Size(327, 31);
             this.panel1.TabIndex = 3;
             // 
             // ucJoborder1
@@ -72,7 +72,7 @@
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(345, 218);
+            this.ucJoborder1.Size = new System.Drawing.Size(327, 218);
             this.ucJoborder1.TabIndex = 4;
             // 
             // frmAddJobOrders
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(345, 249);
+            this.ClientSize = new System.Drawing.Size(327, 249);
             this.Controls.Add(this.ucJoborder1);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;

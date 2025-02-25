@@ -116,6 +116,11 @@
             // 
             this.nudAmount.DecimalPlaces = 2;
             this.nudAmount.Location = new System.Drawing.Point(104, 142);
+            this.nudAmount.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
             this.nudAmount.Name = "nudAmount";
             this.nudAmount.Size = new System.Drawing.Size(200, 20);
             this.nudAmount.TabIndex = 8;

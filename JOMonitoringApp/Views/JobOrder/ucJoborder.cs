@@ -20,7 +20,6 @@ namespace JOMonitoringApp.Views.JobOrder
             if (!DesignMode)
             {
                 InitializeComponent();
-                //OnLoad();
             }
         }
 
@@ -34,7 +33,7 @@ namespace JOMonitoringApp.Views.JobOrder
             return Factory.CreateErrors(errorArray).GenerateErrorMessage();
         }
 
-        private void OnLoad()
+        internal void OnLoad()
         {
             LoadCustomers();
             LoadParticulars();

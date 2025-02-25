@@ -80,7 +80,7 @@ namespace JOMonitoringApp
                 new object[]{"@prepared_by", DbType.Int32, entity.UserId}
             };
 
-            string query = $"INSERT INTO tbl_job_orders (customers_id, particulars_id, date, or_number, amount, employee_id, prepared_by) VALUES (@customers_id, @particulars_id, @date, @or_number, @amount, @employee_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, or_number, amount, employee_id, prepared_by) VALUES (@customers_id, @particulars_id, @date, @or_number, @amount, @employee_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 

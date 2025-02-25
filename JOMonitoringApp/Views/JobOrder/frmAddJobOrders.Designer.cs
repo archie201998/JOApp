@@ -86,8 +86,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddJobOrders";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New Job Order";
+            this.Text = "New |  Job Order";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

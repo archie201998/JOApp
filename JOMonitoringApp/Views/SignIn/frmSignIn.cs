@@ -22,15 +22,16 @@ namespace JOMonitoringApp
 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
-            ValidateLoginCredentials();
             try
             {
+                ValidateLoginCredentials();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
         private void ValidateLoginCredentials()
         {
+
             Cursor = Cursors.WaitCursor;
             string username = txtUserName.Text;
             string password = txtPassword.Text;
@@ -61,11 +62,5 @@ namespace JOMonitoringApp
 
         }
 
-        private string GetFormErrors()
-        {
-            throw new NotImplementedException();
-        }
-
-     
     }
 }

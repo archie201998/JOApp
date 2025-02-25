@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Views.MainForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,14 @@ namespace JOMonitoringApp.Views.JobOrder
     public partial class frmAddJobOrders : Form
     {
         internal readonly ucJoborder ucJoborder;
+        internal frmMain _frmMain;
 
-        public frmAddJobOrders()
+        public frmAddJobOrders(frmMain frmMain)
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
             ucJoborder = ucJoborder1;
+            _frmMain = frmMain;
             ucJoborder.OnLoad();
         }
 
@@ -29,6 +33,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 if (SaveData())
                 {
                     Helper.MessageBoxSuccess("Job order has been created");
+                    _frmMain.OnLoad();
                     this.Close();
                 }
             }

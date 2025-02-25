@@ -20,7 +20,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["customers_id"].Visible = false;
             dataGridView.Columns["date"].HeaderText = "Date";
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns["date"].MinimumWidth = 30;
+            dataGridView.Columns["date"].MinimumWidth = 50;
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
             dataGridView.Columns["customers_account_number"].HeaderText = "Account Number";
             dataGridView.Columns["customers_account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;

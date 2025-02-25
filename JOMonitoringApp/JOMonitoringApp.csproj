@@ -161,6 +161,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
@@ -196,6 +197,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thumbnail_PAWAD COREL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\thumbnail_PAMANA COREL.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

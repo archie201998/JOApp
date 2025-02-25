@@ -121,6 +121,9 @@
   <data name="thumbnail_PAMANA_COREL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\thumbnail_PAMANA COREL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="thumbnail_PAMANA_COREL1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\thumbnail_PAMANA COREL.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="thumbnail_PAWAD_COREL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\thumbnail_PAWAD COREL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

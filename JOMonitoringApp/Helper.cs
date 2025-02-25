@@ -30,8 +30,11 @@ namespace AccountingSystem
             return false;
         }
 
-     
-        
+        public static void LoadFormIcon(Form form)
+        {
+            form.Icon = JOMonitoringApp.Properties.Resources.thumbnail_PAMANA_COREL1;
+        }
+
 
         public static void DatagridDefaultStyle(DataGridView dgv, Boolean Fill = false)
         {

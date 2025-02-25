@@ -17,6 +17,7 @@ namespace JOMonitoringApp
         public frmSignIn()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
         }
 
         private void BtnSignIn_Click(object sender, EventArgs e)

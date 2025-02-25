@@ -162,7 +162,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            _ = new frmAddJobOrder().ShowDialog();
+            _ = new frmAddJobOrders().ShowDialog();
         }
 
     }

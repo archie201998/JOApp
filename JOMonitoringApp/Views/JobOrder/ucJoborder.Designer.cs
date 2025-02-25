@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtORNumber = new System.Windows.Forms.TextBox();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.cmbxCustomers = new System.Windows.Forms.ComboBox();
             this.cmbxParticulars = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +41,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cmbxEmployee = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -52,19 +55,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Customer";
             // 
-            // textBox1
+            // txtORNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(104, 108);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtORNumber.Location = new System.Drawing.Point(104, 108);
+            this.txtORNumber.Name = "txtORNumber";
+            this.txtORNumber.Size = new System.Drawing.Size(200, 20);
+            this.txtORNumber.TabIndex = 1;
             // 
-            // dateTimePicker1
+            // dtpDate
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(104, 19);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(198, 20);
-            this.dateTimePicker1.TabIndex = 2;
+            this.dtpDate.Location = new System.Drawing.Point(104, 19);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(198, 20);
+            this.dtpDate.TabIndex = 2;
             // 
             // cmbxCustomers
             // 
@@ -145,6 +148,11 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "Assigned Work";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,13 +166,13 @@
             this.Controls.Add(this.cmbxParticulars);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cmbxCustomers);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dtpDate);
+            this.Controls.Add(this.txtORNumber);
             this.Controls.Add(this.label1);
             this.Name = "ucJoborder";
             this.Size = new System.Drawing.Size(333, 218);
-            this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,8 +181,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtORNumber;
+        private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.ComboBox cmbxCustomers;
         private System.Windows.Forms.ComboBox cmbxParticulars;
         private System.Windows.Forms.Label label2;
@@ -184,5 +192,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbxEmployee;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

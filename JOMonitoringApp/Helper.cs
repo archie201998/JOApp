@@ -14,8 +14,6 @@ namespace AccountingSystem
 {
     public static class Helper
     {
-        internal static byte userId;
-
         public static byte UserId { get; internal set; }
 
         public static bool HasPermission(string permissionName)

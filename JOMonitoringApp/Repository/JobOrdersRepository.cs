@@ -70,7 +70,17 @@ namespace JOMonitoringApp
 
         public bool Insert(JobOrdersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameter = new object[][] {
+                new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
+                new object[]{"@particulars_id", DbType.Int32, entity.ParticularID},
+                new object[]{"@date", DbType.DateTime, entity.Date},
+                new object[]{"@or_number", DbType.String, entity.ORNumber},
+                new object[]{"@amount", DbType.Decimal, entity.Amount},
+                new object[]{"@prepared_by", DbType.Int32, entity.UserId},
+            };
+
+            string query = $"INSERT INTO tbl_job_orders (customers_id, particulars_id, date, or_number, amount, prepared_by) VALUES (@customers_id, @particulars_id, @date, @or_number, @amount, @prepared_by)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
         public bool Update(JobOrdersModel entity)

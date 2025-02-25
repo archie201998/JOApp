@@ -113,9 +113,11 @@
     <Compile Include="Model\UsersModel.cs" />
     <Compile Include="Repository\CustomersRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
+    <Compile Include="Repository\Error.cs" />
     <Compile Include="Repository\Factory.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
+    <Compile Include="Interface\IError.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
@@ -125,11 +127,11 @@
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.Designer.cs">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\JobOrder\frmAddJobOrder.cs">
+    <Compile Include="Views\JobOrder\frmAddJobOrders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\JobOrder\frmAddJobOrder.Designer.cs">
-      <DependentUpon>frmAddJobOrder.cs</DependentUpon>
+    <Compile Include="Views\JobOrder\frmAddJobOrders.Designer.cs">
+      <DependentUpon>frmAddJobOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\JobOrder\ucJoborder.cs">
       <SubType>UserControl</SubType>
@@ -163,8 +165,8 @@
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\JobOrder\frmAddJobOrder.resx">
-      <DependentUpon>frmAddJobOrder.cs</DependentUpon>
+    <EmbeddedResource Include="Views\JobOrder\frmAddJobOrders.resx">
+      <DependentUpon>frmAddJobOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
       <DependentUpon>ucJoborder.cs</DependentUpon>

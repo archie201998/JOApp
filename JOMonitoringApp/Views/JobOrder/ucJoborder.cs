@@ -7,23 +7,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using JOMonitoringApp.Model;
+using AccountingSystem;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
 
+       
 
         private DataTable dtCustomers;
 
         public ucJoborder()
         {
-            InitializeComponent();
+            if (!DesignMode)
+            {
+                InitializeComponent();
+                OnLoad();
+            }
         }
 
-        private void UcJoborder_Load(object sender, EventArgs e)
+        internal string GetFormErrors()
         {
-            OnLoad();
+            var errorArray = new string[]
+            {
+                errorProvider1.GetError(cmbxCustomers),
+            };
+
+            return Factory.CreateErrors(errorArray).GenerateErrorMessage();
         }
 
         private void OnLoad()
@@ -54,6 +66,26 @@ namespace JOMonitoringApp.Views.JobOrder
             }
 
             HelperLoadRecords.CustomersCombobox(cmbxCustomers, dataTable, "id", "account_name");
+        }
+
+        internal JobOrdersModel JobOrderModel()
+        {
+            int customerId = Convert.ToInt32(cmbxCustomers.SelectedValue);
+            int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
+            DateTime date = dtpDate.Value;
+            string orNumber = txtORNumber.Text;
+            decimal amount = nudAmount.Value;
+            int employeeId = Convert.ToInt32(cmbxEmployee.SelectedValue);
+
+            return new JobOrdersModel()
+            {
+                CustomerID = customerId,
+                ParticularID = particularId,
+                Date = date,
+                ORNumber = orNumber,
+                Amount = amount,
+                UserId = Helper.UserId
+            };
         }
 
         internal void LoadParticulars()

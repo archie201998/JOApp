@@ -63,8 +63,8 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Controls.Add(this.panel7);
             this.panel6.Controls.Add(this.txtPending);
+            this.panel6.Controls.Add(this.panel7);
             this.panel6.Location = new System.Drawing.Point(10, 56);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(168, 150);
@@ -105,6 +105,7 @@
             // 
             this.panel9.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.panel9.Controls.Add(this.label13);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel9.Location = new System.Drawing.Point(0, 111);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(168, 39);
@@ -135,6 +136,7 @@
             // 
             this.panel11.BackColor = System.Drawing.Color.IndianRed;
             this.panel11.Controls.Add(this.label16);
+            this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel11.Location = new System.Drawing.Point(0, 111);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(168, 39);
@@ -165,6 +167,7 @@
             // 
             this.panel13.BackColor = System.Drawing.Color.SteelBlue;
             this.panel13.Controls.Add(this.label18);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel13.Location = new System.Drawing.Point(0, 111);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(168, 39);
@@ -235,10 +238,10 @@
             // 
             this.txtPending.BackColor = System.Drawing.Color.White;
             this.txtPending.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPending.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPending.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtPending.Enabled = false;
             this.txtPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtPending.Location = new System.Drawing.Point(0, 0);
+            this.txtPending.Location = new System.Drawing.Point(0, 20);
             this.txtPending.Name = "txtPending";
             this.txtPending.ReadOnly = true;
             this.txtPending.Size = new System.Drawing.Size(168, 91);
@@ -251,10 +254,10 @@
             // 
             this.txtOnGoing.BackColor = System.Drawing.Color.White;
             this.txtOnGoing.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtOnGoing.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtOnGoing.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtOnGoing.Enabled = false;
             this.txtOnGoing.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtOnGoing.Location = new System.Drawing.Point(0, 0);
+            this.txtOnGoing.Location = new System.Drawing.Point(0, 20);
             this.txtOnGoing.Name = "txtOnGoing";
             this.txtOnGoing.ReadOnly = true;
             this.txtOnGoing.Size = new System.Drawing.Size(168, 91);
@@ -266,10 +269,10 @@
             // 
             this.txtCancelled.BackColor = System.Drawing.Color.White;
             this.txtCancelled.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtCancelled.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCancelled.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtCancelled.Enabled = false;
             this.txtCancelled.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtCancelled.Location = new System.Drawing.Point(0, 0);
+            this.txtCancelled.Location = new System.Drawing.Point(0, 20);
             this.txtCancelled.Name = "txtCancelled";
             this.txtCancelled.ReadOnly = true;
             this.txtCancelled.Size = new System.Drawing.Size(168, 91);
@@ -281,10 +284,10 @@
             // 
             this.txtAccomplished.BackColor = System.Drawing.Color.White;
             this.txtAccomplished.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAccomplished.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAccomplished.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtAccomplished.Enabled = false;
             this.txtAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtAccomplished.Location = new System.Drawing.Point(0, 0);
+            this.txtAccomplished.Location = new System.Drawing.Point(0, 20);
             this.txtAccomplished.Name = "txtAccomplished";
             this.txtAccomplished.ReadOnly = true;
             this.txtAccomplished.Size = new System.Drawing.Size(168, 91);
@@ -296,9 +299,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel12);
-            this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);
             this.Name = "ucDashboardSummaryView";

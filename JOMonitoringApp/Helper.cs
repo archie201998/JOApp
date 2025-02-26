@@ -659,28 +659,5 @@ namespace AccountingSystem
             return myString.Length > maxLength ? $"{myString.Substring(0, 20)}..." : $"{myString}";
         }
 
-        internal static void CountStatus(int statusId)
-        {
-            switch (statusId)
-            {
-                case 1:
-
-                    break;
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
-                case 4:
-
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
     }
 }

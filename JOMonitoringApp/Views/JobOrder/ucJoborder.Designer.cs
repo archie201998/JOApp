@@ -175,7 +175,7 @@
             this.Controls.Add(this.txtORNumber);
             this.Controls.Add(this.label1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(333, 218);
+            this.Size = new System.Drawing.Size(333, 412);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

@@ -76,7 +76,7 @@ namespace JOMonitoringApp
 
             dataTable.Columns.AddRange(columns);
 
-            int[] values = { 100, 1000, 2000 };
+            int[] values = { 10, 100, 1000, 2000 };
 
             foreach (int value in values)
             {

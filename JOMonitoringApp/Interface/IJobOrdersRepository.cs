@@ -14,6 +14,7 @@ namespace JOMonitoringApp.Interface
 
         DataTable GetViewRecordsByParameters(string searchText, bool showInactiveTaxpayers, int rowFilter);
 
+
         DataTable GetViewRecordsBySearch(string searchText);
         int GetSummaryByStatusId(int statusId);
     }

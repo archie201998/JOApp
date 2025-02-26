@@ -62,10 +62,10 @@ namespace JOMonitoringApp
                 new object[] { "@row_filter", DbType.Int32, rowFilter}
             };
 
-            //string subQuery = showInactiveTaxpayers ? string.Empty : "is_active = 1 AND";
+            //string subQuery = showCan ? string.Empty : "is_active = 1 AND";
 
             //string query = $"SELECT * FROM {viewTableName} WHERE {subQuery} (account_number LIKE @search_text OR or_number LIKE @search_text OR date LIKE @search_text) ORDER BY date ASC LIMIT @row_filter";
-            string query = $"SELECT id, date, account_number, customers_id, account_name, address, particulars_id, particular, or_number, amount, prepared_by_id, prepared_by FROM {viewTableName} WHERE account_number LIKE @search_text OR account_name LIKE @search_text OR date LIKE @search_text ORDER BY id ASC LIMIT @row_filter";
+            string query = $"SELECT * FROM {viewTableName} WHERE account_number LIKE @search_text OR account_name LIKE @search_text OR date LIKE @search_text ORDER BY id ASC LIMIT @row_filter";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

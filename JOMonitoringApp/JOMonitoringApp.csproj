@@ -107,7 +107,9 @@
     <Compile Include="Interface\IGenericCommands.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />
     <Compile Include="Model\JobOrdersModel.cs" />
@@ -123,6 +125,7 @@
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
+    <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
       <SubType>UserControl</SubType>

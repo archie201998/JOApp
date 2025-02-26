@@ -44,6 +44,7 @@ namespace AccountingSystem
                 string suffix = dictUser["suffix"];
 
                 string userFullName = $" {(string.IsNullOrWhiteSpace(prefix) ? string.Empty : $"{prefix}.")} {dictUser["first_name"]} {dictUser["middle_name"]} {dictUser["last_name"]} {(string.IsNullOrWhiteSpace(suffix) ? string.Empty : $", {suffix}")}";
+                dictUser.Add("id", userId.ToString());
                 dictUser.Add("user_full_name", userFullName);
 
                 return dictUser;
@@ -258,18 +259,14 @@ namespace AccountingSystem
         {
             switch (status)
             {
-                case "Approved":
+                case "Pending":
                     return Color.FromArgb(201, 228, 197);
 
-                case "Disapproved":
+                case "On-Going":
                     return Color.FromArgb(246, 169, 169);
 
                 case "Cancelled":
                     return Color.FromArgb(200, 198, 198);
-
-                case "Pending":
-                    return Color.FromArgb(255, 230, 153);
-
                 default:
                     return Color.Black;
             }

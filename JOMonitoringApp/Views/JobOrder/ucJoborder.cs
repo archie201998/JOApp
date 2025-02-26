@@ -42,7 +42,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void LoadEmployee()
         {
-            HelperLoadRecords.EmployeeCombobox(cmbxPreparedBy, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxAssignedWork, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsReturnedTo, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "employee_full_name");
@@ -99,14 +98,13 @@ namespace JOMonitoringApp.Views.JobOrder
             int customerId = Convert.ToInt32(cmbxCustomers.SelectedValue);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             DateTime date = dtpDate.Value;
-
-            string jobOrNumber = txtJONumber.Text;
+            string jobOrderNumber = txtJONumber.Text;
             string MRIS = txtMRISNumber.Text;
             string MRS = txtMRSNumber.Text;
             string WAR = txtWARNumber.Text;    
             string orNumber = txtORNumber.Text;
             decimal amount = nudAmount.Value;
-            int preparedById = Convert.ToInt32(cmbxPreparedBy.SelectedValue);
+            int preparedById = Helper.UserId;
             int assignedWorkedId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
             int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int materialsReturnedToId = Convert.ToInt32(cmbxMaterialsReturnedTo.SelectedValue);
@@ -116,6 +114,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 CustomerID = customerId,
                 ParticularID = particularId,
                 PreparedBy = preparedById,
+                JONUmber = jobOrderNumber,
                 AssignedWorkEmployeeId = assignedWorkedId,
                 MaterialsIssuedBy = materialsIssuedById,
                 MaterialsReturnedTo = materialsReturnedToId,

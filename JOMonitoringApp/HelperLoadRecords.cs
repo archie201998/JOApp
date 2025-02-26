@@ -16,30 +16,75 @@ namespace JOMonitoringApp
 
             dataGridView.DataSource = dataTable;
 
-            dataGridView.Columns["job_orders_id"].Visible = false;
+            
+            dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["customers_id"].Visible = false;
-            dataGridView.Columns["date"].HeaderText = "Date";
+            dataGridView.Columns["particulars_id"].Visible = false;
+            dataGridView.Columns["prepared_by_id"].Visible = false;
+            dataGridView.Columns["materials_issued_by_id"].Visible = false;
+            dataGridView.Columns["materials_returned_to_id"].Visible = false;
+            dataGridView.Columns["status_id"].Visible = false;
+
+
+
+            dataGridView.Columns["date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["date"].HeaderText = "DATE";
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["date"].MinimumWidth = 50;
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
-            dataGridView.Columns["customers_account_number"].HeaderText = "Account Number";
-            dataGridView.Columns["customers_account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns["customers_account_number"].MinimumWidth = 100;
-            dataGridView.Columns["customers_full_name"].HeaderText = "Account Name";
-            dataGridView.Columns["customers_address"].HeaderText = "Address";
-            dataGridView.Columns["particulars_id"].Visible = false;
-            dataGridView.Columns["particulars"].HeaderText = "Particulars";
-            dataGridView.Columns["particulars"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns["particulars"].MinimumWidth = 150;
-            dataGridView.Columns["or_number"].HeaderText = "OR Number";
+
+            dataGridView.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["account_number"].HeaderText = "Account Number";
+            dataGridView.Columns["account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["account_number"].MinimumWidth = 100;
+
+            dataGridView.Columns["account_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["account_name"].HeaderText = "ACCOUNT NAME";
+
+            dataGridView.Columns["address"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["address"].HeaderText = "ADDRESS";
+
+            dataGridView.Columns["or_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["or_number"].HeaderText = "OR NUMBER";
             dataGridView.Columns["or_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["or_number"].MinimumWidth = 100;
-            dataGridView.Columns["amount"].HeaderText = "Amount";
+
+            dataGridView.Columns["amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["amount"].HeaderText = "AMOUNT";
             dataGridView.Columns["amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["amount"].MinimumWidth = 100;
-            dataGridView.Columns["prepared_by_user_id"].Visible = false;
-            dataGridView.Columns["prepared_by_user_full_name"].HeaderText = "Prepared By";
 
+            dataGridView.Columns["mris"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["mris"].HeaderText = "MRIS NO. ";
+            dataGridView.Columns["mris"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["mris"].MinimumWidth = 100;
+
+            dataGridView.Columns["mrs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["mrs"].HeaderText = "MRIS NO. ";
+            dataGridView.Columns["mrs"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["mrs"].MinimumWidth = 100;
+
+            dataGridView.Columns["war"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["war"].HeaderText = "WAR NO. ";
+            dataGridView.Columns["war"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["war"].MinimumWidth = 100;
+
+            dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["particular"].HeaderText = "PARTICULARS";
+            dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridView.Columns["particular"].MinimumWidth = 150;
+
+
+            dataGridView.Columns["prepared_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["prepared_by"].HeaderText = "PREPARED BY";
+            dataGridView.Columns["materials_issued_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
+            dataGridView.Columns["materials_returned_to"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["materials_returned_to"].HeaderText = "MATERIALS RETURED TO";
+
+            dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["status"].HeaderText = "STATUS";
+            dataGridView.Columns["status"].MinimumWidth = 60;
         }
 
         internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
@@ -106,6 +151,15 @@ namespace JOMonitoringApp
             comboBox.DisplayMember = "description";
         }
 
-        
+        internal static void StatusCombobox(ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable = Factory.StatusRepository().GetRecords();
+
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "status";
+        }
     }
 }

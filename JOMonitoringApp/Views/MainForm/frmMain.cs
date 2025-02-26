@@ -46,25 +46,35 @@ namespace JOMonitoringApp.Views.MainForm
         {
             return new DataColumn[]
             {
-                new DataColumn("job_orders_id", typeof (int)),
+                new DataColumn("id", typeof (int)),
                 new DataColumn("customers_id", typeof(int)),
+                new DataColumn("particulars_id", typeof (int)),
+                new DataColumn("prepared_by_id", typeof(int)),
+                new DataColumn("materials_issued_by_id", typeof(int)),
+                new DataColumn("materials_returned_to_id", typeof(int)),
+                new DataColumn("status_id", typeof(int)),
                 new DataColumn("date", typeof(DateTime)),
-                new DataColumn("customers_account_number", typeof(string)),
-                new DataColumn("customers_full_name", typeof(string)),
-                new DataColumn("customers_address", typeof(string)),
-                new DataColumn("particulars_id", typeof(int)),
-                new DataColumn("particulars", typeof(string)),
+                new DataColumn("account_number", typeof(string)),
+                new DataColumn("account_name", typeof(string)),
+                new DataColumn("address", typeof(string)),
+                new DataColumn("particular", typeof(string)),
                 new DataColumn("or_number", typeof(string)),
                 new DataColumn("amount", typeof(decimal)),
-                new DataColumn("prepared_by_user_id", typeof(string)),
-                new DataColumn("prepared_by_user_full_name", typeof(string)),
+                new DataColumn("mris", typeof(string)),
+                new DataColumn("mrs", typeof(string)),
+                new DataColumn("war", typeof(string)),
+                new DataColumn("prepared_by", typeof(string)),
+                new DataColumn("materials_issued_by", typeof(string)),
+                new DataColumn("materials_returned_to", typeof(string)),
+                new DataColumn("status", typeof(string))
+
             };
         }
 
         private (string searchKey, bool showInactive, int rowFilter) LoadJobOrdersParameters()
         {
             string searchKey = txtSearch.Text.Trim();
-            bool showInactive = cbxCancelled.Checked;
+            bool showInactive = cbxShowAll.Checked;
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
 
             return (searchKey, showInactive, rowFilter);
@@ -72,55 +82,74 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            var parameters = ((string searchKey, bool showInactive, int rowFilter))e.Argument;
+            var dataTable = new DataTable();
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.showInactive, parameters.rowFilter);
+            dataTable.Columns.AddRange(JobOrdersColumns());
+
+            int progressCount = 0;
+            int totalProgressCount = dtJobOrders.Rows.Count;
+
+            if (dtJobOrders.Rows.Count < 1) { backgroundWorker1.ReportProgress(100); e.Result = dataTable; return; }
+
+            foreach (DataRow row in dtJobOrders.Rows)
+            {
+
+                var newRow = dataTable.NewRow();
+                int id = Convert.ToInt32(row["id"]);
+                int customerId = Convert.ToInt32(row["customers_id"]);
+                int particularId = Convert.ToInt32(row["particulars_id"]);
+                int preparedById = Convert.ToInt32(row["prepared_by_id"]);
+                int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]); 
+                int materialsReturnedToId = string.IsNullOrEmpty(row["materials_returned_to_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_returned_to_id"]); 
+                int statusId = Convert.ToInt32(row["status_id"]);
+                DateTime date = Convert.ToDateTime(row["date"]);
+                string accountNumber = $"{row["account_number"]}";
+                string accountName = $"{row["account_name"]}";
+                string address = $"{row["address"]}";
+                string particular = $"{row["particular"]}";
+                string orNumber = $"{row["or_number"]}";
+                decimal amount = string.IsNullOrEmpty(row["or_number"].ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
+                string MRISNumber = $"{row["mris"]}";
+                string MRSNumber = $"{row["mrs"]}";
+                string WARNumber = $"{row["war"]}";
+                string preparedBy = $"{row["prepared_by"]}";
+                string materialsIssuedBy = $"{row["materials_issued_by"]}";
+                string materialsReturnedTo = $"{row["materials_returned_to"]}";
+                string status = $"{row["status"]}";
+
+                newRow["id"] = id;
+                newRow["customers_id"] = customerId;
+                newRow["particulars_id"] = particularId;
+                newRow["prepared_by_id"] = preparedById;
+                newRow["materials_issued_by_id"] = materialsIssuedById;
+                newRow["materials_returned_to_id"] = materialsReturnedToId;
+                newRow["particulars_id"] = particularId;
+                newRow["particular"] = particular;
+                newRow["status_id"] = statusId;
+                newRow["date"] = date;
+                newRow["account_number"] = accountNumber;
+                newRow["account_name"] = accountNumber;
+                newRow["address"] = address;
+                newRow["or_number"] = orNumber;
+                newRow["amount"] = amount;
+                newRow["mris"] = MRISNumber;
+                newRow["mrs"] = MRSNumber;
+                newRow["war"] = WARNumber;
+                newRow["prepared_by"] = preparedBy;
+                newRow["materials_issued_by"] = materialsIssuedBy;
+                newRow["materials_returned_to"] = materialsReturnedTo;
+                newRow["status"] = status;
+
+                progressCount++;
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+                dataTable.Rows.Add(newRow);
+            }
+
+            e.Result = dataTable;
             try
             {
-                var parameters = ((string searchKey, bool showInactive, int rowFilter))e.Argument;
-
-                var dataTable = new DataTable();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.showInactive, parameters.rowFilter);
-                dataTable.Columns.AddRange(JobOrdersColumns());
-
-                int progressCount = 0;
-                int totalProgressCount = dtJobOrders.Rows.Count;
-
-                if (dtJobOrders.Rows.Count < 1) { backgroundWorker1.ReportProgress(100); e.Result = dataTable; return; }
-
-                foreach (DataRow row in dtJobOrders.Rows)
-                {
-                    var newRow = dataTable.NewRow();
-                    int id = Convert.ToInt32(row["id"]);
-                    int customerId = Convert.ToInt32(row["customers_id"]);
-                    DateTime date = Convert.ToDateTime(row["date"]);
-                    string accountNumber = $"{row["account_number"]}";
-                    string accountName = $"{row["account_name"]}";
-                    string address = $"{row["address"]}";
-                    int particularId = Convert.ToInt32(row["particulars_id"]);
-                    string particular = $"{row["particular"]}";
-                    string orNumber = $"{row["or_number"]}";
-                    decimal amount = string.IsNullOrEmpty(row["or_number"].ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
-                    int preparedById = Convert.ToInt32(row["prepared_by_id"]);
-                    string preparedByName = $"{row["prepared_by"]}";
-
-                    newRow["job_orders_id"] = id;
-                    newRow["customers_id"] = customerId;
-                    newRow["date"] = date;
-                    newRow["customers_account_number"] = accountName;
-                    newRow["customers_full_name"] = accountName;
-                    newRow["customers_address"] = address;
-                    newRow["particulars_id"] = particularId;
-                    newRow["particulars"] = particular;
-                    newRow["or_number"] = orNumber;
-                    newRow["amount"] = amount;
-                    newRow["prepared_by_user_id"] = preparedById;
-                    newRow["prepared_by_user_full_name"] = preparedByName;
-
-                    progressCount++;
-                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-
-                    dataTable.Rows.Add(newRow);
-                }
-
-                e.Result = dataTable;
+                
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -144,7 +173,7 @@ namespace JOMonitoringApp.Views.MainForm
             HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
 
             dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
-            //toolStripStatusLabelRecordCount.Text = dgTaxpayers.Rows.Count.ToString();
+            lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -160,10 +189,11 @@ namespace JOMonitoringApp.Views.MainForm
         internal void OnLoad()
         {
             HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
-            LoadJobOrders();
+            HelperLoadRecords.StatusCombobox(cmbxStatus);
             ucDashboardSummaryView.LoadJobOrdersSummary();
             Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
             lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+            LoadJobOrders();
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }
 

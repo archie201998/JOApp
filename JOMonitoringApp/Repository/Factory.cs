@@ -19,6 +19,8 @@ namespace JOMonitoringApp
 
         public static IEmployeesRepository EmployeeRepository() => new EmployeeRepository(mySqlGenericCommands);
 
+        public static IStatusRepository StatusRepository() => new StatusRepository(mySqlGenericCommands);
+
         public static IError CreateErrors(Array errors) => new Error(errors);
     }
 }

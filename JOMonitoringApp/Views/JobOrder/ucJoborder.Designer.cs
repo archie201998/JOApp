@@ -61,8 +61,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cmbxPreparedBy = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -176,7 +174,7 @@
             // 
             this.cmbxAssignedWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxAssignedWork.FormattingEnabled = true;
-            this.cmbxAssignedWork.Location = new System.Drawing.Point(160, 107);
+            this.cmbxAssignedWork.Location = new System.Drawing.Point(155, 82);
             this.cmbxAssignedWork.Name = "cmbxAssignedWork";
             this.cmbxAssignedWork.Size = new System.Drawing.Size(200, 21);
             this.cmbxAssignedWork.TabIndex = 3;
@@ -185,7 +183,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(30, 110);
+            this.label6.Location = new System.Drawing.Point(25, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 10;
@@ -350,7 +348,7 @@
             // 
             this.cmbxMaterialsReturnedTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxMaterialsReturnedTo.FormattingEnabled = true;
-            this.cmbxMaterialsReturnedTo.Location = new System.Drawing.Point(160, 80);
+            this.cmbxMaterialsReturnedTo.Location = new System.Drawing.Point(155, 55);
             this.cmbxMaterialsReturnedTo.Name = "cmbxMaterialsReturnedTo";
             this.cmbxMaterialsReturnedTo.Size = new System.Drawing.Size(200, 21);
             this.cmbxMaterialsReturnedTo.TabIndex = 2;
@@ -359,7 +357,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(30, 83);
+            this.label12.Location = new System.Drawing.Point(25, 58);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(115, 13);
             this.label12.TabIndex = 21;
@@ -369,7 +367,7 @@
             // 
             this.cmbxMaterialsIssuedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxMaterialsIssuedBy.FormattingEnabled = true;
-            this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(160, 53);
+            this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(155, 28);
             this.cmbxMaterialsIssuedBy.Name = "cmbxMaterialsIssuedBy";
             this.cmbxMaterialsIssuedBy.Size = new System.Drawing.Size(200, 21);
             this.cmbxMaterialsIssuedBy.TabIndex = 1;
@@ -378,36 +376,14 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(30, 56);
+            this.label13.Location = new System.Drawing.Point(25, 31);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(98, 13);
             this.label13.TabIndex = 23;
             this.label13.Text = "Materials Issued By";
             // 
-            // cmbxPreparedBy
-            // 
-            this.cmbxPreparedBy.Enabled = false;
-            this.cmbxPreparedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxPreparedBy.FormattingEnabled = true;
-            this.cmbxPreparedBy.Location = new System.Drawing.Point(160, 26);
-            this.cmbxPreparedBy.Name = "cmbxPreparedBy";
-            this.cmbxPreparedBy.Size = new System.Drawing.Size(200, 21);
-            this.cmbxPreparedBy.TabIndex = 0;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(30, 29);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(65, 13);
-            this.label14.TabIndex = 25;
-            this.label14.Text = "Prepared By";
-            // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.cmbxPreparedBy);
-            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cmbxMaterialsIssuedBy);
             this.groupBox3.Controls.Add(this.cmbxAssignedWork);
@@ -417,7 +393,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(21, 396);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 141);
+            this.groupBox3.Size = new System.Drawing.Size(389, 113);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MATERIALS AND ISSUANCES";
@@ -430,7 +406,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 548);
+            this.Size = new System.Drawing.Size(424, 519);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -476,8 +452,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbxMaterialsReturnedTo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbxPreparedBy;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtWARNumber;
         private System.Windows.Forms.Label label15;

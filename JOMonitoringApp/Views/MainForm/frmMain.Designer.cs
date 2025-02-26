@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel2 = new System.Windows.Forms.Panel();
-            this.cbxCancelled = new System.Windows.Forms.CheckBox();
+            this.cbxShowAll = new System.Windows.Forms.CheckBox();
             this.cmbxRowLimit = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -40,8 +40,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,10 +66,15 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.lblCurrentUser = new System.Windows.Forms.Label();
+            this.cmbxStatus = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCurrentUser = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -79,11 +82,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
             this.panel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.cbxCancelled);
+            this.panel2.Controls.Add(this.cmbxStatus);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.cbxShowAll);
             this.panel2.Controls.Add(this.cmbxRowLimit);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnUpdate);
@@ -97,26 +103,26 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 29);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1108, 38);
+            this.panel2.Size = new System.Drawing.Size(1299, 38);
             this.panel2.TabIndex = 1;
             // 
-            // cbxCancelled
+            // cbxShowAll
             // 
-            this.cbxCancelled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxCancelled.AutoSize = true;
-            this.cbxCancelled.Location = new System.Drawing.Point(915, 11);
-            this.cbxCancelled.Name = "cbxCancelled";
-            this.cbxCancelled.Size = new System.Drawing.Size(103, 17);
-            this.cbxCancelled.TabIndex = 8;
-            this.cbxCancelled.Text = "Show Cancelled";
-            this.cbxCancelled.UseVisualStyleBackColor = true;
+            this.cbxShowAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxShowAll.AutoSize = true;
+            this.cbxShowAll.Location = new System.Drawing.Point(1142, 11);
+            this.cbxShowAll.Name = "cbxShowAll";
+            this.cbxShowAll.Size = new System.Drawing.Size(67, 17);
+            this.cbxShowAll.TabIndex = 8;
+            this.cbxShowAll.Text = "Show All";
+            this.cbxShowAll.UseVisualStyleBackColor = true;
             // 
             // cmbxRowLimit
             // 
             this.cmbxRowLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxRowLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxRowLimit.FormattingEnabled = true;
-            this.cmbxRowLimit.Location = new System.Drawing.Point(294, 9);
+            this.cmbxRowLimit.Location = new System.Drawing.Point(489, 8);
             this.cmbxRowLimit.Name = "cmbxRowLimit";
             this.cmbxRowLimit.Size = new System.Drawing.Size(121, 21);
             this.cmbxRowLimit.TabIndex = 7;
@@ -152,7 +158,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(1028, 8);
+            this.btnSearch.Location = new System.Drawing.Point(1219, 8);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 0;
@@ -164,15 +170,15 @@
             // 
             this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(457, 9);
+            this.dateTimePicker1.Location = new System.Drawing.Point(617, 8);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(199, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(100, 20);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(709, 9);
+            this.txtSearch.Location = new System.Drawing.Point(766, 8);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(200, 20);
             this.txtSearch.TabIndex = 4;
@@ -181,7 +187,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(210, 13);
+            this.label4.Location = new System.Drawing.Point(405, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 2;
@@ -191,7 +197,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(421, 13);
+            this.label1.Location = new System.Drawing.Point(545, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 2;
@@ -201,33 +207,11 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(662, 13);
+            this.label2.Location = new System.Drawing.Point(723, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Search";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.lblCurrentUser);
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(5, 520);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1108, 21);
-            this.panel4.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 4);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(93, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "SYSTEM USER : ";
             // 
             // menuStrip1
             // 
@@ -238,7 +222,7 @@
             this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1108, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1299, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -370,7 +354,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 67);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1108, 453);
+            this.tabControl1.Size = new System.Drawing.Size(1299, 474);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -380,7 +364,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1100, 427);
+            this.tabPage1.Size = new System.Drawing.Size(1291, 448);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -392,7 +376,7 @@
             this.panel1.Location = new System.Drawing.Point(3, 21);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1094, 403);
+            this.panel1.Size = new System.Drawing.Size(1285, 424);
             this.panel1.TabIndex = 2;
             // 
             // dgJobOrders
@@ -401,7 +385,7 @@
             this.dgJobOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgJobOrders.Location = new System.Drawing.Point(5, 5);
             this.dgJobOrders.Name = "dgJobOrders";
-            this.dgJobOrders.Size = new System.Drawing.Size(1084, 393);
+            this.dgJobOrders.Size = new System.Drawing.Size(1275, 414);
             this.dgJobOrders.TabIndex = 0;
             // 
             // panel3
@@ -411,7 +395,7 @@
             this.panel3.Location = new System.Drawing.Point(3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1094, 18);
+            this.panel3.Size = new System.Drawing.Size(1285, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -419,7 +403,7 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1084, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1275, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // tabPage2
@@ -428,7 +412,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1100, 427);
+            this.tabPage2.Size = new System.Drawing.Size(1291, 448);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -441,15 +425,62 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
+            // cmbxStatus
+            // 
+            this.cmbxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxStatus.FormattingEnabled = true;
+            this.cmbxStatus.Location = new System.Drawing.Point(1015, 8);
+            this.cmbxStatus.Name = "cmbxStatus";
+            this.cmbxStatus.Size = new System.Drawing.Size(121, 21);
+            this.cmbxStatus.TabIndex = 10;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(973, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Status";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.lblCurrentUser,
+            this.toolStripStatusLabel3,
+            this.lblRecordsCount});
+            this.statusStrip1.Location = new System.Drawing.Point(5, 519);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1299, 22);
+            this.statusStrip1.TabIndex = 5;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
+            this.toolStripStatusLabel1.Text = "SYSTEM USER : ";
+            // 
             // lblCurrentUser
             // 
-            this.lblCurrentUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCurrentUser.AutoSize = true;
-            this.lblCurrentUser.Location = new System.Drawing.Point(92, 4);
             this.lblCurrentUser.Name = "lblCurrentUser";
-            this.lblCurrentUser.Size = new System.Drawing.Size(52, 13);
-            this.lblCurrentUser.TabIndex = 4;
-            this.lblCurrentUser.Text = "Welcome";
+            this.lblCurrentUser.Size = new System.Drawing.Size(121, 17);
+            this.lblCurrentUser.Text = "System Administrator";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(67, 17);
+            this.toolStripStatusLabel3.Text = "RECORDS : ";
+            // 
+            // lblRecordsCount
+            // 
+            this.lblRecordsCount.Name = "lblRecordsCount";
+            this.lblRecordsCount.Size = new System.Drawing.Size(31, 17);
+            this.lblRecordsCount.Text = "1000";
             // 
             // ucDashboardSummaryView1
             // 
@@ -457,7 +488,7 @@
             this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
             this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1094, 218);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
@@ -465,10 +496,10 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1118, 546);
+            this.ClientSize = new System.Drawing.Size(1309, 546);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
@@ -479,8 +510,6 @@
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -489,6 +518,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
             this.panel3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -501,8 +532,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseBackupToolStripMenuItem;
@@ -535,7 +564,13 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.CheckBox cbxCancelled;
-        private System.Windows.Forms.Label lblCurrentUser;
+        private System.Windows.Forms.CheckBox cbxShowAll;
+        private System.Windows.Forms.ComboBox cmbxStatus;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel lblCurrentUser;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
     }
 }

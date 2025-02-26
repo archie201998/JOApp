@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -243,6 +244,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void DgJobOrders_SelectionChanged(object sender, EventArgs e)
         {
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
+        }
+
+        private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOSummary().ShowDialog();
         }
     }
 }

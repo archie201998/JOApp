@@ -65,6 +65,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -72,9 +73,9 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -332,6 +333,8 @@
             // 
             // reportToolStripMenuItem
             // 
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jOSummaryToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -409,6 +412,15 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
@@ -462,15 +474,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
             // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
-            this.ucDashboardSummaryView1.TabIndex = 0;
-            // 
             // jOStatusToolStripMenuItem
             // 
             this.jOStatusToolStripMenuItem.Name = "jOStatusToolStripMenuItem";
@@ -482,6 +485,13 @@
             this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
             this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.jODetailsToolStripMenuItem.Text = "J.O Details";
+            // 
+            // jOSummaryToolStripMenuItem
+            // 
+            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
+            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -565,5 +575,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem jOStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jODetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jOSummaryToolStripMenuItem;
     }
 }

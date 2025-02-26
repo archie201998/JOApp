@@ -57,6 +57,7 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("account_number", typeof(string)),
                 new DataColumn("account_name", typeof(string)),
                 new DataColumn("address", typeof(string)),
+                new DataColumn("job_order_no", typeof(string)),
                 new DataColumn("particular", typeof(string)),
                 new DataColumn("or_number", typeof(string)),
                 new DataColumn("amount", typeof(decimal)),
@@ -71,20 +72,20 @@ namespace JOMonitoringApp.Views.MainForm
             };
         }
 
-        private (string searchKey, bool showInactive, int rowFilter) LoadJobOrdersParameters()
+        private (string searchKey,int rowFilter, int statusId) LoadJobOrdersParameters()
         {
             string searchKey = txtSearch.Text.Trim();
-            bool showInactive = cbxShowAll.Checked;
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
+            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
 
-            return (searchKey, showInactive, rowFilter);
+            return (searchKey, rowFilter, statusId);
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            var parameters = ((string searchKey, bool showInactive, int rowFilter))e.Argument;
+            var parameters = ((string searchKey,  int rowFilter, int statusId))e.Argument;
             var dataTable = new DataTable();
-            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.showInactive, parameters.rowFilter);
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.rowFilter, parameters.statusId);
             dataTable.Columns.AddRange(JobOrdersColumns());
 
             int progressCount = 0;
@@ -107,6 +108,7 @@ namespace JOMonitoringApp.Views.MainForm
                 string accountNumber = $"{row["account_number"]}";
                 string accountName = $"{row["account_name"]}";
                 string address = $"{row["address"]}";
+                string jobOrderNumber = $"{row["job_order_no"]}";
                 string particular = $"{row["particular"]}";
                 string orNumber = $"{row["or_number"]}";
                 decimal amount = string.IsNullOrEmpty(row["or_number"].ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
@@ -131,6 +133,7 @@ namespace JOMonitoringApp.Views.MainForm
                 newRow["account_number"] = accountNumber;
                 newRow["account_name"] = accountNumber;
                 newRow["address"] = address;
+                newRow["job_order_no"] = jobOrderNumber;
                 newRow["or_number"] = orNumber;
                 newRow["amount"] = amount;
                 newRow["mris"] = MRISNumber;
@@ -180,6 +183,11 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
+                HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
+                HelperLoadRecords.StatusCombobox(cmbxStatus);
+                ucDashboardSummaryView.LoadJobOrdersSummary();
+                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
                 OnLoad();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -188,11 +196,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void OnLoad()
         {
-            HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
-            HelperLoadRecords.StatusCombobox(cmbxStatus);
-            ucDashboardSummaryView.LoadJobOrdersSummary();
-            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
-            lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+           
             LoadJobOrders();
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }

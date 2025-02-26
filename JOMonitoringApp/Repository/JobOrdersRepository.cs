@@ -54,18 +54,16 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public DataTable GetViewRecordsByParameters(string searchText, bool showInactiveTaxpayers, int rowFilter)
+        public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId)
         {
             var parameters = new object[][]
             {
                 new object[] { "@search_text", DbType.String, $"%{searchText}%" },
-                new object[] { "@row_filter", DbType.Int32, rowFilter}
+                new object[] { "@status_id", DbType.Int32, statusId},
+                new object[] { "@row_filter", DbType.Int32, rowFilter},
             };
 
-            //string subQuery = showCan ? string.Empty : "is_active = 1 AND";
-
-            //string query = $"SELECT * FROM {viewTableName} WHERE {subQuery} (account_number LIKE @search_text OR or_number LIKE @search_text OR date LIKE @search_text) ORDER BY date ASC LIMIT @row_filter";
-            string query = $"SELECT * FROM {viewTableName} WHERE account_number LIKE @search_text OR account_name LIKE @search_text OR date LIKE @search_text ORDER BY id ASC LIMIT @row_filter";
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) AND status_id = @status_id ORDER BY job_order_no ASC LIMIT @row_filter";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

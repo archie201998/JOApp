@@ -34,7 +34,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
 
             dataGridView.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.Columns["account_number"].HeaderText = "Account Number";
+            dataGridView.Columns["account_number"].HeaderText = "ACCOUNT No.";
             dataGridView.Columns["account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             dataGridView.Columns["account_number"].MinimumWidth = 100;
 
@@ -44,10 +44,13 @@ namespace JOMonitoringApp
             dataGridView.Columns["address"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["address"].HeaderText = "ADDRESS";
 
+            dataGridView.Columns["job_order_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["job_order_no"].HeaderText = "J.O No.";
+
             dataGridView.Columns["or_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["or_number"].HeaderText = "OR NUMBER";
             dataGridView.Columns["or_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView.Columns["or_number"].MinimumWidth = 100;
+            dataGridView.Columns["or_number"].MinimumWidth = 50;
 
             dataGridView.Columns["amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["amount"].HeaderText = "AMOUNT";

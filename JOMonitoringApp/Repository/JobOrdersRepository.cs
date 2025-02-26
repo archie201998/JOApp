@@ -37,6 +37,18 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
+        public int GetSummaryByStatusId(int statusId)
+        {
+            var parameters = new object[][] { new object[] { "@status_id", DbType.Int32, statusId } };
+
+            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE status_id = @status_id";
+
+            if (string.IsNullOrWhiteSpace(mySqlGenericCommands.ExecuteScalar(query, parameters)))
+                return 0;
+            else
+                return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
+
         public DataTable GetViewRecords()
         {
             throw new System.NotImplementedException();

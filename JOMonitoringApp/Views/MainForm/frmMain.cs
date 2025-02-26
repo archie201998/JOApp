@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
 using System;
 using System.Collections.Generic;
@@ -14,11 +15,13 @@ namespace JOMonitoringApp.Views.MainForm
 {
     public partial class frmMain : Form
     {
+        private readonly ucDashboardSummaryView ucDashboardSummaryView;
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             Helper.LoadFormIcon(this);
+            ucDashboardSummaryView = ucDashboardSummaryView1;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -158,6 +161,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
             LoadJobOrders();
+            ucDashboardSummaryView.LoadJobOrdersSummary();
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }
 

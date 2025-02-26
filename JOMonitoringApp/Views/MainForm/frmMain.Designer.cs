@@ -435,7 +435,8 @@
             this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
             this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1094, 192);
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1094, 218);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1

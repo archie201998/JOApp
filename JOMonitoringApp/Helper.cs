@@ -16,6 +16,9 @@ namespace AccountingSystem
     {
         public static byte UserId { get; internal set; }
 
+        //status counter 
+        internal static int accomplished, onGoing, pending, cancelled = 0; 
+
         public static bool HasPermission(string permissionName)
         {
             try
@@ -654,6 +657,30 @@ namespace AccountingSystem
         public static string TruncateString(string myString, int maxLength)
         {
             return myString.Length > maxLength ? $"{myString.Substring(0, 20)}..." : $"{myString}";
+        }
+
+        internal static void CountStatus(int statusId)
+        {
+            switch (statusId)
+            {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+
+                default:
+                    break;
+            }
+
         }
     }
 }

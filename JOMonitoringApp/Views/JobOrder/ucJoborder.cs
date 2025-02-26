@@ -70,7 +70,7 @@ namespace JOMonitoringApp.Views.JobOrder
             DateTime date = dtpDate.Value;
             string orNumber = txtORNumber.Text;
             decimal amount = nudAmount.Value;
-            int employeeId = Convert.ToInt32(cmbxEmployee.SelectedValue);
+            int employeeId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
 
             return new JobOrdersModel()
             {
@@ -127,7 +127,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 dataTable.Rows.Add(newRow);
             }
 
-            HelperLoadRecords.EmployeeCombobox(cmbxEmployee, dataTable, "id", "employee_full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxAssignedWork, dataTable, "id", "employee_full_name");
         }
 
     }

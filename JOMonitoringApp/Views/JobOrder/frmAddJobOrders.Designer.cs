@@ -62,7 +62,7 @@
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 529);
+            this.panel1.Location = new System.Drawing.Point(0, 547);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(428, 31);
             this.panel1.TabIndex = 3;
@@ -72,7 +72,7 @@
             this.ucJoborder2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucJoborder2.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder2.Name = "ucJoborder2";
-            this.ucJoborder2.Size = new System.Drawing.Size(428, 529);
+            this.ucJoborder2.Size = new System.Drawing.Size(428, 547);
             this.ucJoborder2.TabIndex = 4;
             // 
             // frmAddJobOrders
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(428, 560);
+            this.ClientSize = new System.Drawing.Size(428, 578);
             this.Controls.Add(this.ucJoborder2);
             this.Controls.Add(this.panel1);
             this.MaximizeBox = false;

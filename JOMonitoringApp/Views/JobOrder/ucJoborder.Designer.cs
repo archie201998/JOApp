@@ -39,7 +39,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nudAmount = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbxEmployee = new System.Windows.Forms.ComboBox();
+            this.cmbxAssignedWork = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label7 = new System.Windows.Forms.Label();
@@ -49,19 +49,21 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtMRSNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtMRISNumber = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtJONumber = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbxMaterialsReturnedTo = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbxPreparedBy = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtWARNumber = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -83,7 +85,7 @@
             this.txtORNumber.Location = new System.Drawing.Point(155, 158);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 20);
-            this.txtORNumber.TabIndex = 1;
+            this.txtORNumber.TabIndex = 5;
             // 
             // dtpDate
             // 
@@ -99,7 +101,7 @@
             this.cmbxCustomers.Location = new System.Drawing.Point(155, 30);
             this.cmbxCustomers.Name = "cmbxCustomers";
             this.cmbxCustomers.Size = new System.Drawing.Size(200, 21);
-            this.cmbxCustomers.TabIndex = 3;
+            this.cmbxCustomers.TabIndex = 0;
             // 
             // cmbxParticulars
             // 
@@ -107,7 +109,7 @@
             this.cmbxParticulars.Location = new System.Drawing.Point(155, 53);
             this.cmbxParticulars.Name = "cmbxParticulars";
             this.cmbxParticulars.Size = new System.Drawing.Size(200, 21);
-            this.cmbxParticulars.TabIndex = 5;
+            this.cmbxParticulars.TabIndex = 1;
             // 
             // label2
             // 
@@ -147,7 +149,7 @@
             0});
             this.nudAmount.Name = "nudAmount";
             this.nudAmount.Size = new System.Drawing.Size(200, 20);
-            this.nudAmount.TabIndex = 8;
+            this.nudAmount.TabIndex = 6;
             this.nudAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudAmount.ThousandsSeparator = true;
             // 
@@ -160,18 +162,18 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Amount";
             // 
-            // cmbxEmployee
+            // cmbxAssignedWork
             // 
-            this.cmbxEmployee.FormattingEnabled = true;
-            this.cmbxEmployee.Location = new System.Drawing.Point(160, 117);
-            this.cmbxEmployee.Name = "cmbxEmployee";
-            this.cmbxEmployee.Size = new System.Drawing.Size(200, 21);
-            this.cmbxEmployee.TabIndex = 11;
+            this.cmbxAssignedWork.FormattingEnabled = true;
+            this.cmbxAssignedWork.Location = new System.Drawing.Point(160, 107);
+            this.cmbxAssignedWork.Name = "cmbxAssignedWork";
+            this.cmbxAssignedWork.Size = new System.Drawing.Size(200, 21);
+            this.cmbxAssignedWork.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(30, 120);
+            this.label6.Location = new System.Drawing.Point(30, 110);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 13);
             this.label6.TabIndex = 10;
@@ -212,7 +214,7 @@
             this.textBox1.Location = new System.Drawing.Point(155, 83);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 20);
-            this.textBox1.TabIndex = 13;
+            this.textBox1.TabIndex = 2;
             // 
             // groupBox1
             // 
@@ -231,10 +233,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtWARNumber);
+            this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.txtMRSNumber);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.txtMRISNumber);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtJONumber);
             this.groupBox2.Controls.Add(this.label2);
@@ -247,10 +251,42 @@
             this.groupBox2.Controls.Add(this.nudAmount);
             this.groupBox2.Location = new System.Drawing.Point(21, 143);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(389, 216);
+            this.groupBox2.Size = new System.Drawing.Size(389, 242);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JOB ORDER DETAILS";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 135);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 13);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "MRS Number";
+            // 
+            // txtMRSNumber
+            // 
+            this.txtMRSNumber.Location = new System.Drawing.Point(155, 132);
+            this.txtMRSNumber.Name = "txtMRSNumber";
+            this.txtMRSNumber.Size = new System.Drawing.Size(200, 20);
+            this.txtMRSNumber.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 109);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 13);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "MRIS Number";
+            // 
+            // txtMRISNumber
+            // 
+            this.txtMRISNumber.Location = new System.Drawing.Point(155, 106);
+            this.txtMRISNumber.Name = "txtMRISNumber";
+            this.txtMRISNumber.Size = new System.Drawing.Size(200, 20);
+            this.txtMRISNumber.TabIndex = 3;
             // 
             // label9
             // 
@@ -266,86 +302,54 @@
             this.txtJONumber.Location = new System.Drawing.Point(155, 27);
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 20);
-            this.txtJONumber.TabIndex = 15;
+            this.txtJONumber.TabIndex = 0;
             // 
-            // label10
+            // cmbxMaterialsReturnedTo
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(25, 109);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "MRIS";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(155, 106);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 20);
-            this.textBox2.TabIndex = 17;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(25, 135);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 13);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "MRS";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(155, 132);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 20);
-            this.textBox3.TabIndex = 19;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(160, 90);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 22;
+            this.cmbxMaterialsReturnedTo.FormattingEnabled = true;
+            this.cmbxMaterialsReturnedTo.Location = new System.Drawing.Point(160, 80);
+            this.cmbxMaterialsReturnedTo.Name = "cmbxMaterialsReturnedTo";
+            this.cmbxMaterialsReturnedTo.Size = new System.Drawing.Size(200, 21);
+            this.cmbxMaterialsReturnedTo.TabIndex = 2;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(30, 93);
+            this.label12.Location = new System.Drawing.Point(30, 83);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(115, 13);
             this.label12.TabIndex = 21;
             this.label12.Text = "Materials Returned To ";
             // 
-            // comboBox2
+            // cmbxMaterialsIssuedBy
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(160, 63);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(200, 21);
-            this.comboBox2.TabIndex = 24;
+            this.cmbxMaterialsIssuedBy.FormattingEnabled = true;
+            this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(160, 53);
+            this.cmbxMaterialsIssuedBy.Name = "cmbxMaterialsIssuedBy";
+            this.cmbxMaterialsIssuedBy.Size = new System.Drawing.Size(200, 21);
+            this.cmbxMaterialsIssuedBy.TabIndex = 1;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(30, 66);
+            this.label13.Location = new System.Drawing.Point(30, 56);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(98, 13);
             this.label13.TabIndex = 23;
             this.label13.Text = "Materials Issued By";
             // 
-            // comboBox3
+            // cmbxPreparedBy
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(160, 36);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(200, 21);
-            this.comboBox3.TabIndex = 26;
+            this.cmbxPreparedBy.FormattingEnabled = true;
+            this.cmbxPreparedBy.Location = new System.Drawing.Point(160, 26);
+            this.cmbxPreparedBy.Name = "cmbxPreparedBy";
+            this.cmbxPreparedBy.Size = new System.Drawing.Size(200, 21);
+            this.cmbxPreparedBy.TabIndex = 0;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(30, 39);
+            this.label14.Location = new System.Drawing.Point(30, 29);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 13);
             this.label14.TabIndex = 25;
@@ -353,20 +357,36 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.comboBox3);
+            this.groupBox3.Controls.Add(this.cmbxPreparedBy);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.comboBox2);
-            this.groupBox3.Controls.Add(this.cmbxEmployee);
+            this.groupBox3.Controls.Add(this.cmbxMaterialsIssuedBy);
+            this.groupBox3.Controls.Add(this.cmbxAssignedWork);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label12);
-            this.groupBox3.Controls.Add(this.comboBox1);
-            this.groupBox3.Location = new System.Drawing.Point(21, 365);
+            this.groupBox3.Controls.Add(this.cmbxMaterialsReturnedTo);
+            this.groupBox3.Location = new System.Drawing.Point(21, 396);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 151);
+            this.groupBox3.Size = new System.Drawing.Size(389, 141);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MATERIALS AND ISSUANCES";
+            // 
+            // txtWARNumber
+            // 
+            this.txtWARNumber.Location = new System.Drawing.Point(155, 210);
+            this.txtWARNumber.Name = "txtWARNumber";
+            this.txtWARNumber.Size = new System.Drawing.Size(200, 20);
+            this.txtWARNumber.TabIndex = 7;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(25, 213);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(73, 13);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "WAR Number";
             // 
             // ucJoborder
             // 
@@ -376,7 +396,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 528);
+            this.Size = new System.Drawing.Size(424, 548);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -401,7 +421,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbxEmployee;
+        private System.Windows.Forms.ComboBox cmbxAssignedWork;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label7;
@@ -414,15 +434,17 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtJONumber;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtMRISNumber;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox txtMRSNumber;
+        private System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbxMaterialsReturnedTo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbxPreparedBy;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtWARNumber;
+        private System.Windows.Forms.Label label15;
     }
 }

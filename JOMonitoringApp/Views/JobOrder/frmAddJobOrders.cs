@@ -21,9 +21,9 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            ucJoborder = ucJoborder1;
-            _frmMain = frmMain;
-            ucJoborder.OnLoad();
+            //ucJoborder = ucJoborder1;
+            //_frmMain = frmMain;
+            //ucJoborder.OnLoad();
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

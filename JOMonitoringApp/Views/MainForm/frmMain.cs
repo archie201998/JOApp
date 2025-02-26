@@ -234,5 +234,15 @@ namespace JOMonitoringApp.Views.MainForm
                 }
             }
         }
+
+        private void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(btnUpdate, new Point(btnUpdate.Width - contextMenuStrip1.Width, btnUpdate.Height));
+        }
+
+        private void DgJobOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
+        }
     }
 }

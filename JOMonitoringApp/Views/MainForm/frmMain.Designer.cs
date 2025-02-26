@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -64,13 +65,16 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCurrentUser = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
+            this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -80,6 +84,7 @@
             this.panel3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -147,6 +152,7 @@
             this.btnUpdate.TabIndex = 6;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // btnNew
             // 
@@ -372,6 +378,7 @@
             this.dgJobOrders.Size = new System.Drawing.Size(1275, 414);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
+            this.dgJobOrders.SelectionChanged += new System.EventHandler(this.DgJobOrders_SelectionChanged);
             // 
             // panel3
             // 
@@ -401,15 +408,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -456,6 +454,35 @@
             this.lblRecordsCount.Size = new System.Drawing.Size(31, 17);
             this.lblRecordsCount.Text = "1000";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jOStatusToolStripMenuItem,
+            this.jODetailsToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
+            // jOStatusToolStripMenuItem
+            // 
+            this.jOStatusToolStripMenuItem.Name = "jOStatusToolStripMenuItem";
+            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.jOStatusToolStripMenuItem.Text = "J.O Status";
+            // 
+            // jODetailsToolStripMenuItem
+            // 
+            this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
+            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.jODetailsToolStripMenuItem.Text = "J.O Details";
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -485,6 +512,7 @@
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,5 +562,8 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentUser;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem jOStatusToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jODetailsToolStripMenuItem;
     }
 }

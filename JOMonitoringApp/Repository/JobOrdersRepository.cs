@@ -88,7 +88,7 @@ namespace JOMonitoringApp
                 new object[]{"@date", DbType.DateTime, entity.Date},
                 new object[]{"@or_number", DbType.String, entity.ORNumber},
                 new object[]{"@amount", DbType.Decimal, entity.Amount},
-                new object[]{"@employee_id", DbType.Int32, entity.EmployeeId},
+                new object[]{"@employee_id", DbType.Int32, entity.PreparedBy},
                 new object[]{"@prepared_by", DbType.Int32, entity.UserId}
             };
 

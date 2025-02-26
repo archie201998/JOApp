@@ -37,7 +37,38 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             LoadCustomers();
             LoadParticulars();
-            LoadEmployees();
+            LoadEmployee();
+        }
+
+        private void LoadEmployee()
+        {
+            HelperLoadRecords.EmployeeCombobox(cmbxPreparedBy, EmployeesDataTable(), "id", "employee_full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxAssignedWork, EmployeesDataTable(), "id", "employee_full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxMaterialsReturnedTo, EmployeesDataTable(), "id", "employee_full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "employee_full_name");
+        }
+
+        private DataTable EmployeesDataTable()
+        {
+            var dataColumns = new DataColumn[]
+            {
+                new DataColumn("id", typeof(int)),
+                new DataColumn("employee_full_name", typeof(string)),
+            };
+
+            var dataTable = new DataTable();
+            dataTable.Columns.AddRange(dataColumns);
+
+            var datable = Factory.EmployeeRepository().GetRecords();
+            foreach (DataRow row in datable.Rows)
+            {
+                var newRow = dataTable.NewRow();
+                newRow["id"] = row["id"];
+                newRow["employee_full_name"] = $"{ row["first_name"] } { row["middle_name"] } { row["last_name"] }";
+                dataTable.Rows.Add(newRow);
+            }
+
+            return dataTable;
         }
 
         internal void LoadCustomers()
@@ -68,18 +99,33 @@ namespace JOMonitoringApp.Views.JobOrder
             int customerId = Convert.ToInt32(cmbxCustomers.SelectedValue);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             DateTime date = dtpDate.Value;
+
+            string jobOrNumber = txtJONumber.Text;
+            string MRIS = txtMRISNumber.Text;
+            string MRS = txtMRSNumber.Text;
+            string WAR = txtWARNumber.Text;    
             string orNumber = txtORNumber.Text;
             decimal amount = nudAmount.Value;
-            int employeeId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
+            int preparedById = Convert.ToInt32(cmbxPreparedBy.SelectedValue);
+            int assignedWorkedId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
+            int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int materialsReturnedToId = Convert.ToInt32(cmbxMaterialsReturnedTo.SelectedValue);
 
             return new JobOrdersModel()
             {
                 CustomerID = customerId,
                 ParticularID = particularId,
-                EmployeeId = employeeId,
+                PreparedBy = preparedById,
+                AssignedWorkEmployeeId = assignedWorkedId,
+                MaterialsIssuedBy = materialsIssuedById,
+                MaterialsReturnedTo = materialsReturnedToId,
+                MRIS = MRIS,
+                MRS = MRS,
+                WAR = WAR,
                 Date = date,
                 ORNumber = orNumber,
                 Amount = amount,
+                StatusId = 2,
                 UserId = Helper.UserId
             };
         }
@@ -107,28 +153,9 @@ namespace JOMonitoringApp.Views.JobOrder
             HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dataTable, "id", "particular");
         }
 
-        private void LoadEmployees()
+        private void UcJoborder_Load(object sender, EventArgs e)
         {
-            var dataColumns = new DataColumn[]
-{
-                new DataColumn("id", typeof(int)),
-                new DataColumn("employee_full_name", typeof(string)),
-};
 
-            var dataTable = new DataTable();
-            dataTable.Columns.AddRange(dataColumns);
-
-            var datable = Factory.EmployeeRepository().GetRecords();
-            foreach (DataRow row in datable.Rows)
-            {
-                var newRow = dataTable.NewRow();
-                newRow["id"] = row["id"];
-                newRow["employee_full_name"] = $"{ row["first_name"] } { row["middle_name"] } { row["last_name"] }";
-                dataTable.Rows.Add(newRow);
-            }
-
-            HelperLoadRecords.EmployeeCombobox(cmbxAssignedWork, dataTable, "id", "employee_full_name");
         }
-
     }
 }

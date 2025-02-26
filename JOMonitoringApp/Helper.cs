@@ -33,6 +33,24 @@ namespace AccountingSystem
             return false;
         }
 
+        public static Dictionary<string, string> GetUserDataById(int userId)
+        {
+            var dictUser = new Dictionary<string, string>();
+            try
+            {
+                dictUser = Factory.UsersRepository().GetRecordByID(userId);
+
+                string prefix = dictUser["prefix"];
+                string suffix = dictUser["suffix"];
+
+                string userFullName = $" {(string.IsNullOrWhiteSpace(prefix) ? string.Empty : $"{prefix}.")} {dictUser["first_name"]} {dictUser["middle_name"]} {dictUser["last_name"]} {(string.IsNullOrWhiteSpace(suffix) ? string.Empty : $", {suffix}")}";
+                dictUser.Add("user_full_name", userFullName);
+
+                return dictUser;
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+            return dictUser;
+        }
         public static void LoadFormIcon(Form form)
         {
             form.Icon = JOMonitoringApp.Properties.Resources.thumbnail_PAMANA_COREL1;
@@ -266,24 +284,7 @@ namespace AccountingSystem
         }
 
    
-        public static Dictionary<string, dynamic> GetUserDataById(int userId)
-        {
-            var dictUser = new Dictionary<string, dynamic>();
-            //try
-            //{
-            //    dictUser = Factory.UsersRepository().GetViewRecordById(userId);
-
-            //    string prefix = dictUser["prefix"];
-            //    string suffix = dictUser["suffix"];
-
-            //    string userFullName = $" {(string.IsNullOrWhiteSpace(prefix) ? string.Empty : $"{prefix}.")} {dictUser["first_name"]} {dictUser["mid_initial"]}. {dictUser["last_name"]} {(string.IsNullOrWhiteSpace(suffix) ? string.Empty : $", {suffix}")}";
-            //    dictUser.Add("user_full_name", userFullName);
-
-            //    return dictUser;
-            //}
-            //catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
-            return dictUser;
-        }
+      
 
         internal static Dictionary<string, dynamic> LoggedInUserData()
         {

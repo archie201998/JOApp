@@ -62,7 +62,21 @@ namespace JOMonitoringApp
             cmbxEmployee.ValueMember = valueMember;
             cmbxEmployee.DisplayMember = displayMember;
         }
-        
+
+        internal static void MaterialsIssuedByComboBox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)
+        {
+            cmbxEmployee.DataSource = dataTable;
+            cmbxEmployee.ValueMember = valueMember;
+            cmbxEmployee.DisplayMember = displayMember;
+        }
+
+        internal static void MaterialsReturnedByComboBox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)
+        {
+            cmbxEmployee.DataSource = dataTable;
+            cmbxEmployee.ValueMember = valueMember;
+            cmbxEmployee.DisplayMember = displayMember;
+        }
+
         internal static void ComboboxRowLimitFilter(ComboBox comboBox)
         {
             DataTable dataTable = new DataTable();

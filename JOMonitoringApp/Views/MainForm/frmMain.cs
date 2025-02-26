@@ -162,6 +162,8 @@ namespace JOMonitoringApp.Views.MainForm
             HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
             LoadJobOrders();
             ucDashboardSummaryView.LoadJobOrdersSummary();
+            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+            lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }
 

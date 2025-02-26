@@ -83,6 +83,7 @@
             this.ClientSize = new System.Drawing.Size(428, 578);
             this.Controls.Add(this.ucJoborder2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddJobOrders";

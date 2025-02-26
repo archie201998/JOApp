@@ -206,5 +206,33 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmAddJobOrders(this).ShowDialog();
         }
 
+        private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgJobOrders.Columns[e.ColumnIndex].Name == "status")
+            {
+                if (e.Value != null)
+                {
+                    string status = e.Value.ToString();
+                    if (status == "Pending")
+                        e.CellStyle.BackColor = Color.Gold;
+                    else if (status == "On-Going")
+                    {
+                        e.CellStyle.BackColor = Color.MediumSeaGreen;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+
+                    else if (status == "Cancelled")
+                    {
+                        e.CellStyle.BackColor = Color.IndianRed;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                    else if (status == "Accomplished")
+                    {
+                        e.CellStyle.BackColor = Color.SteelBlue;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                }
+            }
+        }
     }
 }

@@ -371,6 +371,7 @@
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.Size = new System.Drawing.Size(1275, 414);
             this.dgJobOrders.TabIndex = 0;
+            this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             // 
             // panel3
             // 

@@ -87,7 +87,7 @@ namespace JOMonitoringApp
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["status"].HeaderText = "STATUS";
-            dataGridView.Columns["status"].MinimumWidth = 60;
+            dataGridView.Columns["status"].MinimumWidth = 30;
         }
 
         internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)

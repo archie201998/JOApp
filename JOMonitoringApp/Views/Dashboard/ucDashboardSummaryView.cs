@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccountingSystem;
 
 namespace JOMonitoringApp.Views.Dashboard
 {
@@ -22,10 +23,20 @@ namespace JOMonitoringApp.Views.Dashboard
 
         internal void LoadJobOrdersSummary()
         {
-            int pending = Factory.JobOrdersRepository().GetSummaryByStatusId(1);
-            int onGoing = Factory.JobOrdersRepository().GetSummaryByStatusId(2);
-            int cancelled = Factory.JobOrdersRepository().GetSummaryByStatusId(3);
-            int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(4);
+            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
+        }
+
+        private void UcDashboardSummaryView_Load(object sender, EventArgs e)
+        {
+            LoadMonths();
+        }
+
+        private void LoadAndDisplaySummary(int year, int monthId)
+        {
+            int pending = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 1);
+            int onGoing = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 2);
+            int cancelled = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 3);
+            int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 4);
 
             txtPending.Text = pending.ToString();
             txtOnGoing.Text = onGoing.ToString();
@@ -33,14 +44,27 @@ namespace JOMonitoringApp.Views.Dashboard
             txtAccomplished.Text = accomplished.ToString();
         }
 
-        private void UcDashboardSummaryView_Load(object sender, EventArgs e)
+        private void LoadMonths()
         {
-           
+            foreach (var item in Helper.MonthsDatasource().Values)
+                cmbxMonth.Items.Add(item);
+            cmbxMonth.SelectedIndex = DateTime.Now.Month;
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void CmbxMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedValue));
+        }
+
+        private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
+        }
+
     }
 }

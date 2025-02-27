@@ -37,11 +37,16 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public int GetSummaryByStatusId(int statusId)
+        public int GetSummaryByStatusId(int year, int monthId, int statusId)
         {
-            var parameters = new object[][] { new object[] { "@status_id", DbType.Int32, statusId } };
+            var parameters = new object[][]
+            {
+                new object[] { "@status_id", DbType.String, statusId },
+                new object[] { "@month", DbType.Int16, year },
+                new object[] { "@year", DbType.Int16, monthId },
+            };
 
-            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE status_id = @status_id";
+            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE (YEAR(date) = @year OR MONTH(date) = @month) AND status_id = @status_id";
 
             if (string.IsNullOrWhiteSpace(mySqlGenericCommands.ExecuteScalar(query, parameters)))
                 return 0;

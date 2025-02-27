@@ -181,6 +181,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="RDLC\job-order-summary.rdlc" />
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
     </EmbeddedResource>
@@ -218,7 +219,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AccessControls\" />
-    <Folder Include="RDLC\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

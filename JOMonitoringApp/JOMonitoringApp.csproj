@@ -208,6 +208,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="RDLC\" />
     <Folder Include="Views\MessageBox\" />
   </ItemGroup>
   <ItemGroup>

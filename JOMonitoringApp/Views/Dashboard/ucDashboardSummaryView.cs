@@ -18,7 +18,6 @@ namespace JOMonitoringApp.Views.Dashboard
             {
                 InitializeComponent();
             }
-
         }
 
         internal void LoadJobOrdersSummary()

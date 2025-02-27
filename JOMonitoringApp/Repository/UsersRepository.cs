@@ -89,10 +89,10 @@ namespace JOMonitoringApp
             try
             {
                 var parameters = new object[][]
-              {
+                {
                     new object[] { "@username", DbType.String, username },
                     new object[] { "@password", DbType.String, password },
-              };
+                };
 
                 //string query = $"SELECT id FROM {tableName} WHERE BINARY username = @username AND password = sha2(@password, 224)";
                 string query = $"SELECT id FROM {tableName} WHERE  user_name = @username AND password = @password";

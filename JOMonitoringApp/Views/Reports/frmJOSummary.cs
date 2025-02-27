@@ -21,6 +21,20 @@ namespace JOMonitoringApp.Views.Reports
 
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
+            LoadMonths();
+        }
+
+  
+
+        private void LoadMonths()
+        {
+            foreach (var item in Helper.MonthsDatasource().Values)
+                comboBox1.Items.Add(item);
+            comboBox1.SelectedIndex = 1;
+        }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
 
         }
     }

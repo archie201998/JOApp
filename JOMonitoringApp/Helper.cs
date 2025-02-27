@@ -615,6 +615,26 @@ namespace AccountingSystem
             return month;
         }
 
+        public static Dictionary<int, string> YearsDatasource()
+        {
+            var month = new Dictionary<int, string>();
+
+            month.Add(1, "2025");
+            month.Add(2, "2026");
+            month.Add(3, "2027");
+            month.Add(4, "2028");
+            month.Add(5, "2029");
+            month.Add(6, "2030");
+            month.Add(7, "2031");
+            month.Add(8, "2032");
+            month.Add(9, "2033");
+            month.Add(10, "2034");
+            month.Add(11, "2035");
+            month.Add(12, "2036");
+
+            return month;
+        }
+
         public static void ShowRecordTimestamp(DataGridView dataGridView, byte[] index, ToolStripStatusLabel lblCreatedAt, ToolStripStatusLabel lblUpdatedAt)
         {
             string placeHolder = "--";

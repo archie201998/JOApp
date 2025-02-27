@@ -151,6 +151,12 @@
     <Compile Include="Views\MainForm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MessageBox\ConfirmMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MessageBox\ConfirmMessageBox.Designer.cs">
+      <DependentUpon>ConfirmMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reports\frmJOSummary.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <EmbeddedResource Include="Views\MainForm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\MessageBox\ConfirmMessageBox.resx">
+      <DependentUpon>ConfirmMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmJOSummary.resx">
       <DependentUpon>frmJOSummary.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,8 +217,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AccessControls\" />
     <Folder Include="RDLC\" />
-    <Folder Include="Views\MessageBox\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

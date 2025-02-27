@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbxRowLimit = new System.Windows.Forms.ComboBox();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -65,7 +66,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -75,7 +75,7 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.panel2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -90,13 +90,13 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnDelete);
+            this.panel2.Controls.Add(this.btnUpdate);
             this.panel2.Controls.Add(this.cmbxStatus);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.cmbxRowLimit);
-            this.panel2.Controls.Add(this.btnDelete);
-            this.panel2.Controls.Add(this.btnUpdate);
             this.panel2.Controls.Add(this.btnNew);
-            this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.txtSearch);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label2);
@@ -105,6 +105,50 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1299, 38);
             this.panel2.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1217, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Search";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Crimson;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(169, 9);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(70, 23);
+            this.btnDelete.TabIndex = 12;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.BackColor = System.Drawing.Color.DarkCyan;
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(93, 9);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(70, 23);
+            this.btnUpdate.TabIndex = 11;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = false;
             // 
             // cmbxStatus
             // 
@@ -136,45 +180,20 @@
             this.cmbxRowLimit.Size = new System.Drawing.Size(121, 21);
             this.cmbxRowLimit.TabIndex = 7;
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Location = new System.Drawing.Point(111, 8);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(50, 23);
-            this.btnDelete.TabIndex = 6;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Location = new System.Drawing.Point(59, 8);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(50, 23);
-            this.btnUpdate.TabIndex = 6;
-            this.btnUpdate.Text = "Update";
-            this.btnUpdate.UseVisualStyleBackColor = true;
-            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
-            // 
             // btnNew
             // 
+            this.btnNew.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnNew.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNew.ForeColor = System.Drawing.Color.White;
             this.btnNew.Location = new System.Drawing.Point(7, 8);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(50, 23);
+            this.btnNew.Size = new System.Drawing.Size(80, 23);
             this.btnNew.TabIndex = 6;
             this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(1219, 8);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 0;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // txtSearch
             // 
@@ -330,6 +349,7 @@
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
             this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
+            this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -338,6 +358,13 @@
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.reportToolStripMenuItem.Text = "Reports";
+            // 
+            // jOSummaryToolStripMenuItem
+            // 
+            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
+            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -404,22 +431,13 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1291, 448);
+            this.tabPage2.Size = new System.Drawing.Size(1291, 445);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -486,16 +504,17 @@
             this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.jODetailsToolStripMenuItem.Text = "J.O Details";
             // 
-            // jOSummaryToolStripMenuItem
+            // ucDashboardSummaryView1
             // 
-            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
-            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1285, 218);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
             // 
-            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1309, 546);
@@ -530,7 +549,6 @@
 
         #endregion
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -558,8 +576,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ProgressBar progressBar1;
         private Dashboard.ucDashboardSummaryView ucDashboardSummaryView1;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.ComboBox cmbxRowLimit;
         private System.Windows.Forms.Label label4;
@@ -576,5 +592,8 @@
         private System.Windows.Forms.ToolStripMenuItem jOStatusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jODetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jOSummaryToolStripMenuItem;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button button1;
     }
 }

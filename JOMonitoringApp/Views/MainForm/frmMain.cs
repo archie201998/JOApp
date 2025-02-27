@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.MessageBox;
 using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
@@ -249,6 +250,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmJOSummary().ShowDialog();
+        }
+
+        private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            _ = new ConfirmMessageBox("Do you want to log-out your account?").ShowDialog();
         }
     }
 }

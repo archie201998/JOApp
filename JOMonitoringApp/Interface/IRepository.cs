@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JOMonitoringApp.Interface
+{
+    public interface IRepository<T> where T : class
+    {
+        bool IdExist(int id);
+
+        DataTable GetRecords();
+
+        DataTable GetRecordsBySearch(string searchText);
+
+        Dictionary<string, string> GetRecordByID(int Id);
+
+        bool Insert(T entity);
+
+        bool Update(T entity);
+
+        bool Delete(List<T> entityList);
+    }
+}

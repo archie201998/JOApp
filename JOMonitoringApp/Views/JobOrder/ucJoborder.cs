@@ -28,6 +28,11 @@ namespace JOMonitoringApp.Views.JobOrder
             var errorArray = new string[]
             {
                 errorProvider1.GetError(cmbxCustomers),
+                errorProvider1.GetError(dtpDate),
+                errorProvider1.GetError(txtJONumber),
+                errorProvider1.GetError(txtMRISNumber),
+                errorProvider1.GetError(cmbxAssignedWork),
+
             };
 
             return Factory.CreateErrors(errorArray).GenerateErrorMessage();
@@ -159,6 +164,52 @@ namespace JOMonitoringApp.Views.JobOrder
         private void UcJoborder_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+        #region Validation
+
+        private void TxtJONumber_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtJONumber, "J.O Number.");
+        }
+
+        private void TxtJONumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtJONumber);
+        }
+
+
+        #endregion
+
+        private void TxtMRISNumber_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRISNumber, "MRIS Number.");
+        }
+
+        private void TxtMRISNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
+        }
+
+        private void CmbxAssignedWork_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxAssignedWork, "Assigned Personnel.");
+        }
+
+        private void CmbxAssignedWork_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorComboBox(errorProvider1, cmbxAssignedWork);
+        }
+
+        private void CmbxCustomers_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxCustomers, "Account Name.");
+        }
+
+        private void CmbxCustomers_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorComboBox(errorProvider1, cmbxCustomers);
         }
     }
 }

@@ -23,12 +23,8 @@ namespace JOMonitoringApp.Views.Dashboard
 
         internal void LoadJobOrdersSummary()
         {
-            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
-        }
-
-        private void UcDashboardSummaryView_Load(object sender, EventArgs e)
-        {
             LoadMonths();
+            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
         }
 
         private void LoadAndDisplaySummary(int year, int monthId)

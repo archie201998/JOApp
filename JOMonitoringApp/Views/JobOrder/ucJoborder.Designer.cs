@@ -104,9 +104,12 @@
             this.cmbxCustomers.Name = "cmbxCustomers";
             this.cmbxCustomers.Size = new System.Drawing.Size(200, 21);
             this.cmbxCustomers.TabIndex = 0;
+            this.cmbxCustomers.Validating += new System.ComponentModel.CancelEventHandler(this.CmbxCustomers_Validating);
+            this.cmbxCustomers.Validated += new System.EventHandler(this.CmbxCustomers_Validated);
             // 
             // cmbxParticulars
             // 
+            this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxParticulars.FormattingEnabled = true;
             this.cmbxParticulars.Location = new System.Drawing.Point(155, 53);
@@ -178,6 +181,8 @@
             this.cmbxAssignedWork.Name = "cmbxAssignedWork";
             this.cmbxAssignedWork.Size = new System.Drawing.Size(200, 21);
             this.cmbxAssignedWork.TabIndex = 3;
+            this.cmbxAssignedWork.Validating += new System.ComponentModel.CancelEventHandler(this.CmbxAssignedWork_Validating);
+            this.cmbxAssignedWork.Validated += new System.EventHandler(this.CmbxAssignedWork_Validated);
             // 
             // label6
             // 
@@ -325,6 +330,8 @@
             this.txtMRISNumber.Name = "txtMRISNumber";
             this.txtMRISNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRISNumber.TabIndex = 3;
+            this.txtMRISNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtMRISNumber_Validating);
+            this.txtMRISNumber.Validated += new System.EventHandler(this.TxtMRISNumber_Validated);
             // 
             // label9
             // 
@@ -343,6 +350,8 @@
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 20);
             this.txtJONumber.TabIndex = 0;
+            this.txtJONumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtJONumber_Validating);
+            this.txtJONumber.Validated += new System.EventHandler(this.TxtJONumber_Validated);
             // 
             // cmbxMaterialsReturnedTo
             // 

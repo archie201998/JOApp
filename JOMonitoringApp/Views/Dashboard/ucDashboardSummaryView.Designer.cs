@@ -320,7 +320,6 @@
             this.Name = "ucDashboardSummaryView";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(1019, 214);
-            this.Load += new System.EventHandler(this.UcDashboardSummaryView_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);

@@ -198,7 +198,6 @@ namespace JOMonitoringApp.Views.MainForm
         internal void OnLoad()
         {
             LoadJobOrders();
-            Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -297,6 +296,11 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             return false;
+        }
+
+        private void DgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

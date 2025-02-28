@@ -54,11 +54,11 @@
             this.particularsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesAndPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signatoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -255,19 +255,19 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.manualToolStripMenuItem.Text = "Backup";
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
             // 
             // exportToolStripMenuItem
@@ -276,19 +276,19 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
             // 
             // cSVToolStripMenuItem
             // 
             this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
             this.cSVToolStripMenuItem.Text = "CSV";
             // 
             // settingsToolStripMenuItem
@@ -333,6 +333,21 @@
             this.signatoriesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.signatoriesToolStripMenuItem.Text = "Report Signatories";
             // 
+            // reportToolStripMenuItem
+            // 
+            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.jOSummaryToolStripMenuItem});
+            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportToolStripMenuItem.Text = "Reports";
+            // 
+            // jOSummaryToolStripMenuItem
+            // 
+            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
+            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
+            // 
             // sessionToolStripMenuItem
             // 
             this.sessionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -345,30 +360,15 @@
             // lockApplicationToolStripMenuItem
             // 
             this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.lockApplicationToolStripMenuItem.Text = "Lock Application";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
-            // 
-            // reportToolStripMenuItem
-            // 
-            this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jOSummaryToolStripMenuItem});
-            this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.reportToolStripMenuItem.Text = "Reports";
-            // 
-            // jOSummaryToolStripMenuItem
-            // 
-            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
-            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
             // tabControl1
             // 
@@ -414,6 +414,7 @@
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.Size = new System.Drawing.Size(1113, 400);
             this.dgJobOrders.TabIndex = 0;
+            this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.DgJobOrders_SelectionChanged);
             // 

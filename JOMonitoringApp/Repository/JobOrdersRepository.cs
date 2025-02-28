@@ -60,6 +60,18 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
+        public DataTable GetViewRecordsByMonth()
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@month", DbType.String, string.Empty }
+            };
+
+            string query = $"SELECT * FROM {viewTableName} ";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
         public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId)
         {
             var parameters = new object[][]

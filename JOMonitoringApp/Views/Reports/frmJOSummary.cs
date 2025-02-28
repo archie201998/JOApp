@@ -1,4 +1,6 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Dataset;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,8 +24,7 @@ namespace JOMonitoringApp.Views.Reports
 
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
-            LoadMonths();
-            this.reportViewer1.RefreshReport();
+            //LoadMonths();
         }
 
 
@@ -35,9 +36,18 @@ namespace JOMonitoringApp.Views.Reports
             comboBox1.SelectedIndex = 1;
         }
 
-        private void LoadReports()
-        { 
-        
+        private void LoadReport()
+        {
+            try
+            {
+                if (!backgroundWorker1.IsBusy)
+                {
+                    progressBar1.Value = 0;
+                    var date = new DateTime().Month;
+                    backgroundWorker1.RunWorkerAsync();
+                }
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.StackTrace); }
         }
 
 
@@ -45,15 +55,84 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
-                LoadReports();
+                LoadReport();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
-        
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                // Define tasks and their progress weights
+                var tasks = new Dictionary<string, int>
+                {
+                    { "Initialize Parameters", 50 },
+                    { "Set Parameter Values", 50 }
+                };
+
+                var dtMonthlyReport = new dsReport.job_order_summaryDataTable();
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth();
+                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
+                int progressCount = 0;
+
+
+                // Initialize Parameters
+                List<ReportParameter> reportParameters1 = new List<ReportParameter>();
+                progressCount += tasks["Initialize Parameters"];
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+                // Set Parameter Values
+                reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString("MM")));
+                progressCount += tasks["Set Parameter Values"];
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+
+                foreach (DataRow dataRow in dtJobOrders.Rows)
+                {
+                    var newRow = dtMonthlyReport.NewRow();
+
+                    newRow["date"] = dataRow["date"];
+                    newRow["job_order_no"] = dataRow["job_order_no"];
+                    newRow["customer"] = dataRow["account_name"];
+                    newRow["account_number"] = dataRow["account_number"];
+                    newRow["particular"] = dataRow["particular"];
+                    newRow["status"] = dataRow["status"];
+
+                    progressCount++;
+                    dtMonthlyReport.Rows.Add(newRow);
+                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+                }
+
+                e.Result = (reportParameters1, dtJobOrders);
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
+
+        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
+
+                reportViewer1.Clear();
+                var localReport2 = reportViewer1.LocalReport;
+                localReport2.DataSources.Clear();
+                localReport2.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
+                localReport2.DataSources.Add(new ReportDataSource("dsReport", parameters.dtJOSummary));
+                localReport2.SetParameters(parameters.reportParameters1);
+                localReport2.Refresh();
+
+                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+                reportViewer1.ZoomMode = ZoomMode.FullPage;
+                reportViewer1.Refresh();
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
     }
 }

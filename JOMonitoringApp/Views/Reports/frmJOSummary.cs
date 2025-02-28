@@ -83,7 +83,7 @@ namespace JOMonitoringApp.Views.Reports
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 // Set Parameter Values
-                reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString("MM")));
+                reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString()));
                 progressCount += tasks["Set Parameter Values"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
@@ -123,8 +123,9 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.Clear();
                 var localReport = reportViewer1.LocalReport;
                 localReport.DataSources.Clear();
+
                 localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
-                localReport.DataSources.Add(new ReportDataSource("dtJobOrderSummary", parameters.dtJOSummary));
+                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
                 localReport.SetParameters(parameters.reportParameters1);
                 localReport.Refresh();
 

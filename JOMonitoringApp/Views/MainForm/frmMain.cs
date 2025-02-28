@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.MessageBox;
@@ -251,7 +252,51 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            _ = new ConfirmMessageBox("Do you want to log-out your account?").ShowDialog();
+            bool res = Helper.MessageBoxConfirmCancel("Do you want to log-out your account?");
+            if (res)
+            {
+                Close();
+                Helper.UserId = 0;
+                _ = new frmSignIn().ShowDialog();
+            }
+
+            return;
+
+        }
+
+        private void BtnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SoftDeleteJO())
+                {
+                    Helper.MessageBoxSuccess($"{dgJobOrders.SelectedRows.Count} Job order/s is successfully deleted.");
+                    OnLoad();
+                }
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
+
+        private bool SoftDeleteJO()
+        {
+            var jobOrderModelList = new List<JobOrdersModel>();
+            int rowCount = dgJobOrders.SelectedRows.Count;
+
+            if (Helper.MessageBoxConfirmDelete(rowCount))
+            {
+                foreach (DataGridViewRow row in dgJobOrders.SelectedRows)
+                {
+                    int jobOrderId = Convert.ToInt32(row.Cells["id"].Value);
+                    int deletedBy = Helper.UserId;
+
+                    var model = new JobOrdersModel() { ID = jobOrderId, DeletedBy = deletedBy };
+                    jobOrderModelList.Add(model);
+                }
+
+                return Factory.JobOrdersRepository().SoftDeleteJOById(jobOrderModelList);
+            }
+
+            return false;
         }
     }
 }

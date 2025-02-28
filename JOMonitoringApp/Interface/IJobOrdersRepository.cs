@@ -18,5 +18,11 @@ namespace JOMonitoringApp.Interface
         DataTable GetViewRecordsBySearch(string searchText);
 
         int GetSummaryByStatusId(int year, int monthId, int statusId);
+
+        //bool SoftDeleteJOById(int jobOrderId, int deleteBy);
+
+        bool SoftDeleteJOById(List<JobOrdersModel> entityList);
+
+        
     }
 }

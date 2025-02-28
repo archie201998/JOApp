@@ -33,12 +33,12 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 if (SaveData())
                 {
-                    _ = new ConfirmMessageBox("Job order is successfully created.").ShowDialog();
+                    Helper.MessageBoxSuccess("Job order is successfully created.");
                     _frmMain.OnLoad();
                     this.Close();
                 }
             }
-            catch (Exception ex) { _ = new ConfirmMessageBox(ex.Message).ShowDialog(); }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
 
@@ -54,9 +54,5 @@ namespace JOMonitoringApp.Views.JobOrder
             return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
         }
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -22,9 +22,10 @@ namespace JOMonitoringApp.Views.Reports
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
             LoadMonths();
+            this.reportViewer1.RefreshReport();
         }
 
-  
+
 
         private void LoadMonths()
         {

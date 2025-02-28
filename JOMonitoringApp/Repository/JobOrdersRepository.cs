@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Transactions;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
@@ -68,7 +69,7 @@ namespace JOMonitoringApp
                 new object[] { "@row_filter", DbType.Int32, rowFilter},
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) AND status_id = @status_id ORDER BY job_order_no ASC LIMIT @row_filter";
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) AND status_id = @status_id AND is_deleted = 0 ORDER BY job_order_no  ASC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -104,6 +105,39 @@ namespace JOMonitoringApp
 
             string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, job_order_no, or_number, amount, mris, mrs, war, prepared_by, materials_issued_by, materials_returned_to, employee_id, status_id) VALUES (@customers_id, @particulars_id, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @prepared_by, @materials_issued_by, @materials_returned_to, @employee_id, @status_id)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+        }
+
+        public bool SoftDeleteJOById(int jobOrderId, int deletedBy)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId},
+                new object[] { "@deleted_by", DbType.Int32, deletedBy},
+            };
+
+            string query = $"UPDATE {tableName} SET is_deleted = 1,  deleted_by = @deleted_by WHERE id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public bool SoftDeleteJOById(List<JobOrdersModel> entityList)
+        {
+            using (var scope = new TransactionScope())
+            {
+                foreach (var entity in entityList)
+                {
+                    var parameters = new object[][]
+                     {
+                        new object[] { "@job_order_id", DbType.Int32, entity.ID},
+                        new object[] { "@deleted_by", DbType.Int32, entity.DeletedBy},
+                     };
+
+                    string query = $"UPDATE {tableName} SET is_deleted = 1,  deleted_by = @deleted_by WHERE id = @job_order_id";
+                    _ = mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+                }
+
+                scope.Complete();
+                return true;
+            }
         }
 
         public bool Update(JobOrdersModel entity)

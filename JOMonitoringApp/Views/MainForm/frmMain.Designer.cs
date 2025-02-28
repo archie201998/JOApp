@@ -137,6 +137,7 @@
             this.btnDelete.TabIndex = 12;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -231,8 +232,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.settingsToolStripMenuItem,
-            this.sessionToolStripMenuItem,
-            this.reportToolStripMenuItem});
+            this.reportToolStripMenuItem,
+            this.sessionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1137, 24);
@@ -254,19 +255,19 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.manualToolStripMenuItem.Text = "Backup";
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
             // 
             // exportToolStripMenuItem
@@ -275,19 +276,19 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
             // 
             // cSVToolStripMenuItem
             // 
             this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cSVToolStripMenuItem.Text = "CSV";
             // 
             // settingsToolStripMenuItem
@@ -344,13 +345,13 @@
             // lockApplicationToolStripMenuItem
             // 
             this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lockApplicationToolStripMenuItem.Text = "Lock Application";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -365,7 +366,7 @@
             // jOSummaryToolStripMenuItem
             // 
             this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
             this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 

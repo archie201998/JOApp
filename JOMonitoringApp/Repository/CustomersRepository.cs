@@ -34,6 +34,15 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.Fill(query, dataTable);
         }
 
+        public int GetLastInsertedID(int userId)
+        {
+            var parameters = new object[][]
+            {  new object[] { "@user_id", DbType.Int32, userId}, };
+
+            string query = $"SELECT MAX(id) FROM {tableName} WHERE created_by = @user_id";
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
+
         public DataTable GetRecordsBySearch(string searchText)
         {
             throw new System.NotImplementedException();
@@ -46,7 +55,15 @@ namespace JOMonitoringApp
 
         public bool Insert(CustomersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameter = new object[][] {
+                new object[]{"@account_number", DbType.String, entity.AccountNumber},
+                new object[]{"@account_name", DbType.String, entity.AccountName},
+                new object[]{"@address", DbType.String, entity.Address},
+                new object[]{"@created_by", DbType.Int32, entity.CreatedBy},
+            };
+
+            string query = $"INSERT INTO {tableName} (account_number, account_name, address, created_by) VALUES (@account_number, @account_name, @address, @created_by)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
         public bool Update(CustomersModel entity)

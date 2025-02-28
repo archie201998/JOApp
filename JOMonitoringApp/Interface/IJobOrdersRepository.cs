@@ -23,6 +23,7 @@ namespace JOMonitoringApp.Interface
 
         bool SoftDeleteJOById(List<JobOrdersModel> entityList);
 
+
         
     }
 }

@@ -14,7 +14,7 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
-
+        internal bool newApplication = false;
         public ucJoborder()
         {
             if (!DesignMode)
@@ -104,7 +104,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = Convert.ToInt32(cmbxCustomers.SelectedValue);
+            int customerId = newApplication ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : Convert.ToInt32(cmbxCustomers.SelectedValue);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
@@ -205,11 +205,17 @@ namespace JOMonitoringApp.Views.JobOrder
         private void CmbxCustomers_Validating(object sender, CancelEventArgs e)
         {
             e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxCustomers, "Account Name.");
+
         }
 
         private void CmbxCustomers_Validated(object sender, EventArgs e)
         {
             Helper.ClearErrorComboBox(errorProvider1, cmbxCustomers);
+        }
+
+        private void CbxNewApplication_CheckedChanged(object sender, EventArgs e)
+        {
+            newApplication = cbxNewApplication.Checked;
         }
     }
 }

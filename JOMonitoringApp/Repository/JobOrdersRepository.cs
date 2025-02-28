@@ -107,6 +107,7 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
+
         public bool SoftDeleteJOById(int jobOrderId, int deletedBy)
         {
             var parameters = new object[][]

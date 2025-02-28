@@ -41,7 +41,7 @@
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 517);
+            this.panel1.Location = new System.Drawing.Point(0, 551);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(428, 31);
             this.panel1.TabIndex = 3;
@@ -83,7 +83,7 @@
             this.ucJoborder2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucJoborder2.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder2.Name = "ucJoborder2";
-            this.ucJoborder2.Size = new System.Drawing.Size(428, 517);
+            this.ucJoborder2.Size = new System.Drawing.Size(428, 551);
             this.ucJoborder2.TabIndex = 4;
             // 
             // frmAddJobOrders
@@ -93,7 +93,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(428, 548);
+            this.ClientSize = new System.Drawing.Size(428, 582);
             this.Controls.Add(this.ucJoborder2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -103,6 +103,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New |  Job Order";
+            this.Load += new System.EventHandler(this.FrmAddJobOrders_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

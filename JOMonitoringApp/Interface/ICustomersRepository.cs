@@ -9,6 +9,6 @@ namespace JOMonitoringApp.Interface
 {
     public interface ICustomersRepository : IRepository<CustomersModel>
     {
-
+        int GetLastInsertedID(int userId);
     }
 }

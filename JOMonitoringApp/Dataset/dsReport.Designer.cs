@@ -24,12 +24,12 @@ namespace JOMonitoringApp.Dataset {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class dsReport : global::System.Data.DataSet {
         
-        private job_order_summaryDataTable tablejob_order_summary;
+        private dtJobOrderSummaryDataTable tabledtJobOrderSummary;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public dsReport() {
             this.BeginInit();
             this.InitClass();
@@ -40,7 +40,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected dsReport(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
@@ -54,8 +54,8 @@ namespace JOMonitoringApp.Dataset {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["job_order_summary"] != null)) {
-                    base.Tables.Add(new job_order_summaryDataTable(ds.Tables["job_order_summary"]));
+                if ((ds.Tables["dtJobOrderSummary"] != null)) {
+                    base.Tables.Add(new dtJobOrderSummaryDataTable(ds.Tables["dtJobOrderSummary"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -76,17 +76,17 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public job_order_summaryDataTable job_order_summary {
+        public dtJobOrderSummaryDataTable dtJobOrderSummary {
             get {
-                return this.tablejob_order_summary;
+                return this.tabledtJobOrderSummary;
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -99,7 +99,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public new global::System.Data.DataTableCollection Tables {
             get {
@@ -108,7 +108,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Hidden)]
         public new global::System.Data.DataRelationCollection Relations {
             get {
@@ -117,7 +117,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected override void InitializeDerivedDataSet() {
             this.BeginInit();
             this.InitClass();
@@ -125,7 +125,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
             dsReport cln = ((dsReport)(base.Clone()));
             cln.InitVars();
@@ -134,26 +134,26 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected override bool ShouldSerializeTables() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected override bool ShouldSerializeRelations() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected override void ReadXmlSerializable(global::System.Xml.XmlReader reader) {
             if ((this.DetermineSchemaSerializationMode(reader) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["job_order_summary"] != null)) {
-                    base.Tables.Add(new job_order_summaryDataTable(ds.Tables["job_order_summary"]));
+                if ((ds.Tables["dtJobOrderSummary"] != null)) {
+                    base.Tables.Add(new dtJobOrderSummaryDataTable(ds.Tables["dtJobOrderSummary"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -171,7 +171,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         protected override global::System.Xml.Schema.XmlSchema GetSchemaSerializable() {
             global::System.IO.MemoryStream stream = new global::System.IO.MemoryStream();
             this.WriteXmlSchema(new global::System.Xml.XmlTextWriter(stream, null));
@@ -180,42 +180,42 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars() {
             this.InitVars(true);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablejob_order_summary = ((job_order_summaryDataTable)(base.Tables["job_order_summary"]));
+            this.tabledtJobOrderSummary = ((dtJobOrderSummaryDataTable)(base.Tables["dtJobOrderSummary"]));
             if ((initTable == true)) {
-                if ((this.tablejob_order_summary != null)) {
-                    this.tablejob_order_summary.InitVars();
+                if ((this.tabledtJobOrderSummary != null)) {
+                    this.tabledtJobOrderSummary.InitVars();
                 }
             }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
             this.DataSetName = "dsReport";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/dsReport.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablejob_order_summary = new job_order_summaryDataTable();
-            base.Tables.Add(this.tablejob_order_summary);
+            this.tabledtJobOrderSummary = new dtJobOrderSummaryDataTable();
+            base.Tables.Add(this.tabledtJobOrderSummary);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializejob_order_summary() {
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializedtJobOrderSummary() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -223,7 +223,7 @@ namespace JOMonitoringApp.Dataset {
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
             dsReport ds = new dsReport();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
@@ -269,15 +269,15 @@ namespace JOMonitoringApp.Dataset {
             return type;
         }
         
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void job_order_summaryRowChangeEventHandler(object sender, job_order_summaryRowChangeEvent e);
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void dtJobOrderSummaryRowChangeEventHandler(object sender, dtJobOrderSummaryRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class job_order_summaryDataTable : global::System.Data.TypedTableBase<job_order_summaryRow> {
+        public partial class dtJobOrderSummaryDataTable : global::System.Data.TypedTableBase<dtJobOrderSummaryRow> {
             
             private global::System.Data.DataColumn columndate;
             
@@ -292,17 +292,17 @@ namespace JOMonitoringApp.Dataset {
             private global::System.Data.DataColumn columnstatus;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryDataTable() {
-                this.TableName = "job_order_summary";
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryDataTable() {
+                this.TableName = "dtJobOrderSummary";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal job_order_summaryDataTable(global::System.Data.DataTable table) {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal dtJobOrderSummaryDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -318,14 +318,14 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected job_order_summaryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected dtJobOrderSummaryDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn dateColumn {
                 get {
                     return this.columndate;
@@ -333,7 +333,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn job_order_noColumn {
                 get {
                     return this.columnjob_order_no;
@@ -341,7 +341,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn customerColumn {
                 get {
                     return this.columncustomer;
@@ -349,7 +349,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn account_numberColumn {
                 get {
                     return this.columnaccount_number;
@@ -357,7 +357,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn particularColumn {
                 get {
                     return this.columnparticular;
@@ -365,7 +365,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn statusColumn {
                 get {
                     return this.columnstatus;
@@ -373,7 +373,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -382,35 +382,35 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryRow this[int index] {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryRow this[int index] {
                 get {
-                    return ((job_order_summaryRow)(this.Rows[index]));
+                    return ((dtJobOrderSummaryRow)(this.Rows[index]));
                 }
             }
             
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event job_order_summaryRowChangeEventHandler job_order_summaryRowChanging;
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtJobOrderSummaryRowChangeEventHandler dtJobOrderSummaryRowChanging;
             
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event job_order_summaryRowChangeEventHandler job_order_summaryRowChanged;
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtJobOrderSummaryRowChangeEventHandler dtJobOrderSummaryRowChanged;
             
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event job_order_summaryRowChangeEventHandler job_order_summaryRowDeleting;
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtJobOrderSummaryRowChangeEventHandler dtJobOrderSummaryRowDeleting;
             
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event job_order_summaryRowChangeEventHandler job_order_summaryRowDeleted;
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event dtJobOrderSummaryRowChangeEventHandler dtJobOrderSummaryRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Addjob_order_summaryRow(job_order_summaryRow row) {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void AdddtJobOrderSummaryRow(dtJobOrderSummaryRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryRow Addjob_order_summaryRow(string date, string job_order_no, string customer, string account_number, string particular, string status) {
-                job_order_summaryRow rowjob_order_summaryRow = ((job_order_summaryRow)(this.NewRow()));
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryRow AdddtJobOrderSummaryRow(string date, string job_order_no, string customer, string account_number, string particular, string status) {
+                dtJobOrderSummaryRow rowdtJobOrderSummaryRow = ((dtJobOrderSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         date,
                         job_order_no,
@@ -418,27 +418,27 @@ namespace JOMonitoringApp.Dataset {
                         account_number,
                         particular,
                         status};
-                rowjob_order_summaryRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowjob_order_summaryRow);
-                return rowjob_order_summaryRow;
+                rowdtJobOrderSummaryRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowdtJobOrderSummaryRow);
+                return rowdtJobOrderSummaryRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                job_order_summaryDataTable cln = ((job_order_summaryDataTable)(base.Clone()));
+                dtJobOrderSummaryDataTable cln = ((dtJobOrderSummaryDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new job_order_summaryDataTable();
+                return new dtJobOrderSummaryDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columndate = base.Columns["date"];
                 this.columnjob_order_no = base.Columns["job_order_no"];
@@ -449,7 +449,7 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
                 this.columndate = new global::System.Data.DataColumn("date", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndate);
@@ -466,67 +466,67 @@ namespace JOMonitoringApp.Dataset {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryRow Newjob_order_summaryRow() {
-                return ((job_order_summaryRow)(this.NewRow()));
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryRow NewdtJobOrderSummaryRow() {
+                return ((dtJobOrderSummaryRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new job_order_summaryRow(builder);
+                return new dtJobOrderSummaryRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(job_order_summaryRow);
+                return typeof(dtJobOrderSummaryRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.job_order_summaryRowChanged != null)) {
-                    this.job_order_summaryRowChanged(this, new job_order_summaryRowChangeEvent(((job_order_summaryRow)(e.Row)), e.Action));
+                if ((this.dtJobOrderSummaryRowChanged != null)) {
+                    this.dtJobOrderSummaryRowChanged(this, new dtJobOrderSummaryRowChangeEvent(((dtJobOrderSummaryRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.job_order_summaryRowChanging != null)) {
-                    this.job_order_summaryRowChanging(this, new job_order_summaryRowChangeEvent(((job_order_summaryRow)(e.Row)), e.Action));
+                if ((this.dtJobOrderSummaryRowChanging != null)) {
+                    this.dtJobOrderSummaryRowChanging(this, new dtJobOrderSummaryRowChangeEvent(((dtJobOrderSummaryRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.job_order_summaryRowDeleted != null)) {
-                    this.job_order_summaryRowDeleted(this, new job_order_summaryRowChangeEvent(((job_order_summaryRow)(e.Row)), e.Action));
+                if ((this.dtJobOrderSummaryRowDeleted != null)) {
+                    this.dtJobOrderSummaryRowDeleted(this, new dtJobOrderSummaryRowChangeEvent(((dtJobOrderSummaryRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.job_order_summaryRowDeleting != null)) {
-                    this.job_order_summaryRowDeleting(this, new job_order_summaryRowChangeEvent(((job_order_summaryRow)(e.Row)), e.Action));
+                if ((this.dtJobOrderSummaryRowDeleting != null)) {
+                    this.dtJobOrderSummaryRowDeleting(this, new dtJobOrderSummaryRowChangeEvent(((dtJobOrderSummaryRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void Removejob_order_summaryRow(job_order_summaryRow row) {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void RemovedtJobOrderSummaryRow(dtJobOrderSummaryRow row) {
                 this.Rows.Remove(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
@@ -548,7 +548,7 @@ namespace JOMonitoringApp.Dataset {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "job_order_summaryDataTable";
+                attribute2.FixedValue = "dtJobOrderSummaryDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -592,213 +592,213 @@ namespace JOMonitoringApp.Dataset {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class job_order_summaryRow : global::System.Data.DataRow {
+        public partial class dtJobOrderSummaryRow : global::System.Data.DataRow {
             
-            private job_order_summaryDataTable tablejob_order_summary;
+            private dtJobOrderSummaryDataTable tabledtJobOrderSummary;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal job_order_summaryRow(global::System.Data.DataRowBuilder rb) : 
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal dtJobOrderSummaryRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablejob_order_summary = ((job_order_summaryDataTable)(this.Table));
+                this.tabledtJobOrderSummary = ((dtJobOrderSummaryDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string date {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.dateColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.dateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'date\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'date\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.dateColumn] = value;
+                    this[this.tabledtJobOrderSummary.dateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string job_order_no {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.job_order_noColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.job_order_noColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'job_order_no\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'job_order_no\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.job_order_noColumn] = value;
+                    this[this.tabledtJobOrderSummary.job_order_noColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string customer {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.customerColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.customerColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'customer\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'customer\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.customerColumn] = value;
+                    this[this.tabledtJobOrderSummary.customerColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string account_number {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.account_numberColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.account_numberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'account_number\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'account_number\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.account_numberColumn] = value;
+                    this[this.tabledtJobOrderSummary.account_numberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string particular {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.particularColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.particularColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'particular\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'particular\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.particularColumn] = value;
+                    this[this.tabledtJobOrderSummary.particularColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string status {
                 get {
                     try {
-                        return ((string)(this[this.tablejob_order_summary.statusColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.statusColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'status\' in table \'job_order_summary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'status\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablejob_order_summary.statusColumn] = value;
+                    this[this.tabledtJobOrderSummary.statusColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsdateNull() {
-                return this.IsNull(this.tablejob_order_summary.dateColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.dateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetdateNull() {
-                this[this.tablejob_order_summary.dateColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.dateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isjob_order_noNull() {
-                return this.IsNull(this.tablejob_order_summary.job_order_noColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.job_order_noColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setjob_order_noNull() {
-                this[this.tablejob_order_summary.job_order_noColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.job_order_noColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IscustomerNull() {
-                return this.IsNull(this.tablejob_order_summary.customerColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.customerColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetcustomerNull() {
-                this[this.tablejob_order_summary.customerColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.customerColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Isaccount_numberNull() {
-                return this.IsNull(this.tablejob_order_summary.account_numberColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.account_numberColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void Setaccount_numberNull() {
-                this[this.tablejob_order_summary.account_numberColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.account_numberColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsparticularNull() {
-                return this.IsNull(this.tablejob_order_summary.particularColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.particularColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetparticularNull() {
-                this[this.tablejob_order_summary.particularColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.particularColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsstatusNull() {
-                return this.IsNull(this.tablejob_order_summary.statusColumn);
+                return this.IsNull(this.tabledtJobOrderSummary.statusColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetstatusNull() {
-                this[this.tablejob_order_summary.statusColumn] = global::System.Convert.DBNull;
+                this[this.tabledtJobOrderSummary.statusColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Row event argument class
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class job_order_summaryRowChangeEvent : global::System.EventArgs {
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class dtJobOrderSummaryRowChangeEvent : global::System.EventArgs {
             
-            private job_order_summaryRow eventRow;
+            private dtJobOrderSummaryRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryRowChangeEvent(job_order_summaryRow row, global::System.Data.DataRowAction action) {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryRowChangeEvent(dtJobOrderSummaryRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public job_order_summaryRow Row {
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public dtJobOrderSummaryRow Row {
                 get {
                     return this.eventRow;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataRowAction Action {
                 get {
                     return this.eventAction;

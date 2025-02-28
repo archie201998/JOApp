@@ -71,7 +71,7 @@ namespace JOMonitoringApp.Views.Reports
                     { "Set Parameter Values", 50 }
                 };
 
-                var dtMonthlyReport = new dsReport.job_order_summaryDataTable();
+                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth();
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
@@ -90,7 +90,7 @@ namespace JOMonitoringApp.Views.Reports
 
                 foreach (DataRow dataRow in dtJobOrders.Rows)
                 {
-                    var newRow = dtMonthlyReport.NewRow();
+                    var newRow = dtJobOrderSummary.NewRow();
 
                     newRow["date"] = dataRow["date"];
                     newRow["job_order_no"] = dataRow["job_order_no"];
@@ -100,7 +100,7 @@ namespace JOMonitoringApp.Views.Reports
                     newRow["status"] = dataRow["status"];
 
                     progressCount++;
-                    dtMonthlyReport.Rows.Add(newRow);
+                    dtJobOrderSummary.Rows.Add(newRow);
                     Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
                 }
 
@@ -121,12 +121,12 @@ namespace JOMonitoringApp.Views.Reports
                 var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
 
                 reportViewer1.Clear();
-                var localReport2 = reportViewer1.LocalReport;
-                localReport2.DataSources.Clear();
-                localReport2.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
-                localReport2.DataSources.Add(new ReportDataSource("dsReport", parameters.dtJOSummary));
-                localReport2.SetParameters(parameters.reportParameters1);
-                localReport2.Refresh();
+                var localReport = reportViewer1.LocalReport;
+                localReport.DataSources.Clear();
+                localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
+                localReport.DataSources.Add(new ReportDataSource("dtJobOrderSummary", parameters.dtJOSummary));
+                localReport.SetParameters(parameters.reportParameters1);
+                localReport.Refresh();
 
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.FullPage;

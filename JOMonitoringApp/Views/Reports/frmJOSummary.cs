@@ -17,6 +17,7 @@ namespace JOMonitoringApp.Views.Reports
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
+            panel3.Controls.Add(reportViewer1);
         }
 
         private void FrmJOSummary_Load(object sender, EventArgs e)
@@ -34,9 +35,25 @@ namespace JOMonitoringApp.Views.Reports
             comboBox1.SelectedIndex = 1;
         }
 
+        private void LoadReports()
+        { 
+        
+        }
+
+
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            try
+            {
+                LoadReports();
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
         }
+
+        
     }
 }

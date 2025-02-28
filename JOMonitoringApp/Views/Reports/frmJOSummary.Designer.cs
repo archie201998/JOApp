@@ -38,6 +38,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -185,5 +186,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnSearch;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

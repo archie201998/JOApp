@@ -38,6 +38,10 @@ namespace JOMonitoringApp.Views.JobOrder
             LoadCustomers();
             LoadParticulars();
             LoadEmployee();
+
+            cmbxMaterialsIssuedBy.SelectedIndex = -1;
+            cmbxMaterialsReturnedTo.SelectedIndex = -1;
+            cmbxAssignedWork.SelectedIndex = -1;
         }
 
         private void LoadEmployee()
@@ -97,16 +101,16 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             int customerId = Convert.ToInt32(cmbxCustomers.SelectedValue);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
-            DateTime date = dtpDate.Value;
             string jobOrderNumber = txtJONumber.Text;
+            DateTime date = dtpDate.Value;
+            string orNumber = txtORNumber.Text;
+            decimal amount = nudAmount.Value;
             string MRIS = txtMRISNumber.Text;
             string MRS = txtMRSNumber.Text;
             string WAR = txtWARNumber.Text;    
-            string orNumber = txtORNumber.Text;
-            decimal amount = nudAmount.Value;
             int preparedById = Helper.UserId;
-            int assignedWorkedId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
             int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int assignedWorkedId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
             int materialsReturnedToId = Convert.ToInt32(cmbxMaterialsReturnedTo.SelectedValue);
 
             return new JobOrdersModel()
@@ -115,15 +119,15 @@ namespace JOMonitoringApp.Views.JobOrder
                 ParticularID = particularId,
                 PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,
-                AssignedWorkEmployeeId = assignedWorkedId,
-                MaterialsIssuedBy = materialsIssuedById,
-                MaterialsReturnedTo = materialsReturnedToId,
-                MRIS = MRIS,
-                MRS = MRS,
-                WAR = WAR,
                 Date = date,
                 ORNumber = orNumber,
                 Amount = amount,
+                MRIS = MRIS,
+                MRS = MRS,
+                WAR = WAR,
+                AssignedWorkEmployeeId = assignedWorkedId,
+                MaterialsIssuedBy = materialsIssuedById,
+                MaterialsReturnedTo = materialsReturnedToId,
                 StatusId = 2,
                 UserId = Helper.UserId
             };

@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Views.MainForm;
+using JOMonitoringApp.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,12 +33,12 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 if (SaveData())
                 {
-                    Helper.MessageBoxSuccess("Job order has been created");
+                    _ = new ConfirmMessageBox("Job order is successfully created.").ShowDialog();
                     _frmMain.OnLoad();
                     this.Close();
                 }
             }
-            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+            catch (Exception ex) { _ = new ConfirmMessageBox(ex.Message).ShowDialog(); }
         }
 
 
@@ -53,5 +54,9 @@ namespace JOMonitoringApp.Views.JobOrder
             return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -89,13 +89,20 @@ namespace JOMonitoringApp
                 new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
                 new object[]{"@particulars_id", DbType.Int32, entity.ParticularID},
                 new object[]{"@date", DbType.DateTime, entity.Date},
+                new object[]{"@job_order_no", DbType.String, entity.JONUmber},
                 new object[]{"@or_number", DbType.String, entity.ORNumber},
                 new object[]{"@amount", DbType.Decimal, entity.Amount},
-                new object[]{"@employee_id", DbType.Int32, entity.PreparedBy},
-                new object[]{"@prepared_by", DbType.Int32, entity.UserId}
+                new object[]{"@mris", DbType.String, entity.MRIS},
+                new object[]{"@mrs", DbType.String, entity.MRS},
+                new object[]{"@war", DbType.String, entity.WAR},
+                new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
+                new object[]{"@materials_issued_by", DbType.String, entity.MaterialsIssuedBy},
+                new object[]{"@materials_returned_to", DbType.String, entity.MaterialsReturnedTo},
+                new object[]{"@employee_id", DbType.String, entity.AssignedWorkEmployeeId},
+                new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, or_number, amount, employee_id, prepared_by) VALUES (@customers_id, @particulars_id, @date, @or_number, @amount, @employee_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, job_order_no, or_number, amount, mris, mrs, war, prepared_by, materials_issued_by, materials_returned_to, employee_id, status_id) VALUES (@customers_id, @particulars_id, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @prepared_by, @materials_issued_by, @materials_returned_to, @employee_id, @status_id)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 

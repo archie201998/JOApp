@@ -14,6 +14,7 @@ namespace JOMonitoringApp.Views.MessageBox
     public partial class ConfirmMessageBox : Form
     {
         private string _message;
+
         public ConfirmMessageBox(string message)
         {
             InitializeComponent();
@@ -29,6 +30,11 @@ namespace JOMonitoringApp.Views.MessageBox
         private void BtnConfirm_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

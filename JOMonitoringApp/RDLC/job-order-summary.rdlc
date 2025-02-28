@@ -78,7 +78,7 @@
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.47719cm</Top>
             <Height>0.90854cm</Height>
-            <Width>20.53166cm</Width>
+            <Width>16.24547cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -120,7 +120,7 @@
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>2.38573cm</Top>
             <Height>0.90854cm</Height>
-            <Width>20.53166cm</Width>
+            <Width>16.24547cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -137,22 +137,22 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
+                  <Width>1.75035cm</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>2.5441cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.49118cm</Width>
+                  <Width>3.94639cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>5.4016cm</Width>
+                  <Width>2.80868cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.94097cm</Width>
+                  <Width>3.60243cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.50201cm</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>1.96201cm</Width>
+                  <Width>1.59353cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -390,7 +390,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>3.48396cm</Height>
+                  <Height>0.67938cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -402,7 +402,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!date.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>d</Format>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -414,6 +417,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -432,7 +436,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!job_order_no.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -446,6 +452,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -464,7 +471,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!customer.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -476,6 +485,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -494,7 +504,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!account_number.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -508,6 +520,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -526,7 +539,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!particular.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -540,6 +555,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -558,7 +574,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!status.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -572,6 +590,7 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -606,9 +625,8 @@
             </TablixRowHierarchy>
             <DataSetName>dsJOMonthlyReport</DataSetName>
             <Top>4.11537cm</Top>
-            <Left>0.36724cm</Left>
-            <Height>4.29562cm</Height>
-            <Width>19.84187cm</Width>
+            <Height>1.49105cm</Height>
+            <Width>16.24547cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -619,13 +637,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>7.04167in</Height>
+        <Height>30cm</Height>
         <Style />
       </Body>
-      <Width>8.08333in</Width>
+      <Width>16.5cm</Width>
       <Page>
         <PageHeader>
-          <Height>2.41667cm</Height>
+          <Height>2.45194cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -649,10 +667,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.28194cm</Top>
-              <Left>0cm</Left>
+              <Top>0.31722cm</Top>
               <Height>1.15562cm</Height>
-              <Width>20.53166cm</Width>
+              <Width>16.5cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -684,9 +701,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.50812cm</Top>
+              <Top>1.5434cm</Top>
               <Height>0.90854cm</Height>
-              <Width>20.53166cm</Width>
+              <Width>16.5cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -706,17 +723,7 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageFooter>
-          <Height>2.54cm</Height>
-          <PrintOnFirstPage>true</PrintOnFirstPage>
-          <PrintOnLastPage>true</PrintOnLastPage>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
+        <PageHeight>30cm</PageHeight>
         <PageWidth>21cm</PageWidth>
         <LeftMargin>2cm</LeftMargin>
         <RightMargin>2cm</RightMargin>

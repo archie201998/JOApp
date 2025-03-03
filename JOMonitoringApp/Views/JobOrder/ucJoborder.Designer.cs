@@ -257,6 +257,8 @@
             // cbxNewApplication
             // 
             this.cbxNewApplication.AutoSize = true;
+            this.cbxNewApplication.Checked = true;
+            this.cbxNewApplication.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxNewApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNewApplication.Location = new System.Drawing.Point(155, 19);
             this.cbxNewApplication.Name = "cbxNewApplication";

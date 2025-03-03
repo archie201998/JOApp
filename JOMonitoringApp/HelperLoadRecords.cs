@@ -39,6 +39,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["account_number"].MinimumWidth = 100;
 
             dataGridView.Columns["account_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["account_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["account_name"].HeaderText = "ACCOUNT NAME";
 
             dataGridView.Columns["address"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -50,7 +51,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["job_order_no"].HeaderText = "J.O NO.";
 
             dataGridView.Columns["or_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["or_number"].HeaderText = "OR No.";
+            dataGridView.Columns["or_number"].HeaderText = "OR NO.";
             dataGridView.Columns["or_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["or_number"].MinimumWidth = 50;
 
@@ -89,7 +90,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
             dataGridView.Columns["materials_returned_to"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["materials_returned_to"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["materials_returned_to"].HeaderText = "MATERIALS RETURED TO";
+            dataGridView.Columns["materials_returned_to"].HeaderText = "MATERIALS RETURNED TO";
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["status"].HeaderText = "STATUS";

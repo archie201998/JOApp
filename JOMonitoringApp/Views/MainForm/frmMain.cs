@@ -203,6 +203,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void BtnNew_Click(object sender, EventArgs e)
         {
             _ = new frmAddJobOrders(this).ShowDialog();
+
         }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Transactions;
 using JOMonitoringApp.Interface;
@@ -25,7 +26,26 @@ namespace JOMonitoringApp
 
         public Dictionary<string, string> GetRecordByID(int Id)
         {
-            throw new System.NotImplementedException();
+            var recordDictionary = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, Id}
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE id = @id";
+
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                foreach (DataColumn column in dataTable.Columns)
+                    recordDictionary[column.ColumnName] = row[column].ToString();
+
+                return recordDictionary;
+            }
+            return recordDictionary;
         }
 
         public DataTable GetRecords()
@@ -81,7 +101,9 @@ namespace JOMonitoringApp
                 new object[] { "@row_filter", DbType.Int32, rowFilter},
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) AND status_id = @status_id AND is_deleted = 0 ORDER BY job_order_no  ASC LIMIT @row_filter ";
+            string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
+
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 ORDER BY job_order_no  ASC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -111,7 +133,7 @@ namespace JOMonitoringApp
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.String, entity.MaterialsIssuedBy},
                 new object[]{"@materials_returned_to", DbType.String, entity.MaterialsReturnedTo},
-                new object[]{"@employee_id", DbType.String, entity.AssignedWorkEmployeeId},
+                new object[]{"@employee_id", DbType.String, entity.PreparedBy},
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 

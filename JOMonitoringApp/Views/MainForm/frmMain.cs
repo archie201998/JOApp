@@ -20,12 +20,14 @@ namespace JOMonitoringApp.Views.MainForm
     public partial class frmMain : Form
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
+        private readonly ucJoborder ucJoborder;
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             Helper.LoadFormIcon(this);
             ucDashboardSummaryView = ucDashboardSummaryView1;
+            ucJoborder = ucJoborder1;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -51,6 +53,7 @@ namespace JOMonitoringApp.Views.MainForm
             return new DataColumn[]
             {
                 new DataColumn("id", typeof (int)),
+                new DataColumn("status", typeof(string)),
                 new DataColumn("customers_id", typeof(int)),
                 new DataColumn("particulars_id", typeof (int)),
                 new DataColumn("prepared_by_id", typeof(int)),
@@ -71,7 +74,6 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
                 new DataColumn("materials_returned_to", typeof(string)),
-                new DataColumn("status", typeof(string))
 
             };
         }
@@ -104,6 +106,7 @@ namespace JOMonitoringApp.Views.MainForm
 
                     var newRow = dataTable.NewRow();
                     int id = Convert.ToInt32(row["id"]);
+                    string status = $"{row["status"]}";
                     int customerId = Convert.ToInt32(row["customers_id"]);
                     int particularId = Convert.ToInt32(row["particulars_id"]);
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
@@ -124,7 +127,6 @@ namespace JOMonitoringApp.Views.MainForm
                     string preparedBy = $"{row["prepared_by"]}";
                     string materialsIssuedBy = $"{row["materials_issued_by"]}";
                     string materialsReturnedTo = $"{row["materials_returned_to"]}";
-                    string status = $"{row["status"]}";
 
                     newRow["id"] = id;
                     newRow["customers_id"] = customerId;
@@ -137,7 +139,7 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["status_id"] = statusId;
                     newRow["date"] = date;
                     newRow["account_number"] = accountNumber;
-                    newRow["account_name"] = accountNumber;
+                    newRow["account_name"] = accountName;
                     newRow["address"] = address;
                     newRow["job_order_no"] = jobOrderNumber;
                     newRow["or_number"] = orNumber;
@@ -187,6 +189,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
+                cmbxStatus.SelectedValue = 2;
                 ucDashboardSummaryView.LoadJobOrdersSummary();
                 Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
                 lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
@@ -197,14 +200,10 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void OnLoad()
         {
-            LoadJobOrders();
+            //LoadJobOrders();
+            //ucJoborder.OnLoad();
         }
 
-        private void BtnNew_Click(object sender, EventArgs e)
-        {
-            _ = new frmAddJobOrders(this).ShowDialog();
-
-        }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -303,5 +302,124 @@ namespace JOMonitoringApp.Views.MainForm
         {
 
         }
+
+        private void JODetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+
+            Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
+
+            if (dictJobOrders.Count == 0) return;
+
+            ucJoborder.cmbxCustomers.SelectedValue = dictJobOrders["customers_id"];
+            ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
+            ucJoborder.txtAddress.Text = dictJobOrders["address"];
+
+            ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
+            ucJoborder.cmbxParticulars.SelectedValue = Convert.ToInt32(dictJobOrders["particulars_id"]);
+            ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
+            ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];
+            ucJoborder.txtMRSNumber.Text = dictJobOrders["mrs"];
+            ucJoborder.txtORNumber.Text =  dictJobOrders["or_number"];
+            ucJoborder.nudAmount.Value = string.IsNullOrEmpty(dictJobOrders["amount"].ToString()) ? 0 : Convert.ToDecimal(dictJobOrders["amount"]);
+            ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
+
+            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
+            ucJoborder.cmbxMaterialsReturnedTo.SelectedValue = Convert.ToInt32(dictJobOrders["materials_returned_to_id"]);
+
+        }
+
+        private void BtnCancel_Click(object sender, EventArgs e)
+        {
+            ResetInputForm();
+        }
+
+        private void ResetInputForm()
+        {
+            ucJoborder.cmbxCustomers.SelectedValue = -1;
+            ucJoborder.txtAccountNumber.Clear();
+            ucJoborder.txtAddress.Clear();
+
+            ucJoborder.txtJONumber.Clear();
+            ucJoborder.cmbxParticulars.SelectedValue = -1;
+            ucJoborder.dtpDate.Value = DateTime.Now;
+            ucJoborder.txtMRISNumber.Clear();
+            ucJoborder.txtMRSNumber.Clear();
+            ucJoborder.txtORNumber.Clear();
+            ucJoborder.nudAmount.Value = 0;
+            ucJoborder.txtWARNumber.Clear();
+
+            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
+            ucJoborder.cmbxMaterialsReturnedTo.SelectedValue = -1;
+
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SaveData())
+                {
+                    Helper.MessageBoxSuccess("Job order is successfully created.");
+                    OnLoad();
+                }
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
+
+
+        #region Save Job orders
+        internal bool SaveData()
+        {
+            if (!ucJoborder.ValidateChildren())
+            {
+                Helper.MessageBoxError(ucJoborder.GetFormErrors());
+                return false;
+            }
+
+            //Run this code if new application
+            bool isApplicaitonJO = ucJoborder.cbxNewApplication.Checked;
+            if (isApplicaitonJO)
+            {
+                if (SaveNewCustomer())
+                {
+                    return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                }
+            }
+            //Run this code if new application
+
+            return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+        }
+
+
+        private bool SaveNewCustomer()
+        {
+            var customerModel = new CustomersModel()
+            {
+                AccountName = ucJoborder.cmbxCustomers.Text,
+                Address = ucJoborder.txtAddress.Text,
+                CreatedBy = Helper.UserId
+            };
+
+            return Factory.CustomersRepository().Insert(customerModel);
+        }
+
+        internal CustomersModel CustomersModel()
+        {
+            string accountNumber = ucJoborder.txtAccountNumber.Text.Trim();
+            string accountName = ucJoborder.cmbxCustomers.Text.Trim();
+            string accountAddress = ucJoborder.txtAddress.Text.Trim();
+
+            return new CustomersModel()
+            {
+                AccountNumber = accountNumber,
+                AccountName = accountName,
+                Address = accountAddress,
+            };
+
+        }
+        #endregion
+
+
     }
 }

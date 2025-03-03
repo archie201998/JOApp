@@ -470,7 +470,7 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 553);
+            this.panel4.Location = new System.Drawing.Point(0, 523);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -490,6 +490,7 @@
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnSave
             // 
@@ -505,13 +506,15 @@
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // ucJoborder1
             // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 553);
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 523);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage2
@@ -605,6 +608,7 @@
             this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
             this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.jODetailsToolStripMenuItem.Text = "J.O Details";
+            this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
             // 
             // toolStripStatusLabel2
             // 
@@ -625,7 +629,6 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

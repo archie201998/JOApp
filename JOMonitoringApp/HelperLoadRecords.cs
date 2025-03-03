@@ -25,6 +25,10 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_returned_to_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
 
+            dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["status"].HeaderText = "STATUS";
+            dataGridView.Columns["status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["status"].MinimumWidth = 30;
 
 
             dataGridView.Columns["date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -32,6 +36,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["date"].MinimumWidth = 50;
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
+
 
             dataGridView.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["account_number"].HeaderText = "ACCOUNT NO.";
@@ -92,10 +97,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_returned_to"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["materials_returned_to"].HeaderText = "MATERIALS RETURNED TO";
 
-            dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView.Columns["status"].HeaderText = "STATUS";
-            dataGridView.Columns["status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["status"].MinimumWidth = 30;
+  
         }
 
         internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)

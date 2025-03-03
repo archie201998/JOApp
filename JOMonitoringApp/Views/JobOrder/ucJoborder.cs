@@ -14,7 +14,7 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
-        internal bool newApplication = false;
+        internal bool newApplication = true;
         public ucJoborder()
         {
             if (!DesignMode)
@@ -31,7 +31,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.GetError(dtpDate),
                 errorProvider1.GetError(txtJONumber),
                 errorProvider1.GetError(txtMRISNumber),
-                errorProvider1.GetError(cmbxAssignedWork),
 
             };
 
@@ -46,12 +45,10 @@ namespace JOMonitoringApp.Views.JobOrder
 
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
             cmbxMaterialsReturnedTo.SelectedIndex = -1;
-            cmbxAssignedWork.SelectedIndex = -1;
         }
 
         private void LoadEmployee()
         {
-            HelperLoadRecords.EmployeeCombobox(cmbxAssignedWork, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsReturnedTo, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "employee_full_name");
         }
@@ -115,9 +112,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string WAR = txtWARNumber.Text;    
             int preparedById = Helper.UserId;
             int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
-            int assignedWorkedId = Convert.ToInt32(cmbxAssignedWork.SelectedValue);
             int materialsReturnedToId = Convert.ToInt32(cmbxMaterialsReturnedTo.SelectedValue);
-
             return new JobOrdersModel()
             {
                 CustomerID = customerId,
@@ -130,7 +125,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRIS = MRIS,
                 MRS = MRS,
                 WAR = WAR,
-                AssignedWorkEmployeeId = assignedWorkedId,
                 MaterialsIssuedBy = materialsIssuedById,
                 MaterialsReturnedTo = materialsReturnedToId,
                 StatusId = 2,
@@ -190,16 +184,6 @@ namespace JOMonitoringApp.Views.JobOrder
         private void TxtMRISNumber_Validated(object sender, EventArgs e)
         {
             Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
-        }
-
-        private void CmbxAssignedWork_Validating(object sender, CancelEventArgs e)
-        {
-            e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxAssignedWork, "Assigned Personnel.");
-        }
-
-        private void CmbxAssignedWork_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorComboBox(errorProvider1, cmbxAssignedWork);
         }
 
         private void CmbxCustomers_Validating(object sender, CancelEventArgs e)

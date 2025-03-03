@@ -39,8 +39,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.nudAmount = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.cmbxAssignedWork = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.txtAccountNumber = new System.Windows.Forms.TextBox();
@@ -173,27 +171,6 @@
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Amount";
-            // 
-            // cmbxAssignedWork
-            // 
-            this.cmbxAssignedWork.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxAssignedWork.FormattingEnabled = true;
-            this.cmbxAssignedWork.Location = new System.Drawing.Point(155, 82);
-            this.cmbxAssignedWork.Name = "cmbxAssignedWork";
-            this.cmbxAssignedWork.Size = new System.Drawing.Size(200, 21);
-            this.cmbxAssignedWork.TabIndex = 3;
-            this.cmbxAssignedWork.Validating += new System.ComponentModel.CancelEventHandler(this.CmbxAssignedWork_Validating);
-            this.cmbxAssignedWork.Validated += new System.EventHandler(this.CmbxAssignedWork_Validated);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(79, 13);
-            this.label6.TabIndex = 10;
-            this.label6.Text = "Assigned Work";
             // 
             // errorProvider1
             // 
@@ -372,6 +349,7 @@
             // 
             // cmbxMaterialsReturnedTo
             // 
+            this.cmbxMaterialsReturnedTo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxMaterialsReturnedTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxMaterialsReturnedTo.FormattingEnabled = true;
             this.cmbxMaterialsReturnedTo.Location = new System.Drawing.Point(155, 55);
@@ -391,6 +369,7 @@
             // 
             // cmbxMaterialsIssuedBy
             // 
+            this.cmbxMaterialsIssuedBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxMaterialsIssuedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxMaterialsIssuedBy.FormattingEnabled = true;
             this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(155, 28);
@@ -410,16 +389,14 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cmbxMaterialsIssuedBy);
-            this.groupBox3.Controls.Add(this.cmbxAssignedWork);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.cmbxMaterialsReturnedTo);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(21, 432);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 113);
+            this.groupBox3.Size = new System.Drawing.Size(389, 88);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MATERIALS AND ISSUANCES";
@@ -428,11 +405,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 553);
+            this.Size = new System.Drawing.Size(424, 527);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -449,16 +427,10 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtORNumber;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.ComboBox cmbxParticulars;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.NumericUpDown nudAmount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox cmbxAssignedWork;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -466,21 +438,25 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox txtJONumber;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtMRISNumber;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtMRSNumber;
-        private System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox cmbxMaterialsReturnedTo;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox txtWARNumber;
         private System.Windows.Forms.Label label15;
         internal System.Windows.Forms.CheckBox cbxNewApplication;
         internal System.Windows.Forms.ComboBox cmbxCustomers;
         internal System.Windows.Forms.TextBox txtAccountNumber;
         internal System.Windows.Forms.TextBox txtAddress;
+        internal System.Windows.Forms.TextBox txtORNumber;
+        internal System.Windows.Forms.DateTimePicker dtpDate;
+        internal System.Windows.Forms.ComboBox cmbxParticulars;
+        internal System.Windows.Forms.NumericUpDown nudAmount;
+        internal System.Windows.Forms.TextBox txtJONumber;
+        internal System.Windows.Forms.TextBox txtMRISNumber;
+        internal System.Windows.Forms.TextBox txtMRSNumber;
+        internal System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
+        internal System.Windows.Forms.ComboBox cmbxMaterialsReturnedTo;
+        internal System.Windows.Forms.TextBox txtWARNumber;
     }
 }

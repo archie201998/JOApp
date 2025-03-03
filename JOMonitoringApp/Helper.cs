@@ -1,5 +1,6 @@
 ﻿
 using JOMonitoringApp;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -283,24 +284,24 @@ namespace AccountingSystem
    
       
 
-        internal static Dictionary<string, dynamic> LoggedInUserData()
+        internal static Dictionary<string, string> LoggedInUserData()
         {
-            var dictUser = new Dictionary<string, dynamic>();
-            //try
-            //{
-            //    dictUser = Factory.UsersRepository().GetViewRecordById(userId);
-            //    string prefix = dictUser["prefix"];
-            //    string suffix = dictUser["suffix"];
+            var dictUser = new Dictionary<string, string>();
+            try
+            {
+                dictUser = Factory.UsersRepository().GetRecordByID(UserId);
+                string prefix = dictUser["prefix"];
+                string suffix = dictUser["suffix"];
 
-            //    string userFullName = $" {(string.IsNullOrWhiteSpace(prefix) ? string.Empty : $"{prefix}.")} {dictUser["first_name"]} {dictUser["mid_initial"]}. {dictUser["last_name"]} {(string.IsNullOrWhiteSpace(suffix) ? string.Empty : $", {suffix}")}";
-            //    dictUser.Add("user_full_name", userFullName);
+                string userFullName = $" {(string.IsNullOrWhiteSpace(prefix) ? string.Empty : $"{prefix}.")} {dictUser["first_name"]} {dictUser["middle_name"]}. {dictUser["last_name"]} {(string.IsNullOrWhiteSpace(suffix) ? string.Empty : $", {suffix}")}";
+                dictUser.Add("user_full_name", userFullName);
 
-            //    return dictUser;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBoxError(ex.Message);
-            //}
+                return dictUser;
+            }
+            catch (Exception ex)
+            {
+                MessageBoxError(ex.Message);
+            }
 
             return dictUser;
         }

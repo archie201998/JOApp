@@ -12,6 +12,8 @@ namespace JOMonitoringApp
 
         private readonly GenericCommands mySqlGenericCommands;
         readonly string tableName = "tbl_users";
+        private readonly string viewTableName = "view_users";
+
 
         public UsersRepository(GenericCommands mySqlGenericCommands)
         {

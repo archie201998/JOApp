@@ -54,57 +54,62 @@ namespace JOMonitoringApp.Views.Reports
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            LoadReport();
             try
             {
-                LoadReport();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-            try
-            {
-                // Define tasks and their progress weights
-                var tasks = new Dictionary<string, int>
+        {// Define tasks and their progress weights
+            var tasks = new Dictionary<string, int>
                 {
                     { "Initialize Parameters", 50 },
                     { "Set Parameter Values", 50 }
                 };
 
-                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth();
-                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
-                int progressCount = 0;
+            var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth();
+            int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
+            int progressCount = 0;
 
 
-                // Initialize Parameters
-                List<ReportParameter> reportParameters1 = new List<ReportParameter>();
-                progressCount += tasks["Initialize Parameters"];
+            // Initialize Parameters
+            List<ReportParameter> reportParameters1 = new List<ReportParameter>();
+            progressCount += tasks["Initialize Parameters"];
+            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+            // Set Parameter Values
+            var userData = Helper.LoggedInUserData();
+
+            reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramRecommendingApproval", userData["user_full_name"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramApproved", userData["user_full_name"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString()));
+            progressCount += tasks["Set Parameter Values"];
+            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+
+            foreach (DataRow dataRow in dtJobOrders.Rows)
+            {
+                var newRow = dtJobOrderSummary.NewRow();
+                newRow["date"] = dataRow["date"];
+                newRow["job_order_no"] = dataRow["job_order_no"];
+                newRow["customer"] = dataRow["account_name"];
+                newRow["account_number"] = dataRow["account_number"];
+                newRow["particular"] = dataRow["particular"];
+                newRow["status"] = dataRow["status"];
+
+                progressCount++;
+                dtJobOrderSummary.Rows.Add(newRow);
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+            }
 
-                // Set Parameter Values
-                reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString()));
-                progressCount += tasks["Set Parameter Values"];
-                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-
-
-                foreach (DataRow dataRow in dtJobOrders.Rows)
-                {
-                    var newRow = dtJobOrderSummary.NewRow();
-                    newRow["date"] = dataRow["date"];
-                    newRow["job_order_no"] = dataRow["job_order_no"];
-                    newRow["customer"] = dataRow["account_name"];
-                    newRow["account_number"] = dataRow["account_number"];
-                    newRow["particular"] = dataRow["particular"];
-                    newRow["status"] = dataRow["status"];
-
-                    progressCount++;
-                    dtJobOrderSummary.Rows.Add(newRow);
-                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-                }
-
-                e.Result = (reportParameters1, dtJobOrders);
+            e.Result = (reportParameters1, dtJobOrders);
+            try
+            {
+                
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -116,22 +121,23 @@ namespace JOMonitoringApp.Views.Reports
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
+
+            reportViewer1.Clear();
+            var localReport = reportViewer1.LocalReport;
+            localReport.DataSources.Clear();
+
+            localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
+            localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
+            localReport.SetParameters(parameters.reportParameters1);
+            localReport.Refresh();
+
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = ZoomMode.FullPage;
+            reportViewer1.Refresh();
             try
             {
-                var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
-
-                reportViewer1.Clear();
-                var localReport = reportViewer1.LocalReport;
-                localReport.DataSources.Clear();
-
-                localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
-                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
-                localReport.SetParameters(parameters.reportParameters1);
-                localReport.Refresh();
-
-                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-                reportViewer1.ZoomMode = ZoomMode.FullPage;
-                reportViewer1.Refresh();
+               
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

@@ -337,7 +337,7 @@ namespace JOMonitoringApp.Views.MainForm
             ResetInputForm();
         }
 
-        private void ResetInputForm()
+        internal void ResetInputForm()
         {
             ucJoborder.cmbxCustomers.SelectedValue = -1;
             ucJoborder.txtAccountNumber.Clear();
@@ -364,16 +364,19 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                if (!isUpdate)
+                if (!isUpdate) //if saving of data.
                 {
                     if (SaveData())
                         Helper.MessageBoxSuccess("Job order is successfully created.");
                 }
                 else
-                if (UpdateData())
-                    Helper.MessageBoxSuccess("Job order is successfully updated.");
-
+                {
+                    if (UpdateData())
+                        Helper.MessageBoxSuccess("Job order is successfully updated.");
+                }
+                
                 OnLoad();
+                ResetInputForm();
 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -466,10 +469,26 @@ namespace JOMonitoringApp.Views.MainForm
 
         private bool UpdateStatus(int statusId)
         {
-            if (Helper.MessageBoxConfirmCancel("Do you confirm to update the J.O"))
+            string status = string.Empty;
+
+            switch (statusId)
+            {
+                case 1:
+                    status = "pending";
+                    break;
+                case 2:
+                    status = "processing";
+                    break;
+                case 3:
+                    status = "cancelled";
+                    break;
+                default:
+                    break;
+            }
+            if (Helper.MessageBoxConfirmCancel($"Do you confirm to update the J.O status into {status}?"))
             {
                 int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                return Factory.JobOrdersRepository().UpdateStatus(jobOrderId, 1);
+                return Factory.JobOrdersRepository().UpdateStatus(jobOrderId, statusId);
             }
 
             return false;
@@ -478,20 +497,20 @@ namespace JOMonitoringApp.Views.MainForm
         private void PendingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UpdateStatus(1))
-                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to pending");
+                Helper.MessageBoxSuccess("J.O Order status has been updated into pending");
         }
 
         private void OnGoingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (UpdateStatus(1))
-                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to processing");
+            if (UpdateStatus(2))
+                Helper.MessageBoxSuccess("J.O Order status has been updated into processing");
 
         }
 
         private void CancelledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UpdateStatus(3))
-                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to accomplished");
+                Helper.MessageBoxSuccess("J.O Order status has been cancelled");
 
         }
 

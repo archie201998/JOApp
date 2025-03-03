@@ -41,7 +41,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void OnLoad()
         {
-            LoadCustomers();
+            //LoadCustomers();
             LoadParticulars();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;

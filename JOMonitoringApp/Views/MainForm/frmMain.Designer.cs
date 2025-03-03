@@ -81,12 +81,12 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pendingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.onGoingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accomplishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -602,6 +602,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
+            // jODetailsToolStripMenuItem
+            // 
+            this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
+            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jODetailsToolStripMenuItem.Text = "J.O Details";
+            this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
+            // 
             // jOStatusToolStripMenuItem
             // 
             this.jOStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -625,7 +632,7 @@
             // 
             this.onGoingToolStripMenuItem.Name = "onGoingToolStripMenuItem";
             this.onGoingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.onGoingToolStripMenuItem.Text = "On-Going";
+            this.onGoingToolStripMenuItem.Text = "Processing";
             this.onGoingToolStripMenuItem.Click += new System.EventHandler(this.OnGoingToolStripMenuItem_Click);
             // 
             // cancelledToolStripMenuItem
@@ -641,13 +648,6 @@
             this.accomplishedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.accomplishedToolStripMenuItem.Text = "Accomplished";
             this.accomplishedToolStripMenuItem.Click += new System.EventHandler(this.AccomplishedToolStripMenuItem_Click);
-            // 
-            // jODetailsToolStripMenuItem
-            // 
-            this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
-            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.jODetailsToolStripMenuItem.Text = "J.O Details";
-            this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
             // 
             // toolStripStatusLabel2
             // 

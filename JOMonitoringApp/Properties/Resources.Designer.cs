@@ -89,5 +89,15 @@ namespace JOMonitoringApp.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon Your_paragraph_text__4_ {
+            get {
+                object obj = ResourceManager.GetObject("Your_paragraph_text__4_", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }

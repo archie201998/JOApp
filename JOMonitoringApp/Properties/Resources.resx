@@ -127,4 +127,7 @@
   <data name="thumbnail_PAWAD_COREL" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\thumbnail_PAWAD COREL.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Your_paragraph_text__4_" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Your paragraph text (4).ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

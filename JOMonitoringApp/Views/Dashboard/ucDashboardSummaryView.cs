@@ -27,15 +27,15 @@ namespace JOMonitoringApp.Views.Dashboard
             LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
         }
 
-        private void LoadAndDisplaySummary(int year, int monthId)
+        internal void LoadAndDisplaySummary(int year, int monthId)
         {
-            int pending = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 1);
-            int onGoing = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 2);
-            int cancelled = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 3);
-            int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId, 4);
+            int pending = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId + 1, 1);
+            int processing = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId + 1, 2);
+            int cancelled = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId + 1, 3);
+            int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId + 1, 4);
 
             txtPending.Text = pending.ToString();
-            txtOnGoing.Text = onGoing.ToString();
+            txtOnGoing.Text = processing.ToString();
             txtCancelled.Text = cancelled.ToString();
             txtAccomplished.Text = accomplished.ToString();
         }
@@ -44,7 +44,7 @@ namespace JOMonitoringApp.Views.Dashboard
         {
             foreach (var item in Helper.MonthsDatasource().Values)
                 cmbxMonth.Items.Add(item);
-            cmbxMonth.SelectedIndex = DateTime.Now.Month;
+            cmbxMonth.SelectedIndex = DateTime.Now.Month - 1;
         }
 
         private void TextBox1_TextChanged(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace JOMonitoringApp.Views.Dashboard
 
         private void CmbxMonth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedValue));
+            LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
         }
 
         private void NumericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -62,5 +62,9 @@ namespace JOMonitoringApp.Views.Dashboard
             LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
         }
 
+        private void UcDashboardSummaryView_Load(object sender, EventArgs e)
+        {
+          
+        }
     }
 }

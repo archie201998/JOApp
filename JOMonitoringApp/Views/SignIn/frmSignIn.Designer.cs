@@ -60,6 +60,7 @@
             // 
             this.btnSignIn.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnSignIn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSignIn.FlatAppearance.BorderSize = 0;
             this.btnSignIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.btnSignIn.ForeColor = System.Drawing.Color.White;
@@ -103,9 +104,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(8, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(137, 13);
+            this.label5.Size = new System.Drawing.Size(180, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Server Connection Status : ";
+            this.label5.Text = "SERVER CONNECTION STATUS : ";
             // 
             // panel1
             // 
@@ -169,11 +170,11 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(141, 9);
+            this.label4.Location = new System.Drawing.Point(186, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(128, 13);
+            this.label4.Size = new System.Drawing.Size(83, 13);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Connected to Server.";
+            this.label4.Text = "CONNECTED";
             // 
             // label3
             // 

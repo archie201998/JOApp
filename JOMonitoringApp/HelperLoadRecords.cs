@@ -22,7 +22,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["particulars_id"].Visible = false;
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
-            dataGridView.Columns["materials_returned_to_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -93,9 +92,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["materials_issued_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
-            dataGridView.Columns["materials_returned_to"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridView.Columns["materials_returned_to"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["materials_returned_to"].HeaderText = "MATERIALS RETURNED TO";
 
   
         }

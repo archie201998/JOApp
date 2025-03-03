@@ -8,6 +8,5 @@ namespace JOMonitoringApp.Interface
 {
     public interface IStatusRepository : IRepository<StatusModel>
     {
-
     }
 }

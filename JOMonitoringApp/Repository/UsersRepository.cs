@@ -63,7 +63,10 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            throw new System.NotImplementedException();
+            string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName}";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
         }
 
         public DataTable GetRecordsBySearch(string searchText)

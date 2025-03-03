@@ -410,14 +410,11 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label15;
         internal System.Windows.Forms.CheckBox cbxNewApplication;
         internal System.Windows.Forms.ComboBox cmbxCustomers;
@@ -432,5 +429,8 @@
         internal System.Windows.Forms.TextBox txtMRSNumber;
         internal System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
         internal System.Windows.Forms.TextBox txtWARNumber;
+        internal System.Windows.Forms.GroupBox groupBox2;
+        internal System.Windows.Forms.GroupBox groupBox1;
+        internal System.Windows.Forms.GroupBox groupBox3;
     }
 }

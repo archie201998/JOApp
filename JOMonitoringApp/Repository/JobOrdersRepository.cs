@@ -63,11 +63,11 @@ namespace JOMonitoringApp
             var parameters = new object[][]
             {
                 new object[] { "@status_id", DbType.String, statusId },
-                new object[] { "@month", DbType.Int16, year },
-                new object[] { "@year", DbType.Int16, monthId },
+                new object[] { "@month", DbType.Int16, monthId },
+                new object[] { "@year", DbType.Int16, year },
             };
 
-            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE (YEAR(date) = @year OR MONTH(date) = @month) AND status_id = @status_id";
+            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE YEAR(date) = @year AND MONTH(date) = @month AND status_id = @status_id AND is_deleted = 0";
 
             if (string.IsNullOrWhiteSpace(mySqlGenericCommands.ExecuteScalar(query, parameters)))
                 return 0;
@@ -132,12 +132,10 @@ namespace JOMonitoringApp
                 new object[]{"@war", DbType.String, entity.WAR},
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.String, entity.MaterialsIssuedBy},
-                new object[]{"@materials_returned_to", DbType.String, entity.MaterialsReturnedTo},
-                new object[]{"@employee_id", DbType.String, entity.PreparedBy},
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, job_order_no, or_number, amount, mris, mrs, war, prepared_by, materials_issued_by, materials_returned_to, employee_id, status_id) VALUES (@customers_id, @particulars_id, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @prepared_by, @materials_issued_by, @materials_returned_to, @employee_id, @status_id)";
+            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, status_id) VALUES (@customers_id, @particulars_id, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by,  @status_id)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
@@ -177,7 +175,37 @@ namespace JOMonitoringApp
 
         public bool Update(JobOrdersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameter = new object[][] {
+                new object[]{"@id", DbType.Int32, entity.ID},
+                new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
+                new object[]{"@particulars_id", DbType.Int32, entity.ParticularID},
+                new object[]{"@date", DbType.DateTime, entity.Date},
+                new object[]{"@job_order_no", DbType.String, entity.JONUmber},
+                new object[]{"@or_number", DbType.String, entity.ORNumber},
+                new object[]{"@amount", DbType.Decimal, entity.Amount},
+                new object[]{"@mris", DbType.String, entity.MRIS},
+                new object[]{"@mrs", DbType.String, entity.MRS},
+                new object[]{"@war", DbType.String, entity.WAR},
+                new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
+                new object[]{"@materials_issued_by", DbType.String, entity.MaterialsIssuedBy},
+                new object[]{"@status_id", DbType.String, entity.StatusId},
+            };
+
+            string query = $"UPDATE {tableName} SET customers_id=@customers_id, particulars_id=@particulars_id, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, materials_issued_by=@materials_issued_by,  prepared_by=@prepared_by,  status_id=@status_id WHERE id = @id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+        }
+
+        public bool UpdateStatus(int jobOrderId, int statusId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId},
+                new object[] { "@status_id", DbType.Int32, statusId},
+            };
+
+            string query = $"UPDATE {tableName} SET status_id = @status_id WHERE id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

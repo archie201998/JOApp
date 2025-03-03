@@ -82,6 +82,10 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pendingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.onGoingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cancelledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.accomplishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
@@ -102,13 +106,13 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.BackColor = System.Drawing.Color.Crimson;
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(691, 4);
+            this.btnDelete.Location = new System.Drawing.Point(93, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(70, 23);
             this.btnDelete.TabIndex = 12;
@@ -118,17 +122,17 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUpdate.BackColor = System.Drawing.Color.DarkCyan;
             this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(615, 4);
+            this.btnUpdate.Location = new System.Drawing.Point(5, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(70, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(83, 23);
             this.btnUpdate.TabIndex = 11;
-            this.btnUpdate.Text = "Update";
+            this.btnUpdate.Text = "Update >>";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
@@ -527,6 +531,7 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
             // 
             // ucDashboardSummaryView1
             // 
@@ -592,21 +597,55 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jOStatusToolStripMenuItem,
-            this.jODetailsToolStripMenuItem});
+            this.jODetailsToolStripMenuItem,
+            this.jOStatusToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             // 
             // jOStatusToolStripMenuItem
             // 
+            this.jOStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pendingToolStripMenuItem,
+            this.onGoingToolStripMenuItem,
+            this.cancelledToolStripMenuItem,
+            this.accomplishedToolStripMenuItem});
             this.jOStatusToolStripMenuItem.Name = "jOStatusToolStripMenuItem";
-            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.jOStatusToolStripMenuItem.Text = "J.O Status";
+            this.jOStatusToolStripMenuItem.Click += new System.EventHandler(this.JOStatusToolStripMenuItem_Click);
+            // 
+            // pendingToolStripMenuItem
+            // 
+            this.pendingToolStripMenuItem.Name = "pendingToolStripMenuItem";
+            this.pendingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pendingToolStripMenuItem.Text = "Pending";
+            this.pendingToolStripMenuItem.Click += new System.EventHandler(this.PendingToolStripMenuItem_Click);
+            // 
+            // onGoingToolStripMenuItem
+            // 
+            this.onGoingToolStripMenuItem.Name = "onGoingToolStripMenuItem";
+            this.onGoingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onGoingToolStripMenuItem.Text = "On-Going";
+            this.onGoingToolStripMenuItem.Click += new System.EventHandler(this.OnGoingToolStripMenuItem_Click);
+            // 
+            // cancelledToolStripMenuItem
+            // 
+            this.cancelledToolStripMenuItem.Name = "cancelledToolStripMenuItem";
+            this.cancelledToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cancelledToolStripMenuItem.Text = "Cancel";
+            this.cancelledToolStripMenuItem.Click += new System.EventHandler(this.CancelledToolStripMenuItem_Click);
+            // 
+            // accomplishedToolStripMenuItem
+            // 
+            this.accomplishedToolStripMenuItem.Name = "accomplishedToolStripMenuItem";
+            this.accomplishedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accomplishedToolStripMenuItem.Text = "Accomplished";
+            this.accomplishedToolStripMenuItem.Click += new System.EventHandler(this.AccomplishedToolStripMenuItem_Click);
             // 
             // jODetailsToolStripMenuItem
             // 
             this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
-            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.jODetailsToolStripMenuItem.Text = "J.O Details";
             this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
             // 
@@ -629,6 +668,7 @@
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -708,5 +748,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.ToolStripMenuItem pendingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem onGoingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cancelledToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem accomplishedToolStripMenuItem;
     }
 }

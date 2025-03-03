@@ -21,6 +21,8 @@ namespace JOMonitoringApp.Views.MainForm
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
+        private bool isUpdate = false;
+
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
@@ -58,13 +60,12 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("particulars_id", typeof (int)),
                 new DataColumn("prepared_by_id", typeof(int)),
                 new DataColumn("materials_issued_by_id", typeof(int)),
-                new DataColumn("materials_returned_to_id", typeof(int)),
                 new DataColumn("status_id", typeof(int)),
+                new DataColumn("job_order_no", typeof(string)),
                 new DataColumn("date", typeof(DateTime)),
                 new DataColumn("account_number", typeof(string)),
                 new DataColumn("account_name", typeof(string)),
                 new DataColumn("address", typeof(string)),
-                new DataColumn("job_order_no", typeof(string)),
                 new DataColumn("particular", typeof(string)),
                 new DataColumn("or_number", typeof(string)),
                 new DataColumn("amount", typeof(decimal)),
@@ -73,7 +74,6 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("war", typeof(string)),
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
-                new DataColumn("materials_returned_to", typeof(string)),
 
             };
         }
@@ -111,7 +111,6 @@ namespace JOMonitoringApp.Views.MainForm
                     int particularId = Convert.ToInt32(row["particulars_id"]);
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
                     int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
-                    int materialsReturnedToId = string.IsNullOrEmpty(row["materials_returned_to_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_returned_to_id"]);
                     int statusId = Convert.ToInt32(row["status_id"]);
                     DateTime date = Convert.ToDateTime(row["date"]);
                     string accountNumber = $"{row["account_number"]}";
@@ -126,22 +125,20 @@ namespace JOMonitoringApp.Views.MainForm
                     string WARNumber = $"{row["war"]}";
                     string preparedBy = $"{row["prepared_by"]}";
                     string materialsIssuedBy = $"{row["materials_issued_by"]}";
-                    string materialsReturnedTo = $"{row["materials_returned_to"]}";
 
                     newRow["id"] = id;
                     newRow["customers_id"] = customerId;
                     newRow["particulars_id"] = particularId;
                     newRow["prepared_by_id"] = preparedById;
                     newRow["materials_issued_by_id"] = materialsIssuedById;
-                    newRow["materials_returned_to_id"] = materialsReturnedToId;
                     newRow["particulars_id"] = particularId;
                     newRow["particular"] = particular;
                     newRow["status_id"] = statusId;
+                    newRow["job_order_no"] = jobOrderNumber;
                     newRow["date"] = date;
                     newRow["account_number"] = accountNumber;
                     newRow["account_name"] = accountName;
                     newRow["address"] = address;
-                    newRow["job_order_no"] = jobOrderNumber;
                     newRow["or_number"] = orNumber;
                     newRow["amount"] = amount;
                     newRow["mris"] = MRISNumber;
@@ -149,8 +146,7 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["war"] = WARNumber;
                     newRow["prepared_by"] = preparedBy;
                     newRow["materials_issued_by"] = materialsIssuedBy;
-                    newRow["materials_returned_to"] = materialsReturnedTo;
-                    newRow["status"] = status;
+                    newRow["status"] = status.ToUpper();
                     progressCount++;
                     Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
                     dataTable.Rows.Add(newRow);
@@ -189,7 +185,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
-                cmbxStatus.SelectedValue = 2;
+                cmbxStatus.SelectedValue = 5;
                 ucDashboardSummaryView.LoadJobOrdersSummary();
                 Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
                 lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
@@ -202,6 +198,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             LoadJobOrders();
             ucJoborder.OnLoad();
+           
         }
 
 
@@ -212,20 +209,20 @@ namespace JOMonitoringApp.Views.MainForm
                 if (e.Value != null)
                 {
                     string status = e.Value.ToString();
-                    if (status == "Pending")
+                    if (status == "PENDING")
                         e.CellStyle.BackColor = Color.Gold;
-                    else if (status == "On-Going")
+                    else if (status == "PROCESSING")
                     {
                         e.CellStyle.BackColor = Color.MediumSeaGreen;
                         e.CellStyle.ForeColor = Color.White;
                     }
 
-                    else if (status == "Cancelled")
+                    else if (status == "CANCELLED")
                     {
                         e.CellStyle.BackColor = Color.IndianRed;
                         e.CellStyle.ForeColor = Color.White;
                     }
-                    else if (status == "Accomplished")
+                    else if (status == "ACCOMPLISHED")
                     {
                         e.CellStyle.BackColor = Color.SteelBlue;
                         e.CellStyle.ForeColor = Color.White;
@@ -303,9 +300,10 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
-        private void JODetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadSelectedData()
         {
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+            ucJoborder.jobOrderId = selectedJobOrderId;
 
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
 
@@ -320,12 +318,18 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
             ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];
             ucJoborder.txtMRSNumber.Text = dictJobOrders["mrs"];
-            ucJoborder.txtORNumber.Text =  dictJobOrders["or_number"];
+            ucJoborder.txtORNumber.Text = dictJobOrders["or_number"];
             ucJoborder.nudAmount.Value = string.IsNullOrEmpty(dictJobOrders["amount"].ToString()) ? 0 : Convert.ToDecimal(dictJobOrders["amount"]);
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
+        }
 
+        private void JODetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadSelectedData();
+            btnSave.Text = "Update";
+            isUpdate = true;
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
@@ -350,19 +354,42 @@ namespace JOMonitoringApp.Views.MainForm
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
 
+            ucJoborder.newApplication = true;
+            ucJoborder.jobOrderId = 0;
+            ucJoborder.statusId = 1;
+            EnableDisableControls(false);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (SaveData())
+                if (!isUpdate)
                 {
-                    Helper.MessageBoxSuccess("Job order is successfully created.");
-                    OnLoad();
+                    if (SaveData())
+                        Helper.MessageBoxSuccess("Job order is successfully created.");
                 }
+                else
+                if (UpdateData())
+                    Helper.MessageBoxSuccess("Job order is successfully updated.");
+
+                OnLoad();
+
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
+
+
+
+        private bool UpdateData()
+        {
+            if (!ucJoborder.ValidateChildren())
+            {
+                Helper.MessageBoxError(ucJoborder.GetFormErrors());
+                return false;
+            }
+
+            return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
         }
 
 
@@ -384,8 +411,7 @@ namespace JOMonitoringApp.Views.MainForm
                     return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
                 }
             }
-            //Run this code if new application
-
+            //Run this code if old application
             return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
         }
 
@@ -416,8 +442,69 @@ namespace JOMonitoringApp.Views.MainForm
             };
 
         }
+
         #endregion
 
+        private void JOStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void EnableDisableControls(bool enableDisable)
+        {
+            ucJoborder.cbxNewApplication.Enabled = !enableDisable;
+            ucJoborder.cmbxCustomers.Enabled = !enableDisable;
+            ucJoborder.txtAccountNumber.ReadOnly = enableDisable;
+            ucJoborder.txtAddress.ReadOnly = enableDisable;
+            ucJoborder.txtJONumber.ReadOnly = enableDisable;
+            ucJoborder.cmbxParticulars.Enabled = enableDisable;
+            ucJoborder.txtMRISNumber.ReadOnly = enableDisable;
+            ucJoborder.txtMRSNumber.ReadOnly = enableDisable;
+            ucJoborder.nudAmount.ReadOnly = enableDisable;
+            ucJoborder.txtWARNumber.Focus();
+        }
+
+        private bool UpdateStatus(int statusId)
+        {
+            if (Helper.MessageBoxConfirmCancel("Do you confirm to update the J.O"))
+            {
+                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                return Factory.JobOrdersRepository().UpdateStatus(jobOrderId, 1);
+            }
+
+            return false;
+        }
+      
+        private void PendingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UpdateStatus(1))
+                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to pending");
+        }
+
+        private void OnGoingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UpdateStatus(1))
+                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to processing");
+
+        }
+
+        private void CancelledToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (UpdateStatus(3))
+                System.Windows.Forms.MessageBox.Show("Jo Order status has been updated to accomplished");
+
+        }
+
+        private void AccomplishedToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadSelectedData();
+            EnableDisableControls(true);
+            ucJoborder.statusId = 4;
+        }
+
+        private void TabPage2_Enter(object sender, EventArgs e)
+        {
+            ucDashboardSummaryView.LoadAndDisplaySummary(Convert.ToInt32(ucDashboardSummaryView.nudYear.Value), Convert.ToInt32(ucDashboardSummaryView.cmbxMonth.SelectedIndex));
+        }
     }
 }

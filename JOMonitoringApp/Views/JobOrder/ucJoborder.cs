@@ -15,6 +15,8 @@ namespace JOMonitoringApp.Views.JobOrder
     public partial class ucJoborder : UserControl
     {
         internal bool newApplication = true;
+        internal int jobOrderId ;
+        internal int statusId = 1;
         public ucJoborder()
         {
             if (!DesignMode)
@@ -42,13 +44,13 @@ namespace JOMonitoringApp.Views.JobOrder
             LoadCustomers();
             LoadParticulars();
             LoadEmployee();
-
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
+            
         }
 
         private void LoadEmployee()
         {
-            HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "employee_full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "full_name");
         }
 
         private DataTable EmployeesDataTable()
@@ -56,18 +58,20 @@ namespace JOMonitoringApp.Views.JobOrder
             var dataColumns = new DataColumn[]
             {
                 new DataColumn("id", typeof(int)),
-                new DataColumn("employee_full_name", typeof(string)),
+                new DataColumn("full_name", typeof(string)),
             };
 
             var dataTable = new DataTable();
             dataTable.Columns.AddRange(dataColumns);
 
-            var datable = Factory.EmployeeRepository().GetRecords();
+            var datable = Factory.UsersRepository().GetRecords();
+
             foreach (DataRow row in datable.Rows)
             {
                 var newRow = dataTable.NewRow();
+                string fullName = Helper.GenerateFullName(row["prefix"].ToString(), row["first_name"].ToString(), row["middle_name"].ToString(), row["last_name"].ToString(), row["suffix"].ToString());
                 newRow["id"] = row["id"];
-                newRow["employee_full_name"] = $"{ row["first_name"] } { row["middle_name"] } { row["last_name"] }";
+                newRow["full_name"] = fullName;
                 dataTable.Rows.Add(newRow);
             }
 
@@ -99,7 +103,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = newApplication ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : Convert.ToInt32(cmbxCustomers.SelectedValue);
+            int customerId = newApplication == true ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : Convert.ToInt32(cmbxCustomers.SelectedValue);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
@@ -110,9 +114,11 @@ namespace JOMonitoringApp.Views.JobOrder
             string WAR = txtWARNumber.Text;    
             int preparedById = Helper.UserId;
             int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int statusId = this.statusId;
 
             return new JobOrdersModel()
             {
+                ID = jobOrderId,
                 CustomerID = customerId,
                 ParticularID = particularId,
                 PreparedBy = preparedById,
@@ -124,7 +130,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRS = MRS,
                 WAR = WAR,
                 MaterialsIssuedBy = materialsIssuedById,
-                StatusId = 2,
+                StatusId = statusId,
                 UserId = Helper.UserId
             };
         }

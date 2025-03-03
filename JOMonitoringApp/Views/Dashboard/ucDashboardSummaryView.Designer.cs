@@ -45,10 +45,10 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.nudYear = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.cmbxMonth = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.nudYear = new System.Windows.Forms.NumericUpDown();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -148,11 +148,11 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(20, 7);
+            this.label13.Location = new System.Drawing.Point(5, 7);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(126, 25);
+            this.label13.Size = new System.Drawing.Size(160, 25);
             this.label13.TabIndex = 0;
-            this.label13.Text = "ON-GOING";
+            this.label13.Text = "PROCESSING";
             // 
             // panel10
             // 
@@ -260,6 +260,24 @@
             this.panel1.Size = new System.Drawing.Size(999, 40);
             this.panel1.TabIndex = 7;
             // 
+            // nudYear
+            // 
+            this.nudYear.Location = new System.Drawing.Point(44, 12);
+            this.nudYear.Maximum = new decimal(new int[] {
+            2099,
+            0,
+            0,
+            0});
+            this.nudYear.Name = "nudYear";
+            this.nudYear.Size = new System.Drawing.Size(83, 20);
+            this.nudYear.TabIndex = 8;
+            this.nudYear.Value = new decimal(new int[] {
+            2025,
+            0,
+            0,
+            0});
+            this.nudYear.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -290,24 +308,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Month ";
             // 
-            // nudYear
-            // 
-            this.nudYear.Location = new System.Drawing.Point(44, 12);
-            this.nudYear.Maximum = new decimal(new int[] {
-            2099,
-            0,
-            0,
-            0});
-            this.nudYear.Name = "nudYear";
-            this.nudYear.Size = new System.Drawing.Size(83, 20);
-            this.nudYear.TabIndex = 8;
-            this.nudYear.Value = new decimal(new int[] {
-            2025,
-            0,
-            0,
-            0});
-            this.nudYear.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
-            // 
             // ucDashboardSummaryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +320,7 @@
             this.Name = "ucDashboardSummaryView";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(1019, 214);
+            this.Load += new System.EventHandler(this.UcDashboardSummaryView_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
@@ -357,13 +358,13 @@
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox cmbxMonth;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPending;
         private System.Windows.Forms.TextBox txtOnGoing;
         private System.Windows.Forms.TextBox txtCancelled;
         private System.Windows.Forms.TextBox txtAccomplished;
-        private System.Windows.Forms.NumericUpDown nudYear;
+        internal System.Windows.Forms.ComboBox cmbxMonth;
+        internal System.Windows.Forms.NumericUpDown nudYear;
     }
 }

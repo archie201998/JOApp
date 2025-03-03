@@ -86,10 +86,10 @@
             this.panel2.Controls.Add(this.progressBar1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.ForeColor = System.Drawing.Color.White;
-            this.panel2.Location = new System.Drawing.Point(10, 49);
+            this.panel2.Location = new System.Drawing.Point(10, 41);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.panel2.Size = new System.Drawing.Size(1125, 11);
+            this.panel2.Size = new System.Drawing.Size(893, 9);
             this.panel2.TabIndex = 9;
             // 
             // progressBar1
@@ -97,7 +97,7 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar1.Location = new System.Drawing.Point(3, 3);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1119, 5);
+            this.progressBar1.Size = new System.Drawing.Size(887, 3);
             this.progressBar1.TabIndex = 10;
             // 
             // panel1
@@ -111,7 +111,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1125, 39);
+            this.panel1.Size = new System.Drawing.Size(893, 31);
             this.panel1.TabIndex = 12;
             // 
             // btnSearch
@@ -162,7 +162,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 586);
+            this.ClientSize = new System.Drawing.Size(913, 344);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

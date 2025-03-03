@@ -200,8 +200,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void OnLoad()
         {
-            //LoadJobOrders();
-            //ucJoborder.OnLoad();
+            LoadJobOrders();
+            ucJoborder.OnLoad();
         }
 
 
@@ -325,7 +325,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
-            ucJoborder.cmbxMaterialsReturnedTo.SelectedValue = Convert.ToInt32(dictJobOrders["materials_returned_to_id"]);
 
         }
 
@@ -350,7 +349,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtWARNumber.Clear();
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
-            ucJoborder.cmbxMaterialsReturnedTo.SelectedValue = -1;
 
         }
 

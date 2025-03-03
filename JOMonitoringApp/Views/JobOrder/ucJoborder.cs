@@ -44,12 +44,10 @@ namespace JOMonitoringApp.Views.JobOrder
             LoadEmployee();
 
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
-            cmbxMaterialsReturnedTo.SelectedIndex = -1;
         }
 
         private void LoadEmployee()
         {
-            HelperLoadRecords.EmployeeCombobox(cmbxMaterialsReturnedTo, EmployeesDataTable(), "id", "employee_full_name");
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "employee_full_name");
         }
 
@@ -112,7 +110,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string WAR = txtWARNumber.Text;    
             int preparedById = Helper.UserId;
             int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
-            int materialsReturnedToId = Convert.ToInt32(cmbxMaterialsReturnedTo.SelectedValue);
+
             return new JobOrdersModel()
             {
                 CustomerID = customerId,
@@ -126,7 +124,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRS = MRS,
                 WAR = WAR,
                 MaterialsIssuedBy = materialsIssuedById,
-                MaterialsReturnedTo = materialsReturnedToId,
                 StatusId = 2,
                 UserId = Helper.UserId
             };

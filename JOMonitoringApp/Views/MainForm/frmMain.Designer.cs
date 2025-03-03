@@ -470,7 +470,7 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 523);
+            this.panel4.Location = new System.Drawing.Point(0, 500);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -514,7 +514,7 @@
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 523);
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 500);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage2

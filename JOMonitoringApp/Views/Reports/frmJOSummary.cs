@@ -30,13 +30,6 @@ namespace JOMonitoringApp.Views.Reports
 
 
 
-        private void LoadMonths()
-        {
-            foreach (var item in Helper.MonthsDatasource().Values)
-                comboBox1.Items.Add(item);
-            comboBox1.SelectedIndex = 1;
-        }
-
         private void LoadReport()
         {
             try

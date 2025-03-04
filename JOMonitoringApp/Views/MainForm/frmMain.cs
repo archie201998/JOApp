@@ -198,7 +198,6 @@ namespace JOMonitoringApp.Views.MainForm
         {
             LoadJobOrders();
             ucJoborder.OnLoad();
-           
         }
 
 
@@ -367,16 +366,23 @@ namespace JOMonitoringApp.Views.MainForm
                 if (!isUpdate) //if saving of data.
                 {
                     if (SaveData())
+                    {
+
                         Helper.MessageBoxSuccess("Job order is successfully created.");
+                        OnLoad();
+                        ResetInputForm();
+                    }
                 }
                 else
                 {
                     if (UpdateData())
+                    {
                         Helper.MessageBoxSuccess("Job order is successfully updated.");
+                        OnLoad();
+                        ResetInputForm();
+                    }
                 }
-                
-                OnLoad();
-                ResetInputForm();
+               
 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -498,6 +504,8 @@ namespace JOMonitoringApp.Views.MainForm
         {
             if (UpdateStatus(1))
                 Helper.MessageBoxSuccess("J.O Order status has been updated into pending");
+
+            OnLoad();
         }
 
         private void OnGoingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -505,13 +513,15 @@ namespace JOMonitoringApp.Views.MainForm
             if (UpdateStatus(2))
                 Helper.MessageBoxSuccess("J.O Order status has been updated into processing");
 
+            OnLoad();
         }
 
         private void CancelledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (UpdateStatus(3))
                 Helper.MessageBoxSuccess("J.O Order status has been cancelled");
-
+            
+            OnLoad();
         }
 
         private void AccomplishedToolStripMenuItem_Click(object sender, EventArgs e)

@@ -70,5 +70,13 @@ namespace JOMonitoringApp
         {
             throw new System.NotImplementedException();
         }
+
+        public DataTable GetCustomersName()
+        {
+            string query = $"SELECT id, account_number, account_name FROM {tableName}";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
+        }
     }
 }

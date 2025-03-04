@@ -55,7 +55,7 @@ namespace AccountingSystem
         }
         public static void LoadFormIcon(Form form)
         {
-            form.Icon = JOMonitoringApp.Properties.Resources.thumbnail_PAMANA_COREL1;
+            form.Icon = JOMonitoringApp.Properties.Resources.Your_paragraph_text__4_;
         }
 
 

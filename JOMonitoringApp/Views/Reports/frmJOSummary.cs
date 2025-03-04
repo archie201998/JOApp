@@ -98,6 +98,8 @@ namespace JOMonitoringApp.Views.Reports
 
             foreach (DataRow dataRow in dtJobOrders.Rows)
             {
+
+
                 var newRow = dtJobOrderSummary.NewRow();
                 newRow["date"] = dataRow["date"];
                 newRow["job_order_no"] = dataRow["job_order_no"];

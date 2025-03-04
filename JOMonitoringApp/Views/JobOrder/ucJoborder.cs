@@ -41,7 +41,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void OnLoad()
         {
-            //LoadCustomers();
+            LoadCustomers();
             LoadParticulars();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
@@ -89,8 +89,8 @@ namespace JOMonitoringApp.Views.JobOrder
             var dataTable = new DataTable();
             dataTable.Columns.AddRange(dataColumns);
 
-            var dtCustomers = Factory.CustomersRepository().GetRecords();
-            foreach (DataRow row in dtCustomers.Rows)
+            var dtCustomer = Factory.CustomersRepository().GetCustomersName();
+            foreach (DataRow row in dtCustomer.Rows)
             {
                 var newRow = dataTable.NewRow();
                 newRow["id"] = row["id"];

@@ -87,7 +87,7 @@ namespace JOMonitoringApp
                 new object[] { "@month_index", DbType.Int32, monthIndex }
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE MONTH(date) = @month_index ORDER BY job_order_no DESC";
+            string query = $"SELECT * FROM {viewTableName} WHERE MONTH(date) = @month_index AND is_deleted = 0 ORDER BY job_order_no DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

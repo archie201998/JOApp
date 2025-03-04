@@ -80,14 +80,14 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public DataTable GetViewRecordsByMonth()
+        public DataTable GetViewRecordsByMonth(int monthIndex)
         {
             var parameters = new object[][]
             {
-                new object[] { "@month", DbType.String, string.Empty }
+                new object[] { "@month_index", DbType.Int32, monthIndex }
             };
 
-            string query = $"SELECT * FROM {viewTableName} ";
+            string query = $"SELECT * FROM {viewTableName} WHERE MONTH(date) = @month_index ORDER BY job_order_no DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

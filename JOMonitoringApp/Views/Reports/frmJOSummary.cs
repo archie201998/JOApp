@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmJOSummary : Form
     {
+        int monthIndex;
+
         public frmJOSummary()
         {
             InitializeComponent();
@@ -25,7 +28,16 @@ namespace JOMonitoringApp.Views.Reports
 
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
-            //LoadMonths();
+            LoadMonths();
+        }
+
+        private void LoadMonths()
+        {
+            foreach (var item in Helper.MonthsDatasource().Values)
+                cmbxMonth.Items.Add(item);
+            cmbxMonth.SelectedIndex = DateTime.Now.Month - 1;
+
+            monthIndex = cmbxMonth.SelectedIndex;
         }
 
 
@@ -47,9 +59,9 @@ namespace JOMonitoringApp.Views.Reports
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            LoadReport();
             try
             {
+                LoadReport();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -63,7 +75,7 @@ namespace JOMonitoringApp.Views.Reports
                 };
 
             var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth();
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex +1 );
             int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
             int progressCount = 0;
 
@@ -77,9 +89,9 @@ namespace JOMonitoringApp.Views.Reports
             var userData = Helper.LoggedInUserData();
 
             reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
-            reportParameters1.Add(new ReportParameter("paramRecommendingApproval", userData["user_full_name"].ToUpper()));
-            reportParameters1.Add(new ReportParameter("paramApproved", userData["user_full_name"].ToUpper()));
-            reportParameters1.Add(new ReportParameter("paramMonth", DateTime.Now.Month.ToString()));
+            reportParameters1.Add(new ReportParameter("paramRecommendingApproval", "CHRISTOPHER JASON R. CABABARO"));
+            reportParameters1.Add(new ReportParameter("paramApproved", "ENG. VIVIEL MAY B. RAMIREZ"));
+            reportParameters1.Add(new ReportParameter("paramMonth", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthIndex+1)));
             progressCount += tasks["Set Parameter Values"];
             Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
@@ -126,13 +138,18 @@ namespace JOMonitoringApp.Views.Reports
             localReport.Refresh();
 
             reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-            reportViewer1.ZoomMode = ZoomMode.FullPage;
+            reportViewer1.ZoomMode = ZoomMode.Percent;
             reportViewer1.Refresh();
             try
             {
                
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+        }
+
+        private void cmbxMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            monthIndex = cmbxMonth.SelectedIndex;
         }
     }
 }

@@ -123,11 +123,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Franklin Gothic Book", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label6.Location = new System.Drawing.Point(73, 6);
+            this.label6.Location = new System.Drawing.Point(81, 9);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(190, 48);
+            this.label6.Size = new System.Drawing.Size(182, 40);
             this.label6.TabIndex = 11;
             this.label6.Text = "JOB ORDER  \r\ne-MONITORING APP.";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

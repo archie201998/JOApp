@@ -15,7 +15,7 @@ namespace JOMonitoringApp.Interface
         DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId);
 
 
-        DataTable GetViewRecordsByMonth();
+        DataTable GetViewRecordsByMonth(int monthIndex);
 
 
         DataTable GetViewRecordsBySearch(string searchText);

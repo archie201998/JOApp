@@ -71,12 +71,17 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public DataTable GetCustomersName()
+        public DataTable GetCustomersName(string searchKey)
         {
-            string query = $"SELECT id, account_number, account_name FROM {tableName}";
+            var parameters = new object[][]
+            {
+                new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
+            };
+
+            string query = $"SELECT id, account_number, account_name FROM {tableName} WHERE account_name LIKE @search_key OR account_number LIKE @search_key";
 
             var dataTable = new DataTable();
-            return mySqlGenericCommands.Fill(query, dataTable);
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
     }
 }

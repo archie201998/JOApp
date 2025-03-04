@@ -14,7 +14,7 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
-        internal bool newApplication = true;
+        internal bool newApplication = false;
         internal int jobOrderId ;
         internal int statusId = 1;
         public ucJoborder()
@@ -29,10 +29,13 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             var errorArray = new string[]
             {
+                errorProvider1.GetError(txtAccountNumber),
                 errorProvider1.GetError(cmbxCustomers),
                 errorProvider1.GetError(dtpDate),
                 errorProvider1.GetError(txtJONumber),
                 errorProvider1.GetError(txtMRISNumber),
+                errorProvider1.GetError(txtMRSNumber),
+                errorProvider1.GetError(txtWARNumber),
 
             };
 
@@ -41,7 +44,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void OnLoad()
         {
-            LoadCustomers();
             LoadParticulars();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
@@ -78,27 +80,32 @@ namespace JOMonitoringApp.Views.JobOrder
             return dataTable;
         }
 
-        internal void LoadCustomers()
+        internal void LoadCustomers(string searchKey)
         {
-            var dataColumns = new DataColumn[]
+            var dtCustomer = Factory.CustomersRepository().GetCustomersName(searchKey);
+            var text = cmbxCustomers.Text;
+            if (dtCustomer.Rows.Count > 0)
             {
-                new DataColumn("id", typeof(int)),
-                new DataColumn("account_name", typeof(string))
-            };
+                cmbxCustomers.DataSource = dtCustomer;
 
-            var dataTable = new DataTable();
-            dataTable.Columns.AddRange(dataColumns);
+                var sText = cmbxCustomers.Items[0].ToString();
+                cmbxCustomers.SelectionStart = text.Length;
+                cmbxCustomers.SelectionLength = sText.Length - text.Length;
+                cmbxCustomers.DroppedDown = true;
 
-            var dtCustomer = Factory.CustomersRepository().GetCustomersName();
-            foreach (DataRow row in dtCustomer.Rows)
-            {
-                var newRow = dataTable.NewRow();
-                newRow["id"] = row["id"];
-                newRow["account_name"] = row["account_name"];
-                dataTable.Rows.Add(newRow);
+                cmbxCustomers.ValueMember = "id";
+                cmbxCustomers.DisplayMember = "account_name";
+
+
+                // Restore default cursor
+                Cursor.Current = Cursors.Default;
+                return; 
             }
-
-            HelperLoadRecords.CustomersCombobox(cmbxCustomers, dataTable, "id", "account_name");
+            {
+                cmbxCustomers.DroppedDown = false;
+                cmbxCustomers.SelectionStart = text.Length;
+            }
+           
         }
 
         internal JobOrdersModel JobOrderModel()
@@ -113,7 +120,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string MRS = txtMRSNumber.Text;
             string WAR = txtWARNumber.Text;    
             int preparedById = Helper.UserId;
-            int materialsIssuedById = Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int ? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int statusId = this.statusId;
 
             return new JobOrdersModel()
@@ -129,7 +136,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRIS = MRIS,
                 MRS = MRS,
                 WAR = WAR,
-                MaterialsIssuedBy = materialsIssuedById,
+                MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
                 StatusId = statusId,
                 UserId = Helper.UserId
             };
@@ -176,17 +183,18 @@ namespace JOMonitoringApp.Views.JobOrder
             Helper.ClearErrorTextBox(errorProvider1, txtJONumber);
         }
 
-
         #endregion
 
         private void TxtMRISNumber_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRISNumber, "MRIS Number.");
+            if (radAccomplished.Checked)
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRISNumber, "MRIS Number.");
         }
 
         private void TxtMRISNumber_Validated(object sender, EventArgs e)
         {
-            Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
+            if (radAccomplished.Checked)
+                Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
         }
 
         private void CmbxCustomers_Validating(object sender, CancelEventArgs e)
@@ -203,6 +211,86 @@ namespace JOMonitoringApp.Views.JobOrder
         private void CbxNewApplication_CheckedChanged(object sender, EventArgs e)
         {
             newApplication = cbxNewApplication.Checked;
+            cmbxCustomers.DataSource = null;
+            cmbxCustomers.Items.Clear();
+
+            if (!newApplication && cmbxCustomers.Text.Trim().Length >= 3)
+                LoadCustomers("");
+       
+        }
+        private void TxtMRSNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (radAccomplished.Checked)
+            {
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRSNumber, "MRS Number.");
+            }
+        }
+
+        private void TxtMRSNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtMRSNumber);
+        }
+
+        private void TxtWARNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (radAccomplished.Checked)
+            {
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtWARNumber, "WAR Number.");
+            }
+        }
+
+        private void TxtWARNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtWARNumber);
+        }
+
+
+        private void RadPending_CheckedChanged(object sender, EventArgs e)
+        {
+            statusId = Convert.ToInt16(radPending.Tag);
+        }
+
+        private void RadProcessing_CheckedChanged(object sender, EventArgs e)
+        {
+            statusId = Convert.ToInt16(radProcessing.Tag);
+        }
+
+        private void RadCancel_CheckedChanged(object sender, EventArgs e)
+        {
+            statusId = Convert.ToInt16(radCancel.Tag);
+        }
+
+        private void RadAccomplished_CheckedChanged(object sender, EventArgs e)
+        {
+            statusId = Convert.ToInt16(radAccomplished.Tag);
+        }
+
+        private void CmbxCustomers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void CmbxCustomers_TextChanged(object sender, EventArgs e)
+        {
+            if (!newApplication && cmbxCustomers.Text.Trim().Length >= 3)
+            {
+                string searchKey = cmbxCustomers.Text.Trim();
+                LoadCustomers(searchKey);
+
+            }
+        }
+
+        private void TxtAccountNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (newApplication == false)
+            {
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Number.");
+            }
+        }
+
+        private void TxtAccountNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
         }
     }
 }

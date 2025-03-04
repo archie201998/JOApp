@@ -473,8 +473,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 500);
+            this.panel4.Location = new System.Drawing.Point(0, 566);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -518,7 +517,7 @@
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 500);
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 560);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage2
@@ -600,12 +599,12 @@
             this.jODetailsToolStripMenuItem,
             this.jOStatusToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
             // 
             // jODetailsToolStripMenuItem
             // 
             this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
-            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.jODetailsToolStripMenuItem.Text = "J.O Details";
             this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
             // 
@@ -617,35 +616,35 @@
             this.cancelledToolStripMenuItem,
             this.accomplishedToolStripMenuItem});
             this.jOStatusToolStripMenuItem.Name = "jOStatusToolStripMenuItem";
-            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.jOStatusToolStripMenuItem.Text = "J.O Status";
             this.jOStatusToolStripMenuItem.Click += new System.EventHandler(this.JOStatusToolStripMenuItem_Click);
             // 
             // pendingToolStripMenuItem
             // 
             this.pendingToolStripMenuItem.Name = "pendingToolStripMenuItem";
-            this.pendingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pendingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.pendingToolStripMenuItem.Text = "Pending";
             this.pendingToolStripMenuItem.Click += new System.EventHandler(this.PendingToolStripMenuItem_Click);
             // 
             // onGoingToolStripMenuItem
             // 
             this.onGoingToolStripMenuItem.Name = "onGoingToolStripMenuItem";
-            this.onGoingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.onGoingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.onGoingToolStripMenuItem.Text = "Processing";
             this.onGoingToolStripMenuItem.Click += new System.EventHandler(this.OnGoingToolStripMenuItem_Click);
             // 
             // cancelledToolStripMenuItem
             // 
             this.cancelledToolStripMenuItem.Name = "cancelledToolStripMenuItem";
-            this.cancelledToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cancelledToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.cancelledToolStripMenuItem.Text = "Cancel";
             this.cancelledToolStripMenuItem.Click += new System.EventHandler(this.CancelledToolStripMenuItem_Click);
             // 
             // accomplishedToolStripMenuItem
             // 
             this.accomplishedToolStripMenuItem.Name = "accomplishedToolStripMenuItem";
-            this.accomplishedToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accomplishedToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.accomplishedToolStripMenuItem.Text = "Accomplished";
             this.accomplishedToolStripMenuItem.Click += new System.EventHandler(this.AccomplishedToolStripMenuItem_Click);
             // 

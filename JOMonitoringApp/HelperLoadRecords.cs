@@ -101,6 +101,7 @@ namespace JOMonitoringApp
             cmbx.DataSource = dataTable;
             cmbx.ValueMember = valueMember;
             cmbx.DisplayMember = displayMember;
+            cmbx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
         }
 
         internal static void ParticularsCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)

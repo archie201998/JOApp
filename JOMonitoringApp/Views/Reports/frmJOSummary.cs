@@ -26,6 +26,12 @@ namespace JOMonitoringApp.Views.Reports
             panel3.Controls.Add(reportViewer1);
         }
 
+        private void ToogleRunButton(bool isGenerated)
+        {
+            btnSearch.Text = isGenerated ? "Run Report" : "Generating Report...";
+            btnSearch.Enabled = isGenerated;
+        }
+
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
             LoadMonths();
@@ -49,6 +55,7 @@ namespace JOMonitoringApp.Views.Reports
                 if (!backgroundWorker1.IsBusy)
                 {
                     progressBar1.Value = 0;
+                    ToogleRunButton(false);
                     var date = new DateTime().Month;
                     backgroundWorker1.RunWorkerAsync();
                 }
@@ -127,23 +134,26 @@ namespace JOMonitoringApp.Views.Reports
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
-
-            reportViewer1.Clear();
-            var localReport = reportViewer1.LocalReport;
-            localReport.DataSources.Clear();
-
-            localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
-            localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
-            localReport.SetParameters(parameters.reportParameters1);
-            localReport.Refresh();
-
-            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-            reportViewer1.ZoomMode = ZoomMode.Percent;
-            reportViewer1.Refresh();
+          
             try
             {
-               
+
+                var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
+
+                reportViewer1.Clear();
+                var localReport = reportViewer1.LocalReport;
+                localReport.DataSources.Clear();
+
+                localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\job-order-summary.rdlc";
+                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
+                localReport.SetParameters(parameters.reportParameters1);
+                localReport.Refresh();
+
+                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+                reportViewer1.ZoomMode = ZoomMode.Percent;
+                reportViewer1.Refresh();
+                ToogleRunButton(true);
+
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

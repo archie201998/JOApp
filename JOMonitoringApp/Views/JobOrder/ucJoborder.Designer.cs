@@ -59,11 +59,17 @@
             this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radAccomplished = new System.Windows.Forms.RadioButton();
+            this.radCancel = new System.Windows.Forms.RadioButton();
+            this.radProcessing = new System.Windows.Forms.RadioButton();
+            this.radPending = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -95,13 +101,16 @@
             // 
             // cmbxCustomers
             // 
-            this.cmbxCustomers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cmbxCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cmbxCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxCustomers.FormattingEnabled = true;
             this.cmbxCustomers.Location = new System.Drawing.Point(155, 42);
             this.cmbxCustomers.Name = "cmbxCustomers";
             this.cmbxCustomers.Size = new System.Drawing.Size(200, 21);
             this.cmbxCustomers.TabIndex = 0;
+            this.cmbxCustomers.SelectedIndexChanged += new System.EventHandler(this.CmbxCustomers_SelectedIndexChanged);
+            this.cmbxCustomers.TextChanged += new System.EventHandler(this.CmbxCustomers_TextChanged);
             this.cmbxCustomers.Validating += new System.ComponentModel.CancelEventHandler(this.CmbxCustomers_Validating);
             this.cmbxCustomers.Validated += new System.EventHandler(this.CmbxCustomers_Validated);
             // 
@@ -188,11 +197,15 @@
             // 
             // txtAccountNumber
             // 
+            this.txtAccountNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNumber.Location = new System.Drawing.Point(155, 69);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(200, 20);
             this.txtAccountNumber.TabIndex = 1;
+            this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountNumber_Validating);
+            this.txtAccountNumber.Validated += new System.EventHandler(this.TxtAccountNumber_Validated);
             // 
             // label8
             // 
@@ -233,8 +246,6 @@
             // cbxNewApplication
             // 
             this.cbxNewApplication.AutoSize = true;
-            this.cbxNewApplication.Checked = true;
-            this.cbxNewApplication.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxNewApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNewApplication.Location = new System.Drawing.Point(155, 19);
             this.cbxNewApplication.Name = "cbxNewApplication";
@@ -277,6 +288,8 @@
             this.txtWARNumber.Name = "txtWARNumber";
             this.txtWARNumber.Size = new System.Drawing.Size(200, 20);
             this.txtWARNumber.TabIndex = 7;
+            this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
+            this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
             // 
             // label15
             // 
@@ -305,6 +318,8 @@
             this.txtMRSNumber.Name = "txtMRSNumber";
             this.txtMRSNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRSNumber.TabIndex = 4;
+            this.txtMRSNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtMRSNumber_Validating);
+            this.txtMRSNumber.Validated += new System.EventHandler(this.TxtMRSNumber_Validated);
             // 
             // label10
             // 
@@ -378,16 +393,85 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "MATERIALS AND ISSUANCES";
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radAccomplished);
+            this.groupBox4.Controls.Add(this.radCancel);
+            this.groupBox4.Controls.Add(this.radProcessing);
+            this.groupBox4.Controls.Add(this.radPending);
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(21, 499);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(389, 61);
+            this.groupBox4.TabIndex = 18;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "STATUS";
+            // 
+            // radAccomplished
+            // 
+            this.radAccomplished.AutoSize = true;
+            this.radAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radAccomplished.Location = new System.Drawing.Point(278, 26);
+            this.radAccomplished.Name = "radAccomplished";
+            this.radAccomplished.Size = new System.Drawing.Size(91, 17);
+            this.radAccomplished.TabIndex = 5;
+            this.radAccomplished.Tag = "4";
+            this.radAccomplished.Text = "Accomplished";
+            this.radAccomplished.UseVisualStyleBackColor = true;
+            this.radAccomplished.CheckedChanged += new System.EventHandler(this.RadAccomplished_CheckedChanged);
+            // 
+            // radCancel
+            // 
+            this.radCancel.AutoSize = true;
+            this.radCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCancel.Location = new System.Drawing.Point(201, 26);
+            this.radCancel.Name = "radCancel";
+            this.radCancel.Size = new System.Drawing.Size(58, 17);
+            this.radCancel.TabIndex = 4;
+            this.radCancel.Tag = "3";
+            this.radCancel.Text = "Cancel";
+            this.radCancel.UseVisualStyleBackColor = true;
+            this.radCancel.CheckedChanged += new System.EventHandler(this.RadCancel_CheckedChanged);
+            // 
+            // radProcessing
+            // 
+            this.radProcessing.AutoSize = true;
+            this.radProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radProcessing.Location = new System.Drawing.Point(108, 26);
+            this.radProcessing.Name = "radProcessing";
+            this.radProcessing.Size = new System.Drawing.Size(77, 17);
+            this.radProcessing.TabIndex = 3;
+            this.radProcessing.Tag = "2";
+            this.radProcessing.Text = "Processing";
+            this.radProcessing.UseVisualStyleBackColor = true;
+            this.radProcessing.CheckedChanged += new System.EventHandler(this.RadProcessing_CheckedChanged);
+            // 
+            // radPending
+            // 
+            this.radPending.AutoSize = true;
+            this.radPending.Checked = true;
+            this.radPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radPending.Location = new System.Drawing.Point(21, 26);
+            this.radPending.Name = "radPending";
+            this.radPending.Size = new System.Drawing.Size(64, 17);
+            this.radPending.TabIndex = 2;
+            this.radPending.TabStop = true;
+            this.radPending.Tag = "1";
+            this.radPending.Text = "Pending";
+            this.radPending.UseVisualStyleBackColor = true;
+            this.radPending.CheckedChanged += new System.EventHandler(this.RadPending_CheckedChanged);
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 501);
+            this.Size = new System.Drawing.Size(424, 569);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -397,6 +481,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -433,5 +519,10 @@
         internal System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.GroupBox groupBox1;
         internal System.Windows.Forms.GroupBox groupBox3;
+        internal System.Windows.Forms.GroupBox groupBox4;
+        internal System.Windows.Forms.RadioButton radPending;
+        internal System.Windows.Forms.RadioButton radProcessing;
+        internal System.Windows.Forms.RadioButton radCancel;
+        internal System.Windows.Forms.RadioButton radAccomplished;
     }
 }

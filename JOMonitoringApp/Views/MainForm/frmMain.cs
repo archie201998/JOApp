@@ -321,7 +321,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.nudAmount.Value = string.IsNullOrEmpty(dictJobOrders["amount"].ToString()) ? 0 : Convert.ToDecimal(dictJobOrders["amount"]);
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
 
-            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
+            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["materials_issued_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
         }
 
         private void JODetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -356,6 +356,9 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.newApplication = true;
             ucJoborder.jobOrderId = 0;
             ucJoborder.statusId = 1;
+
+            btnSave.Text = "Save";
+            isUpdate = false;
             EnableDisableControls(false);
         }
 
@@ -363,6 +366,14 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
+                //TEMPORARY MANUAL VALIDATION
+
+                if (ucJoborder.radAccomplished.Checked && string.IsNullOrEmpty(ucJoborder.txtWARNumber.Text.Trim()))
+                {
+                   
+                }
+
+
                 if (!isUpdate) //if saving of data.
                 {
                     if (SaveData())
@@ -410,6 +421,11 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError(ucJoborder.GetFormErrors());
                 return false;
             }
+
+
+            
+
+
 
             //Run this code if new application
             bool isApplicaitonJO = ucJoborder.cbxNewApplication.Checked;

@@ -283,7 +283,7 @@ namespace JOMonitoringApp.Dataset {
             
             private global::System.Data.DataColumn columnjob_order_no;
             
-            private global::System.Data.DataColumn columncustomer;
+            private global::System.Data.DataColumn columnaccount_name;
             
             private global::System.Data.DataColumn columnaccount_number;
             
@@ -342,9 +342,9 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn customerColumn {
+            public global::System.Data.DataColumn account_nameColumn {
                 get {
-                    return this.columncustomer;
+                    return this.columnaccount_name;
                 }
             }
             
@@ -409,12 +409,12 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public dtJobOrderSummaryRow AdddtJobOrderSummaryRow(string date, string job_order_no, string customer, string account_number, string particular, string status) {
+            public dtJobOrderSummaryRow AdddtJobOrderSummaryRow(string date, string job_order_no, string account_name, string account_number, string particular, string status) {
                 dtJobOrderSummaryRow rowdtJobOrderSummaryRow = ((dtJobOrderSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         date,
                         job_order_no,
-                        customer,
+                        account_name,
                         account_number,
                         particular,
                         status};
@@ -442,7 +442,7 @@ namespace JOMonitoringApp.Dataset {
             internal void InitVars() {
                 this.columndate = base.Columns["date"];
                 this.columnjob_order_no = base.Columns["job_order_no"];
-                this.columncustomer = base.Columns["customer"];
+                this.columnaccount_name = base.Columns["account_name"];
                 this.columnaccount_number = base.Columns["account_number"];
                 this.columnparticular = base.Columns["particular"];
                 this.columnstatus = base.Columns["status"];
@@ -455,8 +455,8 @@ namespace JOMonitoringApp.Dataset {
                 base.Columns.Add(this.columndate);
                 this.columnjob_order_no = new global::System.Data.DataColumn("job_order_no", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnjob_order_no);
-                this.columncustomer = new global::System.Data.DataColumn("customer", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncustomer);
+                this.columnaccount_name = new global::System.Data.DataColumn("account_name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnaccount_name);
                 this.columnaccount_number = new global::System.Data.DataColumn("account_number", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaccount_number);
                 this.columnparticular = new global::System.Data.DataColumn("particular", typeof(string), null, global::System.Data.MappingType.Element);
@@ -637,17 +637,17 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string customer {
+            public string account_name {
                 get {
                     try {
-                        return ((string)(this[this.tabledtJobOrderSummary.customerColumn]));
+                        return ((string)(this[this.tabledtJobOrderSummary.account_nameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'customer\' in table \'dtJobOrderSummary\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'account_name\' in table \'dtJobOrderSummary\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabledtJobOrderSummary.customerColumn] = value;
+                    this[this.tabledtJobOrderSummary.account_nameColumn] = value;
                 }
             }
             
@@ -725,14 +725,14 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IscustomerNull() {
-                return this.IsNull(this.tabledtJobOrderSummary.customerColumn);
+            public bool Isaccount_nameNull() {
+                return this.IsNull(this.tabledtJobOrderSummary.account_nameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetcustomerNull() {
-                this[this.tabledtJobOrderSummary.customerColumn] = global::System.Convert.DBNull;
+            public void Setaccount_nameNull() {
+                this[this.tabledtJobOrderSummary.account_nameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

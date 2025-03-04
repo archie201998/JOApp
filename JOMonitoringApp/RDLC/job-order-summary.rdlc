@@ -25,8 +25,8 @@
           <DataField>job_order_no</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="customer">
-          <DataField>customer</DataField>
+        <Field Name="account_name">
+          <DataField>account_name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="account_number">
@@ -45,7 +45,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>dsReport</rd:DataSetName>
         <rd:SchemaPath>C:\Users\pwcse\Source\Repos\JOMonitoringApp\JOMonitoringApp\Dataset\dsReport.xsd</rd:SchemaPath>
-        <rd:TableName>job_order_summary</rd:TableName>
+        <rd:TableName>dtJobOrderSummary</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
         <rd:TableAdapterName />
@@ -145,13 +145,13 @@
                   <Width>2.00488cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.5441cm</Width>
+                  <Width>2.26162cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.93634cm</Width>
+                  <Width>4.53632cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.94097cm</Width>
+                  <Width>2.62347cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.70284cm</Width>
@@ -162,7 +162,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.81167cm</Height>
+                  <Height>0.6cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -176,6 +176,7 @@
                                   <Value>DATE</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -214,6 +215,7 @@
                                   <Value>J.O NO.</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -252,6 +254,7 @@
                                   <Value>CUSTOMER</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -290,6 +293,7 @@
                                   <Value>ACCOUNT NO.</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -328,6 +332,7 @@
                                   <Value>PARTICULAR</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -366,6 +371,7 @@
                                   <Value>STATUS</Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
+                                    <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                     <Color>White</Color>
                                   </Style>
@@ -470,14 +476,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="customer">
+                        <Textbox Name="account_name">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!customer.Value</Value>
+                                  <Value>=Fields!account_name.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -488,7 +494,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>customer</rd:DefaultName>
+                          <rd:DefaultName>account_name</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -635,7 +641,7 @@
             <DataSetName>dsJOMonthlyReport</DataSetName>
             <Top>1.88201cm</Top>
             <Left>0.06297cm</Left>
-            <Height>1.3323cm</Height>
+            <Height>1.12063cm</Height>
             <Width>16.1825cm</Width>
             <ZIndex>2</ZIndex>
             <Style>

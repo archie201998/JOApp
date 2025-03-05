@@ -40,6 +40,7 @@ namespace JOMonitoringApp
             {  new object[] { "@user_id", DbType.Int32, userId}, };
 
             string query = $"SELECT MAX(id) FROM {tableName} WHERE created_by = @user_id";
+
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
         }
 
@@ -79,6 +80,19 @@ namespace JOMonitoringApp
             };
 
             string query = $"SELECT id, account_number, account_name FROM {tableName} WHERE account_name LIKE @search_key OR account_number LIKE @search_key";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
+        {
+            var parameters = new object[][]
+           {
+                new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
+           };
+
+            string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_name LIKE @search_key";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);

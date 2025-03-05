@@ -96,6 +96,26 @@ namespace JOMonitoringApp
   
         }
 
+        public static void AccountsDataGridView(DataGridView dataGridView, DataTable dataTable)
+        {
+
+            dataGridView.DataSource = dataTable;
+
+            dataGridView.Columns["id"].Visible = false;
+            dataGridView.Columns["address"].Visible = false;
+
+            dataGridView.Columns["account_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["account_name"].HeaderText = "ACCOUNT NAME";
+            dataGridView.Columns["account_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["account_name"].MinimumWidth = 120;
+
+            dataGridView.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dataGridView.Columns["account_number"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["account_number"].MinimumWidth = 100;
+        }
+
+
         internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
         {
             cmbx.DataSource = dataTable;

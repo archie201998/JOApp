@@ -32,20 +32,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtORNumber = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.cmbxCustomers = new System.Windows.Forms.ComboBox();
             this.cmbxParticulars = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.nudAmount = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbxNewApplication = new System.Windows.Forms.CheckBox();
+            this.txtAccountName = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtWARNumber = new System.Windows.Forms.TextBox();
@@ -59,17 +58,20 @@
             this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbxAccomplishedBy = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.radAccomplished = new System.Windows.Forms.RadioButton();
             this.radCancel = new System.Windows.Forms.RadioButton();
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radPending = new System.Windows.Forms.RadioButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -89,6 +91,7 @@
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 20);
             this.txtORNumber.TabIndex = 5;
+            this.txtORNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
             // 
             // dtpDate
             // 
@@ -98,21 +101,6 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(198, 20);
             this.dtpDate.TabIndex = 2;
-            // 
-            // cmbxCustomers
-            // 
-            this.cmbxCustomers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cmbxCustomers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cmbxCustomers.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxCustomers.FormattingEnabled = true;
-            this.cmbxCustomers.Location = new System.Drawing.Point(155, 42);
-            this.cmbxCustomers.Name = "cmbxCustomers";
-            this.cmbxCustomers.Size = new System.Drawing.Size(200, 21);
-            this.cmbxCustomers.TabIndex = 0;
-            this.cmbxCustomers.SelectedIndexChanged += new System.EventHandler(this.CmbxCustomers_SelectedIndexChanged);
-            this.cmbxCustomers.TextChanged += new System.EventHandler(this.CmbxCustomers_TextChanged);
-            this.cmbxCustomers.Validating += new System.ComponentModel.CancelEventHandler(this.CmbxCustomers_Validating);
-            this.cmbxCustomers.Validated += new System.EventHandler(this.CmbxCustomers_Validated);
             // 
             // cmbxParticulars
             // 
@@ -180,11 +168,6 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Amount";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -204,8 +187,6 @@
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(200, 20);
             this.txtAccountNumber.TabIndex = 1;
-            this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountNumber_Validating);
-            this.txtAccountNumber.Validated += new System.EventHandler(this.TxtAccountNumber_Validated);
             // 
             // label8
             // 
@@ -228,8 +209,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbxNewApplication);
-            this.groupBox1.Controls.Add(this.cmbxCustomers);
+            this.groupBox1.Controls.Add(this.txtAccountName);
+            this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtAccountNumber);
@@ -243,17 +224,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCOUNT DETAILS";
             // 
-            // cbxNewApplication
+            // txtAccountName
             // 
-            this.cbxNewApplication.AutoSize = true;
-            this.cbxNewApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNewApplication.Location = new System.Drawing.Point(155, 19);
-            this.cbxNewApplication.Name = "cbxNewApplication";
-            this.cbxNewApplication.Size = new System.Drawing.Size(103, 17);
-            this.cbxNewApplication.TabIndex = 16;
-            this.cbxNewApplication.Text = "New Application";
-            this.cbxNewApplication.UseVisualStyleBackColor = true;
-            this.cbxNewApplication.CheckedChanged += new System.EventHandler(this.CbxNewApplication_CheckedChanged);
+            this.txtAccountName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAccountName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccountName.Location = new System.Drawing.Point(155, 44);
+            this.txtAccountName.Name = "txtAccountName";
+            this.txtAccountName.Size = new System.Drawing.Size(200, 20);
+            this.txtAccountName.TabIndex = 0;
+            this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountName_Validating);
+            this.txtAccountName.Validated += new System.EventHandler(this.TxtAccountName_Validated);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.White;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(256, 16);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(98, 23);
+            this.btnSearch.TabIndex = 19;
+            this.btnSearch.Text = "Search [F1]";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // groupBox2
             // 
@@ -288,6 +286,7 @@
             this.txtWARNumber.Name = "txtWARNumber";
             this.txtWARNumber.Size = new System.Drawing.Size(200, 20);
             this.txtWARNumber.TabIndex = 7;
+            this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
             this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
             this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
             // 
@@ -318,8 +317,7 @@
             this.txtMRSNumber.Name = "txtMRSNumber";
             this.txtMRSNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRSNumber.TabIndex = 4;
-            this.txtMRSNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtMRSNumber_Validating);
-            this.txtMRSNumber.Validated += new System.EventHandler(this.TxtMRSNumber_Validated);
+            this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
             // 
             // label10
             // 
@@ -338,8 +336,7 @@
             this.txtMRISNumber.Name = "txtMRISNumber";
             this.txtMRISNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRISNumber.TabIndex = 3;
-            this.txtMRISNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtMRISNumber_Validating);
-            this.txtMRISNumber.Validated += new System.EventHandler(this.TxtMRISNumber_Validated);
+            this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
             // 
             // label9
             // 
@@ -369,7 +366,7 @@
             this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(155, 28);
             this.cmbxMaterialsIssuedBy.Name = "cmbxMaterialsIssuedBy";
             this.cmbxMaterialsIssuedBy.Size = new System.Drawing.Size(200, 21);
-            this.cmbxMaterialsIssuedBy.TabIndex = 1;
+            this.cmbxMaterialsIssuedBy.TabIndex = 0;
             // 
             // label13
             // 
@@ -383,15 +380,37 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cmbxAccomplishedBy);
+            this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.cmbxMaterialsIssuedBy);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(21, 432);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 61);
+            this.groupBox3.Size = new System.Drawing.Size(389, 90);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "MATERIALS AND ISSUANCES";
+            this.groupBox3.Text = "ISSUANCES AND JOB ASSIGNMENTS";
+            // 
+            // cmbxAccomplishedBy
+            // 
+            this.cmbxAccomplishedBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxAccomplishedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxAccomplishedBy.FormattingEnabled = true;
+            this.cmbxAccomplishedBy.Location = new System.Drawing.Point(155, 55);
+            this.cmbxAccomplishedBy.Name = "cmbxAccomplishedBy";
+            this.cmbxAccomplishedBy.Size = new System.Drawing.Size(200, 21);
+            this.cmbxAccomplishedBy.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(25, 58);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(88, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "Accomplished By";
             // 
             // groupBox4
             // 
@@ -400,7 +419,7 @@
             this.groupBox4.Controls.Add(this.radProcessing);
             this.groupBox4.Controls.Add(this.radPending);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 499);
+            this.groupBox4.Location = new System.Drawing.Point(21, 528);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(389, 61);
             this.groupBox4.TabIndex = 18;
@@ -461,6 +480,11 @@
             this.radPending.UseVisualStyleBackColor = true;
             this.radPending.CheckedChanged += new System.EventHandler(this.RadPending_CheckedChanged);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -471,10 +495,10 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 569);
+            this.Size = new System.Drawing.Size(424, 598);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -483,6 +507,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -503,8 +528,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
-        internal System.Windows.Forms.CheckBox cbxNewApplication;
-        internal System.Windows.Forms.ComboBox cmbxCustomers;
         internal System.Windows.Forms.TextBox txtAccountNumber;
         internal System.Windows.Forms.TextBox txtAddress;
         internal System.Windows.Forms.TextBox txtORNumber;
@@ -524,5 +547,9 @@
         internal System.Windows.Forms.RadioButton radProcessing;
         internal System.Windows.Forms.RadioButton radCancel;
         internal System.Windows.Forms.RadioButton radAccomplished;
+        private System.Windows.Forms.Button btnSearch;
+        internal System.Windows.Forms.TextBox txtAccountName;
+        internal System.Windows.Forms.ComboBox cmbxAccomplishedBy;
+        private System.Windows.Forms.Label label6;
     }
 }

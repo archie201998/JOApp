@@ -11,15 +11,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
 {
-    public partial class frmJOSummary : Form
+    public partial class frmJOStatusSummary : Form
     {
         int monthIndex;
 
-        public frmJOSummary()
+        public frmJOStatusSummary()
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
@@ -45,8 +44,6 @@ namespace JOMonitoringApp.Views.Reports
 
             monthIndex = cmbxMonth.SelectedIndex;
         }
-
-
 
         private void LoadReport()
         {
@@ -74,55 +71,55 @@ namespace JOMonitoringApp.Views.Reports
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {// Define tasks and their progress weights
-            var tasks = new Dictionary<string, int>
+        {
+            try
+            {
+                // Define tasks and their progress weights
+                var tasks = new Dictionary<string, int>
                 {
                     { "Initialize Parameters", 50 },
                     { "Set Parameter Values", 50 }
                 };
 
-            var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex +1 );
-            int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
-            int progressCount = 0;
+                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
+                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
+                int progressCount = 0;
 
 
-            // Initialize Parameters
-            List<ReportParameter> reportParameters1 = new List<ReportParameter>();
-            progressCount += tasks["Initialize Parameters"];
-            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-
-            // Set Parameter Values
-            var userData = Helper.LoggedInUserData();
-
-            reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
-            reportParameters1.Add(new ReportParameter("paramRecommendingApproval", "CHRISTOPHER JASON R. CABABARO"));
-            reportParameters1.Add(new ReportParameter("paramApproved", "ENG. VIVIEL MAY B. RAMIREZ"));
-            reportParameters1.Add(new ReportParameter("paramMonth", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthIndex+1)));
-            progressCount += tasks["Set Parameter Values"];
-            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-
-
-            foreach (DataRow dataRow in dtJobOrders.Rows)
-            {
-
-                var newRow = dtJobOrderSummary.NewRow();
-                newRow["date"] = dataRow["date"];
-                newRow["job_order_no"] = dataRow["job_order_no"];
-                newRow["account_name"] = dataRow["account_name"];
-                newRow["account_number"] = dataRow["account_number"];
-                newRow["particular"] = dataRow["particular"];
-                newRow["status"] = dataRow["status"];
-
-                progressCount++;
-                dtJobOrderSummary.Rows.Add(newRow);
+                // Initialize Parameters
+                List<ReportParameter> reportParameters1 = new List<ReportParameter>();
+                progressCount += tasks["Initialize Parameters"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-            }
 
-            e.Result = (reportParameters1, dtJobOrders);
-            try
-            {
-                
+                // Set Parameter Values
+                var userData = Helper.LoggedInUserData();
+
+                reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramRecommendingApproval", "CHRISTOPHER JASON R. CABABARO"));
+                reportParameters1.Add(new ReportParameter("paramApproved", "ENG. VIVIEL MAY B. RAMIREZ"));
+                reportParameters1.Add(new ReportParameter("paramMonth", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthIndex + 1)));
+                progressCount += tasks["Set Parameter Values"];
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+
+                foreach (DataRow dataRow in dtJobOrders.Rows)
+                {
+
+                    var newRow = dtJobOrderSummary.NewRow();
+                    newRow["date"] = dataRow["date"];
+                    newRow["job_order_no"] = dataRow["job_order_no"];
+                    newRow["account_name"] = dataRow["account_name"];
+                    newRow["account_number"] = dataRow["account_number"];
+                    newRow["particular"] = dataRow["particular"];
+                    newRow["status"] = dataRow["status"];
+
+                    progressCount++;
+                    dtJobOrderSummary.Rows.Add(newRow);
+                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+                }
+
+                e.Result = (reportParameters1, dtJobOrders);
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -162,5 +159,6 @@ namespace JOMonitoringApp.Views.Reports
         {
             monthIndex = cmbxMonth.SelectedIndex;
         }
+
     }
 }

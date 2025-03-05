@@ -12,5 +12,6 @@ namespace JOMonitoringApp.Interface
     {
         int GetLastInsertedID(int userId);
         DataTable GetCustomersName(string searchKey);
+        DataTable GetRecordsBySearchByAccountNumber(string searchKey);
     }
 }

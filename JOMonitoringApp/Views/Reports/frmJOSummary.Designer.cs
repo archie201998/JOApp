@@ -1,6 +1,6 @@
 ﻿namespace JOMonitoringApp.Views.Reports
 {
-    partial class frmJOSummary
+    partial class frmJOStatusSummary
     {
         /// <summary>
         /// Required designer variable.
@@ -162,7 +162,7 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
-            // frmJOSummary
+            // frmJOStatusSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -171,11 +171,11 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "frmJOSummary";
+            this.Name = "frmJOStatusSummary";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Job Order Monitoring App | J.O Summary Report";
+            this.Text = "Job Order Monitoring App | J.O Status Summary Report";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmJOSummary_Load);
             this.panel2.ResumeLayout(false);

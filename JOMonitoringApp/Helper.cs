@@ -16,9 +16,7 @@ namespace AccountingSystem
     public static class Helper
     {
         public static byte UserId { get; internal set; }
-
-        //status counter 
-        internal static int accomplished, onGoing, pending, cancelled = 0; 
+        
 
         public static bool HasPermission(string permissionName)
         {

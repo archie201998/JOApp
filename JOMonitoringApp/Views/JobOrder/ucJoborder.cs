@@ -14,9 +14,14 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
-        internal bool newApplication = false;
-        internal int jobOrderId ;
+        internal int jobOrderId;
         internal int statusId = 1;
+        internal bool isNewAccount = true;
+
+        internal int accountId = 0;
+        internal string accountNumber = string.Empty;
+        internal string accountName = string.Empty;
+
         public ucJoborder()
         {
             if (!DesignMode)
@@ -29,8 +34,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             var errorArray = new string[]
             {
-                errorProvider1.GetError(txtAccountNumber),
-                errorProvider1.GetError(cmbxCustomers),
+                errorProvider1.GetError(txtAccountName),
                 errorProvider1.GetError(dtpDate),
                 errorProvider1.GetError(txtJONumber),
                 errorProvider1.GetError(txtMRISNumber),
@@ -80,37 +84,10 @@ namespace JOMonitoringApp.Views.JobOrder
             return dataTable;
         }
 
-        internal void LoadCustomers(string searchKey)
-        {
-            var dtCustomer = Factory.CustomersRepository().GetCustomersName(searchKey);
-            var text = cmbxCustomers.Text;
-            if (dtCustomer.Rows.Count > 0)
-            {
-                cmbxCustomers.DataSource = dtCustomer;
-
-                var sText = cmbxCustomers.Items[0].ToString();
-                cmbxCustomers.SelectionStart = text.Length;
-                cmbxCustomers.SelectionLength = sText.Length - text.Length;
-                cmbxCustomers.DroppedDown = true;
-
-                cmbxCustomers.ValueMember = "id";
-                cmbxCustomers.DisplayMember = "account_name";
-
-
-                // Restore default cursor
-                Cursor.Current = Cursors.Default;
-                return; 
-            }
-            {
-                cmbxCustomers.DroppedDown = false;
-                cmbxCustomers.SelectionStart = text.Length;
-            }
-           
-        }
-
+        
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = newApplication == true ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : Convert.ToInt32(cmbxCustomers.SelectedValue);
+            int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
@@ -197,40 +174,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
         }
 
-        private void CmbxCustomers_Validating(object sender, CancelEventArgs e)
-        {
-            e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxCustomers, "Account Name.");
-
-        }
-
-        private void CmbxCustomers_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorComboBox(errorProvider1, cmbxCustomers);
-        }
-
-        private void CbxNewApplication_CheckedChanged(object sender, EventArgs e)
-        {
-            newApplication = cbxNewApplication.Checked;
-            cmbxCustomers.DataSource = null;
-            cmbxCustomers.Items.Clear();
-
-            if (!newApplication && cmbxCustomers.Text.Trim().Length >= 3)
-                LoadCustomers("");
-       
-        }
-        private void TxtMRSNumber_Validating(object sender, CancelEventArgs e)
-        {
-            if (radAccomplished.Checked)
-            {
-                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRSNumber, "MRS Number.");
-            }
-        }
-
-        private void TxtMRSNumber_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorTextBox(errorProvider1, txtMRSNumber);
-        }
-
         private void TxtWARNumber_Validating(object sender, CancelEventArgs e)
         {
             if (radAccomplished.Checked)
@@ -265,32 +208,40 @@ namespace JOMonitoringApp.Views.JobOrder
             statusId = Convert.ToInt16(radAccomplished.Tag);
         }
 
-        private void CmbxCustomers_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void TxtAccountNumber_Validating(object sender, CancelEventArgs e)
         {
            
         }
 
-        private void CmbxCustomers_TextChanged(object sender, EventArgs e)
-        {
-            if (!newApplication && cmbxCustomers.Text.Trim().Length >= 3)
-            {
-                string searchKey = cmbxCustomers.Text.Trim();
-                LoadCustomers(searchKey);
-
-            }
-        }
-
-        private void TxtAccountNumber_Validating(object sender, CancelEventArgs e)
-        {
-            if (newApplication == false)
-            {
-                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Number.");
-            }
-        }
-
         private void TxtAccountNumber_Validated(object sender, EventArgs e)
         {
-            Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
         }
+
+        internal void BtnSearch_Click(object sender, EventArgs e)
+        {
+            _ = new frmSearchAccount(this).ShowDialog();
+        }
+
+        private void TxtAccountName_Validating(object sender, CancelEventArgs e)
+        {
+            Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
+        }
+
+        private void TxtAccountName_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAccountName);
+        }
+
+        private void TxtWARNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
+
+        internal void UcJoborder_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            _ = new frmSearchAccount(this).ShowDialog();
+        }
+
     }
 }

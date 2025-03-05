@@ -49,6 +49,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbxMonth = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtTotal = new System.Windows.Forms.TextBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblTotal = new System.Windows.Forms.Label();
+            this.lblPercentage = new System.Windows.Forms.Label();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -59,6 +66,9 @@
             this.panel13.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudYear)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel6
@@ -66,7 +76,7 @@
             this.panel6.BackColor = System.Drawing.Color.White;
             this.panel6.Controls.Add(this.txtPending);
             this.panel6.Controls.Add(this.panel7);
-            this.panel6.Location = new System.Drawing.Point(10, 56);
+            this.panel6.Location = new System.Drawing.Point(184, 56);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(168, 150);
             this.panel6.TabIndex = 2;
@@ -77,11 +87,11 @@
             this.txtPending.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPending.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtPending.Enabled = false;
-            this.txtPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtPending.Location = new System.Drawing.Point(0, 20);
+            this.txtPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPending.Location = new System.Drawing.Point(0, 38);
             this.txtPending.Name = "txtPending";
             this.txtPending.ReadOnly = true;
-            this.txtPending.Size = new System.Drawing.Size(168, 91);
+            this.txtPending.Size = new System.Drawing.Size(168, 73);
             this.txtPending.TabIndex = 8;
             this.txtPending.Text = "3";
             this.txtPending.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -113,7 +123,7 @@
             this.panel8.BackColor = System.Drawing.Color.White;
             this.panel8.Controls.Add(this.txtOnGoing);
             this.panel8.Controls.Add(this.panel9);
-            this.panel8.Location = new System.Drawing.Point(184, 56);
+            this.panel8.Location = new System.Drawing.Point(358, 56);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(168, 150);
             this.panel8.TabIndex = 4;
@@ -124,11 +134,11 @@
             this.txtOnGoing.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtOnGoing.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtOnGoing.Enabled = false;
-            this.txtOnGoing.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtOnGoing.Location = new System.Drawing.Point(0, 20);
+            this.txtOnGoing.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOnGoing.Location = new System.Drawing.Point(0, 38);
             this.txtOnGoing.Name = "txtOnGoing";
             this.txtOnGoing.ReadOnly = true;
-            this.txtOnGoing.Size = new System.Drawing.Size(168, 91);
+            this.txtOnGoing.Size = new System.Drawing.Size(168, 73);
             this.txtOnGoing.TabIndex = 9;
             this.txtOnGoing.Text = "3";
             this.txtOnGoing.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -159,7 +169,7 @@
             this.panel10.BackColor = System.Drawing.Color.White;
             this.panel10.Controls.Add(this.txtCancelled);
             this.panel10.Controls.Add(this.panel11);
-            this.panel10.Location = new System.Drawing.Point(358, 56);
+            this.panel10.Location = new System.Drawing.Point(532, 56);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(168, 150);
             this.panel10.TabIndex = 5;
@@ -170,11 +180,11 @@
             this.txtCancelled.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCancelled.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtCancelled.Enabled = false;
-            this.txtCancelled.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtCancelled.Location = new System.Drawing.Point(0, 20);
+            this.txtCancelled.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCancelled.Location = new System.Drawing.Point(0, 38);
             this.txtCancelled.Name = "txtCancelled";
             this.txtCancelled.ReadOnly = true;
-            this.txtCancelled.Size = new System.Drawing.Size(168, 91);
+            this.txtCancelled.Size = new System.Drawing.Size(168, 73);
             this.txtCancelled.TabIndex = 9;
             this.txtCancelled.Text = "3";
             this.txtCancelled.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -205,7 +215,7 @@
             this.panel12.BackColor = System.Drawing.Color.White;
             this.panel12.Controls.Add(this.txtAccomplished);
             this.panel12.Controls.Add(this.panel13);
-            this.panel12.Location = new System.Drawing.Point(532, 56);
+            this.panel12.Location = new System.Drawing.Point(706, 56);
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(168, 150);
             this.panel12.TabIndex = 6;
@@ -216,11 +226,11 @@
             this.txtAccomplished.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAccomplished.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtAccomplished.Enabled = false;
-            this.txtAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
-            this.txtAccomplished.Location = new System.Drawing.Point(0, 20);
+            this.txtAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccomplished.Location = new System.Drawing.Point(0, 38);
             this.txtAccomplished.Name = "txtAccomplished";
             this.txtAccomplished.ReadOnly = true;
-            this.txtAccomplished.Size = new System.Drawing.Size(168, 91);
+            this.txtAccomplished.Size = new System.Drawing.Size(168, 73);
             this.txtAccomplished.TabIndex = 9;
             this.txtAccomplished.Text = "3";
             this.txtAccomplished.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -257,7 +267,7 @@
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(999, 40);
+            this.panel1.Size = new System.Drawing.Size(1113, 40);
             this.panel1.TabIndex = 7;
             // 
             // nudYear
@@ -308,10 +318,90 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Month ";
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.SteelBlue;
+            this.panel3.Controls.Add(this.lblPercentage);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Location = new System.Drawing.Point(10, 226);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(403, 39);
+            this.panel3.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(6, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(280, 24);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "ACCOMPLISHMENT RATE : ";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.Controls.Add(this.txtTotal);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Location = new System.Drawing.Point(10, 56);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(168, 150);
+            this.panel2.TabIndex = 8;
+            // 
+            // txtTotal
+            // 
+            this.txtTotal.BackColor = System.Drawing.Color.White;
+            this.txtTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtTotal.Enabled = false;
+            this.txtTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F);
+            this.txtTotal.Location = new System.Drawing.Point(0, 20);
+            this.txtTotal.Name = "txtTotal";
+            this.txtTotal.ReadOnly = true;
+            this.txtTotal.Size = new System.Drawing.Size(168, 91);
+            this.txtTotal.TabIndex = 9;
+            this.txtTotal.Text = "3";
+            this.txtTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.panel4.Controls.Add(this.lblTotal);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 111);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(168, 39);
+            this.panel4.TabIndex = 4;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.AutoSize = true;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.Color.White;
+            this.lblTotal.Location = new System.Drawing.Point(40, 7);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(83, 24);
+            this.lblTotal.TabIndex = 0;
+            this.lblTotal.Text = "TOTAL ";
+            // 
+            // lblPercentage
+            // 
+            this.lblPercentage.AutoSize = true;
+            this.lblPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblPercentage.ForeColor = System.Drawing.Color.White;
+            this.lblPercentage.Location = new System.Drawing.Point(282, 8);
+            this.lblPercentage.Name = "lblPercentage";
+            this.lblPercentage.Size = new System.Drawing.Size(66, 24);
+            this.lblPercentage.TabIndex = 9;
+            this.lblPercentage.Text = "label4";
+            // 
             // ucDashboardSummaryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel10);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel12);
@@ -319,7 +409,7 @@
             this.Controls.Add(this.panel6);
             this.Name = "ucDashboardSummaryView";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1019, 214);
+            this.Size = new System.Drawing.Size(1133, 407);
             this.Load += new System.EventHandler(this.UcDashboardSummaryView_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -340,6 +430,12 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudYear)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -366,5 +462,12 @@
         private System.Windows.Forms.TextBox txtAccomplished;
         internal System.Windows.Forms.ComboBox cmbxMonth;
         internal System.Windows.Forms.NumericUpDown nudYear;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox txtTotal;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Label lblPercentage;
     }
 }

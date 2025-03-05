@@ -28,9 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUpdate = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,14 +62,11 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.panelInputField = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -80,14 +74,9 @@
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.jODetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jOStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pendingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.onGoingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cancelledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.accomplishedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -96,45 +85,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.BackColor = System.Drawing.Color.Crimson;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(93, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(70, 23);
-            this.btnDelete.TabIndex = 12;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
-            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
-            // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUpdate.BackColor = System.Drawing.Color.DarkCyan;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.ForeColor = System.Drawing.Color.White;
-            this.btnUpdate.Location = new System.Drawing.Point(5, 4);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(83, 23);
-            this.btnUpdate.TabIndex = 11;
-            this.btnUpdate.Text = "Update >>";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // menuStrip1
             // 
@@ -145,7 +100,7 @@
             this.sessionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1206, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1651, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -287,7 +242,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 29);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1206, 678);
+            this.tabControl1.Size = new System.Drawing.Size(1651, 861);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -297,7 +252,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1198, 652);
+            this.tabPage1.Size = new System.Drawing.Size(1643, 835);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -307,12 +262,11 @@
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.panel5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(421, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(774, 646);
+            this.panel1.Size = new System.Drawing.Size(1219, 829);
             this.panel1.TabIndex = 2;
             // 
             // panel6
@@ -322,7 +276,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(764, 549);
+            this.panel6.Size = new System.Drawing.Size(1209, 763);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -334,11 +288,10 @@
             this.dgJobOrders.Location = new System.Drawing.Point(4, 4);
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(756, 541);
+            this.dgJobOrders.Size = new System.Drawing.Size(1201, 755);
             this.dgJobOrders.TabIndex = 0;
-            this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
-            this.dgJobOrders.SelectionChanged += new System.EventHandler(this.DgJobOrders_SelectionChanged);
+            this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
             // 
             // panel3
             // 
@@ -347,7 +300,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(764, 18);
+            this.panel3.Size = new System.Drawing.Size(1209, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -355,7 +308,7 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(754, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1199, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -370,7 +323,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(764, 38);
+            this.panel2.Size = new System.Drawing.Size(1209, 38);
             this.panel2.TabIndex = 8;
             // 
             // btnSearch
@@ -381,7 +334,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(682, 8);
+            this.btnSearch.Location = new System.Drawing.Point(1127, 8);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 13;
@@ -394,7 +347,7 @@
             this.cmbxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxStatus.FormattingEnabled = true;
-            this.cmbxStatus.Location = new System.Drawing.Point(557, 8);
+            this.cmbxStatus.Location = new System.Drawing.Point(1002, 8);
             this.cmbxStatus.Name = "cmbxStatus";
             this.cmbxStatus.Size = new System.Drawing.Size(121, 21);
             this.cmbxStatus.TabIndex = 10;
@@ -403,7 +356,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(515, 12);
+            this.label5.Location = new System.Drawing.Point(960, 12);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 9;
@@ -414,15 +367,16 @@
             this.cmbxRowLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxRowLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxRowLimit.FormattingEnabled = true;
-            this.cmbxRowLimit.Location = new System.Drawing.Point(140, 8);
+            this.cmbxRowLimit.Location = new System.Drawing.Point(585, 8);
             this.cmbxRowLimit.Name = "cmbxRowLimit";
             this.cmbxRowLimit.Size = new System.Drawing.Size(121, 21);
             this.cmbxRowLimit.TabIndex = 7;
             // 
             // txtSearch
             // 
+            this.txtSearch.AcceptsReturn = true;
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(308, 8);
+            this.txtSearch.Location = new System.Drawing.Point(753, 8);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(200, 20);
             this.txtSearch.TabIndex = 4;
@@ -431,7 +385,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(56, 12);
+            this.label4.Location = new System.Drawing.Point(501, 12);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 2;
@@ -441,22 +395,11 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(265, 11);
+            this.label2.Location = new System.Drawing.Point(710, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(41, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Search";
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.Controls.Add(this.btnDelete);
-            this.panel5.Controls.Add(this.btnUpdate);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(5, 610);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(764, 31);
-            this.panel5.TabIndex = 7;
             // 
             // panelInputField
             // 
@@ -465,7 +408,7 @@
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(418, 646);
+            this.panelInputField.Size = new System.Drawing.Size(418, 829);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -473,7 +416,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(0, 566);
+            this.panel4.Location = new System.Drawing.Point(0, 606);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -511,35 +454,17 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 560);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1198, 652);
+            this.tabPage2.Size = new System.Drawing.Size(1643, 835);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1192, 218);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -557,9 +482,9 @@
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel3,
             this.lblRecordsCount});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 707);
+            this.statusStrip1.Location = new System.Drawing.Point(5, 890);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1206, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1651, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -593,82 +518,48 @@
             this.lblRecordsCount.Size = new System.Drawing.Size(31, 17);
             this.lblRecordsCount.Text = "1000";
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jODetailsToolStripMenuItem,
-            this.jOStatusToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(129, 48);
-            // 
-            // jODetailsToolStripMenuItem
-            // 
-            this.jODetailsToolStripMenuItem.Name = "jODetailsToolStripMenuItem";
-            this.jODetailsToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.jODetailsToolStripMenuItem.Text = "J.O Details";
-            this.jODetailsToolStripMenuItem.Click += new System.EventHandler(this.JODetailsToolStripMenuItem_Click);
-            // 
-            // jOStatusToolStripMenuItem
-            // 
-            this.jOStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pendingToolStripMenuItem,
-            this.onGoingToolStripMenuItem,
-            this.cancelledToolStripMenuItem,
-            this.accomplishedToolStripMenuItem});
-            this.jOStatusToolStripMenuItem.Name = "jOStatusToolStripMenuItem";
-            this.jOStatusToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
-            this.jOStatusToolStripMenuItem.Text = "J.O Status";
-            this.jOStatusToolStripMenuItem.Click += new System.EventHandler(this.JOStatusToolStripMenuItem_Click);
-            // 
-            // pendingToolStripMenuItem
-            // 
-            this.pendingToolStripMenuItem.Name = "pendingToolStripMenuItem";
-            this.pendingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.pendingToolStripMenuItem.Text = "Pending";
-            this.pendingToolStripMenuItem.Click += new System.EventHandler(this.PendingToolStripMenuItem_Click);
-            // 
-            // onGoingToolStripMenuItem
-            // 
-            this.onGoingToolStripMenuItem.Name = "onGoingToolStripMenuItem";
-            this.onGoingToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.onGoingToolStripMenuItem.Text = "Processing";
-            this.onGoingToolStripMenuItem.Click += new System.EventHandler(this.OnGoingToolStripMenuItem_Click);
-            // 
-            // cancelledToolStripMenuItem
-            // 
-            this.cancelledToolStripMenuItem.Name = "cancelledToolStripMenuItem";
-            this.cancelledToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.cancelledToolStripMenuItem.Text = "Cancel";
-            this.cancelledToolStripMenuItem.Click += new System.EventHandler(this.CancelledToolStripMenuItem_Click);
-            // 
-            // accomplishedToolStripMenuItem
-            // 
-            this.accomplishedToolStripMenuItem.Name = "accomplishedToolStripMenuItem";
-            this.accomplishedToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.accomplishedToolStripMenuItem.Text = "Accomplished";
-            this.accomplishedToolStripMenuItem.Click += new System.EventHandler(this.AccomplishedToolStripMenuItem_Click);
-            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 603);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // frmMain
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 734);
+            this.ClientSize = new System.Drawing.Size(1661, 917);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.MinimumSize = new System.Drawing.Size(1232, 773);
+            this.MinimumSize = new System.Drawing.Size(1345, 773);
             this.Name = "frmMain";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -679,13 +570,11 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel5.ResumeLayout(false);
             this.panelInputField.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -724,12 +613,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentUser;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem jOStatusToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem jODetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jOSummaryToolStripMenuItem;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.Panel panelInputField;
@@ -737,7 +621,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbxStatus;
@@ -747,9 +630,5 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.ToolStripMenuItem pendingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem onGoingToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cancelledToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem accomplishedToolStripMenuItem;
     }
 }

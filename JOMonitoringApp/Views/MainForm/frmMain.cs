@@ -169,7 +169,6 @@ namespace JOMonitoringApp.Views.MainForm
             DataTable dataTable = (DataTable)e.Result;
 
             HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
-
             dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
             lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
         }
@@ -180,10 +179,6 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
-                cmbxStatus.SelectedValue = 5;
-                ucDashboardSummaryView.LoadJobOrdersSummary();
-                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
-                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
                 OnLoad();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -192,7 +187,11 @@ namespace JOMonitoringApp.Views.MainForm
         internal void OnLoad()
         {
             LoadJobOrders();
+            ucDashboardSummaryView.LoadJobOrdersSummary();
+            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+            lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             ucJoborder.OnLoad();
+            cmbxStatus.SelectedValue = 5;
         }
 
 
@@ -225,19 +224,9 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        private void BtnUpdate_Click(object sender, EventArgs e)
-        {
-            contextMenuStrip1.Show(btnUpdate, new Point(btnUpdate.Width - contextMenuStrip1.Width, btnUpdate.Height));
-        }
-
-        private void DgJobOrders_SelectionChanged(object sender, EventArgs e)
-        {
-            Helper.EnableDisableButtons(dgJobOrders, btnUpdate, btnDelete);
-        }
-
         private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOSummary().ShowDialog();
+            _ = new frmJOStatusSummary().ShowDialog();
         }
 
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -249,9 +238,7 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.UserId = 0;
                 _ = new frmSignIn().ShowDialog();
             }
-
             return;
-
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -289,21 +276,16 @@ namespace JOMonitoringApp.Views.MainForm
             return false;
         }
 
-        private void DgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void LoadSelectedData()
         {
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             ucJoborder.jobOrderId = selectedJobOrderId;
 
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
-
             if (dictJobOrders.Count == 0) return;
 
-            ucJoborder.cmbxCustomers.SelectedValue = dictJobOrders["customers_id"];
+            ucJoborder.accountId = Convert.ToInt32(dictJobOrders["customers_id"]);
+            ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
 
@@ -315,16 +297,16 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtORNumber.Text = dictJobOrders["or_number"];
             ucJoborder.nudAmount.Value = string.IsNullOrEmpty(dictJobOrders["amount"].ToString()) ? 0 : Convert.ToDecimal(dictJobOrders["amount"]);
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
-
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["materials_issued_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
+
+            int statusId = Convert.ToInt16(dictJobOrders["status_id"]);
+            ucJoborder.radPending.Checked = (statusId == Convert.ToInt16(ucJoborder.radPending.Tag));
+            ucJoborder.radProcessing.Checked = (statusId == Convert.ToInt16(ucJoborder.radProcessing.Tag));
+            ucJoborder.radCancel.Checked = (statusId == Convert.ToInt16(ucJoborder.radCancel.Tag));
+            ucJoborder.radAccomplished.Checked = (statusId == Convert.ToInt16(ucJoborder.radAccomplished.Tag));
         }
 
-        private void JODetailsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadSelectedData();
-            btnSave.Text = "Update";
-            isUpdate = true;
-        }
+        
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -333,7 +315,9 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void ResetInputForm()
         {
-            ucJoborder.cmbxCustomers.SelectedValue = -1;
+            ucJoborder.accountId = 0;
+            ucJoborder.txtAccountName.Clear();
+            ucJoborder.txtAccountName.Focus();
             ucJoborder.txtAccountNumber.Clear();
             ucJoborder.txtAddress.Clear();
 
@@ -348,28 +332,30 @@ namespace JOMonitoringApp.Views.MainForm
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
 
-            ucJoborder.newApplication = true;
             ucJoborder.jobOrderId = 0;
             ucJoborder.statusId = 1;
+            ucJoborder.radPending.Checked = true;
+            ucJoborder.isNewAccount = true;
 
+            btnSave.BackColor = Color.DodgerBlue;
             btnSave.Text = "Save";
             isUpdate = false;
-            EnableDisableControls(false);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                //TEMPORARY MANUAL VALIDATION
-
-                if (ucJoborder.radAccomplished.Checked && string.IsNullOrEmpty(ucJoborder.txtWARNumber.Text.Trim()))
+                if (isUpdate)
                 {
-                   
+                    if (UpdateData())
+                    {
+                        Helper.MessageBoxSuccess("Job order is successfully updated.");
+                        OnLoad();
+                        ResetInputForm();
+                    }
                 }
-
-
-                if (!isUpdate) //if saving of data.
+                else
                 {
                     if (SaveData())
                     {
@@ -379,16 +365,6 @@ namespace JOMonitoringApp.Views.MainForm
                         ResetInputForm();
                     }
                 }
-                else
-                {
-                    if (UpdateData())
-                    {
-                        Helper.MessageBoxSuccess("Job order is successfully updated.");
-                        OnLoad();
-                        ResetInputForm();
-                    }
-                }
-               
 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -398,6 +374,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private bool UpdateData()
         {
+
             if (!ucJoborder.ValidateChildren())
             {
                 Helper.MessageBoxError(ucJoborder.GetFormErrors());
@@ -417,134 +394,54 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-
-            
-
-
-
-            //Run this code if new application
-            bool isApplicaitonJO = ucJoborder.cbxNewApplication.Checked;
-            if (isApplicaitonJO)
+            if (ucJoborder.isNewAccount)
             {
-                if (SaveNewCustomer())
-                {
-                    return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
-                }
+                Factory.CustomersRepository().Insert(CustomersModel());
             }
-            //Run this code if old application
+            
+        
             return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
-        }
-
-
-        private bool SaveNewCustomer()
-        {
-            var customerModel = new CustomersModel()
-            {
-                AccountName = ucJoborder.cmbxCustomers.Text,
-                Address = ucJoborder.txtAddress.Text,
-                CreatedBy = Helper.UserId
-            };
-
-            return Factory.CustomersRepository().Insert(customerModel);
         }
 
         internal CustomersModel CustomersModel()
         {
             string accountNumber = ucJoborder.txtAccountNumber.Text.Trim();
-            string accountName = ucJoborder.cmbxCustomers.Text.Trim();
+            string accountName = ucJoborder.txtAccountName.Text.Trim();
             string accountAddress = ucJoborder.txtAddress.Text.Trim();
+            int createdBy = Helper.UserId;
 
             return new CustomersModel()
             {
                 AccountNumber = accountNumber,
                 AccountName = accountName,
                 Address = accountAddress,
+                CreatedBy = createdBy
             };
 
         }
 
         #endregion
 
-        private void JOStatusToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EnableDisableControls(bool enableDisable)
-        {
-            ucJoborder.cbxNewApplication.Enabled = !enableDisable;
-            ucJoborder.cmbxCustomers.Enabled = !enableDisable;
-            ucJoborder.txtAccountNumber.ReadOnly = enableDisable;
-            ucJoborder.txtAddress.ReadOnly = enableDisable;
-            ucJoborder.txtJONumber.ReadOnly = enableDisable;
-            ucJoborder.cmbxParticulars.Enabled = enableDisable;
-            ucJoborder.txtMRISNumber.ReadOnly = enableDisable;
-            ucJoborder.txtMRSNumber.ReadOnly = enableDisable;
-            ucJoborder.nudAmount.ReadOnly = enableDisable;
-            ucJoborder.txtWARNumber.Focus();
-        }
-
-        private bool UpdateStatus(int statusId)
-        {
-            string status = string.Empty;
-
-            switch (statusId)
-            {
-                case 1:
-                    status = "pending";
-                    break;
-                case 2:
-                    status = "processing";
-                    break;
-                case 3:
-                    status = "cancelled";
-                    break;
-                default:
-                    break;
-            }
-            if (Helper.MessageBoxConfirmCancel($"Do you confirm to update the J.O status into {status}?"))
-            {
-                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                return Factory.JobOrdersRepository().UpdateStatus(jobOrderId, statusId);
-            }
-
-            return false;
-        }
-      
-        private void PendingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UpdateStatus(1))
-                Helper.MessageBoxSuccess("J.O Order status has been updated into pending");
-
-            OnLoad();
-        }
-
-        private void OnGoingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UpdateStatus(2))
-                Helper.MessageBoxSuccess("J.O Order status has been updated into processing");
-
-            OnLoad();
-        }
-
-        private void CancelledToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (UpdateStatus(3))
-                Helper.MessageBoxSuccess("J.O Order status has been cancelled");
-            
-            OnLoad();
-        }
-
-        private void AccomplishedToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            LoadSelectedData();
-            EnableDisableControls(true);
-            ucJoborder.statusId = 4;
-        }
-
+       
         private void TabPage2_Enter(object sender, EventArgs e)
         {
             ucDashboardSummaryView.LoadAndDisplaySummary(Convert.ToInt32(ucDashboardSummaryView.nudYear.Value), Convert.ToInt32(ucDashboardSummaryView.cmbxMonth.SelectedIndex));
+        }
+
+        private void DgJobOrders_DoubleClick(object sender, EventArgs e)
+        {
+            LoadSelectedData();
+            btnSave.Text = "Update";
+            btnSave.BackColor = Color.OrangeRed;
+            isUpdate = true;
+        }
+
+        private void FrmMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Keys.F1 == e.KeyData)
+            {
+                this.ucJoborder.BtnSearch_Click(sender, e);
+            }
         }
     }
 }

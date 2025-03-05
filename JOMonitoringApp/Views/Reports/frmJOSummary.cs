@@ -28,7 +28,7 @@ namespace JOMonitoringApp.Views.Reports
 
         private void ToogleRunButton(bool isGenerated)
         {
-            btnSearch.Text = isGenerated ? "Run Report" : "Generating Report...";
+            btnSearch.Text = isGenerated ? "Generate" : "Generating..";
             btnSearch.Enabled = isGenerated;
         }
 

@@ -129,7 +129,7 @@
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Location = new System.Drawing.Point(303, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(70, 23);
+            this.btnSearch.Size = new System.Drawing.Size(94, 23);
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Generate";
             this.btnSearch.UseVisualStyleBackColor = false;

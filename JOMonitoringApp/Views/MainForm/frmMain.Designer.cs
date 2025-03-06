@@ -44,6 +44,7 @@
             this.signatoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +78,6 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -120,7 +120,7 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
@@ -141,7 +141,7 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
@@ -210,9 +210,16 @@
             // jOSummaryToolStripMenuItem
             // 
             this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
             this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
             this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
+            // 
+            // requistionAndIssueSlipRISToolStripMenuItem
+            // 
+            this.requistionAndIssueSlipRISToolStripMenuItem.Name = "requistionAndIssueSlipRISToolStripMenuItem";
+            this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.requistionAndIssueSlipRISToolStripMenuItem.Text = "Service Request and Order Form (SROF)";
+            this.requistionAndIssueSlipRISToolStripMenuItem.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
             // 
             // sessionToolStripMenuItem
             // 
@@ -511,7 +518,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(88, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel1.Text = "SYSTEM USER : ";
             // 
             // lblCurrentUser
@@ -542,13 +549,6 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
-            // 
-            // requistionAndIssueSlipRISToolStripMenuItem
-            // 
-            this.requistionAndIssueSlipRISToolStripMenuItem.Name = "requistionAndIssueSlipRISToolStripMenuItem";
-            this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.requistionAndIssueSlipRISToolStripMenuItem.Text = "Requistion and Issue Slip (RIS)";
-            this.requistionAndIssueSlipRISToolStripMenuItem.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
             // 
             // frmMain
             // 

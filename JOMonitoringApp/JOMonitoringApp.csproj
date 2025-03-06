@@ -215,6 +215,12 @@
     <Compile Include="Views\Reports\frmJOSummary.Designer.cs">
       <DependentUpon>frmJOSummary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reports\frmServiceRequestAndOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\frmServiceRequestAndOrderForm.Designer.cs">
+      <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignIn\frmSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmJOSummary.resx">
       <DependentUpon>frmJOSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\frmServiceRequestAndOrderForm.resx">
+      <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SignIn\frmSignIn.resx">
       <DependentUpon>frmSignIn.cs</DependentUpon>

@@ -80,6 +80,18 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
+        public DataTable GetViewRecordsByJONumber(int monthIndex)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_no", DbType.Int32, monthIndex }
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @job_order_no AND is_deleted = 0 LIMIT 1";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
         public DataTable GetViewRecordsByMonth(int monthIndex)
         {
             var parameters = new object[][]

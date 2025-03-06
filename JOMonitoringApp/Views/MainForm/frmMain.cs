@@ -446,7 +446,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            _ = new frmServiceRequestAndOrderForm().ShowDialog();
         }
     }
 }

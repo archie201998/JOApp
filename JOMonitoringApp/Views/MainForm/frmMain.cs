@@ -443,5 +443,10 @@ namespace JOMonitoringApp.Views.MainForm
                 this.ucJoborder.BtnSearch_Click(sender, e);
             }
         }
+
+        private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

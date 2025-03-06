@@ -240,7 +240,7 @@
     <Content Include="RDLC\job-order-summary.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RDLC\requisition-and-issue-slip.rdlc">
+    <Content Include="RDLC\service-request--and-order-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">

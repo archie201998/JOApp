@@ -16,7 +16,6 @@ namespace JOMonitoringApp.Views.MainForm
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
-        private bool isUpdate = false;
 
         public frmMain(frmSignIn frmSignIn)
         {
@@ -179,6 +178,10 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
+                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+                cmbxStatus.SelectedValue = 5;
+
                 OnLoad();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -188,10 +191,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             LoadJobOrders();
             ucDashboardSummaryView.LoadJobOrdersSummary();
-            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
-            lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             ucJoborder.OnLoad();
-            cmbxStatus.SelectedValue = 5;
         }
 
 
@@ -339,18 +339,18 @@ namespace JOMonitoringApp.Views.MainForm
 
             btnSave.BackColor = Color.DodgerBlue;
             btnSave.Text = "Save";
-            isUpdate = false;
+            ucJoborder.isUpdate = false;
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                if (isUpdate)
+                if (ucJoborder.isUpdate)
                 {
                     if (UpdateData())
                     {
-                        Helper.MessageBoxSuccess("Job order is successfully updated.");
+                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         OnLoad();
                         ResetInputForm();
                     }
@@ -360,7 +360,7 @@ namespace JOMonitoringApp.Views.MainForm
                     if (SaveData())
                     {
 
-                        Helper.MessageBoxSuccess("Job order is successfully created.");
+                        Helper.MessageBoxSuccess("Job Order successfully created.");
                         OnLoad();
                         ResetInputForm();
                     }
@@ -433,7 +433,7 @@ namespace JOMonitoringApp.Views.MainForm
             LoadSelectedData();
             btnSave.Text = "Update";
             btnSave.BackColor = Color.OrangeRed;
-            isUpdate = true;
+            ucJoborder.isUpdate = true;
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)

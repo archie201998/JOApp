@@ -147,7 +147,6 @@ namespace AccountingSystem
             if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-       
 
         #region Check Box Column Utility Datagrid
 

@@ -91,7 +91,7 @@
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 20);
             this.txtORNumber.TabIndex = 5;
-            this.txtORNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
+            this.txtORNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // dtpDate
             // 
@@ -286,7 +286,7 @@
             this.txtWARNumber.Name = "txtWARNumber";
             this.txtWARNumber.Size = new System.Drawing.Size(200, 20);
             this.txtWARNumber.TabIndex = 7;
-            this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
+            this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
             this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
             // 
@@ -317,7 +317,7 @@
             this.txtMRSNumber.Name = "txtMRSNumber";
             this.txtMRSNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRSNumber.TabIndex = 4;
-            this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
+            this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label10
             // 
@@ -336,7 +336,7 @@
             this.txtMRISNumber.Name = "txtMRISNumber";
             this.txtMRISNumber.Size = new System.Drawing.Size(200, 20);
             this.txtMRISNumber.TabIndex = 3;
-            this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtWARNumber_KeyPress);
+            this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label9
             // 
@@ -355,6 +355,7 @@
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 20);
             this.txtJONumber.TabIndex = 0;
+            this.txtJONumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             this.txtJONumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtJONumber_Validating);
             this.txtJONumber.Validated += new System.EventHandler(this.TxtJONumber_Validated);
             // 

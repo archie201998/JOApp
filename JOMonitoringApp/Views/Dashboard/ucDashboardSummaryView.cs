@@ -25,7 +25,6 @@ namespace JOMonitoringApp.Views.Dashboard
         {
             LoadMonths();
             LoadAndDisplaySummary(Convert.ToInt32(nudYear.Value), Convert.ToInt32(cmbxMonth.SelectedIndex));
-            
         }
 
         internal void LoadAndDisplaySummary(int year, int monthId)
@@ -36,6 +35,7 @@ namespace JOMonitoringApp.Views.Dashboard
             int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(year, monthId + 1, 4);
             int total = pending + processing + cancelled + accomplished;
             float percentage = (((float)accomplished) / ((float)total) * 100);
+            percentage = float.IsNaN(percentage) ? 0 : percentage;
 
             txtTotal.Text = total.ToString();
             txtPending.Text = pending.ToString();

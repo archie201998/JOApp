@@ -14,13 +14,14 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class ucJoborder : UserControl
     {
-        internal int jobOrderId;
+        internal int jobOrderId = 0;
         internal int statusId = 1;
         internal bool isNewAccount = true;
 
         internal int accountId = 0;
         internal string accountNumber = string.Empty;
         internal string accountName = string.Empty;
+        internal bool isUpdate = false;
 
         public ucJoborder()
         {
@@ -51,7 +52,6 @@ namespace JOMonitoringApp.Views.JobOrder
             LoadParticulars();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
-            
         }
 
         private void LoadEmployee()
@@ -87,7 +87,7 @@ namespace JOMonitoringApp.Views.JobOrder
         
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
+            int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
@@ -233,7 +233,7 @@ namespace JOMonitoringApp.Views.JobOrder
             Helper.ClearErrorTextBox(errorProvider1, txtAccountName);
         }
 
-        private void TxtWARNumber_KeyPress(object sender, KeyPressEventArgs e)
+        private void NumberOnly(object sender, KeyPressEventArgs e)
         {
             e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
         }

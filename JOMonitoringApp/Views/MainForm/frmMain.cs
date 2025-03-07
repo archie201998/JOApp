@@ -358,35 +358,35 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ButtonSaveTrigger()
         {
-          
+
+            if (ucJoborder.isUpdate)
+            {
+                if (UpdateData())
+                {
+                    Helper.MessageBoxSuccess("Job Order details successfully updated.");
+                    OnLoad();
+                    ResetInputForm();
+                }
+            }
+            else
+            {
+                if (SaveData())
+                {
+                    Helper.MessageBoxSuccess("Job Order successfully created.");
+                    OnLoad();
+
+                    if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
+                    {
+                        string joNumber = ucJoborder.txtJONumber.Text.Trim();
+                        _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
+                        return;
+                    }
+
+                    ResetInputForm();
+                }
+            }
             try
             {
-                if (ucJoborder.isUpdate)
-                {
-                    if (UpdateData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
-                        OnLoad();
-                        ResetInputForm();
-                    }
-                }
-                else
-                {
-                    if (SaveData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order successfully created.");
-                        OnLoad();
-
-                        if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
-                        {
-                            string joNumber = ucJoborder.txtJONumber.Text.Trim();
-                            _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
-                            return;
-                        }
-                        
-                        ResetInputForm();   
-                    }
-                }
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

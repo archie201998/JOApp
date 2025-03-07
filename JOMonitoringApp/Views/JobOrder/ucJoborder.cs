@@ -55,6 +55,7 @@ namespace JOMonitoringApp.Views.JobOrder
             LoadParticulars();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
+            cmbxAccomplishedBy.SelectedIndex = -1;
         }
 
         private void LoadEmployee()

@@ -16,7 +16,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>D:\J.O e-Monitoring\</PublishUrl>
+    <PublishUrl>\\DESKTOP-QCMVUF6\J.O e-Monitoring\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -26,13 +26,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\192.168.18.201\J.O e-Monitoring\</InstallUrl>
-    <UpdateUrl>http://192.168.18.201/D:/J.O e-Monitoring/</UpdateUrl>
+    <InstallUrl>\\DESKTOP-QCMVUF6\J.O e-Monitoring\</InstallUrl>
+    <UpdateUrl>\\DESKTOP-QCMVUF6\J.O e-Monitoring\</UpdateUrl>
     <ProductName>J.O e-Monitoring</ProductName>
     <PublisherName>ASale%40Pamana</PublisherName>
-    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -59,16 +60,19 @@
     <ApplicationIcon>J.O e-Monitoring.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>0BD87050919DA38867BA8EA66D518C2FAAF5C959</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>6230685815BA7263CFAC79F1E12EFDF98EB2BAC2</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>JOMonitoringApp_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>JOMonitoringApp_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
@@ -235,6 +239,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="JOMonitoringApp_1_TemporaryKey.pfx" />
+    <None Include="Properties\app.manifest" />
     <None Include="Resources\btn-search.png" />
     <None Include="JOMonitoringApp_TemporaryKey.pfx" />
     <None Include="Resources\Your paragraph text %284%29.ico" />

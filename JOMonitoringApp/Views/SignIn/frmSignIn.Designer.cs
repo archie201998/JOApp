@@ -79,7 +79,6 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(200, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "SAMPLE PATH UPDATE";
             // 
             // txtUserName
             // 
@@ -87,7 +86,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(200, 20);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "SAMPLE PATH UPDATE";
             // 
             // label2
             // 

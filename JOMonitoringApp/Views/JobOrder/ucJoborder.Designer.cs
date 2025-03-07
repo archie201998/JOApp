@@ -43,6 +43,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbxNA = new System.Windows.Forms.CheckBox();
             this.txtAccountName = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -66,7 +67,6 @@
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cbxNA = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -229,6 +229,18 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCOUNT DETAILS";
+            // 
+            // cbxNA
+            // 
+            this.cbxNA.AutoSize = true;
+            this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxNA.Location = new System.Drawing.Point(316, 71);
+            this.cbxNA.Name = "cbxNA";
+            this.cbxNA.Size = new System.Drawing.Size(46, 17);
+            this.cbxNA.TabIndex = 20;
+            this.cbxNA.Text = "N/A";
+            this.cbxNA.UseVisualStyleBackColor = true;
+            this.cbxNA.CheckedChanged += new System.EventHandler(this.cbxNA_CheckedChanged);
             // 
             // txtAccountName
             // 
@@ -495,18 +507,6 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            // 
-            // cbxNA
-            // 
-            this.cbxNA.AutoSize = true;
-            this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNA.Location = new System.Drawing.Point(316, 71);
-            this.cbxNA.Name = "cbxNA";
-            this.cbxNA.Size = new System.Drawing.Size(46, 17);
-            this.cbxNA.TabIndex = 20;
-            this.cbxNA.Text = "N/A";
-            this.cbxNA.UseVisualStyleBackColor = true;
-            this.cbxNA.CheckedChanged += new System.EventHandler(this.cbxNA_CheckedChanged);
             // 
             // ucJoborder
             // 

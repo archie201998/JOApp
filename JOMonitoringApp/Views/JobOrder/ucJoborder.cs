@@ -66,7 +66,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             var dataColumns = new DataColumn[]
             {
-                new DataColumn("id", typeof(int)),
+                new DataColumn("id", typeof(object)),
                 new DataColumn("full_name", typeof(string)),
             };
 
@@ -75,7 +75,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
             var datable = Factory.UsersRepository().GetRecords();
 
-            dataTable.Rows.Add(0, string.Empty);
+            dataTable.Rows.Add(null, string.Empty);
             foreach (DataRow row in datable.Rows)
             {
                 var newRow = dataTable.NewRow();
@@ -312,5 +312,6 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             Helper.ClearErrorComboBox(errorProvider1, cmbxMaterialsIssuedBy);
         }
+
     }
 }

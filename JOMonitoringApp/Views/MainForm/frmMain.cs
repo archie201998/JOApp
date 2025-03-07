@@ -346,6 +346,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ButtonSaveTrigger()
         {
+          
             try
             {
                 if (ucJoborder.isUpdate)
@@ -437,6 +438,19 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 ButtonSaveTrigger();
             }
+            else if (e.Control && e.KeyCode == Keys.P)
+            {
+
+                if (dgJobOrders.SelectedRows.Count >= 2)
+                {
+                    Helper.MessageBoxWarning("Select only 1 record to print.");
+                    return;
+                }
+
+                string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+
+                _ = new frmServiceRequestAndOrderForm(jobOrderNumber).ShowDialog();
+            }
             else if (e.KeyData == Keys.Escape)
             {
                 ResetInputForm();
@@ -446,7 +460,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmServiceRequestAndOrderForm().ShowDialog();
+            _ = new frmServiceRequestAndOrderForm(string.Empty).ShowDialog();
         }
     }
 }

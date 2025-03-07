@@ -143,8 +143,8 @@ namespace JOMonitoringApp
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
-                new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy.HasValue ? entity.MaterialsIssuedBy : null},
-                new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy.HasValue ? entity.AccomplishedBy : null},
+                new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
+                new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
@@ -200,8 +200,8 @@ namespace JOMonitoringApp
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
-                new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? entity.MaterialsIssuedBy : 0},
-                new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? entity.AccomplishedBy : 0},
+                new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
+                new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 

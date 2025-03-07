@@ -16,11 +16,24 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmServiceRequestAndOrderForm : Form
     {
-        public frmServiceRequestAndOrderForm()
+        private string _jobOrderNumber;
+        public frmServiceRequestAndOrderForm(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
             panel3.Controls.Add(reportViewer1);
+            _jobOrderNumber = jobOrderNumber;
+        }
+
+        private void frmServiceRequestAndOrderForm_Load(object sender, EventArgs e)
+        {
+            OnLoad();
+        }
+
+        private void OnLoad()
+        {
+            txtJONoFrom.Text = _jobOrderNumber;
+            if (!string.IsNullOrEmpty(_jobOrderNumber)) LoadReport();
         }
 
         private void ToogleRunButton(bool isGenerated)
@@ -137,5 +150,6 @@ namespace JOMonitoringApp.Views.Reports
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
+     
     }
 }

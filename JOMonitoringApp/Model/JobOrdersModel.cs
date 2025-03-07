@@ -13,10 +13,8 @@ namespace JOMonitoringApp.Model
         public int PreparedBy { get; set; }
         public int CustomerID { get; set; }
         public int ParticularID { get; set; }
-        public int AssignedWorkEmployeeId { get; set; }
         public int? MaterialsIssuedBy { get; set; }
-        public int MaterialsReturnedTo { get; set; }
-        public string WorkAccomplishmentReportNumber  { get; set; }
+        public int? AccomplishedBy { get; set; }
         public DateTime Date { get; set; }
         public string ORNumber{ get; set; }
         public string JONUmber { get; set; }

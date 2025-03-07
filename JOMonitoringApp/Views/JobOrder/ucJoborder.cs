@@ -41,6 +41,8 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.GetError(txtMRISNumber),
                 errorProvider1.GetError(txtMRSNumber),
                 errorProvider1.GetError(txtWARNumber),
+                errorProvider1.GetError(cmbxMaterialsIssuedBy),
+                errorProvider1.GetError(cmbxAccomplishedBy),
 
             };
 
@@ -57,6 +59,7 @@ namespace JOMonitoringApp.Views.JobOrder
         private void LoadEmployee()
         {
             HelperLoadRecords.EmployeeCombobox(cmbxMaterialsIssuedBy, EmployeesDataTable(), "id", "full_name");
+            HelperLoadRecords.EmployeeCombobox(cmbxAccomplishedBy, EmployeesDataTable(), "id", "full_name");
         }
 
         private DataTable EmployeesDataTable()
@@ -72,6 +75,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
             var datable = Factory.UsersRepository().GetRecords();
 
+            dataTable.Rows.Add(0, string.Empty);
             foreach (DataRow row in datable.Rows)
             {
                 var newRow = dataTable.NewRow();
@@ -84,7 +88,24 @@ namespace JOMonitoringApp.Views.JobOrder
             return dataTable;
         }
 
-        
+
+        internal CustomersModel CustomersModel()
+        {
+            string accountNumber = txtAccountNumber.Text.Trim();
+            string accountName = txtAccountName.Text.Trim();
+            string accountAddress = txtAddress.Text.Trim();
+            int createdBy = Helper.UserId;
+
+            return new CustomersModel()
+            {
+                Id = isUpdate ? accountId : 0,
+                AccountNumber = accountNumber,
+                AccountName = accountName,
+                Address = accountAddress,
+                CreatedBy = createdBy
+            };
+        }
+
         internal JobOrdersModel JobOrderModel()
         {
             int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
@@ -95,9 +116,10 @@ namespace JOMonitoringApp.Views.JobOrder
             decimal amount = nudAmount.Value;
             string MRIS = txtMRISNumber.Text;
             string MRS = txtMRSNumber.Text;
-            string WAR = txtWARNumber.Text;    
+            string WAR = txtWARNumber.Text;
             int preparedById = Helper.UserId;
-            int ? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             int statusId = this.statusId;
 
             return new JobOrdersModel()
@@ -114,6 +136,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRS = MRS,
                 WAR = WAR,
                 MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
+                AccomplishedBy = accomplishedBy,
                 StatusId = statusId,
                 UserId = Helper.UserId
             };
@@ -209,23 +232,25 @@ namespace JOMonitoringApp.Views.JobOrder
         }
 
 
-        private void TxtAccountNumber_Validating(object sender, CancelEventArgs e)
-        {
-           
-        }
-
-        private void TxtAccountNumber_Validated(object sender, EventArgs e)
-        {
-        }
-
         internal void BtnSearch_Click(object sender, EventArgs e)
         {
             _ = new frmSearchAccount(this).ShowDialog();
         }
 
+        private void txtAddress_Validating(object sender, CancelEventArgs e)
+        {
+
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAddress, "Address.");
+        }
+
+        private void txtAddress_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAddress);
+        }
+
         private void TxtAccountName_Validating(object sender, CancelEventArgs e)
         {
-            Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
         }
 
         private void TxtAccountName_Validated(object sender, EventArgs e)
@@ -243,5 +268,49 @@ namespace JOMonitoringApp.Views.JobOrder
             _ = new frmSearchAccount(this).ShowDialog();
         }
 
+        private void txtAccountNumber_Validating(object sender, CancelEventArgs e)
+        {
+            if (!cbxNA.Checked)
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Name.");
+        }
+
+        private void txtAccountNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
+        }
+
+        private void cbxNA_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxNA.Checked)
+            {
+                txtAccountNumber.Clear();
+                txtAccountNumber.ReadOnly = true;
+                return;
+            }
+
+            txtAccountNumber.ReadOnly = false;
+        }
+
+        private void cmbxAccomplishedBy_Validating(object sender, CancelEventArgs e)
+        {
+            if (radAccomplished.Checked && !string.IsNullOrEmpty(txtWARNumber.Text.Trim()))
+                e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxAccomplishedBy, "Accomplished By.");
+        }
+
+        private void cmbxAccomplishedBy_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorComboBox(errorProvider1, cmbxAccomplishedBy);
+        }
+
+        private void cmbxMaterialsIssuedBy_Validating(object sender, CancelEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtMRISNumber.Text.Trim()))
+                e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxMaterialsIssuedBy, "Issued By.");
+        }
+
+        private void cmbxMaterialsIssuedBy_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorComboBox(errorProvider1, cmbxMaterialsIssuedBy);
+        }
     }
 }

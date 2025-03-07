@@ -32,7 +32,6 @@ namespace JOMonitoringApp
         private void ValidateLoginCredentials()
         {
 
-            Cursor = Cursors.WaitCursor;
             string username = txtUserName.Text;
             string password = txtPassword.Text;
 
@@ -57,8 +56,6 @@ namespace JOMonitoringApp
             }
 
             Helper.MessageBoxError("Incorrect username or password.");
-
-            Cursor = Cursors.Default;
 
         }
 

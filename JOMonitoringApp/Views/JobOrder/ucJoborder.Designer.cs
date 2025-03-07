@@ -66,6 +66,7 @@
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbxNA = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -162,7 +163,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 191);
+            this.label5.Location = new System.Drawing.Point(25, 184);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 9;
@@ -185,8 +186,10 @@
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNumber.Location = new System.Drawing.Point(155, 69);
             this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(200, 20);
+            this.txtAccountNumber.Size = new System.Drawing.Size(142, 20);
             this.txtAccountNumber.TabIndex = 1;
+            this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountNumber_Validating);
+            this.txtAccountNumber.Validated += new System.EventHandler(this.txtAccountNumber_Validated);
             // 
             // label8
             // 
@@ -206,9 +209,12 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(200, 48);
             this.txtAddress.TabIndex = 2;
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddress_Validating);
+            this.txtAddress.Validated += new System.EventHandler(this.txtAddress_Validated);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbxNA);
             this.groupBox1.Controls.Add(this.txtAccountName);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.label1);
@@ -368,6 +374,8 @@
             this.cmbxMaterialsIssuedBy.Name = "cmbxMaterialsIssuedBy";
             this.cmbxMaterialsIssuedBy.Size = new System.Drawing.Size(200, 21);
             this.cmbxMaterialsIssuedBy.TabIndex = 0;
+            this.cmbxMaterialsIssuedBy.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxMaterialsIssuedBy_Validating);
+            this.cmbxMaterialsIssuedBy.Validated += new System.EventHandler(this.cmbxMaterialsIssuedBy_Validated);
             // 
             // label13
             // 
@@ -402,6 +410,8 @@
             this.cmbxAccomplishedBy.Name = "cmbxAccomplishedBy";
             this.cmbxAccomplishedBy.Size = new System.Drawing.Size(200, 21);
             this.cmbxAccomplishedBy.TabIndex = 1;
+            this.cmbxAccomplishedBy.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxAccomplishedBy_Validating);
+            this.cmbxAccomplishedBy.Validated += new System.EventHandler(this.cmbxAccomplishedBy_Validated);
             // 
             // label6
             // 
@@ -434,7 +444,7 @@
             this.radAccomplished.Location = new System.Drawing.Point(278, 26);
             this.radAccomplished.Name = "radAccomplished";
             this.radAccomplished.Size = new System.Drawing.Size(91, 17);
-            this.radAccomplished.TabIndex = 5;
+            this.radAccomplished.TabIndex = 3;
             this.radAccomplished.Tag = "4";
             this.radAccomplished.Text = "Accomplished";
             this.radAccomplished.UseVisualStyleBackColor = true;
@@ -447,7 +457,7 @@
             this.radCancel.Location = new System.Drawing.Point(201, 26);
             this.radCancel.Name = "radCancel";
             this.radCancel.Size = new System.Drawing.Size(58, 17);
-            this.radCancel.TabIndex = 4;
+            this.radCancel.TabIndex = 2;
             this.radCancel.Tag = "3";
             this.radCancel.Text = "Cancel";
             this.radCancel.UseVisualStyleBackColor = true;
@@ -460,7 +470,7 @@
             this.radProcessing.Location = new System.Drawing.Point(108, 26);
             this.radProcessing.Name = "radProcessing";
             this.radProcessing.Size = new System.Drawing.Size(77, 17);
-            this.radProcessing.TabIndex = 3;
+            this.radProcessing.TabIndex = 1;
             this.radProcessing.Tag = "2";
             this.radProcessing.Text = "Processing";
             this.radProcessing.UseVisualStyleBackColor = true;
@@ -474,7 +484,7 @@
             this.radPending.Location = new System.Drawing.Point(21, 26);
             this.radPending.Name = "radPending";
             this.radPending.Size = new System.Drawing.Size(64, 17);
-            this.radPending.TabIndex = 2;
+            this.radPending.TabIndex = 0;
             this.radPending.TabStop = true;
             this.radPending.Tag = "1";
             this.radPending.Text = "Pending";
@@ -485,6 +495,18 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
+            // 
+            // cbxNA
+            // 
+            this.cbxNA.AutoSize = true;
+            this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxNA.Location = new System.Drawing.Point(316, 71);
+            this.cbxNA.Name = "cbxNA";
+            this.cbxNA.Size = new System.Drawing.Size(46, 17);
+            this.cbxNA.TabIndex = 20;
+            this.cbxNA.Text = "N/A";
+            this.cbxNA.UseVisualStyleBackColor = true;
+            this.cbxNA.CheckedChanged += new System.EventHandler(this.cbxNA_CheckedChanged);
             // 
             // ucJoborder
             // 
@@ -552,5 +574,6 @@
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.ComboBox cmbxAccomplishedBy;
         private System.Windows.Forms.Label label6;
+        internal System.Windows.Forms.CheckBox cbxNA;
     }
 }

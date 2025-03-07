@@ -65,11 +65,24 @@ namespace JOMonitoringApp
 
             string query = $"INSERT INTO {tableName} (account_number, account_name, address, created_by) VALUES (@account_number, @account_name, @address, @created_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+
         }
 
         public bool Update(CustomersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameter = new object[][] {
+                new object[]{"@id", DbType.Int32, entity.Id},
+                new object[]{"@account_number", DbType.String, entity.AccountNumber},
+                new object[]{"@account_name", DbType.String, entity.AccountName},
+                new object[]{"@address", DbType.String, entity.Address},
+                new object[]{"@updated_by", DbType.Int32, entity.CreatedBy},
+            };
+
+
+            string query = $"UPDATE {tableName} SET account_number=@account_number, account_name=@account_name, address=@address, updated_by=@updated_by WHERE id = @id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+
         }
 
         public DataTable GetCustomersName(string searchKey)

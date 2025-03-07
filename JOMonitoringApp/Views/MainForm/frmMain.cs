@@ -287,6 +287,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.accountId = Convert.ToInt32(dictJobOrders["customers_id"]);
             ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
+            ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
@@ -298,6 +299,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.nudAmount.Value = string.IsNullOrEmpty(dictJobOrders["amount"].ToString()) ? 0 : Convert.ToDecimal(dictJobOrders["amount"]);
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["materials_issued_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
+            ucJoborder.cmbxAccomplishedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["accomplished_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["accomplished_by_id"]);
 
             int statusId = Convert.ToInt16(dictJobOrders["status_id"]);
             ucJoborder.radPending.Checked = (statusId == Convert.ToInt16(ucJoborder.radPending.Tag));
@@ -322,7 +324,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAddress.Clear();
 
             ucJoborder.txtJONumber.Clear();
-            ucJoborder.cmbxParticulars.SelectedValue = -1;
             ucJoborder.dtpDate.Value = DateTime.Now;
             ucJoborder.txtMRISNumber.Clear();
             ucJoborder.txtMRSNumber.Clear();
@@ -331,6 +332,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtWARNumber.Clear();
 
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
+            ucJoborder.cmbxAccomplishedBy.SelectedValue = -1;
 
             ucJoborder.jobOrderId = 0;
             ucJoborder.statusId = 1;
@@ -342,7 +344,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.isUpdate = false;
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private void ButtonSaveTrigger()
         {
             try
             {
@@ -359,17 +361,18 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     if (SaveData())
                     {
-
                         Helper.MessageBoxSuccess("Job Order successfully created.");
                         OnLoad();
                         ResetInputForm();
                     }
                 }
-
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
-
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            ButtonSaveTrigger();
+        }
 
 
         private bool UpdateData()
@@ -381,7 +384,7 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
+            return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
         }
 
 
@@ -394,31 +397,19 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            if (ucJoborder.isNewAccount)
+            if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text ))
             {
-                Factory.CustomersRepository().Insert(CustomersModel());
+                if (ucJoborder.isNewAccount)
+                {
+                    Factory.CustomersRepository().Insert(ucJoborder.CustomersModel());
+                }
+
+                return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
             }
-            
-        
-            return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+
+            return false;
         }
 
-        internal CustomersModel CustomersModel()
-        {
-            string accountNumber = ucJoborder.txtAccountNumber.Text.Trim();
-            string accountName = ucJoborder.txtAccountName.Text.Trim();
-            string accountAddress = ucJoborder.txtAddress.Text.Trim();
-            int createdBy = Helper.UserId;
-
-            return new CustomersModel()
-            {
-                AccountNumber = accountNumber,
-                AccountName = accountName,
-                Address = accountAddress,
-                CreatedBy = createdBy
-            };
-
-        }
 
         #endregion
 
@@ -442,6 +433,15 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 this.ucJoborder.BtnSearch_Click(sender, e);
             }
+            else if (e.Control && e.KeyCode == Keys.S)
+            {
+                ButtonSaveTrigger();
+            }
+            else if (e.KeyData == Keys.Escape)
+            {
+                ResetInputForm();
+            }
+
         }
 
         private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)

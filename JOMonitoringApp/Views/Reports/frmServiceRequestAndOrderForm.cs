@@ -79,7 +79,7 @@ namespace JOMonitoringApp.Views.Reports
                 };
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(99985589);
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
 
@@ -92,10 +92,11 @@ namespace JOMonitoringApp.Views.Reports
                 // Set Parameter Values
                 var userData = Helper.LoggedInUserData();
 
-                reportParameters1.Add(new ReportParameter("paramSRNo", "223-568-885"));
-                reportParameters1.Add(new ReportParameter("paramJOR", "1215884"));
-                reportParameters1.Add(new ReportParameter("paramDate", "March 7, 2025"));
-                reportParameters1.Add(new ReportParameter("paramWARNo", "613613"));
+                reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
+                reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
+                reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
+                reportParameters1.Add(new ReportParameter("paramAddress", string.Empty));
+                reportParameters1.Add(new ReportParameter("paramAccountNumber", string.Empty));
                 progressCount += tasks["Set Parameter Values"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 

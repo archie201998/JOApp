@@ -17,6 +17,8 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
 
+        private bool _autoPrint = false;
+
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
@@ -364,6 +366,14 @@ namespace JOMonitoringApp.Views.MainForm
                     {
                         Helper.MessageBoxSuccess("Job Order successfully created.");
                         OnLoad();
+
+                        if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
+                        {
+                            string joNumber = ucJoborder.txtJONumber.Text.Trim();
+                            _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
+                            return;
+                        }
+                        
                         ResetInputForm();
                     }
                 }

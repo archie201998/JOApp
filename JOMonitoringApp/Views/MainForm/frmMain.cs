@@ -16,6 +16,7 @@ namespace JOMonitoringApp.Views.MainForm
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
+        private int previousSelection = 0;
 
         private bool _autoPrint = false;
 
@@ -172,6 +173,10 @@ namespace JOMonitoringApp.Views.MainForm
             HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
             lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
+
+
+            dgJobOrders.ClearSelection();
+            dgJobOrders.Rows[previousSelection].Selected = true;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -183,7 +188,6 @@ namespace JOMonitoringApp.Views.MainForm
                 Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
                 lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
                 cmbxStatus.SelectedValue = 5;
-
                 OnLoad();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -194,6 +198,7 @@ namespace JOMonitoringApp.Views.MainForm
             LoadJobOrders();
             ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
+
         }
 
 
@@ -315,6 +320,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             ResetInputForm();
+
         }
 
         internal void ResetInputForm()
@@ -344,6 +350,10 @@ namespace JOMonitoringApp.Views.MainForm
             btnSave.BackColor = Color.DodgerBlue;
             btnSave.Text = "Save";
             ucJoborder.isUpdate = false;
+
+            dgJobOrders.Enabled = true;
+            dgJobOrders.ClearSelection();
+            dgJobOrders.Rows[previousSelection].Selected = true;
         }
 
         private void ButtonSaveTrigger()
@@ -374,7 +384,7 @@ namespace JOMonitoringApp.Views.MainForm
                             return;
                         }
                         
-                        ResetInputForm();
+                        ResetInputForm();   
                     }
                 }
             }
@@ -433,6 +443,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
             LoadSelectedData();
+            dgJobOrders.Enabled = false;
             btnSave.Text = "Update";
             btnSave.BackColor = Color.OrangeRed;
             ucJoborder.isUpdate = true;
@@ -471,6 +482,21 @@ namespace JOMonitoringApp.Views.MainForm
         private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmServiceRequestAndOrderForm(string.Empty).ShowDialog();
+        }
+
+ 
+
+        private void dgJobOrders_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgJobOrders.Rows.Count == 0)
+                    previousSelection = dgJobOrders.SelectedRows[0].Index;
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

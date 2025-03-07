@@ -101,11 +101,12 @@ namespace JOMonitoringApp.Views.JobOrder
             string selectedAccountNumber = dgAccounts.SelectedRows[0].Cells["account_number"].Value.ToString();
             string selectedAddress = dgAccounts.SelectedRows[0].Cells["address"].Value.ToString();
 
-            _ucJobOrder.isNewAccount = true;
+            _ucJobOrder.isNewAccount = false;
             _ucJobOrder.accountId = selectedAccountId;
             _ucJobOrder.txtAccountName.Text = selectedAccountName;
             _ucJobOrder.txtAccountNumber.Text = selectedAccountNumber;
             _ucJobOrder.txtAddress.Text = selectedAddress;
+            _ucJobOrder.txtJONumber.Focus();
 
             Close();
         }

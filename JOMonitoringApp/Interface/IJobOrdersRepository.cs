@@ -18,7 +18,7 @@ namespace JOMonitoringApp.Interface
         DataTable GetViewRecordsByMonth(int monthIndex);
 
 
-        DataTable GetViewRecordsByJONumber(int monthIndex);
+        DataTable GetViewRecordsByJONumber(int jobNumber);
 
 
         DataTable GetViewRecordsBySearch(string searchText);

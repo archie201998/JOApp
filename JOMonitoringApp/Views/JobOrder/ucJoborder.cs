@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JOMonitoringApp.Model;
 using AccountingSystem;
+using System.Linq.Expressions;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
@@ -108,7 +109,8 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
+            //int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
+            int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
@@ -175,6 +177,15 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void TxtJONumber_Validating(object sender, CancelEventArgs e)
         {
+            string joNumber = txtJONumber.Text.Trim();
+            DataTable doesExist = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(joNumber));
+
+            if (doesExist.Rows.Count != 0 && isUpdate == false)
+            {
+                e.Cancel = Helper.ShowErrorDuplicateEntry(errorProvider1, txtJONumber, "J.O Number");
+                return;
+            }
+
             e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtJONumber, "J.O Number.");
         }
 
@@ -270,13 +281,24 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void txtAccountNumber_Validating(object sender, CancelEventArgs e)
         {
+            string accountNumber = txtAccountNumber.Text.Trim();
+            DataTable doesExist = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(accountNumber);
+
+            if (doesExist.Rows.Count != 0 && isUpdate == false)
+            {
+                e.Cancel = Helper.ShowErrorDuplicateEntry(errorProvider1, txtAccountNumber, "Account Number");
+                return;
+
+            }
+
             if (!cbxNA.Checked)
-                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Name.");
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Number.");
+
         }
 
         private void txtAccountNumber_Validated(object sender, EventArgs e)
         {
-            Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
+             Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
         }
 
         private void cbxNA_CheckedChanged(object sender, EventArgs e)

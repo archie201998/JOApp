@@ -449,6 +449,12 @@ namespace AccountingSystem
             return false;
         }
 
+        public static bool ShowErrorDuplicateEntry(ErrorProvider ep, TextBox txtBox, string fieldName = "Field")
+        {
+            ep.SetError(txtBox, $"{ErrorMessageForDuplicateEntry(fieldName)}");
+            return true;
+        }
+
         public static bool ShowMaskedTextboxError(ErrorProvider ep, MaskedTextBox maskedTextBox, string fieldName)
         {
             if (!maskedTextBox.MaskCompleted)
@@ -457,6 +463,11 @@ namespace AccountingSystem
                 return true;
             }
             return false;
+        }
+
+        private static string ErrorMessageForDuplicateEntry(string fieldName)
+        {
+            return $"{fieldName} Alreadly in the database.";
         }
 
         private static string ErrorMessageForEmpty(string fieldName)

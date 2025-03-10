@@ -80,7 +80,7 @@ namespace JOMonitoringApp.Views.MainForm
             string searchKey = txtSearch.Text.Trim();
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            
+
             return (searchKey, rowFilter, statusId);
         }
 
@@ -200,8 +200,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void OnLoad()
         {
-            //LoadJobOrders();
-            //ucDashboardSummaryView.LoadJobOrdersSummary();
+            LoadJobOrders();
+            ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
 
         }
@@ -303,6 +303,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
+            ucJoborder.cmbxParticulars.SelectedValue = Convert.ToInt32(dictJobOrders["particulars_id"]);
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
             ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];
             ucJoborder.txtMRSNumber.Text = dictJobOrders["mrs"];
@@ -362,53 +363,37 @@ namespace JOMonitoringApp.Views.MainForm
             
         }
 
-        private void Particulars()
-        {
-            // List to store selected items
-            List<string> selectedItems = new List<string>();
-
-            // Loop through the CheckedIndices collection to get the selected items by index
-            foreach (int index in ucJoborder.clBox.CheckedIndices)
-                selectedItems.Add(ucJoborder.clBox.Items[index].ToString());
-
-            foreach (var selectedItem in selectedItems)
-            {
-                MessageBox.Show(selectedItem);
-            }
-        }
-
         private void ButtonSaveTrigger()
         {
+
+            if (ucJoborder.isUpdate)
+            {
+                if (UpdateData())
+                {
+                    Helper.MessageBoxSuccess("Job Order details successfully updated.");
+                    OnLoad();
+                    ResetInputForm();
+                }
+            }
+            else
+            {
+                if (SaveData())
+                {
+                    Helper.MessageBoxSuccess("Job Order successfully created.");
+                    OnLoad();
+
+                    if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
+                    {
+                        string joNumber = ucJoborder.txtJONumber.Text.Trim();
+                        _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
+                        return;
+                    }
+
+                    ResetInputForm();
+                }
+            }
             try
             {
-                
-                if (ucJoborder.isUpdate)
-                {
-                    if (UpdateData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
-                        OnLoad();
-                        ResetInputForm();
-                    }
-                }
-                else
-                {
-                    if (SaveData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order successfully created.");
-                        OnLoad();
-
-                        if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
-                        {
-                            string joNumber = ucJoborder.txtJONumber.Text.Trim();
-                            _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
-                            return;
-                        }
-
-                        ResetInputForm();
-                    }
-                }
-                List<string> selectedItems = new List<string>();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

@@ -85,6 +85,7 @@ namespace JOMonitoringApp.Views.Reports
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
+             
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
 
@@ -108,7 +109,6 @@ namespace JOMonitoringApp.Views.Reports
 
                 foreach (DataRow dataRow in dtJobOrders.Rows)
                 {
-
                     var newRow = dtJobOrderSummary.NewRow();
                     newRow["date"] = dataRow["date"];
                     newRow["job_order_no"] = dataRow["job_order_no"];
@@ -143,7 +143,7 @@ namespace JOMonitoringApp.Views.Reports
                 localReport.DataSources.Clear();
 
                 localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\service-request--and-order-form.rdlc";
-                localReport.DataSources.Add(new ReportDataSource("dsRequisitionAndIssuSlip", parameters.dtJOSummary));
+                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
                 localReport.SetParameters(parameters.reportParameters1);
                 localReport.Refresh();
 

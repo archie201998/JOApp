@@ -201,6 +201,12 @@
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.Designer.cs">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\JobOrder\frmParticulars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\JobOrder\frmParticulars.Designer.cs">
+      <DependentUpon>frmParticulars.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\JobOrder\frmSearchAccount.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -68,7 +68,7 @@
             this.btnSignIn.Name = "btnSignIn";
             this.btnSignIn.Size = new System.Drawing.Size(75, 23);
             this.btnSignIn.TabIndex = 2;
-            this.btnSignIn.Text = "Sign In";
+            this.btnSignIn.Text = "SIGN IN";
             this.btnSignIn.UseVisualStyleBackColor = false;
             this.btnSignIn.Click += new System.EventHandler(this.BtnSignIn_Click);
             // 
@@ -79,7 +79,6 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(200, 20);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "123";
             // 
             // txtUserName
             // 
@@ -87,7 +86,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(200, 20);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "asale";
             // 
             // label2
             // 

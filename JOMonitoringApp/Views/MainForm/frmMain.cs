@@ -161,22 +161,27 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (e.Cancelled)
-                return;
+            try
+            {
+                if (e.Cancelled)
+                    return;
 
 
-            if (!(e.Result is DataTable))
-                return;
+                if (!(e.Result is DataTable))
+                    return;
 
-            DataTable dataTable = (DataTable)e.Result;
+                DataTable dataTable = (DataTable)e.Result;
 
-            HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
-            dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
-            lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
+                HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
+                dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
+                lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
 
-
-            dgJobOrders.ClearSelection();
-            dgJobOrders.Rows[previousSelection].Selected = true;
+                dgJobOrders.Rows[previousSelection].Selected = true;
+            }
+            catch (Exception)
+            {
+            }
+            
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -352,41 +357,42 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.isUpdate = false;
 
             dgJobOrders.Enabled = true;
-            dgJobOrders.ClearSelection();
-            dgJobOrders.Rows[previousSelection].Selected = true;
+            //dgJobOrders.ClearSelection();
+
+            
         }
 
         private void ButtonSaveTrigger()
         {
-          
+
+            if (ucJoborder.isUpdate)
+            {
+                if (UpdateData())
+                {
+                    Helper.MessageBoxSuccess("Job Order details successfully updated.");
+                    OnLoad();
+                    ResetInputForm();
+                }
+            }
+            else
+            {
+                if (SaveData())
+                {
+                    Helper.MessageBoxSuccess("Job Order successfully created.");
+                    OnLoad();
+
+                    if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
+                    {
+                        string joNumber = ucJoborder.txtJONumber.Text.Trim();
+                        _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
+                        return;
+                    }
+
+                    ResetInputForm();
+                }
+            }
             try
             {
-                if (ucJoborder.isUpdate)
-                {
-                    if (UpdateData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
-                        OnLoad();
-                        ResetInputForm();
-                    }
-                }
-                else
-                {
-                    if (SaveData())
-                    {
-                        Helper.MessageBoxSuccess("Job Order successfully created.");
-                        OnLoad();
-
-                        if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
-                        {
-                            string joNumber = ucJoborder.txtJONumber.Text.Trim();
-                            _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
-                            return;
-                        }
-                        
-                        ResetInputForm();   
-                    }
-                }
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -447,6 +453,7 @@ namespace JOMonitoringApp.Views.MainForm
             btnSave.Text = "Update";
             btnSave.BackColor = Color.OrangeRed;
             ucJoborder.isUpdate = true;
+            previousSelection = dgJobOrders.SelectedRows[0].Index;
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
@@ -490,13 +497,18 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                if (dgJobOrders.Rows.Count == 0)
+                if (dgJobOrders.Rows.Count == 0 && dgJobOrders.SelectedRows.Count > 0)
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
             }
             catch (Exception)
             {
                 return;
             }
+        }
+
+        private void dgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

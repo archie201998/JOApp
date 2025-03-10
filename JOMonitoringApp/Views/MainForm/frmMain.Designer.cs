@@ -295,10 +295,12 @@
             this.dgJobOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJobOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgJobOrders.Location = new System.Drawing.Point(4, 4);
+            this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.Size = new System.Drawing.Size(1201, 755);
             this.dgJobOrders.TabIndex = 0;
+            this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);

@@ -173,10 +173,12 @@
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
+    <Compile Include="Interface\IJobOrdersParticulars.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\JobOrdersParticularModel.cs" />
     <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />
@@ -191,6 +193,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
+    <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />

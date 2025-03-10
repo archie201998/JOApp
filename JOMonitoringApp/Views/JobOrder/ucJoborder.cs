@@ -112,7 +112,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             //int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
             int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
-            int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
+            int particularId = 0; //GetLastInsertedParticular(Helper.UserId)
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
             string orNumber = txtORNumber.Text;
@@ -147,25 +147,14 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void LoadParticulars()
         {
-            var dataColumns = new DataColumn[]
-            {
-                new DataColumn("id", typeof(int)),
-                new DataColumn("particular", typeof(string))
-            };
+            var dtParticulars = Factory.ParticularsRepository().GetRecords();
 
-            var dataTable = new DataTable();
-            dataTable.Columns.AddRange(dataColumns);
-
-            var dtAccoutnableForm = Factory.ParticularsRepository().GetRecords();
-            foreach (DataRow row in dtAccoutnableForm.Rows)
+            MessageBox.Show("Test " + dtParticulars.Rows.Count);
+            foreach (DataRow row in dtParticulars.Rows)
             {
-                var newRow = dataTable.NewRow();
-                newRow["id"] = row["id"];
-                newRow["particular"] = row["particular"];
-                dataTable.Rows.Add(newRow);
+                clBox.Items.Add(row["particular"]);
             }
-
-            HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dataTable, "id", "particular");
+            
         }
 
         private void UcJoborder_Load(object sender, EventArgs e)

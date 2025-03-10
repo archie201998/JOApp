@@ -67,7 +67,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -76,8 +78,6 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -428,7 +428,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(0, 606);
+            this.panel4.Location = new System.Drawing.Point(0, 745);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -466,6 +466,15 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 743);
+            this.ucJoborder1.TabIndex = 0;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
@@ -477,6 +486,15 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -534,24 +552,6 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
-            // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 603);
-            this.ucJoborder1.TabIndex = 0;
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
             // 

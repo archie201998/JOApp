@@ -47,6 +47,7 @@ namespace JOMonitoringApp.Views.Dashboard
 
         private void LoadMonths()
         {
+            cmbxMonth.Items.Clear();
             foreach (var item in Helper.MonthsDatasource().Values)
                 cmbxMonth.Items.Add(item);
             cmbxMonth.SelectedIndex = DateTime.Now.Month - 1;

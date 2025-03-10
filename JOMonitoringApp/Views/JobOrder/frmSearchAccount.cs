@@ -37,7 +37,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 new DataColumn("account_name", typeof(string)),
                 new DataColumn("account_number", typeof(string)),
                 new DataColumn("address", typeof(string)),
-
             };
         }
 

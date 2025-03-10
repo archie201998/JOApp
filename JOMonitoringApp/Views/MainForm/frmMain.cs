@@ -357,6 +357,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.isUpdate = false;
 
             dgJobOrders.Enabled = true;
+            ucJoborder.errorProvider1.Clear();
             //dgJobOrders.ClearSelection();
 
             

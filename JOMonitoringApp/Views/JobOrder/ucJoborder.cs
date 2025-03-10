@@ -178,8 +178,8 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void TxtJONumber_Validating(object sender, CancelEventArgs e)
         {
-            string joNumber = txtJONumber.Text.Trim();
-            DataTable doesExist = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(joNumber));
+            int joNumber = string.IsNullOrEmpty(txtJONumber.Text.Trim()) ? 0 : Convert.ToInt32(txtJONumber.Text.Trim());
+            DataTable doesExist = Factory.JobOrdersRepository().GetViewRecordsByJONumber(joNumber);
 
             if (doesExist.Rows.Count != 0 && isUpdate == false)
             {

@@ -542,7 +542,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -575,5 +574,6 @@
         internal System.Windows.Forms.ComboBox cmbxAccomplishedBy;
         private System.Windows.Forms.Label label6;
         internal System.Windows.Forms.CheckBox cbxNA;
+        internal System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

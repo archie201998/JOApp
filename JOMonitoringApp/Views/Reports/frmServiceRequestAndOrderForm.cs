@@ -62,6 +62,11 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
+                if (string.IsNullOrEmpty(txtJONoFrom.Text))
+                {
+                    Helper.MessageBoxError("Please input J.O Number.");
+                    return;
+                }
                 LoadReport();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }

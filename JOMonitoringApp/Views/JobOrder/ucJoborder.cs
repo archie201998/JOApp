@@ -179,9 +179,9 @@ namespace JOMonitoringApp.Views.JobOrder
         private void TxtJONumber_Validating(object sender, CancelEventArgs e)
         {
             int joNumber = string.IsNullOrEmpty(txtJONumber.Text.Trim()) ? 0 : Convert.ToInt32(txtJONumber.Text.Trim());
-            DataTable doesExist = Factory.JobOrdersRepository().GetViewRecordsByJONumber(joNumber);
+            var doesExist = Factory.JobOrdersRepository().GetViewRecordsByJONumber(joNumber);
 
-            if (doesExist.Rows.Count != 0 && isUpdate == false)
+            if (doesExist.Count != 0 && isUpdate == false)
             {
                 e.Cancel = Helper.ShowErrorDuplicateEntry(errorProvider1, txtJONumber, "J.O Number");
                 return;

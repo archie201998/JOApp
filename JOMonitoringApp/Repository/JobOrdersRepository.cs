@@ -221,5 +221,29 @@ namespace JOMonitoringApp
             string query = $"UPDATE {tableName} SET status_id = @status_id WHERE id = @job_order_id";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
+
+        Dictionary<string, string> IJobOrdersRepository.GetViewRecordsByJONumber(int joNumber)
+        {
+            var recordDictionary = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@jo_number", DbType.Int32, joNumber}
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @jo_number";
+
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                foreach (DataColumn column in dataTable.Columns)
+                    recordDictionary[column.ColumnName] = row[column].ToString();
+
+                return recordDictionary;
+            }
+            return recordDictionary;
+        }
     }
 }

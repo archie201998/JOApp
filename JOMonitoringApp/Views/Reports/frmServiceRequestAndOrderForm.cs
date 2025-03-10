@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Reports
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
+        {   
             try
             {
                 // Define tasks and their progress weights
@@ -85,8 +85,7 @@ namespace JOMonitoringApp.Views.Reports
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
-             
-                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
+                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Count;
                 int progressCount = 0;
 
 
@@ -100,25 +99,15 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
                 reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
                 reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
+                reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
 
-
-                foreach (DataRow dataRow in dtJobOrders.Rows)
-                {
-                    var newRow = dtJobOrderSummary.NewRow();
-                    
-                    reportParameters1.Add(new ReportParameter("paramConcessionaire", dataRow["account_name"].ToString()));
-                    reportParameters1.Add(new ReportParameter("paramAccountNumber", dataRow["account_number"].ToString()));
-                    reportParameters1.Add(new ReportParameter("paramAddress", dataRow["address"].ToString()));
-
-                    progressCount++;
-                    dtJobOrderSummary.Rows.Add(newRow);
-                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
-                }
 
                 progressCount += tasks["Set Parameter Values"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
-                e.Result = (reportParameters1, dtJobOrders);
+                e.Result = (reportParameters1, new DataTable());
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

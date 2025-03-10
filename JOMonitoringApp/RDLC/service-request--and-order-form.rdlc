@@ -11,7 +11,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="dsRequisitionAndIssuSlip">
+    <DataSet Name="dsJOMonthlyReport">
       <Query>
         <DataSourceName>dsReport</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -2215,7 +2215,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!account_name.Value</Value>
+                    <Value>=Parameters!paramConsessionaire.Value</Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                     </Style>
@@ -2249,7 +2249,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Zone 1, San Jose, Duterte Street.</Value>
+                    <Value>=Parameters!paramAddress.Value</Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                     </Style>
@@ -2283,7 +2283,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Fields!account_number.Value</Value>
+                    <Value>=Parameters!paramAccountNumber.Value</Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                     </Style>
@@ -2577,6 +2577,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramConsessionaire">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2647,6 +2653,11 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>3</RowIndex>
           <ParameterName>paramNoted</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>3</RowIndex>
+          <ParameterName>paramConsessionaire</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

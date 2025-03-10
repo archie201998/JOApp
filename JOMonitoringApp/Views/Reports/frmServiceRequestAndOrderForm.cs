@@ -97,30 +97,26 @@ namespace JOMonitoringApp.Views.Reports
 
                 // Set Parameter Values
                 var userData = Helper.LoggedInUserData();
-
                 reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
                 reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
                 reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
-                reportParameters1.Add(new ReportParameter("paramAddress", string.Empty));
-                reportParameters1.Add(new ReportParameter("paramAccountNumber", string.Empty));
-                progressCount += tasks["Set Parameter Values"];
-                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
 
                 foreach (DataRow dataRow in dtJobOrders.Rows)
                 {
                     var newRow = dtJobOrderSummary.NewRow();
-                    newRow["date"] = dataRow["date"];
-                    newRow["job_order_no"] = dataRow["job_order_no"];
-                    newRow["account_name"] = dataRow["account_name"];
-                    newRow["account_number"] = dataRow["account_number"];
-                    newRow["particular"] = dataRow["particular"];
-                    newRow["status"] = dataRow["status"];
+                    
+                    reportParameters1.Add(new ReportParameter("paramConcessionaire", dataRow["account_name"].ToString()));
+                    reportParameters1.Add(new ReportParameter("paramAccountNumber", dataRow["account_number"].ToString()));
+                    reportParameters1.Add(new ReportParameter("paramAddress", dataRow["address"].ToString()));
 
                     progressCount++;
                     dtJobOrderSummary.Rows.Add(newRow);
                     Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
                 }
+
+                progressCount += tasks["Set Parameter Values"];
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 e.Result = (reportParameters1, dtJobOrders);
             }

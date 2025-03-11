@@ -177,6 +177,7 @@
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />

@@ -19,7 +19,6 @@ namespace JOMonitoringApp
             
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["customers_id"].Visible = false;
-            dataGridView.Columns["particulars_id"].Visible = false;
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;

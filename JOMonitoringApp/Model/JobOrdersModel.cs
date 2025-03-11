@@ -18,6 +18,7 @@ namespace JOMonitoringApp.Model
         public DateTime Date { get; set; }
         public string ORNumber{ get; set; }
         public string JONUmber { get; set; }
+        public string Particulars { get; set; }
         public string MRIS { get; set; }
         public string MRS { get; set; }
         public string WAR { get; set; }

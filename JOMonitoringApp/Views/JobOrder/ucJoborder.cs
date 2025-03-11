@@ -53,6 +53,7 @@ namespace JOMonitoringApp.Views.JobOrder
         internal void OnLoad()
         {
             LoadParticulars();
+            LoadParticular();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
             cmbxAccomplishedBy.SelectedIndex = -1;
@@ -90,7 +91,6 @@ namespace JOMonitoringApp.Views.JobOrder
             return dataTable;
         }
 
-
         internal CustomersModel CustomersModel()
         {
             string accountNumber = txtAccountNumber.Text.Trim();
@@ -125,11 +125,33 @@ namespace JOMonitoringApp.Views.JobOrder
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             int statusId = this.statusId;
 
+            StringBuilder particularsBuilder = new StringBuilder();
+            bool moreThanOneItem = clBoxParticulars.CheckedItems.Count > 1;
+
+            foreach (var item in clBoxParticulars.CheckedItems)
+            {
+                particularsBuilder.Append($" {item.ToString()}");
+
+                if (moreThanOneItem)
+                {
+                    particularsBuilder.Append(" \\");
+                }
+                
+            }
+
+            string particular = particularsBuilder.ToString().TrimEnd();
+            if (moreThanOneItem)
+            {
+
+                particular = particular.Substring(0, particular.Length - 2);
+            }
+
             return new JobOrdersModel()
             {
                 ID = jobOrderId,
                 CustomerID = customerId,
                 ParticularID = particularId,
+                Particulars = particular,
                 PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,
                 Date = date,
@@ -168,9 +190,22 @@ namespace JOMonitoringApp.Views.JobOrder
             HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dataTable, "id", "particular");
         }
 
+        internal void LoadParticular()
+        {
+            var dtAccoutnableForm = Factory.ParticularsRepository().GetRecords();
+
+            foreach (DataRow item in dtAccoutnableForm.Rows)
+            {
+                clBoxParticulars.Items.Add(item["particular"].ToString());
+            }
+        } 
+
         private void UcJoborder_Load(object sender, EventArgs e)
         {
+            if (!DesignMode)
+            {
 
+            }
         }
 
 
@@ -221,7 +256,6 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             Helper.ClearErrorTextBox(errorProvider1, txtWARNumber);
         }
-
 
         private void RadPending_CheckedChanged(object sender, EventArgs e)
         {

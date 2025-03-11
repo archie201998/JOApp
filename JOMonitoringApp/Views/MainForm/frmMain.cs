@@ -54,8 +54,8 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("id", typeof (int)),
                 new DataColumn("status", typeof(string)),
                 new DataColumn("customers_id", typeof(int)),
-                new DataColumn("particulars_id", typeof (int)),
                 new DataColumn("prepared_by_id", typeof(int)),
+                new DataColumn("particular", typeof (string)),
                 new DataColumn("materials_issued_by_id", typeof(int)),
                 new DataColumn("status_id", typeof(int)),
                 new DataColumn("job_order_no", typeof(string)),
@@ -63,7 +63,6 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("account_number", typeof(string)),
                 new DataColumn("account_name", typeof(string)),
                 new DataColumn("address", typeof(string)),
-                new DataColumn("particular", typeof(string)),
                 new DataColumn("or_number", typeof(string)),
                 new DataColumn("amount", typeof(decimal)),
                 new DataColumn("mris", typeof(string)),
@@ -105,7 +104,6 @@ namespace JOMonitoringApp.Views.MainForm
                     int id = Convert.ToInt32(row["id"]);
                     string status = $"{row["status"]}";
                     int customerId = Convert.ToInt32(row["customers_id"]);
-                    int particularId = Convert.ToInt32(row["particulars_id"]);
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
                     int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
                     int statusId = Convert.ToInt32(row["status_id"]);
@@ -125,10 +123,8 @@ namespace JOMonitoringApp.Views.MainForm
 
                     newRow["id"] = id;
                     newRow["customers_id"] = customerId;
-                    newRow["particulars_id"] = particularId;
                     newRow["prepared_by_id"] = preparedById;
                     newRow["materials_issued_by_id"] = materialsIssuedById;
-                    newRow["particulars_id"] = particularId;
                     newRow["particular"] = particular;
                     newRow["status_id"] = statusId;
                     newRow["job_order_no"] = jobOrderNumber;
@@ -303,7 +299,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
-            ucJoborder.cmbxParticulars.SelectedValue = Convert.ToInt32(dictJobOrders["particulars_id"]);
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
             ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];
             ucJoborder.txtMRSNumber.Text = dictJobOrders["mrs"];

@@ -146,8 +146,10 @@ namespace JOMonitoringApp.Views.Reports
                 localReport.SetParameters(parameters.reportParameters1);
                 localReport.Refresh();
 
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.Percent;
+
                 reportViewer1.Refresh();
                 ToogleRunButton(true);
 

@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Dataset;
+using JOMonitoringApp.Views.JobOrder;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -102,6 +103,21 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
+
+
+                char[] delimiters = new char[] { '\\' };
+                string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
+
+                foreach (var item in particulars)
+                {
+                    if (item.Trim() == "Pipe Leak")
+                        reportParameters1.Add(new ReportParameter("c1", "✔️"));
+
+                    if (item.Trim() == "Transfer of Connection")
+                        reportParameters1.Add(new ReportParameter("c5", "✔️"));
+
+                }
 
 
                 progressCount += tasks["Set Parameter Values"];

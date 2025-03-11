@@ -188,7 +188,7 @@
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNumber.Location = new System.Drawing.Point(155, 45);
             this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(142, 21);
+            this.txtAccountNumber.Size = new System.Drawing.Size(136, 21);
             this.txtAccountNumber.TabIndex = 1;
             this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountNumber_Validating);
             this.txtAccountNumber.Validated += new System.EventHandler(this.txtAccountNumber_Validated);
@@ -205,6 +205,7 @@
             // 
             // txtAddress
             // 
+            this.txtAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(155, 96);
             this.txtAddress.Multiline = true;
@@ -236,7 +237,7 @@
             // 
             this.cbxNA.AutoSize = true;
             this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNA.Location = new System.Drawing.Point(307, 47);
+            this.cbxNA.Location = new System.Drawing.Point(312, 47);
             this.cbxNA.Name = "cbxNA";
             this.cbxNA.Size = new System.Drawing.Size(46, 17);
             this.cbxNA.TabIndex = 20;
@@ -248,6 +249,7 @@
             // 
             this.txtAccountName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAccountName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountName.Location = new System.Drawing.Point(155, 70);
             this.txtAccountName.Name = "txtAccountName";

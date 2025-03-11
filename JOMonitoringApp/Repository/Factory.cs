@@ -23,7 +23,6 @@ namespace JOMonitoringApp
 
         public static IError CreateErrors(Array errors) => new Error(errors);
 
-
-        public static IStatusRepository StatusRepository() => new StatusRepository(mySqlGenericCommands);
+        public static IJobOrdersParticulars JobOrdersParticularsRepository() => new JobOrdersParticularsRepository(mySqlGenericCommands);
     }
 }

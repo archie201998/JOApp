@@ -193,6 +193,7 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
+    <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />

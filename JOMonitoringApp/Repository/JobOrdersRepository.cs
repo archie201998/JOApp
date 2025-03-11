@@ -192,7 +192,7 @@ namespace JOMonitoringApp
             var parameter = new object[][] {
                 new object[]{"@id", DbType.Int32, entity.ID},
                 new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
-                new object[]{"@particulars_id", DbType.Int32, entity.ParticularID},
+                new object[]{"@particular", DbType.String, entity.Particulars},
                 new object[]{"@date", DbType.DateTime, entity.Date},
                 new object[]{"@job_order_no", DbType.String, entity.JONUmber},
                 new object[]{"@or_number", DbType.String, entity.ORNumber},
@@ -206,7 +206,7 @@ namespace JOMonitoringApp
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"UPDATE {tableName} SET customers_id=@customers_id, particulars_id=@particulars_id, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by,  prepared_by=@prepared_by,  status_id=@status_id WHERE id = @id";
+            string query = $"UPDATE {tableName} SET customers_id=@customers_id, particular=@particular, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by,  prepared_by=@prepared_by,  status_id=@status_id WHERE id = @id";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }

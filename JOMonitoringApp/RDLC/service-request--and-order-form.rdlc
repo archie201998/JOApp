@@ -2110,7 +2110,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Archie Soriano Sale</Value>
+                    <Value>=Parameters!paramConcessionaire.Value</Value>
                     <Style>
                       <FontFamily>calibri</FontFamily>
                     </Style>

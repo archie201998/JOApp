@@ -110,8 +110,8 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            //int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
-            int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
+            int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
+            //int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
             int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;

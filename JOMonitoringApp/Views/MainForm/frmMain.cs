@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace JOMonitoringApp.Views.MainForm
 {
@@ -299,22 +300,21 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
 
-            char splitter = '/';
-            string[] particulars = dictJobOrders["particular"].Split(splitter);
+            char[] delimiters = new char[] { '\\' };
+            string[] particulars = dictJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+
 
             foreach (var item in particulars)
             {
                 for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 {
-                    if (ucJoborder.clBoxParticulars.Items[i].ToString() == item)  
+                    if (ucJoborder.clBoxParticulars.Items[i].ToString().Trim() == item.Trim())
                     {
-                        ucJoborder.clBoxParticulars.SetItemChecked(i, true); 
+                        ucJoborder.clBoxParticulars.SetItemChecked(i, true);
                         break;
                     }
                 }
             }
-            
-
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
@@ -371,9 +371,12 @@ namespace JOMonitoringApp.Views.MainForm
 
             dgJobOrders.Enabled = true;
             ucJoborder.errorProvider1.Clear();
+
+            for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
+                ucJoborder.clBoxParticulars.SetItemChecked(i, false);
             //dgJobOrders.ClearSelection();
 
-            
+
         }
 
         private void ButtonSaveTrigger()

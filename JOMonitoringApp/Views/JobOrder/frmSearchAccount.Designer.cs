@@ -39,9 +39,9 @@
             this.txtAccountName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountName.Location = new System.Drawing.Point(133, 19);
+            this.txtAccountName.Location = new System.Drawing.Point(165, 19);
             this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(174, 20);
+            this.txtAccountName.Size = new System.Drawing.Size(219, 20);
             this.txtAccountName.TabIndex = 13;
             this.txtAccountName.TextChanged += new System.EventHandler(this.TxtAccountNumber_TextChanged);
             this.txtAccountName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtAccountName_KeyDown);
@@ -52,9 +52,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(12, 22);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 13);
+            this.label7.Size = new System.Drawing.Size(147, 13);
             this.label7.TabIndex = 14;
-            this.label7.Text = "Search Account Name";
+            this.label7.Text = "Search Account Name or No.";
             // 
             // dgAccounts
             // 
@@ -67,7 +67,7 @@
             this.dgAccounts.Location = new System.Drawing.Point(15, 45);
             this.dgAccounts.Name = "dgAccounts";
             this.dgAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgAccounts.Size = new System.Drawing.Size(292, 178);
+            this.dgAccounts.Size = new System.Drawing.Size(369, 207);
             this.dgAccounts.TabIndex = 15;
             this.dgAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellContentClick);
             this.dgAccounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellDoubleClick);
@@ -77,7 +77,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(321, 235);
+            this.ClientSize = new System.Drawing.Size(398, 264);
             this.Controls.Add(this.dgAccounts);
             this.Controls.Add(this.txtAccountName);
             this.Controls.Add(this.label7);

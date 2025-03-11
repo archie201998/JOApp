@@ -4,6 +4,7 @@ using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Reports;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -297,6 +298,23 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
+
+            char splitter = '/';
+            string[] particulars = dictJobOrders["particular"].Split(splitter);
+
+            foreach (var item in particulars)
+            {
+                for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
+                {
+                    if (ucJoborder.clBoxParticulars.Items[i].ToString() == item)  
+                    {
+                        ucJoborder.clBoxParticulars.SetItemChecked(i, true); 
+                        break;
+                    }
+                }
+            }
+            
+
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);

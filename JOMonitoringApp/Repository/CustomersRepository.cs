@@ -7,7 +7,7 @@ using JOMonitoringApp.Repository;
 internal class CustomersRepository : ICustomersRepository
 {
     private GenericCommands mySqlGenericCommands;
-    private readonly string tableName = "customers";
+    private readonly string tableName = "tbl_customers";
 
     public CustomersRepository(GenericCommands mySqlGenericCommands)
     {

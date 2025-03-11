@@ -143,13 +143,13 @@ namespace JOMonitoringApp
                 new object[]{"@mris", DbType.String, entity.MRIS},
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
-                new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
+                new object[]{"@prepared_by", DbType.Int32, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id) VALUES (@customers_id, @particulars_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id)";
+            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particulars_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 

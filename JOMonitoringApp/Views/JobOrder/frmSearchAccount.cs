@@ -48,7 +48,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 return;
 
             var dataTable = new DataTable();
-            DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(searchKey);
+            DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
             dataTable.Columns.AddRange(JobOrdersColumns());
 
             foreach (DataRow row in dtJobOrders.Rows)

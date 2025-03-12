@@ -92,7 +92,7 @@
             this.txtORNumber.Location = new System.Drawing.Point(155, 260);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtORNumber.TabIndex = 5;
+            this.txtORNumber.TabIndex = 8;
             this.txtORNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // dtpDate
@@ -102,7 +102,7 @@
             this.dtpDate.Location = new System.Drawing.Point(155, 182);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(198, 21);
-            this.dtpDate.TabIndex = 2;
+            this.dtpDate.TabIndex = 5;
             // 
             // cmbxParticulars
             // 
@@ -157,7 +157,7 @@
             0});
             this.nudAmount.Name = "nudAmount";
             this.nudAmount.Size = new System.Drawing.Size(200, 21);
-            this.nudAmount.TabIndex = 6;
+            this.nudAmount.TabIndex = 9;
             this.nudAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudAmount.ThousandsSeparator = true;
             // 
@@ -189,7 +189,7 @@
             this.txtAccountNumber.Location = new System.Drawing.Point(155, 45);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(136, 21);
-            this.txtAccountNumber.TabIndex = 1;
+            this.txtAccountNumber.TabIndex = 0;
             this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountNumber_Validating);
             this.txtAccountNumber.Validated += new System.EventHandler(this.txtAccountNumber_Validated);
             // 
@@ -229,7 +229,7 @@
             this.groupBox1.Location = new System.Drawing.Point(21, 19);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(389, 154);
-            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCOUNT DETAILS";
             // 
@@ -254,7 +254,7 @@
             this.txtAccountName.Location = new System.Drawing.Point(155, 70);
             this.txtAccountName.Name = "txtAccountName";
             this.txtAccountName.Size = new System.Drawing.Size(200, 21);
-            this.txtAccountName.TabIndex = 0;
+            this.txtAccountName.TabIndex = 1;
             this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountName_Validating);
             this.txtAccountName.Validated += new System.EventHandler(this.TxtAccountName_Validated);
             // 
@@ -309,7 +309,7 @@
             this.clBoxParticulars.Location = new System.Drawing.Point(155, 52);
             this.clBoxParticulars.Name = "clBoxParticulars";
             this.clBoxParticulars.Size = new System.Drawing.Size(199, 116);
-            this.clBoxParticulars.TabIndex = 30;
+            this.clBoxParticulars.TabIndex = 4;
             // 
             // txtWARNumber
             // 
@@ -317,7 +317,7 @@
             this.txtWARNumber.Location = new System.Drawing.Point(155, 312);
             this.txtWARNumber.Name = "txtWARNumber";
             this.txtWARNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtWARNumber.TabIndex = 7;
+            this.txtWARNumber.TabIndex = 9;
             this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
             this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
@@ -348,7 +348,7 @@
             this.txtMRSNumber.Location = new System.Drawing.Point(155, 234);
             this.txtMRSNumber.Name = "txtMRSNumber";
             this.txtMRSNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtMRSNumber.TabIndex = 4;
+            this.txtMRSNumber.TabIndex = 7;
             this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label10
@@ -367,7 +367,7 @@
             this.txtMRISNumber.Location = new System.Drawing.Point(155, 208);
             this.txtMRISNumber.Name = "txtMRISNumber";
             this.txtMRISNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtMRISNumber.TabIndex = 3;
+            this.txtMRISNumber.TabIndex = 6;
             this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label9
@@ -386,7 +386,7 @@
             this.txtJONumber.Location = new System.Drawing.Point(155, 27);
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 21);
-            this.txtJONumber.TabIndex = 0;
+            this.txtJONumber.TabIndex = 3;
             this.txtJONumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             this.txtJONumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtJONumber_Validating);
             this.txtJONumber.Validated += new System.EventHandler(this.TxtJONumber_Validated);
@@ -399,7 +399,7 @@
             this.cmbxMaterialsIssuedBy.Location = new System.Drawing.Point(155, 28);
             this.cmbxMaterialsIssuedBy.Name = "cmbxMaterialsIssuedBy";
             this.cmbxMaterialsIssuedBy.Size = new System.Drawing.Size(200, 23);
-            this.cmbxMaterialsIssuedBy.TabIndex = 0;
+            this.cmbxMaterialsIssuedBy.TabIndex = 10;
             this.cmbxMaterialsIssuedBy.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxMaterialsIssuedBy_Validating);
             this.cmbxMaterialsIssuedBy.Validated += new System.EventHandler(this.cmbxMaterialsIssuedBy_Validated);
             // 
@@ -435,7 +435,7 @@
             this.cmbxAccomplishedBy.Location = new System.Drawing.Point(155, 55);
             this.cmbxAccomplishedBy.Name = "cmbxAccomplishedBy";
             this.cmbxAccomplishedBy.Size = new System.Drawing.Size(200, 23);
-            this.cmbxAccomplishedBy.TabIndex = 1;
+            this.cmbxAccomplishedBy.TabIndex = 11;
             this.cmbxAccomplishedBy.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxAccomplishedBy_Validating);
             this.cmbxAccomplishedBy.Validated += new System.EventHandler(this.cmbxAccomplishedBy_Validated);
             // 
@@ -470,7 +470,7 @@
             this.radAccomplished.Location = new System.Drawing.Point(278, 26);
             this.radAccomplished.Name = "radAccomplished";
             this.radAccomplished.Size = new System.Drawing.Size(102, 19);
-            this.radAccomplished.TabIndex = 3;
+            this.radAccomplished.TabIndex = 15;
             this.radAccomplished.Tag = "4";
             this.radAccomplished.Text = "Accomplished";
             this.radAccomplished.UseVisualStyleBackColor = true;
@@ -483,7 +483,7 @@
             this.radCancel.Location = new System.Drawing.Point(201, 26);
             this.radCancel.Name = "radCancel";
             this.radCancel.Size = new System.Drawing.Size(63, 19);
-            this.radCancel.TabIndex = 2;
+            this.radCancel.TabIndex = 14;
             this.radCancel.Tag = "3";
             this.radCancel.Text = "Cancel";
             this.radCancel.UseVisualStyleBackColor = true;
@@ -496,7 +496,7 @@
             this.radProcessing.Location = new System.Drawing.Point(108, 26);
             this.radProcessing.Name = "radProcessing";
             this.radProcessing.Size = new System.Drawing.Size(86, 19);
-            this.radProcessing.TabIndex = 1;
+            this.radProcessing.TabIndex = 13;
             this.radProcessing.Tag = "2";
             this.radProcessing.Text = "Processing";
             this.radProcessing.UseVisualStyleBackColor = true;
@@ -510,7 +510,7 @@
             this.radPending.Location = new System.Drawing.Point(21, 26);
             this.radPending.Name = "radPending";
             this.radPending.Size = new System.Drawing.Size(71, 19);
-            this.radPending.TabIndex = 0;
+            this.radPending.TabIndex = 12;
             this.radPending.TabStop = true;
             this.radPending.Tag = "1";
             this.radPending.Text = "Pending";

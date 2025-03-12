@@ -86,9 +86,17 @@ namespace JOMonitoringApp.Views.Reports
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
+
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Count;
                 int progressCount = 0;
 
+
+                if (dtJobOrders.Count == 0)
+                {
+                    Helper.MessageBoxError("J.O Number cannot be found.");
+                    progressCount = 100;
+                    return;
+                }
 
                 // Initialize Parameters
                 List<ReportParameter> reportParameters1 = new List<ReportParameter>();
@@ -105,6 +113,8 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
 
                 //char[] delimiters = new char[] { '\\' };
                 //string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -129,7 +139,11 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
+
                 var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
+
+                if (parameters.dtJOSummary.Rows.Count == 0)
+                    return;
 
                 reportViewer1.Clear();
                 var localReport = reportViewer1.LocalReport;

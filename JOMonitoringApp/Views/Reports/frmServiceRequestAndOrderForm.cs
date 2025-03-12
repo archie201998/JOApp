@@ -105,6 +105,8 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
 
                 //char[] delimiters = new char[] { '\\' };
                 //string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);

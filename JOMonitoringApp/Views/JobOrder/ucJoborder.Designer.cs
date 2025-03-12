@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtORNumber = new System.Windows.Forms.TextBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.cmbxParticulars = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -103,17 +102,6 @@
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(198, 21);
             this.dtpDate.TabIndex = 5;
-            // 
-            // cmbxParticulars
-            // 
-            this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxParticulars.FormattingEnabled = true;
-            this.cmbxParticulars.Location = new System.Drawing.Point(28, 94);
-            this.cmbxParticulars.Name = "cmbxParticulars";
-            this.cmbxParticulars.Size = new System.Drawing.Size(43, 23);
-            this.cmbxParticulars.TabIndex = 1;
-            this.cmbxParticulars.Visible = false;
             // 
             // label2
             // 
@@ -285,7 +273,6 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtMRISNumber);
             this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.cmbxParticulars);
             this.groupBox2.Controls.Add(this.txtJONumber);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtORNumber);
@@ -526,7 +513,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -568,7 +555,6 @@
         internal System.Windows.Forms.TextBox txtAddress;
         internal System.Windows.Forms.TextBox txtORNumber;
         internal System.Windows.Forms.DateTimePicker dtpDate;
-        internal System.Windows.Forms.ComboBox cmbxParticulars;
         internal System.Windows.Forms.NumericUpDown nudAmount;
         internal System.Windows.Forms.TextBox txtJONumber;
         internal System.Windows.Forms.TextBox txtMRISNumber;

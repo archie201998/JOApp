@@ -103,22 +103,14 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
+
+                //char[] delimiters = new char[] { '\\' };
+                //string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
 
 
-                char[] delimiters = new char[] { '\\' };
-                string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-
-                foreach (var item in particulars)
-                {
-                    if (item.Trim() == "Pipe Leak")
-                        reportParameters1.Add(new ReportParameter("c1", "✔️"));
-
-                    if (item.Trim() == "Transfer of Connection")
-                        reportParameters1.Add(new ReportParameter("c5", "✔️"));
-
-                }
-
+                //reportParameters1.Add(new ReportParameter("@paramRequest", "✔️"));
 
                 progressCount += tasks["Set Parameter Values"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);

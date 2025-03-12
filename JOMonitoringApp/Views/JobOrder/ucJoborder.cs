@@ -44,6 +44,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.GetError(txtWARNumber),
                 errorProvider1.GetError(cmbxMaterialsIssuedBy),
                 errorProvider1.GetError(cmbxAccomplishedBy),
+                errorProvider1.GetError(clBoxParticulars),
 
             };
 
@@ -52,7 +53,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void OnLoad()
         {
-            LoadParticulars();
             LoadParticular();
             LoadEmployee();
             cmbxMaterialsIssuedBy.SelectedIndex = -1;
@@ -108,11 +108,29 @@ namespace JOMonitoringApp.Views.JobOrder
             };
         }
 
+        private string GetSelectedParticulars()
+        {
+            StringBuilder particularsBuilder = new StringBuilder();
+            bool moreThanOneItem = clBoxParticulars.CheckedItems.Count > 1;
+
+            foreach (var item in clBoxParticulars.CheckedItems)
+            {
+                particularsBuilder.Append($" {item.ToString()}");
+
+                if (moreThanOneItem)
+                    particularsBuilder.Append(" \\");
+            }
+
+            string particular = particularsBuilder.ToString().TrimEnd();
+            if (moreThanOneItem) particular = particular.Substring(0, particular.Length - 2);
+
+            return particular;
+        }
+
         internal JobOrdersModel JobOrderModel()
         {
             int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
             //int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
-            int particularId = Convert.ToInt32(cmbxParticulars.SelectedValue);
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
             string orNumber = txtORNumber.Text;
@@ -124,33 +142,13 @@ namespace JOMonitoringApp.Views.JobOrder
             int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             int statusId = this.statusId;
+            string particular = GetSelectedParticulars();
 
-            StringBuilder particularsBuilder = new StringBuilder();
-            bool moreThanOneItem = clBoxParticulars.CheckedItems.Count > 1;
-
-            foreach (var item in clBoxParticulars.CheckedItems)
-            {
-                particularsBuilder.Append($" {item.ToString()}");
-
-                if (moreThanOneItem)
-                {
-                    particularsBuilder.Append(" \\");
-                }
-                
-            }
-
-            string particular = particularsBuilder.ToString().TrimEnd();
-            if (moreThanOneItem)
-            {
-
-                particular = particular.Substring(0, particular.Length - 2);
-            }
 
             return new JobOrdersModel()
             {
                 ID = jobOrderId,
                 CustomerID = customerId,
-                ParticularID = particularId,
                 Particulars = particular,
                 PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,
@@ -165,29 +163,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 StatusId = statusId,
                 UserId = Helper.UserId
             };
-        }
-
-        internal void LoadParticulars()
-        {
-            var dataColumns = new DataColumn[]
-            {
-                new DataColumn("id", typeof(int)),
-                new DataColumn("particular", typeof(string))
-            };
-
-            var dataTable = new DataTable();
-            dataTable.Columns.AddRange(dataColumns);
-
-            var dtAccoutnableForm = Factory.ParticularsRepository().GetRecords();
-            foreach (DataRow row in dtAccoutnableForm.Rows)
-            {
-                var newRow = dataTable.NewRow();
-                newRow["id"] = row["id"];
-                newRow["particular"] = row["particular"];
-                dataTable.Rows.Add(newRow);
-            }
-
-            HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dataTable, "id", "particular");
         }
 
         internal void LoadParticular()
@@ -316,16 +291,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void txtAccountNumber_Validating(object sender, CancelEventArgs e)
         {
-            string accountNumber = txtAccountNumber.Text.Trim();
-            DataTable doesExist = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(accountNumber);
-
-            if (doesExist.Rows.Count != 0 && isUpdate == false)
-            {
-                e.Cancel = Helper.ShowErrorDuplicateEntry(errorProvider1, txtAccountNumber, "Account Number");
-                return;
-
-            }
-
             if (!cbxNA.Checked)
                 e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Number.");
 

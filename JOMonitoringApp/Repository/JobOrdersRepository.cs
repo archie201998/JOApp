@@ -134,7 +134,6 @@ namespace JOMonitoringApp
         {
             var parameter = new object[][] {
                 new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
-                new object[]{"@particulars_id", DbType.Int32, entity.ParticularID},
                 new object[]{"@date", DbType.DateTime, entity.Date},
                 new object[]{"@job_order_no", DbType.String, entity.JONUmber},
                 new object[]{"@particular", DbType.String, entity.Particulars},
@@ -149,7 +148,7 @@ namespace JOMonitoringApp
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id, particulars_id, particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particulars_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (customers_id,  particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 

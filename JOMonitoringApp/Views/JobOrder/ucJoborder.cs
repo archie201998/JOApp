@@ -291,8 +291,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void txtAccountNumber_Validating(object sender, CancelEventArgs e)
         {
-            if (!cbxNA.Checked)
-                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountNumber, "Account Number.");
 
         }
 
@@ -306,11 +304,28 @@ namespace JOMonitoringApp.Views.JobOrder
             if (cbxNA.Checked)
             {
                 txtAccountNumber.Clear();
+
+                txtAcc1.Clear();
+                txtAcc2.Clear();
+                txtAcc3.Clear();
+                txtAcc4.Clear();
+
+
+                txtAcc1.ReadOnly = true;
+                txtAcc2.ReadOnly = true;
+                txtAcc3.ReadOnly = true;
+                txtAcc4.ReadOnly = true;
+
                 txtAccountNumber.ReadOnly = true;
                 return;
             }
 
             txtAccountNumber.ReadOnly = false;
+
+            txtAcc1.ReadOnly = false;
+            txtAcc2.ReadOnly = false;
+            txtAcc3.ReadOnly = false;
+            txtAcc4.ReadOnly = false;
         }
 
         private void cmbxAccomplishedBy_Validating(object sender, CancelEventArgs e)
@@ -335,5 +350,33 @@ namespace JOMonitoringApp.Views.JobOrder
             Helper.ClearErrorComboBox(errorProvider1, cmbxMaterialsIssuedBy);
         }
 
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtAcc1_KeyDown(object sender, KeyEventArgs e)
+        {
+            //NumberOnly()
+        }
+
+        private void txtAcc3_TextChanged(object sender, EventArgs e)
+        {
+            string searchKey = $"{ txtAcc1.Text }-{ txtAcc2.Text }-{ txtAcc3.Text }-{txtAcc4.Text}";
+
+            var txtBox = sender as TextBox;
+
+            if (txtAcc1.Text.Length == 3 && txtBox == txtAcc1)
+                txtAcc2.Focus();
+            else if (txtAcc2.Text.Length == 3 && txtBox == txtAcc2)
+                txtAcc3.Focus();
+            else if (txtAcc3.Text.Length == 3 && txtBox == txtAcc3)
+                txtAcc4.Focus();
+            else if (txtAcc4.Text.Length == 1 && txtBox == txtAcc4)
+                txtAcc1.Focus();
+
+            txtAccountNumber.Text = searchKey;
+            
+        }
     }
 }

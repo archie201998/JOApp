@@ -24,7 +24,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void FrmSearchAccount_Load(object sender, EventArgs e)
         {
-            txtAccountName.Focus();
+            txtAcc1.Focus();
             LoadAccounts();
         }
 
@@ -42,13 +42,16 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void LoadAccounts()
         {
-            string searchKey = txtAccountName.Text.Trim();
+            //string searchKey = txtAccountName.Text.Trim();
+            string searchKey = $"{txtAcc1.Text}-{txtAcc2.Text}-{txtAcc3.Text}-{txtAcc4.Text}";
             int charCount = searchKey.Length;
             if (charCount <= 3)
                 return;
 
             var dataTable = new DataTable();
-            DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
+            //DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
+            DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(searchKey);
+
             dataTable.Columns.AddRange(JobOrdersColumns());
 
             foreach (DataRow row in dtJobOrders.Rows)
@@ -123,6 +126,46 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             if (Keys.Escape == e.KeyData)
                 Close();
+        }
+
+        private void txtAcc4_TextChanged(object sender, EventArgs e)
+        {
+            string searchKey = $"{txtAcc1.Text}-{txtAcc2.Text}-{txtAcc3.Text}-{txtAcc4.Text}";
+
+            var txtBox = sender as TextBox;
+
+            if (txtAcc1.Text.Length == 3 && txtBox == txtAcc1)
+                txtAcc2.Focus();
+            else if (txtAcc2.Text.Length == 3 && txtBox == txtAcc2)
+                txtAcc3.Focus();
+            else if (txtAcc3.Text.Length == 3 && txtBox == txtAcc3)
+                txtAcc4.Focus();
+
+            LoadAccounts();
+        }
+
+        private void txtAcc4_KeyDown(object sender, KeyEventArgs e)
+        {
+            var txtBox = sender as TextBox;
+
+            if (e.KeyCode == Keys.Back)
+            {
+                if (txtAcc2.Text.Length == 1 && txtBox == txtAcc2)
+                    txtAcc1.Focus();
+                else if (txtAcc3.Text.Length == 1 && txtBox == txtAcc3)
+                    txtAcc2.Focus();
+                else if (txtAcc4.Text.Length == 1 && txtBox == txtAcc4)
+                    txtAcc3.Focus();
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                SelectData();
+            }
+
+            else if (e.KeyCode == Keys.Down)
+            {
+                dgAccounts.Focus();
+            }
         }
     }
 }

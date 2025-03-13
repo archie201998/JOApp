@@ -47,7 +47,14 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.txtAcc4 = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtAcc3 = new System.Windows.Forms.TextBox();
+            this.txtAcc2 = new System.Windows.Forms.TextBox();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
+            this.txtAcc1 = new System.Windows.Forms.TextBox();
             this.txtWARNumber = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -174,12 +181,10 @@
             this.txtAccountNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(155, 45);
+            this.txtAccountNumber.Location = new System.Drawing.Point(478, 161);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(136, 21);
             this.txtAccountNumber.TabIndex = 0;
-            this.txtAccountNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtAccountNumber_Validating);
-            this.txtAccountNumber.Validated += new System.EventHandler(this.txtAccountNumber_Validated);
             // 
             // label8
             // 
@@ -205,13 +210,19 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.cbxNA);
+            this.groupBox1.Controls.Add(this.txtAcc4);
+            this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.txtAccountName);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.btnSearch);
+            this.groupBox1.Controls.Add(this.txtAcc3);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.txtAcc2);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtAccountNumber);
             this.groupBox1.Controls.Add(this.txtAddress);
+            this.groupBox1.Controls.Add(this.txtAcc1);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(21, 19);
@@ -224,10 +235,10 @@
             // cbxNA
             // 
             this.cbxNA.AutoSize = true;
-            this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNA.Location = new System.Drawing.Point(312, 47);
+            this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxNA.Location = new System.Drawing.Point(336, 46);
             this.cbxNA.Name = "cbxNA";
-            this.cbxNA.Size = new System.Drawing.Size(46, 17);
+            this.cbxNA.Size = new System.Drawing.Size(41, 16);
             this.cbxNA.TabIndex = 20;
             this.cbxNA.Text = "N/A";
             this.cbxNA.UseVisualStyleBackColor = true;
@@ -289,14 +300,100 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JOB ORDER DETAILS";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(194, 46);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(12, 15);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "-";
+            // 
+            // txtAcc4
+            // 
+            this.txtAcc4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc4.Location = new System.Drawing.Point(308, 43);
+            this.txtAcc4.MaxLength = 2;
+            this.txtAcc4.Name = "txtAcc4";
+            this.txtAcc4.Size = new System.Drawing.Size(22, 21);
+            this.txtAcc4.TabIndex = 31;
+            this.txtAcc4.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(297, 46);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(12, 15);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "-";
+            this.label14.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(246, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 15);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "-";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
+            // 
+            // txtAcc3
+            // 
+            this.txtAcc3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc3.Location = new System.Drawing.Point(257, 43);
+            this.txtAcc3.MaxLength = 3;
+            this.txtAcc3.Name = "txtAcc3";
+            this.txtAcc3.Size = new System.Drawing.Size(39, 21);
+            this.txtAcc3.TabIndex = 23;
+            this.txtAcc3.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            this.txtAcc3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
+            this.txtAcc3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            // 
+            // txtAcc2
+            // 
+            this.txtAcc2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc2.Location = new System.Drawing.Point(207, 43);
+            this.txtAcc2.MaxLength = 3;
+            this.txtAcc2.Name = "txtAcc2";
+            this.txtAcc2.Size = new System.Drawing.Size(39, 21);
+            this.txtAcc2.TabIndex = 22;
+            this.txtAcc2.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            this.txtAcc2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
+            this.txtAcc2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            // 
             // clBoxParticulars
             // 
             this.clBoxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clBoxParticulars.FormattingEnabled = true;
             this.clBoxParticulars.Location = new System.Drawing.Point(155, 52);
             this.clBoxParticulars.Name = "clBoxParticulars";
-            this.clBoxParticulars.Size = new System.Drawing.Size(199, 116);
+            this.clBoxParticulars.Size = new System.Drawing.Size(199, 84);
             this.clBoxParticulars.TabIndex = 4;
+            // 
+            // txtAcc1
+            // 
+            this.txtAcc1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc1.Location = new System.Drawing.Point(155, 43);
+            this.txtAcc1.MaxLength = 3;
+            this.txtAcc1.Name = "txtAcc1";
+            this.txtAcc1.Size = new System.Drawing.Size(39, 21);
+            this.txtAcc1.TabIndex = 21;
+            this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
+            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // txtWARNumber
             // 
@@ -518,8 +615,9 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtAccountNumber);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(424, 693);
+            this.Size = new System.Drawing.Size(427, 693);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
@@ -533,6 +631,7 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -576,5 +675,12 @@
         internal System.Windows.Forms.CheckBox cbxNA;
         internal System.Windows.Forms.ErrorProvider errorProvider1;
         internal System.Windows.Forms.CheckedListBox clBoxParticulars;
+        internal System.Windows.Forms.TextBox txtAcc3;
+        internal System.Windows.Forms.TextBox txtAcc2;
+        internal System.Windows.Forms.TextBox txtAcc1;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.TextBox txtAcc4;
     }
 }

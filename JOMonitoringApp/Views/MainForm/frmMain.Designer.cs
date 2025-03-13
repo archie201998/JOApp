@@ -67,9 +67,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -78,6 +76,9 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -368,18 +369,18 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(960, 12);
+            this.label5.Location = new System.Drawing.Point(891, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 13);
+            this.label5.Size = new System.Drawing.Size(107, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Status";
+            this.label5.Text = "FILTER BY STATUS";
             // 
             // cmbxRowLimit
             // 
             this.cmbxRowLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxRowLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxRowLimit.FormattingEnabled = true;
-            this.cmbxRowLimit.Location = new System.Drawing.Point(585, 8);
+            this.cmbxRowLimit.Location = new System.Drawing.Point(511, 8);
             this.cmbxRowLimit.Name = "cmbxRowLimit";
             this.cmbxRowLimit.Size = new System.Drawing.Size(121, 21);
             this.cmbxRowLimit.TabIndex = 7;
@@ -388,7 +389,7 @@
             // 
             this.txtSearch.AcceptsReturn = true;
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(753, 8);
+            this.txtSearch.Location = new System.Drawing.Point(690, 8);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(200, 20);
             this.txtSearch.TabIndex = 4;
@@ -397,21 +398,21 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(501, 12);
+            this.label4.Location = new System.Drawing.Point(375, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.Size = new System.Drawing.Size(123, 13);
             this.label4.TabIndex = 2;
-            this.label4.Text = "Records Count";
+            this.label4.Text = "NO. RECORDS COUNT";
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(710, 11);
+            this.label2.Location = new System.Drawing.Point(638, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.Size = new System.Drawing.Size(51, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Search";
+            this.label2.Text = "SEARCH";
             // 
             // panelInputField
             // 
@@ -466,15 +467,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 696);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
@@ -486,15 +478,6 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -511,7 +494,8 @@
             this.lblCurrentUser,
             this.toolStripStatusLabel4,
             this.toolStripStatusLabel3,
-            this.lblRecordsCount});
+            this.lblRecordsCount,
+            this.toolStripStatusLabel5});
             this.statusStrip1.Location = new System.Drawing.Point(5, 890);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1651, 22);
@@ -539,8 +523,8 @@
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(67, 17);
-            this.toolStripStatusLabel3.Text = "RECORDS : ";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(111, 17);
+            this.toolStripStatusLabel3.Text = "RECORDS SHOWN :";
             // 
             // lblRecordsCount
             // 
@@ -552,6 +536,30 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel5.Text = "|";
+            // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 696);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -643,5 +651,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ToolStripMenuItem requistionAndIssueSlipRISToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
     }
 }

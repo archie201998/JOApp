@@ -740,7 +740,7 @@
                     <Value>=Parameters!paramPreparedBy.Value</Value>
                     <Style>
                       <FontFamily>CALIBRI</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -869,7 +869,7 @@
                     <Value>=Parameters!paramRecommendingApproval.Value</Value>
                     <Style>
                       <FontFamily>CALIBRI</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>
@@ -983,7 +983,7 @@
                     <Value>=Parameters!paramApproved.Value</Value>
                     <Style>
                       <FontFamily>CALIBRI</FontFamily>
-                      <FontSize>9pt</FontSize>
+                      <FontSize>8pt</FontSize>
                       <FontWeight>Normal</FontWeight>
                     </Style>
                   </TextRun>

@@ -175,6 +175,7 @@ namespace JOMonitoringApp.Views.MainForm
                 lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
 
                 dgJobOrders.Rows[previousSelection].Selected = true;
+
             }
             catch (Exception)
             {
@@ -298,7 +299,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
-            ucJoborder.txtAddress.Text = dictJobOrders["address"];
+            ucJoborder.txtAddress.Text = dictJobOrders["address"]  ;
 
             char[] delimiters = new char[] { '\\' };
             string[] particulars = dictJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -316,6 +317,12 @@ namespace JOMonitoringApp.Views.MainForm
                 }
             }
 
+            char[] delimiter = new char[] { '-' };
+            string[] accountNumber = dictJobOrders["account_number"].ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+            ucJoborder.txtAcc1.Text = accountNumber[0];
+            ucJoborder.txtAcc2.Text = accountNumber[1];
+            ucJoborder.txtAcc3.Text = accountNumber[2];
+            ucJoborder.txtAcc4.Text = accountNumber[3];
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
             ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];
@@ -372,10 +379,17 @@ namespace JOMonitoringApp.Views.MainForm
             dgJobOrders.Enabled = true;
             ucJoborder.errorProvider1.Clear();
 
+            ucJoborder.txtAcc1.Clear();
+            ucJoborder.txtAcc2.Clear();
+            ucJoborder.txtAcc3.Clear();
+            ucJoborder.txtAcc4.Clear();
+
+
+
             for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 ucJoborder.clBoxParticulars.SetItemChecked(i, false);
-            //dgJobOrders.ClearSelection();
 
+            //dgJobOrders.ClearSelection();
 
         }
 
@@ -464,6 +478,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
+            if (dgJobOrders.Rows.Count == 0) return;
+
             LoadSelectedData();
             dgJobOrders.Enabled = false;
             btnSave.Text = "Update";
@@ -497,7 +513,10 @@ namespace JOMonitoringApp.Views.MainForm
             }
             else if (e.KeyData == Keys.Escape)
             {
-                ResetInputForm();
+                if (Helper.MessageBoxConfirmCancel("Do you want to clear all inputs?"))
+                    ResetInputForm();
+
+                return;
             }
 
         }
@@ -514,7 +533,11 @@ namespace JOMonitoringApp.Views.MainForm
             try
             {
                 if (dgJobOrders.Rows.Count == 0 && dgJobOrders.SelectedRows.Count > 0)
+                {
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
+                    byte[] indexArray = BitConverter.GetBytes(previousSelection);
+                }
+                   
             }
             catch (Exception)
             {

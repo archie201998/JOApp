@@ -179,7 +179,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             if (!DesignMode)
             {
-
+                txtAcc1.Focus();
             }
         }
 
@@ -373,10 +373,22 @@ namespace JOMonitoringApp.Views.JobOrder
             else if (txtAcc3.Text.Length == 3 && txtBox == txtAcc3)
                 txtAcc4.Focus();
             else if (txtAcc4.Text.Length == 1 && txtBox == txtAcc4)
-                txtAcc1.Focus();
+                txtAccountName.Focus();
 
             txtAccountNumber.Text = searchKey;
             
+        }
+
+        private void clBoxParticulars_Validating(object sender, CancelEventArgs e)
+        {
+            
+            int selectedParticularCount = clBoxParticulars.SelectedItems.Count;
+
+            if (selectedParticularCount == 0)
+            {
+                errorProvider1.SetError(clBoxParticulars, "No particular selected.");
+                e.Cancel = true;
+            }
         }
     }
 }

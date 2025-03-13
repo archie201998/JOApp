@@ -103,6 +103,13 @@ namespace JOMonitoringApp.Views.JobOrder
             string selectedAccountNumber = dgAccounts.SelectedRows[0].Cells["account_number"].Value.ToString();
             string selectedAddress = dgAccounts.SelectedRows[0].Cells["address"].Value.ToString();
 
+            char[] delimiter = new char[] { '-' };
+            string[] accountNumber = selectedAccountNumber.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+            _ucJobOrder.txtAcc1.Text = accountNumber[0];
+            _ucJobOrder.txtAcc2.Text = accountNumber[1];
+            _ucJobOrder.txtAcc3.Text = accountNumber[2];
+            _ucJobOrder.txtAcc4.Text = accountNumber[3];
+
             _ucJobOrder.isNewAccount = false;
             _ucJobOrder.accountId = selectedAccountId;
             _ucJobOrder.txtAccountName.Text = selectedAccountName;

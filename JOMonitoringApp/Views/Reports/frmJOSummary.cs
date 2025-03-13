@@ -17,6 +17,7 @@ namespace JOMonitoringApp.Views.Reports
     public partial class frmJOStatusSummary : Form
     {
         int monthIndex;
+        
 
         public frmJOStatusSummary()
         {

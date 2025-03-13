@@ -167,6 +167,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal void LoadParticular()
         {
+            clBoxParticulars.Items.Clear();
             var dtAccoutnableForm = Factory.ParticularsRepository().GetRecords();
 
             foreach (DataRow item in dtAccoutnableForm.Rows)

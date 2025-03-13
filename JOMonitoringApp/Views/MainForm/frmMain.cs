@@ -385,7 +385,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAcc4.Clear();
 
 
-
             for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 ucJoborder.clBoxParticulars.SetItemChecked(i, false);
 

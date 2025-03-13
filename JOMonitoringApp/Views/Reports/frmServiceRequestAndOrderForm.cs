@@ -90,20 +90,10 @@ namespace JOMonitoringApp.Views.Reports
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Count;
                 int progressCount = 0;
 
-
-                if (dtJobOrders.Count == 0)
-                {
-                    Helper.MessageBoxError("J.O Number cannot be found.");
-                    progressCount = 100;
-                    return;
-                }
-
-                // Initialize Parameters
                 List<ReportParameter> reportParameters1 = new List<ReportParameter>();
                 progressCount += tasks["Initialize Parameters"];
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
-                // Set Parameter Values
                 var userData = Helper.LoggedInUserData();
                 reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
                 reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
@@ -115,14 +105,8 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
-
-                //char[] delimiters = new char[] { '\\' };
-                //string[] particulars = dtJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-
-                //reportParameters1.Add(new ReportParameter("@paramRequest", "✔️"));
-
                 progressCount += tasks["Set Parameter Values"];
+
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 e.Result = (reportParameters1, new DataTable());
@@ -142,9 +126,6 @@ namespace JOMonitoringApp.Views.Reports
 
                 var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
 
-                if (parameters.dtJOSummary.Rows.Count == 0)
-                    return;
-
                 reportViewer1.Clear();
                 var localReport = reportViewer1.LocalReport;
                 localReport.DataSources.Clear();
@@ -158,6 +139,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.ZoomMode = ZoomMode.Percent;
                 reportViewer1.Refresh();
                 ToogleRunButton(true);
+
 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }

@@ -39,13 +39,11 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.GetError(txtAccountName),
                 errorProvider1.GetError(dtpDate),
                 errorProvider1.GetError(txtJONumber),
-                errorProvider1.GetError(txtMRISNumber),
                 errorProvider1.GetError(txtMRSNumber),
                 errorProvider1.GetError(txtWARNumber),
                 errorProvider1.GetError(cmbxMaterialsIssuedBy),
                 errorProvider1.GetError(cmbxAccomplishedBy),
                 errorProvider1.GetError(clBoxParticulars),
-
             };
 
             return Factory.CreateErrors(errorArray).GenerateErrorMessage();
@@ -130,7 +128,6 @@ namespace JOMonitoringApp.Views.JobOrder
         internal JobOrdersModel JobOrderModel()
         {
             int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
-            //int customerId = isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId;
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
             string orNumber = txtORNumber.Text;
@@ -184,8 +181,33 @@ namespace JOMonitoringApp.Views.JobOrder
             }
         }
 
+        private void TxtWARNumber_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtWARNumber);
+        }
 
         #region Validation
+
+        private void txtAddress_Validating(object sender, CancelEventArgs e)
+        {
+
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAddress, "Address.");
+        }
+
+        private void txtAddress_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAddress);
+        }
+
+        private void TxtAccountName_Validating(object sender, CancelEventArgs e)
+        {
+            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
+        }
+
+        private void TxtAccountName_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtAccountName);
+        }
 
         private void TxtJONumber_Validating(object sender, CancelEventArgs e)
         {
@@ -205,33 +227,16 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             Helper.ClearErrorTextBox(errorProvider1, txtJONumber);
         }
-
-        #endregion
-
-        private void TxtMRISNumber_Validating(object sender, CancelEventArgs e)
-        {
-            if (radAccomplished.Checked)
-                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtMRISNumber, "MRIS Number.");
-        }
-
-        private void TxtMRISNumber_Validated(object sender, EventArgs e)
-        {
-            if (radAccomplished.Checked)
-                Helper.ClearErrorTextBox(errorProvider1, txtMRISNumber);
-        }
-
         private void TxtWARNumber_Validating(object sender, CancelEventArgs e)
         {
             if (radAccomplished.Checked)
             {
                 e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtWARNumber, "WAR Number.");
             }
+            return;
         }
 
-        private void TxtWARNumber_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorTextBox(errorProvider1, txtWARNumber);
-        }
+        #endregion
 
         private void RadPending_CheckedChanged(object sender, EventArgs e)
         {
@@ -259,26 +264,6 @@ namespace JOMonitoringApp.Views.JobOrder
             _ = new frmSearchAccount(this).ShowDialog();
         }
 
-        private void txtAddress_Validating(object sender, CancelEventArgs e)
-        {
-
-            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAddress, "Address.");
-        }
-
-        private void txtAddress_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorTextBox(errorProvider1, txtAddress);
-        }
-
-        private void TxtAccountName_Validating(object sender, CancelEventArgs e)
-        {
-            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
-        }
-
-        private void TxtAccountName_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorTextBox(errorProvider1, txtAccountName);
-        }
 
         private void NumberOnly(object sender, KeyPressEventArgs e)
         {
@@ -288,16 +273,6 @@ namespace JOMonitoringApp.Views.JobOrder
         internal void UcJoborder_KeyPress(object sender, KeyPressEventArgs e)
         {
             _ = new frmSearchAccount(this).ShowDialog();
-        }
-
-        private void txtAccountNumber_Validating(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void txtAccountNumber_Validated(object sender, EventArgs e)
-        {
-             Helper.ClearErrorTextBox(errorProvider1, txtAccountNumber);
         }
 
         private void cbxNA_CheckedChanged(object sender, EventArgs e)
@@ -333,6 +308,8 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             if (radAccomplished.Checked && !string.IsNullOrEmpty(txtWARNumber.Text.Trim()))
                 e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxAccomplishedBy, "Accomplished By.");
+           
+            e.Cancel = false;
         }
 
         private void cmbxAccomplishedBy_Validated(object sender, EventArgs e)
@@ -344,16 +321,13 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             if (!string.IsNullOrEmpty(txtMRISNumber.Text.Trim()))
                 e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxMaterialsIssuedBy, "Issued By.");
+
+            e.Cancel = false;
         }
 
         private void cmbxMaterialsIssuedBy_Validated(object sender, EventArgs e)
         {
             Helper.ClearErrorComboBox(errorProvider1, cmbxMaterialsIssuedBy);
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void txtAcc1_KeyDown(object sender, KeyEventArgs e)

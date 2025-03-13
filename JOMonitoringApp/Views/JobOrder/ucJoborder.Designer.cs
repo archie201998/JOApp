@@ -282,7 +282,6 @@
             this.label14.Size = new System.Drawing.Size(12, 15);
             this.label14.TabIndex = 30;
             this.label14.Text = "-";
-            this.label14.Click += new System.EventHandler(this.label12_Click);
             // 
             // txtAccountName
             // 
@@ -308,7 +307,6 @@
             this.label12.Size = new System.Drawing.Size(12, 15);
             this.label12.TabIndex = 30;
             this.label12.Text = "-";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // btnSearch
             // 

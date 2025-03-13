@@ -10,7 +10,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace JOMonitoringApp.Views.MainForm
 {
@@ -185,16 +184,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            try
-            {
-                HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
-                HelperLoadRecords.StatusCombobox(cmbxStatus);
-                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
-                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
-                cmbxStatus.SelectedValue = 5;
-                OnLoad();
-            }
-            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
+
         }
 
         internal void OnLoad()
@@ -250,19 +240,6 @@ namespace JOMonitoringApp.Views.MainForm
                 _ = new frmSignIn().ShowDialog();
             }
             return;
-        }
-
-        private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (SoftDeleteJO())
-                {
-                    Helper.MessageBoxSuccess($"{dgJobOrders.SelectedRows.Count} Job order/s is successfully deleted.");
-                    OnLoad();
-                }
-            }
-            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
         private bool SoftDeleteJO()
@@ -373,7 +350,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.isNewAccount = true;
 
             btnSave.BackColor = Color.DodgerBlue;
-            btnSave.Text = "Save";
+            btnSave.Text = "Save [Ctrl + S]";
             ucJoborder.isUpdate = false;
 
             dgJobOrders.Enabled = true;
@@ -481,7 +458,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             LoadSelectedData();
             dgJobOrders.Enabled = false;
-            btnSave.Text = "Update";
+            btnSave.Text = "Save [Ctrl + S]";
             btnSave.BackColor = Color.OrangeRed;
             ucJoborder.isUpdate = true;
             previousSelection = dgJobOrders.SelectedRows[0].Index;
@@ -547,6 +524,17 @@ namespace JOMonitoringApp.Views.MainForm
         private void dgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void frmMain_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+           DialogResult result = MessageBox.Show("Are you sure you want to exit?",
+                                         "Confirm Exit",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+                e.Cancel = true; 
         }
     }
 }

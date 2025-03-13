@@ -201,7 +201,11 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void TxtAccountName_Validating(object sender, CancelEventArgs e)
         {
-            e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
+            if (string.IsNullOrEmpty(txtAccountName.Text))
+            {
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtAccountName, "Account Name.");
+            }
+            e.Cancel = false;
         }
 
         private void TxtAccountName_Validated(object sender, EventArgs e)

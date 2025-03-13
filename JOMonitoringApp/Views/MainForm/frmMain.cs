@@ -184,7 +184,16 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
+            try
+            {
+                HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
+                HelperLoadRecords.StatusCombobox(cmbxStatus);
+                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+                cmbxStatus.SelectedValue = 5;
+                OnLoad();
+            }
+            catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
         internal void OnLoad()

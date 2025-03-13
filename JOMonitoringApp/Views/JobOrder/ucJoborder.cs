@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using JOMonitoringApp.Model;
 using AccountingSystem;
-using System.Linq.Expressions;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
@@ -360,7 +359,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void clBoxParticulars_Validating(object sender, CancelEventArgs e)
         {
-            
             int selectedParticularCount = clBoxParticulars.SelectedItems.Count;
 
             if (selectedParticularCount == 0)
@@ -368,6 +366,12 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.SetError(clBoxParticulars, "No particular selected.");
                 e.Cancel = true;
             }
+            e.Cancel = false;
+        }
+
+        private void clBoxParticulars_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(clBoxParticulars, string.Empty);
         }
     }
 }

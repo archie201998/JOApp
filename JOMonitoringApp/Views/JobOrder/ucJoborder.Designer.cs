@@ -42,16 +42,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.cbxNA = new System.Windows.Forms.CheckBox();
             this.txtAcc4 = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.txtAccountName = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtAcc3 = new System.Windows.Forms.TextBox();
             this.txtAcc2 = new System.Windows.Forms.TextBox();
             this.txtAcc1 = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
@@ -234,17 +234,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ACCOUNT DETAILS";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(194, 46);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(12, 15);
-            this.label16.TabIndex = 32;
-            this.label16.Text = "-";
-            // 
             // cbxNA
             // 
             this.cbxNA.AutoSize = true;
@@ -272,17 +261,6 @@
             this.txtAcc4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc4.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.Transparent;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(297, 46);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(12, 15);
-            this.label14.TabIndex = 30;
-            this.label14.Text = "-";
-            // 
             // txtAccountName
             // 
             this.txtAccountName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -296,17 +274,6 @@
             this.txtAccountName.TabIndex = 5;
             this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountName_Validating);
             this.txtAccountName.Validated += new System.EventHandler(this.TxtAccountName_Validated);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(245, 46);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(12, 15);
-            this.label12.TabIndex = 30;
-            this.label12.Text = "-";
             // 
             // btnSearch
             // 
@@ -374,6 +341,39 @@
             this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
             this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(194, 46);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(12, 15);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "-";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(297, 46);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(12, 15);
+            this.label14.TabIndex = 30;
+            this.label14.Text = "-";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(245, 46);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(12, 15);
+            this.label12.TabIndex = 30;
+            this.label12.Text = "-";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.clBoxParticulars);
@@ -409,6 +409,7 @@
             this.clBoxParticulars.Size = new System.Drawing.Size(199, 116);
             this.clBoxParticulars.TabIndex = 1;
             this.clBoxParticulars.Validating += new System.ComponentModel.CancelEventHandler(this.clBoxParticulars_Validating);
+            this.clBoxParticulars.Validated += new System.EventHandler(this.clBoxParticulars_Validated);
             // 
             // txtWARNumber
             // 

@@ -305,10 +305,14 @@ namespace JOMonitoringApp.Views.MainForm
 
             char[] delimiter = new char[] { '-' };
             string[] accountNumber = dictJobOrders["account_number"].ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-            ucJoborder.txtAcc1.Text = accountNumber[0];
-            ucJoborder.txtAcc2.Text = accountNumber[1];
-            ucJoborder.txtAcc3.Text = accountNumber[2];
-            ucJoborder.txtAcc4.Text = accountNumber[3];
+            bool noAccountNumber = string.IsNullOrEmpty(dictJobOrders["account_number"].ToString());
+
+
+            ucJoborder.txtAcc1.Text = noAccountNumber ? string.Empty : accountNumber[0];
+            ucJoborder.txtAcc2.Text = noAccountNumber ? string.Empty : accountNumber[1];
+            ucJoborder.txtAcc3.Text = noAccountNumber ? string.Empty : accountNumber[2];
+            ucJoborder.txtAcc4.Text = noAccountNumber ? string.Empty : accountNumber[3];
+
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
             ucJoborder.txtMRISNumber.Text = dictJobOrders["mris"];

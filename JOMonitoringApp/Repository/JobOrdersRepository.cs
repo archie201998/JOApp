@@ -12,8 +12,8 @@ namespace JOMonitoringApp
     internal class JobOrdersRepository : IJobOrdersRepository
     {
         private GenericCommands mySqlGenericCommands;
-        private string tableName = "tbl_job_orders";
-        private string viewTableName = "view_job_orders";
+        private readonly string tableName = "tbl_job_orders";
+        private readonly string viewTableName = "view_job_orders";
 
         public JobOrdersRepository(GenericCommands mySqlGenericCommands)
         {
@@ -164,19 +164,6 @@ namespace JOMonitoringApp
 
             string query = $"INSERT INTO {tableName} (customers_id,  particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
-        }
-
-
-        public bool SoftDeleteJOById(int jobOrderId, int deletedBy)
-        {
-            var parameters = new object[][]
-            {
-                new object[] { "@job_order_id", DbType.Int32, jobOrderId},
-                new object[] { "@deleted_by", DbType.Int32, deletedBy},
-            };
-
-            string query = $"UPDATE {tableName} SET is_deleted = 1,  deleted_by = @deleted_by WHERE id = @job_order_id";
-            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public bool SoftDeleteJOById(List<JobOrdersModel> entityList)

@@ -461,10 +461,22 @@ namespace JOMonitoringApp.Views.MainForm
             ucDashboardSummaryView.LoadAndDisplaySummary(Convert.ToInt32(ucDashboardSummaryView.nudYear.Value), Convert.ToInt32(ucDashboardSummaryView.cmbxMonth.SelectedIndex));
         }
 
+        private void SetPermissions()
+        {
+            ucJoborder.txtJONumber.Enabled = Helper.HasPermission("JO NUMBER");
+            ucJoborder.txtWARNumber.Enabled = Helper.HasPermission("WAR");
+            ucJoborder.clBoxParticulars.Enabled = Helper.HasPermission("PARTICULAR");
+            ucJoborder.txtMRISNumber.Enabled = Helper.HasPermission("MIRS");
+            ucJoborder.txtMRSNumber.Enabled = Helper.HasPermission("MIR");
+
+            ucJoborder.gbAccountDetails.Enabled = Helper.HasPermission("JO CUSTOMER");
+        }
+
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
             if (dgJobOrders.Rows.Count == 0) return;
 
+            //SetPermissions();
             LoadSelectedData();
             dgJobOrders.Enabled = false;
             btnSave.Text = "Save [Ctrl + S]";

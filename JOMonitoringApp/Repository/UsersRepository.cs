@@ -13,6 +13,7 @@ namespace JOMonitoringApp
         private readonly GenericCommands mySqlGenericCommands;
         readonly string tableName = "tbl_users";
         private readonly string viewTableName = "view_users";
+        private readonly string viewTableName2 = "view_roles_has_permission";
 
 
         public UsersRepository(GenericCommands mySqlGenericCommands)
@@ -72,6 +73,23 @@ namespace JOMonitoringApp
         public DataTable GetRecordsBySearch(string searchText)
         {
             throw new System.NotImplementedException();
+        }
+
+        public bool HasPermission(byte userId, string permissionName)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@user_id", DbType.Byte, userId },
+                new object[] { "@permission", DbType.String, permissionName},
+            };
+
+            string query = $"SELECT role_id FROM {viewTableName2} WHERE user_id = @user_id AND permission = @permission";
+            string queryResult = mySqlGenericCommands.ExecuteScalar(query, parameters);
+
+            // if query is not null, means found some record, so true
+            if (!string.IsNullOrEmpty(queryResult)) return true;
+
+            return false;
         }
 
         public bool IdExist(int id)

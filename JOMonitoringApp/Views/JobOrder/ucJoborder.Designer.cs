@@ -41,7 +41,7 @@
             this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbAccountDetails = new System.Windows.Forms.GroupBox();
             this.cbxNA = new System.Windows.Forms.CheckBox();
             this.txtAcc4 = new System.Windows.Forms.TextBox();
             this.txtAccountName = new System.Windows.Forms.TextBox();
@@ -75,7 +75,7 @@
             this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            this.gbAccountDetails.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -210,29 +210,29 @@
             this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtAddress_Validating);
             this.txtAddress.Validated += new System.EventHandler(this.txtAddress_Validated);
             // 
-            // groupBox1
+            // gbAccountDetails
             // 
-            this.groupBox1.Controls.Add(this.cbxNA);
-            this.groupBox1.Controls.Add(this.txtAcc4);
-            this.groupBox1.Controls.Add(this.txtAccountName);
-            this.groupBox1.Controls.Add(this.btnSearch);
-            this.groupBox1.Controls.Add(this.txtAcc3);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtAcc2);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.txtAddress);
-            this.groupBox1.Controls.Add(this.txtAcc1);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label12);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(21, 19);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(389, 154);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "ACCOUNT DETAILS";
+            this.gbAccountDetails.Controls.Add(this.cbxNA);
+            this.gbAccountDetails.Controls.Add(this.txtAcc4);
+            this.gbAccountDetails.Controls.Add(this.txtAccountName);
+            this.gbAccountDetails.Controls.Add(this.btnSearch);
+            this.gbAccountDetails.Controls.Add(this.txtAcc3);
+            this.gbAccountDetails.Controls.Add(this.label1);
+            this.gbAccountDetails.Controls.Add(this.txtAcc2);
+            this.gbAccountDetails.Controls.Add(this.label8);
+            this.gbAccountDetails.Controls.Add(this.txtAddress);
+            this.gbAccountDetails.Controls.Add(this.txtAcc1);
+            this.gbAccountDetails.Controls.Add(this.label7);
+            this.gbAccountDetails.Controls.Add(this.label16);
+            this.gbAccountDetails.Controls.Add(this.label14);
+            this.gbAccountDetails.Controls.Add(this.label12);
+            this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbAccountDetails.Location = new System.Drawing.Point(21, 19);
+            this.gbAccountDetails.Name = "gbAccountDetails";
+            this.gbAccountDetails.Size = new System.Drawing.Size(389, 154);
+            this.gbAccountDetails.TabIndex = 0;
+            this.gbAccountDetails.TabStop = false;
+            this.gbAccountDetails.Text = "ACCOUNT DETAILS";
             // 
             // cbxNA
             // 
@@ -634,15 +634,15 @@
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.txtAccountNumber);
             this.Name = "ucJoborder";
             this.Size = new System.Drawing.Size(427, 693);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbAccountDetails.ResumeLayout(false);
+            this.gbAccountDetails.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -681,7 +681,7 @@
         internal System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
         internal System.Windows.Forms.TextBox txtWARNumber;
         internal System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.GroupBox groupBox1;
+        internal System.Windows.Forms.GroupBox gbAccountDetails;
         internal System.Windows.Forms.GroupBox groupBox3;
         internal System.Windows.Forms.GroupBox groupBox4;
         internal System.Windows.Forms.RadioButton radPending;

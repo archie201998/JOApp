@@ -28,18 +28,8 @@ namespace AccountingSystem
 
         public static bool HasPermission(string permissionName)
         {
-            try
-            {
-                //return Factory.UsersRepository().HasPermission(userId, permissionName);
-            }
-            catch (Exception ex)
-            {
-                MessageBoxError(ex.Message);
-            }
-
-            return false;
+            return Factory.UsersRepository().HasPermission(UserId, permissionName);
         }
-
         public static Dictionary<string, string> GetUserDataById(int userId)
         {
             var dictUser = new Dictionary<string, string>();

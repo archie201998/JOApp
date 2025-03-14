@@ -179,5 +179,9 @@ namespace JOMonitoringApp.Views.Reports
             monthIndex = cmbxMonth.SelectedIndex;
         }
 
+        private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

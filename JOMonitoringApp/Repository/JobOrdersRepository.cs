@@ -116,7 +116,7 @@ namespace JOMonitoringApp
 
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
 
-            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 ORDER BY job_order_no  ASC LIMIT @row_filter ";
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

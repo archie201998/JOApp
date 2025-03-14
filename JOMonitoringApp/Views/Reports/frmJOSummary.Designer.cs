@@ -33,6 +33,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.radDate = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.radJo = new System.Windows.Forms.RadioButton();
             this.cmbxParticular = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cmbxMonth = new System.Windows.Forms.ComboBox();
@@ -41,9 +44,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.radJo = new System.Windows.Forms.RadioButton();
-            this.radDate = new System.Windows.Forms.RadioButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
@@ -113,6 +113,44 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(980, 31);
             this.panel1.TabIndex = 12;
+            // 
+            // radDate
+            // 
+            this.radDate.AutoSize = true;
+            this.radDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radDate.Location = new System.Drawing.Point(770, 8);
+            this.radDate.Name = "radDate";
+            this.radDate.Size = new System.Drawing.Size(53, 17);
+            this.radDate.TabIndex = 17;
+            this.radDate.Tag = "date";
+            this.radDate.Text = "DATE";
+            this.radDate.UseVisualStyleBackColor = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(579, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(83, 13);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "ORDER BY : ";
+            // 
+            // radJo
+            // 
+            this.radJo.AutoSize = true;
+            this.radJo.Checked = true;
+            this.radJo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radJo.Location = new System.Drawing.Point(672, 8);
+            this.radJo.Name = "radJo";
+            this.radJo.Size = new System.Drawing.Size(90, 17);
+            this.radJo.TabIndex = 16;
+            this.radJo.TabStop = true;
+            this.radJo.Tag = "job_order_no";
+            this.radJo.Text = "J.O NUMBER";
+            this.radJo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radJo.UseVisualStyleBackColor = true;
             // 
             // cmbxParticular
             // 
@@ -200,44 +238,6 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(579, 10);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "ORDER BY : ";
-            // 
-            // radJo
-            // 
-            this.radJo.AutoSize = true;
-            this.radJo.Checked = true;
-            this.radJo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radJo.Location = new System.Drawing.Point(672, 8);
-            this.radJo.Name = "radJo";
-            this.radJo.Size = new System.Drawing.Size(90, 17);
-            this.radJo.TabIndex = 16;
-            this.radJo.TabStop = true;
-            this.radJo.Tag = "job_order_no";
-            this.radJo.Text = "J.O NUMBER";
-            this.radJo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radJo.UseVisualStyleBackColor = true;
-            // 
-            // radDate
-            // 
-            this.radDate.AutoSize = true;
-            this.radDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radDate.Location = new System.Drawing.Point(770, 8);
-            this.radDate.Name = "radDate";
-            this.radDate.Size = new System.Drawing.Size(53, 17);
-            this.radDate.TabIndex = 17;
-            this.radDate.Tag = "date";
-            this.radDate.Text = "DATE";
-            this.radDate.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 

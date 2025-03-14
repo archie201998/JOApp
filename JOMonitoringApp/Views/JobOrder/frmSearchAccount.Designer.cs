@@ -179,7 +179,7 @@
             this.dgAccounts.Location = new System.Drawing.Point(15, 67);
             this.dgAccounts.Name = "dgAccounts";
             this.dgAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgAccounts.Size = new System.Drawing.Size(357, 318);
+            this.dgAccounts.Size = new System.Drawing.Size(357, 241);
             this.dgAccounts.TabIndex = 5;
             this.dgAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellContentClick);
             this.dgAccounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellDoubleClick);
@@ -190,7 +190,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 397);
+            this.ClientSize = new System.Drawing.Size(389, 320);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAcc4);
             this.Controls.Add(this.txtAcc3);

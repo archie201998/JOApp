@@ -5,6 +5,7 @@ using System.Transactions;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
 {
@@ -123,6 +124,19 @@ namespace JOMonitoringApp
         public DataTable GetViewRecordsBySearch(string searchText)
         {
             throw new System.NotImplementedException();
+        }
+
+        public DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string orderBy)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@month_index", DbType.Int32, monthIndex},
+                new object[] { "@particular", DbType.String, $"%{particulars}%"},
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE MONTH(date) = @month_index AND particular LIKE @particular AND is_deleted = 0 ORDER BY {orderBy} DESC";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
         public bool IdExist(int id)

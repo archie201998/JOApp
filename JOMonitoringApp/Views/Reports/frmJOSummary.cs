@@ -35,6 +35,17 @@ namespace JOMonitoringApp.Views.Reports
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
             LoadMonths();
+            LoadParticulars();
+        }
+
+        private void LoadParticulars()
+        {
+            cmbxParticular.Items.Clear();
+            var dtParticulars = Factory.ParticularsRepository().GetRecords();
+
+            cmbxParticular.DataSource = dtParticulars;
+            cmbxParticular.DisplayMember = "particular";
+            cmbxParticular.ValueMember = "id";
         }
 
         private void LoadMonths()
@@ -83,7 +94,11 @@ namespace JOMonitoringApp.Views.Reports
                 };
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
+                //var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
+                string orderBy = radJo.Checked ? radJo.Tag.ToString() : radDate.Tag.ToString();
+                string particular = cmbxParticular.Text;
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(monthIndex + 1, particular, orderBy);
+
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
 
@@ -154,6 +169,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.Refresh();
                 ToogleRunButton(true);
 
+                lblRecordsCount.Text = parameters.dtJOSummary.Rows.Count.ToString();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

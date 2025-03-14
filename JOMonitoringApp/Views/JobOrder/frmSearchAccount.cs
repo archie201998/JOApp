@@ -169,6 +169,27 @@ namespace JOMonitoringApp.Views.JobOrder
                 SelectData();
             }
 
+            else if (e.KeyCode == Keys.Left)
+            {
+                if (txtBox == txtAcc2)
+                    txtAcc1.Focus();
+                else if (txtBox == txtAcc3)
+                    txtAcc2.Focus();
+                else if (txtBox == txtAcc4)
+                    txtAcc3.Focus();
+            }
+
+            else if (e.KeyCode == Keys.Right)
+            {
+                if (txtBox == txtAcc1)
+                    txtAcc2.Focus();
+                else if (txtBox == txtAcc2)
+                    txtAcc3.Focus();
+                else if (txtBox == txtAcc3)
+                    txtAcc4.Focus();
+            }
+
+
             else if (e.KeyCode == Keys.Down)
             {
                 dgAccounts.Focus();

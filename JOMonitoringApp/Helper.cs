@@ -4,6 +4,8 @@ using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -16,7 +18,13 @@ namespace AccountingSystem
     public static class Helper
     {
         public static byte UserId { get; internal set; }
-        
+
+
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(ConfigurationManager.ConnectionStrings["water_system_main"].ConnectionString);
+        }
 
         public static bool HasPermission(string permissionName)
         {

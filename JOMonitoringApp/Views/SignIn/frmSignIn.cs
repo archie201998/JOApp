@@ -22,8 +22,11 @@ namespace JOMonitoringApp
 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
+        
             try
             {
+          
+
                 ValidateLoginCredentials();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }

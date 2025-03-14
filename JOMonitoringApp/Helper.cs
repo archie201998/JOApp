@@ -54,64 +54,6 @@ namespace AccountingSystem
             form.Icon = JOMonitoringApp.Properties.Resources.Your_paragraph_text__4_;
         }
 
-
-        public static void DatagridDefaultStyle(DataGridView dgv, Boolean Fill = false)
-        {
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.AllowUserToOrderColumns = false;
-            dgv.AllowUserToResizeColumns = true;
-            dgv.BackgroundColor = Color.White;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.FromKnownColor(KnownColor.Control);
-            dgv.ReadOnly = true;
-            dgv.SelectionMode = DataGridViewSelectionMode.RowHeaderSelect;
-            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-            dgv.AllowUserToResizeRows = false;
-            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgv.RowHeadersWidth = 25;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            //dgv.ColumnHeadersHeight = 30;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-
-            if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        public static void DatagridEditableRowStyle(DataGridView dgv, Boolean Fill = false)
-        {
-            dgv.EnableHeadersVisualStyles = false;
-            dgv.AllowUserToAddRows = false;
-            dgv.AllowUserToDeleteRows = false;
-            dgv.AllowUserToOrderColumns = false;
-            dgv.AllowUserToResizeColumns = true;
-            dgv.BackgroundColor = Color.White;
-            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.FromKnownColor(KnownColor.Control);
-            dgv.BorderStyle = BorderStyle.FixedSingle;
-            dgv.ReadOnly = false;
-            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgv.AllowUserToResizeRows = false;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.White);
-            dgv.RowTemplate.Height = 20;
-            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.White);
-            dgv.RowTemplate.Height = 20;
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
-            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
-            dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
-            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dgv.RowHeadersWidth = 25;
-            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
-            dgv.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Outset;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
-            if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
         public static void DatagridFullRowSelectStyle(DataGridView dgv, bool Fill = false, bool isReadOnly = true, bool showRowHeader = false)
         {
             dgv.RowHeadersVisible = showRowHeader;
@@ -122,7 +64,8 @@ namespace AccountingSystem
             dgv.AllowUserToResizeColumns = true;
             dgv.BackgroundColor = Color.White;
             dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dgv.GridColor = Color.FromKnownColor(KnownColor.Control);
+            //dgv.GridColor = Color.FromKnownColor(KnownColor.Control);
+            dgv.GridColor = Color.White;
             dgv.BorderStyle = BorderStyle.Fixed3D;
             dgv.ReadOnly = isReadOnly;
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -131,16 +74,16 @@ namespace AccountingSystem
             dgv.RowTemplate.Height = 20;
             dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
             dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
-            dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
+            //dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.GradientInactiveCaption);
+            //dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            //dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
             dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dgv.RowHeadersWidth = 25;
             dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
-            dgv.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Outset;
-            dgv.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
-            dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
+            //dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.WhiteSmoke;
+            //dgv.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Outset;
+            //dgv.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
+            //dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
 
             if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }

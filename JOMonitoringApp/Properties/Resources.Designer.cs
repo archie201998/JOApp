@@ -19,7 +19,7 @@ namespace JOMonitoringApp.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -73,6 +73,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap invisible_16px {
+            get {
+                object obj = ResourceManager.GetObject("invisible_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap thumbnail_PAMANA_COREL {
             get {
                 object obj = ResourceManager.GetObject("thumbnail_PAMANA_COREL", resourceCulture);
@@ -96,6 +106,16 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap thumbnail_PAWAD_COREL {
             get {
                 object obj = ResourceManager.GetObject("thumbnail_PAWAD_COREL", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap visible_16px {
+            get {
+                object obj = ResourceManager.GetObject("visible_16px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

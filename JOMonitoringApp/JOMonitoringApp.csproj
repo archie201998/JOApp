@@ -253,6 +253,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Resources\visible-16px.png" />
+    <None Include="Resources\invisible-16px.png" />
     <None Include="JOMonitoringApp_1_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\btn-search.png" />

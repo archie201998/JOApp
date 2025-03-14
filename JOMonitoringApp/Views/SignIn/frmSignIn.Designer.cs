@@ -41,6 +41,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnShowHide = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -76,7 +77,7 @@
             // 
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtPassword.Location = new System.Drawing.Point(90, 118);
+            this.txtPassword.Location = new System.Drawing.Point(90, 117);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(200, 21);
@@ -86,7 +87,7 @@
             // 
             this.txtUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtUserName.Location = new System.Drawing.Point(90, 92);
+            this.txtUserName.Location = new System.Drawing.Point(90, 90);
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(200, 21);
             this.txtUserName.TabIndex = 0;
@@ -189,6 +190,22 @@
             this.label3.TabIndex = 10;
             this.label3.Text = "Please enter your user name and password!";
             // 
+            // btnShowHide
+            // 
+            this.btnShowHide.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShowHide.FlatAppearance.BorderSize = 0;
+            this.btnShowHide.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnShowHide.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnShowHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowHide.Image = global::JOMonitoringApp.Properties.Resources.visible_16px;
+            this.btnShowHide.Location = new System.Drawing.Point(290, 114);
+            this.btnShowHide.Name = "btnShowHide";
+            this.btnShowHide.Size = new System.Drawing.Size(28, 30);
+            this.btnShowHide.TabIndex = 11;
+            this.btnShowHide.TabStop = false;
+            this.btnShowHide.UseVisualStyleBackColor = true;
+            this.btnShowHide.Click += new System.EventHandler(this.btnShowHide_Click);
+            // 
             // frmSignIn
             // 
             this.AcceptButton = this.btnSignIn;
@@ -196,6 +213,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(332, 208);
+            this.Controls.Add(this.btnShowHide);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -236,6 +254,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnShowHide;
     }
 }
 

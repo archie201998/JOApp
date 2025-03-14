@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Properties;
 using JOMonitoringApp.Views.MainForm;
 using System;
 using System.Collections.Generic;
@@ -62,5 +63,26 @@ namespace JOMonitoringApp
 
         }
 
+        private void btnShowHide_Click(object sender, EventArgs e)
+        {
+            ToggleCharVisibility(txtPassword, btnShowHide);
+        }
+
+        private void ToggleCharVisibility(TextBox textBox, Button button)
+        {
+            Image invisibleImage = Resources.invisible_16px;
+            Image visibleImage = Resources.visible_16px;
+
+            if (textBox.PasswordChar == '•')
+            {
+                button.Image = invisibleImage;
+                textBox.PasswordChar = default(char);
+            }
+            else
+            {
+                button.Image = visibleImage;
+                textBox.PasswordChar = '•';
+            }
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace JOMonitoringApp.Interface
     public interface IJOLogsRepository : IRepository<JOLogsModel>
     {
         DataTable GetRecordsByJONumber(int JONumber);
+
+        Dictionary<string, string> GetLogsByJONumber(int JONumber);
     }
 }

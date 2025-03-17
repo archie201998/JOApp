@@ -65,5 +65,29 @@ namespace JOMonitoringApp
         {
             throw new System.NotImplementedException();
         }
+
+        public Dictionary<string, string> GetLogsByJONumber(int JONumber)
+        {
+            var recordDictionary = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_no", DbType.Int32, JONumber }
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @job_order_no";
+
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                foreach (DataColumn column in dataTable.Columns)
+                    recordDictionary[column.ColumnName] = row[column].ToString();
+
+                return recordDictionary;
+            }
+            return recordDictionary;
+        }
     }
 }

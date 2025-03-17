@@ -8,21 +8,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class frmJOProgressTracking: Form
     {
+        string _joNumber;
         public frmJOProgressTracking()
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            Helper.DataGrivBlankStyle(dgJobOrderStatusDetails);
+            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails);
         }
 
         private void frmJOProgressTracking_Load(object sender, EventArgs e)
         {
-
+            txtJONumber.Focus();
         }
 
         private void txtJONumber_TextChanged(object sender, EventArgs e)
@@ -30,13 +32,51 @@ namespace JOMonitoringApp.Views.JobOrder
             
         }
 
+        private DataColumn[] JobOrdersColumns()
+        {
+            return new DataColumn[]
+            {
+                new DataColumn("log_id", typeof (int)),
+                new DataColumn("date_and_time", typeof(DateTime)),
+                new DataColumn("transaction_event", typeof(string))
+            };
+        }
+
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            int jobOrderNumber = Convert.ToInt32(txtJONumber.Text);
+            _joNumber = txtJONumber.Text;
+            if (string.IsNullOrEmpty(_joNumber))
+            {
+                Helper.MessageBoxError("Please enter a job order number.");
+                return;
+            }
 
-            var dtJobOrdersLogs = Factory.JOLogsRepository().GetRecordsByJONumber(jobOrderNumber);
+            var dataTableJobOrderLogs = Factory.JOLogsRepository().GetRecordsByJONumber(Convert.ToInt32(_joNumber));
+            var dataTable = new DataTable();
+            dataTable.Columns.AddRange(JobOrdersColumns());
 
-            HelperLoadRecords.JobOrderTrackingDataGrid(dgJobOrderStatusDetails, dtJobOrdersLogs);
+            foreach (DataRow row in dataTableJobOrderLogs.Rows)
+            {
+
+                var newRow = dataTable.NewRow();
+                int id = Convert.ToInt32(row["log_id"]);
+                int joNumberId = Convert.ToInt32(row["job_orders_id"]);
+                string user = row["user_name"].ToString();
+
+                DateTime dateAndTime = Convert.ToDateTime(row["date_and_time"]);
+                string transactionEvent = row["transaction_event"].ToString();
+                int joNumber = Convert.ToInt32(row["job_order_no"]);
+                DateTime joDate = Convert.ToDateTime(row["date"]);
+
+                newRow["log_id"] = id;
+                newRow["date_and_time"] = dateAndTime;
+                newRow["transaction_event"] = $"J.O No. { joNumber } {transactionEvent} by { user } ";
+              
+                dataTable.Rows.Add(newRow);
+            }
+
+            HelperLoadRecords.JobOrderTrackingDataGrid(dgJobOrderStatusDetails, dataTable);
 
 
         }

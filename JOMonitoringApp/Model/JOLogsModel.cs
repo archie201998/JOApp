@@ -8,6 +8,11 @@ namespace JOMonitoringApp.Model
 {
     public class JOLogsModel
     {
+        public int LogId { get; set; }
+        public string TransactionEvent { get; set; }
+        public DateTime DateAndTime { get; set; }
+        public int JobOrderId { get; set; }
+        public int UserId { get; set; }
 
     }
 }

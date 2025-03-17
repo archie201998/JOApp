@@ -37,12 +37,15 @@
             // 
             // dgJobOrderStatusDetails
             // 
+            this.dgJobOrderStatusDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgJobOrderStatusDetails.BackgroundColor = System.Drawing.Color.White;
             this.dgJobOrderStatusDetails.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgJobOrderStatusDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJobOrderStatusDetails.Location = new System.Drawing.Point(12, 47);
             this.dgJobOrderStatusDetails.Name = "dgJobOrderStatusDetails";
-            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(793, 407);
+            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(462, 407);
             this.dgJobOrderStatusDetails.TabIndex = 0;
             // 
             // label1
@@ -60,13 +63,12 @@
             this.txtJONumber.Location = new System.Drawing.Point(97, 14);
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(149, 20);
-            this.txtJONumber.TabIndex = 2;
+            this.txtJONumber.TabIndex = 0;
             this.txtJONumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtJONumber.TextChanged += new System.EventHandler(this.txtJONumber_TextChanged);
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -75,7 +77,7 @@
             this.btnSearch.Location = new System.Drawing.Point(251, 13);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
-            this.btnSearch.TabIndex = 14;
+            this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -85,7 +87,7 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 466);
+            this.ClientSize = new System.Drawing.Size(490, 466);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtJONumber);
             this.Controls.Add(this.label1);

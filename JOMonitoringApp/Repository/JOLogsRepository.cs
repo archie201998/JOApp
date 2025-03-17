@@ -89,5 +89,10 @@ namespace JOMonitoringApp
             }
             return recordDictionary;
         }
+
+        public bool RecordLog(string v)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

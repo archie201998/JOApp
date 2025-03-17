@@ -58,7 +58,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
             foreach (DataRow row in dataTableJobOrderLogs.Rows)
             {
-
                 var newRow = dataTable.NewRow();
                 int id = Convert.ToInt32(row["log_id"]);
                 int joNumberId = Convert.ToInt32(row["job_orders_id"]);

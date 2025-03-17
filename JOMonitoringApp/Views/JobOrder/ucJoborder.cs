@@ -124,6 +124,16 @@ namespace JOMonitoringApp.Views.JobOrder
             return particular;
         }
 
+        internal JOLogsModel JOLogsModel(bool isSave)
+        {
+            return new JOLogsModel()
+            {
+                TransactionEvent = Helper.LogMessage(true),
+                DateAndTime = DateTime.Now,
+                UserId = Helper.UserId
+            };
+        }
+
         internal JobOrdersModel JobOrderModel()
         {
             int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);

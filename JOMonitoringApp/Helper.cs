@@ -1,6 +1,7 @@
 ﻿
 using JOMonitoringApp;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Org.BouncyCastle.Asn1.IsisMtt;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +20,16 @@ namespace AccountingSystem
     {
         public static byte UserId { get; internal set; }
 
+
+        public static string LogMessage(bool isInsert)
+        {
+            if (isInsert)
+            {
+                return "Updated";
+            }
+
+            return "Added";
+        }
 
 
         public static SqlConnection GetConnection()

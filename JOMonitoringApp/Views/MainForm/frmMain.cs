@@ -75,7 +75,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             };
         }
-
+                                            
         private (string searchKey,int rowFilter, int statusId) LoadJobOrdersParameters()
         {
             string searchKey = txtSearch.Text.Trim();
@@ -84,7 +84,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             return (searchKey, rowFilter, statusId);
         }
-
+                                                    
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -338,8 +338,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
-        
-
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             ResetInputForm();
@@ -393,6 +391,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
+   
         private void ButtonSaveTrigger()
         {
             try
@@ -404,6 +403,7 @@ namespace JOMonitoringApp.Views.MainForm
                         Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         OnLoad();
                         ResetInputForm();
+                        Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(true));
                     }
                 }
                 else
@@ -421,6 +421,7 @@ namespace JOMonitoringApp.Views.MainForm
                         }
 
                         ResetInputForm();
+                        Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(false));
                     }
                 }
             }

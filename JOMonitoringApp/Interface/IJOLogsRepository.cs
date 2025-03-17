@@ -13,5 +13,6 @@ namespace JOMonitoringApp.Interface
         DataTable GetRecordsByJONumber(int JONumber);
 
         Dictionary<string, string> GetLogsByJONumber(int JONumber);
+        bool RecordLog(string v);
     }
 }

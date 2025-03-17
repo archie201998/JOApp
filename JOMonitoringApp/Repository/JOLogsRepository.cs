@@ -41,7 +41,7 @@ namespace JOMonitoringApp
                 new object[] { "@job_order_no", DbType.Int32, JONumber }
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @job_order_no";
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @job_order_no ORDER BY date_and_time DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

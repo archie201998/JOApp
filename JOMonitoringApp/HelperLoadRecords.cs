@@ -17,12 +17,19 @@ namespace JOMonitoringApp
 
 
             dataGridView.Columns["log_id"].Visible = false;
-            dataGridView.Columns["transaction_event"].Visible = false;
             dataGridView.Columns["job_orders_id"].Visible = false;
-            dataGridView.Columns["particular"].Visible = false;
-            dataGridView.Columns["job_order_no"].Visible = false;
-            dataGridView.Columns["date"].Visible = false;
-            dataGridView.Columns["user_name"].Visible = false;
+            dataGridView.Columns["job_order_no"].Visible = true;
+            dataGridView.Columns["transaction_event"].Visible = true;
+            dataGridView.Columns["date_and_time"].Visible = true;
+            dataGridView.Columns["particular"].Visible = true;
+            dataGridView.Columns["date"].Visible = true;
+            dataGridView.Columns["user_name"].Visible = true;
+
+
+            dataGridView.Columns["transaction_event"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["transaction_event"].HeaderText = "EVENT";
+            dataGridView.Columns["transaction_event"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["transaction_event"].MinimumWidth = 150;
 
             //dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             //dataGridView.Columns["status"].HeaderText = "STATUS";

@@ -36,8 +36,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
             var dtJobOrdersLogs = Factory.JOLogsRepository().GetRecordsByJONumber(jobOrderNumber);
 
-            MessageBox.Show($"{jobOrderNumber} dtJobOrdersLogs " + dtJobOrdersLogs.Rows.Count);
-
             HelperLoadRecords.JobOrderTrackingDataGrid(dgJobOrderStatusDetails, dtJobOrdersLogs);
 
 

@@ -42,7 +42,7 @@
             this.dgJobOrderStatusDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJobOrderStatusDetails.Location = new System.Drawing.Point(12, 47);
             this.dgJobOrderStatusDetails.Name = "dgJobOrderStatusDetails";
-            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(310, 376);
+            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(793, 407);
             this.dgJobOrderStatusDetails.TabIndex = 0;
             // 
             // label1
@@ -72,7 +72,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(252, 14);
+            this.btnSearch.Location = new System.Drawing.Point(251, 13);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 14;
@@ -82,9 +82,10 @@
             // 
             // frmJOProgressTracking
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(338, 439);
+            this.ClientSize = new System.Drawing.Size(821, 466);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtJONumber);
             this.Controls.Add(this.label1);

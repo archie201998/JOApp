@@ -18,7 +18,9 @@ namespace JOMonitoringApp.Views.Reports
     {
         int monthIndex;
         string particular;
-        
+        string statusFilter = "status = 4";
+
+
 
         public frmJOStatusSummary()
         {
@@ -37,6 +39,7 @@ namespace JOMonitoringApp.Views.Reports
         {
             LoadMonths();
             LoadParticulars();
+            CheckStatus();
         }
 
         private void LoadParticulars()
@@ -44,6 +47,7 @@ namespace JOMonitoringApp.Views.Reports
             cmbxParticular.Items.Clear();
             var dtParticulars = Factory.ParticularsRepository().GetRecords();
 
+            dtParticulars.Rows.Add(0, "All");
             cmbxParticular.DataSource = dtParticulars;
             cmbxParticular.DisplayMember = "particular";
             cmbxParticular.ValueMember = "id";
@@ -80,7 +84,13 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
-                LoadReport();
+                if (cb1.Checked || cb2.Checked || cb3.Checked || cb4.Checked)
+                {
+                    LoadReport();
+                    return;
+                }
+                Helper.MessageBoxError("Please select at least one status.");
+                return; 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -99,7 +109,8 @@ namespace JOMonitoringApp.Views.Reports
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 //var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
                 string orderBy = radJo.Checked ? radJo.Tag.ToString() : radDate.Tag.ToString();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(monthIndex + 1, particular, orderBy);
+
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(monthIndex + 1, particular, statusFilter, orderBy);
 
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
@@ -205,6 +216,46 @@ namespace JOMonitoringApp.Views.Reports
         private void radDate_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cb1_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckStatus();
+        }
+
+        private void CheckStatus()
+        {
+            statusFilter = string.Empty;
+
+            if (cb1.Checked)
+                statusFilter += "status_id = 1";
+            else
+                RemoveFilter(ref statusFilter, "status_id = 1");
+
+            if (cb2.Checked)
+                statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 2";
+            else
+                RemoveFilter(ref statusFilter, "status_id = 2");
+
+            if (cb3.Checked)
+                statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 3";
+            else
+                RemoveFilter(ref statusFilter, "status_id = 3");
+
+            if (cb4.Checked)
+                statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 4";
+            else
+                RemoveFilter(ref statusFilter, "status_id = 4");
+
+        }
+        void RemoveFilter(ref string filter, string condition)
+        {
+            if (filter.Contains(condition))
+            {
+                filter = filter.Replace(condition, "").Trim();
+                if (filter.StartsWith("OR"))
+                    filter = filter.Substring(3).Trim(); // Remove leading "OR"
+            }
         }
     }
 }

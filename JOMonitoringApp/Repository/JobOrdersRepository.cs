@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using System.Transactions;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
@@ -121,20 +122,19 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
-        public DataTable GetViewRecordsBySearch(string searchText)
+        public DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string status, string orderBy)
         {
-            throw new System.NotImplementedException();
-        }
 
-        public DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string orderBy)
-        {
+            if (particulars == "All") particulars = "%%";
+
             var parameters = new object[][]
             {
                 new object[] { "@month_index", DbType.Int32, monthIndex},
-                new object[] { "@particular", DbType.String, $"%{particulars}%"},
+                new object[] { "@particular", DbType.String, $"%{particulars}%" },
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE MONTH(date) = @month_index AND particular LIKE @particular AND is_deleted = 0 ORDER BY {orderBy} DESC";
+
+            string query = $"SELECT * FROM {viewTableName} WHERE {status} AND particular LIKE @particular AND MONTH(date) = @month_index  AND is_deleted = 0  ORDER BY {orderBy} DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -248,5 +248,6 @@ namespace JOMonitoringApp
             }
             return recordDictionary;
         }
+
     }
 }

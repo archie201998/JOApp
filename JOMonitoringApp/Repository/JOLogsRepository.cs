@@ -58,7 +58,15 @@ namespace JOMonitoringApp
 
         public bool Insert(JOLogsModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameter = new object[][] {
+                new object[]{"@transaction_event", DbType.String, entity.TransactionEvent},
+                new object[]{"@users_id", DbType.Int32, entity.UserId},
+                new object[]{"@job_orders_id", DbType.Int32, entity.JobOrderId},
+                new object[]{"@date_and_time", DbType.DateTime2, entity.DateAndTime},
+            };
+
+            string query = $"INSERT INTO {tableName} (transaction_event,  users_id, job_orders_id, date_and_time) VALUES (@transaction_event,  @users_id, @job_orders_id, @date_and_time)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
         public bool Update(JOLogsModel entity)

@@ -402,8 +402,8 @@ namespace JOMonitoringApp.Views.MainForm
                     {
                         Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         OnLoad();
-                        ResetInputForm();
                         Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(true));
+                        ResetInputForm();
                     }
                 }
                 else
@@ -420,8 +420,8 @@ namespace JOMonitoringApp.Views.MainForm
                             return;
                         }
 
-                        ResetInputForm();
                         Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(false));
+                        ResetInputForm();
                     }
                 }
             }

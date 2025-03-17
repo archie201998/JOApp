@@ -130,6 +130,7 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 TransactionEvent = Helper.LogMessage(true),
                 DateAndTime = DateTime.Now,
+                JobOrderId = jobOrderId,    
                 UserId = Helper.UserId
             };
         }

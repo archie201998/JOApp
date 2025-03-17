@@ -44,6 +44,7 @@
             this.signatoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jOTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.jOTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -216,6 +216,13 @@
             this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
             this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
             this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
+            // 
+            // jOTrackingToolStripMenuItem
+            // 
+            this.jOTrackingToolStripMenuItem.Name = "jOTrackingToolStripMenuItem";
+            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.jOTrackingToolStripMenuItem.Text = "J.O Progress Tracking";
+            this.jOTrackingToolStripMenuItem.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
             // 
             // requistionAndIssueSlipRISToolStripMenuItem
             // 
@@ -564,13 +571,6 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
-            // 
-            // jOTrackingToolStripMenuItem
-            // 
-            this.jOTrackingToolStripMenuItem.Name = "jOTrackingToolStripMenuItem";
-            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
-            this.jOTrackingToolStripMenuItem.Text = "J.O Progress Tracking";
-            this.jOTrackingToolStripMenuItem.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
             // 
             // frmMain
             // 

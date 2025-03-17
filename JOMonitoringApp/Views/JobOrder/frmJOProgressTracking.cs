@@ -29,5 +29,18 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            int jobOrderNumber = Convert.ToInt32(txtJONumber.Text);
+
+            var dtJobOrdersLogs = Factory.JOLogsRepository().GetRecordsByJONumber(jobOrderNumber);
+
+            MessageBox.Show($"{jobOrderNumber} dtJobOrdersLogs " + dtJobOrdersLogs.Rows.Count);
+
+            HelperLoadRecords.JobOrderTrackingDataGrid(dgJobOrderStatusDetails, dtJobOrdersLogs);
+
+
+        }
     }
 }

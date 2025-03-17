@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JOMonitoringApp.Interface
+namespace JOMonitoringApp.Model
 {
-    public interface IStatusRepository : IRepository<StatusModel>
+    public class JOLogsModel
     {
+
     }
 }

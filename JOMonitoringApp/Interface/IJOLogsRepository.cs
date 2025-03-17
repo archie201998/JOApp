@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JOMonitoringApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IStatusRepository : IRepository<StatusModel>
+    public interface IJOLogsRepository : IRepository<JOLogsModel>
     {
+        DataTable GetRecordsByJONumber(int JONumber);
     }
 }

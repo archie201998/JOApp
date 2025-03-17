@@ -26,6 +26,8 @@ namespace JOMonitoringApp.Interface
 
         bool SoftDeleteJOById(List<JobOrdersModel> entityList);
 
+        int GetLastInsertedID(int userId);
+      
         bool UpdateStatus(int jobOrderId, int statusId);
 
     }

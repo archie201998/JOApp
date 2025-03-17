@@ -43,6 +43,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 errorProvider1.GetError(cmbxMaterialsIssuedBy),
                 errorProvider1.GetError(cmbxAccomplishedBy),
                 errorProvider1.GetError(clBoxParticulars),
+                errorProvider1.GetError(txtRemarks),
             };
 
             return Factory.CreateErrors(errorArray).GenerateErrorMessage();
@@ -130,7 +131,7 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 TransactionEvent = Helper.LogMessage(true),
                 DateAndTime = DateTime.Now,
-                JobOrderId = jobOrderId,    
+                JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId
             };
         }
@@ -372,12 +373,13 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void clBoxParticulars_Validating(object sender, CancelEventArgs e)
         {
-            int selectedParticularCount = clBoxParticulars.SelectedItems.Count;
+            int selectedParticularCount = clBoxParticulars.CheckedItems.Count;
 
             if (selectedParticularCount == 0)
             {
                 errorProvider1.SetError(clBoxParticulars, "No particular selected.");
                 e.Cancel = true;
+                return;
             }
             e.Cancel = false;
         }
@@ -385,6 +387,22 @@ namespace JOMonitoringApp.Views.JobOrder
         private void clBoxParticulars_Validated(object sender, EventArgs e)
         {
             errorProvider1.SetError(clBoxParticulars, string.Empty);
+        }
+
+        private void txtRemarks_Validating(object sender, CancelEventArgs e)
+        {
+            if (statusId == 3)
+            {
+                e.Cancel = Helper.ShowErrorTextBoxEmpty(errorProvider1, txtRemarks, "Remarks");
+                return;
+            }
+
+            e.Cancel = false;
+        }
+
+        private void txtRemarks_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtRemarks);
         }
     }
 }

@@ -580,6 +580,8 @@
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(200, 36);
             this.txtRemarks.TabIndex = 8;
+            this.txtRemarks.Validating += new System.ComponentModel.CancelEventHandler(this.txtRemarks_Validating);
+            this.txtRemarks.Validated += new System.EventHandler(this.txtRemarks_Validated);
             // 
             // label17
             // 

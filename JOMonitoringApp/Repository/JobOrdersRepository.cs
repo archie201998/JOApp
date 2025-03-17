@@ -249,5 +249,14 @@ namespace JOMonitoringApp
             return recordDictionary;
         }
 
+        public int GetLastInsertedID(int userId)
+        {
+            var parameters = new object[][]
+            {  new object[] { "@user_id", DbType.Int32, userId}, };
+
+            string query = $"SELECT MAX(id) FROM {tableName} WHERE created_by = @user_id";
+
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
     }
 }

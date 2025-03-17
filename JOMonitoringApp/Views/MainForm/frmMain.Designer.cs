@@ -79,6 +79,7 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.jOTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -203,6 +204,7 @@
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jOSummaryToolStripMenuItem,
+            this.jOTrackingToolStripMenuItem,
             this.requistionAndIssueSlipRISToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
@@ -429,7 +431,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(0, 697);
+            this.panel4.Location = new System.Drawing.Point(0, 727);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -475,7 +477,7 @@
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 696);
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 726);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage2
@@ -562,6 +564,13 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // jOTrackingToolStripMenuItem
+            // 
+            this.jOTrackingToolStripMenuItem.Name = "jOTrackingToolStripMenuItem";
+            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.jOTrackingToolStripMenuItem.Text = "J.O Progress Tracking";
+            this.jOTrackingToolStripMenuItem.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -655,5 +664,6 @@
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.ToolStripMenuItem requistionAndIssueSlipRISToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripMenuItem jOTrackingToolStripMenuItem;
     }
 }

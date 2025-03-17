@@ -69,6 +69,7 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("mris", typeof(string)),
                 new DataColumn("mrs", typeof(string)),
                 new DataColumn("war", typeof(string)),
+                new DataColumn("remarks", typeof(string)),
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
 
@@ -119,6 +120,7 @@ namespace JOMonitoringApp.Views.MainForm
                     string MRISNumber = $"{row["mris"]}";
                     string MRSNumber = $"{row["mrs"]}";
                     string WARNumber = $"{row["war"]}";
+                    string remarks = $"{row["remarks"]}";
                     string preparedBy = $"{row["prepared_by"]}";
                     string materialsIssuedBy = $"{row["materials_issued_by"]}";
 
@@ -138,6 +140,7 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["mris"] = MRISNumber;
                     newRow["mrs"] = MRSNumber;
                     newRow["war"] = WARNumber;
+                    newRow["remarks"] = remarks;
                     newRow["prepared_by"] = preparedBy;
                     newRow["materials_issued_by"] = materialsIssuedBy;
                     newRow["status"] = status.ToUpper();
@@ -322,12 +325,17 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtWARNumber.Text = dictJobOrders["war"];
             ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["materials_issued_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["materials_issued_by_id"]);
             ucJoborder.cmbxAccomplishedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["accomplished_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["accomplished_by_id"]);
+            ucJoborder.txtRemarks.Text = dictJobOrders["remarks"].ToString();
 
             int statusId = Convert.ToInt16(dictJobOrders["status_id"]);
             ucJoborder.radPending.Checked = (statusId == Convert.ToInt16(ucJoborder.radPending.Tag));
             ucJoborder.radProcessing.Checked = (statusId == Convert.ToInt16(ucJoborder.radProcessing.Tag));
             ucJoborder.radCancel.Checked = (statusId == Convert.ToInt16(ucJoborder.radCancel.Tag));
             ucJoborder.radAccomplished.Checked = (statusId == Convert.ToInt16(ucJoborder.radAccomplished.Tag));
+
+            if (ucJoborder.radAccomplished.Checked)
+                ucJoborder.groupBox4.Enabled = false;
+
         }
 
         
@@ -373,7 +381,10 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAcc2.Clear();
             ucJoborder.txtAcc3.Clear();
             ucJoborder.txtAcc4.Clear();
+            ucJoborder.txtRemarks.Clear();
 
+            ucJoborder.groupBox4.Enabled = true;
+            
 
             for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 ucJoborder.clBoxParticulars.SetItemChecked(i, false);
@@ -538,6 +549,7 @@ namespace JOMonitoringApp.Views.MainForm
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
                     byte[] indexArray = BitConverter.GetBytes(previousSelection);
                 }
+
                    
             }
             catch (Exception)
@@ -560,6 +572,11 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (result == DialogResult.No)
                 e.Cancel = true; 
+        }
+
+        private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOProgressTracking().ShowDialog();
         }
     }
 }

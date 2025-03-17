@@ -17,6 +17,7 @@ namespace JOMonitoringApp.Views.Reports
     public partial class frmJOStatusSummary : Form
     {
         int monthIndex;
+        string particular;
         
 
         public frmJOStatusSummary()
@@ -46,6 +47,8 @@ namespace JOMonitoringApp.Views.Reports
             cmbxParticular.DataSource = dtParticulars;
             cmbxParticular.DisplayMember = "particular";
             cmbxParticular.ValueMember = "id";
+
+            particular = cmbxParticular.Text;
         }
 
         private void LoadMonths()
@@ -96,7 +99,6 @@ namespace JOMonitoringApp.Views.Reports
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
                 //var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
                 string orderBy = radJo.Checked ? radJo.Tag.ToString() : radDate.Tag.ToString();
-                string particular = cmbxParticular.Text;
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(monthIndex + 1, particular, orderBy);
 
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
@@ -180,6 +182,27 @@ namespace JOMonitoringApp.Views.Reports
         }
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbxParticular_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            particular = cmbxParticular.Text;   
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void radJo_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radDate_CheckedChanged(object sender, EventArgs e)
         {
 
         }

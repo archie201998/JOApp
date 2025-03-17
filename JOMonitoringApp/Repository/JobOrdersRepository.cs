@@ -156,13 +156,14 @@ namespace JOMonitoringApp
                 new object[]{"@mris", DbType.String, entity.MRIS},
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
+                new object[]{"@remarks", DbType.String, entity.Remarks},
                 new object[]{"@prepared_by", DbType.Int32, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id,  particular, date, job_order_no, or_number, amount, mris, mrs, war, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (customers_id,  particular, date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
@@ -200,13 +201,14 @@ namespace JOMonitoringApp
                 new object[]{"@mris", DbType.String, entity.MRIS},
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
+                new object[]{"@remarks", DbType.String, entity.Remarks},
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"UPDATE {tableName} SET customers_id=@customers_id, particular=@particular, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by,  prepared_by=@prepared_by,  status_id=@status_id WHERE id = @id";
+            string query = $"UPDATE {tableName} SET customers_id=@customers_id, particular=@particular, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, prepared_by=@prepared_by, status_id=@status_id WHERE id = @id";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }

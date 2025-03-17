@@ -195,5 +195,10 @@ namespace JOMonitoringApp.Views.JobOrder
                 dgAccounts.Focus();
             }
         }
+
+        private void txtAcc4_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar);
+        }
     }
 }

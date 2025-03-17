@@ -47,6 +47,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -84,7 +89,7 @@
             this.panel2.Location = new System.Drawing.Point(10, 41);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.panel2.Size = new System.Drawing.Size(980, 9);
+            this.panel2.Size = new System.Drawing.Size(1446, 9);
             this.panel2.TabIndex = 9;
             // 
             // progressBar1
@@ -92,12 +97,17 @@
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.progressBar1.Location = new System.Drawing.Point(3, 3);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(974, 3);
+            this.progressBar1.Size = new System.Drawing.Size(1440, 3);
             this.progressBar1.TabIndex = 10;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.checkBox4);
+            this.panel1.Controls.Add(this.checkBox3);
+            this.panel1.Controls.Add(this.checkBox2);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.radDate);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.radJo);
@@ -111,46 +121,51 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(980, 31);
+            this.panel1.Size = new System.Drawing.Size(1446, 31);
             this.panel1.TabIndex = 12;
             // 
             // radDate
             // 
             this.radDate.AutoSize = true;
             this.radDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radDate.Location = new System.Drawing.Point(770, 8);
+            this.radDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDate.Location = new System.Drawing.Point(1260, 7);
             this.radDate.Name = "radDate";
-            this.radDate.Size = new System.Drawing.Size(53, 17);
+            this.radDate.Size = new System.Drawing.Size(55, 19);
             this.radDate.TabIndex = 17;
             this.radDate.Tag = "date";
             this.radDate.Text = "DATE";
             this.radDate.UseVisualStyleBackColor = true;
+            this.radDate.CheckedChanged += new System.EventHandler(this.radDate_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(579, 10);
+            this.label5.Location = new System.Drawing.Point(1068, 9);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 13);
             this.label5.TabIndex = 20;
             this.label5.Text = "ORDER BY : ";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // radJo
             // 
             this.radJo.AutoSize = true;
             this.radJo.Checked = true;
             this.radJo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.radJo.Location = new System.Drawing.Point(672, 8);
+            this.radJo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radJo.Location = new System.Drawing.Point(1157, 6);
             this.radJo.Name = "radJo";
-            this.radJo.Size = new System.Drawing.Size(90, 17);
+            this.radJo.Size = new System.Drawing.Size(99, 19);
             this.radJo.TabIndex = 16;
             this.radJo.TabStop = true;
             this.radJo.Tag = "job_order_no";
             this.radJo.Text = "J.O NUMBER";
             this.radJo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radJo.UseVisualStyleBackColor = true;
+            this.radJo.CheckedChanged += new System.EventHandler(this.radJo_CheckedChanged);
             // 
             // cmbxParticular
             // 
@@ -160,6 +175,7 @@
             this.cmbxParticular.Name = "cmbxParticular";
             this.cmbxParticular.Size = new System.Drawing.Size(166, 21);
             this.cmbxParticular.TabIndex = 19;
+            this.cmbxParticular.SelectedIndexChanged += new System.EventHandler(this.cmbxParticular_SelectedIndexChanged_1);
             // 
             // label4
             // 
@@ -199,7 +215,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(832, 5);
+            this.btnSearch.Location = new System.Drawing.Point(1327, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 23);
             this.btnSearch.TabIndex = 14;
@@ -214,7 +230,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(10, 50);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(980, 385);
+            this.panel3.Size = new System.Drawing.Size(1446, 596);
             this.panel3.TabIndex = 13;
             // 
             // reportViewer1
@@ -228,7 +244,7 @@
             this.reportViewer1.ShowDocumentMapButton = false;
             this.reportViewer1.ShowFindControls = false;
             this.reportViewer1.ShowPageNavigationControls = false;
-            this.reportViewer1.Size = new System.Drawing.Size(980, 385);
+            this.reportViewer1.Size = new System.Drawing.Size(1446, 596);
             this.reportViewer1.TabIndex = 14;
             // 
             // backgroundWorker1
@@ -244,9 +260,9 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel3,
             this.lblRecordsCount});
-            this.statusStrip1.Location = new System.Drawing.Point(10, 435);
+            this.statusStrip1.Location = new System.Drawing.Point(10, 646);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(980, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1446, 22);
             this.statusStrip1.TabIndex = 14;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -262,11 +278,70 @@
             this.lblRecordsCount.Size = new System.Drawing.Size(31, 17);
             this.lblRecordsCount.Text = "1000";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(579, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "STATUS : ";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(643, 5);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 19);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "PENDING";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(727, 5);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(102, 19);
+            this.checkBox2.TabIndex = 25;
+            this.checkBox2.Text = "PROCESSING";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox3.Location = new System.Drawing.Point(835, 5);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(94, 19);
+            this.checkBox3.TabIndex = 26;
+            this.checkBox3.Text = "CANCELLED";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox4.Location = new System.Drawing.Point(935, 5);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(118, 19);
+            this.checkBox4.TabIndex = 27;
+            this.checkBox4.Text = "ACCOMPLISHED";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
             // frmJOStatusSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 467);
+            this.ClientSize = new System.Drawing.Size(1466, 678);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.panel2);
@@ -310,5 +385,10 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
+        private System.Windows.Forms.Label label6;
+        protected System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
+        protected System.Windows.Forms.CheckBox checkBox3;
+        protected System.Windows.Forms.CheckBox checkBox4;
     }
 }

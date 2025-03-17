@@ -69,6 +69,8 @@
             this.cmbxAccomplishedBy = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.radAccomplished = new System.Windows.Forms.RadioButton();
             this.radCancel = new System.Windows.Forms.RadioButton();
             this.radProcessing = new System.Windows.Forms.RadioButton();
@@ -555,6 +557,8 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txtRemarks);
+            this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.radAccomplished);
             this.groupBox4.Controls.Add(this.radCancel);
             this.groupBox4.Controls.Add(this.radProcessing);
@@ -562,10 +566,30 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(21, 626);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 61);
+            this.groupBox4.Size = new System.Drawing.Size(389, 96);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "STATUS";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(153, 54);
+            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(200, 36);
+            this.txtRemarks.TabIndex = 8;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(25, 55);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(70, 15);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "REMARKS ";
             // 
             // radAccomplished
             // 
@@ -637,7 +661,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.txtAccountNumber);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(427, 693);
+            this.Size = new System.Drawing.Size(427, 730);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
@@ -702,5 +726,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         internal System.Windows.Forms.TextBox txtAcc4;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.TextBox txtRemarks;
     }
 }

@@ -103,7 +103,7 @@ internal class CustomersRepository : ICustomersRepository
             new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
         };
 
-        string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_number LIKE @search_key LIMIT 5";
+        string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_number LIKE @search_key OR account_name  like @search_key LIMIT 10";
 
         var dataTable = new DataTable();
         return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);

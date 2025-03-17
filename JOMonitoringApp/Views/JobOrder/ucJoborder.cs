@@ -134,6 +134,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string MRIS = txtMRISNumber.Text;
             string MRS = txtMRSNumber.Text;
             string WAR = txtWARNumber.Text;
+            string remarks = txtRemarks.Text;   
             int preparedById = Helper.UserId;
             int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
@@ -154,6 +155,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 MRIS = MRIS,
                 MRS = MRS,
                 WAR = WAR,
+                Remarks = remarks,
                 MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
                 AccomplishedBy = accomplishedBy,
                 StatusId = statusId,

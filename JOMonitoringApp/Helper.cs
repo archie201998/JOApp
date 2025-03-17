@@ -90,6 +90,17 @@ namespace AccountingSystem
         }
 
 
+
+
+        public static void DataGrivBlankStyle(DataGridView dgv, bool Fill = false, bool isReadOnly = true, bool showRowHeader = false)
+        {
+            dgv.BorderStyle = BorderStyle.None; // No border around DataGridView
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.None; // No border around cells
+            dgv.GridColor = Color.White; // No gridlines
+            dgv.RowHeadersVisible = false; // Hide row headers
+            dgv.ColumnHeadersVisible = false; // Hide column headers
+        }
+
         #region Check Box Column Utility Datagrid
 
         public static void CheckUncheckCheckBoxHeader(DataGridView dataGridView, string checkBoxColumnName, CheckBox checkBox)

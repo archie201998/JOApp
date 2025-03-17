@@ -22,6 +22,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
+            dataGridView.Columns["remarks"].Visible = false;
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["status"].HeaderText = "STATUS";

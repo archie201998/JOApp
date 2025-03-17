@@ -9,7 +9,6 @@ namespace JOMonitoringApp.Model
     public class JobOrdersModel
     {
         public int ID { get; set; }
-
         public int PreparedBy { get; set; }
         public int CustomerID { get; set; }
         public int ParticularID { get; set; }
@@ -22,6 +21,7 @@ namespace JOMonitoringApp.Model
         public string MRIS { get; set; }
         public string MRS { get; set; }
         public string WAR { get; set; }
+        public string Remarks { get; set; }
         public decimal Amount{ get; set; }
         public int UserId { get; set; }
         public int StatusId { get; set; }

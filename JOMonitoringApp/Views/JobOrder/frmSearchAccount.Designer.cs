@@ -90,6 +90,7 @@
             this.txtAcc4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc4.TextChanged += new System.EventHandler(this.txtAcc4_TextChanged);
             this.txtAcc4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
+            this.txtAcc4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc4_KeyPress);
             // 
             // label14
             // 
@@ -127,6 +128,7 @@
             this.txtAcc3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc3.TextChanged += new System.EventHandler(this.txtAcc4_TextChanged);
             this.txtAcc3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
+            this.txtAcc3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc4_KeyPress);
             // 
             // txtAcc2
             // 
@@ -142,6 +144,7 @@
             this.txtAcc2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc2.TextChanged += new System.EventHandler(this.txtAcc4_TextChanged);
             this.txtAcc2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
+            this.txtAcc2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc4_KeyPress);
             // 
             // txtAcc1
             // 
@@ -157,6 +160,7 @@
             this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc4_TextChanged);
             this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
+            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc4_KeyPress);
             // 
             // label1
             // 

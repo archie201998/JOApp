@@ -33,6 +33,11 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cb4 = new System.Windows.Forms.CheckBox();
+            this.cb3 = new System.Windows.Forms.CheckBox();
+            this.cb2 = new System.Windows.Forms.CheckBox();
+            this.cb1 = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.radDate = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
             this.radJo = new System.Windows.Forms.RadioButton();
@@ -47,11 +52,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -103,10 +103,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.checkBox4);
-            this.panel1.Controls.Add(this.checkBox3);
-            this.panel1.Controls.Add(this.checkBox2);
-            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.cb4);
+            this.panel1.Controls.Add(this.cb3);
+            this.panel1.Controls.Add(this.cb2);
+            this.panel1.Controls.Add(this.cb1);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.radDate);
             this.panel1.Controls.Add(this.label5);
@@ -123,6 +123,71 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1446, 31);
             this.panel1.TabIndex = 12;
+            // 
+            // cb4
+            // 
+            this.cb4.AutoSize = true;
+            this.cb4.Checked = true;
+            this.cb4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cb4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb4.Location = new System.Drawing.Point(935, 5);
+            this.cb4.Name = "cb4";
+            this.cb4.Size = new System.Drawing.Size(118, 19);
+            this.cb4.TabIndex = 27;
+            this.cb4.Text = "ACCOMPLISHED";
+            this.cb4.UseVisualStyleBackColor = true;
+            this.cb4.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            // 
+            // cb3
+            // 
+            this.cb3.AutoSize = true;
+            this.cb3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb3.Location = new System.Drawing.Point(835, 5);
+            this.cb3.Name = "cb3";
+            this.cb3.Size = new System.Drawing.Size(94, 19);
+            this.cb3.TabIndex = 26;
+            this.cb3.Text = "CANCELLED";
+            this.cb3.UseVisualStyleBackColor = true;
+            this.cb3.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            // 
+            // cb2
+            // 
+            this.cb2.AutoSize = true;
+            this.cb2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb2.Location = new System.Drawing.Point(727, 5);
+            this.cb2.Name = "cb2";
+            this.cb2.Size = new System.Drawing.Size(102, 19);
+            this.cb2.TabIndex = 25;
+            this.cb2.Text = "PROCESSING";
+            this.cb2.UseVisualStyleBackColor = true;
+            this.cb2.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            // 
+            // cb1
+            // 
+            this.cb1.AutoSize = true;
+            this.cb1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb1.Location = new System.Drawing.Point(643, 5);
+            this.cb1.Name = "cb1";
+            this.cb1.Size = new System.Drawing.Size(78, 19);
+            this.cb1.TabIndex = 24;
+            this.cb1.Text = "PENDING";
+            this.cb1.UseVisualStyleBackColor = true;
+            this.cb1.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(579, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "STATUS : ";
             // 
             // radDate
             // 
@@ -278,65 +343,6 @@
             this.lblRecordsCount.Size = new System.Drawing.Size(31, 17);
             this.lblRecordsCount.Text = "1000";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(579, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 23;
-            this.label6.Text = "STATUS : ";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(643, 5);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 19);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "PENDING";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(727, 5);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(102, 19);
-            this.checkBox2.TabIndex = 25;
-            this.checkBox2.Text = "PROCESSING";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox3.Location = new System.Drawing.Point(835, 5);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(94, 19);
-            this.checkBox3.TabIndex = 26;
-            this.checkBox3.Text = "CANCELLED";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox4.Location = new System.Drawing.Point(935, 5);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(118, 19);
-            this.checkBox4.TabIndex = 27;
-            this.checkBox4.Text = "ACCOMPLISHED";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
             // frmJOStatusSummary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -386,9 +392,9 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
         private System.Windows.Forms.Label label6;
-        protected System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        protected System.Windows.Forms.CheckBox checkBox3;
-        protected System.Windows.Forms.CheckBox checkBox4;
+        protected System.Windows.Forms.CheckBox cb2;
+        private System.Windows.Forms.CheckBox cb1;
+        protected System.Windows.Forms.CheckBox cb3;
+        protected System.Windows.Forms.CheckBox cb4;
     }
 }

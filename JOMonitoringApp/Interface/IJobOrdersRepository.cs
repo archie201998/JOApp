@@ -14,16 +14,11 @@ namespace JOMonitoringApp.Interface
 
         DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId);
 
-
         DataTable GetViewRecordsByMonth(int monthIndex);
-
-        DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string orderBy);
 
         Dictionary<string, string> GetViewRecordsByJONumber(int joNumber);
 
-
-
-        DataTable GetViewRecordsBySearch(string searchText);
+        DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string status, string orderBy);
 
         int GetSummaryByStatusId(int year, int monthId, int statusId);
 

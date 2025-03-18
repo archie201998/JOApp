@@ -130,7 +130,7 @@ namespace JOMonitoringApp.Views.Reports
                 var localReport = reportViewer1.LocalReport;
                 localReport.DataSources.Clear();
 
-                localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\service-request--and-order-form.rdlc";
+                localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\service-request-and-order-form.rdlc";
                 localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
                 localReport.SetParameters(parameters.reportParameters1);
                 localReport.Refresh();

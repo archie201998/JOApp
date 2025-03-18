@@ -332,7 +332,13 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.radAccomplished.Checked = (statusId == Convert.ToInt16(ucJoborder.radAccomplished.Tag));
 
             if (ucJoborder.radAccomplished.Checked)
+            {
                 ucJoborder.groupBox4.Enabled = false;
+                ucJoborder.gbAccountDetails.Enabled = false;
+                ucJoborder.gbIssuanceAndAssignment.Enabled = false;
+                ucJoborder.gbJODetails.Enabled = false;
+            }
+            
 
         }
 
@@ -379,7 +385,10 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtRemarks.Clear();
 
             ucJoborder.groupBox4.Enabled = true;
-            
+            ucJoborder.gbAccountDetails.Enabled = true;
+            ucJoborder.gbIssuanceAndAssignment.Enabled = true;
+            ucJoborder.gbJODetails.Enabled = true;
+
 
             for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 ucJoborder.clBoxParticulars.SetItemChecked(i, false);
@@ -520,6 +529,7 @@ namespace JOMonitoringApp.Views.MainForm
             if (dgJobOrders.Rows.Count == 0) return;
 
             //SetPermissions();
+
             LoadSelectedData();
             dgJobOrders.Enabled = false;
             btnSave.Text = "Save [Ctrl + S]";

@@ -67,7 +67,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 string transactionEvent = row["transaction_event"].ToString();
                 int joNumber = Convert.ToInt32(row["job_order_no"]);
                 DateTime joDate = Convert.ToDateTime(row["date"]);
-                string transEvent = $"J.O No. {joNumber} {transactionEvent} by {user}";
+                string transEvent = $"J.O NUMBER. {joNumber} {transactionEvent} BY {user}";
 
                 newRow["log_id"] = id;
                 newRow["date_and_time"] = dateAndTime;

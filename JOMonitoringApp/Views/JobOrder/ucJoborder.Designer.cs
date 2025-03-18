@@ -53,7 +53,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbJODetails = new System.Windows.Forms.GroupBox();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
             this.txtWARNumber = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             this.txtJONumber = new System.Windows.Forms.TextBox();
             this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.gbIssuanceAndAssignment = new System.Windows.Forms.GroupBox();
             this.cmbxAccomplishedBy = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -78,8 +78,8 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.gbJODetails.SuspendLayout();
+            this.gbIssuanceAndAssignment.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -376,31 +376,31 @@
             this.label12.TabIndex = 30;
             this.label12.Text = "-";
             // 
-            // groupBox2
+            // gbJODetails
             // 
-            this.groupBox2.Controls.Add(this.clBoxParticulars);
-            this.groupBox2.Controls.Add(this.txtWARNumber);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.txtMRSNumber);
-            this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Controls.Add(this.txtMRISNumber);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.txtJONumber);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.txtORNumber);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.dtpDate);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.nudAmount);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(21, 179);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(389, 345);
-            this.groupBox2.TabIndex = 16;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "JOB ORDER DETAILS";
+            this.gbJODetails.Controls.Add(this.clBoxParticulars);
+            this.gbJODetails.Controls.Add(this.txtWARNumber);
+            this.gbJODetails.Controls.Add(this.label15);
+            this.gbJODetails.Controls.Add(this.label11);
+            this.gbJODetails.Controls.Add(this.txtMRSNumber);
+            this.gbJODetails.Controls.Add(this.label10);
+            this.gbJODetails.Controls.Add(this.txtMRISNumber);
+            this.gbJODetails.Controls.Add(this.label9);
+            this.gbJODetails.Controls.Add(this.txtJONumber);
+            this.gbJODetails.Controls.Add(this.label2);
+            this.gbJODetails.Controls.Add(this.txtORNumber);
+            this.gbJODetails.Controls.Add(this.label3);
+            this.gbJODetails.Controls.Add(this.dtpDate);
+            this.gbJODetails.Controls.Add(this.label4);
+            this.gbJODetails.Controls.Add(this.label5);
+            this.gbJODetails.Controls.Add(this.nudAmount);
+            this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbJODetails.Location = new System.Drawing.Point(21, 179);
+            this.gbJODetails.Name = "gbJODetails";
+            this.gbJODetails.Size = new System.Drawing.Size(389, 345);
+            this.gbJODetails.TabIndex = 16;
+            this.gbJODetails.TabStop = false;
+            this.gbJODetails.Text = "JOB ORDER DETAILS";
             // 
             // clBoxParticulars
             // 
@@ -519,19 +519,19 @@
             this.label13.TabIndex = 23;
             this.label13.Text = "MAT. ISSUED BY";
             // 
-            // groupBox3
+            // gbIssuanceAndAssignment
             // 
-            this.groupBox3.Controls.Add(this.cmbxAccomplishedBy);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.cmbxMaterialsIssuedBy);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(21, 530);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(389, 90);
-            this.groupBox3.TabIndex = 17;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ISSUANCES AND JOB ASSIGNMENTS";
+            this.gbIssuanceAndAssignment.Controls.Add(this.cmbxAccomplishedBy);
+            this.gbIssuanceAndAssignment.Controls.Add(this.label6);
+            this.gbIssuanceAndAssignment.Controls.Add(this.cmbxMaterialsIssuedBy);
+            this.gbIssuanceAndAssignment.Controls.Add(this.label13);
+            this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 530);
+            this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
+            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(389, 90);
+            this.gbIssuanceAndAssignment.TabIndex = 17;
+            this.gbIssuanceAndAssignment.TabStop = false;
+            this.gbIssuanceAndAssignment.Text = "ISSUANCES AND JOB ASSIGNMENTS";
             // 
             // cmbxAccomplishedBy
             // 
@@ -658,8 +658,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbIssuanceAndAssignment);
+            this.Controls.Add(this.gbJODetails);
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.txtAccountNumber);
             this.Name = "ucJoborder";
@@ -669,10 +669,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbJODetails.ResumeLayout(false);
+            this.gbJODetails.PerformLayout();
+            this.gbIssuanceAndAssignment.ResumeLayout(false);
+            this.gbIssuanceAndAssignment.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -706,9 +706,9 @@
         internal System.Windows.Forms.TextBox txtMRSNumber;
         internal System.Windows.Forms.ComboBox cmbxMaterialsIssuedBy;
         internal System.Windows.Forms.TextBox txtWARNumber;
-        internal System.Windows.Forms.GroupBox groupBox2;
+        internal System.Windows.Forms.GroupBox gbJODetails;
         internal System.Windows.Forms.GroupBox gbAccountDetails;
-        internal System.Windows.Forms.GroupBox groupBox3;
+        internal System.Windows.Forms.GroupBox gbIssuanceAndAssignment;
         internal System.Windows.Forms.GroupBox groupBox4;
         internal System.Windows.Forms.RadioButton radPending;
         internal System.Windows.Forms.RadioButton radProcessing;

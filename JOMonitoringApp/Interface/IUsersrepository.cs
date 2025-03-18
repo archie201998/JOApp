@@ -9,6 +9,7 @@ namespace JOMonitoringApp.Interface
 {
     public interface IUsersRepository : IRepository<UsersModel>
     {
+        Dictionary<string, string> GetRecordsbyUserName(string userName);
         bool HasPermission(byte userId, string permissionName);
         Byte ValidateLogin(string userName, string password);
     }

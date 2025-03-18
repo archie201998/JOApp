@@ -75,6 +75,35 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
+        public Dictionary<string, string> GetRecordsbyUserName(string userName)
+        {
+            var record = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@user_name", DbType.String, userName },
+            };
+
+            string query = $"SELECT * FROM {tableName} WHERE user_name = @user_name";
+
+            using (var reader = mySqlGenericCommands.ExecuteReader(query, parameters))
+            {
+                if (reader.Rows.Count < 1)
+                    return record;
+
+                record.Add("id", reader.Rows[0]["id"].ToString());
+                record.Add("roles_id", reader.Rows[0]["roles_id"].ToString());
+                record.Add("prefix", reader.Rows[0]["prefix"].ToString());
+                record.Add("first_name", reader.Rows[0]["first_name"].ToString());
+                record.Add("middle_name", reader.Rows[0]["middle_name"].ToString());
+                record.Add("last_name", reader.Rows[0]["last_name"].ToString());
+                record.Add("suffix", reader.Rows[0]["suffix"].ToString());
+                record.Add("user_name", reader.Rows[0]["user_name"].ToString());
+                record.Add("password", reader.Rows[0]["password"].ToString());
+            }
+
+            return record;
+        }
+
         public bool HasPermission(byte userId, string permissionName)
         {
             var parameters = new object[][]
@@ -119,7 +148,22 @@ namespace JOMonitoringApp
 
         public bool Update(UsersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, entity.Id },
+                new object[] { "@prefix", DbType.String, entity.Prefix },
+                new object[] { "@first_name", DbType.String, entity.FirstName },
+                new object[] { "@middle_name", DbType.String, entity.MiddleName },
+                new object[] { "@last_name", DbType.String, entity.LastName },
+                new object[] { "@suffix", DbType.String, entity.Suffix },
+                new object[] { "@user_name", DbType.String, entity.UserName },
+                new object[] { "@password", DbType.String, entity.Password },
+                new object[] { "@role_id", DbType.Int32, entity.RolesId }
+            };
+
+            string query = $"UPDATE {tableName} SET prefix = @prefix, first_name = @first_name, middle_name = @middle_name, last_name = @last_name, suffix = @suffix, user_name = @user_name, password = sha2(@password, 224), roles_id = @role_id WHERE id = @id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public byte ValidateLogin(string username, string password)

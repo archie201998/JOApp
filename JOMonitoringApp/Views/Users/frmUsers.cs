@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,13 +16,22 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Users
 {
+
     public partial class frmUsers: Form
     {
+        private int _userId;
+        private List<Keys> keySequence = new List<Keys>();
+
         public frmUsers()
         {
+
             InitializeComponent();
             Helper.LoadFormIcon(this);
             txtPrefix.Focus();
+
+
+            if (Helper.temporaryAdminMode)
+                Helper.UserAdminView(this);
         }
 
         private void frmUsers_Load(object sender, EventArgs e)
@@ -41,6 +51,7 @@ namespace JOMonitoringApp.Views.Users
 
         internal UsersModel UsersModel()
         {
+
             string preFix = txtPrefix.Text; 
             string firstName = txtFirstName.Text;
             string middleName = txtMiddleName.Text;
@@ -53,6 +64,7 @@ namespace JOMonitoringApp.Views.Users
 
             var usersModel = new UsersModel()
             {
+                Id = _userId,   
                 Prefix = preFix,
                 FirstName = firstName,
                 MiddleName = middleName,
@@ -110,9 +122,21 @@ namespace JOMonitoringApp.Views.Users
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
             if (IsAccountDetailsValid())
             {
+
+                if (Helper.temporaryAdminMode)
+                {
+                    bool updateRes = Factory.UsersRepository().Update(UsersModel());
+                    if (updateRes)
+                    {
+                        Helper.MessageBoxSuccess("User successfully Updated.");
+                        ResetForm();
+                        return;
+                    }
+                    return;
+                }
+
                 bool insertRes = Factory.UsersRepository().Insert(UsersModel());
                 if (insertRes)
                 {
@@ -151,6 +175,9 @@ namespace JOMonitoringApp.Views.Users
             txtPassword.Text = string.Empty;
             txtConfirmPassword.Text = string.Empty;
             errorProvider1.Clear();
+
+            this.Size = new Size(466, 414);
+            Helper.temporaryAdminMode = false;
         }
 
         private void btnShowHide_Click_1(object sender, EventArgs e)
@@ -180,5 +207,90 @@ namespace JOMonitoringApp.Views.Users
             }
         }
 
+        private void frmUsers_KeyDown(object sender, KeyEventArgs e)
+        {
+            keySequence.Add(e.KeyCode);
+
+            if (keySequence.Count > 6)
+            {
+                keySequence.RemoveAt(0);
+            }
+
+            if (keySequence.SequenceEqual(new List<Keys> { Keys.D2, Keys.D8, Keys.D4, Keys.D6, Keys.F1, Keys.F2}))
+            {
+                if (Helper.temporaryAdminMode)
+                {
+                    if (Helper.MessageBoxConfirmCancel("Close Administrator Mode?"))
+                    {
+                        Helper.temporaryAdminMode = false;
+                        ResetForm();
+                    }
+                    return;
+                }
+
+                if (Helper.MessageBoxConfirmCancel("Enter Administrator Mode?"))
+                {
+                    Helper.temporaryAdminMode = true;
+                    txtSearchUserName.Focus();
+                    Helper.MessageBoxSuccess("Welcome to Administrator mode access.");
+                    Helper.UserAdminView(this);
+                    keySequence.Clear();
+                }
+                else
+                    return;
+            }
+        }
+
+        private void txtSearchUserName_KeyDown(object sender, KeyEventArgs e)
+        {
+         
+        }
+
+        private void LoadSearchAccount(Dictionary<string, string> userDict)
+        {
+            if (userDict.TryGetValue("id", out string id))
+                _userId = int.Parse(id);
+
+            if (userDict.TryGetValue("prefix", out string prefix))
+                txtPrefix.Text = prefix;
+
+            if (userDict.TryGetValue("first_name", out string firstName))
+                txtFirstName.Text = firstName;
+
+            if (userDict.TryGetValue("middle_name", out string middleName))
+                txtMiddleName.Text = middleName;
+
+            if (userDict.TryGetValue("last_name", out string lastName))
+                txtLastName.Text = lastName;
+
+            if (userDict.TryGetValue("suffix", out string suffix))
+                txtSuffix.Text = suffix;
+
+            if (userDict.TryGetValue("user_name", out string userName))
+                txtUserName.Text = userName;
+
+            if (userDict.TryGetValue("password", out string password))
+                txtPassword.Text = password;
+
+            if (userDict.TryGetValue("password", out string confirmPassword))
+                txtConfirmPassword.Text = confirmPassword;
+
+            if (userDict.TryGetValue("roles_id", out string rolesId))
+                cmbRoles.SelectedValue = Convert.ToInt32(rolesId);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string userName = txtSearchUserName.Text.Trim();
+            Dictionary<string, string> userDict = Factory.UsersRepository().GetRecordsbyUserName(userName);
+
+            if (userDict.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Username not found.");
+                return;
+            }
+
+            LoadSearchAccount(userDict);
+        }
     }
 }

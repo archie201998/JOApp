@@ -55,6 +55,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtSearchUserName = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,7 +72,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(4, 340);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(439, 31);
+            this.panel4.Size = new System.Drawing.Size(448, 31);
             this.panel4.TabIndex = 6;
             // 
             // btnCancel
@@ -81,7 +84,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(315, 3);
+            this.btnCancel.Location = new System.Drawing.Point(324, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(118, 23);
             this.btnCancel.TabIndex = 10;
@@ -97,7 +100,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(182, 3);
+            this.btnSave.Location = new System.Drawing.Point(191, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(127, 23);
             this.btnSave.TabIndex = 9;
@@ -361,17 +364,56 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtSearchUserName
+            // 
+            this.txtSearchUserName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchUserName.Location = new System.Drawing.Point(472, 29);
+            this.txtSearchUserName.Name = "txtSearchUserName";
+            this.txtSearchUserName.Size = new System.Drawing.Size(180, 21);
+            this.txtSearchUserName.TabIndex = 18;
+            this.txtSearchUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchUserName_KeyDown);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(469, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 15);
+            this.label10.TabIndex = 19;
+            this.label10.Text = "SEARCH USER NAME ";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(588, 56);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(64, 23);
+            this.btnSearch.TabIndex = 20;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // frmUsers
             // 
             this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(447, 375);
+            this.ClientSize = new System.Drawing.Size(456, 375);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.txtSearchUserName);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUsers";
@@ -380,6 +422,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | System User Management";
             this.Load += new System.EventHandler(this.frmUsers_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUsers_KeyDown);
             this.panel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -387,6 +430,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -418,5 +462,8 @@
         private System.Windows.Forms.Button btnShowHide;
         private System.Windows.Forms.ComboBox cmbRoles;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label10;
+        internal System.Windows.Forms.TextBox txtSearchUserName;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

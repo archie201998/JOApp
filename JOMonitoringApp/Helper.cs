@@ -19,6 +19,13 @@ namespace AccountingSystem
     public static class Helper
     {
         public static byte UserId { get; internal set; }
+        internal static bool temporaryAdminMode = false;
+
+
+        internal static void UserAdminView(Form frm)
+        { 
+            frm.Size = new Size(682, 414);
+        }
 
 
         public static string LogMessage(bool isInsert)

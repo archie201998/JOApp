@@ -20,6 +20,11 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly ucJoborder ucJoborder;
         private int previousSelection = 0;
 
+        bool validatedOne;
+        bool validatedTwo;
+        bool validatedThree;
+        bool validatedFour;
+
         private bool _autoPrint = false;
 
         public frmMain(frmSignIn frmSignIn)

@@ -8,6 +8,7 @@ namespace JOMonitoringApp.Model
 {
     public class UsersModel
     {
+        public int Id { get; set; }
         public string Prefix { get; set; }
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

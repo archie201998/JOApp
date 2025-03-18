@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Text;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
@@ -98,7 +99,8 @@ namespace JOMonitoringApp
                 record.Add("last_name", reader.Rows[0]["last_name"].ToString());
                 record.Add("suffix", reader.Rows[0]["suffix"].ToString());
                 record.Add("user_name", reader.Rows[0]["user_name"].ToString());
-                record.Add("password", reader.Rows[0]["password"].ToString());
+                record.Add("password", string.Empty);
+
             }
 
             return record;

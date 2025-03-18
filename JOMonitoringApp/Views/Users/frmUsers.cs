@@ -180,14 +180,13 @@ namespace JOMonitoringApp.Views.Users
             Helper.temporaryAdminMode = false;
         }
 
-        private void btnShowHide_Click_1(object sender, EventArgs e)
+        private void btnShowHide_Click(object sender, EventArgs e)
         {
             ToggleCharVisibility(txtPassword, btnShowHide);
         }
-
-        private void btnShowHide_Click(object sender, EventArgs e)
+        private void btnShowHideConfirmPassword_Click(object sender, EventArgs e)
         {
-            ToggleCharVisibility(txtConfirmPassword, btnShowHide);
+            ToggleCharVisibility(txtConfirmPassword, btnShowHideConfirmPassword);
         }
 
         private void ToggleCharVisibility(TextBox textBox, Button button)
@@ -292,5 +291,7 @@ namespace JOMonitoringApp.Views.Users
 
             LoadSearchAccount(userDict);
         }
+
+       
     }
 }

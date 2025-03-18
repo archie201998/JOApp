@@ -46,7 +46,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbRoles = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnShowHideConfirmPassword = new System.Windows.Forms.Button();
             this.btnShowHide = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtConfirmPassword = new System.Windows.Forms.TextBox();
@@ -233,7 +233,7 @@
             // 
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.cmbRoles);
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnShowHideConfirmPassword);
             this.groupBox1.Controls.Add(this.btnShowHide);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtConfirmPassword);
@@ -269,21 +269,21 @@
             this.cmbRoles.Size = new System.Drawing.Size(200, 23);
             this.cmbRoles.TabIndex = 5;
             // 
-            // button1
+            // btnShowHideConfirmPassword
             // 
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::JOMonitoringApp.Properties.Resources.visible_16px;
-            this.button1.Location = new System.Drawing.Point(395, 109);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 30);
-            this.button1.TabIndex = 36;
-            this.button1.TabStop = false;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnShowHide_Click);
+            this.btnShowHideConfirmPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnShowHideConfirmPassword.FlatAppearance.BorderSize = 0;
+            this.btnShowHideConfirmPassword.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnShowHideConfirmPassword.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnShowHideConfirmPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowHideConfirmPassword.Image = global::JOMonitoringApp.Properties.Resources.visible_16px;
+            this.btnShowHideConfirmPassword.Location = new System.Drawing.Point(395, 109);
+            this.btnShowHideConfirmPassword.Name = "btnShowHideConfirmPassword";
+            this.btnShowHideConfirmPassword.Size = new System.Drawing.Size(28, 30);
+            this.btnShowHideConfirmPassword.TabIndex = 36;
+            this.btnShowHideConfirmPassword.TabStop = false;
+            this.btnShowHideConfirmPassword.UseVisualStyleBackColor = true;
+            this.btnShowHideConfirmPassword.Click += new System.EventHandler(this.btnShowHideConfirmPassword_Click);
             // 
             // btnShowHide
             // 
@@ -299,7 +299,7 @@
             this.btnShowHide.TabIndex = 19;
             this.btnShowHide.TabStop = false;
             this.btnShowHide.UseVisualStyleBackColor = true;
-            this.btnShowHide.Click += new System.EventHandler(this.btnShowHide_Click_1);
+            this.btnShowHide.Click += new System.EventHandler(this.btnShowHide_Click);
             // 
             // label4
             // 
@@ -458,7 +458,7 @@
         private System.Windows.Forms.Label label8;
         internal System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnShowHideConfirmPassword;
         private System.Windows.Forms.Button btnShowHide;
         private System.Windows.Forms.ComboBox cmbRoles;
         private System.Windows.Forms.Label label3;

@@ -99,7 +99,22 @@ namespace JOMonitoringApp
 
         public bool Insert(UsersModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@prefix", DbType.String, entity.Prefix },
+                new object[] { "@first_name", DbType.String, entity.FirstName },
+                new object[] { "@middle_name", DbType.String, entity.MiddleName },
+                new object[] { "@last_name", DbType.String, entity.LastName },
+                new object[] { "@suffix", DbType.String, entity.Suffix },
+                new object[] { "@user_name", DbType.String, entity.UserName },
+                new object[] { "@password", DbType.String, entity.Password },
+                new object[] { "@role_id", DbType.Int32, entity.RolesId }
+            };
+
+            string query = $"INSERT INTO {tableName} (prefix, first_name, middle_name, last_name, suffix, user_name, password, roles_id) " +
+                            "VALUES (@prefix, @first_name, @middle_name, @last_name, @suffix, @user_name, sha2(@password, 224), @role_id)";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public bool Update(UsersModel entity)

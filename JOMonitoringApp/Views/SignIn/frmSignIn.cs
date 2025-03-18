@@ -26,8 +26,6 @@ namespace JOMonitoringApp
         
             try
             {
-          
-
                 ValidateLoginCredentials();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }

@@ -184,6 +184,7 @@
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\JOLogsModel.cs" />
     <Compile Include="Model\StatusModel.cs" />
@@ -200,10 +201,12 @@
     <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
+    <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JOLogsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
+    <Compile Include="Repository\RolesRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
@@ -256,6 +259,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Users\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Users\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\Users\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Resources\visible-16px.png" />
     <None Include="Resources\invisible-16px.png" />
     <None Include="JOMonitoringApp_1_TemporaryKey.pfx" />

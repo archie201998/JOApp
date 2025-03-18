@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Reports;
+using JOMonitoringApp.Views.Users;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -578,6 +579,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmJOProgressTracking().ShowDialog();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmUsers().ShowDialog();
         }
     }
 }

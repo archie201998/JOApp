@@ -23,6 +23,100 @@ namespace JOMonitoringApp.Views.JobOrder
         internal string accountName = string.Empty;
         internal bool isUpdate = false;
 
+        private Dictionary<string, object> originalValues = new Dictionary<string, object>();
+
+        internal void StoreOriginalValues()
+        {
+            originalValues["AccountName"] = txtAccountName.Text;
+            originalValues["Date"] = dtpDate.Value;
+            originalValues["JONumber"] = txtJONumber.Text;
+            originalValues["MRSNumber"] = txtMRSNumber.Text;
+            originalValues["WARNumber"] = txtWARNumber.Text;
+            originalValues["MaterialsIssuedBy"] = cmbxMaterialsIssuedBy.SelectedValue;
+            originalValues["AccomplishedBy"] = cmbxAccomplishedBy.SelectedValue;
+            originalValues["Particulars"] = GetSelectedParticulars();
+            originalValues["Remarks"] = txtRemarks.Text;
+            originalValues["Status"] = statusId;
+
+
+
+        }
+
+        internal bool HasDataChanged()
+        {
+            bool hasChanges = false;
+            if ((string)originalValues["AccountName"] != txtAccountName.Text)
+            {
+                Helper.changes += $"Account Name: {originalValues["AccountName"].ToString()} to {txtAccountName.Text}; ";
+                hasChanges = true;
+            }
+
+
+            if ((DateTime)originalValues["Date"] != dtpDate.Value)
+            {
+                Helper.changes += $"Date : {originalValues["Date"].ToString()} to {dtpDate.Text}; ";
+                hasChanges = true;
+            }
+
+            if ((string)originalValues["JONumber"] != txtJONumber.Text)
+            {
+                Helper.changes += $"JO Number: {originalValues["JONumber"].ToString()} to {txtJONumber.Text}; ";
+                hasChanges = true;
+            }
+
+            if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
+            {
+                Helper.changes += $"MRS Number: {originalValues["MRSNumber"].ToString()} to {txtMRSNumber.Text}; ";
+                hasChanges = true;
+            }
+
+
+            if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
+            {
+                Helper.changes += $"WAR Number: {originalValues["WARNumber"].ToString()} to {txtWARNumber.Text}; ";
+                return true;
+            }
+
+
+            if ((int?)originalValues["MaterialsIssuedBy"] != (int?)cmbxMaterialsIssuedBy.SelectedValue)
+            {
+                Helper.changes += $"Materials Issued By: {originalValues["MaterialsIssuedBy"].ToString()} to {cmbxMaterialsIssuedBy.Text}; ";
+                return true;
+            }
+
+
+            if ((int?)originalValues["AccomplishedBy"] != (int?)cmbxAccomplishedBy.SelectedValue)
+            {
+                Helper.changes += $"Accomplished By: {originalValues["AccomplishedBy"].ToString()} to {cmbxAccomplishedBy.Text}; ";
+                hasChanges = true;
+            }
+
+            if ((string)originalValues["Particulars"] != GetSelectedParticulars())
+            {
+                Helper.changes += $"Particulars: {originalValues["Particulars"].ToString()} to {GetSelectedParticulars()}; ";
+                hasChanges = true;
+            }
+
+
+            if ((string)originalValues["Remarks"] != txtRemarks.Text)
+            {
+                Helper.changes += $"Remarks: {originalValues["Remarks"].ToString()} to {txtRemarks.Text}; ";
+                hasChanges = true;
+            }
+
+
+            if ((string)originalValues["Status"].ToString() != statusId.ToString())
+            {
+                Helper.changes += $"Status: {originalValues["Status"].ToString()} to {statusId}; ";
+                hasChanges = true;
+            }
+            
+            return hasChanges;
+        }
+
+
+
+
         public ucJoborder()
         {
             if (!DesignMode)
@@ -125,11 +219,11 @@ namespace JOMonitoringApp.Views.JobOrder
             return particular;
         }
 
-        internal JOLogsModel JOLogsModel(bool isSave)
+        internal JOLogsModel JOLogsModel()
         {
             return new JOLogsModel()
             {
-                TransactionEvent = Helper.LogMessage(true),
+                TransactionEvent = Helper.LogMessage(isUpdate),
                 DateAndTime = DateTime.Now,
                 JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId

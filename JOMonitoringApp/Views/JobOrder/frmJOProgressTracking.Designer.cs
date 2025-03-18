@@ -45,7 +45,7 @@
             this.dgJobOrderStatusDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJobOrderStatusDetails.Location = new System.Drawing.Point(12, 47);
             this.dgJobOrderStatusDetails.Name = "dgJobOrderStatusDetails";
-            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(462, 407);
+            this.dgJobOrderStatusDetails.Size = new System.Drawing.Size(1070, 476);
             this.dgJobOrderStatusDetails.TabIndex = 0;
             // 
             // label1
@@ -87,7 +87,7 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 466);
+            this.ClientSize = new System.Drawing.Size(1098, 535);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtJONumber);
             this.Controls.Add(this.label1);

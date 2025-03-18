@@ -19,7 +19,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails);
+            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails, true, true);
         }
 
         private void frmJOProgressTracking_Load(object sender, EventArgs e)

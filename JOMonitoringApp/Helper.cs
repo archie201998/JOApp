@@ -20,7 +20,7 @@ namespace AccountingSystem
     {
         public static byte UserId { get; internal set; }
         internal static bool temporaryAdminMode = false;
-
+        internal static string changes;
 
         internal static void UserAdminView(Form frm)
         { 
@@ -28,11 +28,11 @@ namespace AccountingSystem
         }
 
 
-        public static string LogMessage(bool isInsert)
+        public static string LogMessage(bool isUpdate)
         {
-            if (isInsert)
+            if (isUpdate)
             {
-                return "Updated";
+                return "Updated : " + changes;
             }
 
             return "Added";

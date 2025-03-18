@@ -20,13 +20,6 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly ucJoborder ucJoborder;
         private int previousSelection = 0;
 
-        bool validatedOne;
-        bool validatedTwo;
-        bool validatedThree;
-        bool validatedFour;
-
-        private bool _autoPrint = false;
-
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
@@ -316,7 +309,6 @@ namespace JOMonitoringApp.Views.MainForm
             string[] accountNumber = dictJobOrders["account_number"].ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
             bool noAccountNumber = string.IsNullOrEmpty(dictJobOrders["account_number"].ToString());
 
-
             ucJoborder.txtAcc1.Text = noAccountNumber ? string.Empty : accountNumber[0];
             ucJoborder.txtAcc2.Text = noAccountNumber ? string.Empty : accountNumber[1];
             ucJoborder.txtAcc3.Text = noAccountNumber ? string.Empty : accountNumber[2];
@@ -347,7 +339,6 @@ namespace JOMonitoringApp.Views.MainForm
         private void BtnCancel_Click(object sender, EventArgs e)
         {
             ResetInputForm();
-
         }
 
         internal void ResetInputForm()
@@ -397,6 +388,24 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
+        private void LogJOTransaction()
+        {
+            try
+            {
+                bool setLogRest = Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel());
+
+                if (!setLogRest)
+                {
+                    Helper.MessageBoxError("Failed to saved transaction log.");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxError(ex.Message);
+                return ;
+            }
+        }
    
         private void ButtonSaveTrigger()
         {
@@ -406,10 +415,11 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     if (UpdateData())
                     {
+                        LogJOTransaction();
                         Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         OnLoad();
-                        Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(true));
                         ResetInputForm();
+
                     }
                 }
                 else
@@ -425,8 +435,7 @@ namespace JOMonitoringApp.Views.MainForm
                             _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
                             return;
                         }
-
-                        Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel(false));
+                        LogJOTransaction();
                         ResetInputForm();
                     }
                 }
@@ -448,7 +457,19 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+            if (ucJoborder.HasDataChanged())
+            {
+                // Data has changed, proceed with update
+                return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+            }
+            else
+            {
+                // No changes detected
+                Helper.MessageBoxSuccess("No changes detected.");
+                return false;
+            }
+
+            
         }
 
 
@@ -505,6 +526,7 @@ namespace JOMonitoringApp.Views.MainForm
             btnSave.BackColor = Color.OrangeRed;
             ucJoborder.isUpdate = true;
             previousSelection = dgJobOrders.SelectedRows[0].Index;
+            ucJoborder.StoreOriginalValues();
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)

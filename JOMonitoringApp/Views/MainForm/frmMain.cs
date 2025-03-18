@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm
@@ -437,13 +438,12 @@ namespace JOMonitoringApp.Views.MainForm
                     {
                         Helper.MessageBoxSuccess("Job Order successfully created.");
                         OnLoad();
-
-                        if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
-                        {
-                            string joNumber = ucJoborder.txtJONumber.Text.Trim();
-                            _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
-                            return;
-                        }
+                        //if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
+                        //{
+                        //    string joNumber = ucJoborder.txtJONumber.Text.Trim();
+                        //    _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
+                        //    return;
+                        //}
                         LogJOTransaction();
                         ResetInputForm();
                     }
@@ -468,8 +468,10 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (ucJoborder.HasDataChanged())
             {
-                // Data has changed, proceed with update
-                return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+                if (CheckPossibleDuplicateEntry())
+                    return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+
+                return false;
             }
             else
             {
@@ -477,10 +479,23 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxSuccess("No changes detected.");
                 return false;
             }
-
-            
         }
 
+        private bool CheckPossibleDuplicateEntry()
+        {
+            string accountNumber = ucJoborder.txtAcc1.Text + "-" + ucJoborder.txtAcc2.Text + "-" + ucJoborder.txtAcc3.Text + "-" + ucJoborder.txtAcc4.Text;
+            string particulars = string.Join("\\", ucJoborder.clBoxParticulars.CheckedItems.Cast<string>().ToArray());
+
+            bool recordFound =  Factory.JobOrdersRepository().CheckPossibleDuplicate(accountNumber, particulars);
+
+            if (recordFound)
+                if (Helper.MessageBoxConfirmCancel("Similar Job Order Details are found in the record. Do you want to proceed?"))
+                    return true;
+                else
+                    return false;
+
+            return true;
+        }
 
         #region Save Job orders
         internal bool SaveData()
@@ -491,16 +506,16 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text ))
+            if (CheckPossibleDuplicateEntry())
             {
-                if (ucJoborder.isNewAccount)
+                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
-                    Factory.CustomersRepository().Insert(ucJoborder.CustomersModel());
+                    if (ucJoborder.isNewAccount)
+                        Factory.CustomersRepository().Insert(ucJoborder.CustomersModel());
+                    
+                    return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
                 }
-
-                return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
             }
-
             return false;
         }
 

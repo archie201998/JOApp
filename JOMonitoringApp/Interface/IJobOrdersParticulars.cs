@@ -9,6 +9,5 @@ namespace JOMonitoringApp.Interface
 {
     public interface IJobOrdersParticulars : IRepository<JobOrdersParticularsModel>
     {
-
     }
 }

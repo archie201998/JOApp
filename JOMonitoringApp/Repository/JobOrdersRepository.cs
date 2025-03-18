@@ -258,5 +258,20 @@ namespace JOMonitoringApp
 
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
         }
+
+        public bool CheckPossibleDuplicate(string accountNumber, string particulars)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@account_number", DbType.String, accountNumber },
+                new object[] { "@particulars", DbType.String, $"%{particulars}%" }
+            };
+
+            string query = $"SELECT COUNT(*) FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0";
+
+            int count = int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+
+            return count > 0;
+        }
     }
 }

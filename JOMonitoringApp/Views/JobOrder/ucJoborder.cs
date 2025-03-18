@@ -32,14 +32,13 @@ namespace JOMonitoringApp.Views.JobOrder
             originalValues["JONumber"] = txtJONumber.Text;
             originalValues["MRSNumber"] = txtMRSNumber.Text;
             originalValues["WARNumber"] = txtWARNumber.Text;
+            originalValues["ORNumber"] = txtORNumber.Text;
+            originalValues["Amount"] = nudAmount.Value;
             originalValues["MaterialsIssuedBy"] = cmbxMaterialsIssuedBy.SelectedValue;
             originalValues["AccomplishedBy"] = cmbxAccomplishedBy.SelectedValue;
             originalValues["Particulars"] = GetSelectedParticulars();
             originalValues["Remarks"] = txtRemarks.Text;
             originalValues["Status"] = statusId;
-
-
-
         }
 
         internal bool HasDataChanged()
@@ -75,6 +74,18 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 Helper.changes += $"WAR Number: {originalValues["WARNumber"].ToString()} to {txtWARNumber.Text}; ";
                 return true;
+            }
+
+            if ((string)originalValues["ORNumber"] != txtORNumber.Text)
+            {
+                Helper.changes += $"OR Number: {originalValues["ORNumber"].ToString()} to {txtORNumber.Text}; ";
+                hasChanges = true;
+            }
+
+            if ((decimal)originalValues["Amount"] != nudAmount.Value)
+            {
+                Helper.changes += $"Amount: {originalValues["Amount"].ToString()} to {nudAmount.Value}; ";
+                hasChanges = true;
             }
 
 

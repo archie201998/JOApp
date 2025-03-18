@@ -178,8 +178,8 @@ namespace JOMonitoringApp
                     new object[] { "@password", DbType.String, password },
                 };
 
-                //string query = $"SELECT id FROM {tableName} WHERE BINARY username = @username AND password = sha2(@password, 224)";
-                string query = $"SELECT id FROM {tableName} WHERE  user_name = @username AND password = @password";
+                string query = $"SELECT id FROM {tableName} WHERE BINARY user_name = @username AND password = sha2(@password, 224)";
+                //string query = $"SELECT id FROM {tableName} WHERE  user_name = @username AND password = @password";
                 string userId = mySqlGenericCommands.ExecuteScalar(query, parameters);
 
                 // if query is not null, means found some record, so true

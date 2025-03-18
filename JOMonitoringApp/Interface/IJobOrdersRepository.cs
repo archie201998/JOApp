@@ -29,6 +29,6 @@ namespace JOMonitoringApp.Interface
         int GetLastInsertedID(int userId);
       
         bool UpdateStatus(int jobOrderId, int statusId);
-
+        bool CheckPossibleDuplicate(string accountNumber, string particulars);
     }
 }

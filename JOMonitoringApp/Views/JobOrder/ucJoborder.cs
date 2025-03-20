@@ -1,14 +1,11 @@
-﻿using System;
+﻿using AccountingSystem;
+using JOMonitoringApp.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using JOMonitoringApp.Model;
-using AccountingSystem;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
@@ -43,91 +40,97 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal bool HasDataChanged()
         {
-            bool hasChanges = false;
-            if ((string)originalValues["AccountName"] != txtAccountName.Text)
+            try
             {
-                Helper.changes += $"Account Name: {originalValues["AccountName"].ToString()} to {txtAccountName.Text}; ";
-                hasChanges = true;
+                bool hasChanges = false;
+                if ((string)originalValues["AccountName"] != txtAccountName.Text)
+                {
+                    Helper.changes += $"Account Name: {originalValues["AccountName"].ToString()} into {txtAccountName.Text}; ";
+                    hasChanges = true;
+                }
+
+
+                if ((DateTime)originalValues["Date"] != dtpDate.Value)
+                {
+                    Helper.changes += $"Date : {originalValues["Date"].ToString()} into {dtpDate.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["JONumber"] != txtJONumber.Text)
+                {
+                    Helper.changes += $"JO Number: {originalValues["JONumber"].ToString()} into {txtJONumber.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
+                {
+                    Helper.changes += $"MRS Number: {originalValues["MRSNumber"].ToString()} into {txtMRSNumber.Text}; ";
+                    hasChanges = true;
+                }
+
+
+                if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
+                {
+                    Helper.changes += $"WAR Number: {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
+                    return true;
+                }
+
+                if ((string)originalValues["ORNumber"] != txtORNumber.Text)
+                {
+                    Helper.changes += $"OR Number: {originalValues["ORNumber"].ToString()} into {txtORNumber.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((decimal)originalValues["Amount"] != nudAmount.Value)
+                {
+                    Helper.changes += $"Amount: {originalValues["Amount"].ToString()} into {nudAmount.Value}; ";
+                    hasChanges = true;
+                }
+
+
+                if ((int?)originalValues["MaterialsIssuedBy"] != (int?)cmbxMaterialsIssuedBy.SelectedValue)
+                {
+                    Helper.changes += $"Materials Issued By: {originalValues["MaterialsIssuedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
+                    return true;
+                }
+
+
+                if ((int?)originalValues["AccomplishedBy"] != (int?)cmbxAccomplishedBy.SelectedValue)
+                {
+                    Helper.changes += $"Accomplished By: {originalValues["AccomplishedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["Particulars"] != GetSelectedParticulars())
+                {
+                    Helper.changes += $"Particulars: {originalValues["Particulars"].ToString()} into {GetSelectedParticulars()}; ";
+                    hasChanges = true;
+                }
+
+
+                if ((string)originalValues["Remarks"] != txtRemarks.Text)
+                {
+                    Helper.changes += $"Remarks: {originalValues["Remarks"].ToString()} into {txtRemarks.Text}; ";
+                    hasChanges = true;
+                }
+
+
+                if ((string)originalValues["Status"].ToString() != statusId.ToString())
+                {
+                    Helper.changes += $"Status: {originalValues["Status"].ToString()} into {Helper.StatusText(statusId)}; ";
+                    hasChanges = true;
+                }
+
+                return hasChanges;
             }
-
-
-            if ((DateTime)originalValues["Date"] != dtpDate.Value)
+            catch (Exception)
             {
-                Helper.changes += $"Date : {originalValues["Date"].ToString()} to {dtpDate.Text}; ";
-                hasChanges = true;
+                Helper.MessageBoxError("Error in checking changes.");
+                return false;
             }
-
-            if ((string)originalValues["JONumber"] != txtJONumber.Text)
-            {
-                Helper.changes += $"JO Number: {originalValues["JONumber"].ToString()} to {txtJONumber.Text}; ";
-                hasChanges = true;
-            }
-
-            if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
-            {
-                Helper.changes += $"MRS Number: {originalValues["MRSNumber"].ToString()} to {txtMRSNumber.Text}; ";
-                hasChanges = true;
-            }
-
-
-            if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
-            {
-                Helper.changes += $"WAR Number: {originalValues["WARNumber"].ToString()} to {txtWARNumber.Text}; ";
-                return true;
-            }
-
-            if ((string)originalValues["ORNumber"] != txtORNumber.Text)
-            {
-                Helper.changes += $"OR Number: {originalValues["ORNumber"].ToString()} to {txtORNumber.Text}; ";
-                hasChanges = true;
-            }
-
-            if ((decimal)originalValues["Amount"] != nudAmount.Value)
-            {
-                Helper.changes += $"Amount: {originalValues["Amount"].ToString()} to {nudAmount.Value}; ";
-                hasChanges = true;
-            }
-
-
-            if ((int?)originalValues["MaterialsIssuedBy"] != (int?)cmbxMaterialsIssuedBy.SelectedValue)
-            {
-                Helper.changes += $"Materials Issued By: {originalValues["MaterialsIssuedBy"].ToString()} to {cmbxMaterialsIssuedBy.Text}; ";
-                return true;
-            }
-
-
-            if ((int?)originalValues["AccomplishedBy"] != (int?)cmbxAccomplishedBy.SelectedValue)
-            {
-                Helper.changes += $"Accomplished By: {originalValues["AccomplishedBy"].ToString()} to {cmbxAccomplishedBy.Text}; ";
-                hasChanges = true;
-            }
-
-            if ((string)originalValues["Particulars"] != GetSelectedParticulars())
-            {
-                Helper.changes += $"Particulars: {originalValues["Particulars"].ToString()} to {GetSelectedParticulars()}; ";
-                hasChanges = true;
-            }
-
-
-            if ((string)originalValues["Remarks"] != txtRemarks.Text)
-            {
-                Helper.changes += $"Remarks: {originalValues["Remarks"].ToString()} to {txtRemarks.Text}; ";
-                hasChanges = true;
-            }
-
-
-            if ((string)originalValues["Status"].ToString() != statusId.ToString())
-            {
-                Helper.changes += $"Status: {originalValues["Status"].ToString()} to {statusId}; ";
-                hasChanges = true;
-            }
-            
-            return hasChanges;
         }
 
-
-
-
+        
         public ucJoborder()
         {
             if (!DesignMode)
@@ -199,6 +202,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string accountNumber = txtAccountNumber.Text.Trim();
             string accountName = txtAccountName.Text.Trim();
             string accountAddress = txtAddress.Text.Trim();
+            string contact = txtContact.Text.Trim();
             int createdBy = Helper.UserId;
 
             return new CustomersModel()
@@ -207,6 +211,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 AccountNumber = accountNumber,
                 AccountName = accountName,
                 Address = accountAddress,
+                Contact = contact,
                 CreatedBy = createdBy
             };
         }
@@ -234,7 +239,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             return new JOLogsModel()
             {
-                TransactionEvent = Helper.LogMessage(isUpdate),
+                TransactionEvent = Helper.LogMessage(isUpdate) ,
                 DateAndTime = DateTime.Now,
                 JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId
@@ -251,7 +256,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string MRIS = txtMRISNumber.Text;
             string MRS = txtMRSNumber.Text;
             string WAR = txtWARNumber.Text;
-            string remarks = txtRemarks.Text;   
+            string remarks = txtRemarks.Text;
             int preparedById = Helper.UserId;
             int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
@@ -289,7 +294,7 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 clBoxParticulars.Items.Add(item["particular"].ToString());
             }
-        } 
+        }
 
         private void UcJoborder_Load(object sender, EventArgs e)
         {
@@ -428,9 +433,9 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void cmbxAccomplishedBy_Validating(object sender, CancelEventArgs e)
         {
-            if (radAccomplished.Checked && !string.IsNullOrEmpty(txtWARNumber.Text.Trim()))
+            if (radAccomplished.Checked || !string.IsNullOrEmpty(txtWARNumber.Text.Trim()) || cmbxAccomplishedBy.SelectedIndex == -1)
                 e.Cancel = Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxAccomplishedBy, "Accomplished By.");
-           
+
             e.Cancel = false;
         }
 
@@ -459,7 +464,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void txtAcc3_TextChanged(object sender, EventArgs e)
         {
-            string searchKey = $"{ txtAcc1.Text }-{ txtAcc2.Text }-{ txtAcc3.Text }-{txtAcc4.Text}";
+            string searchKey = $"{txtAcc1.Text}-{txtAcc2.Text}-{txtAcc3.Text}-{txtAcc4.Text}";
 
             var txtBox = sender as TextBox;
 
@@ -472,8 +477,8 @@ namespace JOMonitoringApp.Views.JobOrder
             else if (txtAcc4.Text.Length == 1 && txtBox == txtAcc4)
                 txtAccountName.Focus();
 
-            txtAccountNumber.Text = searchKey;
-            
+            txtAccountNumber.Text = searchKey == "---" ? string.Empty : searchKey;
+
         }
 
         private void clBoxParticulars_Validating(object sender, CancelEventArgs e)

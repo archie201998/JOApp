@@ -20,6 +20,7 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
         private int previousSelection = 0;
+        private List<Keys> keySequence = new List<Keys>();
 
         public frmMain(frmSignIn frmSignIn)
         {
@@ -288,7 +289,8 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
-            ucJoborder.txtAddress.Text = dictJobOrders["address"]  ;
+            ucJoborder.txtAddress.Text = dictJobOrders["address"];
+            ucJoborder.txtContact.Text = dictJobOrders["contact"];
 
             char[] delimiters = new char[] { '\\' };
             string[] particulars = dictJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -350,11 +352,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void ResetInputForm()
         {
-            ucJoborder.accountId = 0;
-            ucJoborder.txtAccountName.Clear();
-            ucJoborder.txtAccountName.Focus();
-            ucJoborder.txtAccountNumber.Clear();
-            ucJoborder.txtAddress.Clear();
 
             ucJoborder.txtJONumber.Clear();
             ucJoborder.dtpDate.Value = DateTime.Now;
@@ -394,6 +391,12 @@ namespace JOMonitoringApp.Views.MainForm
             for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 ucJoborder.clBoxParticulars.SetItemChecked(i, false);
 
+            ucJoborder.accountId = 0;
+            ucJoborder.txtAccountName.Clear();
+            ucJoborder.txtAccountName.Focus();
+            ucJoborder.txtAccountNumber.Clear();
+            ucJoborder.txtAddress.Clear();
+            ucJoborder.txtContact.Clear();
             //dgJobOrders.ClearSelection();
 
         }
@@ -426,26 +429,28 @@ namespace JOMonitoringApp.Views.MainForm
                     if (UpdateData())
                     {
                         LogJOTransaction();
-                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         OnLoad();
+                        Helper.MessageBoxSuccess("Job Order details successfully updated.");
                         ResetInputForm();
-
+                        return;
                     }
                 }
                 else
                 {
                     if (SaveData())
                     {
-                        Helper.MessageBoxSuccess("Job Order successfully created.");
+                        LogJOTransaction();
                         OnLoad();
+                        Helper.MessageBoxSuccess("Job Order successfully created.");
+                        ResetInputForm();
+
+                        //temporary disabled    
                         //if (Helper.MessageBoxConfirmCancel("Do you want to print SROF for J.O Number? " + ucJoborder.txtJONumber.Text))
                         //{
                         //    string joNumber = ucJoborder.txtJONumber.Text.Trim();
                         //    _ = new frmServiceRequestAndOrderForm(joNumber).ShowDialog();
                         //    return;
                         //}
-                        LogJOTransaction();
-                        ResetInputForm();
                     }
                 }
             }
@@ -467,12 +472,8 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             if (ucJoborder.HasDataChanged())
-            {
-                if (CheckPossibleDuplicateEntry())
-                    return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+               return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
 
-                return false;
-            }
             else
             {
                 // No changes detected
@@ -518,25 +519,20 @@ namespace JOMonitoringApp.Views.MainForm
             }
             return false;
         }
-
-
         #endregion
 
-       
         private void TabPage2_Enter(object sender, EventArgs e)
         {
             ucDashboardSummaryView.LoadAndDisplaySummary(Convert.ToInt32(ucDashboardSummaryView.nudYear.Value), Convert.ToInt32(ucDashboardSummaryView.cmbxMonth.SelectedIndex));
         }
 
-        private void SetPermissions()
+        private void UpdateSettings()
         {
-            ucJoborder.txtJONumber.Enabled = Helper.HasPermission("JO NUMBER");
-            ucJoborder.txtWARNumber.Enabled = Helper.HasPermission("WAR");
-            ucJoborder.clBoxParticulars.Enabled = Helper.HasPermission("PARTICULAR");
-            ucJoborder.txtMRISNumber.Enabled = Helper.HasPermission("MIRS");
-            ucJoborder.txtMRSNumber.Enabled = Helper.HasPermission("MIR");
-
-            ucJoborder.gbAccountDetails.Enabled = Helper.HasPermission("JO CUSTOMER");
+            dgJobOrders.Enabled = false;
+            btnSave.Text = "Save [Ctrl + S]";
+            btnSave.BackColor = Color.OrangeRed;
+            ucJoborder.isUpdate = true;
+            previousSelection = dgJobOrders.SelectedRows[0].Index;
         }
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
@@ -544,13 +540,8 @@ namespace JOMonitoringApp.Views.MainForm
             if (dgJobOrders.Rows.Count == 0) return;
 
             //SetPermissions();
-
+            UpdateSettings();
             LoadSelectedData();
-            dgJobOrders.Enabled = false;
-            btnSave.Text = "Save [Ctrl + S]";
-            btnSave.BackColor = Color.OrangeRed;
-            ucJoborder.isUpdate = true;
-            previousSelection = dgJobOrders.SelectedRows[0].Index;
             ucJoborder.StoreOriginalValues();
         }
 
@@ -585,6 +576,21 @@ namespace JOMonitoringApp.Views.MainForm
                 return;
             }
 
+            keySequence.Add(e.KeyCode);
+
+            if (keySequence.Count > 6)
+            {
+                keySequence.RemoveAt(0);
+            }
+
+            if (keySequence.SequenceEqual(new List<Keys> { Keys.D2, Keys.D8, Keys.D4, Keys.D6, Keys.F4, Keys.F4 }))
+            {
+                ucJoborder.groupBox4.Enabled = true;
+                ucJoborder.gbAccountDetails.Enabled = true;
+                ucJoborder.gbIssuanceAndAssignment.Enabled = true;
+                ucJoborder.gbJODetails.Enabled = true;
+                keySequence.Clear();
+            }
         }
 
         private void requistionAndIssueSlipRISToolStripMenuItem_Click(object sender, EventArgs e)

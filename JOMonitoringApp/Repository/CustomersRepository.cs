@@ -58,10 +58,11 @@ internal class CustomersRepository : ICustomersRepository
             new object[]{"@account_number", DbType.String, entity.AccountNumber},
             new object[]{"@account_name", DbType.String, entity.AccountName},
             new object[]{"@address", DbType.String, entity.Address},
+            new object[]{"@contact", DbType.String, entity.Contact},
             new object[]{"@created_by", DbType.Int32, entity.CreatedBy},
         };
 
-        string query = $"INSERT INTO {tableName} (account_number, account_name, address, created_by) VALUES (@account_number, @account_name, @address, @created_by)";
+        string query = $"INSERT INTO {tableName} (account_number, account_name, address, contact, created_by) VALUES (@account_number, @account_name, @address, @contact, @created_by)";
         return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
 
     }
@@ -73,11 +74,12 @@ internal class CustomersRepository : ICustomersRepository
             new object[]{"@account_number", DbType.String, entity.AccountNumber},
             new object[]{"@account_name", DbType.String, entity.AccountName},
             new object[]{"@address", DbType.String, entity.Address},
+            new object[]{"@contact", DbType.String, entity.Contact},
             new object[]{"@updated_by", DbType.Int32, entity.CreatedBy},
         };
 
 
-        string query = $"UPDATE {tableName} SET account_number=@account_number, account_name=@account_name, address=@address, updated_by=@updated_by WHERE id = @id";
+        string query = $"UPDATE {tableName} SET account_number=@account_number, account_name=@account_name, address=@address, contact = @contact, updated_by=@updated_by WHERE id = @id";
 
         return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
 

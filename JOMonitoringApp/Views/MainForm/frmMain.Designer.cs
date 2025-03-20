@@ -122,7 +122,7 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
@@ -143,7 +143,7 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
@@ -244,13 +244,13 @@
             // lockApplicationToolStripMenuItem
             // 
             this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.lockApplicationToolStripMenuItem.Text = "Lock Application";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -439,7 +439,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(0, 727);
+            this.panel4.Location = new System.Drawing.Point(0, 769);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(418, 31);
             this.panel4.TabIndex = 5;
@@ -485,7 +485,7 @@
             this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
             this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 726);
+            this.ucJoborder1.Size = new System.Drawing.Size(418, 769);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage2

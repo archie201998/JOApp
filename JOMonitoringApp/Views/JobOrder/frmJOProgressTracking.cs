@@ -1,18 +1,11 @@
 ﻿using AccountingSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp.Views.JobOrder
 {
-    public partial class frmJOProgressTracking: Form
+    public partial class frmJOProgressTracking : Form
     {
         string _joNumber;
         public frmJOProgressTracking()
@@ -29,7 +22,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void txtJONumber_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private DataColumn[] JobOrdersColumns()

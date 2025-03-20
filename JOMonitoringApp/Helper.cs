@@ -13,14 +13,33 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Color = System.Drawing.Color;
+using System.Net;
+using System.Net.Sockets;
+
 
 namespace AccountingSystem
 {
     public static class Helper
     {
+
+
         public static byte UserId { get; internal set; }
         internal static bool temporaryAdminMode = false;
         internal static string changes;
+
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
+
 
         internal static void UserAdminView(Form frm)
         { 
@@ -32,12 +51,14 @@ namespace AccountingSystem
         {
             if (isUpdate)
             {
-                return "Updated : " + changes;
+                //ip address here.
+                return $"Updated the following date : { changes }, at {GetLocalIPAddress()}";
+                //return "Updated : " + changes + " at : " + GetLocalIPAddress();
             }
 
-            return "Added";
+            return $"Added at : {GetLocalIPAddress()}.";
+            
         }
-
 
         public static SqlConnection GetConnection()
         {
@@ -657,5 +678,21 @@ namespace AccountingSystem
             return myString.Length > maxLength ? $"{myString.Substring(0, 20)}..." : $"{myString}";
         }
 
+        internal static string StatusText(int statusId)
+        {
+            switch (statusId)
+            {
+                case 1:
+                    return "Pending";
+                case 2:
+                    return "Processing";
+                case 3:
+                    return "Cancelled";
+                case 4:
+                    return "Accomplished";
+                default:
+                    return "Unknown Status";
+            }
+        }
     }
 }

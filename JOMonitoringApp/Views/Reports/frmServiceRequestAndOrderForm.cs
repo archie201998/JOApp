@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,21 +78,13 @@ namespace JOMonitoringApp.Views.Reports
         {   
             try
             {
-                // Define tasks and their progress weights
-                var tasks = new Dictionary<string, int>
-                {
-                    { "Initialize Parameters", 50 },
-                    { "Set Parameter Values", 50 }
-                };
-
-                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable().Clone();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
-
-                int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Count;
+                int totalProgressCount = 100;
                 int progressCount = 0;
 
+                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable();
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
                 List<ReportParameter> reportParameters1 = new List<ReportParameter>();
-                progressCount += tasks["Initialize Parameters"];
+                progressCount += 10;
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 var userData = Helper.LoggedInUserData();
@@ -105,11 +98,11 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
-                progressCount += tasks["Set Parameter Values"];
-
+                
+                progressCount += 90;
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
-                e.Result = (reportParameters1, new DataTable());
+                e.Result = (reportParameters1);
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -124,15 +117,14 @@ namespace JOMonitoringApp.Views.Reports
             try
             {
 
-                var parameters = ((List<ReportParameter> reportParameters1, DataTable dtJOSummary))e.Result;
-
+                List<ReportParameter> paramters = (List<ReportParameter>)e.Result;
                 reportViewer1.Clear();
                 var localReport = reportViewer1.LocalReport;
                 localReport.DataSources.Clear();
 
                 localReport.ReportPath = $"{Application.StartupPath}\\RDLC\\service-request-and-order-form.rdlc";
-                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", parameters.dtJOSummary));
-                localReport.SetParameters(parameters.reportParameters1);
+                localReport.DataSources.Add(new ReportDataSource("dsJOMonthlyReport", new DataTable()));
+                localReport.SetParameters(paramters);
                 localReport.Refresh();
 
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);

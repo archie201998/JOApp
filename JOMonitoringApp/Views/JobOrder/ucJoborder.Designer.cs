@@ -42,6 +42,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
+            this.txtContact = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.cbxNA = new System.Windows.Forms.CheckBox();
             this.txtAcc4 = new System.Windows.Forms.TextBox();
             this.txtAccountName = new System.Windows.Forms.TextBox();
@@ -184,9 +186,9 @@
             this.txtAccountNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(478, 161);
+            this.txtAccountNumber.Location = new System.Drawing.Point(153, 0);
             this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(136, 21);
+            this.txtAccountNumber.Size = new System.Drawing.Size(202, 21);
             this.txtAccountNumber.TabIndex = 0;
             // 
             // label8
@@ -214,6 +216,8 @@
             // 
             // gbAccountDetails
             // 
+            this.gbAccountDetails.Controls.Add(this.txtContact);
+            this.gbAccountDetails.Controls.Add(this.label18);
             this.gbAccountDetails.Controls.Add(this.cbxNA);
             this.gbAccountDetails.Controls.Add(this.txtAcc4);
             this.gbAccountDetails.Controls.Add(this.txtAccountName);
@@ -231,14 +235,38 @@
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(21, 19);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(389, 154);
+            this.gbAccountDetails.Size = new System.Drawing.Size(389, 191);
             this.gbAccountDetails.TabIndex = 0;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
             // 
+            // txtContact
+            // 
+            this.txtContact.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtContact.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtContact.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtContact.Location = new System.Drawing.Point(155, 150);
+            this.txtContact.Name = "txtContact";
+            this.txtContact.Size = new System.Drawing.Size(200, 21);
+            this.txtContact.TabIndex = 7;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(25, 152);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 15);
+            this.label18.TabIndex = 33;
+            this.label18.Text = "CONTACT";
+            // 
             // cbxNA
             // 
             this.cbxNA.AutoSize = true;
+            this.cbxNA.Checked = true;
+            this.cbxNA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxNA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxNA.Location = new System.Drawing.Point(336, 46);
@@ -258,6 +286,7 @@
             this.txtAcc4.Location = new System.Drawing.Point(308, 43);
             this.txtAcc4.MaxLength = 2;
             this.txtAcc4.Name = "txtAcc4";
+            this.txtAcc4.ReadOnly = true;
             this.txtAcc4.Size = new System.Drawing.Size(22, 21);
             this.txtAcc4.TabIndex = 3;
             this.txtAcc4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -304,6 +333,7 @@
             this.txtAcc3.Location = new System.Drawing.Point(257, 43);
             this.txtAcc3.MaxLength = 3;
             this.txtAcc3.Name = "txtAcc3";
+            this.txtAcc3.ReadOnly = true;
             this.txtAcc3.Size = new System.Drawing.Size(39, 21);
             this.txtAcc3.TabIndex = 2;
             this.txtAcc3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -320,6 +350,7 @@
             this.txtAcc2.Location = new System.Drawing.Point(206, 43);
             this.txtAcc2.MaxLength = 3;
             this.txtAcc2.Name = "txtAcc2";
+            this.txtAcc2.ReadOnly = true;
             this.txtAcc2.Size = new System.Drawing.Size(39, 21);
             this.txtAcc2.TabIndex = 1;
             this.txtAcc2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -336,6 +367,7 @@
             this.txtAcc1.Location = new System.Drawing.Point(155, 43);
             this.txtAcc1.MaxLength = 3;
             this.txtAcc1.Name = "txtAcc1";
+            this.txtAcc1.ReadOnly = true;
             this.txtAcc1.Size = new System.Drawing.Size(39, 21);
             this.txtAcc1.TabIndex = 0;
             this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -362,7 +394,7 @@
             this.label14.Location = new System.Drawing.Point(297, 46);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(12, 15);
-            this.label14.TabIndex = 30;
+            this.label14.TabIndex = 3;
             this.label14.Text = "-";
             // 
             // label12
@@ -382,6 +414,7 @@
             this.gbJODetails.Controls.Add(this.txtWARNumber);
             this.gbJODetails.Controls.Add(this.label15);
             this.gbJODetails.Controls.Add(this.label11);
+            this.gbJODetails.Controls.Add(this.txtAccountNumber);
             this.gbJODetails.Controls.Add(this.txtMRSNumber);
             this.gbJODetails.Controls.Add(this.label10);
             this.gbJODetails.Controls.Add(this.txtMRISNumber);
@@ -395,7 +428,7 @@
             this.gbJODetails.Controls.Add(this.label5);
             this.gbJODetails.Controls.Add(this.nudAmount);
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbJODetails.Location = new System.Drawing.Point(21, 179);
+            this.gbJODetails.Location = new System.Drawing.Point(21, 218);
             this.gbJODetails.Name = "gbJODetails";
             this.gbJODetails.Size = new System.Drawing.Size(389, 345);
             this.gbJODetails.TabIndex = 16;
@@ -526,7 +559,7 @@
             this.gbIssuanceAndAssignment.Controls.Add(this.cmbxMaterialsIssuedBy);
             this.gbIssuanceAndAssignment.Controls.Add(this.label13);
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 530);
+            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 573);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
             this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(389, 90);
             this.gbIssuanceAndAssignment.TabIndex = 17;
@@ -564,7 +597,7 @@
             this.groupBox4.Controls.Add(this.radProcessing);
             this.groupBox4.Controls.Add(this.radPending);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 626);
+            this.groupBox4.Location = new System.Drawing.Point(21, 666);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(389, 96);
             this.groupBox4.TabIndex = 18;
@@ -579,7 +612,7 @@
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(200, 36);
-            this.txtRemarks.TabIndex = 8;
+            this.txtRemarks.TabIndex = 4;
             this.txtRemarks.Validating += new System.ComponentModel.CancelEventHandler(this.txtRemarks_Validating);
             this.txtRemarks.Validated += new System.EventHandler(this.txtRemarks_Validated);
             // 
@@ -661,9 +694,8 @@
             this.Controls.Add(this.gbIssuanceAndAssignment);
             this.Controls.Add(this.gbJODetails);
             this.Controls.Add(this.gbAccountDetails);
-            this.Controls.Add(this.txtAccountNumber);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(427, 730);
+            this.Size = new System.Drawing.Size(420, 769);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
@@ -677,7 +709,6 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -730,5 +761,7 @@
         internal System.Windows.Forms.TextBox txtAcc4;
         internal System.Windows.Forms.Label label17;
         internal System.Windows.Forms.TextBox txtRemarks;
+        internal System.Windows.Forms.TextBox txtContact;
+        private System.Windows.Forms.Label label18;
     }
 }

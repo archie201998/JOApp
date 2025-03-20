@@ -1,12 +1,6 @@
 ﻿using AccountingSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.JobOrder
@@ -80,12 +74,12 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void DgAccounts_DoubleClick(object sender, EventArgs e)
         {
-           
+
         }
 
         private void DgAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-     
+
         }
 
         private void DgAccounts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -96,7 +90,7 @@ namespace JOMonitoringApp.Views.JobOrder
         private void SelectData()
         {
             if (dgAccounts.SelectedRows.Count == 0)
-                return; 
+                return;
 
             int selectedAccountId = Convert.ToInt32(dgAccounts.SelectedRows[0].Cells["id"].Value);
             string selectedAccountName = dgAccounts.SelectedRows[0].Cells["account_name"].Value.ToString();

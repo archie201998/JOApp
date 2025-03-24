@@ -8,8 +8,7 @@ internal class CustomersRepository : ICustomersRepository
 {
     private GenericCommands mySqlGenericCommands;
     private GenericCommands sqlGenericCommands;
-    private readonly string tableName = "tbl_customers";
-    private readonly string tableCustomers = "tbl_CustomerMaster";
+    private readonly string tableName = "tbl_CustomerMaster";
 
     public CustomersRepository(GenericCommands sqlGenericCommands, GenericCommands mySqlGenericCommands)
     {
@@ -102,20 +101,6 @@ internal class CustomersRepository : ICustomersRepository
     }
 
     
-    public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
-    {
-        var parameters = new object[][]
-        {
-            new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
-        };
-
-        string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_number LIKE @search_key OR account_name  like @search_key LIMIT 10";
-
-        var dataTable = new DataTable();
-        return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
-    }
-
-    //This will fetch the records from the main database
     //public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
     //{
     //    var parameters = new object[][]
@@ -123,11 +108,25 @@ internal class CustomersRepository : ICustomersRepository
     //        new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
     //    };
 
-    //    string query = $"SELECT TOP(10) CustomerID AS id, AccountNo AS account_number, AccountName AS account_name, Address AS address, MeterNumber AS meter_no, MeterBrand meter_brand  FROM {tableCustomers} WHERE AccountNo LIKE @search_key OR AccountName like @search_key";
+    //    string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_number LIKE @search_key OR account_name  like @search_key LIMIT 10";
 
     //    var dataTable = new DataTable();
-    //    return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+    //    return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
     //}
+
+    //This will fetch the records from the main database
+    public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
+        };
+
+        string query = $"SELECT TOP(10) CustomerID AS id, AccountNo AS account_number, AccountName AS account_name, Address AS address, MeterNumber AS meter_no, MeterBrand meter_brand  FROM {tableName} WHERE AccountNo LIKE @search_key OR AccountName like @search_key";
+
+        var dataTable = new DataTable();
+        return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+    }
 
     public DataTable GetRecordsBySearchByAccountNumberAndAccountName(string searchKey)
     {
@@ -145,7 +144,7 @@ internal class CustomersRepository : ICustomersRepository
     public DataTable GetMasterListFromMainDB()
     {
 
-        string query = $"SELECT * FROM tbl_CustomerMaster";
+        string query = $"SELECT * FROM {tableName}";
 
         var dataTable = new DataTable();
         return sqlGenericCommands.MainDB_Fill(query, dataTable);

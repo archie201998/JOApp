@@ -248,7 +248,11 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            int customerId = isUpdate ? accountId : (isNewAccount ? Factory.CustomersRepository().GetLastInsertedID(Helper.UserId) : accountId);
+            
+            string accountNumber = txtAccountNumber.Text;
+            string accountName = txtAccountName.Text;
+            string address = txtAddress.Text;
+            string contact = txtContact.Text;
             string jobOrderNumber = txtJONumber.Text;
             DateTime date = dtpDate.Value;
             string orNumber = txtORNumber.Text;
@@ -267,7 +271,10 @@ namespace JOMonitoringApp.Views.JobOrder
             return new JobOrdersModel()
             {
                 ID = jobOrderId,
-                CustomerID = customerId,
+                AccountNumber = accountNumber,
+                AccountName = accountName,
+                Address = address,
+                ContactNumber = contact,    
                 Particulars = particular,
                 PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,

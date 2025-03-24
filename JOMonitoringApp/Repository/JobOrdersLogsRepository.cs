@@ -7,14 +7,14 @@ using System.Data;
 
 namespace JOMonitoringApp
 {
-    internal class JOLogsRepository : IJOLogsRepository
+    internal class JobOrdersLogsRepository : IJOLogsRepository
     {
 
         private GenericCommands mySqlGenericCommands;
-        private readonly string tableName = "tbl_jo_logs";
-        private readonly string viewTableName = "view_jo_logs";
+        private readonly string tableName = "tbl_job_orders_logs";
+        private readonly string viewTableName = "view_job_orders_logs";
 
-        public JOLogsRepository(GenericCommands mySqlGenericCommands)
+        public JobOrdersLogsRepository(GenericCommands mySqlGenericCommands)
         {
             this.mySqlGenericCommands = mySqlGenericCommands;
         }

@@ -147,7 +147,11 @@ namespace JOMonitoringApp
         public bool Insert(JobOrdersModel entity)
         {
             var parameter = new object[][] {
-                new object[]{"@customers_id", DbType.Int32, entity.CustomerID},
+
+                new object[]{"@account_name", DbType.String, entity.AccountName},
+                new object[]{"@account_number", DbType.String, entity.AccountNumber},
+                new object[]{"@address", DbType.String, entity.Address},
+                new object[]{"@contact_number", DbType.String, entity.ContactNumber},
                 new object[]{"@date", DbType.DateTime, entity.Date},
                 new object[]{"@job_order_no", DbType.String, entity.JONUmber},
                 new object[]{"@particular", DbType.String, entity.Particulars},
@@ -163,7 +167,7 @@ namespace JOMonitoringApp
                 new object[]{"@status_id", DbType.String, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (customers_id,  particular, date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@customers_id, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (account_name, account_number, address, contact_number,  particular, date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@account_name, @account_number, @address, @contact_number, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 

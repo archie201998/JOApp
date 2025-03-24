@@ -11,6 +11,10 @@ namespace JOMonitoringApp.Model
         public int ID { get; set; }
         public int PreparedBy { get; set; }
         public int CustomerID { get; set; }
+        public string AccountName{ get; set; }
+        public string AccountNumber { get; set; }
+        public string Address { get; set; }
+        public string ContactNumber { get; set; }
         public int ParticularID { get; set; }
         public int? MaterialsIssuedBy { get; set; }
         public int? AccomplishedBy { get; set; }

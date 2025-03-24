@@ -511,13 +511,12 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
-                    if (ucJoborder.isNewAccount)
-                        Factory.CustomersRepository().Insert(ucJoborder.CustomersModel());
-                    
                     return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
                 }
             }
             return false;
+
+
         }
         #endregion
 

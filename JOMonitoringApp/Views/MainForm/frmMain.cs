@@ -55,7 +55,6 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 new DataColumn("id", typeof (int)),
                 new DataColumn("status", typeof(string)),
-                new DataColumn("customers_id", typeof(int)),
                 new DataColumn("prepared_by_id", typeof(int)),
                 new DataColumn("particular", typeof (string)),
                 new DataColumn("materials_issued_by_id", typeof(int)),
@@ -106,7 +105,6 @@ namespace JOMonitoringApp.Views.MainForm
                     var newRow = dataTable.NewRow();
                     int id = Convert.ToInt32(row["id"]);
                     string status = $"{row["status"]}";
-                    int customerId = Convert.ToInt32(row["customers_id"]);
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
                     int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
                     int statusId = Convert.ToInt32(row["status_id"]);
@@ -126,7 +124,6 @@ namespace JOMonitoringApp.Views.MainForm
                     string materialsIssuedBy = $"{row["materials_issued_by"]}";
 
                     newRow["id"] = id;
-                    newRow["customers_id"] = customerId;
                     newRow["prepared_by_id"] = preparedById;
                     newRow["materials_issued_by_id"] = materialsIssuedById;
                     newRow["particular"] = particular;
@@ -285,12 +282,11 @@ namespace JOMonitoringApp.Views.MainForm
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
             if (dictJobOrders.Count == 0) return;
 
-            ucJoborder.accountId = Convert.ToInt32(dictJobOrders["customers_id"]);
             ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
-            ucJoborder.txtContact.Text = dictJobOrders["contact"];
+            ucJoborder.txtContact.Text = dictJobOrders["contact_number"];
 
             char[] delimiters = new char[] { '\\' };
             string[] particulars = dictJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
@@ -472,7 +468,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             if (ucJoborder.HasDataChanged())
-               return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel()) && Factory.CustomersRepository().Update(ucJoborder.CustomersModel());
+               return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
 
             else
             {

@@ -248,7 +248,6 @@ namespace JOMonitoringApp.Views.JobOrder
 
         internal JobOrdersModel JobOrderModel()
         {
-            
             string accountNumber = txtAccountNumber.Text;
             string accountName = txtAccountName.Text;
             string address = txtAddress.Text;

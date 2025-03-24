@@ -158,7 +158,7 @@ internal class CustomersRepository : ICustomersRepository
            new object[] { "@account_number", DbType.String, accountNumber }
         };
 
-        string query = $"SELECT MeterNumber, MeterBrand, MeterSize, LastReading FROM {tableCustomers} WHERE AccountNo = @account_number";
+        string query = $"SELECT MeterNumber, MeterBrand, MeterSize, LastReading FROM vue_CustomerMaster WHERE AccountNo = @account_number";
 
         var dataTable = new DataTable();
         dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);

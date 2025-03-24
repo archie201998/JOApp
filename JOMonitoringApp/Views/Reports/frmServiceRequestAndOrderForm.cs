@@ -103,7 +103,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramMeterNumber", meterDict["MeterNumber"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramMeterSize", meterDict["MeterSize"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramMeterBrand", meterDict["MeterBrand"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramLastReading", meterDict["LastReading"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramMeterReading", meterDict["LastReading"].ToUpper()));
 
                 progressCount += 90;
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);

@@ -14,5 +14,7 @@ namespace JOMonitoringApp.Interface
         DataTable GetCustomersName(string searchKey);
         DataTable GetRecordsBySearchByAccountNumber(string searchKey);
         DataTable GetRecordsBySearchByAccountNumberAndAccountName(string searchKey);
+        DataTable GetMasterListFromMainDB();
+        Dictionary<string, string> GetCustomerMeterDetails(string accountNumber);
     }
 }

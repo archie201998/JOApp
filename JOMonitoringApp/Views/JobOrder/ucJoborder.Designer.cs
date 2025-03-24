@@ -190,6 +190,7 @@
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(202, 21);
             this.txtAccountNumber.TabIndex = 0;
+            this.txtAccountNumber.Visible = false;
             // 
             // label8
             // 

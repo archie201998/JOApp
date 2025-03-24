@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,6 +49,18 @@ namespace JOMonitoringApp.Repository
             return dataTable;
         }
 
+        public DataTable MainDB_Fill(string query, DataTable dataTable)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var adapter = new SqlDataAdapter();
+                adapter.SelectCommand = new SqlCommand(query, connection);
+                adapter.Fill(dataTable);
+            }
+
+            return dataTable;
+        }
+
         public DataTable FillBySearch(string query, DataTable dataTable, params object[][] parameters)
         {
             using (var connection = new MySqlConnection(connectionString))
@@ -57,6 +70,28 @@ namespace JOMonitoringApp.Repository
                 {
                     foreach (var param in parameters)
                         AddDbParameter(adapter.SelectCommand, param);
+
+                    adapter.Fill(dataTable);
+                }
+            }
+
+            return dataTable;
+        }
+        public DataTable SQLFillBySearch(string query, DataTable dataTable, params object[][] parameters)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var adapter = new SqlDataAdapter();
+                using (adapter.SelectCommand = new SqlCommand(query, connection))
+                {
+                    foreach (var param in parameters)
+                    {
+                        DbParameter dbParameter = adapter.SelectCommand.CreateParameter();
+                        dbParameter.ParameterName = param[0].ToString();
+                        dbParameter.DbType = (DbType)param[1];
+                        dbParameter.Value = param[2];
+                        adapter.SelectCommand.Parameters.Add(dbParameter);
+                    }
 
                     adapter.Fill(dataTable);
                 }
@@ -142,13 +177,13 @@ namespace JOMonitoringApp.Repository
             try
             {
                 string testConnectionString = ConfigurationManager.ConnectionStrings[testConnectionName].ConnectionString;
-                using (MySqlConnection connection = new MySqlConnection(testConnectionString))
+                using (SqlConnection connection = new SqlConnection(testConnectionString))
                 {
                     connection.Open();
                     return true;
                 }
             }
-            catch (MySqlException) { return false; }
+            catch (SqlException) { return false; }
         }
     }
 }

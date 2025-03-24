@@ -83,11 +83,143 @@
             </Style>
           </Rectangle>
           <Rectangle Name="Rectangle1">
+            <ReportItems>
+              <Textbox Name="paramMeterNumber">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!paramMeterNumber.Value</Value>
+                        <Style>
+                          <FontFamily>calibri</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>paramMeterNumber</rd:DefaultName>
+                <Top>10.49294cm</Top>
+                <Left>2.00239cm</Left>
+                <Height>0.6cm</Height>
+                <Width>1.41323cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="paramMeterReading">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!paramMeterReading.Value</Value>
+                        <Style>
+                          <FontFamily>calibri</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>paramMeterReading</rd:DefaultName>
+                <Top>10.49294cm</Top>
+                <Left>3.47912cm</Left>
+                <Height>0.6cm</Height>
+                <Width>1.4056cm</Width>
+                <ZIndex>1</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="paramMeterBrand">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!paramMeterBrand.Value</Value>
+                        <Style>
+                          <FontFamily>calibri</FontFamily>
+                          <FontSize>8pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>paramMeterBrand</rd:DefaultName>
+                <Top>10.49294cm</Top>
+                <Left>6.08649cm</Left>
+                <Height>0.6cm</Height>
+                <Width>1.61239cm</Width>
+                <ZIndex>2</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Line Name="Line2">
+                <Top>10.51411cm</Top>
+                <Left>2.00239cm</Left>
+                <Height>0cm</Height>
+                <Width>5.69649cm</Width>
+                <ZIndex>3</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Width>0.5pt</Width>
+                  </Border>
+                </Style>
+              </Line>
+              <Line Name="Line3">
+                <Top>11.12822cm</Top>
+                <Left>2.00239cm</Left>
+                <Height>0cm</Height>
+                <Width>5.69649cm</Width>
+                <ZIndex>4</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>Solid</Style>
+                    <Width>0.5pt</Width>
+                  </Border>
+                </Style>
+              </Line>
+            </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>3.04744cm</Top>
             <Left>0.15239cm</Left>
             <Height>12.10867cm</Height>
-            <Width>8.01831cm</Width>
+            <Width>8.88649cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1946,7 +2078,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
             <Top>12.89452cm</Top>
-            <Left>3.56801cm</Left>
+            <Left>3.63151cm</Left>
             <Height>0.6cm</Height>
             <Width>1.4056cm</Width>
             <ZIndex>54</ZIndex>
@@ -1980,9 +2112,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox13</rd:DefaultName>
             <Top>12.89452cm</Top>
-            <Left>4.84762cm</Left>
+            <Left>5.10767cm</Left>
             <Height>0.6cm</Height>
-            <Width>1.4056cm</Width>
+            <Width>1.14555cm</Width>
             <ZIndex>55</ZIndex>
             <Style>
               <Border>
@@ -2016,7 +2148,7 @@
             <Top>12.89452cm</Top>
             <Left>6.23888cm</Left>
             <Height>0.6cm</Height>
-            <Width>1.4056cm</Width>
+            <Width>1.61239cm</Width>
             <ZIndex>56</ZIndex>
             <Style>
               <Border>
@@ -2102,6 +2234,41 @@
             <Height>0.6cm</Height>
             <Width>6.32365cm</Width>
             <ZIndex>59</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="paramMeterSize">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramMeterSize.Value</Value>
+                    <Style>
+                      <FontFamily>calibri</FontFamily>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>paramMeterSize</rd:DefaultName>
+            <Top>13.54038cm</Top>
+            <Left>5.10767cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.14555cm</Width>
+            <ZIndex>60</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2222,11 +2389,34 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramMeterNumber">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramMeterReading">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramMeterSize">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramMeterBrand">
+      <DataType>String</DataType>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>7</NumberOfRows>
+      <NumberOfRows>8</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2302,6 +2492,26 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>6</RowIndex>
           <ParameterName>paramRequest</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>paramMeterNumber</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>paramMeterReading</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>6</RowIndex>
+          <ParameterName>paramMeterSize</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>7</RowIndex>
+          <ParameterName>paramMeterBrand</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

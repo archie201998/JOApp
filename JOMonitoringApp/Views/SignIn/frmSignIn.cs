@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Properties;
+using JOMonitoringApp.Repository;
 using JOMonitoringApp.Views.MainForm;
 using System;
 using System.Collections.Generic;
@@ -81,6 +82,35 @@ namespace JOMonitoringApp
                 button.Image = visibleImage;
                 textBox.PasswordChar = '•';
             }
+        }
+
+        private void frmSignIn_Load(object sender, EventArgs e)
+        {
+            TestWaterSystemConnection();
+        }
+
+        private void TestWaterSystemConnection()
+        {
+            var SqlGenericCommands = new GenericCommands("water_system_instance");
+            SqlGenericCommands.TestConnection("water_system_instance");
+
+            bool isConnected = SqlGenericCommands.TestConnection("water_system_instance");
+
+            if (isConnected)
+            {
+                lblJBCSConnection.Text = "CONNECTED";
+                lblJBCSConnection.ForeColor = Color.Green;
+            }
+            else
+            {
+                lblJBCSConnection.Text = "UNABLE TO CONNECT.";
+                lblJBCSConnection.ForeColor = Color.Red;
+            }
+        }
+
+        private void frmSignIn_Load_1(object sender, EventArgs e)
+        {
+            TestWaterSystemConnection();
         }
     }
 }

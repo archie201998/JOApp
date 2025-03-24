@@ -7,11 +7,14 @@ using JOMonitoringApp.Repository;
 internal class CustomersRepository : ICustomersRepository
 {
     private GenericCommands mySqlGenericCommands;
+    private GenericCommands sqlGenericCommands;
     private readonly string tableName = "tbl_customers";
+    private readonly string tableCustomers = "tbl_CustomerMaster";
 
-    public CustomersRepository(GenericCommands mySqlGenericCommands)
+    public CustomersRepository(GenericCommands sqlGenericCommands, GenericCommands mySqlGenericCommands)
     {
         this.mySqlGenericCommands = mySqlGenericCommands;
+        this.sqlGenericCommands = sqlGenericCommands;
     }
 
     public bool Delete(List<CustomersModel> entityList)
@@ -98,6 +101,7 @@ internal class CustomersRepository : ICustomersRepository
         return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
     }
 
+    
     public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
     {
         var parameters = new object[][]
@@ -110,6 +114,20 @@ internal class CustomersRepository : ICustomersRepository
         var dataTable = new DataTable();
         return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
     }
+
+    //This will fetch the records from the main database
+    //public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
+    //{
+    //    var parameters = new object[][]
+    //    {
+    //        new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
+    //    };
+
+    //    string query = $"SELECT TOP(10) CustomerID AS id, AccountNo AS account_number, AccountName AS account_name, Address AS address, MeterNumber AS meter_no, MeterBrand meter_brand  FROM {tableCustomers} WHERE AccountNo LIKE @search_key OR AccountName like @search_key";
+
+    //    var dataTable = new DataTable();
+    //    return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+    //}
 
     public DataTable GetRecordsBySearchByAccountNumberAndAccountName(string searchKey)
     {
@@ -124,4 +142,36 @@ internal class CustomersRepository : ICustomersRepository
         return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
     }
 
+    public DataTable GetMasterListFromMainDB()
+    {
+
+        string query = $"SELECT * FROM tbl_CustomerMaster";
+
+        var dataTable = new DataTable();
+        return sqlGenericCommands.MainDB_Fill(query, dataTable);
+    }
+
+    public Dictionary<string, string> GetCustomerMeterDetails(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+           new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT MeterNumber, MeterBrand, MeterSize, LastReading FROM {tableCustomers} WHERE AccountNo = @account_number";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+        }
+
+        return result;
+    }
 }

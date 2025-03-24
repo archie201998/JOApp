@@ -8,12 +8,13 @@ namespace JOMonitoringApp
     public class Factory
     {
         internal static GenericCommands mySqlGenericCommands = new GenericCommands("jo_monitoring_instance");
+        internal static GenericCommands sqlGenericCommands = new GenericCommands("water_system_instance");
 
         public static IUsersRepository UsersRepository() => new UsersRepository(mySqlGenericCommands);
 
         public static IJobOrdersRepository JobOrdersRepository() => new JobOrdersRepository(mySqlGenericCommands);
 
-        public static ICustomersRepository CustomersRepository() => new CustomersRepository(mySqlGenericCommands);
+        public static ICustomersRepository CustomersRepository() => new CustomersRepository(sqlGenericCommands, mySqlGenericCommands);
 
         public static IParticularsRepository ParticularsRepository() => new ParticularsRepository(mySqlGenericCommands);
 

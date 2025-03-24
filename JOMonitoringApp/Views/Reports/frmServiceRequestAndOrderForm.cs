@@ -98,7 +98,13 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
-                
+
+                Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(dtJobOrders["account_number"].ToString());
+                reportParameters1.Add(new ReportParameter("paramMeterNumber", meterDict["MeterNumber"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramMeterSize", meterDict["MeterSize"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramMeterBrand", meterDict["MeterBrand"].ToUpper()));
+                reportParameters1.Add(new ReportParameter("paramLastReading", meterDict["LastReading"].ToUpper()));
+
                 progressCount += 90;
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 

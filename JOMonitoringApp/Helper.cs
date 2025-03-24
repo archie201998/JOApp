@@ -270,9 +270,6 @@ namespace AccountingSystem
             return fullName;
         }
 
-   
-      
-
         internal static Dictionary<string, string> LoggedInUserData()
         {
             var dictUser = new Dictionary<string, string>();
@@ -694,5 +691,6 @@ namespace AccountingSystem
                     return "Unknown Status";
             }
         }
+
     }
 }

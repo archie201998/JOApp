@@ -638,5 +638,10 @@ namespace JOMonitoringApp.Views.MainForm
         {
             _ = new frmUsers().ShowDialog();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

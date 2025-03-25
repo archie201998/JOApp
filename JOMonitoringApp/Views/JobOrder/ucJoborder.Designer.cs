@@ -50,21 +50,20 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtAcc3 = new System.Windows.Forms.TextBox();
             this.txtAcc2 = new System.Windows.Forms.TextBox();
-            this.txtAcc1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbJODetails = new System.Windows.Forms.GroupBox();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtJONumber = new System.Windows.Forms.TextBox();
             this.txtWARNumber = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtMRSNumber = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtMRISNumber = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtJONumber = new System.Windows.Forms.TextBox();
             this.cmbxMaterialsIssuedBy = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.gbIssuanceAndAssignment = new System.Windows.Forms.GroupBox();
@@ -78,6 +77,7 @@
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtAcc1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
             this.gbJODetails.SuspendLayout();
@@ -100,7 +100,7 @@
             // 
             this.txtORNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtORNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtORNumber.Location = new System.Drawing.Point(155, 260);
+            this.txtORNumber.Location = new System.Drawing.Point(155, 207);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
             this.txtORNumber.TabIndex = 5;
@@ -139,7 +139,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 264);
+            this.label4.Location = new System.Drawing.Point(25, 211);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 7;
@@ -149,7 +149,7 @@
             // 
             this.nudAmount.DecimalPlaces = 2;
             this.nudAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAmount.Location = new System.Drawing.Point(155, 286);
+            this.nudAmount.Location = new System.Drawing.Point(155, 233);
             this.nudAmount.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -165,7 +165,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 286);
+            this.label5.Location = new System.Drawing.Point(25, 235);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -186,7 +186,7 @@
             this.txtAccountNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(153, 0);
+            this.txtAccountNumber.Location = new System.Drawing.Point(492, 34);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(202, 21);
             this.txtAccountNumber.TabIndex = 0;
@@ -270,7 +270,7 @@
             this.cbxNA.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbxNA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbxNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbxNA.Location = new System.Drawing.Point(336, 46);
+            this.cbxNA.Location = new System.Drawing.Point(314, 46);
             this.cbxNA.Name = "cbxNA";
             this.cbxNA.Size = new System.Drawing.Size(43, 17);
             this.cbxNA.TabIndex = 4;
@@ -284,7 +284,7 @@
             this.txtAcc4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAcc4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAcc4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAcc4.Location = new System.Drawing.Point(308, 43);
+            this.txtAcc4.Location = new System.Drawing.Point(287, 43);
             this.txtAcc4.MaxLength = 2;
             this.txtAcc4.Name = "txtAcc4";
             this.txtAcc4.ReadOnly = true;
@@ -315,12 +315,12 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(257, 15);
+            this.btnSearch.Location = new System.Drawing.Point(155, 14);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(97, 23);
+            this.btnSearch.Size = new System.Drawing.Size(136, 23);
             this.btnSearch.TabIndex = 19;
             this.btnSearch.TabStop = false;
-            this.btnSearch.Text = "Search  [F1]";
+            this.btnSearch.Text = "Search Account  [F1]";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
@@ -331,11 +331,11 @@
             this.txtAcc3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAcc3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAcc3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAcc3.Location = new System.Drawing.Point(257, 43);
+            this.txtAcc3.Location = new System.Drawing.Point(241, 43);
             this.txtAcc3.MaxLength = 3;
             this.txtAcc3.Name = "txtAcc3";
             this.txtAcc3.ReadOnly = true;
-            this.txtAcc3.Size = new System.Drawing.Size(39, 21);
+            this.txtAcc3.Size = new System.Drawing.Size(28, 21);
             this.txtAcc3.TabIndex = 2;
             this.txtAcc3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc3.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
@@ -348,40 +348,23 @@
             this.txtAcc2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAcc2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAcc2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAcc2.Location = new System.Drawing.Point(206, 43);
+            this.txtAcc2.Location = new System.Drawing.Point(197, 43);
             this.txtAcc2.MaxLength = 3;
             this.txtAcc2.Name = "txtAcc2";
             this.txtAcc2.ReadOnly = true;
-            this.txtAcc2.Size = new System.Drawing.Size(39, 21);
+            this.txtAcc2.Size = new System.Drawing.Size(28, 21);
             this.txtAcc2.TabIndex = 1;
             this.txtAcc2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc2.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
             this.txtAcc2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
             this.txtAcc2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
-            // txtAcc1
-            // 
-            this.txtAcc1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAcc1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAcc1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAcc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAcc1.Location = new System.Drawing.Point(155, 43);
-            this.txtAcc1.MaxLength = 3;
-            this.txtAcc1.Name = "txtAcc1";
-            this.txtAcc1.ReadOnly = true;
-            this.txtAcc1.Size = new System.Drawing.Size(39, 21);
-            this.txtAcc1.TabIndex = 0;
-            this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
-            this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
-            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(194, 46);
+            this.label16.Location = new System.Drawing.Point(184, 46);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(12, 15);
             this.label16.TabIndex = 32;
@@ -392,7 +375,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(297, 46);
+            this.label14.Location = new System.Drawing.Point(273, 46);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(12, 15);
             this.label14.TabIndex = 3;
@@ -403,7 +386,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(245, 46);
+            this.label12.Location = new System.Drawing.Point(229, 46);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(12, 15);
             this.label12.TabIndex = 30;
@@ -412,13 +395,6 @@
             // gbJODetails
             // 
             this.gbJODetails.Controls.Add(this.clBoxParticulars);
-            this.gbJODetails.Controls.Add(this.txtWARNumber);
-            this.gbJODetails.Controls.Add(this.label15);
-            this.gbJODetails.Controls.Add(this.label11);
-            this.gbJODetails.Controls.Add(this.txtAccountNumber);
-            this.gbJODetails.Controls.Add(this.txtMRSNumber);
-            this.gbJODetails.Controls.Add(this.label10);
-            this.gbJODetails.Controls.Add(this.txtMRISNumber);
             this.gbJODetails.Controls.Add(this.label9);
             this.gbJODetails.Controls.Add(this.txtJONumber);
             this.gbJODetails.Controls.Add(this.label2);
@@ -431,7 +407,7 @@
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbJODetails.Location = new System.Drawing.Point(21, 218);
             this.gbJODetails.Name = "gbJODetails";
-            this.gbJODetails.Size = new System.Drawing.Size(389, 345);
+            this.gbJODetails.Size = new System.Drawing.Size(389, 264);
             this.gbJODetails.TabIndex = 16;
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
@@ -446,68 +422,6 @@
             this.clBoxParticulars.TabIndex = 1;
             this.clBoxParticulars.Validating += new System.ComponentModel.CancelEventHandler(this.clBoxParticulars_Validating);
             this.clBoxParticulars.Validated += new System.EventHandler(this.clBoxParticulars_Validated);
-            // 
-            // txtWARNumber
-            // 
-            this.txtWARNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtWARNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtWARNumber.Location = new System.Drawing.Point(155, 312);
-            this.txtWARNumber.Name = "txtWARNumber";
-            this.txtWARNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtWARNumber.TabIndex = 7;
-            this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
-            this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
-            this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(25, 315);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(82, 15);
-            this.label15.TabIndex = 29;
-            this.label15.Text = "WAR Number";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(25, 237);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 15);
-            this.label11.TabIndex = 20;
-            this.label11.Text = "MRS NUMBER";
-            // 
-            // txtMRSNumber
-            // 
-            this.txtMRSNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMRSNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMRSNumber.Location = new System.Drawing.Point(155, 234);
-            this.txtMRSNumber.Name = "txtMRSNumber";
-            this.txtMRSNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtMRSNumber.TabIndex = 4;
-            this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(25, 211);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(95, 15);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "MRIS NUMBER";
-            // 
-            // txtMRISNumber
-            // 
-            this.txtMRISNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMRISNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMRISNumber.Location = new System.Drawing.Point(155, 208);
-            this.txtMRISNumber.Name = "txtMRISNumber";
-            this.txtMRISNumber.Size = new System.Drawing.Size(200, 21);
-            this.txtMRISNumber.TabIndex = 3;
-            this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label9
             // 
@@ -530,6 +444,68 @@
             this.txtJONumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             this.txtJONumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtJONumber_Validating);
             this.txtJONumber.Validated += new System.EventHandler(this.TxtJONumber_Validated);
+            // 
+            // txtWARNumber
+            // 
+            this.txtWARNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWARNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWARNumber.Location = new System.Drawing.Point(155, 137);
+            this.txtWARNumber.Name = "txtWARNumber";
+            this.txtWARNumber.Size = new System.Drawing.Size(200, 21);
+            this.txtWARNumber.TabIndex = 7;
+            this.txtWARNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            this.txtWARNumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtWARNumber_Validating);
+            this.txtWARNumber.Validated += new System.EventHandler(this.TxtWARNumber_Validated);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(25, 140);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(91, 15);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "WAR NUMBER";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(25, 113);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(92, 15);
+            this.label11.TabIndex = 20;
+            this.label11.Text = "MRS NUMBER";
+            // 
+            // txtMRSNumber
+            // 
+            this.txtMRSNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMRSNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMRSNumber.Location = new System.Drawing.Point(155, 110);
+            this.txtMRSNumber.Name = "txtMRSNumber";
+            this.txtMRSNumber.Size = new System.Drawing.Size(200, 21);
+            this.txtMRSNumber.TabIndex = 4;
+            this.txtMRSNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(25, 87);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(95, 15);
+            this.label10.TabIndex = 18;
+            this.label10.Text = "MRIS NUMBER";
+            // 
+            // txtMRISNumber
+            // 
+            this.txtMRISNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMRISNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMRISNumber.Location = new System.Drawing.Point(155, 84);
+            this.txtMRISNumber.Name = "txtMRISNumber";
+            this.txtMRISNumber.Size = new System.Drawing.Size(200, 21);
+            this.txtMRISNumber.TabIndex = 3;
+            this.txtMRISNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // cmbxMaterialsIssuedBy
             // 
@@ -556,13 +532,19 @@
             // gbIssuanceAndAssignment
             // 
             this.gbIssuanceAndAssignment.Controls.Add(this.cmbxAccomplishedBy);
+            this.gbIssuanceAndAssignment.Controls.Add(this.txtWARNumber);
             this.gbIssuanceAndAssignment.Controls.Add(this.label6);
             this.gbIssuanceAndAssignment.Controls.Add(this.cmbxMaterialsIssuedBy);
+            this.gbIssuanceAndAssignment.Controls.Add(this.label15);
             this.gbIssuanceAndAssignment.Controls.Add(this.label13);
+            this.gbIssuanceAndAssignment.Controls.Add(this.txtMRISNumber);
+            this.gbIssuanceAndAssignment.Controls.Add(this.label11);
+            this.gbIssuanceAndAssignment.Controls.Add(this.label10);
+            this.gbIssuanceAndAssignment.Controls.Add(this.txtMRSNumber);
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 573);
+            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 488);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
-            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(389, 90);
+            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(389, 175);
             this.gbIssuanceAndAssignment.TabIndex = 17;
             this.gbIssuanceAndAssignment.TabStop = false;
             this.gbIssuanceAndAssignment.Text = "ISSUANCES AND JOB ASSIGNMENTS";
@@ -609,7 +591,7 @@
             // 
             this.txtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(153, 54);
+            this.txtRemarks.Location = new System.Drawing.Point(155, 54);
             this.txtRemarks.Multiline = true;
             this.txtRemarks.Name = "txtRemarks";
             this.txtRemarks.Size = new System.Drawing.Size(200, 36);
@@ -686,17 +668,35 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
+            // txtAcc1
+            // 
+            this.txtAcc1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAcc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc1.Location = new System.Drawing.Point(155, 43);
+            this.txtAcc1.MaxLength = 3;
+            this.txtAcc1.Name = "txtAcc1";
+            this.txtAcc1.ReadOnly = true;
+            this.txtAcc1.Size = new System.Drawing.Size(28, 21);
+            this.txtAcc1.TabIndex = 0;
+            this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
+            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.gbIssuanceAndAssignment);
             this.Controls.Add(this.gbJODetails);
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(420, 769);
+            this.Size = new System.Drawing.Size(423, 769);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
@@ -710,6 +710,7 @@
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -755,7 +756,6 @@
         internal System.Windows.Forms.CheckedListBox clBoxParticulars;
         internal System.Windows.Forms.TextBox txtAcc3;
         internal System.Windows.Forms.TextBox txtAcc2;
-        internal System.Windows.Forms.TextBox txtAcc1;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
@@ -764,5 +764,6 @@
         internal System.Windows.Forms.TextBox txtRemarks;
         internal System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Label label18;
+        internal System.Windows.Forms.TextBox txtAcc1;
     }
 }

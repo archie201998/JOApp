@@ -68,9 +68,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -80,6 +78,8 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -96,6 +96,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.settingsToolStripMenuItem,
@@ -103,7 +104,7 @@
             this.sessionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1651, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1651, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -113,7 +114,7 @@
             this.databaseBackupToolStripMenuItem,
             this.exportToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // databaseBackupToolStripMenuItem
@@ -122,19 +123,19 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
-            this.manualToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.manualToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.manualToolStripMenuItem.Text = "Backup";
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
-            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.restoreToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
             // 
             // exportToolStripMenuItem
@@ -143,19 +144,19 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
             // 
             this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.pDFToolStripMenuItem.Text = "PDF";
             // 
             // cSVToolStripMenuItem
             // 
             this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(95, 22);
+            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.cSVToolStripMenuItem.Text = "CSV";
             // 
             // settingsToolStripMenuItem
@@ -167,38 +168,38 @@
             this.rolesAndPermissionsToolStripMenuItem,
             this.signatoriesToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
             // usersToolStripMenuItem
             // 
             this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.usersToolStripMenuItem.Text = "Users";
             this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
             // materialsToolStripMenuItem
             // 
             this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.materialsToolStripMenuItem.Text = "Materials";
             // 
             // particularsToolStripMenuItem
             // 
             this.particularsToolStripMenuItem.Name = "particularsToolStripMenuItem";
-            this.particularsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.particularsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.particularsToolStripMenuItem.Text = "Particulars";
             // 
             // rolesAndPermissionsToolStripMenuItem
             // 
             this.rolesAndPermissionsToolStripMenuItem.Name = "rolesAndPermissionsToolStripMenuItem";
-            this.rolesAndPermissionsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.rolesAndPermissionsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.rolesAndPermissionsToolStripMenuItem.Text = "Roles and Permissions";
             // 
             // signatoriesToolStripMenuItem
             // 
             this.signatoriesToolStripMenuItem.Name = "signatoriesToolStripMenuItem";
-            this.signatoriesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.signatoriesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.signatoriesToolStripMenuItem.Text = "Report Signatories";
             // 
             // reportToolStripMenuItem
@@ -208,27 +209,27 @@
             this.jOTrackingToolStripMenuItem,
             this.requistionAndIssueSlipRISToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
             // 
             // jOSummaryToolStripMenuItem
             // 
             this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
             this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
             this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
             // jOTrackingToolStripMenuItem
             // 
             this.jOTrackingToolStripMenuItem.Name = "jOTrackingToolStripMenuItem";
-            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
             this.jOTrackingToolStripMenuItem.Text = "J.O Progress Tracking";
             this.jOTrackingToolStripMenuItem.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
             // 
             // requistionAndIssueSlipRISToolStripMenuItem
             // 
             this.requistionAndIssueSlipRISToolStripMenuItem.Name = "requistionAndIssueSlipRISToolStripMenuItem";
-            this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(282, 22);
+            this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
             this.requistionAndIssueSlipRISToolStripMenuItem.Text = "Service Request and Order Form (SROF)";
             this.requistionAndIssueSlipRISToolStripMenuItem.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
             // 
@@ -238,19 +239,19 @@
             this.lockApplicationToolStripMenuItem,
             this.logoutToolStripMenuItem1});
             this.sessionToolStripMenuItem.Name = "sessionToolStripMenuItem";
-            this.sessionToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.sessionToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.sessionToolStripMenuItem.Text = "Session";
             // 
             // lockApplicationToolStripMenuItem
             // 
             this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.lockApplicationToolStripMenuItem.Text = "Lock Application";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -259,20 +260,21 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(5, 29);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.Location = new System.Drawing.Point(5, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1651, 861);
+            this.tabControl1.Size = new System.Drawing.Size(1651, 860);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.panelInputField);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1643, 835);
+            this.tabPage1.Size = new System.Drawing.Size(1643, 832);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -283,11 +285,12 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(421, 3);
+            this.panel1.Location = new System.Drawing.Point(488, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1219, 829);
+            this.panel1.Size = new System.Drawing.Size(1152, 826);
             this.panel1.TabIndex = 2;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel6
             // 
@@ -296,7 +299,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1209, 763);
+            this.panel6.Size = new System.Drawing.Size(1142, 760);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -309,7 +312,7 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(1201, 755);
+            this.dgJobOrders.Size = new System.Drawing.Size(1134, 752);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
@@ -323,15 +326,17 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1209, 18);
+            this.panel3.Size = new System.Drawing.Size(1142, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
             // 
+            this.progressBar1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1199, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1132, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -346,18 +351,17 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1209, 38);
+            this.panel2.Size = new System.Drawing.Size(1142, 38);
             this.panel2.TabIndex = 8;
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(1127, 8);
+            this.btnSearch.Location = new System.Drawing.Point(732, 6);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 13;
@@ -367,60 +371,66 @@
             // 
             // cmbxStatus
             // 
-            this.cmbxStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxStatus.FormattingEnabled = true;
-            this.cmbxStatus.Location = new System.Drawing.Point(1002, 8);
+            this.cmbxStatus.Location = new System.Drawing.Point(343, 7);
             this.cmbxStatus.Name = "cmbxStatus";
-            this.cmbxStatus.Size = new System.Drawing.Size(121, 21);
+            this.cmbxStatus.Size = new System.Drawing.Size(121, 23);
             this.cmbxStatus.TabIndex = 10;
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(891, 12);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(224, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
+            this.label5.Size = new System.Drawing.Size(115, 15);
             this.label5.TabIndex = 9;
             this.label5.Text = "FILTER BY STATUS";
             // 
             // cmbxRowLimit
             // 
-            this.cmbxRowLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbxRowLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxRowLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxRowLimit.FormattingEnabled = true;
-            this.cmbxRowLimit.Location = new System.Drawing.Point(511, 8);
+            this.cmbxRowLimit.Location = new System.Drawing.Point(95, 7);
             this.cmbxRowLimit.Name = "cmbxRowLimit";
-            this.cmbxRowLimit.Size = new System.Drawing.Size(121, 21);
+            this.cmbxRowLimit.Size = new System.Drawing.Size(121, 23);
             this.cmbxRowLimit.TabIndex = 7;
             // 
             // txtSearch
             // 
             this.txtSearch.AcceptsReturn = true;
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearch.Location = new System.Drawing.Point(690, 8);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(528, 8);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 20);
+            this.txtSearch.Size = new System.Drawing.Size(200, 21);
             this.txtSearch.TabIndex = 4;
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(375, 12);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(4, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(123, 13);
+            this.label4.Size = new System.Drawing.Size(91, 15);
             this.label4.TabIndex = 2;
-            this.label4.Text = "NO. RECORDS COUNT";
+            this.label4.Text = "RECORDS NO.";
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(638, 12);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(469, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(56, 15);
             this.label2.TabIndex = 3;
             this.label2.Text = "SEARCH";
             // 
@@ -431,7 +441,7 @@
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(418, 829);
+            this.panelInputField.Size = new System.Drawing.Size(485, 826);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -479,35 +489,17 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(418, 769);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1643, 835);
+            this.tabPage2.Size = new System.Drawing.Size(1643, 832);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 281);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -572,6 +564,23 @@
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
+            // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(489, 769);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 325);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
             // 

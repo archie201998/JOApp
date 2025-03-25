@@ -50,6 +50,7 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtAcc3 = new System.Windows.Forms.TextBox();
             this.txtAcc2 = new System.Windows.Forms.TextBox();
+            this.txtAcc1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -77,7 +78,6 @@
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtAcc1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
             this.gbJODetails.SuspendLayout();
@@ -236,7 +236,7 @@
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(21, 19);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(389, 191);
+            this.gbAccountDetails.Size = new System.Drawing.Size(387, 191);
             this.gbAccountDetails.TabIndex = 0;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
@@ -315,7 +315,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(155, 14);
+            this.btnSearch.Location = new System.Drawing.Point(153, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(136, 23);
             this.btnSearch.TabIndex = 19;
@@ -358,6 +358,23 @@
             this.txtAcc2.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
             this.txtAcc2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
             this.txtAcc2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
+            // 
+            // txtAcc1
+            // 
+            this.txtAcc1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAcc1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAcc1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAcc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAcc1.Location = new System.Drawing.Point(155, 43);
+            this.txtAcc1.MaxLength = 3;
+            this.txtAcc1.Name = "txtAcc1";
+            this.txtAcc1.ReadOnly = true;
+            this.txtAcc1.Size = new System.Drawing.Size(28, 21);
+            this.txtAcc1.TabIndex = 0;
+            this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
+            this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
+            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // label16
             // 
@@ -407,7 +424,7 @@
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbJODetails.Location = new System.Drawing.Point(21, 218);
             this.gbJODetails.Name = "gbJODetails";
-            this.gbJODetails.Size = new System.Drawing.Size(389, 264);
+            this.gbJODetails.Size = new System.Drawing.Size(387, 264);
             this.gbJODetails.TabIndex = 16;
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
@@ -544,7 +561,7 @@
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 488);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
-            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(389, 175);
+            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(387, 175);
             this.gbIssuanceAndAssignment.TabIndex = 17;
             this.gbIssuanceAndAssignment.TabStop = false;
             this.gbIssuanceAndAssignment.Text = "ISSUANCES AND JOB ASSIGNMENTS";
@@ -585,7 +602,7 @@
             this.groupBox4.Size = new System.Drawing.Size(389, 96);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "STATUS";
+            this.groupBox4.Text = "STATUS AND REMARKS";
             // 
             // txtRemarks
             // 
@@ -667,23 +684,6 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
-            // 
-            // txtAcc1
-            // 
-            this.txtAcc1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAcc1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAcc1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAcc1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAcc1.Location = new System.Drawing.Point(155, 43);
-            this.txtAcc1.MaxLength = 3;
-            this.txtAcc1.Name = "txtAcc1";
-            this.txtAcc1.ReadOnly = true;
-            this.txtAcc1.Size = new System.Drawing.Size(28, 21);
-            this.txtAcc1.TabIndex = 0;
-            this.txtAcc1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAcc1.TextChanged += new System.EventHandler(this.txtAcc3_TextChanged);
-            this.txtAcc1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc1_KeyDown);
-            this.txtAcc1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.NumberOnly);
             // 
             // ucJoborder
             // 

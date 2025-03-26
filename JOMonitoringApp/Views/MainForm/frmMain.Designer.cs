@@ -69,6 +69,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -80,7 +81,7 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -208,7 +209,8 @@
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.jOSummaryToolStripMenuItem,
             this.jOTrackingToolStripMenuItem,
-            this.requistionAndIssueSlipRISToolStripMenuItem});
+            this.requistionAndIssueSlipRISToolStripMenuItem,
+            this.investigationToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -499,6 +501,16 @@
             this.ucJoborder1.Size = new System.Drawing.Size(489, 769);
             this.ucJoborder1.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1643, 832);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "INVESTIGATION";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
@@ -584,15 +596,12 @@
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
-            // tabPage3
+            // investigationToolStripMenuItem
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 24);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1643, 832);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "INVESTIGATION";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
+            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.investigationToolStripMenuItem.Text = "Investigation";
+            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -688,5 +697,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
         private System.Windows.Forms.ToolStripMenuItem jOTrackingToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
     }
 }

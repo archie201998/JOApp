@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm
@@ -642,6 +643,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void investigationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigation().ShowDialog();
         }
     }
 }

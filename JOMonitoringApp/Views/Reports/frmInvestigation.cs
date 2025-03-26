@@ -1,4 +1,5 @@
-﻿using Microsoft.Reporting.WinForms;
+﻿using AccountingSystem;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace JOMonitoringApp.Views.Reports
         public frmInvestigation()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);  
         }
 
         private void frmInvestigation_Load(object sender, EventArgs e)

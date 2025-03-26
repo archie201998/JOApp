@@ -99,7 +99,9 @@
             this.Controls.Add(this.panel1);
             this.Name = "frmInvestigation";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.Text = "frmInvestigation";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Reports > Investigation Report";
             this.Load += new System.EventHandler(this.frmInvestigation_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

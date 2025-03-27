@@ -19,10 +19,15 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
         {
-
+                                
         }
 
         private void ucInvestigation_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
 
         }

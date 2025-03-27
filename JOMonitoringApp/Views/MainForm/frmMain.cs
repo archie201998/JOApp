@@ -180,6 +180,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
             catch (Exception)
             {
+
             }
             
         }
@@ -453,6 +454,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
+
         private void BtnSave_Click(object sender, EventArgs e)
         {
             ButtonSaveTrigger();

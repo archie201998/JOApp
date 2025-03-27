@@ -46,6 +46,7 @@
             this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jOTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,7 @@
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigation();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -92,6 +93,7 @@
             this.panel2.SuspendLayout();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -235,6 +237,13 @@
             this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
             this.requistionAndIssueSlipRISToolStripMenuItem.Text = "Service Request and Order Form (SROF)";
             this.requistionAndIssueSlipRISToolStripMenuItem.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
+            // 
+            // investigationToolStripMenuItem
+            // 
+            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
+            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.investigationToolStripMenuItem.Text = "Investigation";
+            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
             // 
             // sessionToolStripMenuItem
             // 
@@ -503,6 +512,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.ucInvestigation1);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -596,12 +606,14 @@
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
-            // investigationToolStripMenuItem
+            // ucInvestigation1
             // 
-            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
-            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.investigationToolStripMenuItem.Text = "Investigation";
-            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
+            this.ucInvestigation1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
+            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucInvestigation1.Name = "ucInvestigation1";
+            this.ucInvestigation1.Size = new System.Drawing.Size(1637, 826);
+            this.ucInvestigation1.TabIndex = 0;
             // 
             // frmMain
             // 
@@ -635,6 +647,7 @@
             this.panel2.PerformLayout();
             this.panelInputField.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
@@ -698,5 +711,6 @@
         private System.Windows.Forms.ToolStripMenuItem jOTrackingToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
+        private Investigation.ucInvestigation ucInvestigation1;
     }
 }

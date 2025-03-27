@@ -31,8 +31,8 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>16</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.1</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -178,12 +178,14 @@
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
+    <Compile Include="Interface\IInvestigationRepository.cs" />
     <Compile Include="Interface\IJobOrdersParticulars.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\InvestigationModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\JOLogsModel.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
+    <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
@@ -214,6 +217,12 @@
     </Compile>
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.Designer.cs">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Investigation\ucInvestigation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\ucInvestigation.Designer.cs">
+      <DependentUpon>ucInvestigation.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\JobOrder\frmJOProgressTracking.cs">
       <SubType>Form</SubType>
@@ -274,6 +283,9 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Views\Investigation\ucInvestigation.resx">
+      <DependentUpon>ucInvestigation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigation.resx">
       <DependentUpon>frmInvestigation.cs</DependentUpon>
     </EmbeddedResource>

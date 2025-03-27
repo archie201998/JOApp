@@ -66,7 +66,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 newRow["date_and_time"] = dateAndTime;
                 newRow["transaction_event"] = transEvent.ToUpper();
 
-
                 dataTable.Rows.Add(newRow);
             }
 

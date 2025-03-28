@@ -31,7 +31,10 @@ namespace JOMonitoringApp
 
         public static IInvestigationRepository InvestigationRepository() => new InvestigationRepository(mySqlGenericCommands);
         public static IInvestigationStatFindingsRepository InvestigationStatFindingsRepository() => new InvestigationStatFindingsRepository(mySqlGenericCommands);
-        
+
+        public static IInvestigationConditionOfServiceFacilities InvestigationConditionOfServiceFacilities() => new InvestigationConditionOfServiceFacilitiesRepository(mySqlGenericCommands);
+
+
 
     }
 }

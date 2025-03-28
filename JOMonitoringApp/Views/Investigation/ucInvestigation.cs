@@ -55,11 +55,17 @@ namespace JOMonitoringApp.Views.Investigation
                 if (investigationIResult)
                 {
                     var statFindingsModel = InvestigationStatFindingsModel();
-                    statFindingsModel.InvestigationId = Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
+                    var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
+
+                    int lastInsertedId = Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
+
+                    statFindingsModel.InvestigationId = lastInsertedId;
+                    conditionOfServiceFacilitiesModel.InvestigationId = lastInsertedId;
 
                     var statFindingsResult = Factory.InvestigationStatFindingsRepository().Insert(statFindingsModel);
+                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(conditionOfServiceFacilitiesModel); 
 
-                    if (statFindingsResult)
+                    if (statFindingsResult && conditionOfServiceFacilitiesResult)
                     {
                         scope.Complete();
                         return true;
@@ -91,6 +97,23 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
 
+        private InvestigationConditionOfServiceFacilitiesModel InvestigationConditionOfServiceFacilitiesModel()
+        {
+            var model = new InvestigationConditionOfServiceFacilitiesModel
+            {
+                MeterBrand = cmbxMeterBrand.Text,
+                MeterSize = txtMeterSize.Text,
+                ReadingBeforeTest = Convert.ToDecimal(txtReadingBeforeTest.Text),
+                ReadingAfterTest = Convert.ToDecimal(txtReadingAfterTest.Text),
+                CalibrationResult = txtCalibrationResult.Text,
+                OverRegistration = 124,
+                UnderRegistration = 142,
+                LeakingAfterTheMeter = txtServiceLineDefects.Text
+            };
+            return model;
+        }
+
+
         private InvestigationStatFindingsModel InvestigationStatFindingsModel()
         {
             var model = new InvestigationStatFindingsModel
@@ -108,6 +131,6 @@ namespace JOMonitoringApp.Views.Investigation
             };
             return model;
         }
-      
+
     }
 }

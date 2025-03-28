@@ -68,12 +68,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cmbxMeterBrand = new System.Windows.Forms.ComboBox();
             this.txtServiceLineDefects = new System.Windows.Forms.TextBox();
-            this.txtCalibrationRes = new System.Windows.Forms.TextBox();
+            this.txtCalibrationResult = new System.Windows.Forms.TextBox();
             this.txtReadingAfterTest = new System.Windows.Forms.TextBox();
             this.txtReadingBeforeTest = new System.Windows.Forms.TextBox();
             this.txtMeterSize = new System.Windows.Forms.TextBox();
-            this.txtMeterBrand = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -578,12 +578,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbxMeterBrand);
             this.groupBox2.Controls.Add(this.txtServiceLineDefects);
-            this.groupBox2.Controls.Add(this.txtCalibrationRes);
+            this.groupBox2.Controls.Add(this.txtCalibrationResult);
             this.groupBox2.Controls.Add(this.txtReadingAfterTest);
             this.groupBox2.Controls.Add(this.txtReadingBeforeTest);
             this.groupBox2.Controls.Add(this.txtMeterSize);
-            this.groupBox2.Controls.Add(this.txtMeterBrand);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label11);
@@ -598,6 +598,38 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "3. CONDITION OF SERVICE FACILITIES";
             // 
+            // cmbxMeterBrand
+            // 
+            this.cmbxMeterBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxMeterBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxMeterBrand.FormattingEnabled = true;
+            this.cmbxMeterBrand.Items.AddRange(new object[] {
+            "Arad",
+            "Janseen",
+            "Asashi",
+            "Evjet",
+            "yt",
+            "Andrae",
+            "Arctic",
+            "Preciflo",
+            "Konyi",
+            "Kim Sung",
+            "Ever",
+            "Kumho",
+            "Kent",
+            "Great V",
+            "Barindo",
+            "Asiam",
+            "E-Jet",
+            "MC-SX",
+            "Aqua-Jet",
+            "CMI",
+            "Herco-Tech"});
+            this.cmbxMeterBrand.Location = new System.Drawing.Point(197, 31);
+            this.cmbxMeterBrand.Name = "cmbxMeterBrand";
+            this.cmbxMeterBrand.Size = new System.Drawing.Size(200, 23);
+            this.cmbxMeterBrand.TabIndex = 8;
+            // 
             // txtServiceLineDefects
             // 
             this.txtServiceLineDefects.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -610,17 +642,17 @@
             this.txtServiceLineDefects.Size = new System.Drawing.Size(200, 21);
             this.txtServiceLineDefects.TabIndex = 5;
             // 
-            // txtCalibrationRes
+            // txtCalibrationResult
             // 
-            this.txtCalibrationRes.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtCalibrationRes.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtCalibrationRes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtCalibrationRes.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCalibrationRes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalibrationRes.Location = new System.Drawing.Point(197, 141);
-            this.txtCalibrationRes.Name = "txtCalibrationRes";
-            this.txtCalibrationRes.Size = new System.Drawing.Size(200, 21);
-            this.txtCalibrationRes.TabIndex = 4;
+            this.txtCalibrationResult.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtCalibrationResult.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtCalibrationResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCalibrationResult.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCalibrationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCalibrationResult.Location = new System.Drawing.Point(197, 141);
+            this.txtCalibrationResult.Name = "txtCalibrationResult";
+            this.txtCalibrationResult.Size = new System.Drawing.Size(200, 21);
+            this.txtCalibrationResult.TabIndex = 4;
             // 
             // txtReadingAfterTest
             // 
@@ -658,18 +690,6 @@
             this.txtMeterSize.Size = new System.Drawing.Size(200, 21);
             this.txtMeterSize.TabIndex = 1;
             // 
-            // txtMeterBrand
-            // 
-            this.txtMeterBrand.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtMeterBrand.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtMeterBrand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMeterBrand.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMeterBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeterBrand.Location = new System.Drawing.Point(198, 33);
-            this.txtMeterBrand.Name = "txtMeterBrand";
-            this.txtMeterBrand.Size = new System.Drawing.Size(200, 21);
-            this.txtMeterBrand.TabIndex = 0;
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -694,7 +714,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(28, 120);
+            this.label11.Location = new System.Drawing.Point(28, 116);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(135, 15);
             this.label11.TabIndex = 6;
@@ -795,11 +815,10 @@
         private System.Windows.Forms.Label label25;
         internal System.Windows.Forms.GroupBox groupBox2;
         internal System.Windows.Forms.TextBox txtServiceLineDefects;
-        internal System.Windows.Forms.TextBox txtCalibrationRes;
+        internal System.Windows.Forms.TextBox txtCalibrationResult;
         internal System.Windows.Forms.TextBox txtReadingAfterTest;
         internal System.Windows.Forms.TextBox txtReadingBeforeTest;
         internal System.Windows.Forms.TextBox txtMeterSize;
-        internal System.Windows.Forms.TextBox txtMeterBrand;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -815,5 +834,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblJONumber;
         private System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.ComboBox cmbxMeterBrand;
     }
 }

@@ -31,9 +31,10 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>1</ApplicationRevision>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>101</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -178,6 +179,7 @@
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
+    <Compile Include="Interface\IInvestigationConditionOfServiceFacilities.cs" />
     <Compile Include="Interface\IInvestigationRepository.cs" />
     <Compile Include="Interface\IInvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IJobOrdersParticulars.cs" />
@@ -186,6 +188,7 @@
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
     <Compile Include="Model\InvestigationStatFindingsModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
+    <Compile Include="Repository\InvestigationConditionOfServiceFacilitiesRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />

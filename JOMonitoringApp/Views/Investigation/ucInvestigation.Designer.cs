@@ -184,7 +184,7 @@
             this.cmbxComplaint.Location = new System.Drawing.Point(197, 176);
             this.cmbxComplaint.Name = "cmbxComplaint";
             this.cmbxComplaint.Size = new System.Drawing.Size(200, 23);
-            this.cmbxComplaint.TabIndex = 36;
+            this.cmbxComplaint.TabIndex = 0;
             // 
             // label2
             // 
@@ -254,7 +254,7 @@
             this.txtAlternativeSource.Location = new System.Drawing.Point(198, 199);
             this.txtAlternativeSource.Name = "txtAlternativeSource";
             this.txtAlternativeSource.Size = new System.Drawing.Size(199, 21);
-            this.txtAlternativeSource.TabIndex = 15;
+            this.txtAlternativeSource.TabIndex = 6;
             // 
             // label9
             // 
@@ -273,7 +273,7 @@
             this.cbSellToNeighbours.Location = new System.Drawing.Point(199, 276);
             this.cbSellToNeighbours.Name = "cbSellToNeighbours";
             this.cbSellToNeighbours.Size = new System.Drawing.Size(112, 17);
-            this.cbSellToNeighbours.TabIndex = 13;
+            this.cbSellToNeighbours.TabIndex = 9;
             this.cbSellToNeighbours.Text = "Sell to Neighbours";
             this.cbSellToNeighbours.UseVisualStyleBackColor = true;
             // 
@@ -284,7 +284,7 @@
             this.cbPromoteTrade.Location = new System.Drawing.Point(199, 253);
             this.cbPromoteTrade.Name = "cbPromoteTrade";
             this.cbPromoteTrade.Size = new System.Drawing.Size(149, 17);
-            this.cbPromoteTrade.TabIndex = 12;
+            this.cbPromoteTrade.TabIndex = 8;
             this.cbPromoteTrade.Text = "Promote Trade / Business";
             this.cbPromoteTrade.UseVisualStyleBackColor = true;
             // 
@@ -295,7 +295,7 @@
             this.cbHHPurpose.Location = new System.Drawing.Point(199, 230);
             this.cbHHPurpose.Name = "cbHHPurpose";
             this.cbHHPurpose.Size = new System.Drawing.Size(84, 17);
-            this.cbHHPurpose.TabIndex = 11;
+            this.cbHHPurpose.TabIndex = 7;
             this.cbHHPurpose.Text = "HH Purpose";
             this.cbHHPurpose.UseVisualStyleBackColor = true;
             // 
@@ -320,7 +320,7 @@
             0});
             this.nudNoServiceOfOutlets.Name = "nudNoServiceOfOutlets";
             this.nudNoServiceOfOutlets.Size = new System.Drawing.Size(199, 21);
-            this.nudNoServiceOfOutlets.TabIndex = 9;
+            this.nudNoServiceOfOutlets.TabIndex = 5;
             this.nudNoServiceOfOutlets.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudNoServiceOfOutlets.ThousandsSeparator = true;
             // 
@@ -345,7 +345,7 @@
             0});
             this.nudNoOfHoursServed.Name = "nudNoOfHoursServed";
             this.nudNoOfHoursServed.Size = new System.Drawing.Size(199, 21);
-            this.nudNoOfHoursServed.TabIndex = 9;
+            this.nudNoOfHoursServed.TabIndex = 4;
             this.nudNoOfHoursServed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudNoOfHoursServed.ThousandsSeparator = true;
             // 
@@ -370,7 +370,7 @@
             0});
             this.nudBoarders.Name = "nudBoarders";
             this.nudBoarders.Size = new System.Drawing.Size(199, 21);
-            this.nudBoarders.TabIndex = 7;
+            this.nudBoarders.TabIndex = 3;
             this.nudBoarders.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudBoarders.ThousandsSeparator = true;
             // 
@@ -395,7 +395,7 @@
             0});
             this.nudRelatives.Name = "nudRelatives";
             this.nudRelatives.Size = new System.Drawing.Size(199, 21);
-            this.nudRelatives.TabIndex = 7;
+            this.nudRelatives.TabIndex = 2;
             this.nudRelatives.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudRelatives.ThousandsSeparator = true;
             // 
@@ -420,7 +420,7 @@
             0});
             this.nudHouseHelper.Name = "nudHouseHelper";
             this.nudHouseHelper.Size = new System.Drawing.Size(199, 21);
-            this.nudHouseHelper.TabIndex = 7;
+            this.nudHouseHelper.TabIndex = 1;
             this.nudHouseHelper.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudHouseHelper.ThousandsSeparator = true;
             // 
@@ -445,7 +445,7 @@
             0});
             this.nudImmediateFamily.Name = "nudImmediateFamily";
             this.nudImmediateFamily.Size = new System.Drawing.Size(199, 21);
-            this.nudImmediateFamily.TabIndex = 7;
+            this.nudImmediateFamily.TabIndex = 0;
             this.nudImmediateFamily.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudImmediateFamily.ThousandsSeparator = true;
             // 
@@ -493,7 +493,7 @@
             this.txtRecommendations.Multiline = true;
             this.txtRecommendations.Name = "txtRecommendations";
             this.txtRecommendations.Size = new System.Drawing.Size(206, 80);
-            this.txtRecommendations.TabIndex = 21;
+            this.txtRecommendations.TabIndex = 1;
             // 
             // btnAttachedImage
             // 
@@ -530,7 +530,7 @@
             this.txtInvestigatorComments.Multiline = true;
             this.txtInvestigatorComments.Name = "txtInvestigatorComments";
             this.txtInvestigatorComments.Size = new System.Drawing.Size(206, 75);
-            this.txtInvestigatorComments.TabIndex = 15;
+            this.txtInvestigatorComments.TabIndex = 0;
             // 
             // panel4
             // 
@@ -554,7 +554,7 @@
             this.btnCancel.Location = new System.Drawing.Point(308, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 23);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel [Esc]";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -570,7 +570,7 @@
             this.btnSave.Location = new System.Drawing.Point(192, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 23);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save [Ctrl + S]";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
@@ -594,7 +594,7 @@
             this.groupBox2.Location = new System.Drawing.Point(448, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(429, 209);
-            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "3. CONDITION OF SERVICE FACILITIES";
             // 
@@ -608,7 +608,7 @@
             this.txtServiceLineDefects.Location = new System.Drawing.Point(197, 167);
             this.txtServiceLineDefects.Name = "txtServiceLineDefects";
             this.txtServiceLineDefects.Size = new System.Drawing.Size(200, 21);
-            this.txtServiceLineDefects.TabIndex = 13;
+            this.txtServiceLineDefects.TabIndex = 5;
             // 
             // txtCalibrationRes
             // 
@@ -620,7 +620,7 @@
             this.txtCalibrationRes.Location = new System.Drawing.Point(197, 141);
             this.txtCalibrationRes.Name = "txtCalibrationRes";
             this.txtCalibrationRes.Size = new System.Drawing.Size(200, 21);
-            this.txtCalibrationRes.TabIndex = 12;
+            this.txtCalibrationRes.TabIndex = 4;
             // 
             // txtReadingAfterTest
             // 
@@ -632,7 +632,7 @@
             this.txtReadingAfterTest.Location = new System.Drawing.Point(197, 114);
             this.txtReadingAfterTest.Name = "txtReadingAfterTest";
             this.txtReadingAfterTest.Size = new System.Drawing.Size(200, 21);
-            this.txtReadingAfterTest.TabIndex = 11;
+            this.txtReadingAfterTest.TabIndex = 3;
             // 
             // txtReadingBeforeTest
             // 
@@ -644,7 +644,7 @@
             this.txtReadingBeforeTest.Location = new System.Drawing.Point(197, 87);
             this.txtReadingBeforeTest.Name = "txtReadingBeforeTest";
             this.txtReadingBeforeTest.Size = new System.Drawing.Size(200, 21);
-            this.txtReadingBeforeTest.TabIndex = 10;
+            this.txtReadingBeforeTest.TabIndex = 2;
             // 
             // txtMeterSize
             // 
@@ -656,7 +656,7 @@
             this.txtMeterSize.Location = new System.Drawing.Point(197, 60);
             this.txtMeterSize.Name = "txtMeterSize";
             this.txtMeterSize.Size = new System.Drawing.Size(200, 21);
-            this.txtMeterSize.TabIndex = 9;
+            this.txtMeterSize.TabIndex = 1;
             // 
             // txtMeterBrand
             // 
@@ -668,7 +668,7 @@
             this.txtMeterBrand.Location = new System.Drawing.Point(198, 33);
             this.txtMeterBrand.Name = "txtMeterBrand";
             this.txtMeterBrand.Size = new System.Drawing.Size(200, 21);
-            this.txtMeterBrand.TabIndex = 8;
+            this.txtMeterBrand.TabIndex = 0;
             // 
             // label19
             // 

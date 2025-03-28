@@ -81,6 +81,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnViewImages = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -468,6 +469,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btnViewImages);
             this.groupBox3.Controls.Add(this.label21);
             this.groupBox3.Controls.Add(this.txtRecommendations);
             this.groupBox3.Controls.Add(this.btnAttachedImage);
@@ -479,7 +481,7 @@
             this.groupBox3.Size = new System.Drawing.Size(429, 263);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "5. COMMENTS AND RECOMMENDATIONS";
+            this.groupBox3.Text = "4. COMMENTS AND RECOMMENDATIONS";
             // 
             // label21
             // 
@@ -759,6 +761,22 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "METER BRAND";
             // 
+            // btnViewImages
+            // 
+            this.btnViewImages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewImages.BackColor = System.Drawing.Color.White;
+            this.btnViewImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewImages.Location = new System.Drawing.Point(316, 117);
+            this.btnViewImages.Name = "btnViewImages";
+            this.btnViewImages.Size = new System.Drawing.Size(82, 23);
+            this.btnViewImages.TabIndex = 23;
+            this.btnViewImages.TabStop = false;
+            this.btnViewImages.Text = "View Images";
+            this.btnViewImages.UseVisualStyleBackColor = false;
+            this.btnViewImages.Click += new System.EventHandler(this.btnViewImages_Click);
+            // 
             // errorProvider1
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -852,5 +870,6 @@
         private System.Windows.Forms.Label lblJORemarks;
         internal System.Windows.Forms.ComboBox cmbxMeterBrand;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button btnViewImages;
     }
 }

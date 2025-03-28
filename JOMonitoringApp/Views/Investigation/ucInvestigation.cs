@@ -211,5 +211,12 @@ namespace JOMonitoringApp.Views.Investigation
             cbSellToNeighbours.Checked = false;
             txtAlternativeSource.Clear();
         }
+
+        private void btnViewImages_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationImageViewer().ShowDialog();
+          
+        }
+
     }
 }

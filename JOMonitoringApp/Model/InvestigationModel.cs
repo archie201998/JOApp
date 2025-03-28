@@ -13,6 +13,8 @@ namespace JOMonitoringApp.Model
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress{ get; set; }
+        public string CustomerAccountNumber { get; set; }
+        public string NatureOfComplaint { get; set; }
         public string InvestigatorComments { get; set; }
         public string Recommendations { get; set; }
 

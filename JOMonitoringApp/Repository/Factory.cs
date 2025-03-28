@@ -30,7 +30,8 @@ namespace JOMonitoringApp
         public static IRolesRepository RolesRepository() => new RolesRepository(mySqlGenericCommands);
 
         public static IInvestigationRepository InvestigationRepository() => new InvestigationRepository(mySqlGenericCommands);
-
+        public static IInvestigationStatFindingsRepository InvestigationStatFindingsRepository() => new InvestigationStatFindingsRepository(mySqlGenericCommands);
+        
 
     }
 }

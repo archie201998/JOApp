@@ -99,7 +99,6 @@ namespace JOMonitoringApp
             if (isConnected)
             {
                 lblJBCSConnection.Text = "CONNECTED";
-                lblJBCSConnection.ForeColor = Color.Green;
             }
             else
             {
@@ -111,6 +110,11 @@ namespace JOMonitoringApp
         private void frmSignIn_Load_1(object sender, EventArgs e)
         {
             TestWaterSystemConnection();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

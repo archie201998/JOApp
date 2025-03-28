@@ -179,6 +179,7 @@
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
     <Compile Include="Interface\IInvestigationRepository.cs" />
+    <Compile Include="Interface\IInvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IJobOrdersParticulars.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
@@ -186,6 +187,7 @@
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
+    <Compile Include="Model\InvestigationStatFindingsModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\JOLogsModel.cs" />
@@ -205,6 +207,7 @@
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
+    <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />

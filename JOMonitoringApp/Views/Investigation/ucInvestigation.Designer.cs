@@ -30,17 +30,18 @@
         {
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblJONumber = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbxComplaint = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cbAlternativeSource = new System.Windows.Forms.CheckBox();
+            this.txtAlternativeSource = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.cbSellToNeighbours = new System.Windows.Forms.CheckBox();
             this.cbPromoteTrade = new System.Windows.Forms.CheckBox();
             this.cbHHPurpose = new System.Windows.Forms.CheckBox();
@@ -95,14 +96,14 @@
             // gbAccountDetails
             // 
             this.gbAccountDetails.Controls.Add(this.label22);
+            this.gbAccountDetails.Controls.Add(this.label8);
+            this.gbAccountDetails.Controls.Add(this.lblJONumber);
             this.gbAccountDetails.Controls.Add(this.label16);
             this.gbAccountDetails.Controls.Add(this.label14);
             this.gbAccountDetails.Controls.Add(this.label12);
             this.gbAccountDetails.Controls.Add(this.cmbxComplaint);
             this.gbAccountDetails.Controls.Add(this.label2);
-            this.gbAccountDetails.Controls.Add(this.label18);
             this.gbAccountDetails.Controls.Add(this.label1);
-            this.gbAccountDetails.Controls.Add(this.label8);
             this.gbAccountDetails.Controls.Add(this.label7);
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(13, 12);
@@ -110,34 +111,54 @@
             this.gbAccountDetails.Size = new System.Drawing.Size(429, 209);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
-            this.gbAccountDetails.Text = "INVESTIGATION FORM";
+            this.gbAccountDetails.Text = "1. INVESTIGATION FORM";
             this.gbAccountDetails.Enter += new System.EventHandler(this.gbAccountDetails_Enter);
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(195, 152);
+            this.label22.Location = new System.Drawing.Point(25, 89);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(84, 15);
-            this.label22.TabIndex = 37;
-            this.label22.Text = "09052381040";
+            this.label22.Size = new System.Drawing.Size(85, 15);
+            this.label22.TabIndex = 38;
+            this.label22.Text = "J.O NUMBER ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(24, 120);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 15);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "J.O REMARKS ";
+            // 
+            // lblJONumber
+            // 
+            this.lblJONumber.AutoSize = true;
+            this.lblJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJONumber.Location = new System.Drawing.Point(196, 89);
+            this.lblJONumber.Name = "lblJONumber";
+            this.lblJONumber.Size = new System.Drawing.Size(49, 15);
+            this.lblJONumber.TabIndex = 37;
+            this.lblJONumber.Text = "662563";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(195, 98);
+            this.label16.Location = new System.Drawing.Point(196, 117);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 15);
+            this.label16.Size = new System.Drawing.Size(146, 45);
             this.label16.TabIndex = 37;
-            this.label16.Text = "ZONE 8, TIGUMA";
+            this.label16.Text = "FOR INVESTIGATION OF \r\nDEFECTIV E\r\nMETER";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(195, 71);
+            this.label14.Location = new System.Drawing.Point(195, 59);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(158, 15);
             this.label14.TabIndex = 37;
@@ -147,7 +168,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(195, 45);
+            this.label12.Location = new System.Drawing.Point(195, 33);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(90, 15);
             this.label12.TabIndex = 37;
@@ -158,6 +179,8 @@
             this.cmbxComplaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxComplaint.FormattingEnabled = true;
+            this.cmbxComplaint.Items.AddRange(new object[] {
+            "Meter Calibration"});
             this.cmbxComplaint.Location = new System.Drawing.Point(197, 176);
             this.cmbxComplaint.Name = "cmbxComplaint";
             this.cmbxComplaint.Size = new System.Drawing.Size(200, 23);
@@ -173,41 +196,21 @@
             this.label2.TabIndex = 35;
             this.label2.Text = "COMPLAINT";
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(25, 152);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 15);
-            this.label18.TabIndex = 33;
-            this.label18.Text = "CONTACT";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 71);
+            this.label1.Location = new System.Drawing.Point(25, 59);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "ACCOUNT NAME";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(25, 98);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(65, 15);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "ADDRESS";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(25, 45);
+            this.label7.Location = new System.Drawing.Point(25, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(121, 15);
             this.label7.TabIndex = 12;
@@ -215,7 +218,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbAlternativeSource);
+            this.groupBox1.Controls.Add(this.txtAlternativeSource);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.cbSellToNeighbours);
             this.groupBox1.Controls.Add(this.cbPromoteTrade);
             this.groupBox1.Controls.Add(this.cbHHPurpose);
@@ -235,27 +239,38 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(13, 227);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(429, 296);
+            this.groupBox1.Size = new System.Drawing.Size(429, 302);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "STATISTICAL FINDING";
+            this.groupBox1.Text = "2. STATISTICAL FINDING";
             // 
-            // cbAlternativeSource
+            // txtAlternativeSource
             // 
-            this.cbAlternativeSource.AutoSize = true;
-            this.cbAlternativeSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAlternativeSource.Location = new System.Drawing.Point(197, 272);
-            this.cbAlternativeSource.Name = "cbAlternativeSource";
-            this.cbAlternativeSource.Size = new System.Drawing.Size(113, 17);
-            this.cbAlternativeSource.TabIndex = 14;
-            this.cbAlternativeSource.Text = "Alternative Source";
-            this.cbAlternativeSource.UseVisualStyleBackColor = true;
+            this.txtAlternativeSource.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAlternativeSource.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAlternativeSource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAlternativeSource.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtAlternativeSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAlternativeSource.Location = new System.Drawing.Point(198, 199);
+            this.txtAlternativeSource.Name = "txtAlternativeSource";
+            this.txtAlternativeSource.Size = new System.Drawing.Size(199, 21);
+            this.txtAlternativeSource.TabIndex = 15;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(28, 201);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(140, 15);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "ALTERNATIVE SOURCE";
             // 
             // cbSellToNeighbours
             // 
             this.cbSellToNeighbours.AutoSize = true;
             this.cbSellToNeighbours.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSellToNeighbours.Location = new System.Drawing.Point(197, 251);
+            this.cbSellToNeighbours.Location = new System.Drawing.Point(199, 276);
             this.cbSellToNeighbours.Name = "cbSellToNeighbours";
             this.cbSellToNeighbours.Size = new System.Drawing.Size(112, 17);
             this.cbSellToNeighbours.TabIndex = 13;
@@ -266,7 +281,7 @@
             // 
             this.cbPromoteTrade.AutoSize = true;
             this.cbPromoteTrade.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPromoteTrade.Location = new System.Drawing.Point(197, 228);
+            this.cbPromoteTrade.Location = new System.Drawing.Point(199, 253);
             this.cbPromoteTrade.Name = "cbPromoteTrade";
             this.cbPromoteTrade.Size = new System.Drawing.Size(149, 17);
             this.cbPromoteTrade.TabIndex = 12;
@@ -277,7 +292,7 @@
             // 
             this.cbHHPurpose.AutoSize = true;
             this.cbHHPurpose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbHHPurpose.Location = new System.Drawing.Point(197, 205);
+            this.cbHHPurpose.Location = new System.Drawing.Point(199, 230);
             this.cbHHPurpose.Name = "cbHHPurpose";
             this.cbHHPurpose.Size = new System.Drawing.Size(84, 17);
             this.cbHHPurpose.TabIndex = 11;
@@ -288,7 +303,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(27, 201);
+            this.label25.Location = new System.Drawing.Point(28, 227);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(107, 15);
             this.label25.TabIndex = 10;
@@ -454,16 +469,16 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(448, 227);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(429, 257);
+            this.groupBox3.Size = new System.Drawing.Size(429, 263);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "COMMENTS AND RECOMMENDATIONS";
+            this.groupBox3.Text = "5. COMMENTS AND RECOMMENDATIONS";
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(19, 154);
+            this.label21.Location = new System.Drawing.Point(19, 167);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(135, 15);
             this.label21.TabIndex = 22;
@@ -474,7 +489,7 @@
             this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecommendations.Location = new System.Drawing.Point(192, 152);
+            this.txtRecommendations.Location = new System.Drawing.Point(192, 165);
             this.txtRecommendations.Multiline = true;
             this.txtRecommendations.Name = "txtRecommendations";
             this.txtRecommendations.Size = new System.Drawing.Size(206, 80);
@@ -522,7 +537,7 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(448, 490);
+            this.panel4.Location = new System.Drawing.Point(448, 496);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(429, 31);
             this.panel4.TabIndex = 6;
@@ -576,12 +591,12 @@
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(448, 20);
+            this.groupBox2.Location = new System.Drawing.Point(448, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(429, 201);
+            this.groupBox2.Size = new System.Drawing.Size(429, 209);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "CONDITION OF SERVICE FACILITIES";
+            this.groupBox2.Text = "3. CONDITION OF SERVICE FACILITIES";
             // 
             // txtServiceLineDefects
             // 
@@ -725,7 +740,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucInvestigation";
-            this.Size = new System.Drawing.Size(888, 530);
+            this.Size = new System.Drawing.Size(888, 536);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -749,9 +764,7 @@
         #endregion
 
         internal System.Windows.Forms.GroupBox gbAccountDetails;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.ComboBox cmbxComplaint;
@@ -773,8 +786,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
         internal System.Windows.Forms.NumericUpDown nudNoOfHoursServed;
@@ -798,6 +809,11 @@
         private System.Windows.Forms.CheckBox cbHHPurpose;
         private System.Windows.Forms.CheckBox cbPromoteTrade;
         private System.Windows.Forms.CheckBox cbSellToNeighbours;
-        private System.Windows.Forms.CheckBox cbAlternativeSource;
+        internal System.Windows.Forms.TextBox txtAlternativeSource;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblJONumber;
+        private System.Windows.Forms.Label label16;
     }
 }

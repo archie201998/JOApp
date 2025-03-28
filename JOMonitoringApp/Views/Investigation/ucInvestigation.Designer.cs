@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblJONumber = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lblJORemarks = new System.Windows.Forms.Label();
+            this.lblAccountName = new System.Windows.Forms.Label();
+            this.lblAccountNumber = new System.Windows.Forms.Label();
             this.cmbxComplaint = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,6 +81,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -91,6 +93,7 @@
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -98,9 +101,9 @@
             this.gbAccountDetails.Controls.Add(this.label22);
             this.gbAccountDetails.Controls.Add(this.label8);
             this.gbAccountDetails.Controls.Add(this.lblJONumber);
-            this.gbAccountDetails.Controls.Add(this.label16);
-            this.gbAccountDetails.Controls.Add(this.label14);
-            this.gbAccountDetails.Controls.Add(this.label12);
+            this.gbAccountDetails.Controls.Add(this.lblJORemarks);
+            this.gbAccountDetails.Controls.Add(this.lblAccountName);
+            this.gbAccountDetails.Controls.Add(this.lblAccountNumber);
             this.gbAccountDetails.Controls.Add(this.cmbxComplaint);
             this.gbAccountDetails.Controls.Add(this.label2);
             this.gbAccountDetails.Controls.Add(this.label1);
@@ -144,35 +147,35 @@
             this.lblJONumber.TabIndex = 37;
             this.lblJONumber.Text = "662563";
             // 
-            // label16
+            // lblJORemarks
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(196, 117);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(146, 45);
-            this.label16.TabIndex = 37;
-            this.label16.Text = "FOR INVESTIGATION OF \r\nDEFECTIV E\r\nMETER";
+            this.lblJORemarks.AutoSize = true;
+            this.lblJORemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJORemarks.Location = new System.Drawing.Point(196, 117);
+            this.lblJORemarks.Name = "lblJORemarks";
+            this.lblJORemarks.Size = new System.Drawing.Size(146, 45);
+            this.lblJORemarks.TabIndex = 37;
+            this.lblJORemarks.Text = "FOR INVESTIGATION OF \r\nDEFECTIV E\r\nMETER";
             // 
-            // label14
+            // lblAccountName
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(195, 59);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(158, 15);
-            this.label14.TabIndex = 37;
-            this.label14.Text = "SUPER HEALTHY CENTER";
+            this.lblAccountName.AutoSize = true;
+            this.lblAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccountName.Location = new System.Drawing.Point(195, 59);
+            this.lblAccountName.Name = "lblAccountName";
+            this.lblAccountName.Size = new System.Drawing.Size(158, 15);
+            this.lblAccountName.TabIndex = 37;
+            this.lblAccountName.Text = "SUPER HEALTHY CENTER";
             // 
-            // label12
+            // lblAccountNumber
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(195, 33);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(90, 15);
-            this.label12.TabIndex = 37;
-            this.label12.Text = "063-302-000-E";
+            this.lblAccountNumber.AutoSize = true;
+            this.lblAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccountNumber.Location = new System.Drawing.Point(195, 33);
+            this.lblAccountNumber.Name = "lblAccountNumber";
+            this.lblAccountNumber.Size = new System.Drawing.Size(90, 15);
+            this.lblAccountNumber.TabIndex = 37;
+            this.lblAccountNumber.Text = "063-302-000-E";
             // 
             // cmbxComplaint
             // 
@@ -185,6 +188,8 @@
             this.cmbxComplaint.Name = "cmbxComplaint";
             this.cmbxComplaint.Size = new System.Drawing.Size(200, 23);
             this.cmbxComplaint.TabIndex = 0;
+            this.cmbxComplaint.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxComplaint_Validating);
+            this.cmbxComplaint.Validated += new System.EventHandler(this.cmbxComplaint_Validated);
             // 
             // label2
             // 
@@ -314,7 +319,7 @@
             this.nudNoServiceOfOutlets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoServiceOfOutlets.Location = new System.Drawing.Point(198, 172);
             this.nudNoServiceOfOutlets.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -339,7 +344,7 @@
             this.nudNoOfHoursServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoOfHoursServed.Location = new System.Drawing.Point(198, 145);
             this.nudNoOfHoursServed.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -364,7 +369,7 @@
             this.nudBoarders.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudBoarders.Location = new System.Drawing.Point(198, 118);
             this.nudBoarders.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -380,16 +385,16 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(28, 120);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 15);
+            this.label6.Size = new System.Drawing.Size(98, 15);
             this.label6.TabIndex = 6;
-            this.label6.Text = "BOARDERS";
+            this.label6.Text = "NO. BOARDERS";
             // 
             // nudRelatives
             // 
             this.nudRelatives.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudRelatives.Location = new System.Drawing.Point(198, 91);
             this.nudRelatives.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -405,16 +410,16 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(28, 93);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(71, 15);
+            this.label5.Size = new System.Drawing.Size(95, 15);
             this.label5.TabIndex = 6;
-            this.label5.Text = "RELATIVES";
+            this.label5.Text = "NO. RELATIVES";
             // 
             // nudHouseHelper
             // 
             this.nudHouseHelper.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHouseHelper.Location = new System.Drawing.Point(198, 64);
             this.nudHouseHelper.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -430,16 +435,16 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(28, 66);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(102, 15);
+            this.label4.Size = new System.Drawing.Size(126, 15);
             this.label4.TabIndex = 6;
-            this.label4.Text = "HOUSE HELPER";
+            this.label4.Text = "NO. HOUSE HELPER";
             // 
             // nudImmediateFamily
             // 
             this.nudImmediateFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudImmediateFamily.Location = new System.Drawing.Point(198, 37);
             this.nudImmediateFamily.Maximum = new decimal(new int[] {
-            999999,
+            255,
             0,
             0,
             0});
@@ -448,6 +453,8 @@
             this.nudImmediateFamily.TabIndex = 0;
             this.nudImmediateFamily.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudImmediateFamily.ThousandsSeparator = true;
+            this.nudImmediateFamily.Validating += new System.ComponentModel.CancelEventHandler(this.nudImmediateFamily_Validating);
+            this.nudImmediateFamily.Validated += new System.EventHandler(this.nudImmediateFamily_Validated);
             // 
             // label3
             // 
@@ -455,9 +462,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(28, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(122, 15);
+            this.label3.Size = new System.Drawing.Size(146, 15);
             this.label3.TabIndex = 6;
-            this.label3.Text = "IMMEDIATE FAMILY ";
+            this.label3.Text = "NO. IMMEDIATE FAMILY ";
             // 
             // groupBox3
             // 
@@ -531,6 +538,8 @@
             this.txtInvestigatorComments.Name = "txtInvestigatorComments";
             this.txtInvestigatorComments.Size = new System.Drawing.Size(206, 75);
             this.txtInvestigatorComments.TabIndex = 0;
+            this.txtInvestigatorComments.Validating += new System.ComponentModel.CancelEventHandler(this.txtInvestigatorComments_Validating);
+            this.txtInvestigatorComments.Validated += new System.EventHandler(this.txtInvestigatorComments_Validated);
             // 
             // panel4
             // 
@@ -750,10 +759,16 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "METER BRAND";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ucInvestigation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.groupBox3);
@@ -777,6 +792,7 @@
             this.panel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -806,8 +822,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblAccountName;
+        private System.Windows.Forms.Label lblAccountNumber;
         internal System.Windows.Forms.NumericUpDown nudNoOfHoursServed;
         private System.Windows.Forms.Label label23;
         internal System.Windows.Forms.NumericUpDown nudNoServiceOfOutlets;
@@ -833,7 +849,8 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblJONumber;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lblJORemarks;
         internal System.Windows.Forms.ComboBox cmbxMeterBrand;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

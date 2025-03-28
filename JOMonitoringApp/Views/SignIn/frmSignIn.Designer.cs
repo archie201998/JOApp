@@ -34,7 +34,7 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblVersion = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -113,7 +113,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.lblVersion);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label6);
@@ -125,18 +125,18 @@
             this.panel1.Size = new System.Drawing.Size(289, 299);
             this.panel1.TabIndex = 8;
             // 
-            // label10
+            // lblVersion
             // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label10.Location = new System.Drawing.Point(94, 274);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(81, 15);
-            this.label10.TabIndex = 13;
-            this.label10.Text = "Version 1.0.0.0";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lblVersion.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblVersion.Location = new System.Drawing.Point(94, 274);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(81, 15);
+            this.lblVersion.TabIndex = 13;
+            this.lblVersion.Text = "Version 1.0.0.0";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
@@ -144,12 +144,12 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(34, 181);
+            this.label9.Location = new System.Drawing.Point(12, 192);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(212, 60);
+            this.label9.Size = new System.Drawing.Size(268, 45);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Efficiently track, manage, and monitor \r\njob orders with ease. Stay updated \r\non " +
-    "progress, deadlines, completion\r\n status, and reports all in one place";
+            this.label9.Text = "Efficiently track, manage, and monitor job orders \r\nwith ease. Stay updated on pr" +
+    "ogress, deadlines, \r\ncompletion status, and reports all in one place";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -334,7 +334,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
     }

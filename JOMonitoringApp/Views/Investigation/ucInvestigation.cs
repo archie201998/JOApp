@@ -36,17 +36,26 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (SaveData())
             {
-                MessageBox.Show("Saved");
+                Helper.MessageBoxSuccess("Investigation has been saved successfully.");
+                ResetForm();
             }
-            else
+            try
             {
-                MessageBox.Show("Error");
-
+               
             }
+            catch (Exception)
+            {
+                Helper.MessageBoxError("Please complete necessary fields.");
+            }
+           
         }
 
         private bool SaveData()
         {
+            if (!ValidateChildren(ValidationConstraints.Enabled))
+                return false;
+
+
             using (var scope = new TransactionScope())
             {
                 var investigationModel = InvestigationModel();
@@ -103,11 +112,11 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 MeterBrand = cmbxMeterBrand.Text,
                 MeterSize = txtMeterSize.Text,
-                ReadingBeforeTest = Convert.ToDecimal(txtReadingBeforeTest.Text),
-                ReadingAfterTest = Convert.ToDecimal(txtReadingAfterTest.Text),
+                ReadingBeforeTest = txtReadingBeforeTest.Text,
+                ReadingAfterTest = txtReadingAfterTest.Text,
                 CalibrationResult = txtCalibrationResult.Text,
-                OverRegistration = 124,
-                UnderRegistration = 142,
+                OverRegistration = string.Empty,
+                UnderRegistration = string.Empty,
                 LeakingAfterTheMeter = txtServiceLineDefects.Text
             };
             return model;
@@ -132,5 +141,75 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
+        private void cmbxComplaint_ValueMemberChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
+        {
+            if (cmbxComplaint.Text == string.Empty )
+            {
+                e.Cancel = true;
+                Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxComplaint, "Nature of Complain.");
+            }
+        }
+
+        private void cmbxComplaint_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorComboBox(errorProvider1, cmbxComplaint);
+        }
+
+        private void nudImmediateFamily_Validating(object sender, CancelEventArgs e)
+        {
+            if (nudImmediateFamily.Value == 0)
+            {
+                e.Cancel = true;
+                Helper.ShowErrorNumericUpDownZero(errorProvider1, nudImmediateFamily, "Immediate Family.");
+            }
+        }
+
+        private void nudImmediateFamily_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorNumericUpDown(errorProvider1, nudImmediateFamily);
+        }
+
+        private void txtInvestigatorComments_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtInvestigatorComments.Text.Trim() == string.Empty)
+            {
+                e.Cancel = true;
+                Helper.ShowErrorTextBoxEmpty(errorProvider1, txtInvestigatorComments, "Investigator Comment.");
+            }
+        }
+
+        private void txtInvestigatorComments_Validated(object sender, EventArgs e)
+        {
+            Helper.ClearErrorTextBox(errorProvider1, txtInvestigatorComments);  
+        }
+
+
+        private void ResetForm()
+        {
+            cmbxComplaint.SelectedIndex = -1;
+            txtInvestigatorComments.Clear();
+            txtRecommendations.Clear();
+            cmbxMeterBrand.SelectedIndex = -1;
+            txtMeterSize.Clear();
+            txtReadingBeforeTest.Clear();
+            txtReadingAfterTest.Clear();
+            txtCalibrationResult.Clear();
+            txtServiceLineDefects.Clear();
+            nudImmediateFamily.Value = 0;
+            nudHouseHelper.Value = 0;
+            nudRelatives.Value = 0;
+            nudBoarders.Value = 0;
+            nudNoOfHoursServed.Value = 0;
+            nudNoServiceOfOutlets.Value = 0;
+            cbHHPurpose.Checked = false;
+            cbPromoteTrade.Checked = false;
+            cbSellToNeighbours.Checked = false;
+            txtAlternativeSource.Clear();
+        }
     }
 }

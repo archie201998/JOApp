@@ -49,12 +49,12 @@ namespace JOMonitoringApp
                 new object[] { "@investigation_id", DbType.Int32, entity.InvestigationId },
                 new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
                 new object[] { "@meter_size", DbType.String, entity.MeterSize },
-                new object[] { "@reading_before_test", DbType.Decimal, entity.ReadingBeforeTest },
-                new object[] { "@reading_after_test", DbType.Decimal, entity.ReadingAfterTest },
+                new object[] { "@reading_before_test", DbType.String, entity.ReadingBeforeTest },
+                new object[] { "@reading_after_test", DbType.String, entity.ReadingAfterTest },
                 new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
-                new object[] { "@over_registration", DbType.Decimal, entity.OverRegistration },
-                new object[] { "@under_registration", DbType.Decimal, entity.UnderRegistration },
-                new object[] { "@leaking_after_the_meter", DbType.Boolean, entity.LeakingAfterTheMeter }
+                new object[] { "@over_registration", DbType.String, entity.OverRegistration },
+                new object[] { "@under_registration", DbType.String, entity.UnderRegistration },
+                new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter }
             };
 
             string query = $"INSERT INTO {tableName} (investigation_id, meter_brand, meter_size,reading_before_test, reading_after_test, calibration_result, over_registration, under_registration, leaking_after_the_meter) " +

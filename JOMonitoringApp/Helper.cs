@@ -29,7 +29,8 @@ namespace AccountingSystem
         internal static bool temporaryAdminMode = false;
         internal static string changes;
 
-        
+
+   
 
         public static string GetCurrentVersion()
         {

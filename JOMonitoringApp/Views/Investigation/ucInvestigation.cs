@@ -18,6 +18,11 @@ namespace JOMonitoringApp.Views.Investigation
     public partial class ucInvestigation : UserControl
     {
         private int _jobOrderId = 53;   
+        string originalFileName = string.Empty;
+        private string trimedAccountName;
+        private string newFileName;
+        string selectedFilePath = string.Empty; 
+
         public ucInvestigation()
         {
             InitializeComponent();
@@ -37,6 +42,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (SaveData())
             {
+                UploadImage(selectedFilePath, newFileName);
                 Helper.MessageBoxSuccess("Investigation has been saved successfully.");
                 ResetForm();
             }
@@ -230,21 +236,24 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    string selectedFilePath = openFileDialog.FileName;
-                    UploadImage(selectedFilePath);
+                    selectedFilePath = openFileDialog.FileName;
+                    originalFileName = openFileDialog.FileName;
+
+                    trimedAccountName = lblAccountName.Text.Length > 10 ? $"{lblAccountName.Text.Substring(0, 10)}..." : lblAccountName.Text;
+                    newFileName = $"{lblAccountNumber.Text} - {trimedAccountName} - {cmbxComplaint.Text}.jpg";
+                    lblFileName.Text = newFileName;
                 }
             }
         }
 
-        private void UploadImage(string filePath)
+        private void UploadImage(string filePath, string newFileName)
         {
             // Implement the logic to upload the image to the server or save it locally
             // Example: Save the file to a specific directory
 
             string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
-            string targetPath = Path.Combine(sharedFolderPath, Path.GetFileName(filePath));
+            string targetPath = Path.Combine(sharedFolderPath, newFileName);
             File.Copy(filePath, targetPath, true);
-            MessageBox.Show("Image uploaded successfully to " + targetPath);
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountingSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,10 +49,28 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
+
         public void LoadImage(string imagePath)
         {
-            pictureBox1.Image = Image.FromFile(imagePath);
+            Image image = Image.FromFile(imagePath);
+            Image watermarkedImage = AddWatermark(image, "CAPTURED BY DACOL"); // Replace "Watermark Text" with your desired watermark text
+            pictureBox1.Image = watermarkedImage;
         }
+
+        public static Image AddWatermark(Image image, string watermarkText)
+        {
+            using (Graphics graphics = Graphics.FromImage(image))
+            {
+                Font font = new Font("Arial", 20, FontStyle.Bold, GraphicsUnit.Pixel);
+                Color color = Color.FromArgb(128, 255, 255, 255); // White color with transparency
+                SolidBrush brush = new SolidBrush(color);
+                Point atPoint = new Point(image.Width - 120, image.Height - 30); // Position of the watermark
+
+                graphics.DrawString(watermarkText, font, brush, atPoint);
+            }
+            return image;
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {

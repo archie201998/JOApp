@@ -482,6 +482,7 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "4. COMMENTS AND RECOMMENDATIONS";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // label21
             // 
@@ -519,6 +520,7 @@
             this.btnAttachedImage.Text = "Attached Images";
             this.btnAttachedImage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAttachedImage.UseVisualStyleBackColor = false;
+            this.btnAttachedImage.Click += new System.EventHandler(this.btnAttachedImage_Click);
             // 
             // label20
             // 

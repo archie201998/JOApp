@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -218,5 +219,37 @@ namespace JOMonitoringApp.Views.Investigation
           
         }
 
+        private void btnAttachedImage_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string selectedFilePath = openFileDialog.FileName;
+                    UploadImage(selectedFilePath);
+                }
+            }
+        }
+
+        private void UploadImage(string filePath)
+        {
+            // Implement the logic to upload the image to the server or save it locally
+            // Example: Save the file to a specific directory
+
+            string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
+            string targetPath = Path.Combine(sharedFolderPath, Path.GetFileName(filePath));
+            File.Copy(filePath, targetPath, true);
+            MessageBox.Show("Image uploaded successfully to " + targetPath);
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

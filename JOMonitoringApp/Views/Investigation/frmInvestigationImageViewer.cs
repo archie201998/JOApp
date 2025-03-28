@@ -25,11 +25,14 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
-            string sharedFolderPath = @"\\192.168.18.183\InvestigationImages"; // Replace with your shared folder path
+            string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
 
             if (Directory.Exists(sharedFolderPath))
             {
-                imageFiles = Directory.GetFiles(sharedFolderPath, "*.png").ToList();
+                imageFiles = Directory.GetFiles(sharedFolderPath, "*.*")
+                                      .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".jpeg") || file.EndsWith(".bmp") || file.EndsWith(".gif"))
+                                      .ToList();
+
                 if (imageFiles.Count > 0)
                 {
                     LoadImage(imageFiles[currentImageIndex]);

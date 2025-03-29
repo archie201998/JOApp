@@ -11,8 +11,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm
@@ -181,7 +179,6 @@ namespace JOMonitoringApp.Views.MainForm
             }
             catch (Exception)
             {
-
             }
             
         }
@@ -455,7 +452,6 @@ namespace JOMonitoringApp.Views.MainForm
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             ButtonSaveTrigger();
@@ -646,34 +642,6 @@ namespace JOMonitoringApp.Views.MainForm
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void investigationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _ = new frmInvestigation().ShowDialog();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                using (var ping = new System.Net.NetworkInformation.Ping())
-                {
-                    var reply = ping.Send("192.168.18.183");
-                    if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
-                    {
-                        lblPing.Text = $" {reply.RoundtripTime} ms";
-                    }
-                    else
-                    {
-                        lblPing.Text = "Ping failed";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                lblPing.Text = $"Error: {ex.Message}";
-            }
         }
     }
 }

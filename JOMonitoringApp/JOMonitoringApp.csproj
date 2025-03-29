@@ -31,9 +31,10 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>16</ApplicationRevision>
+    <TrustUrlParameters>true</TrustUrlParameters>
+    <ApplicationRevision>105</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -178,12 +179,18 @@
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
+    <Compile Include="Interface\IInvestigationConditionOfServiceFacilities.cs" />
+    <Compile Include="Interface\IInvestigationRepository.cs" />
+    <Compile Include="Interface\IInvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IJobOrdersParticulars.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
+    <Compile Include="Model\InvestigationModel.cs" />
+    <Compile Include="Model\InvestigationStatFindingsModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\JOLogsModel.cs" />
@@ -202,6 +209,9 @@
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
+    <Compile Include="Repository\InvestigationConditionOfServiceFacilitiesRepository.cs" />
+    <Compile Include="Repository\InvestigationRepository.cs" />
+    <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
@@ -214,6 +224,18 @@
     </Compile>
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.Designer.cs">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationImageViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationImageViewer.Designer.cs">
+      <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Investigation\ucInvestigation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\ucInvestigation.Designer.cs">
+      <DependentUpon>ucInvestigation.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\JobOrder\frmJOProgressTracking.cs">
       <SubType>Form</SubType>
@@ -238,6 +260,12 @@
     </Compile>
     <Compile Include="Views\MainForm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\frmInvestigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\frmInvestigation.Designer.cs">
+      <DependentUpon>frmInvestigation.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reports\frmJOSummary.cs">
       <SubType>Form</SubType>
@@ -265,6 +293,18 @@
     <Compile Include="Views\Users\frmUsers.Designer.cs">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
+    <Content Include="RDLC\investigation-form.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
+      <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\ucInvestigation.resx">
+      <DependentUpon>ucInvestigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\frmInvestigation.resx">
+      <DependentUpon>frmInvestigation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>

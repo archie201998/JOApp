@@ -81,6 +81,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["amount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["amount"].HeaderText = "AMOUNT";
             dataGridView.Columns["amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["amount"].DefaultCellStyle.Format = "N2";
             dataGridView.Columns["amount"].MinimumWidth = 100;
 
             dataGridView.Columns["mris"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;

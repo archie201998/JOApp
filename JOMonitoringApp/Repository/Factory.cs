@@ -28,5 +28,13 @@ namespace JOMonitoringApp
         public static IJOLogsRepository JOLogsRepository() => new JobOrdersLogsRepository(mySqlGenericCommands);
 
         public static IRolesRepository RolesRepository() => new RolesRepository(mySqlGenericCommands);
+
+        public static IInvestigationRepository InvestigationRepository() => new InvestigationRepository(mySqlGenericCommands);
+        public static IInvestigationStatFindingsRepository InvestigationStatFindingsRepository() => new InvestigationStatFindingsRepository(mySqlGenericCommands);
+
+        public static IInvestigationConditionOfServiceFacilities InvestigationConditionOfServiceFacilities() => new InvestigationConditionOfServiceFacilitiesRepository(mySqlGenericCommands);
+
+
+
     }
 }

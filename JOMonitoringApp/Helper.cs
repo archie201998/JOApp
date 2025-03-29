@@ -15,6 +15,8 @@ using System.Windows.Forms;
 using Color = System.Drawing.Color;
 using System.Net;
 using System.Net.Sockets;
+using System.Deployment.Application;
+using System.Reflection;
 
 
 namespace AccountingSystem
@@ -26,6 +28,23 @@ namespace AccountingSystem
         public static byte UserId { get; internal set; }
         internal static bool temporaryAdminMode = false;
         internal static string changes;
+
+
+   
+
+        public static string GetCurrentVersion()
+        {
+            try
+            {
+                Version version = Assembly.GetExecutingAssembly().GetName().Version;
+
+                return version.ToString();
+            }
+            catch (InvalidDeploymentException)
+            {
+                return "Not a ClickOnce application";
+            }
+        }
 
         public static string GetLocalIPAddress()
         {
@@ -689,6 +708,17 @@ namespace AccountingSystem
                     return "Accomplished";
                 default:
                     return "Unknown Status";
+            }
+        }
+        public static string GetPublishVersion()
+        {
+            try
+            {
+                return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }
+            catch (InvalidDeploymentException)
+            {
+                return "Not a ClickOnce application";
             }
         }
 

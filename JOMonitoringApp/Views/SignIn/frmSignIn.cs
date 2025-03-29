@@ -5,6 +5,7 @@ using JOMonitoringApp.Views.MainForm;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -99,7 +100,6 @@ namespace JOMonitoringApp
             if (isConnected)
             {
                 lblJBCSConnection.Text = "CONNECTED";
-                lblJBCSConnection.ForeColor = Color.Green;
             }
             else
             {
@@ -111,6 +111,16 @@ namespace JOMonitoringApp
         private void frmSignIn_Load_1(object sender, EventArgs e)
         {
             TestWaterSystemConnection();
+
+            string currentVersion = Helper.GetCurrentVersion();
+
+            lblVersion.Text = $"Version {currentVersion}";
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

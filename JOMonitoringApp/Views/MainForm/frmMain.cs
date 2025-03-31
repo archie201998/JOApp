@@ -655,7 +655,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigation().ShowDialog();
+            _ = new frmInvestigationReport(null).ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

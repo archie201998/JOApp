@@ -261,11 +261,11 @@
     <Compile Include="Views\MainForm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Reports\frmInvestigation.cs">
+    <Compile Include="Views\Reports\frmInvestigationReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Reports\frmInvestigation.Designer.cs">
-      <DependentUpon>frmInvestigation.cs</DependentUpon>
+    <Compile Include="Views\Reports\frmInvestigationReport.Designer.cs">
+      <DependentUpon>frmInvestigationReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reports\frmJOSummary.cs">
       <SubType>Form</SubType>
@@ -310,8 +310,8 @@
     <EmbeddedResource Include="Views\Investigation\ucInvestigationForm.resx">
       <DependentUpon>ucInvestigationForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Reports\frmInvestigation.resx">
-      <DependentUpon>frmInvestigation.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
+      <DependentUpon>frmInvestigationReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>

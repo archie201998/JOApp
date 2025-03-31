@@ -12,6 +12,7 @@ namespace JOMonitoringApp
     {
         private readonly GenericCommands mySqlGenericCommands;
         private readonly string tableName = "tbl_investigation";
+        private readonly string viewTableName = "view_investigation";   
 
         public InvestigationRepository(GenericCommands mySqlGenericCommands)
         {
@@ -79,6 +80,31 @@ namespace JOMonitoringApp
             string query = $"SELECT MAX(id) FROM {tableName}";
 
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
+
+        public Dictionary<string, string> GetViewRecordById(int selectedId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@csf_id", DbType.Int32, selectedId }
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE investigation_id = @csf_id";
+
+            var dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            var result = new Dictionary<string, string>();
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+
+            return result;
         }
     }
 }

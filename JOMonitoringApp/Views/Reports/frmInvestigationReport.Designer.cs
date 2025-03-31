@@ -1,6 +1,6 @@
 ﻿namespace JOMonitoringApp.Views.Reports
 {
-    partial class frmInvestigation
+    partial class frmInvestigationReport
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtJONoFrom = new System.Windows.Forms.TextBox();
+            this.txtJONo = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
@@ -40,7 +40,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtJONoFrom);
+            this.panel1.Controls.Add(this.txtJONo);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(4, 4);
@@ -53,18 +53,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 16;
-            this.label1.Text = "J.O Number From : ";
+            this.label1.Text = "J.O Number: ";
             // 
-            // txtJONoFrom
+            // txtJONo
             // 
-            this.txtJONoFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtJONoFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONoFrom.Location = new System.Drawing.Point(104, 5);
-            this.txtJONoFrom.Name = "txtJONoFrom";
-            this.txtJONoFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtJONoFrom.TabIndex = 0;
+            this.txtJONo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJONo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJONo.Location = new System.Drawing.Point(72, 5);
+            this.txtJONo.Name = "txtJONo";
+            this.txtJONo.Size = new System.Drawing.Size(132, 22);
+            this.txtJONo.TabIndex = 0;
             // 
             // btnSearch
             // 
@@ -90,14 +90,14 @@
             this.reportViewer1.Size = new System.Drawing.Size(1034, 712);
             this.reportViewer1.TabIndex = 15;
             // 
-            // frmInvestigation
+            // frmInvestigationReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 751);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.panel1);
-            this.Name = "frmInvestigation";
+            this.Name = "frmInvestigationReport";
             this.Padding = new System.Windows.Forms.Padding(4);
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -113,7 +113,7 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtJONoFrom;
+        private System.Windows.Forms.TextBox txtJONo;
         private System.Windows.Forms.Button btnSearch;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }

@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -25,12 +27,14 @@ namespace JOMonitoringApp.Views.Investigation
         string originalFileName = string.Empty;
         private string trimedAccountName;
         private string newFileName;
-        string selectedFilePath = string.Empty; 
+        string selectedFilePath = string.Empty;
+        private Dictionary<string, string> dictInvestigation;
 
         public ucInvestigationForm()
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyle(dgInvestigations);    
+            Helper.DatagridFullRowSelectStyle(dgInvestigations);
+            CustomizeDataGridView();
         }
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
@@ -285,7 +289,132 @@ namespace JOMonitoringApp.Views.Investigation
         private void GetInvestigationRecords()
         {
             var dtInvestigation = Factory.InvestigationRepository().GetRecords();
+            if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)
+            {
+                dgInvestigations.DataSource = dtInvestigation;
+            }
+            else
+            {
+                dgInvestigations.DataSource = null;
+            }
 
+            dgInvestigations.Columns["id"].Visible = false;
+            dgInvestigations.Columns["job_orders_id"].Visible = false;
+            dgInvestigations.Columns["customers_id"].Visible = false;
+            dgInvestigations.Columns["customer_address"].Visible = false;
+            dgInvestigations.Columns["investigator_comments"].Visible = false;
+            dgInvestigations.Columns["recommendations"].Visible = false;
+
+            dgInvestigations.Columns["customer_name"].HeaderText = "Customer Name";
+            dgInvestigations.Columns["account_number"].HeaderText = "Account Number";
+            dgInvestigations.Columns["nature_of_complaint"].HeaderText = "Complaint";
+
+            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            foreach (DataGridViewColumn column in dgInvestigations.Columns)
+            {
+                column.HeaderText = column.HeaderText.ToUpper();
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+        }
+        private void CustomizeDataGridView()
+        {
+            dgInvestigations.DefaultCellStyle.Font = new Font("Segiou", 8);
+            dgInvestigations.DefaultCellStyle.ForeColor = Color.Black;
+            dgInvestigations.DefaultCellStyle.BackColor = Color.White;
+            dgInvestigations.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgInvestigations.DefaultCellStyle.SelectionBackColor = Color.Blue;
+            dgInvestigations.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Bold);
+            dgInvestigations.EnableHeadersVisualStyles = false;
+
+
+
+            // Hide specific columns
+        }
+
+        private void btnViewDetails_Click(object sender, EventArgs e)
+        {
+            ViewInvestigationDetails();
+        }
+
+        private void ViewInvestigationDetails()
+        {
+            if (dgInvestigations.SelectedRows.Count > 0)
+            {
+                int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
+
+         
+                // Assigning additional columns to variables
+                int csfId = Convert.ToInt32(dictInvestigation["csf_id"]);
+                int investigationId = Convert.ToInt32(dictInvestigation["investigation_id"]);
+                string meterBrand = dictInvestigation["meter_brand"];
+                string meterSize = dictInvestigation["meter_size"];
+                string readingBeforeTest = dictInvestigation["reading_before_test"];
+                string readingAfterTest = dictInvestigation["reading_after_test"];
+                string calibrationResult = dictInvestigation["calibration_result"];
+                string overRegistration = dictInvestigation["over_registration"];
+                string underRegistration = dictInvestigation["under_registration"];
+                string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
+                int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
+                int customersId = Convert.ToInt32(dictInvestigation["customers_id"]);
+                string customerAddress = dictInvestigation["customer_address"];
+                int isfId = Convert.ToInt32(dictInvestigation["isf_id"]);
+                byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
+                byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
+                byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
+                byte boarders = Convert.ToByte(dictInvestigation["boarders"]);
+                byte noOfHoursServed = Convert.ToByte(dictInvestigation["no_of_hours_served"]);
+                byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
+                byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
+                byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
+                byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
+                string alternativeSource = dictInvestigation["alternative_source"];
+
+                cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
+                cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
+                cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
+                txtAlternativeSource.Text = alternativeSource;
+                nudNoOfHoursServed.Value = noOfHoursServed;
+                nudNoServiceOfOutlets.Value = noServiceOutlets;
+                txtAccountName.Text = dictInvestigation["customer_name"];
+                txtAccountNumber.Text = dictInvestigation["account_number"];
+                cmbxComplaint.Text = dictInvestigation["nature_of_complaint"];
+                txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
+                txtRecommendations.Text = dictInvestigation["recommendations"];
+                cmbxMeterBrand.Text = meterBrand;
+                txtMeterSize.Text = meterSize;
+                txtReadingBeforeTest.Text = readingBeforeTest;
+                txtReadingAfterTest.Text = readingAfterTest;
+                txtCalibrationResult.Text = calibrationResult;
+                txtServiceLineDefects.Text = leakingAfterTheMeter;
+                nudImmediateFamily.Value = immediateMembersOfFam;
+                nudHouseHelper.Value = houseHelper;
+                nudRelatives.Value = relatives;
+                nudBoarders.Value = boarders;
+                
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to view details.", "No Row Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to cancel? All unsaved changes will be lost.", "Confirm Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                ResetForm();
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationReport(dictInvestigation).ShowDialog();  
         }
     }
 }

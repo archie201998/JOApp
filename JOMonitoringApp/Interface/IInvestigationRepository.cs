@@ -10,5 +10,6 @@ namespace JOMonitoringApp.Interface
     public interface IInvestigationRepository : IRepository<InvestigationModel>
     {
         int GetLastInsertedId(int userId);
+        Dictionary<string, string> GetViewRecordById(int selectedId);
     }
 }

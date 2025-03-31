@@ -12,12 +12,17 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
 {
-    public partial class frmInvestigation : Form
+    public partial class frmInvestigationReport : Form
     {
-        public frmInvestigation()
+        Dictionary<string, string> _dictInvestigation = new Dictionary<string, string>();
+
+        public frmInvestigationReport(Dictionary<string, string> dictInvestigation)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
+            _dictInvestigation = dictInvestigation; 
+
+            txtJONo.Text = _dictInvestigation["job_order_no"]; 
         }
                                                         
         private void frmInvestigation_Load(object sender, EventArgs e)
@@ -27,18 +32,16 @@ namespace JOMonitoringApp.Views.Reports
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
+            string searchText = txtJONo.Text;
             reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form.rdlc";
 
             ReportParameter[] parameters = new ReportParameter[6];
-            parameters[0] = new ReportParameter("paramCustomer", "ARCHIE SORIANO SALE");
-            parameters[1] = new ReportParameter("paramAccountNumber", "192-0202-002-Z");
-            parameters[2] = new ReportParameter("paramAddress", "BONIFACIO EXTENSION, SAN JOSE, PAGADIAN CITY");
-            parameters[3] = new ReportParameter("paramNatureOfComplaint", "METER CALIBRATION");
-
-
-            parameters[4] = new ReportParameter("paramComments", "Installation of new Meter.");
-            parameters[5] = new ReportParameter("paramRecommendations", "Go! Go! Go! Na yan. For the change meter na ang ferson.");
+            parameters[0] = new ReportParameter("paramCustomer", _dictInvestigation["customer_name"]);
+            parameters[1] = new ReportParameter("paramAccountNumber", _dictInvestigation["account_number"]);
+            parameters[2] = new ReportParameter("paramAddress", _dictInvestigation["customer_address"]);
+            parameters[3] = new ReportParameter("paramNatureOfComplaint", _dictInvestigation["nature_of_complaint"]);
+            parameters[4] = new ReportParameter("paramComments", _dictInvestigation["investigator_comments"]);
+            parameters[5] = new ReportParameter("paramRecommendations", _dictInvestigation["recommendations"]);
 
             reportViewer1.LocalReport.SetParameters(parameters);
             reportViewer1.ProcessingMode = ProcessingMode.Local;

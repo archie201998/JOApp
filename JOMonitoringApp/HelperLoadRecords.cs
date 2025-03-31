@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,12 +32,29 @@ namespace JOMonitoringApp
 
         }
 
+
+
         public static void JobOrdersDataGridView(DataGridView dataGridView, DataTable dataTable)
         {
 
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.HeaderText = column.HeaderText.ToUpper();
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
+
             dataGridView.DataSource = dataTable;
 
-            
+            dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
+            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
+            dataGridView.DefaultCellStyle.BackColor = Color.White;
+            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView.DefaultCellStyle.SelectionBackColor = Color.Blue;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Bold);
+            dataGridView.EnableHeadersVisualStyles = false;
+
+
+
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;

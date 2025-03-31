@@ -82,9 +82,15 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnViewImages = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblFileName = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dgInvestigations = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnViewDetails = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -96,8 +102,12 @@
             this.groupBox3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -557,7 +567,7 @@
             this.btnAttachedImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttachedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAttachedImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttachedImage.Location = new System.Drawing.Point(27, 25);
+            this.btnAttachedImage.Location = new System.Drawing.Point(27, 23);
             this.btnAttachedImage.Name = "btnAttachedImage";
             this.btnAttachedImage.Size = new System.Drawing.Size(98, 23);
             this.btnAttachedImage.TabIndex = 20;
@@ -793,7 +803,7 @@
             this.btnViewImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewImages.Location = new System.Drawing.Point(27, 55);
+            this.btnViewImages.Location = new System.Drawing.Point(27, 53);
             this.btnViewImages.Name = "btnViewImages";
             this.btnViewImages.Size = new System.Drawing.Size(98, 23);
             this.btnViewImages.TabIndex = 23;
@@ -802,18 +812,13 @@
             this.btnViewImages.UseVisualStyleBackColor = false;
             this.btnViewImages.Click += new System.EventHandler(this.btnViewImages_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.lblFileName);
             this.groupBox4.Controls.Add(this.btnViewImages);
             this.groupBox4.Controls.Add(this.btnAttachedImage);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(448, 424);
+            this.groupBox4.Location = new System.Drawing.Point(448, 428);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(429, 84);
             this.groupBox4.TabIndex = 23;
@@ -824,11 +829,87 @@
             // 
             this.lblFileName.AutoSize = true;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.lblFileName.Location = new System.Drawing.Point(189, 28);
+            this.lblFileName.Location = new System.Drawing.Point(189, 26);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(16, 13);
             this.lblFileName.TabIndex = 24;
             this.lblFileName.Text = "---";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.panel2);
+            this.groupBox5.Controls.Add(this.panel1);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.Location = new System.Drawing.Point(903, 11);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
+            this.groupBox5.Size = new System.Drawing.Size(433, 534);
+            this.groupBox5.TabIndex = 25;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "6. INVESTIGATION RECORDS";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dgInvestigations);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(10, 55);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(413, 469);
+            this.panel2.TabIndex = 26;
+            // 
+            // dgInvestigations
+            // 
+            this.dgInvestigations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
+            this.dgInvestigations.Name = "dgInvestigations";
+            this.dgInvestigations.Size = new System.Drawing.Size(413, 469);
+            this.dgInvestigations.TabIndex = 25;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnViewDetails);
+            this.panel1.Controls.Add(this.btnPrint);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(10, 23);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(413, 32);
+            this.panel1.TabIndex = 25;
+            // 
+            // btnViewDetails
+            // 
+            this.btnViewDetails.BackColor = System.Drawing.Color.White;
+            this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnViewDetails.Image = global::JOMonitoringApp.Properties.Resources.icons8_view_14;
+            this.btnViewDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewDetails.Location = new System.Drawing.Point(76, 5);
+            this.btnViewDetails.Name = "btnViewDetails";
+            this.btnViewDetails.Size = new System.Drawing.Size(108, 23);
+            this.btnViewDetails.TabIndex = 27;
+            this.btnViewDetails.TabStop = false;
+            this.btnViewDetails.Text = "VIEW DETAILS";
+            this.btnViewDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnViewDetails.UseVisualStyleBackColor = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.White;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(3, 5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(67, 23);
+            this.btnPrint.TabIndex = 26;
+            this.btnPrint.TabStop = false;
+            this.btnPrint.Text = "PRINT";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.UseVisualStyleBackColor = false;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
             // 
             // ucInvestigationForm
             // 
@@ -841,8 +922,9 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbAccountDetails);
+            this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
-            this.Size = new System.Drawing.Size(888, 562);
+            this.Size = new System.Drawing.Size(1363, 562);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -859,9 +941,13 @@
             this.panel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -924,5 +1010,11 @@
         internal System.Windows.Forms.TextBox txtAccountNumber;
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.TextBox txtJORemarks;
+        internal System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.DataGridView dgInvestigations;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnViewDetails;
     }
 }

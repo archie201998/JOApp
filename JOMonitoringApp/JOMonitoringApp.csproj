@@ -296,6 +296,14 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-water-24.png" />
+    <None Include="Resources\icons8-water-14.png" />
+    <None Include="Resources\icons8-form-14.png" />
+    <None Include="Resources\icons8-save-14.png" />
+    <None Include="Resources\icons8-search-14.png" />
+    <None Include="Resources\icons8-image-14.png" />
+    <None Include="Resources\icons8-view-14.png" />
+    <None Include="Resources\icons8-print-14.png" />
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </EmbeddedResource>

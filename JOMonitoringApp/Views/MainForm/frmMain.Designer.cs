@@ -59,7 +59,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lblCreateInvestigation = new System.Windows.Forms.Label();
+            this.btnCreateInvestigationForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -359,7 +359,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.lblCreateInvestigation);
+            this.panel2.Controls.Add(this.btnCreateInvestigationForm);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.cmbxStatus);
             this.panel2.Controls.Add(this.label5);
@@ -373,18 +373,22 @@
             this.panel2.Size = new System.Drawing.Size(1142, 38);
             this.panel2.TabIndex = 8;
             // 
-            // lblCreateInvestigation
+            // btnCreateInvestigationForm
             // 
-            this.lblCreateInvestigation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCreateInvestigation.AutoSize = true;
-            this.lblCreateInvestigation.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblCreateInvestigation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreateInvestigation.Location = new System.Drawing.Point(952, 10);
-            this.lblCreateInvestigation.Name = "lblCreateInvestigation";
-            this.lblCreateInvestigation.Size = new System.Drawing.Size(185, 15);
-            this.lblCreateInvestigation.TabIndex = 14;
-            this.lblCreateInvestigation.Text = "CREATE INVESTIGATION FORM";
-            this.lblCreateInvestigation.Click += new System.EventHandler(this.lblCreateInvestigation_Click);
+            this.btnCreateInvestigationForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCreateInvestigationForm.BackColor = System.Drawing.Color.White;
+            this.btnCreateInvestigationForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateInvestigationForm.Image = global::JOMonitoringApp.Properties.Resources.icons8_water_14;
+            this.btnCreateInvestigationForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(941, 6);
+            this.btnCreateInvestigationForm.Name = "btnCreateInvestigationForm";
+            this.btnCreateInvestigationForm.Size = new System.Drawing.Size(196, 23);
+            this.btnCreateInvestigationForm.TabIndex = 28;
+            this.btnCreateInvestigationForm.TabStop = false;
+            this.btnCreateInvestigationForm.Text = "CREATE INVESTIGATION FORM";
+            this.btnCreateInvestigationForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCreateInvestigationForm.UseVisualStyleBackColor = false;
+            this.btnCreateInvestigationForm.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSearch
             // 
@@ -755,6 +759,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblPing;
-        private System.Windows.Forms.Label lblCreateInvestigation;
+        private System.Windows.Forms.Button btnCreateInvestigationForm;
     }
 }

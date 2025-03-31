@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections.Generic;
 using System.Data;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -29,7 +30,10 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            throw new System.NotImplementedException();
+            string query = $"SELECT * FROM {tableName}";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable);
         }
 
         public DataTable GetRecordsBySearch(string searchText)

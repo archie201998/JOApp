@@ -30,6 +30,7 @@ namespace JOMonitoringApp.Views.Investigation
         public ucInvestigationForm()
         {
             InitializeComponent();
+            Helper.DatagridFullRowSelectStyle(dgInvestigations);    
         }
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
@@ -39,7 +40,10 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ucInvestigation_Load(object sender, EventArgs e)
         {
-
+            if (!DesignMode)
+            {
+                GetInvestigationRecords();
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -271,6 +275,16 @@ namespace JOMonitoringApp.Views.Investigation
                 errorProvider1.SetError(btnAttachedImage, "PLease insert at least one image.");
                 e.Cancel = true;    
             }
+        }
+
+        internal void OnLoad()
+        {
+            GetInvestigationRecords();
+        }
+
+        private void GetInvestigationRecords()
+        {
+            var dtInvestigation = Factory.InvestigationRepository().GetRecords();
 
         }
     }

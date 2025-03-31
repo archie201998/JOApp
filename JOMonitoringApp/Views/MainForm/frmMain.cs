@@ -209,10 +209,8 @@ namespace JOMonitoringApp.Views.MainForm
             ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
 
-
-
             //if user is not investigator=> disable investigation menu
-            lblCreateInvestigation.Visible = Helper.IsInvestigator(); 
+            btnCreateInvestigationForm.Visible = Helper.IsInvestigator(); 
 
         }
 
@@ -359,7 +357,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void ResetInputForm()
         {
-
             ucJoborder.txtJONumber.Clear();
             ucJoborder.dtpDate.Value = DateTime.Now;
             ucJoborder.txtMRISNumber.Clear();
@@ -684,8 +681,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-
-        private void lblCreateInvestigation_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             if (dgJobOrders.SelectedRows.Count > 0)
             {
@@ -699,7 +695,7 @@ namespace JOMonitoringApp.Views.MainForm
                     string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
                     string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
 
-                    ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);   
+                    ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
                     ucInvestigationForm.txtAccountName.Text = accountName;
                     ucInvestigationForm.txtAccountNumber.Text = accountNumber;
                     ucInvestigationForm.txtJORemarks.Text = remarks;

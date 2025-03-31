@@ -208,6 +208,9 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ResetForm()
         {
+            txtAccountName.Clear();
+            txtAccountNumber.Clear();
+            txtJORemarks.Clear();
             cmbxComplaint.SelectedIndex = -1;
             txtInvestigatorComments.Clear();
             txtRecommendations.Clear();

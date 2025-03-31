@@ -231,11 +231,11 @@
     <Compile Include="Views\Investigation\frmInvestigationImageViewer.Designer.cs">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Investigation\ucInvestigation.cs">
+    <Compile Include="Views\Investigation\ucInvestigationForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\Investigation\ucInvestigation.Designer.cs">
-      <DependentUpon>ucInvestigation.cs</DependentUpon>
+    <Compile Include="Views\Investigation\ucInvestigationForm.Designer.cs">
+      <DependentUpon>ucInvestigationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\JobOrder\frmJOProgressTracking.cs">
       <SubType>Form</SubType>
@@ -299,8 +299,8 @@
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Investigation\ucInvestigation.resx">
-      <DependentUpon>ucInvestigation.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Investigation\ucInvestigationForm.resx">
+      <DependentUpon>ucInvestigationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigation.resx">
       <DependentUpon>frmInvestigation.cs</DependentUpon>

@@ -722,5 +722,10 @@ namespace AccountingSystem
             }
         }
 
+        internal static bool IsInvestigator()
+        {
+            var userRecord = Factory.UsersRepository().GetRecordByID(Helper.UserId);
+            return userRecord != null && userRecord.ContainsKey("roles_id") && (userRecord["roles_id"] == "5" || userRecord["roles_id"] == "1");
+        }
     }
 }

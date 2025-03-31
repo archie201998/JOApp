@@ -41,6 +41,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
+            dataGridView.Columns["address"].Visible = false;
             dataGridView.Columns["remarks"].Visible = false;
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -82,22 +83,22 @@ namespace JOMonitoringApp
             dataGridView.Columns["amount"].HeaderText = "AMOUNT";
             dataGridView.Columns["amount"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["amount"].DefaultCellStyle.Format = "N2";
-            dataGridView.Columns["amount"].MinimumWidth = 100;
+            dataGridView.Columns["amount"].MinimumWidth = 80;
 
             dataGridView.Columns["mris"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["mris"].HeaderText = "MRIS NO. ";
             dataGridView.Columns["mris"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["mris"].MinimumWidth = 100;
+            dataGridView.Columns["mris"].MinimumWidth = 80;
 
             dataGridView.Columns["mrs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["mrs"].HeaderText = "MRIS NO. ";
             dataGridView.Columns["mrs"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["mrs"].MinimumWidth = 100;
+            dataGridView.Columns["mrs"].MinimumWidth = 80;
 
             dataGridView.Columns["war"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["war"].HeaderText = "WAR NO. ";
             dataGridView.Columns["war"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["war"].MinimumWidth = 100;
+            dataGridView.Columns["war"].MinimumWidth = 80;
 
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["particular"].HeaderText = "PARTICULARS";

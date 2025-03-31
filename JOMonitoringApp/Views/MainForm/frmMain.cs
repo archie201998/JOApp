@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Dashboard;
+using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.Users;
@@ -21,6 +22,7 @@ namespace JOMonitoringApp.Views.MainForm
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
+        private readonly ucInvestigationForm ucInvestigationForm;
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
 
@@ -31,6 +33,7 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.LoadFormIcon(this);
             ucDashboardSummaryView = ucDashboardSummaryView1;
             ucJoborder = ucJoborder1;
+            ucInvestigationForm = ucInvestigation1;
         }
 
         private void BtnSearch_Click(object sender, EventArgs e)
@@ -205,6 +208,11 @@ namespace JOMonitoringApp.Views.MainForm
             LoadJobOrders();
             ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
+
+
+
+            //if user is not investigator=> disable investigation menu
+            lblCreateInvestigation.Visible = Helper.IsInvestigator(); 
 
         }
 
@@ -673,6 +681,35 @@ namespace JOMonitoringApp.Views.MainForm
             catch (Exception ex)
             {
                 lblPing.Text = $"Error: {ex.Message}";
+            }
+        }
+
+
+        private void lblCreateInvestigation_Click(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgJobOrders.SelectedRows[0].Index;
+                if (selectedIndex >= 0)
+                {
+
+                    string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
+                    string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
+                    string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
+                    string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
+                    string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
+
+                    ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);   
+                    ucInvestigationForm.txtAccountName.Text = accountName;
+                    ucInvestigationForm.txtAccountNumber.Text = accountNumber;
+                    ucInvestigationForm.txtJORemarks.Text = remarks;
+                    ucInvestigationForm._customerAddress = customerAddress;
+                    ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
+
+                    // Change the tab focus to the next tab
+                    int nextTabIndex = (tabControl1.SelectedIndex + 1) % tabControl1.TabCount;
+                    tabControl1.SelectedIndex = nextTabIndex;
+                }
             }
         }
     }

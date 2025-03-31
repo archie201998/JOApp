@@ -59,6 +59,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblCreateInvestigation = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,8 +71,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -80,13 +84,10 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRecordsCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
-            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigation();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -281,7 +282,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1651, 860);
+            this.tabControl1.Size = new System.Drawing.Size(1651, 1004);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -291,7 +292,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1643, 832);
+            this.tabPage1.Size = new System.Drawing.Size(1643, 976);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -305,7 +306,7 @@
             this.panel1.Location = new System.Drawing.Point(488, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1152, 826);
+            this.panel1.Size = new System.Drawing.Size(1152, 970);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -316,7 +317,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1142, 760);
+            this.panel6.Size = new System.Drawing.Size(1142, 904);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -329,7 +330,7 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(1134, 752);
+            this.dgJobOrders.Size = new System.Drawing.Size(1134, 896);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
@@ -358,6 +359,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblCreateInvestigation);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.cmbxStatus);
             this.panel2.Controls.Add(this.label5);
@@ -370,6 +372,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1142, 38);
             this.panel2.TabIndex = 8;
+            // 
+            // lblCreateInvestigation
+            // 
+            this.lblCreateInvestigation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCreateInvestigation.AutoSize = true;
+            this.lblCreateInvestigation.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblCreateInvestigation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCreateInvestigation.Location = new System.Drawing.Point(952, 10);
+            this.lblCreateInvestigation.Name = "lblCreateInvestigation";
+            this.lblCreateInvestigation.Size = new System.Drawing.Size(185, 15);
+            this.lblCreateInvestigation.TabIndex = 14;
+            this.lblCreateInvestigation.Text = "CREATE INVESTIGATION FORM";
+            this.lblCreateInvestigation.Click += new System.EventHandler(this.lblCreateInvestigation_Click);
             // 
             // btnSearch
             // 
@@ -458,7 +473,7 @@
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(485, 826);
+            this.panelInputField.Size = new System.Drawing.Size(485, 970);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -466,9 +481,9 @@
             this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(16, 769);
+            this.panel4.Location = new System.Drawing.Point(18, 854);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(455, 31);
+            this.panel4.Size = new System.Drawing.Size(451, 34);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -480,7 +495,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(315, 3);
+            this.btnCancel.Location = new System.Drawing.Point(311, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(101, 23);
             this.btnCancel.TabIndex = 15;
@@ -497,7 +512,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(182, 3);
+            this.btnSave.Location = new System.Drawing.Point(178, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(127, 23);
             this.btnSave.TabIndex = 14;
@@ -506,16 +521,34 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
+            this.ucJoborder1.TabIndex = 0;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.ucInvestigation1);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1643, 832);
+            this.tabPage3.Size = new System.Drawing.Size(1643, 976);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "INVESTIGATION";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // ucInvestigation1
+            // 
+            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucInvestigation1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
+            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucInvestigation1.Name = "ucInvestigation1";
+            this.ucInvestigation1.Size = new System.Drawing.Size(1637, 970);
+            this.ucInvestigation1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -523,11 +556,20 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1643, 832);
+            this.tabPage2.Size = new System.Drawing.Size(1643, 976);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 325);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -548,7 +590,7 @@
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6,
             this.lblPing});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 890);
+            this.statusStrip1.Location = new System.Drawing.Point(5, 1034);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1651, 22);
             this.statusStrip1.TabIndex = 5;
@@ -590,16 +632,6 @@
             this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel5.Text = "|";
             // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // toolStripStatusLabel6
             // 
             this.toolStripStatusLabel6.Name = "toolStripStatusLabel6";
@@ -613,38 +645,22 @@
             this.lblPing.Size = new System.Drawing.Size(32, 17);
             this.lblPing.Text = "0 ms";
             // 
-            // ucJoborder1
+            // toolStripStatusLabel2
             // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(489, 769);
-            this.ucJoborder1.TabIndex = 0;
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
-            // ucInvestigation1
+            // timer1
             // 
-            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
-            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ucInvestigation1.Name = "ucInvestigation1";
-            this.ucInvestigation1.Size = new System.Drawing.Size(1637, 826);
-            this.ucInvestigation1.TabIndex = 0;
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 325);
-            this.ucDashboardSummaryView1.TabIndex = 0;
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1661, 917);
+            this.ClientSize = new System.Drawing.Size(1661, 1061);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -735,9 +751,10 @@
         private System.Windows.Forms.ToolStripMenuItem jOTrackingToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
-        private Investigation.ucInvestigation ucInvestigation1;
+        private Investigation.ucInvestigationForm ucInvestigation1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblPing;
+        private System.Windows.Forms.Label lblCreateInvestigation;
     }
 }

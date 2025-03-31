@@ -15,15 +15,19 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
 {
-    public partial class ucInvestigation : UserControl
+    public partial class ucInvestigationForm : UserControl
     {
-        private int _jobOrderId = 53;   
+        internal int _jobOrderId;
+        internal string _customerAddress;
+        internal int _customerId;
+
+
         string originalFileName = string.Empty;
         private string trimedAccountName;
         private string newFileName;
         string selectedFilePath = string.Empty; 
 
-        public ucInvestigation()
+        public ucInvestigationForm()
         {
             InitializeComponent();
         }
@@ -49,9 +53,9 @@ namespace JOMonitoringApp.Views.Investigation
                     ResetForm();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Helper.MessageBoxError("Please complete necessary fields.");
+                Helper.MessageBoxError("Please complete necessary fields." + ex.Message);
             }
            
         }
@@ -98,11 +102,10 @@ namespace JOMonitoringApp.Views.Investigation
             var model = new InvestigationModel
             {
                 JobOrderId = _jobOrderId,
-
-                CustomerId = 10,
-                CustomerName = "CustomerName",
-                CustomerAddress = "CustomerAddress",
-                CustomerAccountNumber = "CustomerAccountNumber",
+                CustomerId = _customerId,
+                CustomerName = txtAccountName.Text,
+                CustomerAddress = _customerAddress,
+                CustomerAccountNumber = txtAccountNumber.Text,
                 NatureOfComplaint = cmbxComplaint.Text,    
                 InvestigatorComments = txtInvestigatorComments.Text,
                 Recommendations = txtRecommendations.Text
@@ -216,6 +219,7 @@ namespace JOMonitoringApp.Views.Investigation
             cbPromoteTrade.Checked = false;
             cbSellToNeighbours.Checked = false;
             txtAlternativeSource.Clear();
+            lblFileName.Text = "---";
         }
 
         private void btnViewImages_Click(object sender, EventArgs e)
@@ -238,8 +242,8 @@ namespace JOMonitoringApp.Views.Investigation
                     selectedFilePath = openFileDialog.FileName;
                     originalFileName = openFileDialog.FileName;
 
-                    trimedAccountName = lblAccountName.Text.Length > 10 ? $"{lblAccountName.Text.Substring(0, 10)}..." : lblAccountName.Text;
-                    newFileName = $"{lblAccountNumber.Text} - {trimedAccountName} - {cmbxComplaint.Text}.jpg";
+                    trimedAccountName = txtAccountName.Text.Length > 10 ? $"{txtAccountName.Text.Substring(0, 10)}..." : txtAccountName.Text;
+                    newFileName = $"{txtAccountNumber.Text} - {trimedAccountName} - {cmbxComplaint.Text}.jpg";
                     lblFileName.Text = newFileName;
                 }
             }
@@ -257,6 +261,16 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void groupBox3_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnAttachedImage_Validating(object sender, CancelEventArgs e)
+        {
+            if (lblFileName.Text == "---")
+            {
+                errorProvider1.SetError(btnAttachedImage, "PLease insert at least one image.");
+                e.Cancel = true;    
+            }
 
         }
     }

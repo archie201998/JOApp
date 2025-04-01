@@ -143,6 +143,9 @@ namespace AccountingSystem
             dgv.DefaultCellStyle.SelectionBackColor = Color.LightSkyBlue;
             dgv.DefaultCellStyle.SelectionForeColor = Color.Black;
 
+            dgv.DefaultCellStyle.Font = new Font("Segiou", 8);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
+            dgv.EnableHeadersVisualStyles = false;
 
             if (Fill == true) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }

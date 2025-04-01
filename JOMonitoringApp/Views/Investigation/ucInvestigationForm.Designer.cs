@@ -83,7 +83,6 @@
             this.label17 = new System.Windows.Forms.Label();
             this.btnViewImages = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.lblFileName = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
@@ -91,6 +90,7 @@
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblFileName = new System.Windows.Forms.Label();
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -618,7 +618,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 23);
             this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save [Ctrl + S]";
+            this.btnSave.Text = "Save ";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -801,6 +801,7 @@
             // 
             this.btnViewImages.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnViewImages.BackColor = System.Drawing.Color.White;
+            this.btnViewImages.Enabled = false;
             this.btnViewImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -825,16 +826,6 @@
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "5. IMAGE ATTACHMENTS";
-            // 
-            // lblFileName
-            // 
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.lblFileName.Location = new System.Drawing.Point(189, 26);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(16, 13);
-            this.lblFileName.TabIndex = 24;
-            this.lblFileName.Text = "---";
             // 
             // groupBox5
             // 
@@ -880,10 +871,11 @@
             // btnViewDetails
             // 
             this.btnViewDetails.BackColor = System.Drawing.Color.White;
+            this.btnViewDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewDetails.Image = global::JOMonitoringApp.Properties.Resources.icons8_view_14;
             this.btnViewDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewDetails.Location = new System.Drawing.Point(76, 5);
+            this.btnViewDetails.Location = new System.Drawing.Point(3, 5);
             this.btnViewDetails.Name = "btnViewDetails";
             this.btnViewDetails.Size = new System.Drawing.Size(108, 23);
             this.btnViewDetails.TabIndex = 27;
@@ -896,10 +888,11 @@
             // btnPrint
             // 
             this.btnPrint.BackColor = System.Drawing.Color.White;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(3, 5);
+            this.btnPrint.Location = new System.Drawing.Point(117, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(67, 23);
             this.btnPrint.TabIndex = 26;
@@ -913,6 +906,16 @@
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblFileName.Location = new System.Drawing.Point(189, 26);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(16, 13);
+            this.lblFileName.TabIndex = 24;
+            this.lblFileName.Text = "---";
             // 
             // ucInvestigationForm
             // 
@@ -1008,7 +1011,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Button btnViewImages;
         internal System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label lblFileName;
         internal System.Windows.Forms.TextBox txtJONumber;
         internal System.Windows.Forms.TextBox txtAccountNumber;
         internal System.Windows.Forms.TextBox txtAccountName;
@@ -1019,5 +1021,6 @@
         private System.Windows.Forms.DataGridView dgInvestigations;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnViewDetails;
+        private System.Windows.Forms.Label lblFileName;
     }
 }

@@ -21,8 +21,9 @@ namespace JOMonitoringApp.Views.Reports
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            _dictInvestigation = dictInvestigation; 
 
+            
+            _dictInvestigation = dictInvestigation;
             txtJONo.Text = _dictInvestigation["job_order_no"]; 
         }
                                                         

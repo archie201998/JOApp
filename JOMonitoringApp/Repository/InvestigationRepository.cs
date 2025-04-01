@@ -58,11 +58,13 @@ namespace JOMonitoringApp
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
                 new object[] { "@nature_of_complaint", DbType.String, entity.NatureOfComplaint },
                 new object[] { "@investigator_comments", DbType.String, entity.InvestigatorComments },
-                new object[] { "@recommendations", DbType.String, entity.Recommendations }
+                new object[] { "@recommendations", DbType.String, entity.Recommendations },
+                new object[] { "@image_path", DbType.String, entity.imagePath },
+                new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id, customers_id, customer_name, customer_address, account_number, nature_of_complaint, investigator_comments, recommendations) " +
-                           "VALUES (@job_orders_id, @customers_id, @customer_name, @customer_address, @account_number, @nature_of_complaint, @investigator_comments, @recommendations)";
+            string query = $"INSERT INTO {tableName} (job_orders_id, customers_id, customer_name, customer_address, account_number, nature_of_complaint, investigator_comments, recommendations, image_path, secondary_image_path) " +
+                           "VALUES (@job_orders_id, @customers_id, @customer_name, @customer_address, @account_number, @nature_of_complaint, @investigator_comments, @recommendations, @image_path, @secondary_image_path)";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }

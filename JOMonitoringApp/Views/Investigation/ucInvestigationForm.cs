@@ -22,7 +22,7 @@ namespace JOMonitoringApp.Views.Investigation
         internal int _jobOrderId;
         internal string _customerAddress;
         internal int _customerId;
-
+        internal bool isUpdate;
 
         string originalFileName = string.Empty;
         private string trimedAccountName;
@@ -30,11 +30,13 @@ namespace JOMonitoringApp.Views.Investigation
         string selectedFilePath = string.Empty;
         private Dictionary<string, string> dictInvestigation;
 
+        string imageFilePath = string.Empty;
+        string secondaryImageFilePath = string.Empty;
+
         public ucInvestigationForm()
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyle(dgInvestigations);
-            CustomizeDataGridView();
         }
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
@@ -52,14 +54,15 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (SaveData())
+            {
+                UploadImage();
+                Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
+                ResetForm();
+            }
             try
             {
-                if (SaveData())
-                {
-                    UploadImage(selectedFilePath, newFileName);
-                    Helper.MessageBoxSuccess("Investigation has been saved successfully.");
-                    ResetForm();
-                }
+               
             }
             catch (Exception ex)
             {
@@ -116,7 +119,9 @@ namespace JOMonitoringApp.Views.Investigation
                 CustomerAccountNumber = txtAccountNumber.Text,
                 NatureOfComplaint = cmbxComplaint.Text,    
                 InvestigatorComments = txtInvestigatorComments.Text,
-                Recommendations = txtRecommendations.Text
+                Recommendations = txtRecommendations.Text,
+                imagePath = imageFilePath,
+                secondaryImagePath = secondaryImageFilePath
             };
 
             return model;
@@ -217,6 +222,7 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxMeterBrand.SelectedIndex = -1;
             txtMeterSize.Clear();
             txtReadingBeforeTest.Clear();
+            txtJONumber.Clear();
             txtReadingAfterTest.Clear();
             txtCalibrationResult.Clear();
             txtServiceLineDefects.Clear();
@@ -231,6 +237,9 @@ namespace JOMonitoringApp.Views.Investigation
             cbSellToNeighbours.Checked = false;
             txtAlternativeSource.Clear();
             lblFileName.Text = "---";
+            isUpdate = false;
+            btnSave.BackColor = Color.DodgerBlue;
+            btnSave.Text = "Save";
         }
 
         private void btnViewImages_Click(object sender, EventArgs e)
@@ -247,27 +256,36 @@ namespace JOMonitoringApp.Views.Investigation
                 openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
 
+                
+
+
+                
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    selectedFilePath = openFileDialog.FileName;
-                    originalFileName = openFileDialog.FileName;
+                    if (openFileDialog.FileNames.Length > 2)
+                    {
+                        MessageBox.Show("Please select only 2 images", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
-                    trimedAccountName = txtAccountName.Text.Length > 10 ? $"{txtAccountName.Text.Substring(0, 10)}..." : txtAccountName.Text;
-                    newFileName = $"{txtAccountNumber.Text} - {trimedAccountName} - {cmbxComplaint.Text}.jpg";
-                    lblFileName.Text = newFileName;
+                    imageFilePath   = openFileDialog.FileNames[0];
+                    secondaryImageFilePath = openFileDialog.FileNames[1];
+
+                    lblFileName.Text = $"{imageFilePath.Remove(4, 1)} / {secondaryImageFilePath.Remove(4, 1)}";
                 }
             }
         }
 
-        private void UploadImage(string filePath, string newFileName)
+        private void UploadImage()
         {
             // Implement the logic to upload the image to the server or save it locally
             // Example: Save the file to a specific directory
 
             string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
-            string targetPath = Path.Combine(sharedFolderPath, newFileName);
-            File.Copy(filePath, targetPath, true);
+            File.Copy(imageFilePath, Path.Combine(sharedFolderPath, imageFilePath), true);
+            File.Copy(imageFilePath, Path.Combine(sharedFolderPath, secondaryImageFilePath), true);
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -292,62 +310,29 @@ namespace JOMonitoringApp.Views.Investigation
         private void GetInvestigationRecords()
         {
             var dtInvestigation = Factory.InvestigationRepository().GetRecords();
-            if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)
-            {
-                dgInvestigations.DataSource = dtInvestigation;
-            }
-            else
-            {
-                dgInvestigations.DataSource = null;
-            }
-
-            dgInvestigations.Columns["id"].Visible = false;
-            dgInvestigations.Columns["job_orders_id"].Visible = false;
-            dgInvestigations.Columns["customers_id"].Visible = false;
-            dgInvestigations.Columns["customer_address"].Visible = false;
-            dgInvestigations.Columns["investigator_comments"].Visible = false;
-            dgInvestigations.Columns["recommendations"].Visible = false;
-
-            dgInvestigations.Columns["customer_name"].HeaderText = "Customer Name";
-            dgInvestigations.Columns["account_number"].HeaderText = "Account Number";
-            dgInvestigations.Columns["nature_of_complaint"].HeaderText = "Complaint";
-
-            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            foreach (DataGridViewColumn column in dgInvestigations.Columns)
-            {
-                column.HeaderText = column.HeaderText.ToUpper();
-                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            }
-        }
-        private void CustomizeDataGridView()
-        {
-            dgInvestigations.DefaultCellStyle.Font = new Font("Segiou", 8);
-            dgInvestigations.DefaultCellStyle.ForeColor = Color.Black;
-            dgInvestigations.DefaultCellStyle.BackColor = Color.White;
-            dgInvestigations.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgInvestigations.DefaultCellStyle.SelectionBackColor = Color.Blue;
-            dgInvestigations.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Bold);
-            dgInvestigations.EnableHeadersVisualStyles = false;
-
-
-
-            // Hide specific columns
+            HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             ViewInvestigationDetails();
+            UpdateSettings();
+        }
+
+        private void UpdateSettings()
+        {
+            btnSave.BackColor = Color.OrangeRed;
+            btnSave.Text = "Update";
+            isUpdate = true;
         }
 
         private void ViewInvestigationDetails()
         {
             if (dgInvestigations.SelectedRows.Count > 0)
             {
+                isUpdate = true;
                 int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
+                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
 
          
                 // Assigning additional columns to variables
@@ -417,7 +402,18 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationReport(dictInvestigation).ShowDialog();  
+            if (dictInvestigation.Count !=  0)
+                _ = new frmInvestigationReport(dictInvestigation).ShowDialog();
+
+        }
+        public string GetSelectedImagePath()
+        {
+            return imageFilePath;
+        }
+
+        public string GetSecondaryImagePath()
+        {
+            return secondaryImageFilePath;
         }
     }
 }

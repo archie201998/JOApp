@@ -29,7 +29,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["transaction_event"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["transaction_event"].MinimumWidth = 300;
 
-
         }
 
 
@@ -46,13 +45,8 @@ namespace JOMonitoringApp
             dataGridView.DataSource = dataTable;
 
             dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
-            dataGridView.DefaultCellStyle.ForeColor = Color.Black;
-            dataGridView.DefaultCellStyle.BackColor = Color.White;
-            dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView.DefaultCellStyle.SelectionBackColor = Color.Blue;
-            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Bold);
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
             dataGridView.EnableHeadersVisualStyles = false;
-
 
 
             dataGridView.Columns["id"].Visible = false;
@@ -229,6 +223,41 @@ namespace JOMonitoringApp
             comboBox.DataSource = dataTable;
             comboBox.ValueMember = "id";
             comboBox.DisplayMember = "status";
+        }
+
+        internal static void InvestigationDatagridView(DataGridView dgInvestigations, DataTable dtInvestigation)
+        {
+            if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)
+            {
+                dgInvestigations.DataSource = dtInvestigation;
+            }
+            else
+            {
+                dgInvestigations.DataSource = null;
+            }
+
+            dgInvestigations.Columns["id"].Visible = false;
+            dgInvestigations.Columns["job_orders_id"].Visible = false;
+            dgInvestigations.Columns["customers_id"].Visible = false;
+            dgInvestigations.Columns["customer_address"].Visible = false;
+            dgInvestigations.Columns["investigator_comments"].Visible = false;
+            dgInvestigations.Columns["recommendations"].Visible = false;
+            dgInvestigations.Columns["image_path"].Visible = false;
+            dgInvestigations.Columns["secondary_image_path"].Visible = false;
+
+            dgInvestigations.Columns["customer_name"].HeaderText = "Customer Name";
+            dgInvestigations.Columns["account_number"].HeaderText = "Account Number";
+            dgInvestigations.Columns["nature_of_complaint"].HeaderText = "Complaint";
+
+            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+            foreach (DataGridViewColumn column in dgInvestigations.Columns)
+            {
+                column.HeaderText = column.HeaderText.ToUpper();
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
         }
     }
 }

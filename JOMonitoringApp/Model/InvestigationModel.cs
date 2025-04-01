@@ -17,6 +17,8 @@ namespace JOMonitoringApp.Model
         public string NatureOfComplaint { get; set; }
         public string InvestigatorComments { get; set; }
         public string Recommendations { get; set; }
+        public string imagePath { get; set; }
+        public string secondaryImagePath { get; set; }
 
     }
 }

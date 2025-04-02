@@ -259,5 +259,19 @@ namespace JOMonitoringApp
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
         }
+
+        internal static void ParticularsDataGridView(DataGridView dgvParticulars)
+        {
+            // Set header text and width
+            dgvParticulars.Columns[0].Visible = false;
+            dgvParticulars.Columns[0].HeaderText = "ID";
+            dgvParticulars.Columns[0].Width = 30;
+            dgvParticulars.Columns[1].HeaderText = "NAME";
+            dgvParticulars.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvParticulars.Columns[1].Width = 100;
+            dgvParticulars.Columns[2].HeaderText = "DESCRIPTION";
+            dgvParticulars.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvParticulars.Columns[2].Width = 200;
+        }
     }
 }

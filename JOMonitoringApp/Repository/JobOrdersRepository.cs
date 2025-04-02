@@ -52,7 +52,9 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            throw new System.NotImplementedException();
+            string query = $"SELECT * FROM {tableName} WHERE is_deleted = 0";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
         }
 
         public DataTable GetRecordsBySearch(string searchText)

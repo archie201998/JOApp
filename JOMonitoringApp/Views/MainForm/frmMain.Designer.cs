@@ -203,6 +203,7 @@
             this.particularsToolStripMenuItem.Name = "particularsToolStripMenuItem";
             this.particularsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.particularsToolStripMenuItem.Text = "Particulars";
+            this.particularsToolStripMenuItem.Click += new System.EventHandler(this.particularsToolStripMenuItem_Click);
             // 
             // rolesAndPermissionsToolStripMenuItem
             // 
@@ -436,7 +437,7 @@
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
             this.toolTip1.SetToolTip(this.pictureBox1, "You may search for JO Number, Account Number, \r\nWAR, MRS, MRIS Number and O.R. Nu" +
-        "mber.\r\n ");
+        "mber.");
             // 
             // btnCreateInvestigationForm
             // 

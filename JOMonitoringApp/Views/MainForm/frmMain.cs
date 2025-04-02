@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.Users;
 using System;
@@ -709,6 +710,11 @@ namespace JOMonitoringApp.Views.MainForm
                     tabControl1.SelectedIndex = nextTabIndex;
                 }
             }
+        }
+
+        private void particularsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmParticulars().ShowDialog();  
         }
     }
 }

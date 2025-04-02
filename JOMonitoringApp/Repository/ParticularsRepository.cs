@@ -18,7 +18,22 @@ namespace JOMonitoringApp
 
         public bool Delete(List<ParticularsModel> entityList)
         {
-            throw new System.NotImplementedException();
+            bool result = true;
+            foreach (var entity in entityList)
+            {
+                var parameters = new object[][]
+                {
+                    new object[] { "@id", DbType.Int32, entity.Id }
+                };
+
+                string query = $"DELETE FROM {tableName} WHERE id = @id";
+
+                if (!mySqlGenericCommands.ExecuteNonQuery(query, parameters))
+                {
+                    result = false;
+                }
+            }
+            return result;
         }
 
         public Dictionary<string, string> GetRecordByID(int Id)
@@ -28,7 +43,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT id, particular FROM {tableName} ORDER BY particular ASC";
+            string query = $"SELECT * FROM {tableName} ORDER BY particular ASC";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);
@@ -46,7 +61,16 @@ namespace JOMonitoringApp
 
         public bool Insert(ParticularsModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@particular", DbType.String ,entity.Name },
+                new object[] { "@description", DbType.String, entity.Description }
+            };
+
+
+            string query = $"INSERT INTO {tableName} (particular, description) VALUES (@particular, @description)";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public bool Update(ParticularsModel entity)

@@ -59,6 +59,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbxParticulars = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCreateInvestigationForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -72,11 +74,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -90,8 +89,9 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.cmbxParticulars = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -381,6 +381,51 @@
             this.panel2.Size = new System.Drawing.Size(1142, 38);
             this.panel2.TabIndex = 8;
             // 
+            // cmbxParticulars
+            // 
+            this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxParticulars.FormattingEnabled = true;
+            this.cmbxParticulars.Items.AddRange(new object[] {
+            "",
+            "Transfer of Connection",
+            "Tapstand leak",
+            "Reposition of WM",
+            "Reconnection",
+            "Pipe Leak",
+            "MSL/ Materials Ready",
+            "Meter Calibration",
+            "Main Line Leak",
+            "Lateral Leak",
+            "Investigation",
+            "Interconnection",
+            "Inspection of Lines",
+            "Hydrant Withdrawal",
+            "Gate Valve Leak",
+            "FS/Trans.of tap",
+            "FS/Tapping",
+            "FS/Meter Relocation",
+            "Defective valve",
+            "Change Name",
+            "Change Meter",
+            "Broken Pipe"});
+            this.cmbxParticulars.Location = new System.Drawing.Point(473, 8);
+            this.cmbxParticulars.Name = "cmbxParticulars";
+            this.cmbxParticulars.Size = new System.Drawing.Size(121, 23);
+            this.cmbxParticulars.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(375, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "PARTICULARS ";
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_information_14;
@@ -546,14 +591,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.ucInvestigation1);
@@ -564,16 +601,6 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "INVESTIGATION";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // ucInvestigation1
-            // 
-            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucInvestigation1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
-            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ucInvestigation1.Name = "ucInvestigation1";
-            this.ucInvestigation1.Size = new System.Drawing.Size(1637, 970);
-            this.ucInvestigation1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -586,15 +613,6 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 325);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -680,27 +698,32 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // cmbxParticulars
+            // ucJoborder1
             // 
-            this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxParticulars.FormattingEnabled = true;
-            this.cmbxParticulars.Location = new System.Drawing.Point(473, 8);
-            this.cmbxParticulars.Name = "cmbxParticulars";
-            this.cmbxParticulars.Size = new System.Drawing.Size(121, 23);
-            this.cmbxParticulars.TabIndex = 31;
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
+            this.ucJoborder1.TabIndex = 0;
             // 
-            // label1
+            // ucInvestigation1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(375, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 15);
-            this.label1.TabIndex = 30;
-            this.label1.Text = "PARTICULARS ";
+            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucInvestigation1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
+            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucInvestigation1.Name = "ucInvestigation1";
+            this.ucInvestigation1.Size = new System.Drawing.Size(1637, 970);
+            this.ucInvestigation1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1637, 325);
+            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
             // 

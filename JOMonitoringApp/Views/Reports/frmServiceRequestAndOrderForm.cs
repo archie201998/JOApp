@@ -90,6 +90,11 @@ namespace JOMonitoringApp.Views.Reports
                 var userData = Helper.LoggedInUserData();
                 reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
                 reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
+
+                reportParameters1.Add(new ReportParameter("paramMRISNo", dtJobOrders["mris"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramMRSNo", dtJobOrders["mrs"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToString()));
+
                 reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
                 reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));

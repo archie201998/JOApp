@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>108</ApplicationRevision>
+    <ApplicationRevision>109</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -308,6 +308,13 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-user-24-3d.png" />
+    <None Include="Resources\icons8-user-24-flat.png" />
+    <None Include="Resources\icons8-summary-24.png" />
+    <None Include="Resources\icons8-search-24.png" />
+    <None Include="Resources\icons8-water-96x.png" />
+    <None Include="Resources\icons8-water-96.png" />
+    <None Include="Resources\icons8-water-48.png" />
     <None Include="Resources\icons8-delete-14.png" />
     <None Include="Resources\icons8-information-14.png" />
     <None Include="Resources\icons8-water-24.png" />
@@ -409,7 +416,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\RolesAndPermission\" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>

@@ -59,6 +59,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCreateInvestigationForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
@@ -88,6 +89,9 @@
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbxParticulars = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -96,6 +100,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -359,6 +364,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmbxParticulars);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.btnCreateInvestigationForm);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.cmbxStatus);
@@ -372,6 +380,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1142, 38);
             this.panel2.TabIndex = 8;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_information_14;
+            this.pictureBox1.Location = new System.Drawing.Point(791, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(16, 16);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 29;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "You may search for JO Number, Account Number, \r\nWAR, MRS, MRIS Number and O.R. Nu" +
+        "mber.\r\n ");
             // 
             // btnCreateInvestigationForm
             // 
@@ -398,7 +418,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(732, 6);
+            this.btnSearch.Location = new System.Drawing.Point(811, 7);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 13;
@@ -411,7 +431,7 @@
             this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxStatus.FormattingEnabled = true;
-            this.cmbxStatus.Location = new System.Drawing.Point(343, 7);
+            this.cmbxStatus.Location = new System.Drawing.Point(248, 8);
             this.cmbxStatus.Name = "cmbxStatus";
             this.cmbxStatus.Size = new System.Drawing.Size(121, 23);
             this.cmbxStatus.TabIndex = 10;
@@ -422,29 +442,29 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(224, 11);
+            this.label5.Location = new System.Drawing.Point(189, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(115, 15);
+            this.label5.Size = new System.Drawing.Size(53, 15);
             this.label5.TabIndex = 9;
-            this.label5.Text = "FILTER BY STATUS";
+            this.label5.Text = "STATUS";
             // 
             // cmbxRowLimit
             // 
             this.cmbxRowLimit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxRowLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxRowLimit.FormattingEnabled = true;
-            this.cmbxRowLimit.Location = new System.Drawing.Point(95, 7);
+            this.cmbxRowLimit.Location = new System.Drawing.Point(52, 8);
             this.cmbxRowLimit.Name = "cmbxRowLimit";
-            this.cmbxRowLimit.Size = new System.Drawing.Size(121, 23);
+            this.cmbxRowLimit.Size = new System.Drawing.Size(131, 23);
             this.cmbxRowLimit.TabIndex = 7;
             // 
             // txtSearch
             // 
             this.txtSearch.AcceptsReturn = true;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(528, 8);
+            this.txtSearch.Location = new System.Drawing.Point(637, 8);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(200, 21);
+            this.txtSearch.Size = new System.Drawing.Size(150, 21);
             this.txtSearch.TabIndex = 4;
             // 
             // label4
@@ -455,9 +475,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(4, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 15);
+            this.label4.Size = new System.Drawing.Size(44, 15);
             this.label4.TabIndex = 2;
-            this.label4.Text = "RECORDS NO.";
+            this.label4.Text = "ROWS";
             // 
             // label2
             // 
@@ -465,11 +485,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(469, 11);
+            this.label2.Location = new System.Drawing.Point(600, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 15);
+            this.label2.Size = new System.Drawing.Size(35, 15);
             this.label2.TabIndex = 3;
-            this.label2.Text = "SEARCH";
+            this.label2.Text = "FIND";
             // 
             // panelInputField
             // 
@@ -660,6 +680,28 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // cmbxParticulars
+            // 
+            this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxParticulars.FormattingEnabled = true;
+            this.cmbxParticulars.Location = new System.Drawing.Point(473, 8);
+            this.cmbxParticulars.Name = "cmbxParticulars";
+            this.cmbxParticulars.Size = new System.Drawing.Size(121, 23);
+            this.cmbxParticulars.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(375, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 15);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "PARTICULARS ";
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -690,6 +732,7 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelInputField.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
@@ -761,5 +804,9 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel lblPing;
         private System.Windows.Forms.Button btnCreateInvestigationForm;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox cmbxParticulars;
+        private System.Windows.Forms.Label label1;
     }
 }

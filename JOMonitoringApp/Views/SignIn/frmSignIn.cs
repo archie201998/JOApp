@@ -2,6 +2,7 @@
 using JOMonitoringApp.Properties;
 using JOMonitoringApp.Repository;
 using JOMonitoringApp.Views.MainForm;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -85,9 +86,23 @@ namespace JOMonitoringApp
             }
         }
 
-        private void frmSignIn_Load(object sender, EventArgs e)
+
+        private void TestJODBConnection()
         {
-            TestWaterSystemConnection();
+            var connectionString = ConfigurationManager.ConnectionStrings["jo_monitoring_instance"].ConnectionString;
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    lblJODBConnection.Text = "CONNECTED";
+                }
+                catch (Exception ex)
+                {
+                    lblJODBConnection.Text = "UNABLE TO CONNECT. " + ex.Message;
+                    lblJODBConnection.ForeColor = Color.Red;
+                }
+            }
         }
 
         private void TestWaterSystemConnection()
@@ -111,15 +126,10 @@ namespace JOMonitoringApp
         private void frmSignIn_Load_1(object sender, EventArgs e)
         {
             TestWaterSystemConnection();
+            TestJODBConnection();
 
             string currentVersion = Helper.GetCurrentVersion();
-
             lblVersion.Text = $"Version {currentVersion}";
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
 
         }
     }

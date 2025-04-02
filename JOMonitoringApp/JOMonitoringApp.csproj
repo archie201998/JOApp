@@ -296,6 +296,7 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-information-14.png" />
     <None Include="Resources\icons8-water-24.png" />
     <None Include="Resources\icons8-water-14.png" />
     <None Include="Resources\icons8-form-14.png" />

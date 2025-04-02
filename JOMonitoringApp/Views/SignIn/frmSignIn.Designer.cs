@@ -43,7 +43,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblJBCSConnection = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblJODBConnection = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnShowHide = new System.Windows.Forms.Button();
@@ -164,7 +164,6 @@
             this.label8.TabIndex = 11;
             this.label8.Text = "Job Order Monitoring Application";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label6
             // 
@@ -206,7 +205,7 @@
             this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.lblJBCSConnection);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.lblJODBConnection);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(289, 275);
@@ -221,9 +220,9 @@
             this.lblJBCSConnection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lblJBCSConnection.Location = new System.Drawing.Point(209, 6);
             this.lblJBCSConnection.Name = "lblJBCSConnection";
-            this.lblJBCSConnection.Size = new System.Drawing.Size(64, 12);
+            this.lblJBCSConnection.Size = new System.Drawing.Size(14, 12);
             this.lblJBCSConnection.TabIndex = 13;
-            this.lblJBCSConnection.Text = "CONNECTED";
+            this.lblJBCSConnection.Text = "---";
             // 
             // label7
             // 
@@ -235,16 +234,16 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "JBCS : ";
             // 
-            // label4
+            // lblJODBConnection
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(94, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 12);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "CONNECTED";
+            this.lblJODBConnection.AutoSize = true;
+            this.lblJODBConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJODBConnection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lblJODBConnection.Location = new System.Drawing.Point(94, 6);
+            this.lblJODBConnection.Name = "lblJODBConnection";
+            this.lblJODBConnection.Size = new System.Drawing.Size(14, 12);
+            this.lblJODBConnection.TabIndex = 8;
+            this.lblJODBConnection.Text = "---";
             // 
             // label5
             // 
@@ -328,7 +327,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblJODBConnection;
         private System.Windows.Forms.Button btnShowHide;
         private System.Windows.Forms.Label lblJBCSConnection;
         private System.Windows.Forms.Label label8;

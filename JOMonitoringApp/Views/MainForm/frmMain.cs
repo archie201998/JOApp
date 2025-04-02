@@ -81,22 +81,24 @@ namespace JOMonitoringApp.Views.MainForm
             };
         }
                                             
-        private (string searchKey,int rowFilter, int statusId) LoadJobOrdersParameters()
+        private (string searchKey,int rowFilter, int statusId, string particular) LoadJobOrdersParameters()
         {
             string searchKey = txtSearch.Text.Trim();
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+            string particular = cmbxParticulars.Text;
 
-            return (searchKey, rowFilter, statusId);
+
+            return (searchKey, rowFilter, statusId, particular);
         }
                                                     
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
             {
-                var parameters = ((string searchKey, int rowFilter, int statusId))e.Argument;
+                var parameters = ((string searchKey, int rowFilter, int statusId, string particular))e.Argument;
                 var dataTable = new DataTable();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.rowFilter, parameters.statusId);
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.rowFilter, parameters.statusId, parameters.particular);
                 dataTable.Columns.AddRange(JobOrdersColumns());
 
                 int progressCount = 0;

@@ -106,18 +106,19 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
-        public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId)
+        public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId, string particular)
         {
             var parameters = new object[][]
             {
                 new object[] { "@search_text", DbType.String, $"%{searchText}%" },
                 new object[] { "@status_id", DbType.Int32, statusId},
                 new object[] { "@row_filter", DbType.Int32, rowFilter},
+                new object[] { "@particular", DbType.String, rowFilter},
             };
 
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
 
-            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text OR particular LIKE particular) {statusFilter} AND is_deleted = 0 ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

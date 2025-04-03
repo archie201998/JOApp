@@ -5,6 +5,7 @@ using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.Reports;
+using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Users;
 using System;
 using System.Collections;
@@ -721,6 +722,11 @@ namespace JOMonitoringApp.Views.MainForm
         {
             this.MdiParent = this;
 
+        }
+
+        private void rolesAndPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmRolesAndPermissions().ShowDialog();
         }
     }
 }

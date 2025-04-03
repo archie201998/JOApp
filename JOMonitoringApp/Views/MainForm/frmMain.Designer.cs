@@ -137,7 +137,7 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
             // 
             // manualToolStripMenuItem
@@ -158,7 +158,7 @@
             this.pDFToolStripMenuItem,
             this.cSVToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.exportToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportToolStripMenuItem.Text = "Export Record";
             // 
             // pDFToolStripMenuItem
@@ -210,6 +210,7 @@
             this.rolesAndPermissionsToolStripMenuItem.Name = "rolesAndPermissionsToolStripMenuItem";
             this.rolesAndPermissionsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
             this.rolesAndPermissionsToolStripMenuItem.Text = "Roles and Permissions";
+            this.rolesAndPermissionsToolStripMenuItem.Click += new System.EventHandler(this.rolesAndPermissionsToolStripMenuItem_Click);
             // 
             // signatoriesToolStripMenuItem
             // 
@@ -627,7 +628,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1643, 951);
+            this.tabPage2.Size = new System.Drawing.Size(1643, 976);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;

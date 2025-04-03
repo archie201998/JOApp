@@ -85,16 +85,16 @@ namespace JOMonitoringApp.Views.Users
             string password = txtPassword.Text;
             string confirmPassword = txtConfirmPassword.Text;
 
-
-            if (!IsValidPassword(password))
-            {
-                errorProvider1.SetError(txtPassword, "Password must be at least 8 characters long and include upper and lower case letters, special characters, and numbers.");
-                return false;
-            }
-            else
-            {
-                errorProvider1.SetError(txtPassword, string.Empty);
-            }
+            //temporary disable this feature
+            //if (!IsValidPassword(password))
+            //{
+            //    errorProvider1.SetError(txtPassword, "Password must be at least 8 characters long and include upper and lower case letters, special characters, and numbers.");
+            //    return false;
+            //}
+            //else
+            //{
+            //    errorProvider1.SetError(txtPassword, string.Empty);
+            //}
 
             if (password != confirmPassword)
             {

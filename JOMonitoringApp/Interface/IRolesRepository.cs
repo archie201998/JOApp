@@ -2,7 +2,7 @@
 
 namespace JOMonitoringApp
 {
-    public interface IRolesRepository : IRepository<RolesModel>
+    public interface IRolesRepository : IRoleHasPermission<RolesModel>
     {
 
     }

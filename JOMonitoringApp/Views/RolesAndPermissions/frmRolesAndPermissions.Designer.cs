@@ -32,16 +32,18 @@
             this.dgvRoles = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.clbPermissions = new System.Windows.Forms.CheckedListBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPermissionDescription = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblPermissionDescription = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -73,6 +75,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.clbPermissions);
+            this.groupBox2.Controls.Add(this.panel2);
             this.groupBox2.Controls.Add(this.panel1);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
@@ -90,16 +93,47 @@
             this.clbPermissions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.clbPermissions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbPermissions.FormattingEnabled = true;
-            this.clbPermissions.Location = new System.Drawing.Point(4, 45);
+            this.clbPermissions.Location = new System.Drawing.Point(4, 55);
             this.clbPermissions.Margin = new System.Windows.Forms.Padding(4);
             this.clbPermissions.Name = "clbPermissions";
-            this.clbPermissions.Size = new System.Drawing.Size(563, 497);
+            this.clbPermissions.Size = new System.Drawing.Size(563, 487);
             this.clbPermissions.TabIndex = 0;
             this.clbPermissions.SelectedValueChanged += new System.EventHandler(this.clbPermissions_SelectedValueChanged);
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(4, 45);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(563, 10);
+            this.panel2.TabIndex = 2;
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.lblPermissionDescription);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(4, 18);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(563, 27);
+            this.panel1.TabIndex = 1;
+            // 
+            // lblPermissionDescription
+            // 
+            this.lblPermissionDescription.AutoSize = true;
+            this.lblPermissionDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPermissionDescription.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lblPermissionDescription.Location = new System.Drawing.Point(5, 5);
+            this.lblPermissionDescription.Name = "lblPermissionDescription";
+            this.lblPermissionDescription.Size = new System.Drawing.Size(69, 13);
+            this.lblPermissionDescription.TabIndex = 2;
+            this.lblPermissionDescription.Text = "Description : ";
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -135,7 +169,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(758, 7);
+            this.btnSave.Location = new System.Drawing.Point(651, 6);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(107, 28);
@@ -143,27 +177,25 @@
             this.btnSave.Text = "Save [Ctrl + S]";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // panel1
+            // button1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.lblPermissionDescription);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(4, 18);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(563, 27);
-            this.panel1.TabIndex = 1;
-            // 
-            // lblPermissionDescription
-            // 
-            this.lblPermissionDescription.AutoSize = true;
-            this.lblPermissionDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic);
-            this.lblPermissionDescription.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.lblPermissionDescription.Location = new System.Drawing.Point(6, 7);
-            this.lblPermissionDescription.Name = "lblPermissionDescription";
-            this.lblPermissionDescription.Size = new System.Drawing.Size(35, 13);
-            this.lblPermissionDescription.TabIndex = 2;
-            this.lblPermissionDescription.Text = "label1";
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.DimGray;
+            this.button1.Location = new System.Drawing.Point(762, 6);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 28);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Cancel [Esc]";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // frmRolesAndPermissions
             // 
@@ -184,9 +216,9 @@
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
             this.groupBox2.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -202,5 +234,7 @@
         private System.Windows.Forms.DataGridView dgvRoles;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblPermissionDescription;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button1;
     }
 }

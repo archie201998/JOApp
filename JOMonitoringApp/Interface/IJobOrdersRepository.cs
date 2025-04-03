@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IJobOrdersRepository : IRepository<JobOrdersModel>
+    public interface IJobOrdersRepository : IRoleHasPermission<JobOrdersModel>
     {
         DataTable GetViewRecords();
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IInvestigationStatFindingsRepository : IRepository<InvestigationStatFindingsModel>
+    public interface IInvestigationStatFindingsRepository : IRoleHasPermission<InvestigationStatFindingsModel>
     {
 
     }

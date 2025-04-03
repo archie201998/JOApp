@@ -1,0 +1,64 @@
+﻿using JOMonitoringApp.Interface;
+using JOMonitoringApp.Model;
+using JOMonitoringApp.Repository;
+using System.Collections.Generic;
+using System.Data;
+
+namespace JOMonitoringApp
+{
+    internal class RoleHasPermissionRepository : IRoleHasPermission
+    {
+        private GenericCommands mySqlGenericCommands;
+        private string tableName = "tbl_role_has_permissions";
+        private string viewTableName = "view_role_has_permissions";
+
+        public RoleHasPermissionRepository(GenericCommands mySqlGenericCommands)
+        {
+            this.mySqlGenericCommands = mySqlGenericCommands;
+        }
+
+        public bool Delete(List<RoleHasPermissionModel> entityList)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DataTable GetPermissionsByRolesId(int selectedRoleId)
+        {
+            var parameters = new object[][] { new object[] { "@role_id", DbType.Int32, selectedRoleId } };
+            string query = $"SELECT * FROM {viewTableName} WHERE role_id = @role_id";
+            var dataTable = new DataTable();
+
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public Dictionary<string, string> GetRecordByID(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DataTable GetRecords()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public DataTable GetRecordsBySearch(string searchText)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IdExist(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Insert(RoleHasPermissionModel entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool Update(RoleHasPermissionModel entity)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}

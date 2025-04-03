@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IStatusRepository : IRepository<StatusModel>
+    public interface IStatusRepository : IRoleHasPermission<StatusModel>
     {
     }
 }

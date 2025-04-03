@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IInvestigationConditionOfServiceFacilities : IRepository<InvestigationConditionOfServiceFacilitiesModel>
+    public interface IInvestigationConditionOfServiceFacilities : IRoleHasPermission<InvestigationConditionOfServiceFacilitiesModel>
     {
 
     }

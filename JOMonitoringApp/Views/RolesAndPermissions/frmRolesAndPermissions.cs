@@ -5,7 +5,9 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -13,6 +15,7 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 {
     public partial class frmRolesAndPermissions : Form
     {
+        int selectedRoleId = 0;
         public frmRolesAndPermissions()
         {
             InitializeComponent();
@@ -23,6 +26,8 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
         private void frmRolesAndPermissions_Load(object sender, EventArgs e)
         {
             LoadRoles();
+            LoadPermissions();
+            MarkPermissions();
         }
 
         private void LoadRoles()
@@ -35,15 +40,33 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 
         private void dgRoles_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvRoles.SelectedRows.Count > 0)
-            {
-                int selectedRoleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
-                LoadPermissions(selectedRoleId);
-            }
-
+            MarkPermissions();
         }
 
-        private void LoadPermissions(int roleId)
+        private void MarkPermissions()
+        {
+            // Clear all checked items before marking new ones
+            for (int i = 0; i < clbPermissions.Items.Count; i++)
+                clbPermissions.SetItemChecked(i, false);
+
+            if (dgvRoles.SelectedRows.Count > 0)
+            {
+                selectedRoleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
+                DataTable dtPermissions = Factory.RoleHasPermissionRepository().GetPermissionsByRolesId(selectedRoleId);
+
+                foreach (DataRow row in dtPermissions.Rows)
+                {
+                    for (int i = 0; i < clbPermissions.Items.Count; i++)
+                    {
+                        if (clbPermissions.Items[i].ToString() == row["permission_name"].ToString())
+                        {
+                            clbPermissions.SetItemChecked(i, true);
+                        }
+                    }
+                }
+            }
+        }
+        private void LoadPermissions()
         {
             // Fetch permissions based on roleId (Example: using a database or predefined list)
             DataTable permissions = Factory.Permissions().GetRecords();
@@ -56,12 +79,29 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             {
                 int id = Convert.ToInt32(row["id"]);    
                 string permission = row["permission"].ToString();
-                string description = row["description"].ToString();
+
+                // Check if the permission is already assigned to the selected role
+                //bool roleHasPermission = Factor
+
+                if (selectedRoleId == 0)
+                {
+
+                }
                 clbPermissions.Items.Add(permission);
             }
         }
 
         private void clbPermissions_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (clbPermissions.SelectedItem != null)
+            {
+                string selectedPermission = clbPermissions.SelectedItem.ToString();
+                string description = Factory.Permissions().GetDescriptionByPermissionName(selectedPermission);
+                lblPermissionDescription.Text = $"Description : {description}";
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
         {
 
         }

@@ -192,6 +192,7 @@
     <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
     <Compile Include="Model\InvestigationStatFindingsModel.cs" />
+    <Compile Include="Model\RoleHasPermissionModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
     <Compile Include="Model\JOLogsModel.cs" />
@@ -214,11 +215,13 @@
     <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IPermissions.cs" />
+    <Compile Include="Interface\IRoleHasPermission.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\PermissionsRepository.cs" />
+    <Compile Include="Repository\RoleHasPermissionRepository.cs" />
     <Compile Include="Repository\RolesRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IJOLogsRepository : IRepository<JOLogsModel>
+    public interface IJOLogsRepository : IRoleHasPermission<JOLogsModel>
     {
         DataTable GetRecordsByJONumber(int JONumber);
 

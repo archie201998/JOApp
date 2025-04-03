@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IJobOrdersParticulars : IRepository<JobOrdersParticularsModel>
+    public interface IJobOrdersParticulars : IRoleHasPermission<JobOrdersParticularsModel>
     {
     }
 }

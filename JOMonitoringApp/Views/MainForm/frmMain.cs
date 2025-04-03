@@ -214,10 +214,16 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.OnLoad();
 
             //if user is not investigator=> disable investigation menu
-            btnCreateInvestigationForm.Visible = Helper.IsInvestigator(); 
+            btnCreateInvestigationForm.Visible = Helper.IsInvestigator();
+
+            ValidatePermissions();
 
         }
 
+        private void ValidatePermissions()
+        {
+            throw new NotImplementedException();
+        }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {

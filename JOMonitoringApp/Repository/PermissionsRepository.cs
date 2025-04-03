@@ -43,6 +43,18 @@ namespace JOMonitoringApp
         {
             throw new System.NotImplementedException();
         }
+      
+        public string GetDescriptionByPermissionName(string selectedPermission)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@permission", DbType.String, selectedPermission }
+            };
+
+            string query = $"SELECT description FROM {tableName} WHERE permission = @permission";
+            
+            return mySqlGenericCommands.ExecuteScalar(query, parameters);
+        }
 
         public Dictionary<string, string> GetRecordByID(int Id)
         {

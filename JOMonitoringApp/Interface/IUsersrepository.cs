@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IUsersRepository : IRepository<UsersModel>
+    public interface IUsersRepository : IRoleHasPermission<UsersModel>
     {
         Dictionary<string, string> GetRecordsbyUserName(string userName);
         bool HasPermission(byte userId, string permissionName);

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IParticularsRepository : IRepository<ParticularsModel>
+    public interface IParticularsRepository : IRoleHasPermission<ParticularsModel>
     {
 
     }

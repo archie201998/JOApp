@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>109</ApplicationRevision>
+    <ApplicationRevision>110</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -291,6 +291,12 @@
     <Compile Include="Views\Reports\frmServiceRequestAndOrderForm.Designer.cs">
       <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\RolesAndPermissions\frmRolesAndPermissions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RolesAndPermissions\frmRolesAndPermissions.Designer.cs">
+      <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignIn\frmSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
       <DependentUpon>frmInvestigationReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RolesAndPermissions\frmRolesAndPermissions.resx">
+      <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
@@ -417,7 +426,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\RolesAndPermission\" />
+    <Folder Include="Views\RolesAndPermissions\Permissions\" />
+    <Folder Include="Views\RolesAndPermissions\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

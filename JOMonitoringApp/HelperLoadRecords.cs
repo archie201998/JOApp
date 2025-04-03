@@ -273,5 +273,15 @@ namespace JOMonitoringApp
             dgvParticulars.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvParticulars.Columns[2].Width = 200;
         }
+
+        internal static void RolesDatagridView(DataGridView dgRoles, DataTable dataTable)
+        {
+            dgRoles.DataSource = dataTable;
+            dgRoles.Columns["id"].Visible = false;
+            dgRoles.Columns["role"].HeaderText = "ROLES";
+            dgRoles.Columns["role"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgRoles.Columns["role"].Width = 200;
+
+        }
     }
 }

@@ -188,6 +188,7 @@
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\PermissionsModel.cs" />
     <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
     <Compile Include="Model\InvestigationStatFindingsModel.cs" />
@@ -212,10 +213,12 @@
     <Compile Include="Repository\InvestigationConditionOfServiceFacilitiesRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
+    <Compile Include="Interface\IPermissions.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
+    <Compile Include="Repository\PermissionsRepository.cs" />
     <Compile Include="Repository\RolesRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />

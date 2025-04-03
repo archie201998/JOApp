@@ -26,11 +26,12 @@ namespace AccountingSystem
 
 
         public static byte UserId { get; internal set; }
+        public static int UserRoleId { get; internal set; }
+
         internal static bool temporaryAdminMode = false;
         internal static string changes;
 
 
-   
 
         public static string GetCurrentVersion()
         {
@@ -84,9 +85,10 @@ namespace AccountingSystem
             return new SqlConnection(ConfigurationManager.ConnectionStrings["water_system_main"].ConnectionString);
         }
 
-        public static bool HasPermission(string permissionName)
+        public static bool UserHasPermission(string permissionName)
         {
-            return Factory.UsersRepository().HasPermission(UserId, permissionName);
+            return Factory.RoleHasPermissionRepository().RoleHasPermission(permissionName, Helper.UserRoleId);
+             
         }
         public static Dictionary<string, string> GetUserDataById(int userId)
         {

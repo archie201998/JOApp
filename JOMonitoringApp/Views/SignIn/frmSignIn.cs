@@ -51,6 +51,7 @@ namespace JOMonitoringApp
             if (userId != 0)
             {
                 Helper.UserId = userId;
+                Helper.UserRoleId = Factory.UsersRepository().GetUserRoleId(userId);
                 var mainForm = new frmMain(this);
                 mainForm.Show();
                 Hide();

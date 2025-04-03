@@ -222,7 +222,16 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ValidatePermissions()
         {
-            throw new NotImplementedException();
+            ucJoborder.gbAccountDetails.Enabled = Helper.UserHasPermission("ADD_ACCOUNT_DETAILS");
+            ucJoborder.gbJODetails.Enabled = Helper.UserHasPermission("ADD_JOB_ORDER_DETAILS");
+            ucJoborder.gbJODetails.Enabled = Helper.UserHasPermission("ADD_ISSUANCE_AND_JOB_ASSIGNMENT");
+
+            ucJoborder.radPending.Enabled = Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radProcessing.Enabled = Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
+
+            ucJoborder.txtRemarks.Enabled = Helper.UserHasPermission("ADD_REMARKS");
         }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

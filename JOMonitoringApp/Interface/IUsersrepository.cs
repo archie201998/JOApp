@@ -10,6 +10,7 @@ namespace JOMonitoringApp.Interface
     public interface IUsersRepository : IRoleHasPermission<UsersModel>
     {
         Dictionary<string, string> GetRecordsbyUserName(string userName);
+        int GetUserRoleId(byte userId);
         bool HasPermission(byte userId, string permissionName);
         Byte ValidateLogin(string userName, string password);
     }

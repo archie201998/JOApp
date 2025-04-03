@@ -56,6 +56,21 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
+        public bool RoleHasPermission(string permissionName, int userRoleId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@role_id", DbType.Int32, userRoleId },
+                new object[] { "@permission_name", DbType.String, permissionName }
+            };
+
+            string query = $"SELECT COUNT(*) FROM {viewTableName} WHERE permission_name = @permission_name AND role_id = @role_id";
+
+            string result = mySqlGenericCommands.ExecuteScalar(query, parameters);
+
+            return int.TryParse(result, out int count) && count > 0;
+        }
+
         public bool Update(RoleHasPermissionModel entity)
         {
             throw new System.NotImplementedException();

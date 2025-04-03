@@ -106,6 +106,24 @@ namespace JOMonitoringApp
             return record;
         }
 
+        public int GetUserRoleId(byte userId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@user_id", DbType.Byte, userId }
+            };
+
+            string query = $"SELECT roles_id FROM {tableName} WHERE id = @user_id";
+            string result = mySqlGenericCommands.ExecuteScalar(query, parameters);
+
+            if (int.TryParse(result, out int roleId))
+            {
+                return roleId;
+            }
+
+            return -1; 
+        }
+
         public bool HasPermission(byte userId, string permissionName)
         {
             var parameters = new object[][]

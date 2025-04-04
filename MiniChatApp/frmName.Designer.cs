@@ -39,13 +39,13 @@
             textBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(12, 21);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(458, 33);
+            textBox1.Size = new Size(379, 33);
             textBox1.TabIndex = 0;
             textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // button1
             // 
-            button1.Location = new Point(166, 60);
+            button1.Location = new Point(132, 60);
             button1.Name = "button1";
             button1.Size = new Size(138, 33);
             button1.TabIndex = 1;
@@ -58,7 +58,7 @@
             AcceptButton = button1;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(487, 98);
+            ClientSize = new Size(403, 98);
             Controls.Add(button1);
             Controls.Add(textBox1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

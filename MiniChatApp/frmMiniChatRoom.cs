@@ -53,6 +53,7 @@ namespace MiniChatApp
             {
                 string sender = row["sender"].ToString();
                 string messageText = row["message"].ToString();
+                string timestamp = row["created_at"].ToString();
 
                 // Create a new Label for each message
                 Label messageLabel = new Label();
@@ -62,10 +63,11 @@ namespace MiniChatApp
                 messageLabel.Padding = new Padding(0);
                 messageLabel.Margin = new Padding(0, 5, 0, 5);  // Add space between messages
 
-                // Set random ForeColor except white
-                //messageLabel.ForeColor = GetRandomColor(random);
+                // Set tooltip text to show timestamp
+                ToolTip toolTip = new ToolTip();
+                toolTip.SetToolTip(messageLabel, timestamp);
 
-                // Add the label to the FlowLayoutPanel
+                // Add the message label to the FlowLayoutPanel
                 flowLayoutPanelChat.Controls.Add(messageLabel);
             }
 

@@ -28,6 +28,7 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             LoadRoles();
             LoadPermissions();
             MarkPermissions();
+            clbPermissions.ItemCheck += clbPermissions_ItemCheck;
         }
 
         private void LoadRoles()
@@ -104,6 +105,27 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
         private void btnSave_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            string itemText = clbPermissions.Items[e.Index].ToString();
+            if (e.NewValue == CheckState.Checked)
+            {
+                btnSave.BackColor = Color.White;
+                btnSave.Enabled = true;
+
+            }
+            else if (e.NewValue == CheckState.Unchecked)
+            {
+                btnSave.BackColor = Color.DodgerBlue;
+                btnSave.Enabled = true;
+            }
+        }
+
+        private void clbPermissions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

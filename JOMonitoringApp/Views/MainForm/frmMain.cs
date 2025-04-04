@@ -4,6 +4,7 @@ using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Particulars;
+using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Users;
@@ -89,7 +90,6 @@ namespace JOMonitoringApp.Views.MainForm
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
             string particular = cmbxParticulars.Text;
-
 
             return (searchKey, rowFilter, statusId, particular);
         }
@@ -740,6 +740,12 @@ namespace JOMonitoringApp.Views.MainForm
         private void rolesAndPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmRolesAndPermissions().ShowDialog();
+        }
+
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
+            tabControl1.SelectedTab = tabPage1;
         }
     }
 }

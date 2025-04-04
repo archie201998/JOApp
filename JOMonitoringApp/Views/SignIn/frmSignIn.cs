@@ -131,7 +131,12 @@ namespace JOMonitoringApp
 
             string currentVersion = Helper.GetCurrentVersion();
             lblVersion.Text = $"Version {currentVersion}";
+        }
 
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            panel2.Visible = false;
+            timer1.Enabled = false; // Disable the timer
         }
     }
 }

@@ -127,7 +127,6 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
-
                 List<ReportParameter> paramters = (List<ReportParameter>)e.Result;
                 reportViewer1.Clear();
                 var localReport = reportViewer1.LocalReport;
@@ -143,11 +142,17 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.Refresh();
                 ToogleRunButton(true);
 
-
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
-     
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // Allow only number input
+            if (!char.IsControl((char)e.KeyCode) && !char.IsDigit((char)e.KeyCode))
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
     }
 }

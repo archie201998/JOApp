@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;

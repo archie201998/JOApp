@@ -279,6 +279,12 @@
     <Compile Include="Views\Particulars\ucParticulars.Designer.cs">
       <DependentUpon>ucParticulars.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\PromptBox\frmMessagePrompt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PromptBox\frmMessagePrompt.Designer.cs">
+      <DependentUpon>frmMessagePrompt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reports\frmInvestigationReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -320,6 +326,8 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-online-maintenance-portal-100.png" />
+    <None Include="Resources\icons8-programmer-96.png" />
     <None Include="Resources\icons8-user-24-3d.png" />
     <None Include="Resources\icons8-user-24-flat.png" />
     <None Include="Resources\icons8-summary-24.png" />
@@ -348,6 +356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Particulars\ucParticulars.resx">
       <DependentUpon>ucParticulars.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PromptBox\frmMessagePrompt.resx">
+      <DependentUpon>frmMessagePrompt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
       <DependentUpon>frmInvestigationReport.cs</DependentUpon>

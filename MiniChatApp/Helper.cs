@@ -20,6 +20,14 @@ namespace MiniChatApp
 
         internal static string currentUserDisplayName = string.Empty;
 
+        public static void LoadFormIcon(Form form)
+        {
+            using (var ms = new MemoryStream(Properties.Resources.icons8_chat_48))
+            {
+                form.Icon = new Icon(ms);
+            }
+        }
+
         public static string GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());

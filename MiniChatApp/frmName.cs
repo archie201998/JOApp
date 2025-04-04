@@ -32,5 +32,10 @@ namespace MiniChatApp
                 chatRoom.ShowDialog();
             }
         }
+
+        private void frmName_Load(object sender, EventArgs e)
+        {
+            Helper.LoadFormIcon(this);
+        }
     }
 }

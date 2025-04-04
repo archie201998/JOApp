@@ -12,6 +12,7 @@ namespace MiniChatApp
         public frmMiniChatRoom()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,7 +38,7 @@ namespace MiniChatApp
 
         private void frmMiniChatRoom_Load(object sender, EventArgs e)
         {
-            this.Text = "Mini Chat Room - User : " + Helper.currentUserDisplayName;
+            lblChatName.Text = Helper.currentUserDisplayName;
             LoadMessages();
             flowLayoutPanelChat.AutoScrollPosition = new System.Drawing.Point(0, flowLayoutPanelChat.VerticalScroll.Maximum);
         }
@@ -47,6 +48,7 @@ namespace MiniChatApp
             var messages = Factory.ConvoRepository().GetAllConvo();
 
             flowLayoutPanelChat.Controls.Clear();  // Clear previous messages
+            Random random = new Random();
             foreach (DataRow row in messages.Rows)
             {
                 string sender = row["sender"].ToString();
@@ -60,14 +62,24 @@ namespace MiniChatApp
                 messageLabel.Padding = new Padding(0);
                 messageLabel.Margin = new Padding(0, 5, 0, 5);  // Add space between messages
 
+                // Set random ForeColor except white
+                //messageLabel.ForeColor = GetRandomColor(random);
+
                 // Add the label to the FlowLayoutPanel
                 flowLayoutPanelChat.Controls.Add(messageLabel);
-
-                // Add a new line for every row
-                //flowLayoutPanelChat.Controls.Add(new Label() { AutoSize = true, Text = Environment.NewLine });
             }
 
             flowLayoutPanelChat.AutoScrollPosition = new System.Drawing.Point(0, flowLayoutPanelChat.VerticalScroll.Maximum);
+        }
+
+        private Color GetRandomColor(Random random)
+        {
+            Color color;
+            do
+            {
+                color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+            } while (color == Color.White);
+            return color;
         }
 
         private void messageChecker_Tick(object sender, EventArgs e)

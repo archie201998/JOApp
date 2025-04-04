@@ -67,6 +67,7 @@
             Name = "frmName";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mini - Chat App";
+            Load += frmName_Load;
             ResumeLayout(false);
             PerformLayout();
         }

@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtJONumberTo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtJONoFrom = new System.Windows.Forms.TextBox();
+            this.txtJONumberFrom = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -48,15 +48,34 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.txtJONumberTo);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.txtJONoFrom);
+            this.panel1.Controls.Add(this.txtJONumberFrom);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(893, 31);
             this.panel1.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(210, 9);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.TabIndex = 18;
+            this.label2.Text = "J.O Number To : ";
+            // 
+            // txtJONumberTo
+            // 
+            this.txtJONumberTo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJONumberTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJONumberTo.Location = new System.Drawing.Point(303, 5);
+            this.txtJONumberTo.Name = "txtJONumberTo";
+            this.txtJONumberTo.Size = new System.Drawing.Size(100, 22);
+            this.txtJONumberTo.TabIndex = 17;
+            this.txtJONumberTo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // label1
             // 
@@ -67,15 +86,16 @@
             this.label1.TabIndex = 16;
             this.label1.Text = "J.O Number From : ";
             // 
-            // txtJONoFrom
+            // txtJONumberFrom
             // 
-            this.txtJONoFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtJONoFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONoFrom.Location = new System.Drawing.Point(104, 5);
-            this.txtJONoFrom.Name = "txtJONoFrom";
-            this.txtJONoFrom.Size = new System.Drawing.Size(100, 22);
-            this.txtJONoFrom.TabIndex = 0;
-            this.txtJONoFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
+            this.txtJONumberFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtJONumberFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtJONumberFrom.Location = new System.Drawing.Point(104, 5);
+            this.txtJONumberFrom.Name = "txtJONumberFrom";
+            this.txtJONumberFrom.Size = new System.Drawing.Size(100, 22);
+            this.txtJONumberFrom.TabIndex = 0;
+            this.txtJONumberFrom.TextChanged += new System.EventHandler(this.txtJONoFrom_TextChanged);
+            this.txtJONumberFrom.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
             // btnSearch
             // 
@@ -139,25 +159,6 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(210, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
-            this.label2.TabIndex = 18;
-            this.label2.Text = "J.O Number To : ";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(303, 5);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 17;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
-            // 
             // frmServiceRequestAndOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,8 +192,8 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtJONoFrom;
+        private System.Windows.Forms.TextBox txtJONumberFrom;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtJONumberTo;
     }
 }

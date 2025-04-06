@@ -46,11 +46,7 @@ namespace JOMonitoringApp.Views.Reports
         {
             cmbxParticular.Items.Clear();
             var dtParticulars = Factory.ParticularsRepository().GetRecords();
-
-            dtParticulars.Rows.Add(0, "All");
-            cmbxParticular.DataSource = dtParticulars;
-            cmbxParticular.DisplayMember = "particular";
-            cmbxParticular.ValueMember = "id";
+            HelperLoadRecords.ParticularsCombobox(cmbxParticular, dtParticulars, "id", "particular");
 
             particular = cmbxParticular.Text;
         }

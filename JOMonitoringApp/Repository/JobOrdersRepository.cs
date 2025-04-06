@@ -284,5 +284,19 @@ namespace JOMonitoringApp
 
             return count > 0;
         }
+
+        public bool JONumberExist(string joNumber)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@jo_number", DbType.String, joNumber }
+            };
+
+            string query = $"SELECT COUNT(*) FROM {tableName} WHERE job_order_no = @jo_number AND is_deleted = 0";
+
+            int count = int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+
+            return count > 0;
+        }
     }
 }

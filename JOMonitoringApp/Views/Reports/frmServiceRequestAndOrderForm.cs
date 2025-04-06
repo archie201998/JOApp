@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Dataset;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.PromptBox;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace JOMonitoringApp.Views.Reports
 
         private void OnLoad()
         {
-            txtJONoFrom.Text = _jobOrderNumber;
+            txtJONumberFrom.Text = _jobOrderNumber;
             if (!string.IsNullOrEmpty(_jobOrderNumber)) LoadReport();
         }
 
@@ -64,9 +65,16 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
-                if (string.IsNullOrEmpty(txtJONoFrom.Text))
+                if (string.IsNullOrEmpty(txtJONumberFrom.Text))
                 {
-                    Helper.MessageBoxError("Please input J.O Number.");
+                    Helper.MessageBoxSuccess("Please input J.O Number.");
+                    return;
+                }
+
+
+                if (!Factory.JobOrdersRepository().JONumberExist(txtJONumberFrom.Text.Trim()))
+                {
+                    Helper.MessageBoxError("J.O Number does not exist.");
                     return;
                 }
                 LoadReport();
@@ -82,14 +90,30 @@ namespace JOMonitoringApp.Views.Reports
                 int progressCount = 0;
 
                 var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONoFrom.Text));
+
+                //Bulk Printing
+                int srofCount = 0;  
+                if (int.TryParse(txtJONumberTo.Text.Trim(), out int joNumberTo) && int.TryParse(txtJONumberFrom.Text.Trim(), out int joNumberFrom))
+                     srofCount = joNumberTo - joNumberFrom;
+                else
+                    Helper.MessageBoxError("Invalid J.O Number format.");
+
+                if (srofCount > 1)
+                {
+                    _ = new frmMessagePrompt().ShowDialog();
+                }
+                
+
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONumberFrom.Text));
+
+           
                 List<ReportParameter> reportParameters1 = new List<ReportParameter>();
                 progressCount += 10;
                 Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 var userData = Helper.LoggedInUserData();
                 reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
-                reportParameters1.Add(new ReportParameter("paramJOR", txtJONoFrom.Text));
+                reportParameters1.Add(new ReportParameter("paramJOR", txtJONumberFrom.Text));
 
                 reportParameters1.Add(new ReportParameter("paramMRISNo", dtJobOrders["mris"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramMRSNo", dtJobOrders["mrs"].ToString()));
@@ -153,6 +177,11 @@ namespace JOMonitoringApp.Views.Reports
             {
                 e.SuppressKeyPress = true;
             }
+        }
+
+        private void txtJONoFrom_TextChanged(object sender, EventArgs e)
+        {
+            txtJONumberTo.Text = txtJONumberFrom.Text;  
         }
     }
 }

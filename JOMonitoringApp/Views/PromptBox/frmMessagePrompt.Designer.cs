@@ -79,13 +79,13 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Location = new System.Drawing.Point(12, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(192, 21);
+            this.label1.Size = new System.Drawing.Size(221, 17);
             this.label1.TabIndex = 14;
-            this.label1.Text = "MODULE MAINTENANCE";
+            this.label1.Text = "MODULE/FEATURE MAINTENANCE";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmMessagePrompt

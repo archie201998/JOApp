@@ -411,7 +411,6 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox13</rd:DefaultName>
                 <Top>0.7388cm</Top>
-                <Left>0cm</Left>
                 <Height>0.6cm</Height>
                 <Width>2.7445cm</Width>
                 <ZIndex>9</ZIndex>
@@ -550,7 +549,6 @@
             <Source>Embedded</Source>
             <Value>thumbnail_PAMANACOREL</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>0cm</Top>
             <Left>1.96813cm</Left>
             <Height>1.50394cm</Height>
             <Width>1.59988cm</Width>

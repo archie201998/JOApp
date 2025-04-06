@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Dataset;
+using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.PromptBox;
 using Microsoft.Reporting.WinForms;
@@ -83,65 +84,71 @@ namespace JOMonitoringApp.Views.Reports
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {   
-            try
+        {
+            int totalProgressCount = 100;
+            int progressCount = 0;
+
+            var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable();
+
+            //Bulk Printing
+            int srofCount = 0;
+            if (int.TryParse(txtJONumberTo.Text.Trim(), out int joNumberTo) && int.TryParse(txtJONumberFrom.Text.Trim(), out int joNumberFrom))
+                srofCount = joNumberTo - joNumberFrom;
+            else
+                Helper.MessageBoxError("Invalid J.O Number format.");
+
+            if (srofCount > 1)
             {
-                int totalProgressCount = 100;
-                int progressCount = 0;
+                _ = new frmMessagePrompt().ShowDialog();
+            }
 
-                var dtJobOrderSummary = new dsReport.dtJobOrderSummaryDataTable();
 
-                //Bulk Printing
-                int srofCount = 0;  
-                if (int.TryParse(txtJONumberTo.Text.Trim(), out int joNumberTo) && int.TryParse(txtJONumberFrom.Text.Trim(), out int joNumberFrom))
-                     srofCount = joNumberTo - joNumberFrom;
-                else
-                    Helper.MessageBoxError("Invalid J.O Number format.");
+            var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONumberFrom.Text));
 
-                if (srofCount > 1)
-                {
-                    _ = new frmMessagePrompt().ShowDialog();
-                }
-                
 
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByJONumber(int.Parse(txtJONumberFrom.Text));
+            List<ReportParameter> reportParameters1 = new List<ReportParameter>();
+            progressCount += 10;
+            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
-           
-                List<ReportParameter> reportParameters1 = new List<ReportParameter>();
-                progressCount += 10;
-                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+            var userData = Helper.LoggedInUserData();
+            reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
+            reportParameters1.Add(new ReportParameter("paramJOR", txtJONumberFrom.Text));
+            reportParameters1.Add(new ReportParameter("paramStatus", dtJobOrders["status"].ToString()));
 
-                var userData = Helper.LoggedInUserData();
-                reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
-                reportParameters1.Add(new ReportParameter("paramJOR", txtJONumberFrom.Text));
+            reportParameters1.Add(new ReportParameter("paramMRISNo", dtJobOrders["mris"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramMRSNo", dtJobOrders["mrs"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToString()));
 
-                reportParameters1.Add(new ReportParameter("paramMRISNo", dtJobOrders["mris"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramMRSNo", dtJobOrders["mrs"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToString()));
-
-                reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
-                reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
-                reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramDateActed", dtJobOrders["updated_by"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
+            reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
+            reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
+            reportParameters1.Add(new ReportParameter("paramDateActed", dtJobOrders["updated_at"].ToUpper()));
 
 
 
 
-                Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(dtJobOrders["account_number"].ToString());
+            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(dtJobOrders["account_number"].ToString());
+            if (meterDict.Count !=  0)
+            {
                 reportParameters1.Add(new ReportParameter("paramMeterNumber", meterDict["MeterNumber"].ToString().ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramMeterSize", meterDict["MeterSize"].ToString().ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramMeterBrand", meterDict["MeterBrand"].ToString().ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramMeterReading", meterDict["LastReading"].ToString().ToUpper()));
 
-                progressCount += 90;
-                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+            }
 
-                e.Result = (reportParameters1);
+            progressCount += 90;
+            Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+            e.Result = (reportParameters1);
+            try
+            {
+               
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

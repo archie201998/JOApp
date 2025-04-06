@@ -1804,6 +1804,7 @@
                     <Style>
                       <FontFamily>calibri</FontFamily>
                       <FontSize>8pt</FontSize>
+                      <Format>dd/MM/yyyy</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2542,6 +2543,7 @@
     </ReportParameter>
     <ReportParameter Name="paramMeterBrand">
       <DataType>String</DataType>
+      <Nullable>true</Nullable>
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>

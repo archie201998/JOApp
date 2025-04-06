@@ -27,7 +27,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT id, status FROM {tableName}";
+            string query = $"SELECT id, status FROM {tableName} ORDER BY id DESC";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);

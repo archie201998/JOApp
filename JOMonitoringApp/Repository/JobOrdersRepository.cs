@@ -119,8 +119,9 @@ namespace JOMonitoringApp
             };
 
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
+            string particularFilter = particular == "All" ? string.Empty : $"AND particular LIKE @particular";
 
-            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 AND particular LIKE @particular ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT * FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

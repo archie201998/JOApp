@@ -74,11 +74,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -92,6 +89,9 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -118,7 +118,7 @@
             this.sessionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1433, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1732, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -289,7 +289,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1433, 805);
+            this.tabControl1.Size = new System.Drawing.Size(1732, 805);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -299,7 +299,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1425, 777);
+            this.tabPage1.Size = new System.Drawing.Size(1724, 777);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@
             this.panel1.Location = new System.Drawing.Point(488, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(934, 771);
+            this.panel1.Size = new System.Drawing.Size(1233, 771);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -324,7 +324,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(924, 705);
+            this.panel6.Size = new System.Drawing.Size(1223, 705);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -337,7 +337,7 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(916, 697);
+            this.dgJobOrders.Size = new System.Drawing.Size(1215, 697);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
@@ -351,7 +351,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(924, 18);
+            this.panel3.Size = new System.Drawing.Size(1223, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -361,7 +361,7 @@
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(914, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1213, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -380,7 +380,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(924, 38);
+            this.panel2.Size = new System.Drawing.Size(1223, 38);
             this.panel2.TabIndex = 8;
             // 
             // cmbxParticulars
@@ -388,29 +388,6 @@
             this.cmbxParticulars.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxParticulars.FormattingEnabled = true;
-            this.cmbxParticulars.Items.AddRange(new object[] {
-            "",
-            "Transfer of Connection",
-            "Tapstand leak",
-            "Reposition of WM",
-            "Reconnection",
-            "Pipe Leak",
-            "MSL/ Materials Ready",
-            "Meter Calibration",
-            "Main Line Leak",
-            "Lateral Leak",
-            "Investigation",
-            "Interconnection",
-            "Inspection of Lines",
-            "Hydrant Withdrawal",
-            "Gate Valve Leak",
-            "FS/Trans.of tap",
-            "FS/Tapping",
-            "FS/Meter Relocation",
-            "Defective valve",
-            "Change Name",
-            "Change Meter",
-            "Broken Pipe"});
             this.cmbxParticulars.Location = new System.Drawing.Point(473, 8);
             this.cmbxParticulars.Name = "cmbxParticulars";
             this.cmbxParticulars.Size = new System.Drawing.Size(121, 23);
@@ -448,7 +425,7 @@
             this.btnCreateInvestigationForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateInvestigationForm.Image = global::JOMonitoringApp.Properties.Resources.icons8_water_14;
             this.btnCreateInvestigationForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(723, 7);
+            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1022, 7);
             this.btnCreateInvestigationForm.Name = "btnCreateInvestigationForm";
             this.btnCreateInvestigationForm.Size = new System.Drawing.Size(196, 23);
             this.btnCreateInvestigationForm.TabIndex = 28;
@@ -593,15 +570,6 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.ucInvestigation1);
@@ -614,15 +582,6 @@
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
             // 
-            // ucInvestigation1
-            // 
-            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
-            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ucInvestigation1.Name = "ucInvestigation1";
-            this.ucInvestigation1.Size = new System.Drawing.Size(1419, 644);
-            this.ucInvestigation1.TabIndex = 0;
-            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.ucDashboardSummaryView1);
@@ -634,16 +593,6 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1419, 325);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -666,14 +615,14 @@
             this.lblPing});
             this.statusStrip1.Location = new System.Drawing.Point(5, 835);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1433, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1732, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(88, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(89, 17);
             this.toolStripStatusLabel1.Text = "SYSTEM USER : ";
             // 
             // lblCurrentUser
@@ -729,12 +678,40 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucInvestigation1
+            // 
+            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
+            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucInvestigation1.Name = "ucInvestigation1";
+            this.ucInvestigation1.Size = new System.Drawing.Size(1419, 644);
+            this.ucInvestigation1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1419, 325);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1443, 862);
+            this.ClientSize = new System.Drawing.Size(1742, 862);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

@@ -63,7 +63,7 @@ namespace JOMonitoringApp
 
 
             dataGridView.Columns["date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView.Columns["date"].HeaderText = "DATE";
+            dataGridView.Columns["date"].HeaderText = "PREPARED DATE";
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["date"].MinimumWidth = 50;
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
@@ -159,6 +159,13 @@ namespace JOMonitoringApp
 
         internal static void ParticularsCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
         {
+            // Add a new row to the dataTable
+            DataRow newRow = dataTable.NewRow();
+            
+            newRow[valueMember] = "0"; // Replace with actual value
+            newRow[displayMember] = "All"; // Replace with actual display text
+            dataTable.Rows.InsertAt(newRow, 0);
+
             cmbx.DataSource = dataTable;
             cmbx.ValueMember = valueMember;
             cmbx.DisplayMember = displayMember;

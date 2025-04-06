@@ -68,7 +68,6 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("materials_issued_by_id", typeof(int)),
                 new DataColumn("status_id", typeof(int)),
                 new DataColumn("job_order_no", typeof(string)),
-                new DataColumn("date", typeof(DateTime)),
                 new DataColumn("account_number", typeof(string)),
                 new DataColumn("account_name", typeof(string)),
                 new DataColumn("address", typeof(string)),
@@ -78,6 +77,7 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("mrs", typeof(string)),
                 new DataColumn("war", typeof(string)),
                 new DataColumn("remarks", typeof(string)),
+                new DataColumn("date", typeof(DateTime)),
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
 
@@ -138,7 +138,6 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["particular"] = particular;
                     newRow["status_id"] = statusId;
                     newRow["job_order_no"] = jobOrderNumber;
-                    newRow["date"] = date;
                     newRow["account_number"] = accountNumber;
                     newRow["account_name"] = accountName;
                     newRow["address"] = address;
@@ -148,6 +147,7 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["mrs"] = MRSNumber;
                     newRow["war"] = WARNumber;
                     newRow["remarks"] = remarks;
+                    newRow["date"] = date;
                     newRow["prepared_by"] = preparedBy;
                     newRow["materials_issued_by"] = materialsIssuedBy;
                     newRow["status"] = status.ToUpper();
@@ -199,6 +199,11 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
+
+                var dtParticulars = Factory.ParticularsRepository().GetRecords();   
+                HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dtParticulars, "id" , "particular");
+
+
                 Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
                 lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
                 cmbxStatus.SelectedValue = 5;
@@ -700,30 +705,31 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (dgJobOrders.SelectedRows.Count > 0)
-            {
-                int selectedIndex = dgJobOrders.SelectedRows[0].Index;
-                if (selectedIndex >= 0)
-                {
+            _ = new frmMessagePrompt().ShowDialog();
+            //if (dgJobOrders.SelectedRows.Count > 0)
+            //{
+            //    int selectedIndex = dgJobOrders.SelectedRows[0].Index;
+            //    if (selectedIndex >= 0)
+            //    {
 
-                    string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
-                    string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
-                    string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
-                    string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
-                    string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
+            //        string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
+            //        string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
+            //        string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
+            //        string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
+            //        string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
 
-                    ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
-                    ucInvestigationForm.txtAccountName.Text = accountName;
-                    ucInvestigationForm.txtAccountNumber.Text = accountNumber;
-                    ucInvestigationForm.txtJORemarks.Text = remarks;
-                    ucInvestigationForm._customerAddress = customerAddress;
-                    ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
+            //        ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
+            //        ucInvestigationForm.txtAccountName.Text = accountName;
+            //        ucInvestigationForm.txtAccountNumber.Text = accountNumber;
+            //        ucInvestigationForm.txtJORemarks.Text = remarks;
+            //        ucInvestigationForm._customerAddress = customerAddress;
+            //        ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
 
-                    // Change the tab focus to the next tab
-                    int nextTabIndex = (tabControl1.SelectedIndex + 1) % tabControl1.TabCount;
-                    tabControl1.SelectedIndex = nextTabIndex;
-                }
-            }
+            //        // Change the tab focus to the next tab
+            //        int nextTabIndex = (tabControl1.SelectedIndex + 1) % tabControl1.TabCount;
+            //        tabControl1.SelectedIndex = nextTabIndex;
+            //    }
+            //}
         }
 
         private void particularsToolStripMenuItem_Click(object sender, EventArgs e)

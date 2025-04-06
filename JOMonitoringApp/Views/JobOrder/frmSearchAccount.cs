@@ -19,7 +19,7 @@ namespace JOMonitoringApp.Views.JobOrder
         private void FrmSearchAccount_Load(object sender, EventArgs e)
         {
             txtAcc1.Focus();
-            LoadAccounts();
+            LoadAccountsByAccountNumber();
         }
 
 
@@ -34,7 +34,7 @@ namespace JOMonitoringApp.Views.JobOrder
             };
         }
 
-        private void LoadAccounts()
+        private void LoadAccountsByAccountNumber()
         {
             //string searchKey = txtAccountName.Text.Trim();
             string searchKey = $"{txtAcc1.Text}-{txtAcc2.Text}-{txtAcc3.Text}-{txtAcc4.Text}";
@@ -67,10 +67,45 @@ namespace JOMonitoringApp.Views.JobOrder
             HelperLoadRecords.AccountsDataGridView(dgAccounts, dataTable);
         }
 
+        private void LoadAccountsByName()
+        {
+            //string searchKey = txtAccountName.Text.Trim();
+            string searchKey = $"{txtAccountName.Text.Trim()}";
+            int charCount = searchKey.Length;
+            if (charCount <= 3)
+                return;
+
+            var dataTable = new DataTable();
+            //DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
+            DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(searchKey);
+
+            dataTable.Columns.AddRange(JobOrdersColumns());
+
+            foreach (DataRow row in dtJobOrders.Rows)
+            {
+
+                var newRow = dataTable.NewRow();
+                int id = Convert.ToInt32(row["id"]);
+                string accountName = $"{row["account_name"]}";
+                string accountNumber = $"{row["account_number"]}";
+                string address = $"{row["address"]}";
+
+                newRow["id"] = id;
+                newRow["account_name"] = accountName;
+                newRow["account_number"] = string.IsNullOrEmpty(accountNumber) ? "-" : accountNumber;
+                newRow["address"] = address;
+                dataTable.Rows.Add(newRow);
+            }
+
+            HelperLoadRecords.AccountsDataGridView(dgAccounts, dataTable);
+        }
+
         private void TxtAccountNumber_TextChanged(object sender, EventArgs e)
         {
-            LoadAccounts();
+            LoadAccountsByName();
         }
+
+      
 
         private void DgAccounts_DoubleClick(object sender, EventArgs e)
         {
@@ -142,7 +177,7 @@ namespace JOMonitoringApp.Views.JobOrder
             else if (txtAcc3.Text.Length == 3 && txtBox == txtAcc3)
                 txtAcc4.Focus();
 
-            LoadAccounts();
+            LoadAccountsByAccountNumber();
         }
 
         private void txtAcc4_KeyDown(object sender, KeyEventArgs e)

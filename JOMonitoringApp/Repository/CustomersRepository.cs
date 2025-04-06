@@ -128,6 +128,19 @@ internal class CustomersRepository : ICustomersRepository
         return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
     }
 
+    public DataTable GetRecordsBySearchByAccountName(string searchKey)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
+        };
+
+        string query = $"SELECT TOP(10) CustomerID AS id, AccountNo AS account_number, AccountName AS account_name, Address AS address, MeterNumber AS meter_no, MeterBrand meter_brand  FROM {tableName} WHERE AccountName LIKE @search_key ";
+
+        var dataTable = new DataTable();
+        return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+    }
+
     public DataTable GetRecordsBySearchByAccountNumberAndAccountName(string searchKey)
     {
         var parameters = new object[][]
@@ -173,4 +186,5 @@ internal class CustomersRepository : ICustomersRepository
 
         return result;
     }
+
 }

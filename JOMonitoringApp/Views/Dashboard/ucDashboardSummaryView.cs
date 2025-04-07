@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccountingSystem;
+using System.Threading;
 
 namespace JOMonitoringApp.Views.Dashboard
 {
@@ -20,11 +21,6 @@ namespace JOMonitoringApp.Views.Dashboard
                 InitializeComponent();
                 Helper.DatagridFullRowSelectStyle(dgStatPerParticular, true);
             }
-        }
-
-        internal void LoadJobOrdersSummary()
-        {
-            LoadAndDisplaySummary();
         }
 
         internal void LoadAndDisplaySummary()
@@ -41,12 +37,15 @@ namespace JOMonitoringApp.Views.Dashboard
             float percentage = (((float)accomplished) / ((float)total) * 100);
             percentage = float.IsNaN(percentage) ? 0 : percentage;
 
-            txtTotal.Text = total.ToString();
-            txtPending.Text = pending.ToString();
-            txtOnGoing.Text = processing.ToString();
-            txtCancelled.Text = cancelled.ToString();
-            txtAccomplished.Text = accomplished.ToString();
-            lblPercentage.Text = percentage.ToString() + "%";
+            this.Invoke((MethodInvoker)delegate {
+                txtTotal.Text = total.ToString();
+                txtPending.Text = pending.ToString();
+                txtOnGoing.Text = processing.ToString();
+                txtCancelled.Text = cancelled.ToString();
+                txtAccomplished.Text = accomplished.ToString();
+                lblPercentage.Text = percentage.ToString() + "%";
+            });
+
 
         }
 
@@ -64,8 +63,6 @@ namespace JOMonitoringApp.Views.Dashboard
                 dtpFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 dtpTo.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
                 
-                LoadAndDisplaySummary();
-                LoadStatusPerParticular();
             }
         }
 
@@ -85,7 +82,27 @@ namespace JOMonitoringApp.Views.Dashboard
 
         private void LoadStatusPerParticular()
         {
-            var dtStatusPerParticular = Factory.JobOrdersRepository().JOStatusPerParticular();
+        
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+  
+            if (!backgroundWorker1.IsBusy)
+            {
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            LoadAndDisplaySummary();
+
+            DateTime dateFrom = dtpFrom.Value;
+            DateTime dateTo = dtpTo.Value;
+
+            //STATUS PER PARTICULAR
+            var dtStatusPerParticular = Factory.JobOrdersRepository().JOStatusPerParticular(dateFrom, dateTo);
 
             var dataTable = new DataTable();
             dataTable.Columns.AddRange(JobOrdersColumns());
@@ -110,13 +127,35 @@ namespace JOMonitoringApp.Views.Dashboard
                 dataTable.Rows.Add(newRow);
 
             }
-            HelperLoadRecords.JOStatusPerParticular(dgStatPerParticular, dataTable);
+
+            (sender as BackgroundWorker).ReportProgress(100); // Done
+
+            e.Result = dtStatusPerParticular;
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            LoadAndDisplaySummary();
-            LoadStatusPerParticular();
+            progressBar1.Value = e.ProgressPercentage;
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DataTable result = e.Result as DataTable;
+            dgStatPerParticular.DataSource = result;
+
+            progressBar1.Value = 100;
+
+            HelperLoadRecords.JOStatusPerParticular(dgStatPerParticular, result);
+        }
+
+        private void labelStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

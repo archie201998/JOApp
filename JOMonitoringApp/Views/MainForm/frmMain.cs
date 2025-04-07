@@ -216,7 +216,6 @@ namespace JOMonitoringApp.Views.MainForm
         internal void OnLoad()
         {
             LoadJobOrders();
-            ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
 
             //if user is not investigator=> disable investigation menu
@@ -554,7 +553,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void TabPage2_Enter(object sender, EventArgs e)
         {
-            ucDashboardSummaryView.LoadAndDisplaySummary();
+            
         }
 
         private void UpdateSettings()

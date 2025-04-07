@@ -35,7 +35,6 @@ namespace JOMonitoringApp
         {
             dataGridView.DataSource = dataTable;
 
-
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["particular"].HeaderText = "PARTICULAR";
             dataGridView.Columns["particular"].MinimumWidth = 120;

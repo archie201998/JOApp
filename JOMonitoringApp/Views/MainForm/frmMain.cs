@@ -262,6 +262,7 @@ namespace JOMonitoringApp.Views.MainForm
                     string status = e.Value.ToString();
                     if (status == "PENDING")
                     {
+                        e.CellStyle.ForeColor = Color.Black;
                         e.CellStyle.BackColor = Helper.StatusColor("pending");
                     }
                     

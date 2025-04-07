@@ -90,7 +90,6 @@
             this.txtPassword.PasswordChar = '•';
             this.txtPassword.Size = new System.Drawing.Size(200, 23);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "123123123";
             // 
             // txtUserName
             // 
@@ -100,7 +99,6 @@
             this.txtUserName.Name = "txtUserName";
             this.txtUserName.Size = new System.Drawing.Size(200, 23);
             this.txtUserName.TabIndex = 0;
-            this.txtUserName.Text = "archie";
             // 
             // label2
             // 

@@ -63,16 +63,16 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public int GetSummaryByStatusId(int year, int monthId, int statusId)
+        public int GetSummaryByStatusId(DateTime dateFrom, DateTime dateTo, int statusId)
         {
             var parameters = new object[][]
             {
+                new object[] { "@date_from", DbType.DateTime, dateFrom },
+                new object[] { "@date_to", DbType.DateTime, dateTo },
                 new object[] { "@status_id", DbType.String, statusId },
-                new object[] { "@month", DbType.Int16, monthId },
-                new object[] { "@year", DbType.Int16, year },
             };
 
-            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE YEAR(date) = @year AND MONTH(date) = @month AND status_id = @status_id AND is_deleted = 0";
+            string query = $"SELECT COUNT(status_id) FROM {viewTableName} WHERE date BETWEEN @date_from AND @date_to AND status_id = @status_id AND is_deleted = 0";
 
             if (string.IsNullOrWhiteSpace(mySqlGenericCommands.ExecuteScalar(query, parameters)))
                 return 0;

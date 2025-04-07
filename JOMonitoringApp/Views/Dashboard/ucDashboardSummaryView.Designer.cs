@@ -45,10 +45,6 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.nudYear = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbxMonth = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblPercentage = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,6 +55,11 @@
             this.dgStatPerParticular = new System.Windows.Forms.DataGridView();
             this.gbParticulars = new System.Windows.Forms.GroupBox();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.dtpFrom = new System.Windows.Forms.DateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpTo = new System.Windows.Forms.DateTimePicker();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -68,7 +69,6 @@
             this.panel12.SuspendLayout();
             this.panel13.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudYear)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -265,64 +265,17 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.nudYear);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.cmbxMonth);
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnSearch);
+            this.panel1.Controls.Add(this.dtpTo);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.dtpFrom);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(10, 10);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1113, 40);
             this.panel1.TabIndex = 7;
-            // 
-            // nudYear
-            // 
-            this.nudYear.Location = new System.Drawing.Point(44, 12);
-            this.nudYear.Maximum = new decimal(new int[] {
-            2099,
-            0,
-            0,
-            0});
-            this.nudYear.Name = "nudYear";
-            this.nudYear.Size = new System.Drawing.Size(83, 20);
-            this.nudYear.TabIndex = 8;
-            this.nudYear.Value = new decimal(new int[] {
-            2025,
-            0,
-            0,
-            0});
-            this.nudYear.ValueChanged += new System.EventHandler(this.NumericUpDown1_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(9, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Year";
-            // 
-            // cmbxMonth
-            // 
-            this.cmbxMonth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxMonth.FormattingEnabled = true;
-            this.cmbxMonth.Location = new System.Drawing.Point(180, 11);
-            this.cmbxMonth.Name = "cmbxMonth";
-            this.cmbxMonth.Size = new System.Drawing.Size(200, 21);
-            this.cmbxMonth.TabIndex = 9;
-            this.cmbxMonth.SelectedIndexChanged += new System.EventHandler(this.CmbxMonth_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(140, 14);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Month ";
             // 
             // panel3
             // 
@@ -331,7 +284,7 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Location = new System.Drawing.Point(10, 226);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(403, 39);
+            this.panel3.Size = new System.Drawing.Size(365, 39);
             this.panel3.TabIndex = 4;
             // 
             // lblPercentage
@@ -408,7 +361,7 @@
             this.dgStatPerParticular.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgStatPerParticular.Location = new System.Drawing.Point(3, 3);
             this.dgStatPerParticular.Name = "dgStatPerParticular";
-            this.dgStatPerParticular.Size = new System.Drawing.Size(489, 271);
+            this.dgStatPerParticular.Size = new System.Drawing.Size(546, 275);
             this.dgStatPerParticular.TabIndex = 9;
             // 
             // gbParticulars
@@ -417,7 +370,7 @@
             this.gbParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.gbParticulars.Location = new System.Drawing.Point(10, 284);
             this.gbParticulars.Name = "gbParticulars";
-            this.gbParticulars.Size = new System.Drawing.Size(501, 296);
+            this.gbParticulars.Size = new System.Drawing.Size(558, 300);
             this.gbParticulars.TabIndex = 10;
             this.gbParticulars.TabStop = false;
             this.gbParticulars.Text = "STATUS PER PARTICULAR";
@@ -429,8 +382,65 @@
             this.panel5.Location = new System.Drawing.Point(3, 16);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(3);
-            this.panel5.Size = new System.Drawing.Size(495, 277);
+            this.panel5.Size = new System.Drawing.Size(552, 281);
             this.panel5.TabIndex = 0;
+            // 
+            // dtpFrom
+            // 
+            this.dtpFrom.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFrom.CustomFormat = "MMMM dd, yyyy";
+            this.dtpFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFrom.Location = new System.Drawing.Point(54, 10);
+            this.dtpFrom.Name = "dtpFrom";
+            this.dtpFrom.Size = new System.Drawing.Size(164, 22);
+            this.dtpFrom.TabIndex = 11;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(10, 14);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "FROM";
+            // 
+            // dtpTo
+            // 
+            this.dtpTo.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTo.CustomFormat = "MMMM dd, yyyy";
+            this.dtpTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTo.Location = new System.Drawing.Point(260, 10);
+            this.dtpTo.Name = "dtpTo";
+            this.dtpTo.Size = new System.Drawing.Size(164, 22);
+            this.dtpTo.TabIndex = 13;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(232, 14);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(22, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "TO";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Location = new System.Drawing.Point(427, 9);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(70, 23);
+            this.btnSearch.TabIndex = 14;
+            this.btnSearch.Text = "LOAD";
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // ucDashboardSummaryView
             // 
@@ -466,7 +476,6 @@
             this.panel13.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudYear)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -494,14 +503,10 @@
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPending;
         private System.Windows.Forms.TextBox txtOnGoing;
         private System.Windows.Forms.TextBox txtCancelled;
         private System.Windows.Forms.TextBox txtAccomplished;
-        internal System.Windows.Forms.ComboBox cmbxMonth;
-        internal System.Windows.Forms.NumericUpDown nudYear;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
@@ -512,5 +517,10 @@
         private System.Windows.Forms.DataGridView dgStatPerParticular;
         private System.Windows.Forms.GroupBox gbParticulars;
         private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.DateTimePicker dtpFrom;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DateTimePicker dtpTo;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

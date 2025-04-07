@@ -242,26 +242,30 @@ namespace JOMonitoringApp.Views.MainForm
         {
             if (dgJobOrders.Columns[e.ColumnIndex].Name == "status")
             {
+
+                e.CellStyle.ForeColor = Color.White;
+
                 if (e.Value != null)
                 {
                     string status = e.Value.ToString();
                     if (status == "PENDING")
-                        e.CellStyle.BackColor = Color.Gold;
+                    {
+                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.BackColor = Helper.StatusColor("pending");
+                    }
+                    
                     else if (status == "PROCESSING")
                     {
-                        e.CellStyle.BackColor = Color.MediumSeaGreen;
-                        e.CellStyle.ForeColor = Color.White;
+                        e.CellStyle.BackColor = Helper.StatusColor("processing");
                     }
 
                     else if (status == "CANCELLED")
                     {
-                        e.CellStyle.BackColor = Color.IndianRed;
-                        e.CellStyle.ForeColor = Color.White;
+                        e.CellStyle.BackColor = Helper.StatusColor("cancelled");
                     }
                     else if (status == "ACCOMPLISHED")
                     {
-                        e.CellStyle.BackColor = Color.SteelBlue;
-                        e.CellStyle.ForeColor = Color.White;
+                        e.CellStyle.BackColor = Helper.StatusColor("accomplished");
                     }
                 }
             }
@@ -550,7 +554,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void TabPage2_Enter(object sender, EventArgs e)
         {
-            ucDashboardSummaryView.LoadAndDisplaySummary(Convert.ToInt32(ucDashboardSummaryView.nudYear.Value), Convert.ToInt32(ucDashboardSummaryView.cmbxMonth.SelectedIndex));
+            ucDashboardSummaryView.LoadAndDisplaySummary();
         }
 
         private void UpdateSettings()

@@ -272,13 +272,13 @@
             // lockApplicationToolStripMenuItem
             // 
             this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.lockApplicationToolStripMenuItem.Text = "Lock Application";
             // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(171, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -622,7 +622,7 @@
             this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
             this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1718, 597);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1718, 796);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1

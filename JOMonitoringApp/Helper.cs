@@ -32,6 +32,22 @@ namespace AccountingSystem
         internal static string changes;
 
 
+        public static Color StatusColor(string status)
+        {
+            switch (status)
+            {
+                case "pending":
+                    return Color.Gold;
+                case "processing":
+                    return Color.MediumSeaGreen;
+                case "cancelled":
+                    return Color.IndianRed;
+                case "accomplished":
+                    return Color.SteelBlue;
+                default:
+                    return Color.Gray;
+            }
+        }
 
         public static string GetCurrentVersion()
         {
@@ -269,24 +285,6 @@ namespace AccountingSystem
         {
             return DateTime.Now;
         }
-
-        public static Color StatusColor(string status)
-        {
-            switch (status)
-            {
-                case "Pending":
-                    return Color.FromArgb(201, 228, 197);
-
-                case "On-Going":
-                    return Color.FromArgb(246, 169, 169);
-
-                case "Cancelled":
-                    return Color.FromArgb(200, 198, 198);
-                default:
-                    return Color.Black;
-            }
-        }
-
 
         public static string GenerateFullName(string prefix, string firstName, string MiddleName, string LastName, string suffix)
         {

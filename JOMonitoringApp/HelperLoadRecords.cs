@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountingSystem;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -13,9 +14,9 @@ namespace JOMonitoringApp
     {
         public static void JobOrderTrackingDataGrid(DataGridView dataGridView, DataTable dataTable)
         {
-
             dataGridView.DataSource = dataTable;
 
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dataGridView.Columns["log_id"].Visible = false;
 
@@ -28,52 +29,45 @@ namespace JOMonitoringApp
             dataGridView.Columns["transaction_event"].HeaderText = "EVENT DETAILS";
             dataGridView.Columns["transaction_event"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["transaction_event"].MinimumWidth = 300;
-
         }
 
         public static void JOStatusPerParticular(DataGridView dataGridView, DataTable dataTable)
         {
-
             dataGridView.DataSource = dataTable;
+
 
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["particular"].HeaderText = "PARTICULAR";
-            dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["particular"].MinimumWidth = 150;
-
-            dataGridView.Columns["total_count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["total_count"].HeaderText = "TOTAL";
-            dataGridView.Columns["total_count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["total_count"].MinimumWidth = 10;
-
-            dataGridView.Columns["processing"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["processing"].HeaderText = "PENDING";
-            dataGridView.Columns["processing"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["processing"].MinimumWidth = 10;
+            dataGridView.Columns["particular"].MinimumWidth = 120;
+            
 
             dataGridView.Columns["pending"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["pending"].HeaderText = "PENDING";
-            dataGridView.Columns["pending"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["pending"].MinimumWidth = 10;
+            dataGridView.Columns["pending"].MinimumWidth = 20;
+
+            dataGridView.Columns["processing"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["processing"].HeaderText = "PROCESSING";
+            dataGridView.Columns["processing"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["processing"].MinimumWidth = 20;
 
             dataGridView.Columns["cancelled"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["cancelled"].HeaderText = "CANCELLED";
             dataGridView.Columns["cancelled"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["cancelled"].MinimumWidth = 10;
+            dataGridView.Columns["cancelled"].MinimumWidth = 20;
 
             dataGridView.Columns["accomplished"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["accomplished"].HeaderText = "ACCOMPLISHED";
             dataGridView.Columns["accomplished"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns["accomplished"].MinimumWidth = 10;
+            dataGridView.Columns["accomplished"].MinimumWidth = 20;
 
-
-
-
+            dataGridView.Columns["total_count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["total_count"].HeaderText = "TOTAL";
+            dataGridView.Columns["total_count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["total_count"].MinimumWidth = 20;
         }
 
         public static void JobOrdersDataGridView(DataGridView dataGridView, DataTable dataTable)
         {
-
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
                 column.HeaderText = column.HeaderText.ToUpper();
@@ -85,7 +79,7 @@ namespace JOMonitoringApp
             dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
             dataGridView.EnableHeadersVisualStyles = false;
-
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["prepared_by_id"].Visible = false;
@@ -99,13 +93,11 @@ namespace JOMonitoringApp
             dataGridView.Columns["status"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["status"].MinimumWidth = 30;
 
-
             dataGridView.Columns["date"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["date"].HeaderText = "PREPARED DATE";
             dataGridView.Columns["date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["date"].MinimumWidth = 50;
             dataGridView.Columns["date"].DefaultCellStyle.Format = "MM/dd/yyyy";
-
 
             dataGridView.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["account_number"].HeaderText = "ACCOUNT NO.";
@@ -155,7 +147,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["particular"].MinimumWidth = 150;
 
-
             dataGridView.Columns["prepared_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["prepared_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["prepared_by"].HeaderText = "PREPARED BY";
@@ -163,14 +154,13 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["materials_issued_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
-
-  
         }
 
         public static void AccountsDataGridView(DataGridView dataGridView, DataTable dataTable)
         {
-
             dataGridView.DataSource = dataTable;
+
+            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["address"].Visible = false;
@@ -186,7 +176,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["account_number"].MinimumWidth = 100;
         }
 
-
         internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
         {
             cmbx.DataSource = dataTable;
@@ -199,7 +188,7 @@ namespace JOMonitoringApp
         {
             // Add a new row to the dataTable
             DataRow newRow = dataTable.NewRow();
-            
+
             newRow[valueMember] = "0"; // Replace with actual value
             newRow[displayMember] = "All"; // Replace with actual display text
             dataTable.Rows.InsertAt(newRow, 0);
@@ -237,9 +226,9 @@ namespace JOMonitoringApp
             // Add columns to the DataTable using AddRange
             DataColumn[] columns =
             {
-                new DataColumn("id", typeof(int)),
-                new DataColumn("description", typeof(string))
-            };
+                    new DataColumn("id", typeof(int)),
+                    new DataColumn("description", typeof(string))
+                };
 
             dataTable.Columns.AddRange(columns);
 
@@ -281,6 +270,8 @@ namespace JOMonitoringApp
                 dgInvestigations.DataSource = null;
             }
 
+            dgInvestigations.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
+
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
             dgInvestigations.Columns["customers_id"].Visible = false;
@@ -308,6 +299,8 @@ namespace JOMonitoringApp
         internal static void ParticularsDataGridView(DataGridView dgvParticulars)
         {
             // Set header text and width
+            dgvParticulars.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
+
             dgvParticulars.Columns[0].Visible = false;
             dgvParticulars.Columns[0].HeaderText = "ID";
             dgvParticulars.Columns[0].Width = 30;
@@ -322,11 +315,13 @@ namespace JOMonitoringApp
         internal static void RolesDatagridView(DataGridView dgRoles, DataTable dataTable)
         {
             dgRoles.DataSource = dataTable;
+
+            dgRoles.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
+
             dgRoles.Columns["id"].Visible = false;
             dgRoles.Columns["role"].HeaderText = "ROLES";
             dgRoles.Columns["role"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgRoles.Columns["role"].Width = 200;
-
         }
     }
 }

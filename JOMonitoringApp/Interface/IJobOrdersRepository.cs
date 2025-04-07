@@ -20,7 +20,7 @@ namespace JOMonitoringApp.Interface
 
         DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string status, string orderBy);
 
-        int GetSummaryByStatusId(int year, int monthId, int statusId);
+        int GetSummaryByStatusId(DateTime dateFrom, DateTime dateTo, int statusId);
 
         //bool SoftDeleteJOById(int jobOrderId, int deleteBy);
 

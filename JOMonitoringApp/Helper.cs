@@ -111,7 +111,7 @@ namespace AccountingSystem
         }
         public static void LoadFormIcon(Form form)
         {
-            form.Icon = JOMonitoringApp.Properties.Resources.Your_paragraph_text__4_;
+            form.Icon = JOMonitoringApp.Properties.Resources.new_system_logo;
         }
 
         public static void DatagridFullRowSelectStyle(DataGridView dgv, bool Fill = false, bool isReadOnly = true, bool showRowHeader = false)

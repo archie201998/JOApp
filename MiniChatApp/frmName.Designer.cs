@@ -39,6 +39,7 @@
             textBox1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(12, 21);
             textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Enter your name here to chat...";
             textBox1.Size = new Size(379, 33);
             textBox1.TabIndex = 0;
             textBox1.TextAlign = HorizontalAlignment.Center;

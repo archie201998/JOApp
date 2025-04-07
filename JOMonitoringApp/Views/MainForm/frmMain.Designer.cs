@@ -49,7 +49,6 @@
             this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -263,22 +262,15 @@
             // sessionToolStripMenuItem
             // 
             this.sessionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lockApplicationToolStripMenuItem,
             this.logoutToolStripMenuItem1});
             this.sessionToolStripMenuItem.Name = "sessionToolStripMenuItem";
             this.sessionToolStripMenuItem.Size = new System.Drawing.Size(64, 21);
             this.sessionToolStripMenuItem.Text = "Session";
             // 
-            // lockApplicationToolStripMenuItem
-            // 
-            this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
-            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.lockApplicationToolStripMenuItem.Text = "Lock Application";
-            // 
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -748,6 +740,7 @@
             this.Text = "Job Order Monitoring App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing_1);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             this.menuStrip1.ResumeLayout(false);
@@ -782,7 +775,6 @@
         private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cSVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sessionToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lockApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;

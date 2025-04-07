@@ -274,7 +274,9 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
+            var frmSignIn = new frmSignIn();
+            frmSignIn.Show();
         }
 
         private bool SoftDeleteJO()
@@ -645,13 +647,16 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void frmMain_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-           DialogResult result = MessageBox.Show("Are you sure you want to exit?",
+           DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
                                          "Confirm Exit",
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
 
-            if (result == DialogResult.No)
-                e.Cancel = true; 
+            if (result.Equals(DialogResult.No))
+            {
+                e.Cancel = true;
+            }
+
         }
 
         private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -746,6 +751,11 @@ namespace JOMonitoringApp.Views.MainForm
         {
             _ = new frmMessagePrompt().ShowDialog();
             tabControl1.SelectedTab = tabPage1;
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

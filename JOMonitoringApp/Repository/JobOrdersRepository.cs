@@ -127,19 +127,20 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
-        public DataTable GetViewRecordsBySearch(int monthIndex, string particulars, string status, string orderBy)
+        public DataTable GetViewRecordsBySearch(DateTime dateFrom, DateTime dateTo, string particulars, string status, string orderBy)
         {
 
             if (particulars == "All") particulars = "%%";
 
             var parameters = new object[][]
             {
-                new object[] { "@month_index", DbType.Int32, monthIndex},
+                new object[] { "@date_from", DbType.DateTime, dateFrom },
+                new object[] { "@date_to", DbType.DateTime, dateTo },
                 new object[] { "@particular", DbType.String, $"%{particulars}%" },
             };
 
 
-            string query = $"SELECT * FROM {viewTableName} WHERE {status} AND particular LIKE @particular AND MONTH(date) = @month_index  AND is_deleted = 0  ORDER BY {orderBy} DESC";
+            string query = $"SELECT * FROM {viewTableName} WHERE {status} AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

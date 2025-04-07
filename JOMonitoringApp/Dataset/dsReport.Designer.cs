@@ -326,6 +326,12 @@ namespace JOMonitoringApp.Dataset {
             
             private global::System.Data.DataColumn columnstatus;
             
+            private global::System.Data.DataColumn columnmrs;
+            
+            private global::System.Data.DataColumn columnmris;
+            
+            private global::System.Data.DataColumn columnwar;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtJobOrderSummaryDataTable() {
@@ -409,6 +415,30 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn mrsColumn {
+                get {
+                    return this.columnmrs;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn mrisColumn {
+                get {
+                    return this.columnmris;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn warColumn {
+                get {
+                    return this.columnwar;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -444,7 +474,7 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtJobOrderSummaryRow AdddtJobOrderSummaryRow(string date, string job_order_no, string account_name, string account_number, string particular, string status) {
+            public dtJobOrderSummaryRow AdddtJobOrderSummaryRow(string date, string job_order_no, string account_name, string account_number, string particular, string status, string mrs, string mris, string war) {
                 dtJobOrderSummaryRow rowdtJobOrderSummaryRow = ((dtJobOrderSummaryRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         date,
@@ -452,7 +482,10 @@ namespace JOMonitoringApp.Dataset {
                         account_name,
                         account_number,
                         particular,
-                        status};
+                        status,
+                        mrs,
+                        mris,
+                        war};
                 rowdtJobOrderSummaryRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtJobOrderSummaryRow);
                 return rowdtJobOrderSummaryRow;
@@ -481,6 +514,9 @@ namespace JOMonitoringApp.Dataset {
                 this.columnaccount_number = base.Columns["account_number"];
                 this.columnparticular = base.Columns["particular"];
                 this.columnstatus = base.Columns["status"];
+                this.columnmrs = base.Columns["mrs"];
+                this.columnmris = base.Columns["mris"];
+                this.columnwar = base.Columns["war"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -498,6 +534,12 @@ namespace JOMonitoringApp.Dataset {
                 base.Columns.Add(this.columnparticular);
                 this.columnstatus = new global::System.Data.DataColumn("status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstatus);
+                this.columnmrs = new global::System.Data.DataColumn("mrs", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmrs);
+                this.columnmris = new global::System.Data.DataColumn("mris", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmris);
+                this.columnwar = new global::System.Data.DataColumn("war", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnwar);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1053,6 +1095,54 @@ namespace JOMonitoringApp.Dataset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string mrs {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtJobOrderSummary.mrsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mrs\' in table \'dtJobOrderSummary\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtJobOrderSummary.mrsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string mris {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtJobOrderSummary.mrisColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mris\' in table \'dtJobOrderSummary\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtJobOrderSummary.mrisColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string war {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtJobOrderSummary.warColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'war\' in table \'dtJobOrderSummary\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtJobOrderSummary.warColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsdateNull() {
                 return this.IsNull(this.tabledtJobOrderSummary.dateColumn);
             }
@@ -1121,6 +1211,42 @@ namespace JOMonitoringApp.Dataset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetstatusNull() {
                 this[this.tabledtJobOrderSummary.statusColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsmrsNull() {
+                return this.IsNull(this.tabledtJobOrderSummary.mrsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetmrsNull() {
+                this[this.tabledtJobOrderSummary.mrsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsmrisNull() {
+                return this.IsNull(this.tabledtJobOrderSummary.mrisColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetmrisNull() {
+                this[this.tabledtJobOrderSummary.mrisColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IswarNull() {
+                return this.IsNull(this.tabledtJobOrderSummary.warColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetwarNull() {
+                this[this.tabledtJobOrderSummary.warColumn] = global::System.Convert.DBNull;
             }
         }
         

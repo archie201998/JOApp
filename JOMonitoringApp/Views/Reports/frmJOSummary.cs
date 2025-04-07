@@ -37,9 +37,12 @@ namespace JOMonitoringApp.Views.Reports
 
         private void FrmJOSummary_Load(object sender, EventArgs e)
         {
-            LoadMonths();
             LoadParticulars();
             CheckStatus();
+
+            dtpFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtpTo.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
+
         }
 
         private void LoadParticulars()
@@ -51,14 +54,6 @@ namespace JOMonitoringApp.Views.Reports
             particular = cmbxParticular.Text;
         }
 
-        private void LoadMonths()
-        {
-            foreach (var item in Helper.MonthsDatasource().Values)
-                cmbxMonth.Items.Add(item);
-            cmbxMonth.SelectedIndex = DateTime.Now.Month - 1;
-
-            monthIndex = cmbxMonth.SelectedIndex;
-        }
 
         private void LoadReport()
         {
@@ -96,6 +91,8 @@ namespace JOMonitoringApp.Views.Reports
             try
             {
                 // Define tasks and their progress weights
+
+                int pending = 0, processing = 0, cancelled = 0, accomplished = 0, totalCount = 0;
                 var tasks = new Dictionary<string, int>
                 {
                     { "Initialize Parameters", 50 },
@@ -106,7 +103,10 @@ namespace JOMonitoringApp.Views.Reports
                 //var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByMonth(monthIndex + 1);
                 string orderBy = radJo.Checked ? radJo.Tag.ToString() : radDate.Tag.ToString();
 
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(monthIndex + 1, particular, statusFilter, orderBy);
+                DateTime dateFrom = dtpFrom.Value;
+                DateTime dateTo = dtpTo.Value;
+
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(dateFrom, dateTo, particular, statusFilter, orderBy);
 
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
@@ -123,9 +123,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramRecommendingApproval", "CHRISTOPHER JASON R. CABABARO"));
                 reportParameters1.Add(new ReportParameter("paramApproved", "ENG. VIVIEL MAY B. RAMIREZ"));
-                reportParameters1.Add(new ReportParameter("paramMonth", CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(monthIndex + 1)));
-                progressCount += tasks["Set Parameter Values"];
-                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+                reportParameters1.Add(new ReportParameter("paramMonth", $"Period :  {dtpFrom.Value.ToString("MMMM dd, yyyy")} - {dtpTo.Value.ToString("MMMM dd, yyyy")}"));
 
 
                 foreach (DataRow dataRow in dtJobOrders.Rows)
@@ -134,6 +132,9 @@ namespace JOMonitoringApp.Views.Reports
                     var newRow = dtJobOrderSummary.NewRow();
                     newRow["date"] = dataRow["date"];
                     newRow["job_order_no"] = dataRow["job_order_no"];
+                    newRow["mris"] = dataRow["mris"];
+                    newRow["mrs"] = dataRow["mrs"];
+                    newRow["war"] = dataRow["war"];
                     newRow["account_name"] = dataRow["account_name"];
                     newRow["account_number"] = dataRow["account_number"];
                     newRow["particular"] = dataRow["particular"];
@@ -142,7 +143,24 @@ namespace JOMonitoringApp.Views.Reports
                     progressCount++;
                     dtJobOrderSummary.Rows.Add(newRow);
                     Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+
+                    if (dataRow["status_id"].ToString() == "1") pending += 1;
+                    if (dataRow["status_id"].ToString() == "2") processing += 1;
+                    if (dataRow["status_id"].ToString() == "3") cancelled += 1;
+                    if (dataRow["status_id"].ToString() == "4") accomplished += 1;
+                    totalCount += 1;
+
                 }
+
+                reportParameters1.Add(new ReportParameter("paramPending", pending.ToString()));
+                reportParameters1.Add(new ReportParameter("paramProcessing", processing.ToString()));
+                reportParameters1.Add(new ReportParameter("paramCancelled", cancelled.ToString()));
+                reportParameters1.Add(new ReportParameter("paramAccomplished", accomplished.ToString()));
+                reportParameters1.Add(new ReportParameter("paramTotal", totalCount.ToString()));
+
+
+                progressCount += tasks["Set Parameter Values"];
+                Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
 
                 e.Result = (reportParameters1, dtJobOrders);
             }
@@ -183,10 +201,6 @@ namespace JOMonitoringApp.Views.Reports
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
-        private void cmbxMonth_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            monthIndex = cmbxMonth.SelectedIndex;
-        }
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {

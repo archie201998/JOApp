@@ -170,6 +170,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dataset\dsReport.cs">
+      <DependentUpon>dsReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Dataset\dsReport.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

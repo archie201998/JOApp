@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
 using System.Collections.Generic;
 using System.Data;
+using System.Transactions;
 
 namespace JOMonitoringApp
 {
@@ -20,6 +21,17 @@ namespace JOMonitoringApp
         public bool Delete(List<RoleHasPermissionModel> entityList)
         {
             throw new System.NotImplementedException();
+        }
+
+        public bool DeleteRolePermissions(int selectedRoleId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@roles_id", DbType.Int32, selectedRoleId},
+            };
+
+            string query = $"DELETE FROM {tableName} WHERE roles_id = @roles_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public DataTable GetPermissionsByRolesId(int selectedRoleId)

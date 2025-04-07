@@ -235,6 +235,21 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
             ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
             ucJoborder.txtRemarks.Enabled = Helper.UserHasPermission("ADD_REMARKS");
+            btnSave.Enabled = Helper.UserHasPermission("SAVE_JOB_ORDER");
+
+            dgJobOrders.Visible = Helper.UserHasPermission("VIEW_JOB_ORDERS");
+
+            toolStripUser.Enabled = Helper.UserHasPermission("SETTINGS_ADD_USER");
+            toolStripMaterials.Enabled = Helper.UserHasPermission("SETTINGS_ADD_MATERIALS");
+            toolStripParticulars.Enabled = Helper.UserHasPermission("SETTINGS_ADD_PARTICULARS");
+            toolStripRolesAndPermissions.Enabled = Helper.UserHasPermission("SETTINGS_ADD_ROLES_AND_PERMISSIONS");
+            toolStripSignatories.Enabled = Helper.UserHasPermission("SETTINGS_REPORT_SIGNATORIES");
+
+            toolStripJOSummary.Enabled = Helper.UserHasPermission("REPORT_JO_SUMMARY");
+            toolStripJOProgressTracking.Enabled = Helper.UserHasPermission("REPORT_JO_PROGRESS_TRACKING");
+            toolStripSROF.Enabled = Helper.UserHasPermission("REPORT_SROF");
+            toolStripInvestigation.Enabled = Helper.UserHasPermission("REPORT_INVESTIGATION");
+
         }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -276,6 +291,9 @@ namespace JOMonitoringApp.Views.MainForm
         {
             this.Hide();
             var frmSignIn = new frmSignIn();
+            frmSignIn.txtPassword.Clear();
+            frmSignIn.txtUserName.Clear();
+            Helper.UserId = 0;
             frmSignIn.Show();
         }
 
@@ -419,6 +437,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountNumber.Clear();
             ucJoborder.txtAddress.Clear();
             ucJoborder.txtContact.Clear();
+            ValidatePermissions();
             //dgJobOrders.ClearSelection();
 
         }
@@ -756,6 +775,31 @@ namespace JOMonitoringApp.Views.MainForm
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void toolStripSignatories_Click(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
+        }
+
+        private void toolStripMaterials_Click(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
+        }
+
+        private void manualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
+        }
+
+        private void databaseBackupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
+        }
+
+        private void restoreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmMessagePrompt().ShowDialog();
         }
     }
 }

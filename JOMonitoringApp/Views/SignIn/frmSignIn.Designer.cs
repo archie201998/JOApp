@@ -327,8 +327,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSignIn;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -345,6 +343,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Timer timer1;
+        internal System.Windows.Forms.TextBox txtPassword;
+        internal System.Windows.Forms.TextBox txtUserName;
     }
 }
 

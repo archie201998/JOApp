@@ -34,20 +34,17 @@
             this.databaseBackupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restoreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.materialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.particularsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesAndPermissionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.signatoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMaterials = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripParticulars = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripRolesAndPermissions = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSignatories = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jOSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.jOTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.requistionAndIssueSlipRISToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripJOSummary = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSROF = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripInvestigation = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -73,11 +70,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -94,6 +88,9 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -127,8 +124,7 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.databaseBackupToolStripMenuItem,
-            this.exportToolStripMenuItem});
+            this.databaseBackupToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
             this.fileToolStripMenuItem.Text = "File";
@@ -139,125 +135,109 @@
             this.manualToolStripMenuItem,
             this.restoreToolStripMenuItem});
             this.databaseBackupToolStripMenuItem.Name = "databaseBackupToolStripMenuItem";
-            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.databaseBackupToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.databaseBackupToolStripMenuItem.Text = "Database ";
+            this.databaseBackupToolStripMenuItem.Click += new System.EventHandler(this.databaseBackupToolStripMenuItem_Click);
             // 
             // manualToolStripMenuItem
             // 
             this.manualToolStripMenuItem.Name = "manualToolStripMenuItem";
             this.manualToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.manualToolStripMenuItem.Text = "Backup";
+            this.manualToolStripMenuItem.Click += new System.EventHandler(this.manualToolStripMenuItem_Click);
             // 
             // restoreToolStripMenuItem
             // 
             this.restoreToolStripMenuItem.Name = "restoreToolStripMenuItem";
             this.restoreToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.restoreToolStripMenuItem.Text = "Restore";
-            // 
-            // exportToolStripMenuItem
-            // 
-            this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pDFToolStripMenuItem,
-            this.cSVToolStripMenuItem});
-            this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
-            this.exportToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.exportToolStripMenuItem.Text = "Export Record";
-            // 
-            // pDFToolStripMenuItem
-            // 
-            this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
-            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
-            this.pDFToolStripMenuItem.Text = "PDF";
-            // 
-            // cSVToolStripMenuItem
-            // 
-            this.cSVToolStripMenuItem.Name = "cSVToolStripMenuItem";
-            this.cSVToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
-            this.cSVToolStripMenuItem.Text = "CSV";
+            this.restoreToolStripMenuItem.Click += new System.EventHandler(this.restoreToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.usersToolStripMenuItem,
-            this.materialsToolStripMenuItem,
-            this.particularsToolStripMenuItem,
-            this.rolesAndPermissionsToolStripMenuItem,
-            this.signatoriesToolStripMenuItem});
+            this.toolStripUser,
+            this.toolStripMaterials,
+            this.toolStripParticulars,
+            this.toolStripRolesAndPermissions,
+            this.toolStripSignatories});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
-            // usersToolStripMenuItem
+            // toolStripUser
             // 
-            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.usersToolStripMenuItem.Text = "Users";
-            this.usersToolStripMenuItem.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
+            this.toolStripUser.Name = "toolStripUser";
+            this.toolStripUser.Size = new System.Drawing.Size(207, 22);
+            this.toolStripUser.Text = "Users";
+            this.toolStripUser.Click += new System.EventHandler(this.usersToolStripMenuItem_Click);
             // 
-            // materialsToolStripMenuItem
+            // toolStripMaterials
             // 
-            this.materialsToolStripMenuItem.Name = "materialsToolStripMenuItem";
-            this.materialsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.materialsToolStripMenuItem.Text = "Materials";
+            this.toolStripMaterials.Name = "toolStripMaterials";
+            this.toolStripMaterials.Size = new System.Drawing.Size(207, 22);
+            this.toolStripMaterials.Text = "Materials";
+            this.toolStripMaterials.Click += new System.EventHandler(this.toolStripMaterials_Click);
             // 
-            // particularsToolStripMenuItem
+            // toolStripParticulars
             // 
-            this.particularsToolStripMenuItem.Name = "particularsToolStripMenuItem";
-            this.particularsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.particularsToolStripMenuItem.Text = "Particulars";
-            this.particularsToolStripMenuItem.Click += new System.EventHandler(this.particularsToolStripMenuItem_Click);
+            this.toolStripParticulars.Name = "toolStripParticulars";
+            this.toolStripParticulars.Size = new System.Drawing.Size(207, 22);
+            this.toolStripParticulars.Text = "Particulars";
+            this.toolStripParticulars.Click += new System.EventHandler(this.particularsToolStripMenuItem_Click);
             // 
-            // rolesAndPermissionsToolStripMenuItem
+            // toolStripRolesAndPermissions
             // 
-            this.rolesAndPermissionsToolStripMenuItem.Name = "rolesAndPermissionsToolStripMenuItem";
-            this.rolesAndPermissionsToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.rolesAndPermissionsToolStripMenuItem.Text = "Roles and Permissions";
-            this.rolesAndPermissionsToolStripMenuItem.Click += new System.EventHandler(this.rolesAndPermissionsToolStripMenuItem_Click);
+            this.toolStripRolesAndPermissions.Name = "toolStripRolesAndPermissions";
+            this.toolStripRolesAndPermissions.Size = new System.Drawing.Size(207, 22);
+            this.toolStripRolesAndPermissions.Text = "Roles and Permissions";
+            this.toolStripRolesAndPermissions.Click += new System.EventHandler(this.rolesAndPermissionsToolStripMenuItem_Click);
             // 
-            // signatoriesToolStripMenuItem
+            // toolStripSignatories
             // 
-            this.signatoriesToolStripMenuItem.Name = "signatoriesToolStripMenuItem";
-            this.signatoriesToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
-            this.signatoriesToolStripMenuItem.Text = "Report Signatories";
+            this.toolStripSignatories.Name = "toolStripSignatories";
+            this.toolStripSignatories.Size = new System.Drawing.Size(207, 22);
+            this.toolStripSignatories.Text = "Report Signatories";
+            this.toolStripSignatories.Click += new System.EventHandler(this.toolStripSignatories_Click);
             // 
             // reportToolStripMenuItem
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.jOSummaryToolStripMenuItem,
-            this.jOTrackingToolStripMenuItem,
-            this.requistionAndIssueSlipRISToolStripMenuItem,
-            this.investigationToolStripMenuItem});
+            this.toolStripJOSummary,
+            this.toolStripJOProgressTracking,
+            this.toolStripSROF,
+            this.toolStripInvestigation});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
             // 
-            // jOSummaryToolStripMenuItem
+            // toolStripJOSummary
             // 
-            this.jOSummaryToolStripMenuItem.Name = "jOSummaryToolStripMenuItem";
-            this.jOSummaryToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.jOSummaryToolStripMenuItem.Text = "J.O Summary";
-            this.jOSummaryToolStripMenuItem.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
+            this.toolStripJOSummary.Name = "toolStripJOSummary";
+            this.toolStripJOSummary.Size = new System.Drawing.Size(310, 22);
+            this.toolStripJOSummary.Text = "J.O Summary";
+            this.toolStripJOSummary.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
-            // jOTrackingToolStripMenuItem
+            // toolStripJOProgressTracking
             // 
-            this.jOTrackingToolStripMenuItem.Name = "jOTrackingToolStripMenuItem";
-            this.jOTrackingToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.jOTrackingToolStripMenuItem.Text = "J.O Progress Tracking";
-            this.jOTrackingToolStripMenuItem.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
+            this.toolStripJOProgressTracking.Name = "toolStripJOProgressTracking";
+            this.toolStripJOProgressTracking.Size = new System.Drawing.Size(310, 22);
+            this.toolStripJOProgressTracking.Text = "J.O Progress Tracking";
+            this.toolStripJOProgressTracking.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
             // 
-            // requistionAndIssueSlipRISToolStripMenuItem
+            // toolStripSROF
             // 
-            this.requistionAndIssueSlipRISToolStripMenuItem.Name = "requistionAndIssueSlipRISToolStripMenuItem";
-            this.requistionAndIssueSlipRISToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.requistionAndIssueSlipRISToolStripMenuItem.Text = "Service Request and Order Form (SROF)";
-            this.requistionAndIssueSlipRISToolStripMenuItem.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
+            this.toolStripSROF.Name = "toolStripSROF";
+            this.toolStripSROF.Size = new System.Drawing.Size(310, 22);
+            this.toolStripSROF.Text = "Service Request and Order Form (SROF)";
+            this.toolStripSROF.Click += new System.EventHandler(this.requistionAndIssueSlipRISToolStripMenuItem_Click);
             // 
-            // investigationToolStripMenuItem
+            // toolStripInvestigation
             // 
-            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
-            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.investigationToolStripMenuItem.Text = "Investigation";
-            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
+            this.toolStripInvestigation.Name = "toolStripInvestigation";
+            this.toolStripInvestigation.Size = new System.Drawing.Size(310, 22);
+            this.toolStripInvestigation.Text = "Investigation";
+            this.toolStripInvestigation.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
             // 
             // sessionToolStripMenuItem
             // 
@@ -564,35 +544,17 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.ucInvestigation1);
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1724, 777);
+            this.tabPage3.Size = new System.Drawing.Size(1724, 948);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "INVESTIGATION";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
-            // 
-            // ucInvestigation1
-            // 
-            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
-            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ucInvestigation1.Name = "ucInvestigation1";
-            this.ucInvestigation1.Size = new System.Drawing.Size(1419, 644);
-            this.ucInvestigation1.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -600,21 +562,11 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1724, 777);
+            this.tabPage2.Size = new System.Drawing.Size(1724, 948);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.TabPage2_Enter);
-            // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1718, 796);
-            this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // backgroundWorker1
             // 
@@ -721,6 +673,34 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Size = new System.Drawing.Size(489, 880);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucInvestigation1
+            // 
+            this.ucInvestigation1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucInvestigation1.Location = new System.Drawing.Point(3, 3);
+            this.ucInvestigation1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucInvestigation1.Name = "ucInvestigation1";
+            this.ucInvestigation1.Size = new System.Drawing.Size(1419, 644);
+            this.ucInvestigation1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1718, 796);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -770,17 +750,14 @@
         private System.Windows.Forms.ToolStripMenuItem databaseBackupToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restoreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cSVToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sessionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem materialsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem particularsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rolesAndPermissionsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem signatoriesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripUser;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMaterials;
+        private System.Windows.Forms.ToolStripMenuItem toolStripParticulars;
+        private System.Windows.Forms.ToolStripMenuItem toolStripRolesAndPermissions;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSignatories;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -796,7 +773,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblCurrentUser;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
-        private System.Windows.Forms.ToolStripMenuItem jOSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripJOSummary;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.Panel panelInputField;
@@ -813,11 +790,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.ToolStripMenuItem requistionAndIssueSlipRISToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripSROF;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
-        private System.Windows.Forms.ToolStripMenuItem jOTrackingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripInvestigation;
         private Investigation.ucInvestigationForm ucInvestigation1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.Timer timer1;

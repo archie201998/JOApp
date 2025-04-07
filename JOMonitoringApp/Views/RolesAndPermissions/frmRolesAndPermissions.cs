@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.RolesAndPermissions
@@ -104,7 +106,19 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            using (var scope = new TransactionScope())
+            {
+                // Get the selected role ID
+                int selectedRoleId = dgvRoles.SelectedCells[0].RowIndex;
+                bool deleteRes = Factory.RoleHasPermissionRepository().DeleteRolePermissions(selectedRoleId);
 
+                if (deleteRes)
+                {
+                    //bool insertRoles = Factory.RoleHasPermissionRepository().Insert(RolesAndPermissionsModel(selectedRoleId));
+                }
+
+                scope.Complete();
+            }
         }
 
         private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)

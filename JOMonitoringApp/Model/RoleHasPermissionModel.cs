@@ -9,6 +9,8 @@ namespace JOMonitoringApp.Model
     internal class RoleHasPermissionModel
     {
         public int Id { get; set; }
+
+        public int RoleId { get; set; }
         public string permission { get; set; }
         public string description { get; set; }
     }

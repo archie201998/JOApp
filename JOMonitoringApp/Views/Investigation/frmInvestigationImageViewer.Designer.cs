@@ -68,7 +68,7 @@
             this.Name = "frmInvestigationImageViewer";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Images";
+            this.Text = "A where ";
             this.Load += new System.EventHandler(this.frmInvestigationImageViewer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

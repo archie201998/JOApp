@@ -65,6 +65,7 @@
             this.dgvRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRoles.Location = new System.Drawing.Point(3, 17);
+            this.dgvRoles.MultiSelect = false;
             this.dgvRoles.Name = "dgvRoles";
             this.dgvRoles.RowHeadersWidth = 51;
             this.dgvRoles.Size = new System.Drawing.Size(218, 395);
@@ -188,7 +189,6 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSave.Enabled = false;
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

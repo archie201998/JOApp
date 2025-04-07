@@ -39,8 +39,10 @@ namespace MiniChatApp
         private void frmMiniChatRoom_Load(object sender, EventArgs e)
         {
             lblChatName.Text = Helper.currentUserDisplayName;
-            LoadMessages();
+            //LoadMessages();
             flowLayoutPanelChat.AutoScrollPosition = new System.Drawing.Point(0, flowLayoutPanelChat.VerticalScroll.Maximum);
+
+
         }
 
         private void LoadMessages()
@@ -87,6 +89,23 @@ namespace MiniChatApp
         private void messageChecker_Tick(object sender, EventArgs e)
         {
             LoadMessages();
+        }
+
+        private void frmMiniChatRoom_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                trayIcon.BalloonTipTitle = "Mini Chat-Room";
+                trayIcon.BalloonTipText = "New Message";
+                trayIcon.ShowBalloonTip(1000);
+            }
+        }
+
+        private void trayIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }

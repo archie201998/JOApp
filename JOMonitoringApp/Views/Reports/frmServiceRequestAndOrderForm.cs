@@ -113,6 +113,7 @@ namespace JOMonitoringApp.Views.Reports
             var userData = Helper.LoggedInUserData();
             reportParameters1.Add(new ReportParameter("paramSRNo", string.Empty));
             reportParameters1.Add(new ReportParameter("paramJOR", txtJONumberFrom.Text));
+            reportParameters1.Add(new ReportParameter("paramStatus", dtJobOrders["status"].ToString()));
 
             reportParameters1.Add(new ReportParameter("paramMRISNo", dtJobOrders["mris"].ToString()));
             reportParameters1.Add(new ReportParameter("paramMRSNo", dtJobOrders["mrs"].ToString()));

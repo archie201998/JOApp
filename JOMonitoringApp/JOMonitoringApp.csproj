@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>J.O e-Monitoring.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\new_system_logo.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>6230685815BA7263CFAC79F1E12EFDF98EB2BAC2</ManifestCertificateThumbprint>
@@ -326,6 +326,9 @@
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\new_system_logo.ico" />
+    <None Include="Resources\logo.ico" />
+    <None Include="Resources\new_sys_icon.ico" />
     <None Include="Resources\icons8-online-maintenance-portal-100.png" />
     <None Include="Resources\icons8-programmer-96.png" />
     <None Include="Resources\icons8-user-24-3d.png" />

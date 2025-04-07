@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMiniChatRoom));
             flowLayoutPanelChat = new FlowLayoutPanel();
             button1 = new Button();
             txtMessage = new TextBox();
@@ -36,6 +37,8 @@
             messageChecker = new System.Windows.Forms.Timer(components);
             label1 = new Label();
             lblChatName = new Label();
+            trayIcon = new NotifyIcon(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -109,6 +112,19 @@
             lblChatName.TabIndex = 2;
             lblChatName.Text = "---";
             // 
+            // trayIcon
+            // 
+            trayIcon.ContextMenuStrip = contextMenuStrip1;
+            trayIcon.Icon = (Icon)resources.GetObject("trayIcon.Icon");
+            trayIcon.Text = "notifyIcon1";
+            trayIcon.Visible = true;
+            trayIcon.DoubleClick += trayIcon_DoubleClick;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(61, 4);
+            // 
             // frmMiniChatRoom
             // 
             AcceptButton = button1;
@@ -126,6 +142,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Mini Chat-Room";
             Load += frmMiniChatRoom_Load;
+            Resize += frmMiniChatRoom_Resize;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -141,5 +158,7 @@
         private System.Windows.Forms.Timer messageChecker;
         private Label label1;
         private Label lblChatName;
+        private NotifyIcon trayIcon;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

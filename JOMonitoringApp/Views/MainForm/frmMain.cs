@@ -216,7 +216,6 @@ namespace JOMonitoringApp.Views.MainForm
         internal void OnLoad()
         {
             LoadJobOrders();
-            ucDashboardSummaryView.LoadJobOrdersSummary();
             ucJoborder.OnLoad();
 
             //if user is not investigator=> disable investigation menu
@@ -242,15 +241,12 @@ namespace JOMonitoringApp.Views.MainForm
         {
             if (dgJobOrders.Columns[e.ColumnIndex].Name == "status")
             {
-
                 e.CellStyle.ForeColor = Color.White;
-
                 if (e.Value != null)
                 {
                     string status = e.Value.ToString();
                     if (status == "PENDING")
                     {
-                        e.CellStyle.ForeColor = Color.Black;
                         e.CellStyle.BackColor = Helper.StatusColor("pending");
                     }
                     
@@ -278,14 +274,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            bool res = Helper.MessageBoxConfirmCancel("Do you want to log-out your account?");
-            if (res)
-            {
-                Close();
-                Helper.UserId = 0;
-                _ = new frmSignIn().ShowDialog();
-            }
-            return;
+            Close();
         }
 
         private bool SoftDeleteJO()
@@ -554,7 +543,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void TabPage2_Enter(object sender, EventArgs e)
         {
-            ucDashboardSummaryView.LoadAndDisplaySummary();
+            
         }
 
         private void UpdateSettings()

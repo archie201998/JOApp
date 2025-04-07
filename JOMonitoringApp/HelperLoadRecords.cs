@@ -35,7 +35,6 @@ namespace JOMonitoringApp
         {
             dataGridView.DataSource = dataTable;
 
-
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["particular"].HeaderText = "PARTICULAR";
             dataGridView.Columns["particular"].MinimumWidth = 120;
@@ -79,7 +78,6 @@ namespace JOMonitoringApp
             dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
             dataGridView.EnableHeadersVisualStyles = false;
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["prepared_by_id"].Visible = false;

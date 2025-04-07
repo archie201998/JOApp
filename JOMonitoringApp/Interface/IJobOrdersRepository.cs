@@ -32,6 +32,6 @@ namespace JOMonitoringApp.Interface
         bool CheckPossibleDuplicate(string accountNumber, string particulars);
         bool JONumberExist(string joNumber);
 
-        DataTable JOStatusPerParticular();
+        DataTable JOStatusPerParticular(DateTime dateFrom, DateTime dateTo);
     }
 }

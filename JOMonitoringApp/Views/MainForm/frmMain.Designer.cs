@@ -284,7 +284,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1732, 805);
+            this.tabControl1.Size = new System.Drawing.Size(1732, 976);
             this.tabControl1.TabIndex = 4;
             // 
             // tabPage1
@@ -294,7 +294,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1724, 777);
+            this.tabPage1.Size = new System.Drawing.Size(1724, 948);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -308,7 +308,7 @@
             this.panel1.Location = new System.Drawing.Point(488, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1233, 771);
+            this.panel1.Size = new System.Drawing.Size(1233, 942);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -319,7 +319,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1223, 705);
+            this.panel6.Size = new System.Drawing.Size(1223, 876);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -332,7 +332,7 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(1215, 697);
+            this.dgJobOrders.Size = new System.Drawing.Size(1215, 868);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
@@ -517,7 +517,7 @@
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(485, 771);
+            this.panelInputField.Size = new System.Drawing.Size(485, 942);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -527,7 +527,7 @@
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Location = new System.Drawing.Point(18, 854);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(451, 34);
+            this.panel4.Size = new System.Drawing.Size(451, 61);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -539,9 +539,9 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(311, 5);
+            this.btnCancel.Location = new System.Drawing.Point(320, 5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(101, 23);
+            this.btnCancel.Size = new System.Drawing.Size(94, 23);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel [Esc]";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -558,10 +558,9 @@
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Location = new System.Drawing.Point(178, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(127, 23);
+            this.btnSave.Size = new System.Drawing.Size(136, 23);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save [Ctrl + S]";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
@@ -639,7 +638,7 @@
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6,
             this.lblPing});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 835);
+            this.statusStrip1.Location = new System.Drawing.Point(5, 1006);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1732, 22);
             this.statusStrip1.TabIndex = 5;
@@ -727,7 +726,7 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1742, 862);
+            this.ClientSize = new System.Drawing.Size(1742, 1033);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);

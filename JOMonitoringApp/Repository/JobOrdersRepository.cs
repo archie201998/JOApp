@@ -1,11 +1,12 @@
-﻿using System;
+﻿using JOMonitoringApp.Interface;
+using JOMonitoringApp.Model;
+using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Transactions;
-using JOMonitoringApp.Interface;
-using JOMonitoringApp.Model;
-using JOMonitoringApp.Repository;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
@@ -168,7 +169,7 @@ namespace JOMonitoringApp
                 new object[]{"@prepared_by", DbType.Int32, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
-                new object[]{"@status_id", DbType.String, entity.StatusId},
+                new object[]{"@status_id", DbType.Int16, entity.StatusId},
             };
 
             string query = $"INSERT INTO {tableName} (account_name, account_number, address, contact_number,  particular, date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@account_name, @account_number, @address, @contact_number, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
@@ -187,7 +188,7 @@ namespace JOMonitoringApp
                         new object[] { "@deleted_by", DbType.Int32, entity.DeletedBy},
                      };
 
-                    string query = $"UPDATE {tableName} SET is_deleted = 1,  deleted_by = @deleted_by WHERE id = @job_order_id";
+                    string query = $"1 {tableName} SET is_deleted = 1,  deleted_by = @deleted_by WHERE id = @job_order_id";
                     _ = mySqlGenericCommands.ExecuteNonQuery(query, parameters);
                 }
 
@@ -216,7 +217,7 @@ namespace JOMonitoringApp
                 new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
-                new object[]{"@status_id", DbType.String, entity.StatusId},
+                new object[]{"@status_id", DbType.Int16, entity.StatusId},
             };
 
             string query = $"UPDATE {tableName} SET  particular=@particular, account_number = @account_number, account_name = @account_name, contact_number = @contact_number, address = @address, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, prepared_by=@prepared_by, status_id=@status_id WHERE id = @id";
@@ -297,6 +298,14 @@ namespace JOMonitoringApp
             int count = int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
 
             return count > 0;
+        }
+
+        public DataTable JOStatusPerParticular()
+        {
+            string query = $"SELECT particular, COUNT(*) AS total_count, SUM(CASE WHEN status_id = 1 THEN 1 ELSE 0 END) AS pending, SUM(CASE WHEN status_id = 2 THEN 1 ELSE 0 END) AS processing, SUM(CASE WHEN status_id = 3 THEN 1 ELSE 0 END) AS cancelled, SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) AS accomplished FROM view_job_orders WHERE is_deleted = 0 GROUP BY particular ORDER BY total_count DESC;";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable);
         }
     }
 }

@@ -230,7 +230,9 @@ namespace JOMonitoringApp.Views.JobOrder
             }
 
             string particular = particularsBuilder.ToString().TrimEnd();
-            if (moreThanOneItem) particular = particular.Substring(0, particular.Length - 2);
+
+            if (moreThanOneItem) 
+                particular = particular.Substring(0, particular.Length - 2);
 
             return particular;
         }
@@ -252,14 +254,14 @@ namespace JOMonitoringApp.Views.JobOrder
             string accountName = txtAccountName.Text;
             string address = txtAddress.Text;
             string contact = txtContact.Text;
-            string jobOrderNumber = txtJONumber.Text;
+            string jobOrderNumber = txtJONumber.Text.Trim();
             DateTime date = dtpDate.Value;
-            string orNumber = txtORNumber.Text;
+            string orNumber = txtORNumber.Text.Trim();
             decimal amount = nudAmount.Value;
-            string MRIS = txtMRISNumber.Text;
-            string MRS = txtMRSNumber.Text;
-            string WAR = txtWARNumber.Text;
-            string remarks = txtRemarks.Text;
+            string MRIS = txtMRISNumber.Text.Trim();
+            string MRS = txtMRSNumber.Text.Trim();
+            string WAR = txtWARNumber.Text.Trim();
+            string remarks = txtRemarks.Text.Trim();
             int preparedById = Helper.UserId;
             int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
@@ -285,7 +287,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 WAR = WAR,
                 Remarks = remarks,
                 MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
-                AccomplishedBy = accomplishedBy,
+                AccomplishedBy = accomplishedBy == 0 ? null : accomplishedBy,
                 StatusId = statusId,
                 UserId = Helper.UserId
             };

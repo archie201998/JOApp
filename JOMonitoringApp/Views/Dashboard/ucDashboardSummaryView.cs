@@ -18,6 +18,7 @@ namespace JOMonitoringApp.Views.Dashboard
             if (!DesignMode)
             {
                 InitializeComponent();
+                Helper.DatagridFullRowSelectStyle(dgStatPerParticular);
             }
         }
 
@@ -70,7 +71,51 @@ namespace JOMonitoringApp.Views.Dashboard
 
         private void UcDashboardSummaryView_Load(object sender, EventArgs e)
         {
-          
+            LoadStatusPerParticular();
+        }
+
+        private DataColumn[] JobOrdersColumns()
+        {
+            return new DataColumn[]
+            {
+                new DataColumn("particular", typeof (string)),
+                new DataColumn("total_count", typeof(int)),
+                new DataColumn("pending", typeof(int)),
+                new DataColumn("cancelled", typeof(int)),
+                new DataColumn("processing", typeof(int)),
+                new DataColumn("accomplished", typeof(int)),
+            };
+        }
+
+
+        private void LoadStatusPerParticular()
+        {
+            var dtStatusPerParticular = Factory.JobOrdersRepository().JOStatusPerParticular();
+
+            var dataTable = new DataTable();
+            dataTable.Columns.AddRange(JobOrdersColumns());
+
+            foreach (DataRow row in dtStatusPerParticular.Rows)
+            {
+
+                var newRow = dataTable.NewRow();
+                string particular = row["particular"].ToString();
+                int total = Convert.ToInt32(row["total_count"]);
+                int pending = Convert.ToInt32(row["pending"]);
+                int processing = Convert.ToInt32(row["processing"]);
+                int cancelled = Convert.ToInt32(row["cancelled"]);
+                int accomplished = Convert.ToInt32(row["accomplished"]);
+
+                newRow["particular"] = particular;
+                newRow["total_count"] = total;
+                newRow["pending"] = pending;
+                newRow["processing"] = processing;
+                newRow["cancelled"] = cancelled;
+                newRow["accomplished"] = accomplished;
+                dataTable.Rows.Add(newRow);
+
+            }
+            HelperLoadRecords.JOStatusPerParticular(dgStatPerParticular, dataTable);
         }
     }
 }

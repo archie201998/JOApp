@@ -32,8 +32,8 @@ namespace JOMonitoringApp.Views.MainForm
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             Helper.LoadFormIcon(this);
+            Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucDashboardSummaryView = ucDashboardSummaryView1;
             ucJoborder = ucJoborder1;
             ucInvestigationForm = ucInvestigation1;

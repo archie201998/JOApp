@@ -31,7 +31,45 @@ namespace JOMonitoringApp
 
         }
 
+        public static void JOStatusPerParticular(DataGridView dataGridView, DataTable dataTable)
+        {
 
+            dataGridView.DataSource = dataTable;
+
+            dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["particular"].HeaderText = "PARTICULAR";
+            dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["particular"].MinimumWidth = 150;
+
+            dataGridView.Columns["total_count"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["total_count"].HeaderText = "TOTAL";
+            dataGridView.Columns["total_count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["total_count"].MinimumWidth = 10;
+
+            dataGridView.Columns["processing"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["processing"].HeaderText = "PENDING";
+            dataGridView.Columns["processing"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["processing"].MinimumWidth = 10;
+
+            dataGridView.Columns["pending"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["pending"].HeaderText = "PENDING";
+            dataGridView.Columns["pending"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["pending"].MinimumWidth = 10;
+
+            dataGridView.Columns["cancelled"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["cancelled"].HeaderText = "CANCELLED";
+            dataGridView.Columns["cancelled"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["cancelled"].MinimumWidth = 10;
+
+            dataGridView.Columns["accomplished"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["accomplished"].HeaderText = "ACCOMPLISHED";
+            dataGridView.Columns["accomplished"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["accomplished"].MinimumWidth = 10;
+
+
+
+
+        }
 
         public static void JobOrdersDataGridView(DataGridView dataGridView, DataTable dataTable)
         {

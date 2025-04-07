@@ -31,5 +31,7 @@ namespace JOMonitoringApp.Interface
         bool UpdateStatus(int jobOrderId, int statusId);
         bool CheckPossibleDuplicate(string accountNumber, string particulars);
         bool JONumberExist(string joNumber);
+
+        DataTable JOStatusPerParticular();
     }
 }

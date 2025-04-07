@@ -50,12 +50,15 @@
             this.cmbxMonth = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblPercentage = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblTotal = new System.Windows.Forms.Label();
-            this.lblPercentage = new System.Windows.Forms.Label();
+            this.dgStatPerParticular = new System.Windows.Forms.DataGridView();
+            this.gbParticulars = new System.Windows.Forms.GroupBox();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -69,6 +72,9 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStatPerParticular)).BeginInit();
+            this.gbParticulars.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel6
@@ -328,6 +334,17 @@
             this.panel3.Size = new System.Drawing.Size(403, 39);
             this.panel3.TabIndex = 4;
             // 
+            // lblPercentage
+            // 
+            this.lblPercentage.AutoSize = true;
+            this.lblPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
+            this.lblPercentage.ForeColor = System.Drawing.Color.White;
+            this.lblPercentage.Location = new System.Drawing.Point(282, 8);
+            this.lblPercentage.Name = "lblPercentage";
+            this.lblPercentage.Size = new System.Drawing.Size(66, 24);
+            this.lblPercentage.TabIndex = 9;
+            this.lblPercentage.Text = "label4";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -385,21 +402,41 @@
             this.lblTotal.TabIndex = 0;
             this.lblTotal.Text = "TOTAL ";
             // 
-            // lblPercentage
+            // dgStatPerParticular
             // 
-            this.lblPercentage.AutoSize = true;
-            this.lblPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
-            this.lblPercentage.ForeColor = System.Drawing.Color.White;
-            this.lblPercentage.Location = new System.Drawing.Point(282, 8);
-            this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(66, 24);
-            this.lblPercentage.TabIndex = 9;
-            this.lblPercentage.Text = "label4";
+            this.dgStatPerParticular.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgStatPerParticular.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgStatPerParticular.Location = new System.Drawing.Point(3, 3);
+            this.dgStatPerParticular.Name = "dgStatPerParticular";
+            this.dgStatPerParticular.Size = new System.Drawing.Size(489, 271);
+            this.dgStatPerParticular.TabIndex = 9;
+            // 
+            // gbParticulars
+            // 
+            this.gbParticulars.Controls.Add(this.panel5);
+            this.gbParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.gbParticulars.Location = new System.Drawing.Point(10, 284);
+            this.gbParticulars.Name = "gbParticulars";
+            this.gbParticulars.Size = new System.Drawing.Size(501, 296);
+            this.gbParticulars.TabIndex = 10;
+            this.gbParticulars.TabStop = false;
+            this.gbParticulars.Text = "STATUS PER PARTICULAR";
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.dgStatPerParticular);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel5.Location = new System.Drawing.Point(3, 16);
+            this.panel5.Name = "panel5";
+            this.panel5.Padding = new System.Windows.Forms.Padding(3);
+            this.panel5.Size = new System.Drawing.Size(495, 277);
+            this.panel5.TabIndex = 0;
             // 
             // ucDashboardSummaryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbParticulars);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel10);
@@ -409,7 +446,7 @@
             this.Controls.Add(this.panel6);
             this.Name = "ucDashboardSummaryView";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1133, 407);
+            this.Size = new System.Drawing.Size(1133, 629);
             this.Load += new System.EventHandler(this.UcDashboardSummaryView_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -436,6 +473,9 @@
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgStatPerParticular)).EndInit();
+            this.gbParticulars.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -469,5 +509,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Label lblPercentage;
+        private System.Windows.Forms.DataGridView dgStatPerParticular;
+        private System.Windows.Forms.GroupBox gbParticulars;
+        private System.Windows.Forms.Panel panel5;
     }
 }

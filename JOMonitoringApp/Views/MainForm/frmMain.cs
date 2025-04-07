@@ -206,6 +206,7 @@ namespace JOMonitoringApp.Views.MainForm
 
                 Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
                 lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+                lblUserRole.Text = userDict["role_name"].ToString().ToUpper();  
                 cmbxStatus.SelectedValue = 5;
                 OnLoad();
             }

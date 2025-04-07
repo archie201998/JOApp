@@ -38,7 +38,7 @@ namespace JOMonitoringApp
                     new object[] { "@id", DbType.Int32, Id},
                 };
 
-                string query = $"SELECT * FROM {tableName} WHERE id = @id";
+                string query = $"SELECT * FROM {viewTableName} WHERE id = @id";
 
                 using (var reader = mySqlGenericCommands.ExecuteReader(query, parameters))
                 {
@@ -53,6 +53,7 @@ namespace JOMonitoringApp
                     record.Add("suffix", reader.Rows[0]["suffix"].ToString());
                     record.Add("user_name", reader.Rows[0]["user_name"].ToString());
                     record.Add("password", reader.Rows[0]["password"].ToString());
+                    record.Add("role_name", reader.Rows[0]["role_name"].ToString());
                 }
             }
             catch (Exception)

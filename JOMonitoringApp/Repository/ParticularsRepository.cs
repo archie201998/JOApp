@@ -67,7 +67,6 @@ namespace JOMonitoringApp
                 new object[] { "@description", DbType.String, entity.Description }
             };
 
-
             string query = $"INSERT INTO {tableName} (particular, description) VALUES (@particular, @description)";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);

@@ -26,6 +26,7 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
         private readonly ucInvestigationForm ucInvestigationForm;
+
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
 
@@ -34,8 +35,8 @@ namespace JOMonitoringApp.Views.MainForm
             InitializeComponent();
             Helper.LoadFormIcon(this);
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
-            ucDashboardSummaryView = ucDashboardSummaryView1;
             ucJoborder = ucJoborder1;
+            ucDashboardSummaryView = ucDashboardSummaryView1;
             ucInvestigationForm = ucInvestigation1;
         }
 
@@ -288,34 +289,24 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            var frmSignIn = new frmSignIn();
-            frmSignIn.txtPassword.Clear();
-            frmSignIn.txtUserName.Clear();
-            Helper.UserId = 0;
-            frmSignIn.Show();
-        }
+            DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
+                                        "Confirm Exit",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
 
-        private bool SoftDeleteJO()
-        {
-            var jobOrderModelList = new List<JobOrdersModel>();
-            int rowCount = dgJobOrders.SelectedRows.Count;
-
-            if (Helper.MessageBoxConfirmDelete(rowCount))
+            if (result.Equals(DialogResult.Yes))
             {
-                foreach (DataGridViewRow row in dgJobOrders.SelectedRows)
-                {
-                    int jobOrderId = Convert.ToInt32(row.Cells["id"].Value);
-                    int deletedBy = Helper.UserId;
+                this.Hide();
+                var frmSignIn = new frmSignIn();
+                frmSignIn.txtPassword.Clear();
+                frmSignIn.txtUserName.Clear();
+                Helper.UserId = 0;
+                frmSignIn.Show();
 
-                    var model = new JobOrdersModel() { ID = jobOrderId, DeletedBy = deletedBy };
-                    jobOrderModelList.Add(model);
-                }
-
-                return Factory.JobOrdersRepository().SoftDeleteJOById(jobOrderModelList);
             }
 
-            return false;
+            return;
+          
         }
 
         private void LoadSelectedData()
@@ -387,7 +378,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            ResetInputForm();
+            //ResetInputForm();
         }
 
         internal void ResetInputForm()
@@ -427,8 +418,14 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.gbJODetails.Enabled = true;
 
 
-            for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
-                ucJoborder.clBoxParticulars.SetItemChecked(i, false);
+            // Clear checked items in CheckedListBox
+            if (ucJoborder.clBoxParticulars.Items.Count > 0)
+            {
+                for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
+                {
+                    ucJoborder.clBoxParticulars.SetItemChecked(i, false);
+                }
+            }
 
             ucJoborder.accountId = 0;
             ucJoborder.txtAccountName.Clear();
@@ -658,22 +655,9 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        private void dgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void frmMain_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-           DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
-                                         "Confirm Exit",
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
-
-            if (result.Equals(DialogResult.No))
-            {
-                e.Cancel = true;
-            }
+          
 
         }
 
@@ -773,7 +757,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
 
         private void toolStripSignatories_Click(object sender, EventArgs e)
@@ -828,6 +812,11 @@ namespace JOMonitoringApp.Views.MainForm
 
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
             _ = new frmServiceRequestAndOrderForm(jobOrderNumber).ShowDialog();
+        }
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            ResetInputForm();
         }
     }
 }

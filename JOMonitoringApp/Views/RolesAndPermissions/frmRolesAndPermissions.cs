@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.JobOrder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -79,17 +80,8 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 
             // Populate checkedListBox with permissions
             foreach (DataRow row in permissions.Rows)
-            {
-                int id = Convert.ToInt32(row["id"]);    
+            { 
                 string permission = row["permission"].ToString();
-
-                // Check if the permission is already assigned to the selected role
-                //bool roleHasPermission = Factor
-
-                if (selectedRoleId == 0)
-                {
-
-                }
                 clbPermissions.Items.Add(permission);
             }
         }
@@ -109,16 +101,42 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             using (var scope = new TransactionScope())
             {
                 // Get the selected role ID
-                int selectedRoleId = dgvRoles.SelectedCells[0].RowIndex;
+                int selectedRoleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
                 bool deleteRes = Factory.RoleHasPermissionRepository().DeleteRolePermissions(selectedRoleId);
-
+                MessageBox.Show("selectedRoleId " + selectedRoleId);
                 if (deleteRes)
                 {
                     //bool insertRoles = Factory.RoleHasPermissionRepository().Insert(RolesAndPermissionsModel(selectedRoleId));
+                    foreach (int index in clbPermissions.CheckedIndices)
+                    {
+                        var item = clbPermissions.Items[index];
+                        // Do something with the item and/or index
+
+                        int permissionId = Factory.Permissions().GetPermissionIdByName(item.ToString());
+
+                        bool insertRes = Factory.RoleHasPermissionRepository().Insert(RoleHasPermissionModel(selectedRoleId, permissionId));
+
+                        if (insertRes)
+                        {
+                            Helper.MessageBoxSuccess("Role's permission(s) has been successfully updated.");
+                            LoadPermissions();
+                            scope.Complete();
+                        }
+                    }
+                    
                 }
 
-                scope.Complete();
             }
+        }
+
+        private RoleHasPermissionModel RoleHasPermissionModel(int selectedRoleId, int permissionId)
+        {
+
+            RoleHasPermissionModel roleHasPermissionModel = new RoleHasPermissionModel();
+            roleHasPermissionModel.RoleId = selectedRoleId;
+            roleHasPermissionModel.PermissionId = permissionId;
+
+            return roleHasPermissionModel;
         }
 
         private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)

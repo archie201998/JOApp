@@ -65,7 +65,14 @@ namespace JOMonitoringApp
 
         public bool Insert(RoleHasPermissionModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@roles_id", DbType.String ,entity.RoleId },
+                new object[] { "@permissions_id", DbType.String, entity.PermissionId }
+            };
+
+            string query = $"INSERT INTO {tableName} (roles_id, permissions_id) VALUES (@roles_id, @permissions_id)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
         public bool RoleHasPermission(string permissionName, int userRoleId)

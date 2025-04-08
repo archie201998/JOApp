@@ -11,7 +11,6 @@ namespace JOMonitoringApp.Model
         public int Id { get; set; }
 
         public int RoleId { get; set; }
-        public string permission { get; set; }
-        public string description { get; set; }
+        public int PermissionId { get; set; }
     }
 }

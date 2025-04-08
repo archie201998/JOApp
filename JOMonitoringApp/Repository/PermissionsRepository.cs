@@ -1,4 +1,5 @@
 ﻿using JOMonitoringApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -54,6 +55,18 @@ namespace JOMonitoringApp
             string query = $"SELECT description FROM {tableName} WHERE permission = @permission";
             
             return mySqlGenericCommands.ExecuteScalar(query, parameters);
+        }
+
+        public int GetPermissionIdByName(string permission)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@permission", DbType.String, permission }
+            };
+
+            string query = $"SELECT id FROM {tableName} WHERE permission = @permission";
+
+            return Convert.ToInt32(mySqlGenericCommands.ExecuteScalar(query, parameters));
         }
 
         public Dictionary<string, string> GetRecordByID(int Id)

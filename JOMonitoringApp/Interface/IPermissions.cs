@@ -10,5 +10,6 @@ namespace JOMonitoringApp
         bool CheckPermission(string permissionName, string userName, int roleId);
         bool CheckPermission(string permissionName, string userName, int roleId, int id);
         string GetDescriptionByPermissionName(string selectedPermission);
+        int GetPermissionIdByName(string v);
     }
 }

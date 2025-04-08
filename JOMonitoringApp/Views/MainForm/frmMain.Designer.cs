@@ -72,10 +72,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelInputField = new System.Windows.Forms.Panel();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -300,10 +300,10 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(449, 3);
+            this.panel1.Location = new System.Drawing.Point(462, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1272, 942);
+            this.panel1.Size = new System.Drawing.Size(1259, 942);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -314,7 +314,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1262, 876);
+            this.panel6.Size = new System.Drawing.Size(1249, 876);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -328,9 +328,8 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(1254, 868);
+            this.dgJobOrders.Size = new System.Drawing.Size(1241, 868);
             this.dgJobOrders.TabIndex = 0;
-            this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
@@ -365,7 +364,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1262, 18);
+            this.panel3.Size = new System.Drawing.Size(1249, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -375,7 +374,7 @@
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1252, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1239, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -394,7 +393,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1262, 38);
+            this.panel2.Size = new System.Drawing.Size(1249, 38);
             this.panel2.TabIndex = 8;
             // 
             // cmbxParticulars
@@ -439,7 +438,7 @@
             this.btnCreateInvestigationForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateInvestigationForm.Image = global::JOMonitoringApp.Properties.Resources.icons8_water_14;
             this.btnCreateInvestigationForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1061, 7);
+            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1048, 7);
             this.btnCreateInvestigationForm.Name = "btnCreateInvestigationForm";
             this.btnCreateInvestigationForm.Size = new System.Drawing.Size(196, 23);
             this.btnCreateInvestigationForm.TabIndex = 28;
@@ -531,13 +530,24 @@
             // 
             // panelInputField
             // 
-            this.panelInputField.Controls.Add(this.panel4);
             this.panelInputField.Controls.Add(this.ucJoborder1);
+            this.panelInputField.Controls.Add(this.panel4);
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(446, 942);
+            this.panelInputField.Size = new System.Drawing.Size(459, 942);
             this.panelInputField.TabIndex = 1;
+            // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucJoborder1.Size = new System.Drawing.Size(459, 908);
+            this.ucJoborder1.TabIndex = 0;
             // 
             // panel4
             // 
@@ -547,7 +557,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 908);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(446, 34);
+            this.panel4.Size = new System.Drawing.Size(459, 34);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -559,14 +569,14 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(315, 5);
+            this.btnCancel.Location = new System.Drawing.Point(344, 6);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 23);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel [Esc]";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
             // 
             // btnSave
             // 
@@ -576,23 +586,13 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(173, 5);
+            this.btnSave.Location = new System.Drawing.Point(207, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(136, 23);
+            this.btnSave.Size = new System.Drawing.Size(131, 23);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save [Ctrl + S]";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
-            // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(455, 908);
-            this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage3
             // 
@@ -760,7 +760,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing_1);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);

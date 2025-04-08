@@ -37,5 +37,7 @@ namespace JOMonitoringApp
         internal static IPermissions Permissions() => new PermissionsRepository(mySqlGenericCommands);
         internal static IRoleHasPermission RoleHasPermissionRepository() => new RoleHasPermissionRepository(mySqlGenericCommands);
 
+        internal static IMaterials MaterialsRepository() => new MaterialsRepository(mySqlGenericCommands);
+
     }
 }

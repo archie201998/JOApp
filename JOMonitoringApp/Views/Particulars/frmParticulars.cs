@@ -147,8 +147,11 @@ namespace JOMonitoringApp.Views.Particulars
             string particularName = dgvParticulars.Rows[id].Cells["name"].Value.ToString();
             string particularDescription = dgvParticulars.Rows[id].Cells["description"].Value.ToString();
 
+        }
 
-
+        private void frmParticulars_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           
         }
     }
 }

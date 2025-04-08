@@ -191,6 +191,7 @@
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Model\MaterialsModel.cs" />
     <Compile Include="Model\PermissionsModel.cs" />
     <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
@@ -214,6 +215,7 @@
     <Compile Include="Repository\GenericCommands.cs" />
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
+    <Compile Include="Interface\IMaterialss.cs" />
     <Compile Include="Repository\InvestigationConditionOfServiceFacilitiesRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
@@ -222,6 +224,7 @@
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
+    <Compile Include="Repository\MaterialsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\PermissionsRepository.cs" />
     <Compile Include="Repository\RoleHasPermissionRepository.cs" />
@@ -288,6 +291,12 @@
     <Compile Include="Views\PromptBox\frmMessagePrompt.Designer.cs">
       <DependentUpon>frmMessagePrompt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reports\frmEstimateOfMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\frmEstimateOfMaterials.Designer.cs">
+      <DependentUpon>frmEstimateOfMaterials.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reports\frmInvestigationReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -351,6 +360,9 @@
     <None Include="Resources\icons8-image-14.png" />
     <None Include="Resources\icons8-view-14.png" />
     <None Include="Resources\icons8-print-14.png" />
+    <Content Include="RDLC\estimate-of-materials.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </EmbeddedResource>
@@ -365,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\PromptBox\frmMessagePrompt.resx">
       <DependentUpon>frmMessagePrompt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\frmEstimateOfMaterials.resx">
+      <DependentUpon>frmEstimateOfMaterials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
       <DependentUpon>frmInvestigationReport.cs</DependentUpon>

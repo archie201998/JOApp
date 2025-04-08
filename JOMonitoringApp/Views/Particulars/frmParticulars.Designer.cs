@@ -34,19 +34,19 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.ucParticulars1 = new JOMonitoringApp.Views.Particulars.ucParticulars();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dgvParticulars = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.dgvParticulars = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParticulars)).BeginInit();
             this.panel1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParticulars)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -131,6 +131,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "LIST OF PARTICULARS";
             // 
+            // dgvParticulars
+            // 
+            this.dgvParticulars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvParticulars.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvParticulars.Location = new System.Drawing.Point(3, 60);
+            this.dgvParticulars.Name = "dgvParticulars";
+            this.dgvParticulars.Size = new System.Drawing.Size(429, 236);
+            this.dgvParticulars.TabIndex = 4;
+            this.dgvParticulars.SelectionChanged += new System.EventHandler(this.dgvParticulars_SelectionChanged);
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnDelete);
@@ -188,16 +198,6 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // dgvParticulars
-            // 
-            this.dgvParticulars.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvParticulars.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvParticulars.Location = new System.Drawing.Point(3, 60);
-            this.dgvParticulars.Name = "dgvParticulars";
-            this.dgvParticulars.Size = new System.Drawing.Size(429, 236);
-            this.dgvParticulars.TabIndex = 4;
-            this.dgvParticulars.SelectionChanged += new System.EventHandler(this.dgvParticulars_SelectionChanged);
-            // 
             // frmParticulars
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -216,14 +216,15 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | Particulars";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmParticulars_FormClosed);
             this.Load += new System.EventHandler(this.frmParticulars_Load);
             this.groupBox1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvParticulars)).EndInit();
             this.panel1.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvParticulars)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

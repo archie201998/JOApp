@@ -4,6 +4,10 @@
 
     partial class dsReport
     {
+        partial class dtMaterialsDataTable
+        {
+        }
+
         partial class dtJobOrderSummaryDataTable
         {
         }

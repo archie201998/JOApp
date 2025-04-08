@@ -46,6 +46,7 @@
             this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSROF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInvestigation = new System.Windows.Forms.ToolStripMenuItem();
+            this.estimatesOfMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -89,6 +90,10 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.updateChecker = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
@@ -106,6 +111,7 @@
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.statusStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -207,7 +213,8 @@
             this.toolStripJOSummary,
             this.toolStripJOProgressTracking,
             this.toolStripSROF,
-            this.toolStripInvestigation});
+            this.toolStripInvestigation,
+            this.estimatesOfMaterialsToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -239,6 +246,13 @@
             this.toolStripInvestigation.Size = new System.Drawing.Size(310, 22);
             this.toolStripInvestigation.Text = "Investigation";
             this.toolStripInvestigation.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
+            // 
+            // estimatesOfMaterialsToolStripMenuItem
+            // 
+            this.estimatesOfMaterialsToolStripMenuItem.Name = "estimatesOfMaterialsToolStripMenuItem";
+            this.estimatesOfMaterialsToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.estimatesOfMaterialsToolStripMenuItem.Text = "Estimates of Materials";
+            this.estimatesOfMaterialsToolStripMenuItem.Click += new System.EventHandler(this.estimatesOfMaterialsToolStripMenuItem_Click);
             // 
             // sessionToolStripMenuItem
             // 
@@ -308,6 +322,7 @@
             this.dgJobOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgJobOrders.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dgJobOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgJobOrders.ContextMenuStrip = this.contextMenuStrip1;
             this.dgJobOrders.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgJobOrders.Location = new System.Drawing.Point(4, 4);
             this.dgJobOrders.MultiSelect = false;
@@ -674,6 +689,29 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 70);
+            this.contextMenuStrip1.Text = "PRINT ";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 22);
+            this.toolStripMenuItem1.Text = "SROF";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 22);
+            this.toolStripMenuItem2.Text = "FS / Estimates of Materials";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
             // ucJoborder1
             // 
             this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
@@ -741,6 +779,7 @@
             this.tabPage2.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -809,5 +848,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
         private System.Windows.Forms.ToolStripStatusLabel lblUserRole;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel8;
+        private System.Windows.Forms.Timer updateChecker;
+        private System.Windows.Forms.ToolStripMenuItem estimatesOfMaterialsToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

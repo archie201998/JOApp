@@ -797,5 +797,34 @@ namespace JOMonitoringApp.Views.MainForm
         {
             _ = new frmMessagePrompt().ShowDialog();
         }
+
+        private void estimatesOfMaterialsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmEstimateOfMaterials(string.Empty).ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Please select record to print.");
+                return;
+            }
+
+            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            _ = new frmEstimateOfMaterials(jobOrderNumber).ShowDialog();
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Please select record to print.");
+                return;
+            }
+
+            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            _ = new frmServiceRequestAndOrderForm(jobOrderNumber).ShowDialog();
+        }
     }
 }

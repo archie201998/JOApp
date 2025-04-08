@@ -40,8 +40,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.lblEditorID = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).BeginInit();
+            this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -74,6 +76,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.lblEditorID);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(3, 412);
             this.panel3.Name = "panel3";
@@ -202,6 +205,16 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // lblEditorID
+            // 
+            this.lblEditorID.AutoSize = true;
+            this.lblEditorID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEditorID.Location = new System.Drawing.Point(7, 7);
+            this.lblEditorID.Name = "lblEditorID";
+            this.lblEditorID.Size = new System.Drawing.Size(57, 15);
+            this.lblEditorID.TabIndex = 3;
+            this.lblEditorID.Text = "Role ID : ";
+            // 
             // frmRolesAndPermissions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,6 +232,8 @@
             this.Load += new System.EventHandler(this.frmRolesAndPermissions_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoles)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -241,5 +256,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblEditorID;
     }
 }

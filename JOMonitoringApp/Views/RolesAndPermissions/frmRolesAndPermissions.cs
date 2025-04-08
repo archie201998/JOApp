@@ -31,7 +31,6 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             LoadRoles();
             LoadPermissions();
             MarkPermissions();
-            clbPermissions.ItemCheck += clbPermissions_ItemCheck;
         }
 
         private void LoadRoles()
@@ -56,6 +55,8 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             if (dgvRoles.SelectedRows.Count > 0)
             {
                 selectedRoleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
+                lblEditorID.Text = $"Role ID : {selectedRoleId} ";
+
                 DataTable dtPermissions = Factory.RoleHasPermissionRepository().GetPermissionsByRolesId(selectedRoleId);
 
                 foreach (DataRow row in dtPermissions.Rows)
@@ -98,34 +99,34 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            using (var scope = new TransactionScope())
-            {
-                // Get the selected role ID
-                int selectedRoleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
-                bool deleteRes = Factory.RoleHasPermissionRepository().DeleteRolePermissions(selectedRoleId);
-                MessageBox.Show("selectedRoleId " + selectedRoleId);
-                if (deleteRes)
-                {
-                    //bool insertRoles = Factory.RoleHasPermissionRepository().Insert(RolesAndPermissionsModel(selectedRoleId));
-                    foreach (int index in clbPermissions.CheckedIndices)
-                    {
-                        var item = clbPermissions.Items[index];
-                        // Do something with the item and/or index
 
+            if (Helper.MessageBoxConfirmCancel("Do you want to modify user role's permission(s)?"))
+            {
+                using (var scope = new TransactionScope())
+                {
+                    // Get the selected role ID
+                    int roleId = Convert.ToInt32(dgvRoles.SelectedRows[0].Cells["id"].Value);
+
+                    Factory.RoleHasPermissionRepository().DeleteRolePermissions(roleId);
+                   
+                    foreach (var item in clbPermissions.CheckedItems)
+                    {
                         int permissionId = Factory.Permissions().GetPermissionIdByName(item.ToString());
 
                         bool insertRes = Factory.RoleHasPermissionRepository().Insert(RoleHasPermissionModel(selectedRoleId, permissionId));
 
-                        if (insertRes)
+                        if (!insertRes)
                         {
-                            Helper.MessageBoxSuccess("Role's permission(s) has been successfully updated.");
-                            LoadPermissions();
-                            scope.Complete();
+                            MessageBox.Show("error");
                         }
                     }
-                    
-                }
 
+                    Helper.MessageBoxSuccess("Role's permission(s) has been successfully updated.");
+                    LoadPermissions();
+                    MarkPermissions();
+                    scope.Complete();
+                }
+            
             }
         }
 
@@ -139,21 +140,6 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
             return roleHasPermissionModel;
         }
 
-        private void clbPermissions_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            string itemText = clbPermissions.Items[e.Index].ToString();
-            if (e.NewValue == CheckState.Checked)
-            {
-                btnSave.BackColor = Color.White;
-                btnSave.Enabled = true;
-
-            }
-            else if (e.NewValue == CheckState.Unchecked)
-            {
-                btnSave.BackColor = Color.DodgerBlue;
-                btnSave.Enabled = true;
-            }
-        }
 
         private void clbPermissions_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -249,6 +249,9 @@ namespace JOMonitoringApp.Views.MainForm
             toolStripSROF.Enabled = Helper.UserHasPermission("REPORT_SROF");
             toolStripInvestigation.Enabled = Helper.UserHasPermission("REPORT_INVESTIGATION");
 
+
+            toolStripFS.Enabled = Helper.UserHasPermission("FS");
+
         }
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

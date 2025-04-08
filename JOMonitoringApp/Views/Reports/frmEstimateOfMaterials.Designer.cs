@@ -98,6 +98,7 @@
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.panel1);
             this.Name = "frmEstimateOfMaterials";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reports > Estimate of Material";
             this.Load += new System.EventHandler(this.frmEstimateOfMaterials_Load);

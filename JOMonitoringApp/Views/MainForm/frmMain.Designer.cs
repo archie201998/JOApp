@@ -46,7 +46,7 @@
             this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSROF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInvestigation = new System.Windows.Forms.ToolStripMenuItem();
-            this.estimatesOfMaterialsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripFS = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -214,7 +214,7 @@
             this.toolStripJOProgressTracking,
             this.toolStripSROF,
             this.toolStripInvestigation,
-            this.estimatesOfMaterialsToolStripMenuItem});
+            this.toolStripFS});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
@@ -247,12 +247,12 @@
             this.toolStripInvestigation.Text = "Investigation";
             this.toolStripInvestigation.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click);
             // 
-            // estimatesOfMaterialsToolStripMenuItem
+            // toolStripFS
             // 
-            this.estimatesOfMaterialsToolStripMenuItem.Name = "estimatesOfMaterialsToolStripMenuItem";
-            this.estimatesOfMaterialsToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.estimatesOfMaterialsToolStripMenuItem.Text = "Estimates of Materials";
-            this.estimatesOfMaterialsToolStripMenuItem.Click += new System.EventHandler(this.estimatesOfMaterialsToolStripMenuItem_Click);
+            this.toolStripFS.Name = "toolStripFS";
+            this.toolStripFS.Size = new System.Drawing.Size(310, 22);
+            this.toolStripFS.Text = "FS / Estimates of Materials";
+            this.toolStripFS.Click += new System.EventHandler(this.estimatesOfMaterialsToolStripMenuItem_Click);
             // 
             // sessionToolStripMenuItem
             // 
@@ -850,7 +850,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblUserRole;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel8;
         private System.Windows.Forms.Timer updateChecker;
-        private System.Windows.Forms.ToolStripMenuItem estimatesOfMaterialsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripFS;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;

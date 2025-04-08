@@ -27,7 +27,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT id, role FROM {tableName} WHERE id != 1";
+            string query = $"SELECT id, role FROM {tableName}";
             DataTable dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);
         }

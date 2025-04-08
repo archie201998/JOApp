@@ -300,10 +300,10 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(488, 3);
+            this.panel1.Location = new System.Drawing.Point(449, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1233, 942);
+            this.panel1.Size = new System.Drawing.Size(1272, 942);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -314,7 +314,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1223, 876);
+            this.panel6.Size = new System.Drawing.Size(1262, 876);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -328,7 +328,7 @@
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgJobOrders.Size = new System.Drawing.Size(1215, 868);
+            this.dgJobOrders.Size = new System.Drawing.Size(1254, 868);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJobOrders_CellContentClick);
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
@@ -365,7 +365,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1223, 18);
+            this.panel3.Size = new System.Drawing.Size(1262, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -375,7 +375,7 @@
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1213, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1252, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -394,7 +394,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1223, 38);
+            this.panel2.Size = new System.Drawing.Size(1262, 38);
             this.panel2.TabIndex = 8;
             // 
             // cmbxParticulars
@@ -439,7 +439,7 @@
             this.btnCreateInvestigationForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateInvestigationForm.Image = global::JOMonitoringApp.Properties.Resources.icons8_water_14;
             this.btnCreateInvestigationForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1022, 7);
+            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1061, 7);
             this.btnCreateInvestigationForm.Name = "btnCreateInvestigationForm";
             this.btnCreateInvestigationForm.Size = new System.Drawing.Size(196, 23);
             this.btnCreateInvestigationForm.TabIndex = 28;
@@ -536,7 +536,7 @@
             this.panelInputField.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelInputField.Location = new System.Drawing.Point(3, 3);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(485, 942);
+            this.panelInputField.Size = new System.Drawing.Size(446, 942);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -547,7 +547,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 908);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(485, 34);
+            this.panel4.Size = new System.Drawing.Size(446, 34);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -559,7 +559,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(354, 5);
+            this.btnCancel.Location = new System.Drawing.Point(315, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(94, 23);
             this.btnCancel.TabIndex = 15;
@@ -576,7 +576,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(212, 5);
+            this.btnSave.Location = new System.Drawing.Point(173, 5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(136, 23);
             this.btnSave.TabIndex = 14;
@@ -590,7 +590,8 @@
             this.ucJoborder1.Location = new System.Drawing.Point(-7, 0);
             this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
             this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Size = new System.Drawing.Size(489, 908);
+            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucJoborder1.Size = new System.Drawing.Size(455, 908);
             this.ucJoborder1.TabIndex = 0;
             // 
             // tabPage3

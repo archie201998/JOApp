@@ -100,7 +100,7 @@
             // 
             this.txtORNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtORNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtORNumber.Location = new System.Drawing.Point(155, 267);
+            this.txtORNumber.Location = new System.Drawing.Point(155, 301);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
             this.txtORNumber.TabIndex = 5;
@@ -111,7 +111,7 @@
             this.dtpDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(155, 240);
+            this.dtpDate.Location = new System.Drawing.Point(155, 274);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 21);
             this.dtpDate.TabIndex = 2;
@@ -130,7 +130,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 240);
+            this.label3.Location = new System.Drawing.Point(28, 274);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 6;
@@ -140,7 +140,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 269);
+            this.label4.Location = new System.Drawing.Point(28, 303);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 7;
@@ -149,7 +149,7 @@
             // nudAmount
             // 
             this.nudAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAmount.Location = new System.Drawing.Point(155, 294);
+            this.nudAmount.Location = new System.Drawing.Point(155, 328);
             this.nudAmount.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -165,7 +165,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 296);
+            this.label5.Location = new System.Drawing.Point(28, 330);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -233,10 +233,11 @@
             this.gbAccountDetails.Controls.Add(this.label16);
             this.gbAccountDetails.Controls.Add(this.label14);
             this.gbAccountDetails.Controls.Add(this.label12);
+            this.gbAccountDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAccountDetails.Location = new System.Drawing.Point(21, 19);
+            this.gbAccountDetails.Location = new System.Drawing.Point(10, 10);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(387, 178);
+            this.gbAccountDetails.Size = new System.Drawing.Size(403, 178);
             this.gbAccountDetails.TabIndex = 0;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
@@ -315,7 +316,7 @@
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(153, 14);
+            this.btnSearch.Location = new System.Drawing.Point(169, 14);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(136, 23);
             this.btnSearch.TabIndex = 19;
@@ -421,10 +422,11 @@
             this.gbJODetails.Controls.Add(this.label4);
             this.gbJODetails.Controls.Add(this.label5);
             this.gbJODetails.Controls.Add(this.nudAmount);
+            this.gbJODetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbJODetails.Location = new System.Drawing.Point(21, 203);
+            this.gbJODetails.Location = new System.Drawing.Point(10, 188);
             this.gbJODetails.Name = "gbJODetails";
-            this.gbJODetails.Size = new System.Drawing.Size(387, 327);
+            this.gbJODetails.Size = new System.Drawing.Size(403, 355);
             this.gbJODetails.TabIndex = 16;
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
@@ -435,7 +437,7 @@
             this.clBoxParticulars.FormattingEnabled = true;
             this.clBoxParticulars.Location = new System.Drawing.Point(155, 39);
             this.clBoxParticulars.Name = "clBoxParticulars";
-            this.clBoxParticulars.Size = new System.Drawing.Size(199, 196);
+            this.clBoxParticulars.Size = new System.Drawing.Size(199, 228);
             this.clBoxParticulars.TabIndex = 1;
             this.clBoxParticulars.Validating += new System.ComponentModel.CancelEventHandler(this.clBoxParticulars_Validating);
             this.clBoxParticulars.Validated += new System.EventHandler(this.clBoxParticulars_Validated);
@@ -558,10 +560,11 @@
             this.gbIssuanceAndAssignment.Controls.Add(this.label11);
             this.gbIssuanceAndAssignment.Controls.Add(this.label10);
             this.gbIssuanceAndAssignment.Controls.Add(this.txtMRSNumber);
+            this.gbIssuanceAndAssignment.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 533);
+            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(10, 543);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
-            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(387, 168);
+            this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(403, 168);
             this.gbIssuanceAndAssignment.TabIndex = 17;
             this.gbIssuanceAndAssignment.TabStop = false;
             this.gbIssuanceAndAssignment.Text = "ISSUANCES AND JOB ASSIGNMENTS";
@@ -596,10 +599,11 @@
             this.groupBox4.Controls.Add(this.radCancel);
             this.groupBox4.Controls.Add(this.radProcessing);
             this.groupBox4.Controls.Add(this.radPending);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 711);
+            this.groupBox4.Location = new System.Drawing.Point(10, 711);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 73);
+            this.groupBox4.Size = new System.Drawing.Size(403, 73);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "STATUS AND REMARKS";
@@ -690,11 +694,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.gbIssuanceAndAssignment);
             this.Controls.Add(this.gbJODetails);
+            this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(423, 792);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);

@@ -32,6 +32,7 @@ namespace JOMonitoringApp.Views.MainForm
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucDashboardSummaryView = ucDashboardSummaryView1;
             ucJoborder = ucJoborder1;
@@ -208,7 +209,9 @@ namespace JOMonitoringApp.Views.MainForm
                 lblUserRole.Text = userDict["role_name"].ToString().ToUpper();  
                 cmbxStatus.SelectedValue = 5;
                 OnLoad();
+
                 Helper.LoadFormIcon(this);
+
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }

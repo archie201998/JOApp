@@ -53,8 +53,8 @@ namespace JOMonitoringApp
                 Helper.UserId = userId;
                 Helper.UserRoleId = Factory.UsersRepository().GetUserRoleId(userId);
                 var mainForm = new frmMain(this);
-                mainForm.Show();
                 Hide();
+                mainForm.ShowDialog();
                 txtPassword.Clear();
                 txtPassword.PasswordChar = '•';
                 Cursor = Cursors.Default;

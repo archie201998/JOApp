@@ -124,6 +124,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramDate", DateTime.Now.ToString("MMMM, dd yyyy")));
                 reportParameters1.Add(new ReportParameter("paramConcessionaire", dtJobOrders["account_name"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAccountNumber", dtJobOrders["account_number"].ToString()));
+                reportParameters1.Add(new ReportParameter("paramContact", dtJobOrders["contact_number"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramAddress", dtJobOrders["address"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));

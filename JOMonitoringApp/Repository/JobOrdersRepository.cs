@@ -140,7 +140,7 @@ namespace JOMonitoringApp
             };
 
 
-            string query = $"SELECT * FROM {viewTableName} WHERE {status} AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
+            string query = $"SELECT * FROM {viewTableName} WHERE ({status}) AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

@@ -100,7 +100,7 @@
             // 
             this.txtORNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtORNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtORNumber.Location = new System.Drawing.Point(155, 195);
+            this.txtORNumber.Location = new System.Drawing.Point(155, 267);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
             this.txtORNumber.TabIndex = 5;
@@ -111,7 +111,7 @@
             this.dtpDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(155, 168);
+            this.dtpDate.Location = new System.Drawing.Point(155, 240);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 21);
             this.dtpDate.TabIndex = 2;
@@ -120,7 +120,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 46);
+            this.label2.Location = new System.Drawing.Point(25, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 15);
             this.label2.TabIndex = 4;
@@ -130,7 +130,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 168);
+            this.label3.Location = new System.Drawing.Point(28, 240);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 6;
@@ -140,7 +140,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 197);
+            this.label4.Location = new System.Drawing.Point(28, 269);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 7;
@@ -149,7 +149,7 @@
             // nudAmount
             // 
             this.nudAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAmount.Location = new System.Drawing.Point(155, 222);
+            this.nudAmount.Location = new System.Drawing.Point(155, 294);
             this.nudAmount.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -165,7 +165,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 224);
+            this.label5.Location = new System.Drawing.Point(28, 296);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -424,7 +424,7 @@
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbJODetails.Location = new System.Drawing.Point(21, 203);
             this.gbJODetails.Name = "gbJODetails";
-            this.gbJODetails.Size = new System.Drawing.Size(387, 252);
+            this.gbJODetails.Size = new System.Drawing.Size(387, 327);
             this.gbJODetails.TabIndex = 16;
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
@@ -433,9 +433,9 @@
             // 
             this.clBoxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clBoxParticulars.FormattingEnabled = true;
-            this.clBoxParticulars.Location = new System.Drawing.Point(155, 46);
+            this.clBoxParticulars.Location = new System.Drawing.Point(155, 39);
             this.clBoxParticulars.Name = "clBoxParticulars";
-            this.clBoxParticulars.Size = new System.Drawing.Size(199, 116);
+            this.clBoxParticulars.Size = new System.Drawing.Size(199, 196);
             this.clBoxParticulars.TabIndex = 1;
             this.clBoxParticulars.Validating += new System.ComponentModel.CancelEventHandler(this.clBoxParticulars_Validating);
             this.clBoxParticulars.Validated += new System.EventHandler(this.clBoxParticulars_Validated);
@@ -444,7 +444,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(25, 21);
+            this.label9.Location = new System.Drawing.Point(25, 16);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(79, 15);
             this.label9.TabIndex = 16;
@@ -454,7 +454,7 @@
             // 
             this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONumber.Location = new System.Drawing.Point(155, 19);
+            this.txtJONumber.Location = new System.Drawing.Point(155, 14);
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 21);
             this.txtJONumber.TabIndex = 0;
@@ -559,7 +559,7 @@
             this.gbIssuanceAndAssignment.Controls.Add(this.label10);
             this.gbIssuanceAndAssignment.Controls.Add(this.txtMRSNumber);
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 461);
+            this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(21, 533);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
             this.gbIssuanceAndAssignment.Size = new System.Drawing.Size(387, 168);
             this.gbIssuanceAndAssignment.TabIndex = 17;
@@ -597,9 +597,9 @@
             this.groupBox4.Controls.Add(this.radProcessing);
             this.groupBox4.Controls.Add(this.radPending);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(21, 635);
+            this.groupBox4.Location = new System.Drawing.Point(21, 711);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(389, 102);
+            this.groupBox4.Size = new System.Drawing.Size(389, 73);
             this.groupBox4.TabIndex = 18;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "STATUS AND REMARKS";
@@ -608,10 +608,9 @@
             // 
             this.txtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(155, 54);
-            this.txtRemarks.Multiline = true;
+            this.txtRemarks.Location = new System.Drawing.Point(152, 20);
             this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(200, 36);
+            this.txtRemarks.Size = new System.Drawing.Size(200, 21);
             this.txtRemarks.TabIndex = 4;
             this.txtRemarks.Validating += new System.ComponentModel.CancelEventHandler(this.txtRemarks_Validating);
             this.txtRemarks.Validated += new System.EventHandler(this.txtRemarks_Validated);
@@ -620,7 +619,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(25, 55);
+            this.label17.Location = new System.Drawing.Point(25, 22);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(70, 15);
             this.label17.TabIndex = 7;
@@ -630,7 +629,7 @@
             // 
             this.radAccomplished.AutoSize = true;
             this.radAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radAccomplished.Location = new System.Drawing.Point(267, 26);
+            this.radAccomplished.Location = new System.Drawing.Point(264, 49);
             this.radAccomplished.Name = "radAccomplished";
             this.radAccomplished.Size = new System.Drawing.Size(120, 19);
             this.radAccomplished.TabIndex = 3;
@@ -643,7 +642,7 @@
             // 
             this.radCancel.AutoSize = true;
             this.radCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCancel.Location = new System.Drawing.Point(195, 26);
+            this.radCancel.Location = new System.Drawing.Point(192, 49);
             this.radCancel.Name = "radCancel";
             this.radCancel.Size = new System.Drawing.Size(72, 19);
             this.radCancel.TabIndex = 2;
@@ -656,7 +655,7 @@
             // 
             this.radProcessing.AutoSize = true;
             this.radProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radProcessing.Location = new System.Drawing.Point(92, 26);
+            this.radProcessing.Location = new System.Drawing.Point(89, 49);
             this.radProcessing.Name = "radProcessing";
             this.radProcessing.Size = new System.Drawing.Size(104, 19);
             this.radProcessing.TabIndex = 1;
@@ -670,7 +669,7 @@
             this.radPending.AutoSize = true;
             this.radPending.Checked = true;
             this.radPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radPending.Location = new System.Drawing.Point(8, 26);
+            this.radPending.Location = new System.Drawing.Point(5, 49);
             this.radPending.Name = "radPending";
             this.radPending.Size = new System.Drawing.Size(80, 19);
             this.radPending.TabIndex = 0;
@@ -696,7 +695,7 @@
             this.Controls.Add(this.gbJODetails);
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
-            this.Size = new System.Drawing.Size(423, 744);
+            this.Size = new System.Drawing.Size(423, 792);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();

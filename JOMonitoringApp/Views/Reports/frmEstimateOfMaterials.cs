@@ -77,13 +77,13 @@ namespace JOMonitoringApp.Views.Reports
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.DataSources.Add(dataSource);
 
-            reportViewer1.RefreshReport();
 
             reportViewer1.LocalReport.SetParameters(parameters);
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
             reportViewer1.ZoomMode = ZoomMode.Percent;
 
+            reportViewer1.RefreshReport();
 
         }
 

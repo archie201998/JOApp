@@ -130,7 +130,11 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", userData["user_full_name"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramDateActed", dtJobOrders["updated_at"].ToUpper()));
+
+                string dateActed = string.Empty;
+                if (dtJobOrders["status_id"].ToString() == "4")
+                    dateActed = dtJobOrders["updated_at"].ToString();
+                reportParameters1.Add(new ReportParameter("paramDateActed", dateActed.ToString()));
 
 
 

@@ -7,6 +7,7 @@ using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.RolesAndPermissions;
+using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
 using System;
 using System.Collections;
@@ -201,7 +202,7 @@ namespace JOMonitoringApp.Views.MainForm
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
 
-                var dtParticulars = Factory.ParticularsRepository().GetRecords();   
+                var dtParticulars = Factory.ParticularsRepository() .GetRecords();   
                 HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dtParticulars, "id" , "particular");
 
 
@@ -577,12 +578,20 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
-            if (dgJobOrders.Rows.Count == 0) return;
+            try
+            {
+                if (dgJobOrders.Rows.Count == 0) return;
 
-            //SetPermissions();
-            UpdateSettings();
-            LoadSelectedData();
-            ucJoborder.StoreOriginalValues();
+                //SetPermissions();
+                UpdateSettings();
+                LoadSelectedData();
+                ucJoborder.StoreOriginalValues();
+            }
+            catch (Exception)
+            {
+                Helper.MessageBoxError("Something went wrong. Please contact the system administrator.");
+            }
+          
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
@@ -765,7 +774,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void toolStripSignatories_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
+            _ = new frmReportSignatories().ShowDialog();
         }
 
         private void toolStripMaterials_Click(object sender, EventArgs e)
@@ -820,6 +829,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             ResetInputForm();
+        }
+
+        private void timerSystemDateAndTime_Tick(object sender, EventArgs e)
+        {
+            lblSystemDateAndTime.Text = $"SYSTEM DATE AND TIME : {DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss tt")}" ;
         }
     }
 }

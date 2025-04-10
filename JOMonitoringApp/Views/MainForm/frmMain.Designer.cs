@@ -93,10 +93,13 @@
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.updateChecker = new System.Windows.Forms.Timer(this.components);
+            this.lblSystemDateAndTime = new System.Windows.Forms.Label();
+            this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -658,7 +661,8 @@
             this.lblRecordsCount,
             this.toolStripStatusLabel5,
             this.toolStripStatusLabel6,
-            this.lblPing});
+            this.lblPing,
+            this.toolStripStatusLabel9});
             this.statusStrip1.Location = new System.Drawing.Point(5, 1006);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1732, 22);
@@ -732,6 +736,12 @@
             this.lblPing.Size = new System.Drawing.Size(32, 17);
             this.lblPing.Text = "0 ms";
             // 
+            // toolStripStatusLabel9
+            // 
+            this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
+            this.toolStripStatusLabel9.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel9.Text = "|";
+            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -742,12 +752,31 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // lblSystemDateAndTime
+            // 
+            this.lblSystemDateAndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSystemDateAndTime.AutoSize = true;
+            this.lblSystemDateAndTime.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.lblSystemDateAndTime.Location = new System.Drawing.Point(1437, 1010);
+            this.lblSystemDateAndTime.Name = "lblSystemDateAndTime";
+            this.lblSystemDateAndTime.Size = new System.Drawing.Size(280, 15);
+            this.lblSystemDateAndTime.TabIndex = 6;
+            this.lblSystemDateAndTime.Text = "SYSTEM DATE AND TIME : yyyy-MM-dd, HH:mm:ss";
+            this.lblSystemDateAndTime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // timerSystemDateAndTime
+            // 
+            this.timerSystemDateAndTime.Enabled = true;
+            this.timerSystemDateAndTime.Interval = 1000;
+            this.timerSystemDateAndTime.Tick += new System.EventHandler(this.timerSystemDateAndTime_Tick);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1742, 1033);
+            this.Controls.Add(this.lblSystemDateAndTime);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -854,5 +883,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel9;
+        private System.Windows.Forms.Label lblSystemDateAndTime;
+        private System.Windows.Forms.Timer timerSystemDateAndTime;
     }
 }

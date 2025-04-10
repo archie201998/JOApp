@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>122</ApplicationRevision>
+    <ApplicationRevision>123</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -321,6 +321,12 @@
     <Compile Include="Views\RolesAndPermissions\frmRolesAndPermissions.Designer.cs">
       <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Signatories\frmReportSignatories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Signatories\frmReportSignatories.Designer.cs">
+      <DependentUpon>frmReportSignatories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SignIn\frmSignIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -386,6 +392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RolesAndPermissions\frmRolesAndPermissions.resx">
       <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Signatories\frmReportSignatories.resx">
+      <DependentUpon>frmReportSignatories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>

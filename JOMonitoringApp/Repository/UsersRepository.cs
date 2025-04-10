@@ -66,7 +66,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName}";
+            string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName} ORDER BY prefix";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);

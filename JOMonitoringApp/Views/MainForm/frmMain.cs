@@ -14,10 +14,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Deployment.Application;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm
@@ -40,6 +42,36 @@ namespace JOMonitoringApp.Views.MainForm
             ucDashboardSummaryView = ucDashboardSummaryView1;
             ucInvestigationForm = ucInvestigation1;
         }
+
+        public async void CheckForUpdateAsync()
+        {
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                try
+                {
+                    var deployment = ApplicationDeployment.CurrentDeployment;
+
+                    // Check for update (runs in background)
+                    var updateInfo = await Task.Run(() => deployment.CheckForDetailedUpdate());
+
+                    if (updateInfo.UpdateAvailable)
+                    {
+                        // Prompt user
+                        MessageBox.Show(
+                            "A new version of the application is available. Please close the system to update.",
+                            "Update Available",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information
+                        );
+                    }
+                }
+                catch (DeploymentDownloadException ex)
+                {
+                    // Handle if the update server is unreachable, etc.
+                }
+            }
+        }
+
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
@@ -834,6 +866,18 @@ namespace JOMonitoringApp.Views.MainForm
         private void timerSystemDateAndTime_Tick(object sender, EventArgs e)
         {
             lblSystemDateAndTime.Text = $"SYSTEM DATE AND TIME : {DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss tt")}" ;
+        }
+
+        private void systemUpdateChecker_Tick(object sender, EventArgs e)
+        {
+            StartUpdateTimer();
+        }
+
+        private void StartUpdateTimer()
+        {
+            systemUpdateChecker.Interval = 10000; // Check every 10 minutes
+            systemUpdateChecker.Tick += (s, e) => CheckForUpdateAsync();
+            systemUpdateChecker.Start();
         }
     }
 }

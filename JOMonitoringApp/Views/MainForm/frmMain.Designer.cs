@@ -97,7 +97,7 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.updateChecker = new System.Windows.Forms.Timer(this.components);
+            this.systemUpdateChecker = new System.Windows.Forms.Timer(this.components);
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
@@ -752,6 +752,11 @@
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // systemUpdateChecker
+            // 
+            this.systemUpdateChecker.Interval = 5000;
+            this.systemUpdateChecker.Tick += new System.EventHandler(this.systemUpdateChecker_Tick);
+            // 
             // lblSystemDateAndTime
             // 
             this.lblSystemDateAndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -878,7 +883,7 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
         private System.Windows.Forms.ToolStripStatusLabel lblUserRole;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel8;
-        private System.Windows.Forms.Timer updateChecker;
+        private System.Windows.Forms.Timer systemUpdateChecker;
         private System.Windows.Forms.ToolStripMenuItem toolStripFS;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;

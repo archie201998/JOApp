@@ -44,12 +44,11 @@ namespace JOMonitoringApp.Views.Reports
             if (string.IsNullOrEmpty(jobNumber))
                 return;
 
-
             var dictJODetails = Factory.JobOrdersRepository().GetViewRecordsByJONumber(Convert.ToInt32(jobNumber));
 
             reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\estimate-of-materials.rdlc";
             reportViewer1.LocalReport.EnableExternalImages = true;
-            ReportParameter[] parameters = new ReportParameter[8];
+            ReportParameter[] parameters = new ReportParameter[12];
 
             parameters[0] = new ReportParameter("paramCustomerName", dictJODetails["account_name"]);
             parameters[1] = new ReportParameter("paramCustomerContact", dictJODetails["contact_number"]);
@@ -61,6 +60,17 @@ namespace JOMonitoringApp.Views.Reports
 
             parameters[6] = new ReportParameter("paramAccomplishedBy", dictJODetails["accomplished_by"]);
             parameters[7] = new ReportParameter("paramMaterialsIssuedBy", dictJODetails["materials_issued_by"]);
+            parameters[8] = new ReportParameter("paramParticulars", dictJODetails["particular"]);
+
+            string accountNumber = string.IsNullOrEmpty(dictJODetails["account_number"]) ? string.Empty : dictJODetails["account_number"];
+            
+            parameters[9] = new ReportParameter("paramAccountNumber", accountNumber);
+
+            //check if has meter number
+            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
+            string meterNumber = meterDict.Count == 0 ? string.Empty : meterDict["MeterNumber"];
+            parameters[10] = new ReportParameter("paramMeterNumber", meterNumber);
+            parameters[11] = new ReportParameter("paramCustomerContact", dictJODetails["contact_number"]);
 
             // Set the data source\\
             var dtMaterialsFromDB = Factory.MaterialsRepository().GetRecords();

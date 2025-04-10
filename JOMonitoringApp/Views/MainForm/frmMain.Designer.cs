@@ -91,13 +91,13 @@
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblCheckingUpdate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.systemUpdateChecker = new System.Windows.Forms.Timer(this.components);
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
-            this.lblCheckingUpdate = new System.Windows.Forms.ToolStripStatusLabel();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucInvestigation1 = new JOMonitoringApp.Views.Investigation.ucInvestigationForm();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
@@ -714,6 +714,17 @@
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel9.Text = "|";
             // 
+            // lblCheckingUpdate
+            // 
+            this.lblCheckingUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCheckingUpdate.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblCheckingUpdate.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.lblCheckingUpdate.Name = "lblCheckingUpdate";
+            this.lblCheckingUpdate.Size = new System.Drawing.Size(580, 17);
+            this.lblCheckingUpdate.Text = "A NEW VERSION OF THE SYSTEM IS AVAILABLE. PLEASE RESTART THE APPLICATION TO APPLY" +
+    " THE UPDATE.";
+            this.lblCheckingUpdate.Visible = false;
+            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -747,15 +758,6 @@
             this.timerSystemDateAndTime.Enabled = true;
             this.timerSystemDateAndTime.Interval = 1000;
             this.timerSystemDateAndTime.Tick += new System.EventHandler(this.timerSystemDateAndTime_Tick);
-            // 
-            // lblCheckingUpdate
-            // 
-            this.lblCheckingUpdate.ForeColor = System.Drawing.Color.LimeGreen;
-            this.lblCheckingUpdate.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.lblCheckingUpdate.Name = "lblCheckingUpdate";
-            this.lblCheckingUpdate.Size = new System.Drawing.Size(145, 17);
-            this.lblCheckingUpdate.Text = "CHECKING FOR UPDATE...";
-            this.lblCheckingUpdate.Visible = false;
             // 
             // ucJoborder1
             // 

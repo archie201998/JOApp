@@ -32,6 +32,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
+        private System.Windows.Forms.Timer updateTimer;
+        bool isVisible = false;
 
         public frmMain(frmSignIn frmSignIn)
         {
@@ -43,37 +45,42 @@ namespace JOMonitoringApp.Views.MainForm
             ucInvestigationForm = ucInvestigation1;
         }
 
+
+        private void StartUpdateTimer()
+        {
+            updateTimer = new System.Windows.Forms.Timer();
+            updateTimer.Interval = 10000; // Check every 10 minutes
+            updateTimer.Tick += (s, e) => CheckForUpdateAsync();
+            updateTimer.Start();
+        }
+
         public async void CheckForUpdateAsync()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
+            if (!ApplicationDeployment.IsNetworkDeployed)
+                return;
+
+            try
             {
-                try
+                var deployment = ApplicationDeployment.CurrentDeployment;
+
+                // Check in background thread
+                var updateInfo = await Task.Run(() => deployment.CheckForDetailedUpdate());
+
+                if (updateInfo.UpdateAvailable)
                 {
-                    var deployment = ApplicationDeployment.CurrentDeployment;
+                    // Notify the user
+                    
+                    lblCheckingUpdate.Visible = isVisible;
+                    isVisible = !isVisible;
 
-                    // Check for update (runs in background)
-                    var updateInfo = await Task.Run(() => deployment.CheckForDetailedUpdate());
-
-                    if (updateInfo.UpdateAvailable)
-                    {
-                        // Prompt user
-                        MessageBox.Show(
-                            "A new version of the application is available. Please close the system to update.",
-                            "Update Available",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information
-                        );
-                    }
-
-
-                    lblCheckingUpdate.Text = "CURRENT VERSION IS UPDATED.";
-                    Thread.Sleep(2000);
-                    lblCheckingUpdate.Visible = false;
+                    // Optional: Auto-restart app if you want
+                    // if (result == DialogResult.OK)
+                    //     Application.Restart();
                 }
-                catch (DeploymentDownloadException ex)
-                {
-                    // Handle if the update server is unreachable, etc.
-                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle errors like no network, update server unreachable, etc.
             }
         }
 
@@ -250,6 +257,7 @@ namespace JOMonitoringApp.Views.MainForm
                 OnLoad();
 
                 Helper.LoadFormIcon(this);
+                StartUpdateTimer();
 
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -873,17 +881,10 @@ namespace JOMonitoringApp.Views.MainForm
             lblSystemDateAndTime.Text = $"SYSTEM DATE AND TIME : {DateTime.Now.ToString("yyyy-mm-dd hh:mm:ss tt")}" ;
         }
 
+
         private void systemUpdateChecker_Tick(object sender, EventArgs e)
         {
-            lblCheckingUpdate.Visible = true;
-            StartUpdateTimer();
-        }
-
-        private void StartUpdateTimer()
-        {
-            systemUpdateChecker.Interval = 1000; // Check every 10 minutes
-            systemUpdateChecker.Tick += (s, e) => CheckForUpdateAsync();
-            systemUpdateChecker.Start();
+           CheckForUpdateAsync();
         }
     }
 }

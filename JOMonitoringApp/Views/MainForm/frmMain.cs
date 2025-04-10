@@ -64,6 +64,11 @@ namespace JOMonitoringApp.Views.MainForm
                             MessageBoxIcon.Information
                         );
                     }
+
+
+                    lblCheckingUpdate.Text = "CURRENT VERSION IS UPDATED.";
+                    Thread.Sleep(2000);
+                    lblCheckingUpdate.Visible = false;
                 }
                 catch (DeploymentDownloadException ex)
                 {
@@ -870,12 +875,13 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void systemUpdateChecker_Tick(object sender, EventArgs e)
         {
+            lblCheckingUpdate.Visible = true;
             StartUpdateTimer();
         }
 
         private void StartUpdateTimer()
         {
-            systemUpdateChecker.Interval = 10000; // Check every 10 minutes
+            systemUpdateChecker.Interval = 1000; // Check every 10 minutes
             systemUpdateChecker.Tick += (s, e) => CheckForUpdateAsync();
             systemUpdateChecker.Start();
         }

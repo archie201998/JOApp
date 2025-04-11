@@ -251,6 +251,16 @@ namespace JOMonitoringApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Job_Order_e_Monitoring_System_User_Guide {
+            get {
+                object obj = ResourceManager.GetObject("Job_Order_e_Monitoring_System_User_Guide", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon logo {

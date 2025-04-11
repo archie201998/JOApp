@@ -16,6 +16,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Deployment.Application;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -885,6 +886,13 @@ namespace JOMonitoringApp.Views.MainForm
         private void systemUpdateChecker_Tick(object sender, EventArgs e)
         {
            CheckForUpdateAsync();
+        }
+
+        private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string tempPath = Path.Combine(Path.GetTempPath(), "Job_Order_e-Monitoring System User Guide.pdf");
+            File.WriteAllBytes(tempPath, Properties.Resources.Job_Order_e_Monitoring_System_User_Guide);
+            System.Diagnostics.Process.Start(tempPath);
         }
     }
 }

@@ -196,4 +196,7 @@
   <data name="new_system_logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\new_system_logo.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Job_Order_e_Monitoring_System_User_Guide" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Job_Order_e-Monitoring System User Guide.pdf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

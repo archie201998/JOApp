@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>139</ApplicationRevision>
+    <ApplicationRevision>141</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -231,6 +231,12 @@
     <Compile Include="Repository\RolesRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
     <Compile Include="Repository\UsersRepository.cs" />
+    <Compile Include="Views\Admin\frmPassKey.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\frmPassKey.Designer.cs">
+      <DependentUpon>frmPassKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -370,6 +376,9 @@
     <Content Include="RDLC\estimate-of-materials.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="Views\Admin\frmPassKey.resx">
+      <DependentUpon>frmPassKey.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </EmbeddedResource>

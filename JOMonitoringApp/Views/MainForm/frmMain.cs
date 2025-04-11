@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
@@ -273,31 +274,33 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ValidatePermissions()
         {
-            ucJoborder.gbAccountDetails.Enabled = Helper.UserHasPermission("ADD_ACCOUNT_DETAILS");
-            ucJoborder.gbJODetails.Enabled = Helper.UserHasPermission("ADD_JOB_ORDER_DETAILS");
-            ucJoborder.gbJODetails.Enabled = Helper.UserHasPermission("ADD_ISSUANCE_AND_JOB_ASSIGNMENT");
-            ucJoborder.radPending.Enabled = Helper.UserHasPermission("ADD_STATUS");
-            ucJoborder.radProcessing.Enabled = Helper.UserHasPermission("ADD_STATUS");
-            ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
-            ucJoborder.radAccomplished.Enabled = Helper.UserHasPermission("ADD_STATUS");
-            ucJoborder.txtRemarks.Enabled = Helper.UserHasPermission("ADD_REMARKS");
-            btnSave.Enabled = Helper.UserHasPermission("SAVE_JOB_ORDER");
+            bool adminMode = Helper.temporaryAdminMode;
 
-            dgJobOrders.Visible = Helper.UserHasPermission("VIEW_JOB_ORDERS");
+            ucJoborder.gbAccountDetails.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_ACCOUNT_DETAILS");
+            ucJoborder.gbJODetails.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_JOB_ORDER_DETAILS");
+            ucJoborder.gbJODetails.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_ISSUANCE_AND_JOB_ASSIGNMENT");
+            ucJoborder.radPending.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radProcessing.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radAccomplished.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.radAccomplished.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_STATUS");
+            ucJoborder.txtRemarks.Enabled = adminMode ? true : Helper.UserHasPermission("ADD_REMARKS");
+            btnSave.Enabled = adminMode ? true : Helper.UserHasPermission("SAVE_JOB_ORDER");
 
-            toolStripUser.Enabled = Helper.UserHasPermission("SETTINGS_ADD_USER");
-            toolStripMaterials.Enabled = Helper.UserHasPermission("SETTINGS_ADD_MATERIALS");
-            toolStripParticulars.Enabled = Helper.UserHasPermission("SETTINGS_ADD_PARTICULARS");
-            toolStripRolesAndPermissions.Enabled = Helper.UserHasPermission("SETTINGS_ADD_ROLES_AND_PERMISSIONS");
-            toolStripSignatories.Enabled = Helper.UserHasPermission("SETTINGS_REPORT_SIGNATORIES");
+            dgJobOrders.Visible = adminMode ? true : Helper.UserHasPermission("VIEW_JOB_ORDERS");
 
-            toolStripJOSummary.Enabled = Helper.UserHasPermission("REPORT_JO_SUMMARY");
-            toolStripJOProgressTracking.Enabled = Helper.UserHasPermission("REPORT_JO_PROGRESS_TRACKING");
-            toolStripSROF.Enabled = Helper.UserHasPermission("REPORT_SROF");
-            toolStripInvestigation.Enabled = Helper.UserHasPermission("REPORT_INVESTIGATION");
+            toolStripUser.Enabled = adminMode ? true : Helper.UserHasPermission("SETTINGS_ADD_USER");
+            toolStripMaterials.Enabled = adminMode ? true : Helper.UserHasPermission("SETTINGS_ADD_MATERIALS");
+            toolStripParticulars.Enabled = adminMode ? true : Helper.UserHasPermission("SETTINGS_ADD_PARTICULARS");
+            toolStripRolesAndPermissions.Enabled = adminMode ? true : Helper.UserHasPermission("SETTINGS_ADD_ROLES_AND_PERMISSIONS");
+            toolStripSignatories.Enabled = adminMode ? true : Helper.UserHasPermission("SETTINGS_REPORT_SIGNATORIES");
+
+            toolStripJOSummary.Enabled = adminMode ? true : Helper.UserHasPermission("REPORT_JO_SUMMARY");
+            toolStripJOProgressTracking.Enabled = adminMode ? true : Helper.UserHasPermission("REPORT_JO_PROGRESS_TRACKING");
+            toolStripSROF.Enabled = adminMode ? true : Helper.UserHasPermission("REPORT_SROF");
+            toolStripInvestigation.Enabled = adminMode ? true : Helper.UserHasPermission("REPORT_INVESTIGATION");
 
 
-            toolStripFS.Enabled = Helper.UserHasPermission("FS");
+            toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
 
         }
 
@@ -351,6 +354,7 @@ namespace JOMonitoringApp.Views.MainForm
                 frmSignIn.txtPassword.Clear();
                 frmSignIn.txtUserName.Clear();
                 Helper.UserId = 0;
+                Helper.temporaryAdminMode = false;
                 frmSignIn.Show();
 
             }
@@ -678,13 +682,16 @@ namespace JOMonitoringApp.Views.MainForm
                 keySequence.RemoveAt(0);
             }
 
-            if (keySequence.SequenceEqual(new List<Keys> { Keys.D2, Keys.D8, Keys.D4, Keys.D6, Keys.F4, Keys.F4 }))
+            if (keySequence.SequenceEqual(new List<Keys> { Keys.D1, Keys.D2, Keys.D3, Keys.D1, Keys.D2, Keys.D3 }))
             {
-                ucJoborder.groupBox4.Enabled = true;
-                ucJoborder.gbAccountDetails.Enabled = true;
-                ucJoborder.gbIssuanceAndAssignment.Enabled = true;
-                ucJoborder.gbJODetails.Enabled = true;
-                keySequence.Clear();
+
+                DialogResult pinMatch = new frmPassKey().ShowDialog();
+
+                if (DialogResult.OK == pinMatch)
+                {
+                    ValidatePermissions();
+                }
+
             }
         }
 
@@ -890,9 +897,50 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string tempPath = Path.Combine(Path.GetTempPath(), "Job_Order_e-Monitoring System User Guide.pdf");
-            File.WriteAllBytes(tempPath, Properties.Resources.Job_Order_e_Monitoring_System_User_Guide);
-            System.Diagnostics.Process.Start(tempPath);
+            try
+            {
+                string tempPath = Path.Combine(Path.GetTempPath(), "Job_Order_e-Monitoring System User Guide.pdf");
+                File.WriteAllBytes(tempPath, Properties.Resources.Job_Order_e_Monitoring_System_User_Guide);
+                System.Diagnostics.Process.Start(tempPath);
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxError("Failed to open user manual. Contact your system administrator ");
+            }
+        }
+
+        private void dgJobOrders_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (!Helper.temporaryAdminMode)
+                {
+                    Helper.MessageBoxSuccess("User's not allowed to delete record(s). Please contact system administrator.");
+                    return;
+                }
+
+                if (dgJobOrders.SelectedRows.Count > 0)
+                {
+                    var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
+                                                  "Confirm Delete",
+                                                  MessageBoxButtons.YesNo,
+                                                  MessageBoxIcon.Warning);
+
+                    if (confirm == DialogResult.Yes)
+                    {
+
+                        _ = new frmMessagePrompt().ShowDialog();
+
+                        //foreach (DataGridViewRow row in dgJobOrders.SelectedRows)
+                        //{
+                        //    // Optional: Call your own delete function, e.g.,
+                        //    // DeleteJobOrder(row.Cells["ID"].Value.ToString());
+
+                        //    dgJobOrders.Rows.Remove(row);
+                        //}
+                    }
+                }
+            }
         }
     }
 }

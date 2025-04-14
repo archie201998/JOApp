@@ -841,7 +841,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void databaseBackupToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
+            
         }
 
         private void restoreToolStripMenuItem_Click(object sender, EventArgs e)

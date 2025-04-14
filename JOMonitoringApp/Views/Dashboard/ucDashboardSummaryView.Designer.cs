@@ -351,7 +351,7 @@
             this.lblPercentage.AutoSize = true;
             this.lblPercentage.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold);
             this.lblPercentage.ForeColor = System.Drawing.Color.White;
-            this.lblPercentage.Location = new System.Drawing.Point(278, 10);
+            this.lblPercentage.Location = new System.Drawing.Point(278, 8);
             this.lblPercentage.Name = "lblPercentage";
             this.lblPercentage.Size = new System.Drawing.Size(21, 24);
             this.lblPercentage.TabIndex = 9;

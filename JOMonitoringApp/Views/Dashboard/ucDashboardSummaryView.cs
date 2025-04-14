@@ -34,8 +34,10 @@ namespace JOMonitoringApp.Views.Dashboard
             int accomplished = Factory.JobOrdersRepository().GetSummaryByStatusId(dateFrom, dateTo, 4);
 
             int total = pending + processing + cancelled + accomplished;
-            float percentage = (((float)accomplished) / ((float)total) * 100);
-            percentage = float.IsNaN(percentage) ? 0 : percentage;
+            float percentage = 0;
+
+            if (total > 0)
+                percentage = ((float)accomplished / total) * 100;
 
             this.Invoke((MethodInvoker)delegate {
                 txtTotal.Text = total.ToString();
@@ -43,7 +45,7 @@ namespace JOMonitoringApp.Views.Dashboard
                 txtOnGoing.Text = processing.ToString();
                 txtCancelled.Text = cancelled.ToString();
                 txtAccomplished.Text = accomplished.ToString();
-                lblPercentage.Text = percentage.ToString() + "%";
+                lblPercentage.Text = percentage.ToString("0.00") + "%";
             });
 
 

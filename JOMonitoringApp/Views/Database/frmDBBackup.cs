@@ -1,12 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using AccountingSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,72 +9,62 @@ namespace JOMonitoringApp.Views.Database
 {
     public partial class frmDBBackup : Form
     {
+        private CancellationTokenSource cts;
         public frmDBBackup()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            string connectionString = "server=localhost;user=jo_monitoring;password=@jo_monitoring123;database=jo_monitoring;";
-            string outputFile = @"C:\backups\manual_backup.sql";
+            lblStatus.Text = "Starting...";
+            Thread.Sleep(2000);
+            cts = new CancellationTokenSource();
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            // Start spinner animation in the label
+            var spinnerTask = ShowSpinner(lblStatus, cts.Token);
+
+            // Run the batch file
+            await Task.Run(() => RunBatchFile());
+
+            // Stop spinner and update label
+            cts.Cancel();
+            await spinnerTask;
+            lblStatus.Text = "Batch file completed!";
+        }
+
+        private void RunBatchFile()
+        {
+            Process process = new Process();
+            process.StartInfo.FileName = @"\\192.168.18.183\J.O e-Monitoring\mysql_backup.bat";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.CreateNoWindow = true;
+            process.Start();
+            process.WaitForExit();
+        }
+
+
+        private async Task ShowSpinner(Label label, CancellationToken token)
+        {
+            string[] spinner = { "|", "/", "-", "\\" };
+            int index = 0;
+
+            while (!token.IsCancellationRequested)
             {
-                conn.Open();
-                using (StreamWriter writer = new StreamWriter(outputFile))
+                label.Invoke(new Action(() =>
                 {
-                    MySqlCommand showTables = new MySqlCommand("SHOW TABLES", conn);
-                    using (MySqlDataReader tables = showTables.ExecuteReader())
-                    {
-                        while (tables.Read())
-                        {
-                            string table = tables[0].ToString();
-                            Console.WriteLine($"Backing up table: {table}");
+                    label.Text = "Running... " + spinner[index];
+                }));
 
-                            // Write DROP + CREATE TABLE
-                            string createTable = GetCreateTable(conn, table);
-                            writer.WriteLine($"-- Table structure for `{table}`");
-                            writer.WriteLine($"DROP TABLE IF EXISTS `{table}`;");
-                            writer.WriteLine(createTable + ";");
-                            writer.WriteLine();
-
-                            // Write INSERT statements
-                            string selectQuery = $"SELECT * FROM `{table}`";
-                            MySqlCommand selectCmd = new MySqlCommand(selectQuery, conn);
-                            using (MySqlDataReader data = selectCmd.ExecuteReader())
-                            {
-                                while (data.Read())
-                                {
-                                    string insert = $"INSERT INTO `{table}` VALUES(";
-                                    for (int i = 0; i < data.FieldCount; i++)
-                                    {
-                                        insert += data[i] == DBNull.Value ? "NULL" : $"'{MySqlHelper.EscapeString(data[i].ToString())}'";
-                                        if (i < data.FieldCount - 1) insert += ", ";
-                                    }
-                                    insert += ");";
-                                    writer.WriteLine(insert);
-                                }
-                            }
-                            writer.WriteLine();
-                        }
-                    }
-                }
+                index = (index + 1) % spinner.Length;
+                await Task.Delay(200);
             }
-
-            Console.WriteLine("✅ Manual backup completed.");
         }
 
-        static string GetCreateTable(MySqlConnection conn, string tableName)
+        private void frmDBBackup_Load(object sender, EventArgs e)
         {
-            string result = "";
-            MySqlCommand cmd = new MySqlCommand($"SHOW CREATE TABLE `{tableName}`", conn);
-            using (MySqlDataReader reader = cmd.ExecuteReader())
-            {
-                if (reader.Read())
-                    result = reader["Create Table"].ToString();
-            }
-            return result;
+
         }
     }
 }

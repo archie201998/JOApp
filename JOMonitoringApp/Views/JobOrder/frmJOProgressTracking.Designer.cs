@@ -65,7 +65,6 @@
             this.txtJONumber.Size = new System.Drawing.Size(149, 20);
             this.txtJONumber.TabIndex = 0;
             this.txtJONumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtJONumber.TextChanged += new System.EventHandler(this.txtJONumber_TextChanged);
             // 
             // btnSearch
             // 

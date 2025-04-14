@@ -729,7 +729,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOProgressTracking().ShowDialog();
+            _ = new frmJOProgressTracking(string.Empty).ShowDialog();
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -940,6 +940,19 @@ namespace JOMonitoringApp.Views.MainForm
                     }
                 }
             }
+        }
+
+        private void trackJOProgressToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            if (dgJobOrders.SelectedRows.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Please select record to print.");
+                return;
+            }
+
+            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            _ = new frmJOProgressTracking(jobOrderNumber).ShowDialog();
         }
     }
 }

@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>141</ApplicationRevision>
+    <ApplicationRevision>143</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -311,9 +311,11 @@
     </Compile>
     <Compile Include="Views\Reports\frmHydrantWithdrawal.cs">
       <SubType>Form</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Views\Reports\frmHydrantWithdrawal.Designer.cs">
       <DependentUpon>frmHydrantWithdrawal.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Views\Reports\frmInvestigationReport.cs">
       <SubType>Form</SubType>
@@ -417,6 +419,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmHydrantWithdrawal.resx">
       <DependentUpon>frmHydrantWithdrawal.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
       <DependentUpon>frmInvestigationReport.cs</DependentUpon>

@@ -249,7 +249,7 @@ namespace JOMonitoringApp.Views.MainForm
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
 
-                var dtParticulars = Factory.ParticularsRepository() .GetRecords();   
+                var dtParticulars = Factory.ParticularsRepository().GetRecords();   
                 HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dtParticulars, "id" , "particular");
 
 

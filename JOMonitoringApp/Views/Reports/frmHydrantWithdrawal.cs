@@ -22,6 +22,7 @@ namespace JOMonitoringApp.Views.Reports
         public frmHydrantWithdrawal(string jobOrderNumber)
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
             _jobOrderNumber = jobOrderNumber;   
             txtJONo.Text = jobOrderNumber;  
         }

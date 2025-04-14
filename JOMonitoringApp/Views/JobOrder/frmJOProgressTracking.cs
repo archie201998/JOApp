@@ -14,7 +14,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails, true, true);
+            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails);
             _joNumber = jobOrderNumber;
         }
 
@@ -41,8 +41,6 @@ namespace JOMonitoringApp.Views.JobOrder
         private void btnSearch_Click(object sender, EventArgs e)
         {
             ViewProgress();
-            
-
         }
 
         private void ViewProgress()

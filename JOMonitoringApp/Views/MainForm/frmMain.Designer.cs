@@ -391,6 +391,7 @@
             this.hydrantWithdrawalToolStripMenuItem.Name = "hydrantWithdrawalToolStripMenuItem";
             this.hydrantWithdrawalToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.hydrantWithdrawalToolStripMenuItem.Text = "Hydrant Withdrawal";
+            this.hydrantWithdrawalToolStripMenuItem.Click += new System.EventHandler(this.hydrantWithdrawalToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 

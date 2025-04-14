@@ -16,8 +16,6 @@ namespace JOMonitoringApp
         {
             dataGridView.DataSource = dataTable;
 
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
-
             dataGridView.Columns["log_id"].Visible = false;
 
             dataGridView.Columns["date_and_time"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -131,7 +129,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["mris"].MinimumWidth = 80;
 
             dataGridView.Columns["mrs"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dataGridView.Columns["mrs"].HeaderText = "MRIS NO. ";
+            dataGridView.Columns["mrs"].HeaderText = "MRS NO. ";
             dataGridView.Columns["mrs"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["mrs"].MinimumWidth = 80;
 

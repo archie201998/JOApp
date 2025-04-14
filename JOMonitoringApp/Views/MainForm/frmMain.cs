@@ -2,6 +2,7 @@
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Dashboard;
+using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Particulars;
@@ -805,8 +806,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            this.MdiParent = this;
-
         }
 
         private void rolesAndPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -837,7 +836,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
+            _ = new frmDBBackup().ShowDialog();
         }
 
         private void databaseBackupToolStripMenuItem_Click(object sender, EventArgs e)

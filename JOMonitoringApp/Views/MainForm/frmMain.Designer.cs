@@ -59,6 +59,9 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.trackJOProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -103,9 +106,6 @@
             this.systemUpdateChecker = new System.Windows.Forms.Timer(this.components);
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.trackJOProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -385,6 +385,24 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 22);
             this.toolStripMenuItem2.Text = "FS / Estimates of Materials";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // hydrantWithdrawalToolStripMenuItem
+            // 
+            this.hydrantWithdrawalToolStripMenuItem.Name = "hydrantWithdrawalToolStripMenuItem";
+            this.hydrantWithdrawalToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.hydrantWithdrawalToolStripMenuItem.Text = "Hydrant Withdrawal";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(209, 6);
+            // 
+            // trackJOProgressToolStripMenuItem
+            // 
+            this.trackJOProgressToolStripMenuItem.Name = "trackJOProgressToolStripMenuItem";
+            this.trackJOProgressToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
+            this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
             // 
             // panel3
             // 
@@ -814,24 +832,6 @@
             this.timerSystemDateAndTime.Enabled = true;
             this.timerSystemDateAndTime.Interval = 1000;
             this.timerSystemDateAndTime.Tick += new System.EventHandler(this.timerSystemDateAndTime_Tick);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(209, 6);
-            // 
-            // trackJOProgressToolStripMenuItem
-            // 
-            this.trackJOProgressToolStripMenuItem.Name = "trackJOProgressToolStripMenuItem";
-            this.trackJOProgressToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
-            this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
-            // 
-            // hydrantWithdrawalToolStripMenuItem
-            // 
-            this.hydrantWithdrawalToolStripMenuItem.Name = "hydrantWithdrawalToolStripMenuItem";
-            this.hydrantWithdrawalToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.hydrantWithdrawalToolStripMenuItem.Text = "Hydrant Withdrawal";
             // 
             // frmMain
             // 

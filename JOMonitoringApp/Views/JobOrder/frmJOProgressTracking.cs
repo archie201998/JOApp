@@ -32,7 +32,7 @@ namespace JOMonitoringApp.Views.JobOrder
             return new DataColumn[]
             {
                 new DataColumn("log_id", typeof (int)),
-                new DataColumn("date_and_time", typeof(DateTime)),
+                new DataColumn("date_and_time", typeof(string)),
                 new DataColumn("transaction_event", typeof(string))
             };
         }
@@ -68,7 +68,7 @@ namespace JOMonitoringApp.Views.JobOrder
                     int joNumberId = Convert.ToInt32(row["job_orders_id"]);
                     string user = row["user_name"].ToString();
 
-                    DateTime dateAndTime = Convert.ToDateTime(row["date_and_time"]);
+                    string dateAndTime = row["date_and_time"].ToString();
                     string transactionEvent = row["transaction_event"].ToString();
                     int joNumber = Convert.ToInt32(row["job_order_no"]);
                     DateTime joDate = Convert.ToDateTime(row["date"]);
@@ -83,10 +83,9 @@ namespace JOMonitoringApp.Views.JobOrder
 
                 HelperLoadRecords.JobOrderTrackingDataGrid(dgJobOrderStatusDetails, dataTable);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Helper.MessageBoxError("Something went wrong. Please contact your system administrator.");
+                Helper.MessageBoxError("Something went wrong. Please contact your system administrator." + ex.Message);            }
             }
-        }
     }
 }

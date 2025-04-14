@@ -944,7 +944,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void trackJOProgressToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
             if (dgJobOrders.SelectedRows.Count == 0)
             {
                 Helper.MessageBoxSuccess("Please select record to print.");

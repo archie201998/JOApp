@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
@@ -35,89 +36,108 @@ namespace JOMonitoringApp.Views.JobOrder
             originalValues["AccomplishedBy"] = cmbxAccomplishedBy.SelectedValue;
             originalValues["Particulars"] = GetSelectedParticulars();
             originalValues["Remarks"] = txtRemarks.Text;
-            originalValues["Status"] = statusId;
+            originalValues["Status"] = Status();
+        }
+
+        private string Status()
+        {
+            switch (statusId)
+            {
+                case 1:
+                    return "Pending";
+                case 2:
+                    return "Processing";
+                case 3:
+                    return "Cancelled";
+                case 4:
+                    return "Accomplished";
+                default:
+                    break;
+            }
+            return string.Empty;
         }
 
         internal bool HasDataChanged()
         {
             try
             {
+                Helper.changes = string.Empty;
                 bool hasChanges = false;
                 if ((string)originalValues["AccountName"] != txtAccountName.Text)
                 {
-                    Helper.changes += $"Account Name: {originalValues["AccountName"].ToString()} into {txtAccountName.Text}; ";
+                    Helper.changes += $"Account Name, from {originalValues["AccountName"]} into {txtAccountName.Text}; ";
                     hasChanges = true;
                 }
 
 
                 if ((DateTime)originalValues["Date"] != dtpDate.Value)
                 {
-                    Helper.changes += $"Date : {originalValues["Date"].ToString()} into {dtpDate.Text}; ";
+                    Helper.changes += $"Date, from  {originalValues["Date"]} into {dtpDate.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["JONumber"] != txtJONumber.Text)
                 {
-                    Helper.changes += $"JO Number: {originalValues["JONumber"].ToString()} into {txtJONumber.Text}; ";
+                    Helper.changes += $"JO Number, from {originalValues["JONumber"]} into {txtJONumber.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
                 {
-                    Helper.changes += $"MRS Number: {originalValues["MRSNumber"].ToString()} into {txtMRSNumber.Text}; ";
+                    Helper.changes += $"MRS Number, from {originalValues["MRSNumber"]} into {txtMRSNumber.Text}; ";
                     hasChanges = true;
                 }
 
 
                 if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
                 {
-                    Helper.changes += $"WAR Number: {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
+                    Helper.changes += $"WAR Number, from {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
                     return true;
                 }
 
                 if ((string)originalValues["ORNumber"] != txtORNumber.Text)
                 {
-                    Helper.changes += $"OR Number: {originalValues["ORNumber"].ToString()} into {txtORNumber.Text}; ";
+                    Helper.changes += $"OR Number, from {originalValues["ORNumber"]} into {txtORNumber.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((decimal)originalValues["Amount"] != nudAmount.Value)
                 {
-                    Helper.changes += $"Amount: {originalValues["Amount"].ToString()} into {nudAmount.Value}; ";
+                    Helper.changes += $"Amount, from {originalValues["Amount"]} into {nudAmount.Value}; ";
                     hasChanges = true;
                 }
 
 
                 if ((int?)originalValues["MaterialsIssuedBy"] != (int?)cmbxMaterialsIssuedBy.SelectedValue)
                 {
-                    Helper.changes += $"Materials Issued By: {originalValues["MaterialsIssuedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
+                    Helper.changes += $"Materials Issued, from {originalValues["MaterialsIssuedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
                     return true;
                 }
 
 
                 if ((int?)originalValues["AccomplishedBy"] != (int?)cmbxAccomplishedBy.SelectedValue)
                 {
-                    Helper.changes += $"Accomplished By: {originalValues["AccomplishedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
+                    Helper.changes += $"Accomplished, from {originalValues["AccomplishedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["Particulars"] != GetSelectedParticulars())
                 {
-                    Helper.changes += $"Particulars: {originalValues["Particulars"].ToString()} into {GetSelectedParticulars()}; ";
+                    Helper.changes += $"Particulars, from {originalValues["Particulars"]} into {GetSelectedParticulars()}; ";
                     hasChanges = true;
                 }
 
 
                 if ((string)originalValues["Remarks"] != txtRemarks.Text)
                 {
-                    Helper.changes += $"Remarks: {originalValues["Remarks"].ToString()} into {txtRemarks.Text}; ";
+                    Helper.changes += $"Remarks, from {originalValues["Remarks"]} into {txtRemarks.Text}; ";
                     hasChanges = true;
                 }
 
 
-                if ((string)originalValues["Status"].ToString() != statusId.ToString())
+                if ((string)originalValues["Status"].ToString() != Status())
                 {
-                    Helper.changes += $"Status: {originalValues["Status"].ToString()} into {Helper.StatusText(statusId)}; ";
+                    Helper.changes += $"Status, from {originalValues["Status"]} into {Helper.StatusText(statusId)}; ";
                     hasChanges = true;
                 }
 
@@ -242,7 +262,7 @@ namespace JOMonitoringApp.Views.JobOrder
             return new JOLogsModel()
             {
                 TransactionEvent = Helper.LogMessage(isUpdate) ,
-                DateAndTime = DateTime.Now,
+                DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
                 JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId
             };

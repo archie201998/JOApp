@@ -88,11 +88,11 @@ namespace AccountingSystem
             if (isUpdate)
             {
                 //ip address here.
-                return $"Updated the following date : { changes }, at {GetLocalIPAddress()}";
+                return $"Updated the following fields : { changes }";
                 //return "Updated : " + changes + " at : " + GetLocalIPAddress();
             }
 
-            return $"Added at : {GetLocalIPAddress()}.";
+            return $"Added ";
             
         }
 

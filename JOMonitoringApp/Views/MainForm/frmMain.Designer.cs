@@ -62,6 +62,7 @@
             this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.trackJOProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -367,7 +368,8 @@
             this.toolStripMenuItem2,
             this.hydrantWithdrawalToolStripMenuItem,
             this.toolStripSeparator1,
-            this.trackJOProgressToolStripMenuItem});
+            this.trackJOProgressToolStripMenuItem,
+            this.investigationToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
             this.contextMenuStrip1.Text = "PRINT ";
@@ -404,6 +406,13 @@
             this.trackJOProgressToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
             this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
+            // 
+            // investigationToolStripMenuItem
+            // 
+            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
+            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.investigationToolStripMenuItem.Text = "Investigation";
+            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click_1);
             // 
             // panel3
             // 
@@ -595,7 +604,7 @@
             this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
             this.ucJoborder1.Name = "ucJoborder1";
             this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(459, 908);
+            this.ucJoborder1.Size = new System.Drawing.Size(459, 898);
             this.ucJoborder1.TabIndex = 0;
             // 
             // panel4
@@ -604,9 +613,9 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 908);
+            this.panel4.Location = new System.Drawing.Point(0, 898);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(459, 34);
+            this.panel4.Size = new System.Drawing.Size(459, 44);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -618,9 +627,9 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(344, 6);
+            this.btnCancel.Location = new System.Drawing.Point(359, 6);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(94, 23);
+            this.btnCancel.Size = new System.Drawing.Size(94, 32);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel [Esc]";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -635,9 +644,9 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(207, 6);
+            this.btnSave.Location = new System.Drawing.Point(201, 6);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(131, 23);
+            this.btnSave.Size = new System.Drawing.Size(152, 32);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save [Ctrl + S]";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -956,5 +965,6 @@
         private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawalToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem trackJOProgressToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
     }
 }

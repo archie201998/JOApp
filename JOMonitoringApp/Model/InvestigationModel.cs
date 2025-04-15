@@ -15,10 +15,14 @@ namespace JOMonitoringApp.Model
         public string CustomerAddress{ get; set; }
         public string CustomerAccountNumber { get; set; }
         public string NatureOfComplaint { get; set; }
+        public DateTime DateOfInvestigation { get; set; }
+        public int IsApproved { get; set; }
+        public string ApprovalMessage { get; set; }
         public string InvestigatorComments { get; set; }
         public string Recommendations { get; set; }
         public string imagePath { get; set; }
         public string secondaryImagePath { get; set; }
+        public int CreatedBy { get; set; }
 
     }
 }

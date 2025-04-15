@@ -65,9 +65,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.btnAttachedImage = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.cmbxMeterBrand = new System.Windows.Forms.ComboBox();
             this.txtServiceLineDefects = new System.Windows.Forms.TextBox();
@@ -83,6 +80,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.btnViewImages = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
@@ -90,7 +88,8 @@
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblFileName = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -100,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudHouseHelper)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudImmediateFamily)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -112,6 +110,8 @@
             // 
             // gbAccountDetails
             // 
+            this.gbAccountDetails.Controls.Add(this.dtpDate);
+            this.gbAccountDetails.Controls.Add(this.label12);
             this.gbAccountDetails.Controls.Add(this.txtJONumber);
             this.gbAccountDetails.Controls.Add(this.txtAccountNumber);
             this.gbAccountDetails.Controls.Add(this.txtAccountName);
@@ -125,7 +125,7 @@
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(13, 12);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(429, 209);
+            this.gbAccountDetails.Size = new System.Drawing.Size(429, 244);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "1. INVESTIGATION FORM";
@@ -139,7 +139,7 @@
             this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtJONumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONumber.Location = new System.Drawing.Point(199, 89);
+            this.txtJONumber.Location = new System.Drawing.Point(199, 97);
             this.txtJONumber.Multiline = true;
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.ReadOnly = true;
@@ -173,7 +173,7 @@
             this.txtAccountName.Multiline = true;
             this.txtAccountName.Name = "txtAccountName";
             this.txtAccountName.ReadOnly = true;
-            this.txtAccountName.Size = new System.Drawing.Size(198, 27);
+            this.txtAccountName.Size = new System.Drawing.Size(198, 35);
             this.txtAccountName.TabIndex = 40;
             // 
             // txtJORemarks
@@ -184,7 +184,7 @@
             this.txtJORemarks.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtJORemarks.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtJORemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJORemarks.Location = new System.Drawing.Point(199, 122);
+            this.txtJORemarks.Location = new System.Drawing.Point(199, 130);
             this.txtJORemarks.Multiline = true;
             this.txtJORemarks.Name = "txtJORemarks";
             this.txtJORemarks.ReadOnly = true;
@@ -195,7 +195,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(25, 89);
+            this.label22.Location = new System.Drawing.Point(25, 97);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(85, 15);
             this.label22.TabIndex = 38;
@@ -205,7 +205,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(24, 120);
+            this.label8.Location = new System.Drawing.Point(24, 128);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 15);
             this.label8.TabIndex = 38;
@@ -213,15 +213,14 @@
             // 
             // cmbxComplaint
             // 
-            this.cmbxComplaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxComplaint.FormattingEnabled = true;
             this.cmbxComplaint.Items.AddRange(new object[] {
             "Meter Calibration",
             "High Billing"});
-            this.cmbxComplaint.Location = new System.Drawing.Point(197, 176);
+            this.cmbxComplaint.Location = new System.Drawing.Point(199, 214);
             this.cmbxComplaint.Name = "cmbxComplaint";
-            this.cmbxComplaint.Size = new System.Drawing.Size(200, 23);
+            this.cmbxComplaint.Size = new System.Drawing.Size(198, 23);
             this.cmbxComplaint.TabIndex = 0;
             this.cmbxComplaint.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxComplaint_Validating);
             this.cmbxComplaint.Validated += new System.EventHandler(this.cmbxComplaint_Validated);
@@ -230,7 +229,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 179);
+            this.label2.Location = new System.Drawing.Point(25, 217);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(76, 15);
             this.label2.TabIndex = 35;
@@ -277,9 +276,9 @@
             this.groupBox1.Controls.Add(this.nudImmediateFamily);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(13, 227);
+            this.groupBox1.Location = new System.Drawing.Point(13, 262);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(429, 318);
+            this.groupBox1.Size = new System.Drawing.Size(429, 303);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "2. STATISTICAL FINDING";
@@ -567,7 +566,7 @@
             this.btnAttachedImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttachedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAttachedImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttachedImage.Location = new System.Drawing.Point(27, 23);
+            this.btnAttachedImage.Location = new System.Drawing.Point(25, 40);
             this.btnAttachedImage.Name = "btnAttachedImage";
             this.btnAttachedImage.Size = new System.Drawing.Size(98, 23);
             this.btnAttachedImage.TabIndex = 20;
@@ -577,51 +576,6 @@
             this.btnAttachedImage.UseVisualStyleBackColor = false;
             this.btnAttachedImage.Click += new System.EventHandler(this.btnAttachedImage_Click);
             this.btnAttachedImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnAttachedImage_Validating);
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.Controls.Add(this.btnCancel);
-            this.panel4.Controls.Add(this.btnSave);
-            this.panel4.Location = new System.Drawing.Point(448, 514);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(429, 31);
-            this.panel4.TabIndex = 6;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(308, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 23);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Cancel [Esc]";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(192, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 23);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save ";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox2
             // 
@@ -805,7 +759,7 @@
             this.btnViewImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnViewImages.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnViewImages.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewImages.Location = new System.Drawing.Point(27, 53);
+            this.btnViewImages.Location = new System.Drawing.Point(25, 70);
             this.btnViewImages.Name = "btnViewImages";
             this.btnViewImages.Size = new System.Drawing.Size(98, 23);
             this.btnViewImages.TabIndex = 23;
@@ -822,10 +776,20 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox4.Location = new System.Drawing.Point(448, 428);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(429, 84);
+            this.groupBox4.Size = new System.Drawing.Size(429, 138);
             this.groupBox4.TabIndex = 23;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "5. IMAGE ATTACHMENTS";
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.lblFileName.Location = new System.Drawing.Point(187, 43);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(16, 13);
+            this.lblFileName.TabIndex = 24;
+            this.lblFileName.Text = "---";
             // 
             // groupBox5
             // 
@@ -835,7 +799,7 @@
             this.groupBox5.Location = new System.Drawing.Point(903, 11);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(433, 534);
+            this.groupBox5.Size = new System.Drawing.Size(433, 555);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "6. INVESTIGATION RECORDS";
@@ -846,7 +810,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 55);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(413, 469);
+            this.panel2.Size = new System.Drawing.Size(413, 490);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -855,7 +819,7 @@
             this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(413, 469);
+            this.dgInvestigations.Size = new System.Drawing.Size(413, 490);
             this.dgInvestigations.TabIndex = 25;
             // 
             // panel1
@@ -907,15 +871,25 @@
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider1.ContainerControl = this;
             // 
-            // lblFileName
+            // label12
             // 
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-            this.lblFileName.Location = new System.Drawing.Point(189, 26);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(16, 13);
-            this.lblFileName.TabIndex = 24;
-            this.lblFileName.Text = "---";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(27, 190);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(126, 15);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "DATE INVESTIGATED";
+            // 
+            // dtpDate
+            // 
+            this.dtpDate.CustomFormat = "MMMM dd, yyyy";
+            this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(199, 187);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(198, 21);
+            this.dtpDate.TabIndex = 45;
             // 
             // ucInvestigationForm
             // 
@@ -924,13 +898,12 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
-            this.Size = new System.Drawing.Size(1363, 562);
+            this.Size = new System.Drawing.Size(1363, 579);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -944,7 +917,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudImmediateFamily)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -980,9 +952,6 @@
         private System.Windows.Forms.Button btnAttachedImage;
         private System.Windows.Forms.Label label21;
         internal System.Windows.Forms.TextBox txtRecommendations;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnSave;
         internal System.Windows.Forms.NumericUpDown nudNoOfHoursServed;
         private System.Windows.Forms.Label label23;
         internal System.Windows.Forms.NumericUpDown nudNoServiceOfOutlets;
@@ -1022,5 +991,7 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnViewDetails;
         private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.Label label12;
+        internal System.Windows.Forms.DateTimePicker dtpDate;
     }
 }

@@ -1,7 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.JobOrder;
-using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
@@ -53,29 +52,12 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+   
+        internal bool SaveData()
         {
-            if (SaveData())
-            {
-                UploadImage();
-                Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
-                ResetForm();
-            }
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                Helper.MessageBoxError("Please complete necessary fields." + ex.Message);
-            }
-           
-        }
-
-        private bool SaveData()
-        {
-            if (!ValidateChildren(ValidationConstraints.Enabled))
-                return false;
+            //TEMPORARY LANG TO
+            //if (!ValidateChildren(ValidationConstraints.Enabled))
+            //    return false;
 
 
             using (var scope = new TransactionScope())
@@ -98,6 +80,8 @@ namespace JOMonitoringApp.Views.Investigation
 
                     if (statFindingsResult && conditionOfServiceFacilitiesResult)
                     {
+                        UploadImage();
+                        ResetForm();
                         scope.Complete();
                         return true;
                     }
@@ -114,15 +98,17 @@ namespace JOMonitoringApp.Views.Investigation
             var model = new InvestigationModel
             {
                 JobOrderId = _jobOrderId,
-                CustomerId = _customerId,
                 CustomerName = txtAccountName.Text,
                 CustomerAddress = _customerAddress,
                 CustomerAccountNumber = txtAccountNumber.Text,
-                NatureOfComplaint = cmbxComplaint.Text,    
+                NatureOfComplaint = cmbxComplaint.Text,
                 InvestigatorComments = txtInvestigatorComments.Text,
+                DateOfInvestigation = dtpDate.Value,
+                ApprovalMessage = string.Empty,
                 Recommendations = txtRecommendations.Text,
                 imagePath = imageFilePath,
-                secondaryImagePath = secondaryImageFilePath
+                secondaryImagePath = secondaryImageFilePath,
+                CreatedBy = Helper.UserId
             };
 
             return model;
@@ -239,8 +225,6 @@ namespace JOMonitoringApp.Views.Investigation
             txtAlternativeSource.Clear();
             lblFileName.Text = "---";
             isUpdate = false;
-            btnSave.BackColor = Color.DodgerBlue;
-            btnSave.Text = "Save";
         }
 
         private void btnViewImages_Click(object sender, EventArgs e)
@@ -259,10 +243,6 @@ namespace JOMonitoringApp.Views.Investigation
                 openFileDialog.RestoreDirectory = true;
                 openFileDialog.Multiselect = true;
 
-                
-
-
-                
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     if (openFileDialog.FileNames.Length > 2)
@@ -284,9 +264,12 @@ namespace JOMonitoringApp.Views.Investigation
             // Implement the logic to upload the image to the server or save it locally
             // Example: Save the file to a specific directory
 
-            string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
-            File.Copy(imageFilePath, Path.Combine(sharedFolderPath, imageFilePath), true);
-            File.Copy(imageFilePath, Path.Combine(sharedFolderPath, secondaryImageFilePath), true);
+            if (!string.IsNullOrEmpty(imageFilePath) && !string.IsNullOrEmpty(secondaryImageFilePath))
+            {
+                string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
+                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, imageFilePath), true);
+                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, secondaryImageFilePath), true);
+            }
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -317,15 +300,8 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
             ViewInvestigationDetails();
-            UpdateSettings();
         }
 
-        private void UpdateSettings()
-        {
-            btnSave.BackColor = Color.OrangeRed;
-            btnSave.Text = "Update";
-            isUpdate = true;
-        }
 
         private void ViewInvestigationDetails()
         {
@@ -348,7 +324,6 @@ namespace JOMonitoringApp.Views.Investigation
                 string underRegistration = dictInvestigation["under_registration"];
                 string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
                 int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
-                int customersId = Convert.ToInt32(dictInvestigation["customers_id"]);
                 string customerAddress = dictInvestigation["customer_address"];
                 int isfId = Convert.ToInt32(dictInvestigation["isf_id"]);
                 byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);

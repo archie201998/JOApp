@@ -31,7 +31,6 @@ namespace JOMonitoringApp.Views.MainForm
     {
         private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
-        private readonly ucInvestigationForm ucInvestigationForm;
 
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
@@ -45,7 +44,6 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucJoborder = ucJoborder1;
             ucDashboardSummaryView = ucDashboardSummaryView1;
-            ucInvestigationForm = ucInvestigation1;
         }
 
 
@@ -92,7 +90,8 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                OnLoad();
+                //OnLoad();
+                LoadJobOrders();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -105,6 +104,17 @@ namespace JOMonitoringApp.Views.MainForm
                 backgroundWorker1.RunWorkerAsync(LoadJobOrdersParameters());
             }
         }
+
+        private (string searchKey, int rowFilter, int statusId, string particular) LoadJobOrdersParameters()
+        {
+            string searchKey = txtSearch.Text.Trim();
+            int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
+            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+            string particular = cmbxParticulars.Text;
+
+            return (searchKey, rowFilter, statusId, particular);
+        }
+
 
         private DataColumn[] JobOrdersColumns()
         {
@@ -132,17 +142,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             };
         }
-                                            
-        private (string searchKey,int rowFilter, int statusId, string particular) LoadJobOrdersParameters()
-        {
-            string searchKey = txtSearch.Text.Trim();
-            int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
-            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            string particular = cmbxParticulars.Text;
-
-            return (searchKey, rowFilter, statusId, particular);
-        }
-                                                    
+                                       
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             try
@@ -159,7 +159,6 @@ namespace JOMonitoringApp.Views.MainForm
 
                 foreach (DataRow row in dtJobOrders.Rows)
                 {
-
                     var newRow = dataTable.NewRow();
                     int id = Convert.ToInt32(row["id"]);
                     string status = $"{row["status"]}";
@@ -772,31 +771,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void button2_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
-            //if (dgJobOrders.SelectedRows.Count > 0)
-            //{
-            //    int selectedIndex = dgJobOrders.SelectedRows[0].Index;
-            //    if (selectedIndex >= 0)
-            //    {
-
-            //        string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
-            //        string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
-            //        string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
-            //        string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
-            //        string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
-
-            //        ucInvestigationForm._jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
-            //        ucInvestigationForm.txtAccountName.Text = accountName;
-            //        ucInvestigationForm.txtAccountNumber.Text = accountNumber;
-            //        ucInvestigationForm.txtJORemarks.Text = remarks;
-            //        ucInvestigationForm._customerAddress = customerAddress;
-            //        ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
-
-            //        // Change the tab focus to the next tab
-            //        int nextTabIndex = (tabControl1.SelectedIndex + 1) % tabControl1.TabCount;
-            //        tabControl1.SelectedIndex = nextTabIndex;
-            //    }
-            //}
         }
 
         private void particularsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -815,8 +789,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void tabPage3_Enter(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
-            tabControl1.SelectedTab = tabPage1;
+            
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -964,6 +937,27 @@ namespace JOMonitoringApp.Views.MainForm
 
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
             _ = new frmHydrantWithdrawal(jobOrderNumber).ShowDialog();
+        }
+
+        private void investigationToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count > 0)
+            {
+                int selectedIndex = dgJobOrders.SelectedRows[0].Index;
+                if (selectedIndex >= 0)
+                {
+
+                    string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
+                    string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
+                    string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
+                    string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
+                    string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
+                    int jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
+
+                    var frmInvestigation = new frmInvestigation(jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
+                    frmInvestigation.Show();
+                }
+            }
         }
     }
 }

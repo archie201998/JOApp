@@ -228,7 +228,7 @@ namespace JOMonitoringApp
 
             dataTable.Columns.AddRange(columns);
 
-            int[] values = { 10, 100, 1000, 2000 };
+            int[] values = { 10, 50, 100 };
 
             foreach (int value in values)
             {
@@ -264,9 +264,8 @@ namespace JOMonitoringApp
             else
             {
                 dgInvestigations.DataSource = null;
+                return;
             }
-
-            dgInvestigations.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
@@ -276,10 +275,18 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["recommendations"].Visible = false;
             dgInvestigations.Columns["image_path"].Visible = false;
             dgInvestigations.Columns["secondary_image_path"].Visible = false;
+            dgInvestigations.Columns["is_approved"].Visible = false;
+            dgInvestigations.Columns["approval_message"].Visible = false;
+            dgInvestigations.Columns["created_by"].Visible = false;
+
+            dgInvestigations.Columns["secondary_image_path"].Visible = false;
+            dgInvestigations.Columns["secondary_image_path"].Visible = false;
+            dgInvestigations.Columns["secondary_image_path"].Visible = false;
 
             dgInvestigations.Columns["customer_name"].HeaderText = "Customer Name";
             dgInvestigations.Columns["account_number"].HeaderText = "Account Number";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "Complaint";
+            dgInvestigations.Columns["date_of_investigation"].HeaderText = "INVESTIGATION DATE";
 
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

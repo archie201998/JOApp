@@ -542,5 +542,10 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             Helper.ClearErrorTextBox(errorProvider1, txtRemarks);
         }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

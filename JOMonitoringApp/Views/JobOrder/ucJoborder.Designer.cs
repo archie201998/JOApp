@@ -257,11 +257,12 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(25, 130);
+            this.label18.Location = new System.Drawing.Point(25, 124);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(62, 15);
             this.label18.TabIndex = 33;
             this.label18.Text = "CONTACT";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // cbxNA
             // 
@@ -699,7 +700,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(410, 704);
+            this.Size = new System.Drawing.Size(410, 739);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UcJoborder_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();

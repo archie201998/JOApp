@@ -489,7 +489,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtContact.Clear();
             ValidatePermissions();
             //dgJobOrders.ClearSelection();
-
+            btnX.Visible = false;
         }
 
         private void LogJOTransaction()
@@ -954,10 +954,31 @@ namespace JOMonitoringApp.Views.MainForm
                     string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
                     int jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
 
-                    var frmInvestigation = new frmInvestigation(jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
+                    var frmInvestigation = new frmInvestigation(true, jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
                     frmInvestigation.Show();
                 }
             }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigation(false, null, 0, null, null, null, null).ShowDialog();
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            btnX.Visible = txtSearch.Text.Length > 0;
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            txtSearch.Clear();
+            LoadJobOrders();
         }
     }
 }

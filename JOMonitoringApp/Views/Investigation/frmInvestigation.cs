@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,8 +22,9 @@ namespace JOMonitoringApp.Views.Investigation
         private readonly string customerAddress;
         private readonly string remark;
         private ucInvestigationForm ucInvestigationForm;
+        private readonly bool create;
 
-        public frmInvestigation(string jobOrderNumber, int jobOrderId, string accountName, string accountNumber, string customerAddress, string remark)
+        public frmInvestigation(bool create, string jobOrderNumber, int jobOrderId, string accountName, string accountNumber, string customerAddress, string remark)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
@@ -34,7 +36,7 @@ namespace JOMonitoringApp.Views.Investigation
             this.accountNumber = accountNumber;
             this.customerAddress = customerAddress;
             this.remark = remark;
-
+            this.create = create;
 
         }
 
@@ -47,19 +49,32 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm._jobOrderId = jobOderId;
             ucInvestigationForm._customerAddress = customerAddress;
             ucInvestigationForm.OnLoad();
+            ucInvestigationForm.EnableControls(create);
         }
+
+        private void UpdateJobOrderStatus()
+        {
+            int jobOrderId = ucInvestigationForm._jobOrderId;
+            int statusId = 2;
+            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, statusId);
+        }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
+            {
+                if (ucInvestigationForm.SaveData())
+                {
+                    UpdateJobOrderStatus();
+                    Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
+                    ucInvestigationForm.OnLoad();
+                }
+            }
+
             try
             {
-                if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
-                {
-                    if (ucInvestigationForm.SaveData())
-                    {
-                        Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
-                    }
-                }
+             
             }
             catch (Exception ex)
             {

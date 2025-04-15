@@ -275,7 +275,6 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["recommendations"].Visible = false;
             dgInvestigations.Columns["image_path"].Visible = false;
             dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["is_approved"].Visible = false;
             dgInvestigations.Columns["approval_message"].Visible = false;
             dgInvestigations.Columns["created_by"].Visible = false;
 
@@ -283,10 +282,11 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["secondary_image_path"].Visible = false;
             dgInvestigations.Columns["secondary_image_path"].Visible = false;
 
-            dgInvestigations.Columns["customer_name"].HeaderText = "Customer Name";
-            dgInvestigations.Columns["account_number"].HeaderText = "Account Number";
-            dgInvestigations.Columns["nature_of_complaint"].HeaderText = "Complaint";
-            dgInvestigations.Columns["date_of_investigation"].HeaderText = "INVESTIGATION DATE";
+            dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER NAME";
+            dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
+            dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
+            dgInvestigations.Columns["is_approved"].HeaderText = "STATUS";
 
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

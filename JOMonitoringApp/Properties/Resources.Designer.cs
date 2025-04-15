@@ -243,6 +243,26 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_x_14 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_x_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_x_24 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_x_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap invisible_16px {
             get {
                 object obj = ResourceManager.GetObject("invisible_16px", resourceCulture);

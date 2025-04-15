@@ -38,7 +38,7 @@ namespace JOMonitoringApp
                     new object[] { "@id", DbType.Int32, Id},
                 };
 
-                string query = $"SELECT * FROM {viewTableName} WHERE id = @id";
+                string query = $"SELECT * FROM {viewTableName} WHERE id = @id ORDER BY first_name";
 
                 using (var reader = mySqlGenericCommands.ExecuteReader(query, parameters))
                 {
@@ -66,7 +66,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName} ORDER BY prefix";
+            string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName} ORDER BY first_name";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);

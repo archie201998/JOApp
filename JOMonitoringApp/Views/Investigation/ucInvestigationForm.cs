@@ -33,10 +33,12 @@ namespace JOMonitoringApp.Views.Investigation
         string imageFilePath = string.Empty;
         string secondaryImageFilePath = string.Empty;
 
+        private Dictionary<string, string> originalValues = new Dictionary<string, string>();
+
         public ucInvestigationForm()
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyle(dgInvestigations);
+            Helper.DatagridFullRowSelectStyle(dgInvestigations, true);
         }
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
@@ -245,14 +247,14 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (openFileDialog.FileNames.Length > 2)
+                    if (openFileDialog.FileNames.Length > 2 )
                     {
-                        MessageBox.Show("Please select only 2 images", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Please select 2 images", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
                     imageFilePath   = openFileDialog.FileNames[0];
-                    secondaryImageFilePath = openFileDialog.FileNames[1];
+                    secondaryImageFilePath = openFileDialog.FileName.Length == 1 ?openFileDialog.FileNames[1] : openFileDialog.FileNames[0];
 
                     lblFileName.Text = $"{imageFilePath.Remove(4, 1)} / {secondaryImageFilePath.Remove(4, 1)}";
                 }
@@ -261,14 +263,15 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void UploadImage()
         {
-            // Implement the logic to upload the image to the server or save it locally
-            // Example: Save the file to a specific directory
-
             if (!string.IsNullOrEmpty(imageFilePath) && !string.IsNullOrEmpty(secondaryImageFilePath))
             {
-                string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
-                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, imageFilePath), true);
-                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, secondaryImageFilePath), true);
+                string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol";
+
+                // Original file copy
+                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath)), true);
+
+                // Secondary copy (e.g., renamed version)
+                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath)), true);
             }
         }
 
@@ -301,13 +304,24 @@ namespace JOMonitoringApp.Views.Investigation
         {
             ViewInvestigationDetails();
         }
-
+      
+        internal void EnableControls(bool enable)
+        {
+            gbStatisticalFindings.Enabled = enable;
+            gbAccountDetails.Enabled = enable;
+            gbComments.Enabled = enable;
+            gbConditionOfService.Enabled= enable; 
+            gbImage.Enabled= enable;
+            gbApproval.Enabled= enable;
+        }
 
         private void ViewInvestigationDetails()
         {
             if (dgInvestigations.SelectedRows.Count > 0)
             {
+                EnableControls(true);
                 isUpdate = true;
+                btnX.Visible = true;
                 int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
 
@@ -358,8 +372,6 @@ namespace JOMonitoringApp.Views.Investigation
                 nudHouseHelper.Value = houseHelper;
                 nudRelatives.Value = relatives;
                 nudBoarders.Value = boarders;
-                
-
             }
             else
             {
@@ -390,6 +402,13 @@ namespace JOMonitoringApp.Views.Investigation
         public string GetSecondaryImagePath()
         {
             return secondaryImageFilePath;
+        }
+
+        private void btnX_Click(object sender, EventArgs e)
+        {
+            btnX.Visible = false;
+            EnableControls(false);
+            ResetForm();
         }
     }
 }

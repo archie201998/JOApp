@@ -22,7 +22,9 @@ namespace JOMonitoringApp.Views.Investigation
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
-            _accountNumber = accountNumber; 
+            _accountNumber = accountNumber;
+
+            lblAccountNumber.Text = _accountNumber;
         }
 
         private void frmInvestigationAdjustment_KeyDown(object sender, KeyEventArgs e)
@@ -79,12 +81,102 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeErroneousReading()
         {
-            MessageBox.Show("ComputeErroneousReading");
+
+            var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
+
+            txtPreviousReading.Text = readingDetails["Prev"].ToString();
+            txtPresentReading.Text = readingDetails["Pres"].ToString();
+            txtActualReading.Focus();
         }
 
         private void ComputeFailedCalibration()
         {
             MessageBox.Show("ComputeFailedCalibration");
+        }
+
+        private void txtActualReading_TextChanged(object sender, EventArgs e)
+        {
+            Compute();
+        }
+
+        private void Compute()
+        {
+            int previousReading, actualReading;
+            double adjustedAmount = 0.0;
+
+            double overHundredRate = 0.0;
+
+
+            if (int.TryParse(txtPreviousReading.Text, out previousReading) &&
+                int.TryParse(txtActualReading.Text, out actualReading))
+            {
+                int consumption = actualReading - previousReading;
+                double underHundredRate = 0;
+
+                if (consumption < 100 && consumption > 1)
+                    underHundredRate = GetRateByConsumption(consumption);
+
+                txtConsumption.Text = consumption.ToString();
+
+                adjustedAmount = underHundredRate;
+
+                if (cbxPenalty.Checked) 
+                    adjustedAmount += adjustedAmount * 0.10;
+
+                if (cbxExtensionFee.Checked)
+                    adjustedAmount += 30;
+
+
+                lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
+
+                
+
+
+            }
+            else
+            {
+                MessageBox.Show("Please enter valid numeric readings.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtConsumption.Text = "";
+            }
+        }
+
+        static double GetRateByConsumption(int consumption)
+        {
+            var rateDict = Helper.DomesticRate();
+
+            if (rateDict.TryGetValue(consumption, out double rate))
+            {
+                return rate;
+            }
+
+            throw new ArgumentException("Invalid quantity. Must be between 1 and 100.");
+        }
+
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            Compute();
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            Compute();
         }
     }
 }

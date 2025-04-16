@@ -187,4 +187,27 @@ internal class CustomersRepository : ICustomersRepository
         return result;
     }
 
+    public Dictionary<string, string> GetBillingDetails(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+           new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT TOP(1) * FROM txn_ReadingDetails WHERE AccountNo = @account_number ORDER BY ReadingDate DESC";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+        }
+
+        return result;
+    }
 }

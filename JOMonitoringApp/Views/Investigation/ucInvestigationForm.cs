@@ -108,8 +108,8 @@ namespace JOMonitoringApp.Views.Investigation
                 DateOfInvestigation = dtpDate.Value,
                 ApprovalMessage = string.Empty,
                 Recommendations = txtRecommendations.Text,
-                imagePath = imageFilePath,
-                secondaryImagePath = secondaryImageFilePath,
+                imagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
+                secondaryImagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
                 CreatedBy = Helper.UserId
             };
 
@@ -227,6 +227,8 @@ namespace JOMonitoringApp.Views.Investigation
             txtAlternativeSource.Clear();
             lblFileName.Text = "---";
             isUpdate = false;
+            pictureBox1.Image = Properties.Resources.icons8_image_96;
+            pictureBox2.Image = Properties.Resources.icons8_image_96;
         }
 
 
@@ -256,7 +258,6 @@ namespace JOMonitoringApp.Views.Investigation
                     pictureBox1.Image = Image.FromFile(imageFilePath);
                     pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
 
-                    //lblFileName.Text = $"{imageFilePath.Remove(4, 1)} / {secondaryImageFilePath.Remove(4, 1)}";
                 }
             }
         }
@@ -370,8 +371,12 @@ namespace JOMonitoringApp.Views.Investigation
                 nudRelatives.Value = relatives;
                 nudBoarders.Value = boarders;
 
+                imageFilePath = dictInvestigation["image_path"].ToString();
+                secondaryImageFilePath = dictInvestigation["secondary_image_path"].ToString();
+
                 pictureBox1.Image = Image.FromFile(dictInvestigation["image_path"].ToString());
                 pictureBox2.Image = Image.FromFile(dictInvestigation["secondary_image_path"].ToString());
+
 
             }
             else
@@ -427,6 +432,11 @@ namespace JOMonitoringApp.Views.Investigation
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             _ = new frmInvestigationImageViewer(secondaryImageFilePath).ShowDialog();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -41,7 +41,7 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (imageFiles.Count > 0)
                 {
-                    LoadImage(imageFiles[currentImageIndex]);
+                    LoadImage();
                 }
                 else
                 {
@@ -55,7 +55,7 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
 
-        public void LoadImage(string imagePath)
+        public void LoadImage()
         {
             if (!string.IsNullOrEmpty(_imageFilePath))
             {

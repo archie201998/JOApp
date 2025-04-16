@@ -41,7 +41,7 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(4, 625);
+            this.panel4.Location = new System.Drawing.Point(4, 701);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1405, 39);
             this.panel4.TabIndex = 7;
@@ -75,7 +75,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(152, 32);
             this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Save ";
+            this.btnSave.Text = "Save [Control + S]";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -85,7 +85,7 @@
             this.ucInvestigationForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucInvestigationForm1.Location = new System.Drawing.Point(4, 4);
             this.ucInvestigationForm1.Name = "ucInvestigationForm1";
-            this.ucInvestigationForm1.Size = new System.Drawing.Size(1405, 621);
+            this.ucInvestigationForm1.Size = new System.Drawing.Size(1405, 697);
             this.ucInvestigationForm1.TabIndex = 0;
             this.ucInvestigationForm1.Load += new System.EventHandler(this.ucInvestigationForm1_Load);
             // 
@@ -94,7 +94,7 @@
             this.AcceptButton = this.btnCancel;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1413, 668);
+            this.ClientSize = new System.Drawing.Size(1413, 744);
             this.Controls.Add(this.ucInvestigationForm1);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

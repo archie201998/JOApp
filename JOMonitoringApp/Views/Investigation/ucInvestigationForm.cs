@@ -225,7 +225,6 @@ namespace JOMonitoringApp.Views.Investigation
             cbPromoteTrade.Checked = false;
             cbSellToNeighbours.Checked = false;
             txtAlternativeSource.Clear();
-            lblFileName.Text = "---";
             isUpdate = false;
             pictureBox1.Image = Properties.Resources.icons8_image_96;
             pictureBox2.Image = Properties.Resources.icons8_image_96;
@@ -281,15 +280,6 @@ namespace JOMonitoringApp.Views.Investigation
 
         }
 
-        private void btnAttachedImage_Validating(object sender, CancelEventArgs e)
-        {
-            if (lblFileName.Text == "---")
-            {
-                errorProvider1.SetError(btnAttachedImage, "PLease insert at least one image.");
-                e.Cancel = true;    
-            }
-        }
-
         internal void OnLoad()
         {
             GetInvestigationRecords();
@@ -311,6 +301,7 @@ namespace JOMonitoringApp.Views.Investigation
             gbConditionOfService.Enabled= enable; 
             gbImage.Enabled= enable;
             gbApproval.Enabled= enable;
+            gbComputation.Enabled = enable;
         }
 
         private void ViewInvestigationDetails()
@@ -437,6 +428,11 @@ namespace JOMonitoringApp.Views.Investigation
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
         }
     }
 }

@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>150</ApplicationRevision>
+    <ApplicationRevision>151</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -255,6 +255,12 @@
     <Compile Include="Views\Investigation\frmInvestigation.Designer.cs">
       <DependentUpon>frmInvestigation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationAdjustment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationAdjustment.Designer.cs">
+      <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Investigation\frmInvestigationImageViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -411,6 +417,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigation.resx">
       <DependentUpon>frmInvestigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\frmInvestigationAdjustment.resx">
+      <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>

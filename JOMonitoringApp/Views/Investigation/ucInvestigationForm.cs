@@ -229,11 +229,6 @@ namespace JOMonitoringApp.Views.Investigation
             isUpdate = false;
         }
 
-        private void btnViewImages_Click(object sender, EventArgs e)
-        {
-            _ = new frmInvestigationImageViewer().ShowDialog();
-          
-        }
 
         private void btnAttachedImage_Click(object sender, EventArgs e)
         {
@@ -307,6 +302,7 @@ namespace JOMonitoringApp.Views.Investigation
       
         internal void EnableControls(bool enable)
         {
+            gbPrint.Enabled = enable;
             gbStatisticalFindings.Enabled = enable;
             gbAccountDetails.Enabled = enable;
             gbComments.Enabled = enable;
@@ -409,6 +405,23 @@ namespace JOMonitoringApp.Views.Investigation
             btnX.Visible = false;
             EnableControls(false);
             ResetForm();
+        }
+
+        private void dgInvestigations_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgInvestigations.SelectedRows.Count == 0) return;
+
+            ViewInvestigationDetails();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationImageViewer().ShowDialog();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationImageViewer().ShowDialog();
         }
     }
 }

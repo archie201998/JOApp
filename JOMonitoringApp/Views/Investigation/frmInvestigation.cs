@@ -62,19 +62,19 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
-            {
-                if (ucInvestigationForm.SaveData())
-                {
-                    UpdateJobOrderStatus();
-                    Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
-                    ucInvestigationForm.OnLoad();
-                }
-            }
-
+           
             try
             {
-             
+                if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
+                {
+                    if (ucInvestigationForm.SaveData())
+                    {
+                        UpdateJobOrderStatus();
+                        Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
+                        ucInvestigationForm.OnLoad();
+                    }
+                }
+
             }
             catch (Exception ex)
             {

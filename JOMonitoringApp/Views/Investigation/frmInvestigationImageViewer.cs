@@ -17,11 +17,16 @@ namespace JOMonitoringApp.Views.Investigation
         private List<string> imageFiles;
         private int currentImageIndex;
 
-        public frmInvestigationImageViewer()
+        private string _imageFilePath;
+
+        public frmInvestigationImageViewer(string imageFilePath)
         {
             InitializeComponent();
             imageFiles = new List<string>();
             currentImageIndex = 0;
+            _imageFilePath = imageFilePath;
+
+            Helper.LoadFormIcon(this);
         }
 
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
@@ -52,9 +57,12 @@ namespace JOMonitoringApp.Views.Investigation
 
         public void LoadImage(string imagePath)
         {
-            Image image = Image.FromFile(imagePath);
-            Image watermarkedImage = AddWatermark(image, "CAPTURED BY DACOL"); // Replace "Watermark Text" with your desired watermark text
-            pictureBox1.Image = watermarkedImage;
+            if (!string.IsNullOrEmpty(_imageFilePath))
+            {
+                Image image = Image.FromFile(_imageFilePath);
+                Image watermarkedImage = AddWatermark(image, "CAPTURED BY DACOL"); // Replace "Watermark Text" with your desired watermark text
+                pictureBox1.Image = watermarkedImage;
+            }
         }
 
         public static Image AddWatermark(Image image, string watermarkText)
@@ -71,13 +79,11 @@ namespace JOMonitoringApp.Views.Investigation
             return image;
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void frmInvestigationImageViewer_KeyDown(object sender, KeyEventArgs e)
         {
-            if (imageFiles.Count > 0)
+            if (e.KeyCode == Keys.Escape)
             {
-                currentImageIndex = (currentImageIndex + 1) % imageFiles.Count;
-                LoadImage(imageFiles[currentImageIndex]);
+                this.Close(); // Or Application.Exit();
             }
         }
     }

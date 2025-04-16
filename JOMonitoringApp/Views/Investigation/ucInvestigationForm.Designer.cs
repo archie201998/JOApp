@@ -87,8 +87,6 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnViewDetails = new System.Windows.Forms.Button();
             this.gbApproval = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
@@ -113,7 +111,6 @@
             this.groupBox5.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
-            this.panel1.SuspendLayout();
             this.gbApproval.SuspendLayout();
             this.gbPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -600,9 +597,9 @@
             this.btnAttachedImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttachedImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAttachedImage.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAttachedImage.Location = new System.Drawing.Point(21, 32);
+            this.btnAttachedImage.Location = new System.Drawing.Point(21, 24);
             this.btnAttachedImage.Name = "btnAttachedImage";
-            this.btnAttachedImage.Size = new System.Drawing.Size(124, 23);
+            this.btnAttachedImage.Size = new System.Drawing.Size(92, 23);
             this.btnAttachedImage.TabIndex = 20;
             this.btnAttachedImage.TabStop = false;
             this.btnAttachedImage.Text = "Attach Images";
@@ -802,6 +799,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox2.Image = global::JOMonitoringApp.Properties.Resources.icons8_image_96;
             this.pictureBox2.Location = new System.Drawing.Point(233, 24);
@@ -814,6 +812,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_image_96;
             this.pictureBox1.Location = new System.Drawing.Point(151, 24);
@@ -837,7 +836,6 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.panel2);
-            this.groupBox5.Controls.Add(this.panel1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.Location = new System.Drawing.Point(793, 11);
             this.groupBox5.Name = "groupBox5";
@@ -851,9 +849,9 @@
             // 
             this.panel2.Controls.Add(this.dgInvestigations);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(10, 55);
+            this.panel2.Location = new System.Drawing.Point(10, 23);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(576, 490);
+            this.panel2.Size = new System.Drawing.Size(576, 522);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -862,35 +860,9 @@
             this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(576, 490);
+            this.dgInvestigations.Size = new System.Drawing.Size(576, 522);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnViewDetails);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(10, 23);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(576, 32);
-            this.panel1.TabIndex = 25;
-            // 
-            // btnViewDetails
-            // 
-            this.btnViewDetails.BackColor = System.Drawing.Color.White;
-            this.btnViewDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnViewDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnViewDetails.Image = global::JOMonitoringApp.Properties.Resources.icons8_view_14;
-            this.btnViewDetails.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewDetails.Location = new System.Drawing.Point(3, 5);
-            this.btnViewDetails.Name = "btnViewDetails";
-            this.btnViewDetails.Size = new System.Drawing.Size(126, 23);
-            this.btnViewDetails.TabIndex = 27;
-            this.btnViewDetails.TabStop = false;
-            this.btnViewDetails.Text = "VIEW / UPDATE";
-            this.btnViewDetails.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewDetails.UseVisualStyleBackColor = false;
-            this.btnViewDetails.Click += new System.EventHandler(this.btnViewDetails_Click);
             // 
             // gbApproval
             // 
@@ -971,7 +943,6 @@
             // btnPrint
             // 
             this.btnPrint.BackColor = System.Drawing.Color.White;
-            this.btnPrint.Enabled = false;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
@@ -1028,7 +999,6 @@
             this.groupBox5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.gbApproval.ResumeLayout(false);
             this.gbApproval.PerformLayout();
             this.gbPrint.ResumeLayout(false);
@@ -1091,11 +1061,9 @@
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.TextBox txtJORemarks;
         internal System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgInvestigations;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnViewDetails;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Label label12;
         internal System.Windows.Forms.DateTimePicker dtpDate;

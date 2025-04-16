@@ -242,16 +242,21 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (openFileDialog.FileNames.Length > 2 )
+                    if (openFileDialog.FileNames.Length > 2)
                     {
                         MessageBox.Show("Please select 2 images", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    imageFilePath   = openFileDialog.FileNames[0];
-                    secondaryImageFilePath = openFileDialog.FileName.Length == 1 ?openFileDialog.FileNames[1] : openFileDialog.FileNames[0];
+                    imageFilePath = openFileDialog.FileNames[0];
+                    secondaryImageFilePath = openFileDialog.FileNames.Length == 1
+                        ? openFileDialog.FileNames[0]
+                        : openFileDialog.FileNames[1];
 
-                    lblFileName.Text = $"{imageFilePath.Remove(4, 1)} / {secondaryImageFilePath.Remove(4, 1)}";
+                    pictureBox1.Image = Image.FromFile(imageFilePath);
+                    pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
+
+                    //lblFileName.Text = $"{imageFilePath.Remove(4, 1)} / {secondaryImageFilePath.Remove(4, 1)}";
                 }
             }
         }
@@ -266,7 +271,7 @@ namespace JOMonitoringApp.Views.Investigation
                 File.Copy(imageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath)), true);
 
                 // Secondary copy (e.g., renamed version)
-                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath)), true);
+                File.Copy(secondaryImageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath)), true);
             }
         }
 
@@ -295,10 +300,6 @@ namespace JOMonitoringApp.Views.Investigation
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
-        private void btnViewDetails_Click(object sender, EventArgs e)
-        {
-            ViewInvestigationDetails();
-        }
       
         internal void EnableControls(bool enable)
         {
@@ -368,6 +369,10 @@ namespace JOMonitoringApp.Views.Investigation
                 nudHouseHelper.Value = houseHelper;
                 nudRelatives.Value = relatives;
                 nudBoarders.Value = boarders;
+
+                pictureBox1.Image = Image.FromFile(dictInvestigation["image_path"].ToString());
+                pictureBox2.Image = Image.FromFile(dictInvestigation["secondary_image_path"].ToString());
+
             }
             else
             {
@@ -416,12 +421,12 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationImageViewer().ShowDialog();
+            _ = new frmInvestigationImageViewer(imageFilePath).ShowDialog();
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationImageViewer().ShowDialog();
+            _ = new frmInvestigationImageViewer(secondaryImageFilePath).ShowDialog();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
@@ -432,7 +433,14 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
+            if (Helper.UserId == 15)
+            {
+
+                _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
+                return;
+            }
+
+            _ = new frmMessagePrompt().ShowDialog();
         }
     }
 }

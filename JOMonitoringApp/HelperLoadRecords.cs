@@ -70,7 +70,6 @@ namespace JOMonitoringApp
                 column.HeaderText = column.HeaderText.ToUpper();
                 column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             }
-
             dataGridView.DataSource = dataTable;
 
             dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
@@ -228,14 +227,14 @@ namespace JOMonitoringApp
 
             dataTable.Columns.AddRange(columns);
 
-            int[] values = { 10, 50, 100 };
+            int[] values = { 20, 50, 100, 250, 500, 1000, 10000 };
 
             foreach (int value in values)
             {
                 var newRow = dataTable.NewRow();
 
                 newRow["id"] = value;
-                newRow["description"] = $"Limit to {value} rows";
+                newRow["description"] = $" {value} records";
                 dataTable.Rows.Add(newRow);
             }
 

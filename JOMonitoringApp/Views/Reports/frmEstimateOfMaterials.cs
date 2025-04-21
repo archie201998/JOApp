@@ -55,7 +55,7 @@ namespace JOMonitoringApp.Views.Reports
             parameters[2] = new ReportParameter("paramCustomerAddress", dictJODetails["address"]);
 
             parameters[3] = new ReportParameter("paramJONumber", dictJODetails["job_order_no"]);
-            parameters[4] = new ReportParameter("paramJODate", dictJODetails["date"]);
+            parameters[4] = new ReportParameter("paramJODate", dictJODetails["date"].ToString());
             parameters[5] = new ReportParameter("paramPOSDate", dictJODetails["date"]);
 
             parameters[6] = new ReportParameter("paramAccomplishedBy", dictJODetails["accomplished_by"]);

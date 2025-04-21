@@ -37,6 +37,11 @@ namespace JOMonitoringApp.Views.MainForm
         private System.Windows.Forms.Timer updateTimer;
         bool isVisible = false;
 
+        private int currentPage = 1;
+        private int pageSize = 0; // Default page size
+        private DataTable fullDataTable = new DataTable(); // All fetched records
+
+
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
@@ -44,7 +49,9 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucJoborder = ucJoborder1;
             ucDashboardSummaryView = ucDashboardSummaryView1;
+
         }
+
 
 
         private void StartUpdateTimer()
@@ -205,6 +212,7 @@ namespace JOMonitoringApp.Views.MainForm
                 }
 
                 e.Result = dataTable;
+
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -218,27 +226,47 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                if (e.Cancelled)
-                    return;
+                if (e.Cancelled || !(e.Result is DataTable)) return;
 
+                fullDataTable = (DataTable)e.Result;
 
-                if (!(e.Result is DataTable))
-                    return;
-
-                DataTable dataTable = (DataTable)e.Result;
-
-                HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
-                dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
-                lblRecordsCount.Text = dgJobOrders.Rows.Count.ToString();
-
-                dgJobOrders.Rows[previousSelection].Selected = true;
-
+                DisplayPage(currentPage); // <-- load first page
             }
             catch (Exception)
             {
-
+                // Log error
             }
-            
+
+        }
+
+        private void DisplayPage(int pageNumber)
+        {
+            var pagedTable = fullDataTable.Clone();
+
+            var rows = fullDataTable.AsEnumerable()
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize);
+
+            foreach (var row in rows)
+                pagedTable.ImportRow(row);
+
+            HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, pagedTable);
+
+            if (dgJobOrders.Rows.Count > 0)
+            {
+                dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
+
+
+                int totalRecords = fullDataTable.Rows.Count;
+                int totalPages = (int)Math.Ceiling((double)totalRecords / pageSize);
+
+                txtLabel.Text = $"Page {currentPage} of {totalPages} | Total Records {totalRecords}";
+                dgJobOrders.Rows[0].Selected = true;
+            }
+            else
+            {
+                txtLabel.Text = "No records.";
+            }
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -246,6 +274,7 @@ namespace JOMonitoringApp.Views.MainForm
             try
             {
                 HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
+                pageSize = Convert.ToInt32(cmbxRowLimit.SelectedValue);
                 HelperLoadRecords.StatusCombobox(cmbxStatus);
 
                 var dtParticulars = Factory.ParticularsRepository().GetRecords();   
@@ -975,6 +1004,61 @@ namespace JOMonitoringApp.Views.MainForm
         {
             txtSearch.Clear();
             LoadJobOrders();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)fullDataTable.Rows.Count / pageSize);
+            if (currentPage < totalPages)
+            {
+                currentPage++;
+                DisplayPage(currentPage);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (currentPage > 1)
+            {
+                currentPage--;
+                DisplayPage(currentPage);
+            }
+        }
+
+        private void cmbxRowLimit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbxRowLimit_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //pageSize = Convert.ToInt32(cmbxRowLimit.SelectedValue);
+            //currentPage = 1;
+            //DisplayPage(currentPage);
+        }
+
+        private void cmbxRowLimit_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (currentPage != 1)
+            {
+                currentPage = 1;
+                DisplayPage(currentPage);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            int totalPages = (int)Math.Ceiling((double)fullDataTable.Rows.Count / pageSize);
+            if (currentPage != totalPages)
+            {
+                currentPage = totalPages;
+                DisplayPage(currentPage);
+            }
         }
     }
 }

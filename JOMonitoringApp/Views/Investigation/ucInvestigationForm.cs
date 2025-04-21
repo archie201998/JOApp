@@ -44,7 +44,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void gbAccountDetails_Enter(object sender, EventArgs e)
         {
-                                
+
         }
 
         private void ucInvestigation_Load(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-   
+        
         internal bool SaveData()
         {
             //TEMPORARY LANG TO
@@ -79,7 +79,7 @@ namespace JOMonitoringApp.Views.Investigation
                     conditionOfServiceFacilitiesModel.InvestigationId = lastInsertedId;
 
                     var statFindingsResult = Factory.InvestigationStatFindingsRepository().Insert(statFindingsModel);
-                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(conditionOfServiceFacilitiesModel); 
+                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(conditionOfServiceFacilitiesModel);
 
                     if (statFindingsResult && conditionOfServiceFacilitiesResult)
                     {
@@ -123,9 +123,9 @@ namespace JOMonitoringApp.Views.Investigation
             var model = new InvestigationConditionOfServiceFacilitiesModel
             {
                 MeterBrand = cmbxMeterBrand.Text,
-                MeterSize = txtMeterSize.Text,
-                ReadingBeforeTest = txtReadingBeforeTest.Text,
-                ReadingAfterTest = txtReadingAfterTest.Text,
+                MeterSize = cmbxMeterSize.Text,
+                ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
+                ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
                 CalibrationResult = txtCalibrationResult.Text,
                 OverRegistration = string.Empty,
                 UnderRegistration = string.Empty,
@@ -160,7 +160,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
         {
-            if (cmbxComplaint.Text == string.Empty )
+            if (cmbxComplaint.Text == string.Empty)
             {
                 e.Cancel = true;
                 Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxComplaint, "Nature of Complain.");
@@ -197,7 +197,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void txtInvestigatorComments_Validated(object sender, EventArgs e)
         {
-            Helper.ClearErrorTextBox(errorProvider1, txtInvestigatorComments);  
+            Helper.ClearErrorTextBox(errorProvider1, txtInvestigatorComments);
         }
 
 
@@ -210,10 +210,10 @@ namespace JOMonitoringApp.Views.Investigation
             txtInvestigatorComments.Clear();
             txtRecommendations.Clear();
             cmbxMeterBrand.SelectedIndex = -1;
-            txtMeterSize.Clear();
-            txtReadingBeforeTest.Clear();
+            cmbxMeterSize.SelectedIndex = -1;
+            nudReadingAfterTest.Value = 0 ;
             txtJONumber.Clear();
-            txtReadingAfterTest.Clear();
+            nudReadingBeforeTest.Value = 0;
             txtCalibrationResult.Clear();
             txtServiceLineDefects.Clear();
             nudImmediateFamily.Value = 0;
@@ -292,16 +292,17 @@ namespace JOMonitoringApp.Views.Investigation
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
-      
+
         internal void EnableControls(bool enable)
         {
-            gbPrint.Enabled = enable;
+            btnX.Enabled = enable;
+            btnPrint.Enabled = enable;
             gbStatisticalFindings.Enabled = enable;
             gbAccountDetails.Enabled = enable;
             gbComments.Enabled = enable;
-            gbConditionOfService.Enabled= enable; 
-            gbImage.Enabled= enable;
-            gbApproval.Enabled= enable;
+            gbConditionOfService.Enabled = enable;
+            gbImage.Enabled = enable;
+            gbApproval.Enabled = enable;
             gbComputation.Enabled = enable;
         }
 
@@ -315,14 +316,14 @@ namespace JOMonitoringApp.Views.Investigation
                 int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
 
-         
+
                 // Assigning additional columns to variables
                 int csfId = Convert.ToInt32(dictInvestigation["csf_id"]);
                 int investigationId = Convert.ToInt32(dictInvestigation["investigation_id"]);
                 string meterBrand = dictInvestigation["meter_brand"];
                 string meterSize = dictInvestigation["meter_size"];
-                string readingBeforeTest = dictInvestigation["reading_before_test"];
-                string readingAfterTest = dictInvestigation["reading_after_test"];
+                decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
+                decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 :  Convert.ToDecimal(dictInvestigation["reading_after_test"]);
                 string calibrationResult = dictInvestigation["calibration_result"];
                 string overRegistration = dictInvestigation["over_registration"];
                 string underRegistration = dictInvestigation["under_registration"];
@@ -353,9 +354,9 @@ namespace JOMonitoringApp.Views.Investigation
                 txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
                 txtRecommendations.Text = dictInvestigation["recommendations"];
                 cmbxMeterBrand.Text = meterBrand;
-                txtMeterSize.Text = meterSize;
-                txtReadingBeforeTest.Text = readingBeforeTest;
-                txtReadingAfterTest.Text = readingAfterTest;
+                cmbxMeterSize.Text = meterSize;
+                nudReadingBeforeTest.Value = readingBeforeTest;
+                nudReadingAfterTest.Value = readingAfterTest;
                 txtCalibrationResult.Text = calibrationResult;
                 txtServiceLineDefects.Text = leakingAfterTheMeter;
                 nudImmediateFamily.Value = immediateMembersOfFam;
@@ -388,7 +389,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            if (dictInvestigation.Count !=  0)
+            if (dictInvestigation.Count != 0)
                 _ = new frmInvestigationReport(dictInvestigation).ShowDialog();
 
         }
@@ -414,6 +415,12 @@ namespace JOMonitoringApp.Views.Investigation
             if (dgInvestigations.SelectedRows.Count == 0) return;
 
             ViewInvestigationDetails();
+            UpdateSettings();
+        }
+
+        private void UpdateSettings()
+        {
+            isUpdate = true;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -441,6 +448,35 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             _ = new frmMessagePrompt().ShowDialog();
+        }
+
+        private void CalibrationResult()
+        {
+            decimal before = nudReadingBeforeTest.Value;
+            decimal after = nudReadingAfterTest.Value;
+
+            decimal difference = after - before;
+
+            string result;
+
+            if (difference == 0.20m)
+                result = "Passed";
+            else if (difference < 0.20m)
+                result = "Failed Under";
+            else
+                result = "Failed Over";
+
+            txtCalibrationResult.Text = result; 
+        }
+
+        private void nudReadingAfterTest_ValueChanged(object sender, EventArgs e)
+        {
+            CalibrationResult();
+        }
+
+        private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

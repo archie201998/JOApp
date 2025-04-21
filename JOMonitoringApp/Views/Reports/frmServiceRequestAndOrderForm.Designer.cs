@@ -39,6 +39,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.cbxFullPage = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -47,6 +48,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbxFullPage);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtJONumberTo);
             this.panel1.Controls.Add(this.label1);
@@ -104,7 +106,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(410, 6);
+            this.btnSearch.Location = new System.Drawing.Point(568, 4);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 23);
             this.btnSearch.TabIndex = 2;
@@ -161,6 +163,18 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
             // 
+            // cbxFullPage
+            // 
+            this.cbxFullPage.AutoSize = true;
+            this.cbxFullPage.Checked = true;
+            this.cbxFullPage.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxFullPage.Location = new System.Drawing.Point(409, 8);
+            this.cbxFullPage.Name = "cbxFullPage";
+            this.cbxFullPage.Size = new System.Drawing.Size(150, 17);
+            this.cbxFullPage.TabIndex = 15;
+            this.cbxFullPage.Text = "Full Page Print ( 2 Copies) ";
+            this.cbxFullPage.UseVisualStyleBackColor = true;
+            // 
             // frmServiceRequestAndOrderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,5 +211,6 @@
         private System.Windows.Forms.TextBox txtJONumberFrom;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtJONumberTo;
+        private System.Windows.Forms.CheckBox cbxFullPage;
     }
 }

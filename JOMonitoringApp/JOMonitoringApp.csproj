@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>153</ApplicationRevision>
+    <ApplicationRevision>154</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\new_system_logo.ico</ApplicationIcon>
+    <ApplicationIcon>adjusted-system-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>6230685815BA7263CFAC79F1E12EFDF98EB2BAC2</ManifestCertificateThumbprint>
@@ -385,9 +385,11 @@
     <Compile Include="Views\Users\frmUsers.Designer.cs">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
+    <Content Include="adjusted-system-icon.ico" />
     <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icons8-notification-50.png" />
     <None Include="Resources\icons8-image-96.png" />
     <None Include="Resources\icons8-image-48.png" />
     <None Include="Resources\icons8-x-24.png" />

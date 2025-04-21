@@ -769,10 +769,6 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-        }
-
         private void particularsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmParticulars().ShowDialog();  

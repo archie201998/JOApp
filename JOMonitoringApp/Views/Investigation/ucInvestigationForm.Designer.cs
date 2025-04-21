@@ -68,12 +68,12 @@
             this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.btnAttachedImage = new System.Windows.Forms.Button();
             this.gbConditionOfService = new System.Windows.Forms.GroupBox();
+            this.nudReadingAfterTest = new System.Windows.Forms.NumericUpDown();
+            this.cmbxMeterSize = new System.Windows.Forms.ComboBox();
+            this.nudReadingBeforeTest = new System.Windows.Forms.NumericUpDown();
             this.cmbxMeterBrand = new System.Windows.Forms.ComboBox();
             this.txtServiceLineDefects = new System.Windows.Forms.TextBox();
             this.txtCalibrationResult = new System.Windows.Forms.TextBox();
-            this.txtReadingAfterTest = new System.Windows.Forms.TextBox();
-            this.txtReadingBeforeTest = new System.Windows.Forms.TextBox();
-            this.txtMeterSize = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -93,13 +93,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.gbPrint = new System.Windows.Forms.GroupBox();
             this.btnX = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbComputation = new System.Windows.Forms.GroupBox();
-            this.btnCompute = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
+            this.btnCompute = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAccountDetails.SuspendLayout();
             this.gbStatisticalFindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -110,6 +110,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudImmediateFamily)).BeginInit();
             this.gbComments.SuspendLayout();
             this.gbConditionOfService.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReadingAfterTest)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).BeginInit();
             this.gbImage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -118,9 +120,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
             this.panel1.SuspendLayout();
             this.gbApproval.SuspendLayout();
-            this.gbPrint.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.gbComputation.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -139,9 +141,9 @@
             this.gbAccountDetails.Controls.Add(this.label7);
             this.gbAccountDetails.Enabled = false;
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAccountDetails.Location = new System.Drawing.Point(13, 57);
+            this.gbAccountDetails.Location = new System.Drawing.Point(13, 56);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(429, 244);
+            this.gbAccountDetails.Size = new System.Drawing.Size(429, 250);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "1. INVESTIGATION FORM";
@@ -313,9 +315,9 @@
             this.gbStatisticalFindings.Controls.Add(this.label3);
             this.gbStatisticalFindings.Enabled = false;
             this.gbStatisticalFindings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 307);
+            this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 309);
             this.gbStatisticalFindings.Name = "gbStatisticalFindings";
-            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 303);
+            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 336);
             this.gbStatisticalFindings.TabIndex = 2;
             this.gbStatisticalFindings.TabStop = false;
             this.gbStatisticalFindings.Text = "2. STATISTICAL FINDING";
@@ -412,6 +414,7 @@
             // 
             // nudNoOfHoursServed
             // 
+            this.nudNoOfHoursServed.DecimalPlaces = 2;
             this.nudNoOfHoursServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoOfHoursServed.Location = new System.Drawing.Point(198, 145);
             this.nudNoOfHoursServed.Maximum = new decimal(new int[] {
@@ -545,7 +548,7 @@
             this.gbComments.Controls.Add(this.txtInvestigatorComments);
             this.gbComments.Enabled = false;
             this.gbComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComments.Location = new System.Drawing.Point(448, 213);
+            this.gbComments.Location = new System.Drawing.Point(448, 258);
             this.gbComments.Name = "gbComments";
             this.gbComments.Size = new System.Drawing.Size(339, 191);
             this.gbComments.TabIndex = 4;
@@ -609,18 +612,18 @@
             this.btnAttachedImage.Size = new System.Drawing.Size(92, 23);
             this.btnAttachedImage.TabIndex = 20;
             this.btnAttachedImage.TabStop = false;
-            this.btnAttachedImage.Text = "Attach Images";
+            this.btnAttachedImage.Text = "Upload Images";
             this.btnAttachedImage.UseVisualStyleBackColor = false;
             this.btnAttachedImage.Click += new System.EventHandler(this.btnAttachedImage_Click);
             // 
             // gbConditionOfService
             // 
+            this.gbConditionOfService.Controls.Add(this.nudReadingAfterTest);
+            this.gbConditionOfService.Controls.Add(this.cmbxMeterSize);
+            this.gbConditionOfService.Controls.Add(this.nudReadingBeforeTest);
             this.gbConditionOfService.Controls.Add(this.cmbxMeterBrand);
             this.gbConditionOfService.Controls.Add(this.txtServiceLineDefects);
             this.gbConditionOfService.Controls.Add(this.txtCalibrationResult);
-            this.gbConditionOfService.Controls.Add(this.txtReadingAfterTest);
-            this.gbConditionOfService.Controls.Add(this.txtReadingBeforeTest);
-            this.gbConditionOfService.Controls.Add(this.txtMeterSize);
             this.gbConditionOfService.Controls.Add(this.label19);
             this.gbConditionOfService.Controls.Add(this.label10);
             this.gbConditionOfService.Controls.Add(this.label11);
@@ -629,12 +632,65 @@
             this.gbConditionOfService.Controls.Add(this.label17);
             this.gbConditionOfService.Enabled = false;
             this.gbConditionOfService.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConditionOfService.Location = new System.Drawing.Point(448, 11);
+            this.gbConditionOfService.Location = new System.Drawing.Point(448, 56);
             this.gbConditionOfService.Name = "gbConditionOfService";
             this.gbConditionOfService.Size = new System.Drawing.Size(339, 197);
             this.gbConditionOfService.TabIndex = 0;
             this.gbConditionOfService.TabStop = false;
             this.gbConditionOfService.Text = "3. CONDITION OF SERVICE FACILITIES";
+            // 
+            // nudReadingAfterTest
+            // 
+            this.nudReadingAfterTest.DecimalPlaces = 2;
+            this.nudReadingAfterTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudReadingAfterTest.Location = new System.Drawing.Point(197, 113);
+            this.nudReadingAfterTest.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nudReadingAfterTest.Name = "nudReadingAfterTest";
+            this.nudReadingAfterTest.Size = new System.Drawing.Size(112, 21);
+            this.nudReadingAfterTest.TabIndex = 27;
+            this.nudReadingAfterTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudReadingAfterTest.ValueChanged += new System.EventHandler(this.nudReadingAfterTest_ValueChanged);
+            // 
+            // cmbxMeterSize
+            // 
+            this.cmbxMeterSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxMeterSize.FormattingEnabled = true;
+            this.cmbxMeterSize.Items.AddRange(new object[] {
+            "3/8",
+            "1/2",
+            "3/4",
+            "1",
+            "1 1/4",
+            "1 1/2",
+            "3",
+            "2 1/2",
+            "3",
+            "6",
+            "4"});
+            this.cmbxMeterSize.Location = new System.Drawing.Point(197, 58);
+            this.cmbxMeterSize.Name = "cmbxMeterSize";
+            this.cmbxMeterSize.Size = new System.Drawing.Size(112, 23);
+            this.cmbxMeterSize.TabIndex = 26;
+            // 
+            // nudReadingBeforeTest
+            // 
+            this.nudReadingBeforeTest.DecimalPlaces = 2;
+            this.nudReadingBeforeTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudReadingBeforeTest.Location = new System.Drawing.Point(197, 86);
+            this.nudReadingBeforeTest.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.nudReadingBeforeTest.Name = "nudReadingBeforeTest";
+            this.nudReadingBeforeTest.Size = new System.Drawing.Size(112, 21);
+            this.nudReadingBeforeTest.TabIndex = 26;
+            this.nudReadingBeforeTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // cmbxMeterBrand
             // 
@@ -689,44 +745,10 @@
             this.txtCalibrationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCalibrationResult.Location = new System.Drawing.Point(197, 140);
             this.txtCalibrationResult.Name = "txtCalibrationResult";
+            this.txtCalibrationResult.ReadOnly = true;
             this.txtCalibrationResult.Size = new System.Drawing.Size(112, 21);
             this.txtCalibrationResult.TabIndex = 4;
-            // 
-            // txtReadingAfterTest
-            // 
-            this.txtReadingAfterTest.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtReadingAfterTest.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtReadingAfterTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReadingAfterTest.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtReadingAfterTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReadingAfterTest.Location = new System.Drawing.Point(197, 113);
-            this.txtReadingAfterTest.Name = "txtReadingAfterTest";
-            this.txtReadingAfterTest.Size = new System.Drawing.Size(112, 21);
-            this.txtReadingAfterTest.TabIndex = 3;
-            // 
-            // txtReadingBeforeTest
-            // 
-            this.txtReadingBeforeTest.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtReadingBeforeTest.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtReadingBeforeTest.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtReadingBeforeTest.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtReadingBeforeTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtReadingBeforeTest.Location = new System.Drawing.Point(197, 86);
-            this.txtReadingBeforeTest.Name = "txtReadingBeforeTest";
-            this.txtReadingBeforeTest.Size = new System.Drawing.Size(112, 21);
-            this.txtReadingBeforeTest.TabIndex = 2;
-            // 
-            // txtMeterSize
-            // 
-            this.txtMeterSize.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtMeterSize.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtMeterSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMeterSize.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeterSize.Location = new System.Drawing.Point(197, 59);
-            this.txtMeterSize.Name = "txtMeterSize";
-            this.txtMeterSize.Size = new System.Drawing.Size(112, 21);
-            this.txtMeterSize.TabIndex = 1;
+            this.txtCalibrationResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label19
             // 
@@ -752,7 +774,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(18, 115);
+            this.label11.Location = new System.Drawing.Point(18, 114);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(135, 15);
             this.label11.TabIndex = 6;
@@ -762,7 +784,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(18, 88);
+            this.label13.Location = new System.Drawing.Point(18, 87);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(146, 15);
             this.label13.TabIndex = 6;
@@ -772,7 +794,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(18, 62);
+            this.label15.Location = new System.Drawing.Point(18, 61);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(33, 15);
             this.label15.TabIndex = 6;
@@ -782,7 +804,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(18, 38);
+            this.label17.Location = new System.Drawing.Point(18, 34);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(95, 15);
             this.label17.TabIndex = 6;
@@ -795,7 +817,7 @@
             this.gbImage.Controls.Add(this.btnAttachedImage);
             this.gbImage.Enabled = false;
             this.gbImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbImage.Location = new System.Drawing.Point(448, 410);
+            this.gbImage.Location = new System.Drawing.Point(448, 455);
             this.gbImage.Name = "gbImage";
             this.gbImage.Size = new System.Drawing.Size(339, 113);
             this.gbImage.TabIndex = 23;
@@ -833,10 +855,10 @@
             this.groupBox5.Controls.Add(this.panel2);
             this.groupBox5.Controls.Add(this.panel1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(793, 11);
+            this.groupBox5.Location = new System.Drawing.Point(793, 56);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(596, 676);
+            this.groupBox5.Size = new System.Drawing.Size(596, 666);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "7. INVESTIGATION RECORDS";
@@ -847,7 +869,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(576, 602);
+            this.panel2.Size = new System.Drawing.Size(576, 592);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -856,8 +878,9 @@
             this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(576, 602);
+            this.dgInvestigations.Size = new System.Drawing.Size(576, 592);
             this.dgInvestigations.TabIndex = 25;
+            this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
             // 
             // panel1
@@ -899,9 +922,9 @@
             this.gbApproval.Controls.Add(this.radioButton1);
             this.gbApproval.Enabled = false;
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbApproval.Location = new System.Drawing.Point(448, 606);
+            this.gbApproval.Location = new System.Drawing.Point(13, 651);
             this.gbApproval.Name = "gbApproval";
-            this.gbApproval.Size = new System.Drawing.Size(339, 81);
+            this.gbApproval.Size = new System.Drawing.Size(774, 71);
             this.gbApproval.TabIndex = 26;
             this.gbApproval.TabStop = false;
             this.gbApproval.Text = "7. APPROVAL ";
@@ -911,17 +934,17 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(21, 45);
+            this.textBox1.Location = new System.Drawing.Point(23, 26);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(288, 26);
+            this.textBox1.Size = new System.Drawing.Size(547, 26);
             this.textBox1.TabIndex = 2;
             // 
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
             this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(225, 20);
+            this.radioButton2.Location = new System.Drawing.Point(662, 30);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(84, 19);
             this.radioButton2.TabIndex = 1;
@@ -933,23 +956,13 @@
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(149, 20);
+            this.radioButton1.Location = new System.Drawing.Point(586, 30);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(70, 19);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "Approve";
             this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // gbPrint
-            // 
-            this.gbPrint.Controls.Add(this.btnX);
-            this.gbPrint.Controls.Add(this.btnPrint);
-            this.gbPrint.Location = new System.Drawing.Point(13, 11);
-            this.gbPrint.Name = "gbPrint";
-            this.gbPrint.Size = new System.Drawing.Size(429, 40);
-            this.gbPrint.TabIndex = 27;
-            this.gbPrint.TabStop = false;
             // 
             // btnX
             // 
@@ -958,7 +971,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.btnX.Location = new System.Drawing.Point(77, 12);
+            this.btnX.Location = new System.Drawing.Point(75, 15);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(31, 23);
             this.btnX.TabIndex = 28;
@@ -975,7 +988,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(8, 12);
+            this.btnPrint.Location = new System.Drawing.Point(6, 16);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(67, 23);
             this.btnPrint.TabIndex = 26;
@@ -985,23 +998,28 @@
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            // 
             // gbComputation
             // 
             this.gbComputation.Controls.Add(this.label16);
             this.gbComputation.Controls.Add(this.btnCompute);
             this.gbComputation.Enabled = false;
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComputation.Location = new System.Drawing.Point(448, 529);
+            this.gbComputation.Location = new System.Drawing.Point(448, 574);
             this.gbComputation.Name = "gbComputation";
             this.gbComputation.Size = new System.Drawing.Size(339, 71);
             this.gbComputation.TabIndex = 28;
             this.gbComputation.TabStop = false;
             this.gbComputation.Text = "6. COMPUTATION";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(148, 27);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 15);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "RESULT";
             // 
             // btnCompute
             // 
@@ -1020,23 +1038,29 @@
             this.btnCompute.UseVisualStyleBackColor = false;
             this.btnCompute.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label16
+            // groupBox1
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(148, 27);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 15);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "RESULT";
+            this.groupBox1.Controls.Add(this.btnX);
+            this.groupBox1.Controls.Add(this.btnPrint);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(13, 5);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1379, 45);
+            this.groupBox1.TabIndex = 29;
+            this.groupBox1.TabStop = false;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
             // 
             // ucInvestigationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbComputation);
-            this.Controls.Add(this.gbPrint);
             this.Controls.Add(this.gbApproval);
             this.Controls.Add(this.gbImage);
             this.Controls.Add(this.gbConditionOfService);
@@ -1045,7 +1069,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
-            this.Size = new System.Drawing.Size(1392, 700);
+            this.Size = new System.Drawing.Size(1402, 729);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -1061,6 +1085,8 @@
             this.gbComments.PerformLayout();
             this.gbConditionOfService.ResumeLayout(false);
             this.gbConditionOfService.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReadingAfterTest)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).EndInit();
             this.gbImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1071,10 +1097,10 @@
             this.panel1.PerformLayout();
             this.gbApproval.ResumeLayout(false);
             this.gbApproval.PerformLayout();
-            this.gbPrint.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.gbComputation.ResumeLayout(false);
             this.gbComputation.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1109,9 +1135,6 @@
         internal System.Windows.Forms.GroupBox gbConditionOfService;
         internal System.Windows.Forms.TextBox txtServiceLineDefects;
         internal System.Windows.Forms.TextBox txtCalibrationResult;
-        internal System.Windows.Forms.TextBox txtReadingAfterTest;
-        internal System.Windows.Forms.TextBox txtReadingBeforeTest;
-        internal System.Windows.Forms.TextBox txtMeterSize;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
@@ -1142,7 +1165,6 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.Button btnX;
-        private System.Windows.Forms.GroupBox gbPrint;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.TextBox textBox1;
@@ -1152,5 +1174,9 @@
         internal System.Windows.Forms.GroupBox gbComputation;
         private System.Windows.Forms.Button btnCompute;
         private System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.ComboBox cmbxMeterSize;
+        internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
+        internal System.Windows.Forms.NumericUpDown nudReadingAfterTest;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

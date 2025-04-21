@@ -1,4 +1,5 @@
 ﻿
+using Google.Protobuf.Compiler;
 using JOMonitoringApp;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Org.BouncyCastle.Asn1.IsisMtt;
@@ -7,16 +8,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Deployment.Application;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Color = System.Drawing.Color;
-using System.Net;
-using System.Net.Sockets;
-using System.Deployment.Application;
-using System.Reflection;
 
 
 namespace AccountingSystem
@@ -53,9 +55,15 @@ namespace AccountingSystem
         {
             try
             {
-                Version version = Assembly.GetExecutingAssembly().GetName().Version;
-
-                return version.ToString();
+                if (ApplicationDeployment.IsNetworkDeployed)
+                {
+                    System.Version version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    return version.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
             }
             catch (InvalidDeploymentException)
             {

@@ -59,10 +59,8 @@ namespace JOMonitoringApp.Views.Investigation
             Factory.JobOrdersRepository().UpdateStatus(jobOrderId, statusId);
         }
 
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-           
             try
             {
                 if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))

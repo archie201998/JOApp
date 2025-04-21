@@ -24,7 +24,7 @@ namespace JOMonitoringApp.Views.Reports
 
             
             _dictInvestigation = dictInvestigation;
-            //txtJONo.Text = _dictInvestigation["job_order_no"]; 
+            txtJONo.Text = _dictInvestigation["job_order_no"]; 
         }
                                                         
         private void frmInvestigation_Load(object sender, EventArgs e)

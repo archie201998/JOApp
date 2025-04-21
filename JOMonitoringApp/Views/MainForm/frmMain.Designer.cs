@@ -91,9 +91,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnX = new System.Windows.Forms.Button();
             this.cmbxParticulars = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnCreateInvestigationForm = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -107,7 +107,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.btnX = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -278,7 +277,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -293,7 +292,7 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -308,7 +307,7 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userManualToolStripMenuItem.Text = "User Guide";
             this.userManualToolStripMenuItem.Click += new System.EventHandler(this.userManualToolStripMenuItem_Click);
             // 
@@ -626,7 +625,6 @@
             this.panel2.Controls.Add(this.cmbxParticulars);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Controls.Add(this.btnCreateInvestigationForm);
             this.panel2.Controls.Add(this.btnSearch);
             this.panel2.Controls.Add(this.cmbxStatus);
             this.panel2.Controls.Add(this.label5);
@@ -639,6 +637,23 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1249, 38);
             this.panel2.TabIndex = 8;
+            // 
+            // btnX
+            // 
+            this.btnX.BackColor = System.Drawing.Color.Transparent;
+            this.btnX.FlatAppearance.BorderSize = 0;
+            this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
+            this.btnX.Location = new System.Drawing.Point(880, 7);
+            this.btnX.Name = "btnX";
+            this.btnX.Size = new System.Drawing.Size(31, 23);
+            this.btnX.TabIndex = 32;
+            this.btnX.TabStop = false;
+            this.btnX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnX.UseVisualStyleBackColor = false;
+            this.btnX.Visible = false;
+            this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
             // cmbxParticulars
             // 
@@ -661,25 +676,6 @@
             this.label1.Size = new System.Drawing.Size(92, 15);
             this.label1.TabIndex = 30;
             this.label1.Text = "PARTICULARS ";
-            // 
-            // btnCreateInvestigationForm
-            // 
-            this.btnCreateInvestigationForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateInvestigationForm.BackColor = System.Drawing.Color.White;
-            this.btnCreateInvestigationForm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCreateInvestigationForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateInvestigationForm.Image = global::JOMonitoringApp.Properties.Resources.icons8_water_14;
-            this.btnCreateInvestigationForm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCreateInvestigationForm.Location = new System.Drawing.Point(1048, 7);
-            this.btnCreateInvestigationForm.Name = "btnCreateInvestigationForm";
-            this.btnCreateInvestigationForm.Size = new System.Drawing.Size(196, 23);
-            this.btnCreateInvestigationForm.TabIndex = 28;
-            this.btnCreateInvestigationForm.TabStop = false;
-            this.btnCreateInvestigationForm.Text = "CREATE INVESTIGATION FORM";
-            this.btnCreateInvestigationForm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnCreateInvestigationForm.UseVisualStyleBackColor = false;
-            this.btnCreateInvestigationForm.Visible = false;
-            this.btnCreateInvestigationForm.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSearch
             // 
@@ -840,23 +836,6 @@
             this.tabControl1.Size = new System.Drawing.Size(1732, 976);
             this.tabControl1.TabIndex = 4;
             // 
-            // btnX
-            // 
-            this.btnX.BackColor = System.Drawing.Color.Transparent;
-            this.btnX.FlatAppearance.BorderSize = 0;
-            this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.btnX.Location = new System.Drawing.Point(880, 7);
-            this.btnX.Name = "btnX";
-            this.btnX.Size = new System.Drawing.Size(31, 23);
-            this.btnX.TabIndex = 32;
-            this.btnX.TabStop = false;
-            this.btnX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnX.UseVisualStyleBackColor = false;
-            this.btnX.Visible = false;
-            this.btnX.Click += new System.EventHandler(this.btnX_Click);
-            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -867,6 +846,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -963,7 +943,6 @@
         private System.Windows.Forms.ComboBox cmbxParticulars;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnCreateInvestigationForm;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbxStatus;
         private System.Windows.Forms.Label label5;

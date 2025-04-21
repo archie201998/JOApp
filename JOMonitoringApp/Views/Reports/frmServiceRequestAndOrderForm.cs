@@ -133,7 +133,8 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramRequest", dtJobOrders["particular"].ToString()));
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", receivedBy["user_full_name"].ToString().ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
-
+                reportParameters1.Add(new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString()));
+               
                 string dateActed = string.Empty;
                 if (dtJobOrders["status_id"].ToString() == "4")
                     dateActed = dtJobOrders["updated_at"].ToString();

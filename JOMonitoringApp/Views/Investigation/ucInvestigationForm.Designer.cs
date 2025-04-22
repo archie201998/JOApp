@@ -881,6 +881,7 @@
             this.dgInvestigations.Size = new System.Drawing.Size(576, 592);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
+            this.dgInvestigations.DockChanged += new System.EventHandler(this.dgInvestigations_DockChanged);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
             // 
             // panel1
@@ -967,6 +968,7 @@
             // btnX
             // 
             this.btnX.BackColor = System.Drawing.Color.Transparent;
+            this.btnX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnX.FlatAppearance.BorderSize = 0;
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -984,6 +986,7 @@
             // btnPrint
             // 
             this.btnPrint.BackColor = System.Drawing.Color.White;
+            this.btnPrint.Enabled = false;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;

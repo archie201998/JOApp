@@ -49,7 +49,7 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm._jobOrderId = jobOderId;
             ucInvestigationForm._customerAddress = customerAddress;
             ucInvestigationForm.OnLoad();
-            ucInvestigationForm.EnableControls(create);
+            //ucInvestigationForm.EnableControls(create);
         }
 
         private void UpdateJobOrderStatus()
@@ -83,6 +83,11 @@ namespace JOMonitoringApp.Views.Investigation
         private void ucInvestigationForm1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            ucInvestigationForm.ResetForm();
         }
     }
 }

@@ -201,7 +201,7 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
 
-        private void ResetForm()
+        internal void ResetForm()
         {
             txtAccountName.Clear();
             txtAccountNumber.Clear();
@@ -364,12 +364,28 @@ namespace JOMonitoringApp.Views.Investigation
                 nudRelatives.Value = relatives;
                 nudBoarders.Value = boarders;
 
-                imageFilePath = dictInvestigation["image_path"].ToString();
-                secondaryImageFilePath = dictInvestigation["secondary_image_path"].ToString();
+                //loading of picture box
 
-                pictureBox1.Image = Image.FromFile(dictInvestigation["image_path"].ToString());
-                pictureBox2.Image = Image.FromFile(dictInvestigation["secondary_image_path"].ToString());
+                string imageFilePath = string.Empty;
+                string secondaryImageFilePath = string.Empty;
 
+                if (dictInvestigation.ContainsKey("image_path"))
+                {
+                    imageFilePath = dictInvestigation["image_path"]?.ToString();
+                    if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
+                    {
+                        pictureBox1.Image = Image.FromFile(imageFilePath);
+                    }
+                }
+
+                if (dictInvestigation.ContainsKey("secondary_image_path"))
+                {
+                    secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
+                    if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
+                    {
+                        pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
+                    }
+                }
 
             }
             else
@@ -391,8 +407,8 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (dictInvestigation.Count != 0)
                 _ = new frmInvestigationReport(dictInvestigation).ShowDialog();
-
         }
+
         public string GetSelectedImagePath()
         {
             return imageFilePath;
@@ -475,6 +491,11 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
         private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgInvestigations_DockChanged(object sender, EventArgs e)
         {
 
         }

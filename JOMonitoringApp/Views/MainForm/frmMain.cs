@@ -165,7 +165,7 @@ namespace JOMonitoringApp.Views.MainForm
                 foreach (DataRow row in dtJobOrders.Rows)
                 {
                     var newRow = dataTable.NewRow();
-                    int id = index--;
+                    int id = Convert.ToInt32(row["id"]);
                     string status = $"{row["status"]}";
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
                     int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);

@@ -699,8 +699,6 @@
             this.cmbxRowLimit.Name = "cmbxRowLimit";
             this.cmbxRowLimit.Size = new System.Drawing.Size(106, 23);
             this.cmbxRowLimit.TabIndex = 7;
-            this.cmbxRowLimit.SelectedIndexChanged += new System.EventHandler(this.cmbxRowLimit_SelectedIndexChanged_1);
-            this.cmbxRowLimit.SelectionChangeCommitted += new System.EventHandler(this.cmbxRowLimit_SelectionChangeCommitted);
             // 
             // txtSearch
             // 

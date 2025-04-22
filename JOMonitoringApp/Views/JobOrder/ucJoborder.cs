@@ -26,8 +26,12 @@ namespace JOMonitoringApp.Views.JobOrder
         internal void StoreOriginalValues()
         {
             originalValues["AccountName"] = txtAccountName.Text;
+            originalValues["AccountNumber"] = txtAccountNumber.Text;
+            originalValues["Address"] = txtAddress.Text;
+            originalValues["Contact"] = txtContact.Text;
             originalValues["Date"] = dtpDate.Value;
             originalValues["JONumber"] = txtJONumber.Text;
+            originalValues["MIRS"] = txtMRISNumber.Text;
             originalValues["MRSNumber"] = txtMRSNumber.Text;
             originalValues["WARNumber"] = txtWARNumber.Text;
             originalValues["ORNumber"] = txtORNumber.Text;
@@ -63,9 +67,29 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 Helper.changes = string.Empty;
                 bool hasChanges = false;
+
+               
                 if ((string)originalValues["AccountName"] != txtAccountName.Text)
                 {
                     Helper.changes += $"Account Name, from {originalValues["AccountName"]} into {txtAccountName.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["Address"] != txtAddress.Text)
+                {
+                    Helper.changes += $"Address , from {originalValues["Address"]} into {txtAddress.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["AccountNumber"] != txtAccountNumber.Text)
+                {
+                    Helper.changes += $"Account Number , from {originalValues["AccountNumber"]} into {txtAccountNumber.Text}; ";
+                    hasChanges = true;
+                }
+
+                if ((string)originalValues["Contact"] != txtContact.Text)
+                {
+                    Helper.changes += $"Contact Number , from {originalValues["Contact"]} into {txtContact.Text}; ";
                     hasChanges = true;
                 }
 

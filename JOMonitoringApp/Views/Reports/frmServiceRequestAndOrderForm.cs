@@ -139,7 +139,7 @@ namespace JOMonitoringApp.Views.Reports
                 if (dtJobOrders["status_id"].ToString() == "4")
                     dateActed = dtJobOrders["updated_at"].ToString();
 
-                reportParameters1.Add(new ReportParameter("paramDateActed", dateActed.ToString()));
+                reportParameters1.Add(new ReportParameter("paramDateActed", dateActed));
                 reportParameters1.Add(new ReportParameter("paramPerformedBy", dtJobOrders["accomplished_by"].ToUpper()));
 
 

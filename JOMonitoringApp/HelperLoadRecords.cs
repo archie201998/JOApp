@@ -76,7 +76,13 @@ namespace JOMonitoringApp
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
             dataGridView.EnableHeadersVisualStyles = false;
 
-            dataGridView.Columns["id"].Visible = false;
+            dataGridView.Columns["id"].Visible = true;
+            dataGridView.Columns["id"].HeaderText = "NO. ";
+            dataGridView.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["id"].MinimumWidth = 50;
+
+
+
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
@@ -227,7 +233,7 @@ namespace JOMonitoringApp
 
             dataTable.Columns.AddRange(columns);
 
-            int[] values = { 20, 50, 100, 250, 500, 1000, 10000 };
+            int[] values = { 10, 50, 100, 250, 500, 1000, 10000 };
 
             foreach (int value in values)
             {

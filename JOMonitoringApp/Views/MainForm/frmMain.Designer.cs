@@ -133,7 +133,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(7, 6);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(55180, 39);
+            this.menuStrip1.Size = new System.Drawing.Size(81919, 39);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -385,10 +385,10 @@
             this.lblPing,
             this.toolStripStatusLabel9,
             this.lblCheckingUpdate});
-            this.statusStrip1.Location = new System.Drawing.Point(9, 31258);
+            this.statusStrip1.Location = new System.Drawing.Point(9, 40959);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(55180, 33);
+            this.statusStrip1.Size = new System.Drawing.Size(81919, 33);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -514,7 +514,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(44116, 24841);
+            this.tabPage2.Size = new System.Drawing.Size(81919, 81919);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -528,7 +528,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(55172, 31162);
+            this.tabPage1.Size = new System.Drawing.Size(65535, 65535);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -539,11 +539,11 @@
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(616, 4);
+            this.panel1.Location = new System.Drawing.Point(1199, 4);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panel1.Size = new System.Drawing.Size(54552, 31154);
+            this.panel1.Size = new System.Drawing.Size(64332, 65527);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -555,7 +555,7 @@
             this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.panel6.Size = new System.Drawing.Size(54538, 31073);
+            this.panel6.Size = new System.Drawing.Size(64318, 65446);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -571,7 +571,7 @@
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.RowHeadersWidth = 51;
-            this.dgJobOrders.Size = new System.Drawing.Size(54528, 31063);
+            this.dgJobOrders.Size = new System.Drawing.Size(64308, 65436);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
@@ -586,7 +586,7 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(7, 6, 7, 6);
-            this.panel3.Size = new System.Drawing.Size(54538, 22);
+            this.panel3.Size = new System.Drawing.Size(64318, 22);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -597,7 +597,7 @@
             this.progressBar1.Location = new System.Drawing.Point(7, 6);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(54524, 10);
+            this.progressBar1.Size = new System.Drawing.Size(64304, 10);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -617,7 +617,7 @@
             this.panel2.Location = new System.Drawing.Point(7, 6);
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(54538, 47);
+            this.panel2.Size = new System.Drawing.Size(64318, 47);
             this.panel2.TabIndex = 8;
             // 
             // btnX
@@ -758,7 +758,7 @@
             this.panelInputField.Location = new System.Drawing.Point(4, 4);
             this.panelInputField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panelInputField.Name = "panelInputField";
-            this.panelInputField.Size = new System.Drawing.Size(612, 31154);
+            this.panelInputField.Size = new System.Drawing.Size(1195, 65527);
             this.panelInputField.TabIndex = 1;
             // 
             // panel4
@@ -767,10 +767,10 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 31100);
+            this.panel4.Location = new System.Drawing.Point(0, 32767);
             this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(612, 54);
+            this.panel4.Size = new System.Drawing.Size(1195, 54);
             this.panel4.TabIndex = 5;
             // 
             // btnCancel
@@ -782,7 +782,7 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(479, 7);
+            this.btnCancel.Location = new System.Drawing.Point(1062, 7);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(125, 39);
@@ -800,7 +800,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(268, 7);
+            this.btnSave.Location = new System.Drawing.Point(851, 7);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(203, 39);
@@ -819,7 +819,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(55180, 31193);
+            this.tabControl1.Size = new System.Drawing.Size(81919, 81919);
             this.tabControl1.TabIndex = 4;
             // 
             // ucJoborder1
@@ -830,7 +830,7 @@
             this.ucJoborder1.Margin = new System.Windows.Forms.Padding(5);
             this.ucJoborder1.Name = "ucJoborder1";
             this.ucJoborder1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.ucJoborder1.Size = new System.Drawing.Size(612, 31100);
+            this.ucJoborder1.Size = new System.Drawing.Size(1195, 65473);
             this.ucJoborder1.TabIndex = 0;
             // 
             // ucDashboardSummaryView1
@@ -840,7 +840,7 @@
             this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(5);
             this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(44108, 980);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(81919, 2393);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // frmMain
@@ -848,7 +848,7 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(44158, 25038);
+            this.ClientSize = new System.Drawing.Size(81901, 81872);
             this.Controls.Add(this.lblSystemDateAndTime);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);

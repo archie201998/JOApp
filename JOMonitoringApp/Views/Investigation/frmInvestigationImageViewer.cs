@@ -59,24 +59,26 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (!string.IsNullOrEmpty(_imageFilePath))
             {
-                Image image = Image.FromFile(_imageFilePath);
-                Image watermarkedImage = AddWatermark(image, "CAPTURED BY DACOL"); // Replace "Watermark Text" with your desired watermark text
-                pictureBox1.Image = watermarkedImage;
-            }
-        }
+                try
+                {
+                    // Dispose the previous image if any
+                    if (pictureBox1.Image != null)
+                    {
+                        pictureBox1.Image.Dispose();
+                    }
 
-        public static Image AddWatermark(Image image, string watermarkText)
-        {
-            using (Graphics graphics = Graphics.FromImage(image))
-            {
-                Font font = new Font("Arial", 20, FontStyle.Bold, GraphicsUnit.Pixel);
-                Color color = Color.FromArgb(128, 255, 255, 255); // White color with transparency
-                SolidBrush brush = new SolidBrush(color);
-                Point atPoint = new Point(image.Width - 120, image.Height - 30); // Position of the watermark
-
-                graphics.DrawString(watermarkText, font, brush, atPoint);
+                    using (var tempImage = Image.FromFile(_imageFilePath))
+                    {
+                        // Clone the image to avoid locking the file
+                        pictureBox1.Image = new Bitmap(tempImage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Helper.MessageBoxSuccess("No image uploaded");
+                }
             }
-            return image;
+
         }
 
         private void frmInvestigationImageViewer_KeyDown(object sender, KeyEventArgs e)
@@ -85,6 +87,11 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 this.Close(); // Or Application.Exit();
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

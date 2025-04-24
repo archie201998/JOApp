@@ -1,15 +1,7 @@
 ﻿using AccountingSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ZstdSharp.Unsafe;
 
 namespace JOMonitoringApp.Views.Investigation
 {
@@ -28,6 +20,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
+
             ucInvestigationForm = ucInvestigationForm1;
 
             this.jobOrderNumber = jobOrderNumber;
@@ -50,6 +43,14 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm._customerAddress = customerAddress;
             ucInvestigationForm.OnLoad();
             //ucInvestigationForm.EnableControls(create);
+            ucInvestigationForm.DataGridDoubleClicked += MyUserControl_DataGridClicked;
+        }
+
+        private void MyUserControl_DataGridClicked(object sender, EventArgs e)
+        {
+            btnSave.Text = "Update [Ctrl + S]";
+            btnSave.BackColor = Color.OrangeRed;
+            btnSave.ForeColor = Color.White;
         }
 
         private void UpdateJobOrderStatus()
@@ -63,6 +64,13 @@ namespace JOMonitoringApp.Views.Investigation
         {
             try
             {
+                if (ucInvestigationForm.isUpdate == false)
+                {
+                    Helper.MessageBoxSuccess("Nothing to save. Please select record to update.");
+                    return;
+                }
+
+
                 if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
                 {
                     if (ucInvestigationForm.SaveData())
@@ -87,7 +95,20 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            ucInvestigationForm.ResetForm();
+            if (Helper.MessageBoxConfirmCancel("Are you sure you want to cancel the update transaction?"))
+            {
+                btnSave.Text = "Save [Ctrl + S]";
+                btnSave.BackColor = Color.DodgerBlue;
+                btnSave.ForeColor = Color.White;
+                ucInvestigationForm.ResetForm();
+                ucInvestigationForm.EnableControls(false);
+                ucInvestigationForm.isUpdate = false;
+            }
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

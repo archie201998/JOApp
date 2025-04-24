@@ -1,18 +1,12 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
-using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -20,6 +14,9 @@ namespace JOMonitoringApp.Views.Investigation
 {
     public partial class ucInvestigationForm : UserControl
     {
+
+        public event EventHandler DataGridDoubleClicked;
+
         internal int _jobOrderId;
         internal string _customerAddress;
         internal int _customerId;
@@ -39,12 +36,7 @@ namespace JOMonitoringApp.Views.Investigation
         public ucInvestigationForm()
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyle(dgInvestigations, true);
-        }
-
-        private void gbAccountDetails_Enter(object sender, EventArgs e)
-        {
-
+            Helper.DatagridFullRowSelectStyle(dgInvestigations);
         }
 
         private void ucInvestigation_Load(object sender, EventArgs e)
@@ -55,7 +47,6 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-        
         internal bool SaveData()
         {
             //TEMPORARY LANG TO
@@ -288,14 +279,14 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void GetInvestigationRecords()
         {
-            var dtInvestigation = Factory.InvestigationRepository().GetRecords();
+            string searchKey = txtSearch.Text.Trim();   
+
+            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(searchKey);
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
-
         internal void EnableControls(bool enable)
         {
-            btnX.Enabled = enable;
             btnPrint.Enabled = enable;
             gbStatisticalFindings.Enabled = enable;
             gbAccountDetails.Enabled = enable;
@@ -304,6 +295,7 @@ namespace JOMonitoringApp.Views.Investigation
             gbImage.Enabled = enable;
             gbApproval.Enabled = enable;
             gbComputation.Enabled = enable;
+            dgInvestigations.Enabled = !enable;
         }
 
         private void ViewInvestigationDetails()
@@ -312,13 +304,11 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 EnableControls(true);
                 isUpdate = true;
-                btnX.Visible = true;
                 int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
 
-
                 // Assigning additional columns to variables
-                int csfId = Convert.ToInt32(dictInvestigation["csf_id"]);
+                //int csfId = Convert.ToInt32(dictInvestigation["id"]);
                 int investigationId = Convert.ToInt32(dictInvestigation["investigation_id"]);
                 string meterBrand = dictInvestigation["meter_brand"];
                 string meterSize = dictInvestigation["meter_size"];
@@ -366,9 +356,6 @@ namespace JOMonitoringApp.Views.Investigation
 
                 //loading of picture box
 
-                string imageFilePath = string.Empty;
-                string secondaryImageFilePath = string.Empty;
-
                 if (dictInvestigation.ContainsKey("image_path"))
                 {
                     imageFilePath = dictInvestigation["image_path"]?.ToString();
@@ -409,23 +396,9 @@ namespace JOMonitoringApp.Views.Investigation
                 _ = new frmInvestigationReport(null, null).ShowDialog();
         }
 
-        public string GetSelectedImagePath()
-        {
-            return imageFilePath;
-        }
+   
 
-        public string GetSecondaryImagePath()
-        {
-            return secondaryImageFilePath;
-        }
-
-        private void btnX_Click(object sender, EventArgs e)
-        {
-            btnX.Visible = false;
-            EnableControls(false);
-            ResetForm();
-        }
-
+        #region Updating of Records for investigator
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
             if (dgInvestigations.SelectedRows.Count == 0) return;
@@ -434,6 +407,8 @@ namespace JOMonitoringApp.Views.Investigation
             UpdateSettings();
         }
 
+
+        #endregion
         private void UpdateSettings()
         {
             isUpdate = true;
@@ -447,11 +422,6 @@ namespace JOMonitoringApp.Views.Investigation
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             _ = new frmInvestigationImageViewer(secondaryImageFilePath).ShowDialog();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -490,14 +460,21 @@ namespace JOMonitoringApp.Views.Investigation
             CalibrationResult();
         }
 
-        private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgInvestigations_DockChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void dgInvestigations_DockChanged(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            GetInvestigationRecords();
+        }
 
+        private void dgInvestigations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
+            EnableControls(true);
+            isUpdate = true;
         }
     }
 }

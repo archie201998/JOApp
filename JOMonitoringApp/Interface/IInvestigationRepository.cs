@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,5 +14,6 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetViewRecordById(int selectedId);
         Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId);
         Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber);
+        DataTable GetViewRecordsBySearch(string searchKey);
     }
 }

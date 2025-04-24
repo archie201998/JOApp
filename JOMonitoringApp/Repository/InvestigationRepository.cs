@@ -1,10 +1,8 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections.Generic;
 using System.Data;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
 {
@@ -90,10 +88,10 @@ namespace JOMonitoringApp
         {
             var parameters = new object[][]
             {
-                new object[] { "@csf_id", DbType.Int32, selectedId }
+                new object[] { "@id", DbType.Int32, selectedId }
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE investigation_id = @csf_id";
+            string query = $"SELECT * FROM {viewTableName} WHERE id = @id";
 
             var dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
 
@@ -138,6 +136,18 @@ namespace JOMonitoringApp
                 return recordDictionary;
             }
             return recordDictionary;
+        }
+
+        public DataTable GetViewRecordsBySearch(string searchKey)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@search_text", DbType.String, $"%{searchKey}%" },
+            };
+
+            string query = $"SELECT id, job_orders_id,  CASE is_approved WHEN 0 THEN 'FOR APPROVAL' WHEN 1 THEN 'APPROVED BY BM' WHEN 2 THEN 'DISAPPROVED' ELSE 'UNKNOWN' END AS approval_status,job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC; ";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
     }
 }

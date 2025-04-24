@@ -17,6 +17,7 @@ using System.Deployment.Application;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -951,7 +952,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigation(false, null, 0, null, null, null, null).ShowDialog();
+            var frmInvestigation = new frmInvestigation(false, null, 0, null, null, null, null);
+            frmInvestigation.Show();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)

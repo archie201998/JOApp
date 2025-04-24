@@ -45,17 +45,18 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1405, 39);
             this.panel4.TabIndex = 7;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(1291, 3);
+            this.btnCancel.Location = new System.Drawing.Point(193, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 32);
             this.btnCancel.TabIndex = 1;
@@ -66,13 +67,13 @@
             // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSave.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(1133, 3);
+            this.btnSave.Location = new System.Drawing.Point(35, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(152, 32);
             this.btnSave.TabIndex = 0;
@@ -103,7 +104,6 @@
             this.MinimizeBox = false;
             this.Name = "frmInvestigation";
             this.Padding = new System.Windows.Forms.Padding(4);
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | Investigation Form";
             this.Load += new System.EventHandler(this.frmInvestigation_Load);

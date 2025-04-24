@@ -266,24 +266,14 @@ namespace JOMonitoringApp
 
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
-            dgInvestigations.Columns["customers_id"].Visible = false;
-            dgInvestigations.Columns["customer_address"].Visible = false;
-            dgInvestigations.Columns["investigator_comments"].Visible = false;
-            dgInvestigations.Columns["recommendations"].Visible = false;
-            dgInvestigations.Columns["image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["approval_message"].Visible = false;
-            dgInvestigations.Columns["created_by"].Visible = false;
 
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-
-            dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER NAME";
-            dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["approval_status"].HeaderText = "INV. STATUS";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
+            dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. Number";
+            dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["customer_name"].HeaderText = "NAME";
+            dgInvestigations.Columns["customer_name"].HeaderText = "ADDRESS";
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
-            dgInvestigations.Columns["is_approved"].HeaderText = "STATUS";
 
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

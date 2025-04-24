@@ -81,12 +81,15 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeErroneousReading()
         {
+            if (_accountNumber != string.Empty)
+            {
+                var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
 
-            var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
-
-            txtPreviousReading.Text = readingDetails["Prev"].ToString();
-            txtPresentReading.Text = readingDetails["Pres"].ToString();
-            txtActualReading.Focus();
+                txtPreviousReading.Text = readingDetails["Prev"].ToString();
+                txtPresentReading.Text = readingDetails["Pres"].ToString();
+                txtActualReading.Focus();
+            }
+            
         }
 
         private void ComputeFailedCalibration()

@@ -32,7 +32,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucParticulars1 = new JOMonitoringApp.Views.Particulars.ucParticulars();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgvParticulars = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,6 +40,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ucParticulars1 = new JOMonitoringApp.Views.Particulars.ucParticulars();
             this.groupBox1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -106,16 +106,6 @@
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // ucParticulars1
-            // 
-            this.ucParticulars1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucParticulars1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucParticulars1.Location = new System.Drawing.Point(3, 17);
-            this.ucParticulars1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ucParticulars1.Name = "ucParticulars1";
-            this.ucParticulars1.Size = new System.Drawing.Size(429, 134);
-            this.ucParticulars1.TabIndex = 1;
             // 
             // groupBox2
             // 
@@ -198,10 +188,22 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // ucParticulars1
+            // 
+            this.ucParticulars1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucParticulars1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucParticulars1.Location = new System.Drawing.Point(3, 17);
+            this.ucParticulars1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ucParticulars1.Name = "ucParticulars1";
+            this.ucParticulars1.Size = new System.Drawing.Size(429, 134);
+            this.ucParticulars1.TabIndex = 1;
+            // 
             // frmParticulars
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(443, 483);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.statusStrip1);

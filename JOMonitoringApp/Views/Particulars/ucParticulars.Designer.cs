@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtBoxParticular = new System.Windows.Forms.TextBox();
+            this.txtParticularDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -47,24 +47,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "PARTICULAR";
             // 
-            // textBox1
+            // txtBoxParticular
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox1.Location = new System.Drawing.Point(110, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 21);
-            this.textBox1.TabIndex = 2;
+            this.txtBoxParticular.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtBoxParticular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.txtBoxParticular.Location = new System.Drawing.Point(110, 13);
+            this.txtBoxParticular.Name = "txtBoxParticular";
+            this.txtBoxParticular.Size = new System.Drawing.Size(200, 21);
+            this.txtBoxParticular.TabIndex = 2;
             // 
-            // textBox2
+            // txtParticularDescription
             // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.textBox2.Location = new System.Drawing.Point(110, 39);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 40);
-            this.textBox2.TabIndex = 3;
+            this.txtParticularDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtParticularDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.txtParticularDescription.Location = new System.Drawing.Point(110, 39);
+            this.txtParticularDescription.Multiline = true;
+            this.txtParticularDescription.Name = "txtParticularDescription";
+            this.txtParticularDescription.Size = new System.Drawing.Size(200, 40);
+            this.txtParticularDescription.TabIndex = 3;
             // 
             // label2
             // 
@@ -86,8 +86,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtParticularDescription);
+            this.Controls.Add(this.txtBoxParticular);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ucParticulars";
@@ -104,7 +104,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
-        internal System.Windows.Forms.TextBox textBox1;
-        internal System.Windows.Forms.TextBox textBox2;
+        internal System.Windows.Forms.TextBox txtBoxParticular;
+        internal System.Windows.Forms.TextBox txtParticularDescription;
     }
 }

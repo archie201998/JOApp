@@ -305,7 +305,6 @@ namespace JOMonitoringApp
         internal static void ParticularsDataGridView(DataGridView dgvParticulars)
         {
             // Set header text and width
-            dgvParticulars.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dgvParticulars.Columns[0].Visible = false;
             dgvParticulars.Columns[0].HeaderText = "ID";

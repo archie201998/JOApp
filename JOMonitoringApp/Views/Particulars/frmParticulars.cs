@@ -1,16 +1,9 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
-using JOMonitoringApp.Views.JobOrder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Particulars
@@ -45,7 +38,6 @@ namespace JOMonitoringApp.Views.Particulars
 
             for (int i = 0; i <= 100; i++)
             {
-                Thread.Sleep(1);
                 backgroundWorker1.ReportProgress(i, dtParticulars);
             }
 
@@ -79,8 +71,8 @@ namespace JOMonitoringApp.Views.Particulars
         {
             if (ucParticulars1.ValidateChildren())
             {
-                string particularName = ucParticulars.textBox1.Text;
-                string particularDescription = ucParticulars.textBox2.Text;
+                string particularName = ucParticulars.txtBoxParticular.Text;
+                string particularDescription = ucParticulars.txtParticularDescription.Text;
 
                 var particularModel = new ParticularsModel
                 {
@@ -98,8 +90,8 @@ namespace JOMonitoringApp.Views.Particulars
                 }
 
                 Helper.MessageBoxSuccess("Particular saved successfully.");
-                ucParticulars.textBox1.Clear();
-                ucParticulars.textBox2.Clear();
+                ucParticulars.txtBoxParticular.Clear();
+                ucParticulars.txtParticularDescription.Clear();
 
                 LoadParticulars();
             }

@@ -1534,7 +1534,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.6326in</Top>
+            <Top>6.7576in</Top>
             <Left>0.12501in</Left>
             <Height>0.23264in</Height>
             <Width>1.00528in</Width>
@@ -1571,11 +1571,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.89243in</Top>
+            <Top>7.01743in</Top>
             <Left>0.125in</Left>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>44</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1951,7 +1954,7 @@
             <Source>External</Source>
             <Value>=Parameters!paramImage2.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>7.18063in</Top>
+            <Top>7.30563in</Top>
             <Left>3.31778in</Left>
             <Height>1.79167in</Height>
             <Width>2.87228in</Width>
@@ -1966,7 +1969,7 @@
             <Source>External</Source>
             <Value>=Parameters!paramImage1.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>7.18063in</Top>
+            <Top>7.30563in</Top>
             <Left>0.125in</Left>
             <Height>1.79167in</Height>
             <Width>2.87228in</Width>
@@ -1998,11 +2001,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.89243in</Top>
+            <Top>7.01743in</Top>
             <Left>3.31189in</Left>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>57</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2015,7 +2021,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>23.05357cm</Height>
+        <Height>23.55628cm</Height>
         <Style />
       </Body>
       <Width>16.5cm</Width>
@@ -2170,10 +2176,10 @@
           </Style>
         </PageHeader>
         <PageHeight>14in</PageHeight>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
         <Style />
       </Page>
     </ReportSection>

@@ -10,6 +10,7 @@ namespace JOMonitoringApp.Model
     {
         public int Id { get; set; }
         public int JobOrderId { get; set; }
+        public string JobOrderNo { get; set; }
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string CustomerAddress{ get; set; }

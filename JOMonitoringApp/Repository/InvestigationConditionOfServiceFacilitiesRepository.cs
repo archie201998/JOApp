@@ -67,7 +67,20 @@ namespace JOMonitoringApp
 
         public bool Update(InvestigationConditionOfServiceFacilitiesModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@investigation_id", DbType.Int32, entity.InvestigationId },
+                new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
+                new object[] { "@meter_size", DbType.String, entity.MeterSize },
+                new object[] { "@reading_before_test", DbType.String, entity.ReadingBeforeTest },
+                new object[] { "@reading_after_test", DbType.String, entity.ReadingAfterTest },
+                new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
+                new object[] { "@over_registration", DbType.String, entity.OverRegistration },
+                new object[] { "@under_registration", DbType.String, entity.UnderRegistration },
+                new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter }
+            };
+            string query = $"UPDATE {tableName} SET meter_brand = @meter_brand, meter_size = @meter_size, reading_before_test = @reading_before_test, reading_after_test = @reading_after_test, calibration_result = @calibration_result, over_registration = @over_registration, under_registration = @under_registration, leaking_after_the_meter = @leaking_after_the_meter WHERE investigation_id = @investigation_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

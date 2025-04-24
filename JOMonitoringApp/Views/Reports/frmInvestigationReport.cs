@@ -65,8 +65,8 @@ namespace JOMonitoringApp.Views.Reports
             parameters[15] = new ReportParameter("paramImmediateMembers", dictInvestigation["immediate_members_of_fam"]);
 
             // Load image from file path
-            string imagePath1 = @"\\192.168.18.183\InvestigationImages\Dacol\123.jpg";
-            string imagePath2 = @"\\192.168.18.183\InvestigationImages\Dacol\456.png";
+            string imagePath1 = dictInvestigation["image_path"];
+            string imagePath2 = dictInvestigation["secondary_image_path"];
             if (File.Exists(imagePath1) || File.Exists(imagePath2))
             {
                 parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");

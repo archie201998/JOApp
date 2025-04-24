@@ -21,7 +21,7 @@ namespace JOMonitoringApp.Views.Investigation
         internal string _customerAddress;
         internal int _customerId;
         internal bool isUpdate;
-
+        private int selectedInvistigationID;
         string originalFileName = string.Empty;
         private string trimedAccountName;
         private string newFileName;
@@ -32,6 +32,7 @@ namespace JOMonitoringApp.Views.Investigation
         string secondaryImageFilePath = string.Empty;
 
         private Dictionary<string, string> originalValues = new Dictionary<string, string>();
+        private string _jobOrderNumber;
 
         public ucInvestigationForm()
         {
@@ -57,30 +58,18 @@ namespace JOMonitoringApp.Views.Investigation
             using (var scope = new TransactionScope())
             {
                 var investigationModel = InvestigationModel();
-                var investigationIResult = Factory.InvestigationRepository().Insert(investigationModel);
+                var statFindingsModel = InvestigationStatFindingsModel();
+                var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
+                var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
+                var statFindingsResult = Factory.InvestigationStatFindingsRepository().Update(statFindingsModel);
+                var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Update(conditionOfServiceFacilitiesModel);
 
-                if (investigationIResult)
+                if (investigationResult && statFindingsResult && conditionOfServiceFacilitiesResult)
                 {
-                    var statFindingsModel = InvestigationStatFindingsModel();
-                    var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
-
-                    int lastInsertedId = Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
-
-                    statFindingsModel.InvestigationId = lastInsertedId;
-                    conditionOfServiceFacilitiesModel.InvestigationId = lastInsertedId;
-
-                    var statFindingsResult = Factory.InvestigationStatFindingsRepository().Insert(statFindingsModel);
-                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(conditionOfServiceFacilitiesModel);
-
-                    if (statFindingsResult && conditionOfServiceFacilitiesResult)
-                    {
-                        UploadImage();
-                        ResetForm();
-                        scope.Complete();
-                        return true;
-                    }
-                    else
-                        return false;
+                    UploadImage();
+                    ResetForm();
+                    scope.Complete();
+                    return true;
                 }
                 else
                     return false;
@@ -91,9 +80,11 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationModel
             {
+                Id  = selectedInvistigationID,
                 JobOrderId = _jobOrderId,
+                JobOrderNo = txtJONumber.Text,
                 CustomerName = txtAccountName.Text,
-                CustomerAddress = _customerAddress,
+                CustomerAddress = txtAddress.Text,
                 CustomerAccountNumber = txtAccountNumber.Text,
                 NatureOfComplaint = cmbxComplaint.Text,
                 InvestigatorComments = txtInvestigatorComments.Text,
@@ -113,6 +104,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationConditionOfServiceFacilitiesModel
             {
+                InvestigationId = selectedInvistigationID,
                 MeterBrand = cmbxMeterBrand.Text,
                 MeterSize = cmbxMeterSize.Text,
                 ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
@@ -130,6 +122,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationStatFindingsModel
             {
+                InvestigationId = selectedInvistigationID,
                 ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
                 HouseHelper = Convert.ToByte(nudHouseHelper.Value),
                 Relatives = Convert.ToByte(nudRelatives.Value),
@@ -196,7 +189,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             txtAccountName.Clear();
             txtAccountNumber.Clear();
-            txtJORemarks.Clear();
+            txtAddress.Clear();
             cmbxComplaint.SelectedIndex = -1;
             txtInvestigatorComments.Clear();
             txtRecommendations.Clear();
@@ -237,7 +230,7 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     if (openFileDialog.FileNames.Length > 2)
                     {
-                        MessageBox.Show("Please select 2 images", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Helper.MessageBoxSuccess("Please select 2 images");
                         return;
                     }
 
@@ -259,11 +252,43 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol";
 
-                // Original file copy
-                File.Copy(imageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath)), true);
+                try
+                {
+                    if (!Directory.Exists(sharedFolderPath))
+                    {
+                        Helper.MessageBoxSuccess("Shared folder not found: " + sharedFolderPath);
+                        return;
+                    }
 
-                // Secondary copy (e.g., renamed version)
-                File.Copy(secondaryImageFilePath, Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath)), true);
+                    // Ensure image files are not locked by the app
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    // Copy original image
+                    string destination1 = Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath));
+                    File.Copy(imageFilePath, destination1, true);
+
+                    // Copy secondary image
+                    string destination2 = Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath));
+                    File.Copy(secondaryImageFilePath, destination2, true);
+
+                }
+                catch (IOException ioEx)
+                {
+                    Helper.MessageBoxSuccess("File I/O error: " + ioEx.Message);
+                }
+                catch (UnauthorizedAccessException unAuthEx)
+                {
+                    Helper.MessageBoxSuccess("Access error: " + unAuthEx.Message);
+                }
+                catch (Exception ex)
+                {
+                    Helper.MessageBoxSuccess("Unexpected error: " + ex.Message);
+                }
+            }
+            else
+            {
+                Helper.MessageBoxSuccess("One or both file paths are empty or null.");
             }
         }
 
@@ -304,12 +329,12 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 EnableControls(true);
                 isUpdate = true;
-                int selectedId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedId);
+                selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
 
                 // Assigning additional columns to variables
                 //int csfId = Convert.ToInt32(dictInvestigation["id"]);
-                int investigationId = Convert.ToInt32(dictInvestigation["investigation_id"]);
+                int investigationId = Convert.ToInt32(dictInvestigation["id"]);
                 string meterBrand = dictInvestigation["meter_brand"];
                 string meterSize = dictInvestigation["meter_size"];
                 decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
@@ -340,6 +365,11 @@ namespace JOMonitoringApp.Views.Investigation
                 nudNoServiceOfOutlets.Value = noServiceOutlets;
                 txtAccountName.Text = dictInvestigation["customer_name"];
                 txtAccountNumber.Text = dictInvestigation["account_number"];
+                txtJONumber.Text = dictInvestigation["job_order_no"];
+                txtAddress.Text = dictInvestigation["customer_address"];
+                _jobOrderId = jobOrdersId;
+                _jobOrderNumber = txtJONumber.Text;
+
                 cmbxComplaint.Text = dictInvestigation["nature_of_complaint"];
                 txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
                 txtRecommendations.Text = dictInvestigation["recommendations"];
@@ -393,18 +423,26 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnPrint_Click(object sender, EventArgs e)
         {
             if (dictInvestigation.Count != 0)
-                _ = new frmInvestigationReport(null, null).ShowDialog();
+                _ = new frmInvestigationReport(_jobOrderId, _jobOrderNumber).ShowDialog();
         }
 
    
 
         #region Updating of Records for investigator
+
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
             if (dgInvestigations.SelectedRows.Count == 0) return;
 
             ViewInvestigationDetails();
             UpdateSettings();
+
+
+
+            DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
+            EnableControls(true);
+            isUpdate = true;
+
         }
 
 
@@ -472,9 +510,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void dgInvestigations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
-            EnableControls(true);
-            isUpdate = true;
+ 
         }
     }
 }

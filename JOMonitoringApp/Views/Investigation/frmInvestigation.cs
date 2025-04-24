@@ -38,7 +38,7 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.txtAccountName.Text = accountName;
             ucInvestigationForm.txtAccountNumber.Text = accountNumber;
             ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
-            ucInvestigationForm.txtJORemarks.Text = remark;
+            ucInvestigationForm.txtAddress.Text = remark;
             ucInvestigationForm._jobOrderId = jobOderId;
             ucInvestigationForm._customerAddress = customerAddress;
             ucInvestigationForm.OnLoad();
@@ -62,6 +62,12 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            SaveData();
+        }
+
+        private void SaveData()
+        {
+
             try
             {
                 if (ucInvestigationForm.isUpdate == false)
@@ -70,17 +76,24 @@ namespace JOMonitoringApp.Views.Investigation
                     return;
                 }
 
-
-                if (Helper.MessageBoxConfirmCancel("Do you want to save this investigation form?"))
+                if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation record?"))
                 {
                     if (ucInvestigationForm.SaveData())
                     {
                         UpdateJobOrderStatus();
-                        Helper.MessageBoxSuccess("Investigation record has been saved successfully.");
+                        Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
                         ucInvestigationForm.OnLoad();
+                        ucInvestigationForm.ResetForm();
+
+                        btnSave.Text = "Save [Ctrl + S]";
+                        btnSave.BackColor = Color.DodgerBlue;
+                        btnSave.ForeColor = Color.White;
+                        ucInvestigationForm.ResetForm();
+                        ucInvestigationForm.EnableControls(false);
+                        ucInvestigationForm.isUpdate = false;
+
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -95,6 +108,11 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            Cancel();
+        }
+
+        private void Cancel()
+        {
             if (Helper.MessageBoxConfirmCancel("Are you sure you want to cancel the update transaction?"))
             {
                 btnSave.Text = "Save [Ctrl + S]";
@@ -105,10 +123,23 @@ namespace JOMonitoringApp.Views.Investigation
                 ucInvestigationForm.isUpdate = false;
             }
         }
-
         private void panel4_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void frmInvestigation_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveData();
+            }
+            else if (e.KeyData == Keys.Escape)
+            {
+                if (Helper.MessageBoxConfirmCancel("Do you want to clear all inputs?"))
+                    Cancel();
+                return;
+            }
         }
     }
 }

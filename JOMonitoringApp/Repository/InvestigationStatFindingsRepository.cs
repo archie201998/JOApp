@@ -69,7 +69,36 @@ namespace JOMonitoringApp
 
         public bool Update(InvestigationStatFindingsModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, entity.Id },
+                new object[] { "@immediate_members_of_fam", DbType.Int16, entity.ImmediateMembersOfFam },
+                new object[] { "@house_helper", DbType.Int16, entity.HouseHelper },
+                new object[] { "@relatives", DbType.Int16, entity.Relatives },
+                new object[] { "@boarders", DbType.Int16, entity.Boarders },
+                new object[] { "@no_of_hours_served", DbType.Int16, entity.NoOfHoursServed },
+                new object[] { "@no_service_outlets", DbType.Int16, entity.NoServiceOutlets },
+                new object[] { "@hh_purpose", DbType.Int16, entity.HhPurpose },
+                new object[] { "@promote_trade_business", DbType.Int16, entity.PromoteTradeBusiness },
+                new object[] { "@sell_to_neighbours", DbType.Int16, entity.SellToNeighbours },
+                new object[] { "@alternative_source", DbType.String, entity.AlternativeSource },
+                new object[] { "@investigation_id", DbType.Int16, entity.InvestigationId }
+            };
+
+            string query = $"UPDATE {tableName} SET " +
+                           "immediate_members_of_fam = @immediate_members_of_fam, " +
+                           "house_helper = @house_helper, " +
+                           "relatives = @relatives, " +
+                           "boarders = @boarders, " +
+                           "no_of_hours_served = @no_of_hours_served, " +
+                           "no_service_outlets = @no_service_outlets, " +
+                           "hh_purpose = @hh_purpose, " +
+                           "promote_trade_business = @promote_trade_business, " +
+                           "sell_to_neighbours = @sell_to_neighbours, " +
+                           "alternative_source = @alternative_source " +
+                           "WHERE investigation_id = @investigation_id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

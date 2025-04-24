@@ -161,8 +161,6 @@ namespace JOMonitoringApp
         {
             dataGridView.DataSource = dataTable;
 
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
-
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["address"].Visible = false;
 

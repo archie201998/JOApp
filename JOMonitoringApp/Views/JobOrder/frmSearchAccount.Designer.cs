@@ -185,9 +185,8 @@
             this.dgAccounts.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgAccounts.Size = new System.Drawing.Size(357, 241);
             this.dgAccounts.TabIndex = 5;
-            this.dgAccounts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellContentClick);
             this.dgAccounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellDoubleClick);
-            this.dgAccounts.DoubleClick += new System.EventHandler(this.DgAccounts_DoubleClick);
+          
             this.dgAccounts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
             // 
             // frmSearchAccount

@@ -1,7 +1,5 @@
 ﻿using AccountingSystem;
-using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Admin;
-using JOMonitoringApp.Views.Dashboard;
 using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
@@ -12,17 +10,13 @@ using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Deployment.Application;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -30,12 +24,11 @@ namespace JOMonitoringApp.Views.MainForm
 {
     public partial class frmMain : Form
     {
-        private readonly ucDashboardSummaryView ucDashboardSummaryView;
         private readonly ucJoborder ucJoborder;
 
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
-        private System.Windows.Forms.Timer updateTimer;
+        private Timer updateTimer;
         bool isVisible = false;
 
 
@@ -46,13 +39,13 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.LoadFormIcon(this);
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucJoborder = ucJoborder1;
-            ucDashboardSummaryView = ucDashboardSummaryView1;
         }
 
+        #region AutoUpdate On Background
 
         private void StartUpdateTimer()
         {
-            updateTimer = new System.Windows.Forms.Timer();
+            updateTimer = new Timer();
             updateTimer.Interval = 10000; // Check every 10 minutes
             updateTimer.Tick += (s, e) => CheckForUpdateAsync();
             updateTimer.Start();
@@ -87,13 +80,15 @@ namespace JOMonitoringApp.Views.MainForm
                 // Log or handle errors like no network, update server unreachable, etc.
             }
         }
+        #endregion
 
+
+        #region Search Records Functions
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
             try
             {
-                //OnLoad();
                 LoadJobOrders();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -116,34 +111,6 @@ namespace JOMonitoringApp.Views.MainForm
             string particular = cmbxParticulars.Text;
 
             return (searchKey, rowFilter, statusId, particular);
-        }
-
-
-        private DataColumn[] JobOrdersColumns()
-        {
-            return new DataColumn[]
-            {
-                new DataColumn("id", typeof (int)),
-                new DataColumn("status", typeof(string)),
-                new DataColumn("prepared_by_id", typeof(int)),
-                new DataColumn("particular", typeof (string)),
-                new DataColumn("materials_issued_by_id", typeof(int)),
-                new DataColumn("status_id", typeof(int)),
-                new DataColumn("job_order_no", typeof(string)),
-                new DataColumn("account_number", typeof(string)),
-                new DataColumn("account_name", typeof(string)),
-                new DataColumn("address", typeof(string)),
-                new DataColumn("or_number", typeof(string)),
-                new DataColumn("amount", typeof(decimal)),
-                new DataColumn("mris", typeof(string)),
-                new DataColumn("mrs", typeof(string)),
-                new DataColumn("war", typeof(string)),
-                new DataColumn("remarks", typeof(string)),
-                new DataColumn("date", typeof(DateTime)),
-                new DataColumn("prepared_by", typeof(string)),
-                new DataColumn("materials_issued_by", typeof(string)),
-
-            };
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -248,37 +215,45 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
+
+
+
+        #endregion
+
+
+        #region Form Load 
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             try
             {
-                HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
-                HelperLoadRecords.StatusCombobox(cmbxStatus);
-
-                var dtParticulars = Factory.ParticularsRepository().GetRecords();
-                HelperLoadRecords.ParticularsCombobox(cmbxParticulars, dtParticulars, "id", "particular");
-
-
-                Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
-                lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
-                lblUserRole.Text = userDict["role_name"].ToString().ToUpper();
-                cmbxStatus.SelectedValue = 5;
                 OnLoad();
-
-                Helper.LoadFormIcon(this);
-                StartUpdateTimer();
-
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
         internal void OnLoad()
         {
+            HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
+            HelperLoadRecords.StatusCombobox(cmbxStatus);
+            HelperLoadRecords.ParticularsCombobox(cmbxParticulars);
+
+
+            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+            lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
+            lblUserRole.Text = userDict["role_name"].ToString().ToUpper();
+            cmbxStatus.SelectedValue = 5;
+
+            ValidatePermissions();
+            StartUpdateTimer();
             LoadJobOrders();
             ucJoborder.OnLoad();
-            ValidatePermissions();
         }
 
+        #endregion
+
+
+        #region Permission and Controls Validation
         private void ValidatePermissions()
         {
             bool adminMode = Helper.temporaryAdminMode;
@@ -310,6 +285,10 @@ namespace JOMonitoringApp.Views.MainForm
             toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
 
         }
+        #endregion
+
+
+        #region DataGrid Processing 
 
         private void DgJobOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -342,42 +321,78 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        private DataColumn[] JobOrdersColumns()
         {
-            _ = new frmJOStatusSummary().ShowDialog();
+            return new DataColumn[]
+            {
+                new DataColumn("id", typeof (int)),
+                new DataColumn("status", typeof(string)),
+                new DataColumn("prepared_by_id", typeof(int)),
+                new DataColumn("particular", typeof (string)),
+                new DataColumn("materials_issued_by_id", typeof(int)),
+                new DataColumn("status_id", typeof(int)),
+                new DataColumn("job_order_no", typeof(string)),
+                new DataColumn("account_number", typeof(string)),
+                new DataColumn("account_name", typeof(string)),
+                new DataColumn("address", typeof(string)),
+                new DataColumn("or_number", typeof(string)),
+                new DataColumn("amount", typeof(decimal)),
+                new DataColumn("mris", typeof(string)),
+                new DataColumn("mrs", typeof(string)),
+                new DataColumn("war", typeof(string)),
+                new DataColumn("remarks", typeof(string)),
+                new DataColumn("date", typeof(DateTime)),
+                new DataColumn("prepared_by", typeof(string)),
+                new DataColumn("materials_issued_by", typeof(string)),
+
+            };
         }
 
-        private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
+        #endregion
+
+
+
+        #region Update
+
+        private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
-                                        "Confirm Exit",
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Question);
-
-            if (result.Equals(DialogResult.Yes))
+            try
             {
-                this.Hide();
-                var frmSignIn = new frmSignIn();
-                frmSignIn.txtPassword.Clear();
-                frmSignIn.txtUserName.Clear();
-                Helper.UserId = 0;
-                Helper.temporaryAdminMode = false;
-                frmSignIn.Show();
+                if (dgJobOrders.Rows.Count == 0) return;
 
+
+                UpdateSettings();
+
+                //SetPermissions();
+                ucJoborder.StoreOriginalValues();
+                LoadSelectedData();
+            }
+            catch (Exception)
+            {
+                Helper.MessageBoxError("Something went wrong. Please contact the system administrator.");
             }
 
-            return;
-
         }
+
+        private void UpdateSettings()
+        {
+            dgJobOrders.Enabled = false;
+            btnSave.Text = "Save Changes [Ctrl + S]";
+            btnSave.BackColor = Color.OrangeRed;
+            ucJoborder.isUpdate = true;
+            previousSelection = dgJobOrders.SelectedRows[0].Index;
+        }
+
 
         private void LoadSelectedData()
         {
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-            ucJoborder.jobOrderId = selectedJobOrderId;
 
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
-            if (dictJobOrders.Count == 0) return;
 
+
+            //setting of data
+            ucJoborder.jobOrderId = selectedJobOrderId;
             ucJoborder.txtAccountName.Text = dictJobOrders["account_name"];
             ucJoborder.txtAccountNumber.Text = dictJobOrders["account_number"];
             ucJoborder.cbxNA.Checked = string.IsNullOrEmpty(dictJobOrders["account_number"]);
@@ -426,6 +441,8 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.radCancel.Checked = (statusId == Convert.ToInt16(ucJoborder.radCancel.Tag));
             ucJoborder.radAccomplished.Checked = (statusId == Convert.ToInt16(ucJoborder.radAccomplished.Tag));
 
+
+            //restrict user to update if job order is accomplished
             if (ucJoborder.radAccomplished.Checked)
             {
                 ucJoborder.groupBox4.Enabled = false;
@@ -433,9 +450,43 @@ namespace JOMonitoringApp.Views.MainForm
                 ucJoborder.gbIssuanceAndAssignment.Enabled = false;
                 ucJoborder.gbJODetails.Enabled = false;
             }
+        }
 
+
+        #endregion
+
+
+
+
+        private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOStatusSummary().ShowDialog();
+        }
+
+        private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
+                                        "Confirm Exit",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
+
+            if (result.Equals(DialogResult.Yes))
+            {
+                this.Hide();
+                var frmSignIn = new frmSignIn();
+                frmSignIn.txtPassword.Clear();
+                frmSignIn.txtUserName.Clear();
+                Helper.UserId = 0;
+                Helper.temporaryAdminMode = false;
+                frmSignIn.Show();
+
+            }
+
+            return;
 
         }
+
+
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
@@ -527,7 +578,6 @@ namespace JOMonitoringApp.Views.MainForm
                 if (success)
                 {
                     LogJOTransaction();
-                    OnLoad();
                     string message = ucJoborder.isUpdate
                         ? "Job Order details successfully updated."
                         : "Job Order successfully created.";
@@ -604,38 +654,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
         #endregion
 
-        private void TabPage2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UpdateSettings()
-        {
-            dgJobOrders.Enabled = false;
-            btnSave.Text = "Save [Ctrl + S]";
-            btnSave.BackColor = Color.OrangeRed;
-            ucJoborder.isUpdate = true;
-            previousSelection = dgJobOrders.SelectedRows[0].Index;
-        }
-
-        private void DgJobOrders_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgJobOrders.Rows.Count == 0) return;
-
-                //SetPermissions();
-                ucJoborder.StoreOriginalValues();
-                UpdateSettings();
-                LoadSelectedData();
-            }
-            catch (Exception)
-            {
-                Helper.MessageBoxError("Something went wrong. Please contact the system administrator.");
-            }
-
-        }
-
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keys.F1 == e.KeyData)
@@ -692,8 +710,6 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmServiceRequestAndOrderForm(string.Empty).ShowDialog();
         }
 
-
-
         private void dgJobOrders_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -703,19 +719,11 @@ namespace JOMonitoringApp.Views.MainForm
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
                     byte[] indexArray = BitConverter.GetBytes(previousSelection);
                 }
-
-
             }
             catch (Exception)
             {
                 return;
             }
-        }
-
-        private void frmMain_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-
-
         }
 
         private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
@@ -728,14 +736,9 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmUsers().ShowDialog();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void investigationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationReport(null).ShowDialog();
+            _ = new frmInvestigationReport(null, null).ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -766,24 +769,11 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmParticulars().ShowDialog();
         }
 
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-        }
-
         private void rolesAndPermissionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmRolesAndPermissions().ShowDialog();
         }
 
-        private void tabPage3_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            //Application.Exit();
-        }
 
         private void toolStripSignatories_Click(object sender, EventArgs e)
         {
@@ -929,29 +919,35 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            if (dgJobOrders.SelectedRows.Count > 0)
+            if (dgJobOrders.SelectedRows.Count == 0)
             {
-                int selectedIndex = dgJobOrders.SelectedRows[0].Index;
-                if (selectedIndex >= 0)
-                {
-
-                    string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
-                    string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
-                    string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
-                    string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
-                    string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
-                    int jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
-
-                    var frmInvestigation = new frmInvestigation(true, jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
-                    frmInvestigation.Show();
-                }
+                Helper.MessageBoxSuccess("Please select record to print.");
+                return;
             }
+
+            int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            _ = new frmInvestigationReport(jobOrderId,jobOrderNumber).ShowDialog();
+
+            //if (dgJobOrders.SelectedRows.Count > 0)
+            //{
+            //    int selectedIndex = dgJobOrders.SelectedRows[0].Index;
+            //    if (selectedIndex >= 0)
+            //    {
+
+            //        string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
+            //        string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
+            //        string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
+            //        string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
+            //        string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
+            //        int jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
+
+            //        var frmInvestigation = new frmInvestigation(true, jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
+            //        frmInvestigation.Show();
+            //    }
+            //}
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -2,60 +2,67 @@
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmInvestigationReport : Form
     {
-        Dictionary<string, string> _dictInvestigation = new Dictionary<string, string>();
 
-        public frmInvestigationReport(Dictionary<string, string> dictInvestigation)
+        private readonly int? _jobOrderId;
+        private readonly string _jobOrderNumber = string.Empty;
+
+        public frmInvestigationReport(int? jobOrderId, string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
-            
-            _dictInvestigation = dictInvestigation;
-            txtJONo.Text = _dictInvestigation["job_order_no"]; 
+            _jobOrderId = jobOrderId;
+            _jobOrderNumber = jobOrderNumber;
         }
-                                                        
+
         private void frmInvestigation_Load(object sender, EventArgs e)
         {
-                                                                                                                
+            txtJONo.Text = _jobOrderNumber;
+
+            if (!string.IsNullOrEmpty(txtJONo.Text))
+                LoadReport();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchText = txtJONo.Text;
-            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form.rdlc";
+            LoadReport();
+        }
+
+        private void LoadReport()
+        {
+            string jobOrderNumber = txtJONo.Text;
+
+            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form-initial-print.rdlc";
             reportViewer1.LocalReport.EnableExternalImages = true;
+
+           Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);   
+
             ReportParameter[] parameters = new ReportParameter[18];
-            parameters[0] = new ReportParameter("paramCustomer", _dictInvestigation["customer_name"]);
-            parameters[1] = new ReportParameter("paramAccountNumber", _dictInvestigation["account_number"]);
-            parameters[2] = new ReportParameter("paramAddress", _dictInvestigation["customer_address"]);
-            parameters[3] = new ReportParameter("paramNatureOfComplaint", _dictInvestigation["nature_of_complaint"]);
-            parameters[4] = new ReportParameter("paramComments", _dictInvestigation["investigator_comments"]);
-            parameters[5] = new ReportParameter("paramRecommendations", _dictInvestigation["recommendations"]);
+            parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
+            parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
+            parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
+            parameters[3] = new ReportParameter("paramNatureOfComplaint", dictInvestigation["nature_of_complaint"]);
+            parameters[4] = new ReportParameter("paramComments", dictInvestigation["investigator_comments"]);
+            parameters[5] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
 
-            parameters[6] = new ReportParameter("paramRelatives", _dictInvestigation["relatives"]);
-            parameters[7] = new ReportParameter("paramHouseHelpers", _dictInvestigation["house_helper"]);
-            parameters[8] = new ReportParameter("paramBoarders", _dictInvestigation["boarders"]);
-            parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", _dictInvestigation["immediate_members_of_fam"]);
+            parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);
+            parameters[7] = new ReportParameter("paramHouseHelpers", dictInvestigation["house_helper"]);
+            parameters[8] = new ReportParameter("paramBoarders", dictInvestigation["boarders"]);
+            parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", dictInvestigation["immediate_members_of_fam"]);
 
-            parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{_dictInvestigation["meter_brand"]} - {_dictInvestigation["meter_size"]} ");
-            parameters[11] = new ReportParameter("paramMeterNumber", _dictInvestigation["meter_size"]);
-            parameters[12] = new ReportParameter("paramReadingBeforeTest", _dictInvestigation["reading_before_test"]);
-            parameters[13] = new ReportParameter("paramReadingAfterTest", _dictInvestigation["reading_after_test"]);
-            parameters[14] = new ReportParameter("paramCalibrationResult", _dictInvestigation["calibration_result"]);
-            parameters[15] = new ReportParameter("paramImmediateMembers", _dictInvestigation["immediate_members_of_fam"]);
+            parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{dictInvestigation["meter_brand"]} - {dictInvestigation["meter_size"]} ");
+            parameters[11] = new ReportParameter("paramMeterNumber", dictInvestigation["meter_size"]);
+            parameters[12] = new ReportParameter("paramReadingBeforeTest", dictInvestigation["reading_before_test"]);
+            parameters[13] = new ReportParameter("paramReadingAfterTest", dictInvestigation["reading_after_test"]);
+            parameters[14] = new ReportParameter("paramCalibrationResult", dictInvestigation["calibration_result"]);
+            parameters[15] = new ReportParameter("paramImmediateMembers", dictInvestigation["immediate_members_of_fam"]);
 
             // Load image from file path
             string imagePath1 = @"\\192.168.18.183\InvestigationImages\Dacol\123.jpg";

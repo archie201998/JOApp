@@ -11,5 +11,7 @@ namespace JOMonitoringApp.Interface
     {
         int GetLastInsertedId(int userId);
         Dictionary<string, string> GetViewRecordById(int selectedId);
+        Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId);
+        Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber);
     }
 }

@@ -406,7 +406,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnPrint_Click(object sender, EventArgs e)
         {
             if (dictInvestigation.Count != 0)
-                _ = new frmInvestigationReport(dictInvestigation).ShowDialog();
+                _ = new frmInvestigationReport(null, null).ShowDialog();
         }
 
         public string GetSelectedImagePath()

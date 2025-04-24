@@ -175,26 +175,20 @@ namespace JOMonitoringApp
             dataGridView.Columns["account_number"].MinimumWidth = 100;
         }
 
-        internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
-        {
-            cmbx.DataSource = dataTable;
-            cmbx.ValueMember = valueMember;
-            cmbx.DisplayMember = displayMember;
-            cmbx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        }
 
-        internal static void ParticularsCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
+        internal static void ParticularsCombobox(ComboBox cmbx)
         {
-            // Add a new row to the dataTable
+
+            var dataTable = Factory.ParticularsRepository().GetRecords();
             DataRow newRow = dataTable.NewRow();
 
-            newRow[valueMember] = "0"; // Replace with actual value
-            newRow[displayMember] = "All"; // Replace with actual display text
+            newRow["id"] = "0";
+            newRow["particular"] = "All"; 
             dataTable.Rows.InsertAt(newRow, 0);
 
             cmbx.DataSource = dataTable;
-            cmbx.ValueMember = valueMember;
-            cmbx.DisplayMember = displayMember;
+            cmbx.ValueMember = "id";
+            cmbx.DisplayMember = "particular";
         }
 
         internal static void EmployeeCombobox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)

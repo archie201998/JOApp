@@ -110,5 +110,34 @@ namespace JOMonitoringApp
 
             return result;
         }
+
+        public Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber)
+        {
+            var recordDictionary = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@jo_number", DbType.Int32, jobOrderNumber }
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = 136363";
+
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                foreach (DataColumn column in dataTable.Columns)
+                    recordDictionary[column.ColumnName] = row[column].ToString();
+
+                return recordDictionary;
+            }
+            return recordDictionary;
+        }
     }
 }

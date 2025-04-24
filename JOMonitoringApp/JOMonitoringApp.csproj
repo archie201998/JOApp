@@ -386,7 +386,7 @@
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
     <Content Include="adjusted-system-icon.ico" />
-    <Content Include="RDLC\investigation-form.rdlc">
+    <Content Include="RDLC\investigation-form-initial-print.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\icons8-notification-50.png" />

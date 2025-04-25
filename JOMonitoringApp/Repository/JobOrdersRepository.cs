@@ -315,5 +315,32 @@ namespace JOMonitoringApp
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
+
+        public bool SoftDelete(int jobOrderId, int deleteBy)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId },
+                new object[] { "@user_id", DbType.Int32, deleteBy }
+            };
+
+            string query = $"UPDATE {tableName} SET is_deleted = 1, deleted_by = @user_id WHERE id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public DataTable JOPhasePerPeriod(string status, int daysMultiplier)
+        {
+
+            var parameters = new object[][]
+            {
+                new object[] { "@status", DbType.String, status },
+                new object[] { "@period", DbType.Int32, daysMultiplier },
+            };
+
+            string query = $"SELECT id, job_order_no, particular, created_at, prepared_by FROM {viewTableName} WHERE status = @status AND  date >= CURDATE() - INTERVAL @period DAY AND is_deleted=0";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
     }
 }

@@ -62,6 +62,35 @@ namespace JOMonitoringApp
             dataGridView.Columns["total_count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["total_count"].MinimumWidth = 20;
         }
+        public static void JOStatusPhase(DataGridView dataGridView, DataTable dataTable)
+        {
+            dataGridView.DataSource = dataTable;
+
+            dataGridView.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["id"].HeaderText = "id";
+            dataGridView.Columns["id"].Visible = false;
+
+
+            dataGridView.Columns["job_order_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["job_order_no"].HeaderText = "JO Number";
+            dataGridView.Columns["job_order_no"].MinimumWidth =10;
+
+            dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["particular"].HeaderText = "Particular";
+            dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["particular"].MinimumWidth = 80;
+
+            dataGridView.Columns["created_at"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["created_at"].HeaderText = "Date Created";
+            dataGridView.Columns["created_at"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["created_at"].MinimumWidth = 80;
+
+            dataGridView.Columns["created_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["created_by"].HeaderText = "Created By";
+            dataGridView.Columns["created_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["created_by"].MinimumWidth = 80;
+
+        }
 
         public static void JobOrdersDataGridView(DataGridView dataGridView, DataTable dataTable)
         {

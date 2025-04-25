@@ -17,6 +17,7 @@ using System.Deployment.Application;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +33,8 @@ namespace JOMonitoringApp.Views.MainForm
         private Timer updateTimer;
         bool isVisible = false;
 
+        private readonly frmSignIn _frmSignIn;
+
 
 
         public frmMain(frmSignIn frmSignIn)
@@ -40,6 +43,7 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.LoadFormIcon(this);
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucJoborder = ucJoborder1;
+            _frmSignIn = frmSignIn;
         }
 
         #region AutoUpdate On Background
@@ -352,7 +356,6 @@ namespace JOMonitoringApp.Views.MainForm
         #endregion
 
 
-
         #region Update
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
@@ -464,36 +467,38 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmJOStatusSummary().ShowDialog();
         }
 
+
+        #region Logout
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to exit application?",
-                                        "Confirm Exit",
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?",
+                                        "Confirm Logout",
                                         MessageBoxButtons.YesNo,
                                         MessageBoxIcon.Question);
 
             if (result.Equals(DialogResult.Yes))
             {
-                this.Hide();
-                var frmSignIn = new frmSignIn();
-                frmSignIn.txtPassword.Clear();
-                frmSignIn.txtUserName.Clear();
                 Helper.UserId = 0;
+                Helper.UserRoleId = 0;
                 Helper.temporaryAdminMode = false;
-                frmSignIn.Show();
+
+                Close();
+                _frmSignIn.txtPassword.Clear();
+                _frmSignIn.txtUserName.Clear();
+                _frmSignIn.txtUserName.Focus();
+                _frmSignIn.Show();
 
             }
 
             return;
 
         }
+        #endregion
 
 
 
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            //ResetInputForm();
-        }
 
+        #region Reset Input
         internal void ResetInputForm()
         {
             ucJoborder.txtJONumber.Clear();
@@ -510,7 +515,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.jobOrderId = 0;
             ucJoborder.statusId = 1;
             ucJoborder.radPending.Checked = true;
-            ucJoborder.isNewAccount = true;
 
             btnSave.BackColor = Color.DodgerBlue;
             btnSave.Text = "Save [Ctrl + S]";
@@ -530,7 +534,6 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.gbIssuanceAndAssignment.Enabled = true;
             ucJoborder.gbJODetails.Enabled = true;
 
-
             // Clear checked items in CheckedListBox
             if (ucJoborder.clBoxParticulars.Items.Count > 0)
             {
@@ -540,16 +543,19 @@ namespace JOMonitoringApp.Views.MainForm
                 }
             }
 
+            Helper.temporaryAdminMode = false;
             ucJoborder.accountId = 0;
             ucJoborder.txtAccountName.Clear();
             ucJoborder.txtAccountName.Focus();
             ucJoborder.txtAccountNumber.Clear();
             ucJoborder.txtAddress.Clear();
             ucJoborder.txtContact.Clear();
-            ValidatePermissions();
-            //dgJobOrders.ClearSelection();
             btnX.Visible = false;
+            ValidatePermissions();
+            LoadJobOrders();
         }
+        #endregion
+
 
         private void LogJOTransaction()
         {
@@ -592,10 +598,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
-        {
-            ButtonSaveTrigger();
-        }
+   
 
 
         private bool UpdateData()
@@ -634,6 +637,12 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
         #region Save Job orders
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            ButtonSaveTrigger();
+        }
+
         internal bool SaveData()
         {
             if (!ucJoborder.ValidateChildren())
@@ -742,13 +751,15 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmInvestigationReport(null, null).ShowDialog();
         }
 
+
+        #region Server Pinging
         private void timer1_Tick(object sender, EventArgs e)
         {
             try
             {
                 using (var ping = new System.Net.NetworkInformation.Ping())
                 {
-                    var reply = ping.Send("192.168.18.183");
+                    var reply = ping.Send(Helper.serverStatisIPAddress);
                     if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                     {
                         lblPing.Text = $" {reply.RoundtripTime} ms";
@@ -764,6 +775,8 @@ namespace JOMonitoringApp.Views.MainForm
                 lblPing.Text = $"Error: {ex.Message}";
             }
         }
+        #endregion
+
 
         private void particularsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -846,6 +859,7 @@ namespace JOMonitoringApp.Views.MainForm
             CheckForUpdateAsync();
         }
 
+        #region User Manual
         private void userManualToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -859,6 +873,9 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError("Failed to open user manual. Contact your system administrator ");
             }
         }
+        #endregion
+
+        #region Delete Job Order 
 
         private void dgJobOrders_KeyDown(object sender, KeyEventArgs e)
         {
@@ -866,7 +883,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 if (!Helper.temporaryAdminMode)
                 {
-                    Helper.MessageBoxSuccess("User's not allowed to delete record(s). Please contact system administrator.");
+                    Helper.MessageBoxSuccess("User don't have permission to delete record(s). Please contact system administrator.");
                     return;
                 }
 
@@ -879,20 +896,22 @@ namespace JOMonitoringApp.Views.MainForm
 
                     if (confirm == DialogResult.Yes)
                     {
+                        int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                        int userId = Helper.UserId;
+                        bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
 
-                        _ = new frmMessagePrompt().ShowDialog();
-
-                        //foreach (DataGridViewRow row in dgJobOrders.SelectedRows)
-                        //{
-                        //    // Optional: Call your own delete function, e.g.,
-                        //    // DeleteJobOrder(row.Cells["ID"].Value.ToString());
-
-                        //    dgJobOrders.Rows.Remove(row);
-                        //}
+                        if (deletedSuccessfully)
+                        {
+                            Helper.MessageBoxSuccess("J.O Successfully deleted.");
+                            ResetInputForm();
+                        }
                     }
                 }
             }
         }
+
+        #endregion
+
 
         private void trackJOProgressToolStripMenuItem_Click(object sender, EventArgs e)
         {

@@ -29,9 +29,10 @@ namespace AccountingSystem
 
         public static byte UserId { get; internal set; }
         public static int UserRoleId { get; internal set; }
-
         internal static bool temporaryAdminMode = false;
         internal static string changes;
+
+        internal static string serverStatisIPAddress = "192.168.18.183";
 
 
         public static Color StatusColor(string status)

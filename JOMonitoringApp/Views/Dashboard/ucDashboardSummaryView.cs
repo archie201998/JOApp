@@ -1,14 +1,16 @@
-﻿using System;
+﻿using AccountingSystem;
+using MySqlX.XDevAPI.Common;
+using Org.BouncyCastle.Math.EC.Multiplier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AccountingSystem;
-using System.Threading;
 
 namespace JOMonitoringApp.Views.Dashboard
 {
@@ -20,6 +22,7 @@ namespace JOMonitoringApp.Views.Dashboard
             {
                 InitializeComponent();
                 Helper.DatagridFullRowSelectStyle(dgStatPerParticular, true);
+                Helper.DatagridFullRowSelectStyle(dataGridView1, true);
             }
         }
 
@@ -82,10 +85,87 @@ namespace JOMonitoringApp.Views.Dashboard
         }
 
 
-        private void LoadStatusPerParticular()
+        #region Job Order Phrase Summary
+        private DataColumn[] JobOrderPhaseColumns()
         {
-        
+            return new DataColumn[]
+            {
+                new DataColumn("id", typeof (int)),
+                new DataColumn("job_order_no", typeof(string)),
+                new DataColumn("particular", typeof(string)),
+                new DataColumn("created_at", typeof(DateTime)),
+                new DataColumn("created_by", typeof(string)),
+            };
         }
+
+        private void btnCountPending_Click(object sender, EventArgs e)
+        {
+            string status = cmbxStatus.SelectedText;
+            int countDetails = Convert.ToInt32(cmbxCount.SelectedValue);
+            string period = cmbxPeriod.SelectedText;
+
+            int daysMultiplier = 1;
+            switch (period)
+            {
+                case "Day/s":
+                    daysMultiplier = countDetails;
+                    break;
+                case "Week/s":
+                    daysMultiplier = countDetails * 7;
+                    break;
+                case "Months":
+                    daysMultiplier = countDetails * 30;
+                    break;
+                case "Year/s":
+                    daysMultiplier = countDetails * 365;
+                    break;
+            }
+            
+            
+            LoadJOPhase(daysMultiplier);
+        }
+
+        private void LoadJOPhase(int daysMultiplier)
+        {
+            string status = cmbxStatus.Text;
+            string period = cmbxPeriod.SelectedText;
+            string number = cmbxCount.SelectedText;
+
+          
+            DataTable dtPhase = Factory.JobOrdersRepository().JOPhasePerPeriod(status, daysMultiplier);
+
+            var dataTable = new DataTable();
+            dataTable.Columns.AddRange(JobOrderPhaseColumns());
+
+            foreach (DataRow row in dtPhase.Rows)
+            {
+
+                var newRow = dataTable.NewRow();
+
+                int id = Convert.ToInt32(row["id"]);
+                string jobNumber = row["job_order_no"].ToString() ;
+                string particular = row["particular"].ToString();
+                DateTime dateCreated = Convert.ToDateTime(row["created_at"]);
+                string createdBy = row["prepared_by"].ToString();
+
+                newRow["id"] = id;
+                newRow["job_order_no"] = jobNumber;
+                newRow["particular"] = particular;
+                newRow["created_at"] = dateCreated;
+                newRow["created_by"] = createdBy;
+                dataTable.Rows.Add(newRow);
+            }
+
+
+            HelperLoadRecords.JOStatusPhase(dataGridView1, dataTable);
+            lblRecentMovement.Text = $"{cmbxStatus.Text} J.O FOR THE LAST {cmbxCount.Text} {cmbxPeriod.Text} : {dataTable.Rows.Count}";
+        }
+        
+
+        #endregion
+
+
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -150,14 +230,6 @@ namespace JOMonitoringApp.Views.Dashboard
             HelperLoadRecords.JOStatusPerParticular(dgStatPerParticular, result);
         }
 
-        private void labelStatus_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

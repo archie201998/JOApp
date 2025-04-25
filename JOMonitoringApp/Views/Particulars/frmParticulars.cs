@@ -73,11 +73,13 @@ namespace JOMonitoringApp.Views.Particulars
             {
                 string particularName = ucParticulars.txtBoxParticular.Text;
                 string particularDescription = ucParticulars.txtParticularDescription.Text;
+                int currentUserId = Helper.UserId;
 
                 var particularModel = new ParticularsModel
                 {
                     Name = particularName,
                     Description = particularDescription,
+                    CreatedBy = currentUserId,
                 };
 
                 bool successSave = Factory.ParticularsRepository().Insert(particularModel);

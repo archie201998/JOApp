@@ -64,10 +64,11 @@ namespace JOMonitoringApp
             var parameters = new object[][]
             {
                 new object[] { "@particular", DbType.String ,entity.Name },
-                new object[] { "@description", DbType.String, entity.Description }
+                new object[] { "@description", DbType.String, entity.Description },
+                new object[] { "@created_by", DbType.Int32, entity.CreatedBy },
             };
 
-            string query = $"INSERT INTO {tableName} (particular, description) VALUES (@particular, @description)";
+            string query = $"INSERT INTO {tableName} (particular, description, created_by) VALUES (@particular, @description, @created_by)";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }

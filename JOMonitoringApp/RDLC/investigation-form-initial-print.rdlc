@@ -920,7 +920,7 @@
             <Top>1.43124in</Top>
             <Left>0.32391in</Left>
             <Height>0.19417in</Height>
-            <Width>2.15577in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
@@ -956,7 +956,7 @@
             <Top>1.62541in</Top>
             <Left>0.32391in</Left>
             <Height>0.19417in</Height>
-            <Width>2.15577in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
@@ -976,7 +976,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>2.a House helpers </Value>
+                    <Value>2.a House helpers  :</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -992,7 +992,7 @@
             <Top>1.81958in</Top>
             <Left>0.51089in</Left>
             <Height>0.19417in</Height>
-            <Width>1.30886in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
@@ -1012,7 +1012,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>2.b Relatives</Value>
+                    <Value>2.b Relatives :</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -1028,7 +1028,7 @@
             <Top>2.01375in</Top>
             <Left>0.51089in</Left>
             <Height>0.19417in</Height>
-            <Width>1.30886in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>29</ZIndex>
             <Style>
               <Border>
@@ -1048,7 +1048,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>3.c Boarders</Value>
+                    <Value>3.c Boarders :</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -1064,7 +1064,7 @@
             <Top>2.20792in</Top>
             <Left>0.51089in</Left>
             <Height>0.19417in</Height>
-            <Width>1.30886in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
@@ -1084,7 +1084,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>3. Other HH dependents from service</Value>
+                    <Value>3. Other HH dependents from service : </Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -1100,7 +1100,7 @@
             <Top>2.41598in</Top>
             <Left>0.32391in</Left>
             <Height>0.19417in</Height>
-            <Width>2.15576in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>31</ZIndex>
             <Style>
               <Border>
@@ -1611,9 +1611,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.43124in</Top>
-            <Left>2.55436in</Left>
+            <Left>2.80436in</Left>
             <Height>0.19417in</Height>
-            <Width>0.81043in</Width>
+            <Width>0.62293in</Width>
             <ZIndex>45</ZIndex>
             <Style>
               <Border>
@@ -1647,9 +1647,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.81958in</Top>
-            <Left>2.55436in</Left>
+            <Left>2.80436in</Left>
             <Height>0.19417in</Height>
-            <Width>0.81044in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>46</ZIndex>
             <Style>
               <Border>
@@ -1683,9 +1683,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.01375in</Top>
-            <Left>2.55436in</Left>
+            <Left>2.80436in</Left>
             <Height>0.19417in</Height>
-            <Width>0.81044in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>47</ZIndex>
             <Style>
               <Border>
@@ -1719,9 +1719,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.20792in</Top>
-            <Left>2.55436in</Left>
+            <Left>2.80436in</Left>
             <Height>0.19417in</Height>
-            <Width>0.81044in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>48</ZIndex>
             <Style>
               <Border>
@@ -1755,9 +1755,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.40209in</Top>
-            <Left>2.55436in</Left>
+            <Left>2.80436in</Left>
             <Height>0.19417in</Height>
-            <Width>0.81044in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>49</ZIndex>
             <Style>
               <Border>
@@ -2020,6 +2020,43 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="paramNatureOfComplaint55">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=CInt(Parameters!paramImmediateMembers.Value) + CInt(Parameters!paramHouseHelpers.Value) + CInt(Parameters!paramRelatives.Value) + CInt(Parameters!paramOtherHHDependentsFromService.Value)</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
+            <Top>2.62072in</Top>
+            <Left>2.80435in</Left>
+            <Height>0.19417in</Height>
+            <Width>0.62294in</Width>
+            <ZIndex>58</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>23.55628cm</Height>
         <Style />
@@ -2228,25 +2265,23 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramImmediateMembers">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramHouseHelpers">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramRelatives">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramOtherHHDependentsFromService">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramMeterBrandAndSize">

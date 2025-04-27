@@ -218,7 +218,6 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | Particulars";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmParticulars_FormClosed);
             this.Load += new System.EventHandler(this.frmParticulars_Load);
             this.groupBox1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);

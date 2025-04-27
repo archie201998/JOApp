@@ -135,17 +135,5 @@ namespace JOMonitoringApp.Views.Particulars
             return;
         }
 
-        private void dgvParticulars_DoubleClick(object sender, EventArgs e)
-        {
-            int id = dgvParticulars.SelectedRows[0].Index;
-            string particularName = dgvParticulars.Rows[id].Cells["name"].Value.ToString();
-            string particularDescription = dgvParticulars.Rows[id].Cells["description"].Value.ToString();
-
-        }
-
-        private void frmParticulars_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           
-        }
     }
 }

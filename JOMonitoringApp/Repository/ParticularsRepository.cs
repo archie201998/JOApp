@@ -43,7 +43,7 @@ namespace JOMonitoringApp
 
         public DataTable GetRecords()
         {
-            string query = $"SELECT * FROM {tableName} ORDER BY particular ASC";
+            string query = $"SELECT id, particular, description FROM {tableName} ORDER BY particular ASC";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);

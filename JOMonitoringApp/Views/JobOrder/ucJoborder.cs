@@ -267,7 +267,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
             foreach (var item in clBoxParticulars.CheckedItems)
             {
-                particularsBuilder.Append($" {item.ToString()}");
+                particularsBuilder.Append($"{item.ToString()}");
 
                 if (moreThanOneItem)
                     particularsBuilder.Append(" \\");

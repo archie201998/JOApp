@@ -114,7 +114,6 @@ namespace JOMonitoringApp.Views.MainForm
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
             string particular = cmbxParticulars.Text;
-
             return (searchKey, rowFilter, statusId, particular);
         }
 

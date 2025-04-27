@@ -134,7 +134,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(5, 5);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1648, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1753, 25);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -275,7 +275,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -387,7 +387,7 @@
             this.lblCheckingUpdate});
             this.statusStrip1.Location = new System.Drawing.Point(5, 948);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1648, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1753, 22);
             this.statusStrip1.TabIndex = 5;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -475,7 +475,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_information_14;
-            this.pictureBox1.Location = new System.Drawing.Point(791, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(898, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(16, 16);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -494,7 +494,7 @@
             this.lblSystemDateAndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSystemDateAndTime.AutoSize = true;
             this.lblSystemDateAndTime.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblSystemDateAndTime.Location = new System.Drawing.Point(1652, 1123);
+            this.lblSystemDateAndTime.Location = new System.Drawing.Point(1757, 1123);
             this.lblSystemDateAndTime.Name = "lblSystemDateAndTime";
             this.lblSystemDateAndTime.Size = new System.Drawing.Size(280, 15);
             this.lblSystemDateAndTime.TabIndex = 6;
@@ -535,7 +535,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1640, 890);
+            this.tabPage1.Size = new System.Drawing.Size(1745, 890);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -549,7 +549,7 @@
             this.panel1.Location = new System.Drawing.Point(466, 3);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(1171, 884);
+            this.panel1.Size = new System.Drawing.Size(1276, 884);
             this.panel1.TabIndex = 2;
             // 
             // panel6
@@ -559,7 +559,7 @@
             this.panel6.Location = new System.Drawing.Point(5, 61);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1161, 818);
+            this.panel6.Size = new System.Drawing.Size(1266, 818);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -574,7 +574,7 @@
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.RowHeadersWidth = 51;
-            this.dgJobOrders.Size = new System.Drawing.Size(1153, 810);
+            this.dgJobOrders.Size = new System.Drawing.Size(1258, 810);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
@@ -588,7 +588,7 @@
             this.panel3.Location = new System.Drawing.Point(5, 43);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1161, 18);
+            this.panel3.Size = new System.Drawing.Size(1266, 18);
             this.panel3.TabIndex = 3;
             // 
             // progressBar1
@@ -598,7 +598,7 @@
             this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.progressBar1.Location = new System.Drawing.Point(5, 5);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1151, 8);
+            this.progressBar1.Size = new System.Drawing.Size(1256, 8);
             this.progressBar1.TabIndex = 2;
             // 
             // panel2
@@ -617,7 +617,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(5, 5);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1161, 38);
+            this.panel2.Size = new System.Drawing.Size(1266, 38);
             this.panel2.TabIndex = 8;
             // 
             // btnX
@@ -627,7 +627,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.btnX.Location = new System.Drawing.Point(880, 7);
+            this.btnX.Location = new System.Drawing.Point(987, 8);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(31, 23);
             this.btnX.TabIndex = 32;
@@ -644,7 +644,7 @@
             this.cmbxParticulars.FormattingEnabled = true;
             this.cmbxParticulars.Location = new System.Drawing.Point(473, 8);
             this.cmbxParticulars.Name = "cmbxParticulars";
-            this.cmbxParticulars.Size = new System.Drawing.Size(121, 23);
+            this.cmbxParticulars.Size = new System.Drawing.Size(228, 23);
             this.cmbxParticulars.TabIndex = 31;
             // 
             // label1
@@ -666,7 +666,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(811, 7);
+            this.btnSearch.Location = new System.Drawing.Point(918, 8);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 13;
@@ -710,7 +710,7 @@
             // 
             this.txtSearch.AcceptsReturn = true;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(637, 8);
+            this.txtSearch.Location = new System.Drawing.Point(744, 9);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(150, 21);
             this.txtSearch.TabIndex = 4;
@@ -734,7 +734,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(600, 11);
+            this.label2.Location = new System.Drawing.Point(707, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 15);
             this.label2.TabIndex = 3;
@@ -815,7 +815,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1648, 918);
+            this.tabControl1.Size = new System.Drawing.Size(1753, 918);
             this.tabControl1.TabIndex = 4;
             // 
             // frmMain
@@ -823,7 +823,7 @@
             this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1658, 975);
+            this.ClientSize = new System.Drawing.Size(1763, 975);
             this.Controls.Add(this.lblSystemDateAndTime);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);

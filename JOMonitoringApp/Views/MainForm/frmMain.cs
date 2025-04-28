@@ -35,8 +35,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private readonly frmSignIn _frmSignIn;
 
-
-
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
@@ -983,6 +981,68 @@ namespace JOMonitoringApp.Views.MainForm
         {
             txtSearch.Clear();
             LoadJobOrders();
+        }
+
+        private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void investigationDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count > 0)
+            {
+                try
+                {
+                    int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                    string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+                    string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();
+                    string accountNumber = dgJobOrders.SelectedRows[0].Cells["account_number"].Value.ToString();
+                    string address = dgJobOrders.SelectedRows[0].Cells["address"].Value.ToString();
+                    string status = dgJobOrders.SelectedRows[0].Cells["status"].Value.ToString();
+                    string particular = dgJobOrders.SelectedRows[0].Cells["particular"].Value.ToString();
+
+
+
+                    var frmInvestigation = new frmInvestigation(true, jobOrderNumber, selectedJobOrderId, accountName, accountNumber, address, particular);
+                    frmInvestigation.Show();
+                }
+                catch (Exception ex)
+                {
+                    Helper.MessageBoxError($"Error retrieving selected row data: {ex.Message}");
+                }
+            }
+            else
+            {
+                Helper.MessageBoxWarning("No row is selected.");
+            }
+        }
+
+        private void printFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+
+            _ = new frmInvestigationReport(selectedJobOrderId, jobOrderNumber).ShowDialog();
+        }
+
+        private void timer_investigator_Tick(object sender, EventArgs e)
+        {
+            Dictionary<string, string>  forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
+         
+            if (Properties.Settings.Default.SkipMyMessage == false && forRecommendationDict.Count >= 1)
+            {
+                timer_investigator.Stop();
+                var investigationNotif = new frmInvestigationNotif(forRecommendationDict).ShowDialog();
+                timer_investigator.Start();
+            }
+
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.SkipMyMessage = false;
+            Properties.Settings.Default.Save();
         }
     }
 }

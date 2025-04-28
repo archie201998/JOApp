@@ -51,6 +51,23 @@ namespace AccountingSystem
                     return Color.Gray;
             }
         }
+        public static Color InvestigationStatusColor(string status)
+        {
+            switch (status)
+            {
+                case "FOR APPROVAL":
+                    return Color.Gold;
+                case "FOR RECOMMENDATION":
+                    return Color.MediumSeaGreen;
+                case "FOR INVESTIGATION":
+                    return Color.IndianRed;
+                case "APPROVED":
+                    return Color.SteelBlue;
+                default:
+                    return Color.Gray;
+            }
+        }
+
 
         public static string GetCurrentVersion()
         {

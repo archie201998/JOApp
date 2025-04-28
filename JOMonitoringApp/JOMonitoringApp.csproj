@@ -32,7 +32,7 @@
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>170</ApplicationRevision>
+    <ApplicationRevision>171</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -279,6 +279,12 @@
     <Compile Include="Views\Investigation\frmInvestigationImageViewer.Designer.cs">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationNotif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationNotif.Designer.cs">
+      <DependentUpon>frmInvestigationNotif.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Investigation\ucInvestigationForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\frmInvestigationNotif.resx">
+      <DependentUpon>frmInvestigationNotif.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\ucInvestigationForm.resx">
       <DependentUpon>ucInvestigationForm.cs</DependentUpon>

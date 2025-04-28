@@ -10,6 +10,7 @@ namespace JOMonitoringApp.Interface
 {
     public interface IInvestigationRepository : IRoleHasPermission<InvestigationModel>
     {
+        Dictionary<string, string> GetForRecommendation();
         int GetLastInsertedId(int userId);
         Dictionary<string, string> GetViewRecordById(int selectedId);
         Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId);

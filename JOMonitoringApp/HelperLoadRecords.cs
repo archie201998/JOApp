@@ -293,6 +293,7 @@ namespace JOMonitoringApp
                 return;
             }
 
+
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
 

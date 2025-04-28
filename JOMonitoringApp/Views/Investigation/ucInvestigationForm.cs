@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using Google.Apis.Auth.OAuth2;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
@@ -27,6 +28,9 @@ namespace JOMonitoringApp.Views.Investigation
         private string newFileName;
         string selectedFilePath = string.Empty;
         private Dictionary<string, string> dictInvestigation;
+        internal string particular = string.Empty;
+
+        internal bool isCreate = false;
 
         string imageFilePath = string.Empty;
         string secondaryImageFilePath = string.Empty;
@@ -54,35 +58,94 @@ namespace JOMonitoringApp.Views.Investigation
             //if (!ValidateChildren(ValidationConstraints.Enabled))
             //    return false;
 
-
-            using (var scope = new TransactionScope())
+            if (isCreate)
             {
-                var investigationModel = InvestigationModel();
-                var statFindingsModel = InvestigationStatFindingsModel();
-                var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
-                var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
-                var statFindingsResult = Factory.InvestigationStatFindingsRepository().Update(statFindingsModel);
-                var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Update(conditionOfServiceFacilitiesModel);
+                bool saveResults = Factory.InvestigationRepository().Insert(InvestigationModel());
 
-                if (investigationResult && statFindingsResult && conditionOfServiceFacilitiesResult)
+
+
+                var statFindingsResult = Factory.InvestigationStatFindingsRepository().Insert(InvestigationStatFindingsModel());
+                var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(InvestigationConditionOfServiceFacilitiesModel());
+
+                if (saveResults && statFindingsResult && conditionOfServiceFacilitiesResult )
                 {
-                    UploadImage();
-                    ResetForm();
-                    scope.Complete();
+                    OnLoad();
                     return true;
                 }
-                else
-                    return false;
+
+                return false;
             }
+
+            if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation record?"))
+            {
+                using (var scope = new TransactionScope())
+                {
+                    var investigationModel = InvestigationModel();
+                    var statFindingsModel = InvestigationStatFindingsModel();
+                    var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
+                    var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
+                    var statFindingsResult = Factory.InvestigationStatFindingsRepository().Update(statFindingsModel);
+                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Update(conditionOfServiceFacilitiesModel);
+
+                    if (investigationResult && statFindingsResult && conditionOfServiceFacilitiesResult)
+                    {
+                        UploadImage();
+                        ResetForm();
+                        scope.Complete();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+            }
+
+            return false;
+          
+        }
+
+        private int InvestigationStatusLogic()
+        {
+            bool noInvestigatorComments = string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
+            bool noRecommendation = string.IsNullOrEmpty(txtRecommendations.Text.Trim());
+            bool noApprovalMessage = string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
+            bool isApproved = radioButton1.Checked;
+
+
+            if (noInvestigatorComments && noRecommendation)
+            {
+                return 0;
+            }
+
+            if (noInvestigatorComments == false && noRecommendation)
+            {
+                return 1; 
+            }
+
+            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage)
+            {
+                return 2;
+            }
+
+            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radioButton1.Checked)
+            {
+                return 3;
+            }
+
+            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radioButton1.Checked == false)
+            {
+                return 4;
+            }
+
+            return 0;
         }
 
         private InvestigationModel InvestigationModel()
         {
             var model = new InvestigationModel
             {
-                Id  = selectedInvistigationID,
                 JobOrderId = _jobOrderId,
                 JobOrderNo = txtJONumber.Text,
+                CustomerId = _customerId,
                 CustomerName = txtAccountName.Text,
                 CustomerAddress = txtAddress.Text,
                 CustomerAccountNumber = txtAccountNumber.Text,
@@ -93,18 +156,23 @@ namespace JOMonitoringApp.Views.Investigation
                 Recommendations = txtRecommendations.Text,
                 imagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
                 secondaryImagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
+                IsApproved = InvestigationStatusLogic(),
                 CreatedBy = Helper.UserId
             };
 
             return model;
         }
 
+        private int LastInserted()
+        { 
+            return Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
+        }
 
         private InvestigationConditionOfServiceFacilitiesModel InvestigationConditionOfServiceFacilitiesModel()
         {
             var model = new InvestigationConditionOfServiceFacilitiesModel
             {
-                InvestigationId = selectedInvistigationID,
+                InvestigationId = isCreate == true ? LastInserted() : selectedInvistigationID,
                 MeterBrand = cmbxMeterBrand.Text,
                 MeterSize = cmbxMeterSize.Text,
                 ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
@@ -117,12 +185,11 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-
         private InvestigationStatFindingsModel InvestigationStatFindingsModel()
         {
             var model = new InvestigationStatFindingsModel
             {
-                InvestigationId = selectedInvistigationID,
+                InvestigationId = isCreate == true ? LastInserted() : selectedInvistigationID,
                 ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
                 HouseHelper = Convert.ToByte(nudHouseHelper.Value),
                 Relatives = Convert.ToByte(nudRelatives.Value),
@@ -135,11 +202,6 @@ namespace JOMonitoringApp.Views.Investigation
                 AlternativeSource = txtAlternativeSource.Text
             };
             return model;
-        }
-
-        private void cmbxComplaint_ValueMemberChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
@@ -506,11 +568,54 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnSearch_Click(object sender, EventArgs e)
         {
             GetInvestigationRecords();
+
         }
 
         private void dgInvestigations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
  
+        }
+
+        private void dgInvestigations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+
+            if (dgInvestigations.Columns[e.ColumnIndex].Name == "approval_status" && e.Value != null)
+            {
+                string status = e.Value.ToString();
+
+                switch (status)
+                {
+                    case "FOR INVESTIGATION":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR INVESTIGATION");    // investigation color :contentReference[oaicite:0]{index=0}
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                    case "FOR RECOMMENDATION":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR RECOMMENDATION"); // recommendation color :contentReference[oaicite:1]{index=1}
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                    case "FOR APPROVAL":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR APPROVAL"); // approval-pending color :contentReference[oaicite:2]{index=2}
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                    case "APPROVED":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("APPROVED"); // approved color :contentReference[oaicite:3]{index=3}
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                    case "DISAPPROVED":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("DISAPPROVED");    // disapproved color :contentReference[oaicite:4]{index=4}
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;  
+                    default:
+                        e.CellStyle.BackColor = Color.LightGray;
+                        e.CellStyle.ForeColor = Color.Black;
+                        break;
+                }
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

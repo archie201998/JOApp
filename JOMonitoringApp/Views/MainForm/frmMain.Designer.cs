@@ -56,10 +56,12 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.trackJOProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -104,6 +106,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -315,10 +318,10 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.hydrantWithdrawalToolStripMenuItem,
-            this.investigationToolStripMenuItem,
             this.toolStripMenuItem1,
             this.toolStripSeparator1,
-            this.trackJOProgressToolStripMenuItem});
+            this.trackJOProgressToolStripMenuItem,
+            this.investigationToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
             this.contextMenuStrip1.Text = "PRINT ";
@@ -336,13 +339,6 @@
             this.hydrantWithdrawalToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.hydrantWithdrawalToolStripMenuItem.Text = "Hydrant Withdrawal";
             this.hydrantWithdrawalToolStripMenuItem.Click += new System.EventHandler(this.hydrantWithdrawalToolStripMenuItem_Click);
-            // 
-            // investigationToolStripMenuItem
-            // 
-            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
-            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.investigationToolStripMenuItem.Text = "Investigation";
-            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click_1);
             // 
             // toolStripMenuItem1
             // 
@@ -362,6 +358,30 @@
             this.trackJOProgressToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
             this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
+            // 
+            // investigationToolStripMenuItem
+            // 
+            this.investigationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printFormToolStripMenuItem,
+            this.investigationDataToolStripMenuItem});
+            this.investigationToolStripMenuItem.Name = "investigationToolStripMenuItem";
+            this.investigationToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.investigationToolStripMenuItem.Text = "Investigation";
+            this.investigationToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click_2);
+            // 
+            // printFormToolStripMenuItem
+            // 
+            this.printFormToolStripMenuItem.Name = "printFormToolStripMenuItem";
+            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.printFormToolStripMenuItem.Text = "Print Form";
+            this.printFormToolStripMenuItem.Click += new System.EventHandler(this.printFormToolStripMenuItem_Click);
+            // 
+            // investigationDataToolStripMenuItem
+            // 
+            this.investigationDataToolStripMenuItem.Name = "investigationDataToolStripMenuItem";
+            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.investigationDataToolStripMenuItem.Text = "Investigation Data";
+            this.investigationDataToolStripMenuItem.Click += new System.EventHandler(this.investigationDataToolStripMenuItem_Click);
             // 
             // backgroundWorker1
             // 
@@ -513,7 +533,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1640, 890);
+            this.tabPage2.Size = new System.Drawing.Size(1745, 890);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -525,7 +545,7 @@
             this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
             this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1634, 1944);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1739, 1944);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
             // tabPage1
@@ -818,6 +838,12 @@
             this.tabControl1.Size = new System.Drawing.Size(1753, 918);
             this.tabControl1.TabIndex = 4;
             // 
+            // timer_investigator
+            // 
+            this.timer_investigator.Enabled = true;
+            this.timer_investigator.Interval = 5000;
+            this.timer_investigator.Tick += new System.EventHandler(this.timer_investigator_Tick);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -838,6 +864,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmMain_KeyDown);
             this.menuStrip1.ResumeLayout(false);
@@ -908,7 +935,6 @@
         private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawalToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem trackJOProgressToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
         private System.Windows.Forms.TabPage tabPage2;
         private Dashboard.ucDashboardSummaryView ucDashboardSummaryView1;
         private System.Windows.Forms.TabPage tabPage1;
@@ -937,5 +963,9 @@
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem investigationsToolStripMenuItem;
         private System.Windows.Forms.Button btnX;
+        private System.Windows.Forms.ToolStripMenuItem investigationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printFormToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investigationDataToolStripMenuItem;
+        public System.Windows.Forms.Timer timer_investigator;
     }
 }

@@ -87,13 +87,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label18 = new System.Windows.Forms.Label();
             this.r = new System.Windows.Forms.PictureBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.gbApproval = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtApprovalMessage = new System.Windows.Forms.TextBox();
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.btnPrint = new System.Windows.Forms.Button();
@@ -254,11 +256,19 @@
             // 
             // cmbxComplaint
             // 
+            this.cmbxComplaint.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbxComplaint.FormattingEnabled = true;
             this.cmbxComplaint.Items.AddRange(new object[] {
-            "Meter Calibration",
-            "High Billing"});
+            "Investigation - Account Reclassication",
+            "Investigation - Erroneous Reading",
+            "Investigation - High Billing",
+            "Investigation - Lost Water Meter",
+            "Investigation - Meter Calibration",
+            "Investigation - Verify Actual Reading",
+            "Investigation - Verify Illegalities",
+            "Investigation - Verify Manner of Use",
+            "Investigation - Verify Meter Status"});
             this.cmbxComplaint.Location = new System.Drawing.Point(199, 214);
             this.cmbxComplaint.Name = "cmbxComplaint";
             this.cmbxComplaint.Size = new System.Drawing.Size(198, 23);
@@ -864,7 +874,7 @@
             this.groupBox5.Location = new System.Drawing.Point(793, 56);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(596, 666);
+            this.groupBox5.Size = new System.Drawing.Size(696, 666);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "7. JOB ORDER INVESTIGATION RECORDS";
@@ -875,7 +885,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(576, 592);
+            this.panel2.Size = new System.Drawing.Size(676, 592);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -885,14 +895,17 @@
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(576, 592);
+            this.dgInvestigations.Size = new System.Drawing.Size(676, 592);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellDoubleClick);
+            this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.r);
+            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.label14);
@@ -900,19 +913,46 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(10, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(576, 41);
+            this.panel1.Size = new System.Drawing.Size(676, 41);
             this.panel1.TabIndex = 27;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(7, 13);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(56, 15);
+            this.label18.TabIndex = 39;
+            this.label18.Text = "STATUS ";
             // 
             // r
             // 
             this.r.Image = global::JOMonitoringApp.Properties.Resources.icons8_information_14;
-            this.r.Location = new System.Drawing.Point(252, 13);
+            this.r.Location = new System.Drawing.Point(437, 14);
             this.r.Name = "r";
             this.r.Size = new System.Drawing.Size(16, 16);
             this.r.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.r.TabIndex = 37;
             this.r.TabStop = false;
             this.toolTip1.SetToolTip(this.r, "JO Number, Account Number and Account Name");
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "For Investigation",
+            "For Recommendation",
+            "For Approval",
+            "Approved",
+            "Disapproved"});
+            this.comboBox1.Location = new System.Drawing.Point(69, 10);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(140, 23);
+            this.comboBox1.TabIndex = 38;
             // 
             // button1
             // 
@@ -921,7 +961,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.button1.Location = new System.Drawing.Point(354, 10);
+            this.button1.Location = new System.Drawing.Point(538, 10);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(31, 23);
             this.button1.TabIndex = 36;
@@ -937,7 +977,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(278, 10);
+            this.btnSearch.Location = new System.Drawing.Point(462, 10);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 35;
@@ -949,11 +989,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(9, 13);
+            this.label14.Location = new System.Drawing.Point(215, 13);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(56, 15);
+            this.label14.Size = new System.Drawing.Size(35, 15);
             this.label14.TabIndex = 7;
-            this.label14.Text = "SEARCH";
+            this.label14.Text = "FIND";
             // 
             // txtSearch
             // 
@@ -962,14 +1002,14 @@
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(71, 11);
+            this.txtSearch.Location = new System.Drawing.Point(254, 10);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(175, 21);
             this.txtSearch.TabIndex = 2;
             // 
             // gbApproval
             // 
-            this.gbApproval.Controls.Add(this.textBox1);
+            this.gbApproval.Controls.Add(this.txtApprovalMessage);
             this.gbApproval.Controls.Add(this.radioButton2);
             this.gbApproval.Controls.Add(this.radioButton1);
             this.gbApproval.Enabled = false;
@@ -981,16 +1021,16 @@
             this.gbApproval.TabStop = false;
             this.gbApproval.Text = "7. APPROVAL ";
             // 
-            // textBox1
+            // txtApprovalMessage
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(23, 26);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(547, 26);
-            this.textBox1.TabIndex = 2;
+            this.txtApprovalMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtApprovalMessage.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtApprovalMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtApprovalMessage.Location = new System.Drawing.Point(23, 26);
+            this.txtApprovalMessage.Multiline = true;
+            this.txtApprovalMessage.Name = "txtApprovalMessage";
+            this.txtApprovalMessage.Size = new System.Drawing.Size(547, 26);
+            this.txtApprovalMessage.TabIndex = 2;
             // 
             // radioButton2
             // 
@@ -1082,7 +1122,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(13, 5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1379, 45);
+            this.groupBox1.Size = new System.Drawing.Size(1479, 45);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             // 
@@ -1111,7 +1151,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
-            this.Size = new System.Drawing.Size(1402, 729);
+            this.Size = new System.Drawing.Size(1502, 729);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -1209,7 +1249,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        internal System.Windows.Forms.TextBox textBox1;
+        internal System.Windows.Forms.TextBox txtApprovalMessage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         internal System.Windows.Forms.TextBox txtSearch;
@@ -1224,5 +1264,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

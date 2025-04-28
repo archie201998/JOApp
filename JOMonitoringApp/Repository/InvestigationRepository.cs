@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -50,6 +51,7 @@ namespace JOMonitoringApp
             var parameters = new object[][]
             {
                 new object[] { "@job_orders_id", DbType.Int32,  entity.JobOrderId },
+                new object[] { "@job_order_no", DbType.String,  entity.JobOrderNo }, // Fixed: new param name
                 new object[] { "@customer_name", DbType.String, entity.CustomerName },
                 new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
@@ -60,12 +62,11 @@ namespace JOMonitoringApp
                 new object[] { "@recommendations", DbType.String, entity.Recommendations },
                 new object[] { "@image_path", DbType.String, entity.imagePath },
                 new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
+                new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
                 new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id,  customer_name, customer_address, account_number, nature_of_complaint,  date_of_investigation, approval_message, investigator_comments, recommendations, image_path, secondary_image_path, created_by) " +
-                           "VALUES (@job_orders_id, @customer_name, @customer_address, @account_number, @nature_of_complaint, @date_of_investigation, @approval_message,  @investigator_comments, @recommendations, @image_path, @secondary_image_path, @created_by)";
-
+            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, date_of_investigation, approval_message, investigator_comments, recommendations, image_path, secondary_image_path, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @date_of_investigation, @approval_message, @investigator_comments, @recommendations, @image_path, @secondary_image_path, @is_approved, @created_by);";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
@@ -179,9 +180,34 @@ namespace JOMonitoringApp
                 new object[] { "@search_text", DbType.String, $"%{searchKey}%" },
             };
 
-            string query = $"SELECT id, job_orders_id,  CASE is_approved WHEN 0 THEN 'FOR APPROVAL' WHEN 1 THEN 'APPROVED BY BM' WHEN 2 THEN 'DISAPPROVED' ELSE 'UNKNOWN' END AS approval_status,job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC; ";
+            string query = $"SELECT id, job_orders_id, CASE is_approved WHEN 0 THEN 'FOR INVESTIGATION' WHEN 1 THEN 'FOR RECOMMENDATION' WHEN 2 THEN 'FOR APPROVAL' WHEN 3 THEN 'APPROVED' ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at FROM   {viewTableName} WHERE  job_order_no    LIKE @search_text OR account_number  LIKE @search_text OR customer_name   LIKE @search_text ORDER BY created_at DESC;";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public Dictionary<string, string> GetForRecommendation()
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@is_approved", DbType.String, "1" },
+            };
+
+            string query = $"SELECT * FROM {viewTableName} WHERE is_approved = @is_approved";
+
+            var dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count == 0)
+            {
+                return null;
+            }
+
+            var result = new Dictionary<string, string>();
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+
+            return result;
         }
     }
 }

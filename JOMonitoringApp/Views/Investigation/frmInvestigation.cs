@@ -12,7 +12,7 @@ namespace JOMonitoringApp.Views.Investigation
         private readonly string accountName;
         private readonly string accountNumber;
         private readonly string customerAddress;
-        private readonly string remark;
+        private readonly string particular;
         private ucInvestigationForm ucInvestigationForm;
         private readonly bool create;
 
@@ -28,21 +28,26 @@ namespace JOMonitoringApp.Views.Investigation
             this.accountName = accountName;
             this.accountNumber = accountNumber;
             this.customerAddress = customerAddress;
-            this.remark = remark;
+            this.particular = particular;
             this.create = create;
 
-        }
-
-        private void frmInvestigation_Load(object sender, EventArgs e)
-        {
             ucInvestigationForm.txtAccountName.Text = accountName;
             ucInvestigationForm.txtAccountNumber.Text = accountNumber;
             ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
             ucInvestigationForm.txtAddress.Text = remark;
             ucInvestigationForm._jobOrderId = jobOderId;
-            ucInvestigationForm._customerAddress = customerAddress;
+            ucInvestigationForm.txtAddress.Text = customerAddress;
+            ucInvestigationForm.isCreate = create;
+            ucInvestigationForm.cmbxComplaint.SelectedText = particular;
+            ucInvestigationForm.particular = particular; 
+
             ucInvestigationForm.OnLoad();
-            //ucInvestigationForm.EnableControls(create);
+
+            ucInvestigationForm.EnableControls(create);
+        }
+
+        private void frmInvestigation_Load(object sender, EventArgs e)
+        {
             ucInvestigationForm.DataGridDoubleClicked += MyUserControl_DataGridClicked;
         }
 
@@ -67,32 +72,23 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void SaveData()
         {
-
             try
             {
-                if (ucInvestigationForm.isUpdate == false)
+
+                if (ucInvestigationForm.SaveData())
                 {
-                    Helper.MessageBoxSuccess("Nothing to save. Please select record to update.");
-                    return;
-                }
+                    UpdateJobOrderStatus();
+                    Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
+                    ucInvestigationForm.OnLoad();
+                    ucInvestigationForm.ResetForm();
 
-                if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation record?"))
-                {
-                    if (ucInvestigationForm.SaveData())
-                    {
-                        UpdateJobOrderStatus();
-                        Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-                        ucInvestigationForm.OnLoad();
-                        ucInvestigationForm.ResetForm();
+                    btnSave.Text = "Save [Ctrl + S]";
+                    btnSave.BackColor = Color.DodgerBlue;
+                    btnSave.ForeColor = Color.White;
+                    ucInvestigationForm.ResetForm();
+                    ucInvestigationForm.EnableControls(false);
+                    ucInvestigationForm.isUpdate = false;
 
-                        btnSave.Text = "Save [Ctrl + S]";
-                        btnSave.BackColor = Color.DodgerBlue;
-                        btnSave.ForeColor = Color.White;
-                        ucInvestigationForm.ResetForm();
-                        ucInvestigationForm.EnableControls(false);
-                        ucInvestigationForm.isUpdate = false;
-
-                    }
                 }
             }
             catch (Exception ex)

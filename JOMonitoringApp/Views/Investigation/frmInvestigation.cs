@@ -34,11 +34,10 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.txtAccountName.Text = accountName;
             ucInvestigationForm.txtAccountNumber.Text = accountNumber;
             ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
-            ucInvestigationForm.txtAddress.Text = remark;
             ucInvestigationForm._jobOrderId = jobOderId;
             ucInvestigationForm.txtAddress.Text = customerAddress;
             ucInvestigationForm.isCreate = create;
-            ucInvestigationForm.cmbxComplaint.SelectedText = particular;
+            ucInvestigationForm.cmbxComplaint.Text = particular;
             ucInvestigationForm.particular = particular; 
 
             ucInvestigationForm.OnLoad();

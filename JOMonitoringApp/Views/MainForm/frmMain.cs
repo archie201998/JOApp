@@ -1003,7 +1003,6 @@ namespace JOMonitoringApp.Views.MainForm
                     string particular = dgJobOrders.SelectedRows[0].Cells["particular"].Value.ToString();
 
 
-
                     var frmInvestigation = new frmInvestigation(true, jobOrderNumber, selectedJobOrderId, accountName, accountNumber, address, particular);
                     frmInvestigation.Show();
                 }
@@ -1028,14 +1027,14 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void timer_investigator_Tick(object sender, EventArgs e)
         {
-            Dictionary<string, string>  forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
+            //Dictionary<string, string>  forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
          
-            if (Properties.Settings.Default.SkipMyMessage == false && forRecommendationDict.Count >= 1)
-            {
-                timer_investigator.Stop();
-                var investigationNotif = new frmInvestigationNotif(forRecommendationDict).ShowDialog();
-                timer_investigator.Start();
-            }
+            //if (Properties.Settings.Default.SkipMyMessage == false && forRecommendationDict.Count >= 1)
+            //{
+            //    timer_investigator.Stop();
+            //    var investigationNotif = new frmInvestigationNotif(forRecommendationDict).ShowDialog();
+            //    timer_investigator.Start();
+            //}
 
         }
 

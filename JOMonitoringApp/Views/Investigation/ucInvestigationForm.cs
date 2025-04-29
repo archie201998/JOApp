@@ -1,8 +1,6 @@
 ﻿using AccountingSystem;
-using Google.Apis.Auth.OAuth2;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
-using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +18,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal int _jobOrderId;
         internal string _customerAddress;
-        internal int _customerId;
         internal bool isUpdate;
-        private int selectedInvistigationID;
+        internal int selectedInvistigationID;
         string originalFileName = string.Empty;
         private string trimedAccountName;
         private string newFileName;
@@ -48,6 +45,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (!DesignMode)
             {
+                HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
                 GetInvestigationRecords();
             }
         }
@@ -58,36 +56,15 @@ namespace JOMonitoringApp.Views.Investigation
             //if (!ValidateChildren(ValidationConstraints.Enabled))
             //    return false;
 
-            if (isCreate)
-            {
-                bool saveResults = Factory.InvestigationRepository().Insert(InvestigationModel());
 
-
-
-                var statFindingsResult = Factory.InvestigationStatFindingsRepository().Insert(InvestigationStatFindingsModel());
-                var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Insert(InvestigationConditionOfServiceFacilitiesModel());
-
-                if (saveResults && statFindingsResult && conditionOfServiceFacilitiesResult )
-                {
-                    OnLoad();
-                    return true;
-                }
-
-                return false;
-            }
-
-            if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation record?"))
+            if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation data?"))
             {
                 using (var scope = new TransactionScope())
                 {
                     var investigationModel = InvestigationModel();
-                    var statFindingsModel = InvestigationStatFindingsModel();
-                    var conditionOfServiceFacilitiesModel = InvestigationConditionOfServiceFacilitiesModel();
                     var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
-                    var statFindingsResult = Factory.InvestigationStatFindingsRepository().Update(statFindingsModel);
-                    var conditionOfServiceFacilitiesResult = Factory.InvestigationConditionOfServiceFacilities().Update(conditionOfServiceFacilitiesModel);
-
-                    if (investigationResult && statFindingsResult && conditionOfServiceFacilitiesResult)
+                 
+                    if (investigationResult)
                     {
                         UploadImage();
                         ResetForm();
@@ -108,7 +85,7 @@ namespace JOMonitoringApp.Views.Investigation
             bool noInvestigatorComments = string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
             bool noRecommendation = string.IsNullOrEmpty(txtRecommendations.Text.Trim());
             bool noApprovalMessage = string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
-            bool isApproved = radioButton1.Checked;
+            bool isApproved = radApproved.Checked;
 
 
             if (noInvestigatorComments && noRecommendation)
@@ -126,12 +103,12 @@ namespace JOMonitoringApp.Views.Investigation
                 return 2;
             }
 
-            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radioButton1.Checked)
+            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radApproved.Checked)
             {
                 return 3;
             }
 
-            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radioButton1.Checked == false)
+            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radDisapproved.Checked == false)
             {
                 return 4;
             }
@@ -143,21 +120,40 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationModel
             {
+                Id = selectedInvistigationID,
                 JobOrderId = _jobOrderId,
                 JobOrderNo = txtJONumber.Text,
-                CustomerId = _customerId,
                 CustomerName = txtAccountName.Text,
                 CustomerAddress = txtAddress.Text,
                 CustomerAccountNumber = txtAccountNumber.Text,
                 NatureOfComplaint = cmbxComplaint.Text,
                 InvestigatorComments = txtInvestigatorComments.Text,
                 DateOfInvestigation = dtpDate.Value,
-                ApprovalMessage = string.Empty,
+                ApprovalMessage = txtApprovalMessage.Text,
                 Recommendations = txtRecommendations.Text,
-                imagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
-                secondaryImagePath = $"\\\\192.168.18.183\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
+                imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
+                secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
                 IsApproved = InvestigationStatusLogic(),
-                CreatedBy = Helper.UserId
+                AlternativeSource = txtAlternativeSource.Text,
+                MeterBrand = cmbxMeterBrand.Text,
+                MeterSize = cmbxMeterSize.Text,
+                ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
+                ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
+                CalibrationResult = txtCalibrationResult.Text,
+                OverRegistration = txtServiceLineDefects.Text,
+                UnderRegistration = txtServiceLineDefects.Text,
+                LeakingAfterTheMeter = txtServiceLineDefects.Text,
+                ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
+                HouseHelper = Convert.ToByte(nudHouseHelper.Value),
+                Relatives = Convert.ToByte(nudRelatives.Value),
+                Boarders = Convert.ToByte(nudBoarders.Value),
+                NoOfHoursServed = Convert.ToByte(nudNoOfHoursServed.Value),
+                NoServiceOutlets = Convert.ToByte(nudNoServiceOfOutlets.Value),
+                HhPurpose = Convert.ToBoolean(cbHHPurpose.Checked),
+                PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
+                SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
+                CreatedBy = Helper.UserId,
+
             };
 
             return model;
@@ -168,42 +164,7 @@ namespace JOMonitoringApp.Views.Investigation
             return Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
         }
 
-        private InvestigationConditionOfServiceFacilitiesModel InvestigationConditionOfServiceFacilitiesModel()
-        {
-            var model = new InvestigationConditionOfServiceFacilitiesModel
-            {
-                InvestigationId = isCreate == true ? LastInserted() : selectedInvistigationID,
-                MeterBrand = cmbxMeterBrand.Text,
-                MeterSize = cmbxMeterSize.Text,
-                ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
-                ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
-                CalibrationResult = txtCalibrationResult.Text,
-                OverRegistration = string.Empty,
-                UnderRegistration = string.Empty,
-                LeakingAfterTheMeter = txtServiceLineDefects.Text
-            };
-            return model;
-        }
-
-        private InvestigationStatFindingsModel InvestigationStatFindingsModel()
-        {
-            var model = new InvestigationStatFindingsModel
-            {
-                InvestigationId = isCreate == true ? LastInserted() : selectedInvistigationID,
-                ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
-                HouseHelper = Convert.ToByte(nudHouseHelper.Value),
-                Relatives = Convert.ToByte(nudRelatives.Value),
-                Boarders = Convert.ToByte(nudBoarders.Value),
-                NoOfHoursServed = Convert.ToByte(nudNoOfHoursServed.Value),
-                NoServiceOutlets = Convert.ToByte(nudNoServiceOfOutlets.Value),
-                HhPurpose = cbHHPurpose.Checked,
-                PromoteTradeBusiness = cbPromoteTrade.Checked,
-                SellToNeighbours = cbHHPurpose.Checked,
-                AlternativeSource = txtAlternativeSource.Text
-            };
-            return model;
-        }
-
+      
         private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
         {
             if (cmbxComplaint.Text == string.Empty)
@@ -246,7 +207,6 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.ClearErrorTextBox(errorProvider1, txtInvestigatorComments);
         }
 
-
         internal void ResetForm()
         {
             txtAccountName.Clear();
@@ -275,6 +235,7 @@ namespace JOMonitoringApp.Views.Investigation
             isUpdate = false;
             pictureBox1.Image = Properties.Resources.icons8_image_96;
             pictureBox2.Image = Properties.Resources.icons8_image_96;
+            cmbxStatus.SelectedValue = 5;
         }
 
 
@@ -337,15 +298,15 @@ namespace JOMonitoringApp.Views.Investigation
                 }
                 catch (IOException ioEx)
                 {
-                    Helper.MessageBoxSuccess("File I/O error: " + ioEx.Message);
+                    //Helper.MessageBoxSuccess("File I/O error: " + ioEx.Message);
                 }
                 catch (UnauthorizedAccessException unAuthEx)
                 {
-                    Helper.MessageBoxSuccess("Access error: " + unAuthEx.Message);
+                    //Helper.MessageBoxSuccess("Access error: " + unAuthEx.Message);
                 }
                 catch (Exception ex)
                 {
-                    Helper.MessageBoxSuccess("Unexpected error: " + ex.Message);
+                    //Helper.MessageBoxSuccess("Unexpected error: " + ex.Message);
                 }
             }
             else
@@ -364,17 +325,19 @@ namespace JOMonitoringApp.Views.Investigation
             GetInvestigationRecords();
         }
 
+
         private void GetInvestigationRecords()
         {
-            string searchKey = txtSearch.Text.Trim();   
+            string searchKey = txtSearch.Text.Trim();
+            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
 
-            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(searchKey);
+
+            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, searchKey);
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
         internal void EnableControls(bool enable)
         {
-            btnPrint.Enabled = enable;
             gbStatisticalFindings.Enabled = enable;
             gbAccountDetails.Enabled = enable;
             gbComments.Enabled = enable;
@@ -385,111 +348,104 @@ namespace JOMonitoringApp.Views.Investigation
             dgInvestigations.Enabled = !enable;
         }
 
-        private void ViewInvestigationDetails()
+        private void dgInvestigations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgInvestigations.SelectedRows.Count > 0)
+            ViewInvestigationDetails();
+        }
+
+        internal void ViewInvestigationDetails()
+        {
+
+            if (selectedInvistigationID == 0)
             {
-                EnableControls(true);
-                isUpdate = true;
                 selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
+            }
 
-                // Assigning additional columns to variables
-                //int csfId = Convert.ToInt32(dictInvestigation["id"]);
-                int investigationId = Convert.ToInt32(dictInvestigation["id"]);
-                string meterBrand = dictInvestigation["meter_brand"];
-                string meterSize = dictInvestigation["meter_size"];
-                decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
-                decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 :  Convert.ToDecimal(dictInvestigation["reading_after_test"]);
-                string calibrationResult = dictInvestigation["calibration_result"];
-                string overRegistration = dictInvestigation["over_registration"];
-                string underRegistration = dictInvestigation["under_registration"];
-                string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
-                int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
-                string customerAddress = dictInvestigation["customer_address"];
-                int isfId = Convert.ToInt32(dictInvestigation["isf_id"]);
-                byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
-                byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
-                byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
-                byte boarders = Convert.ToByte(dictInvestigation["boarders"]);
-                byte noOfHoursServed = Convert.ToByte(dictInvestigation["no_of_hours_served"]);
-                byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
-                byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
-                byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
-                byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
-                string alternativeSource = dictInvestigation["alternative_source"];
+            dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
 
-                cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
-                cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
-                cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
-                txtAlternativeSource.Text = alternativeSource;
-                nudNoOfHoursServed.Value = noOfHoursServed;
-                nudNoServiceOfOutlets.Value = noServiceOutlets;
-                txtAccountName.Text = dictInvestigation["customer_name"];
-                txtAccountNumber.Text = dictInvestigation["account_number"];
-                txtJONumber.Text = dictInvestigation["job_order_no"];
-                txtAddress.Text = dictInvestigation["customer_address"];
-                _jobOrderId = jobOrdersId;
-                _jobOrderNumber = txtJONumber.Text;
+            string meterBrand = dictInvestigation["meter_brand"];
+            string meterSize = dictInvestigation["meter_size"];
+            decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
+            decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 :  Convert.ToDecimal(dictInvestigation["reading_after_test"]);
+            string calibrationResult = dictInvestigation["calibration_result"];
+            string overRegistration = dictInvestigation["over_registration"];
+            string underRegistration = dictInvestigation["under_registration"];
+            string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
+            int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
+            string customerAddress = dictInvestigation["customer_address"];
+            byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
+            byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
+            byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
+            byte boarders = Convert.ToByte(dictInvestigation["boarders"]);
+            byte noOfHoursServed = Convert.ToByte(dictInvestigation["no_of_hours_served"]);
+            byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
+            byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
+            byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
+            byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
+            string alternativeSource = dictInvestigation["alternative_source"];
+            string approvalMessage = dictInvestigation["approval_message"];
 
-                cmbxComplaint.Text = dictInvestigation["nature_of_complaint"];
-                txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
-                txtRecommendations.Text = dictInvestigation["recommendations"];
-                cmbxMeterBrand.Text = meterBrand;
-                cmbxMeterSize.Text = meterSize;
-                nudReadingBeforeTest.Value = readingBeforeTest;
-                nudReadingAfterTest.Value = readingAfterTest;
-                txtCalibrationResult.Text = calibrationResult;
-                txtServiceLineDefects.Text = leakingAfterTheMeter;
-                nudImmediateFamily.Value = immediateMembersOfFam;
-                nudHouseHelper.Value = houseHelper;
-                nudRelatives.Value = relatives;
-                nudBoarders.Value = boarders;
+            cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
+            cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
+            cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
+            txtAlternativeSource.Text = alternativeSource;
+            nudNoOfHoursServed.Value = noOfHoursServed;
+            nudNoServiceOfOutlets.Value = noServiceOutlets;
+            txtAccountName.Text = dictInvestigation["customer_name"];
+            txtAccountNumber.Text = dictInvestigation["account_number"];
+            txtJONumber.Text = dictInvestigation["job_order_no"];
+            txtAddress.Text = dictInvestigation["customer_address"];
+            _jobOrderId = jobOrdersId;
+            _jobOrderNumber = txtJONumber.Text;
 
-                //loading of picture box
+            cmbxComplaint.Text = dictInvestigation["nature_of_complaint"];
+            txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
+            txtRecommendations.Text = dictInvestigation["recommendations"];
+            cmbxMeterBrand.Text = meterBrand;
+            cmbxMeterSize.Text = meterSize;
+            nudReadingBeforeTest.Value = readingBeforeTest;
+            nudReadingAfterTest.Value = readingAfterTest;
+            txtCalibrationResult.Text = calibrationResult;
+            txtServiceLineDefects.Text = leakingAfterTheMeter;
+            nudImmediateFamily.Value = immediateMembersOfFam;
+            nudHouseHelper.Value = houseHelper;
+            nudRelatives.Value = relatives;
+            nudBoarders.Value = boarders;
+            txtApprovalMessage.Text = approvalMessage;
+            radApproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
+            radDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "4";
 
-                if (dictInvestigation.ContainsKey("image_path"))
+            //loading of picture box
+
+            if (dictInvestigation.ContainsKey("image_path"))
+            {
+                imageFilePath = dictInvestigation["image_path"]?.ToString();
+                if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
                 {
-                    imageFilePath = dictInvestigation["image_path"]?.ToString();
-                    if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
-                    {
-                        pictureBox1.Image = Image.FromFile(imageFilePath);
-                    }
+                    pictureBox1.Image = Image.FromFile(imageFilePath);
                 }
-
-                if (dictInvestigation.ContainsKey("secondary_image_path"))
+                else 
                 {
-                    secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
-                    if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
-                    {
-                        pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
-                    }
+                    pictureBox1.Image = Properties.Resources.icons8_image_96;
                 }
 
             }
-            else
+
+            if (dictInvestigation.ContainsKey("secondary_image_path"))
             {
-                MessageBox.Show("Please select a row to view details.", "No Row Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
+                if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
+                {
+                    pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
+                }
+                else
+                {
+                    pictureBox2.Image = Properties.Resources.icons8_image_96;
+                }
             }
-        }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Are you sure you want to cancel? All unsaved changes will be lost.", "Confirm Cancel", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                ResetForm();
-            }
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            if (dictInvestigation.Count != 0)
-                _ = new frmInvestigationReport(_jobOrderId, _jobOrderNumber).ShowDialog();
-        }
-
    
-
         #region Updating of Records for investigator
 
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
@@ -498,13 +454,7 @@ namespace JOMonitoringApp.Views.Investigation
 
             ViewInvestigationDetails();
             UpdateSettings();
-
-
-
-            DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
             EnableControls(true);
-            isUpdate = true;
-
         }
 
 
@@ -512,6 +462,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void UpdateSettings()
         {
             isUpdate = true;
+            DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -587,11 +538,11 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     case "FOR INVESTIGATION":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR INVESTIGATION");    // investigation color :contentReference[oaicite:0]{index=0}
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                     case "FOR RECOMMENDATION":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR RECOMMENDATION"); // recommendation color :contentReference[oaicite:1]{index=1}
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                     case "FOR APPROVAL":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR APPROVAL"); // approval-pending color :contentReference[oaicite:2]{index=2}
@@ -599,11 +550,11 @@ namespace JOMonitoringApp.Views.Investigation
                         break;
                     case "APPROVED":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("APPROVED"); // approved color :contentReference[oaicite:3]{index=3}
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.White;
                         break;
                     case "DISAPPROVED":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("DISAPPROVED");    // disapproved color :contentReference[oaicite:4]{index=4}
-                        e.CellStyle.ForeColor = Color.Black;
+                        e.CellStyle.ForeColor = Color.White;
                         break;  
                     default:
                         e.CellStyle.BackColor = Color.LightGray;
@@ -617,5 +568,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
 
         }
+
+     
     }
 }

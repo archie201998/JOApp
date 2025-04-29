@@ -281,6 +281,29 @@ namespace JOMonitoringApp
             comboBox.DisplayMember = "status";
         }
 
+        internal static void InvestigationStatusCombobox(ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("id", typeof(int));
+            dataTable.Columns.Add("status", typeof(string));
+
+            // Insert "All" first
+            dataTable.Rows.Add(5, "All");
+
+            // Then the rest
+            dataTable.Rows.Add(0, "For Investigation");
+            dataTable.Rows.Add(1, "For Recommendation");
+            dataTable.Rows.Add(2, "For Approval");
+            dataTable.Rows.Add(3, "Approved");
+            dataTable.Rows.Add(4, "Disapproved");
+
+            // Bind to ComboBox
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "status";
+        }
+
+
         internal static void InvestigationDatagridView(DataGridView dgInvestigations, DataTable dtInvestigation)
         {
             if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)

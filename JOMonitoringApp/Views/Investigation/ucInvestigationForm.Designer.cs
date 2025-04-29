@@ -89,16 +89,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label18 = new System.Windows.Forms.Label();
             this.r = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.gbApproval = new System.Windows.Forms.GroupBox();
             this.txtApprovalMessage = new System.Windows.Forms.TextBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.radDisapproved = new System.Windows.Forms.RadioButton();
+            this.radApproved = new System.Windows.Forms.RadioButton();
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
@@ -127,7 +126,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.gbApproval.SuspendLayout();
             this.gbComputation.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -654,7 +652,6 @@
             // 
             // nudReadingAfterTest
             // 
-            this.nudReadingAfterTest.DecimalPlaces = 2;
             this.nudReadingAfterTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudReadingAfterTest.Location = new System.Drawing.Point(197, 113);
             this.nudReadingAfterTest.Maximum = new decimal(new int[] {
@@ -692,7 +689,6 @@
             // 
             // nudReadingBeforeTest
             // 
-            this.nudReadingBeforeTest.DecimalPlaces = 2;
             this.nudReadingBeforeTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudReadingBeforeTest.Location = new System.Drawing.Point(197, 86);
             this.nudReadingBeforeTest.Maximum = new decimal(new int[] {
@@ -897,6 +893,7 @@
             this.dgInvestigations.Name = "dgInvestigations";
             this.dgInvestigations.Size = new System.Drawing.Size(676, 592);
             this.dgInvestigations.TabIndex = 25;
+            this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
             this.dgInvestigations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellDoubleClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
@@ -905,7 +902,7 @@
             // 
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.r);
-            this.panel1.Controls.Add(this.comboBox1);
+            this.panel1.Controls.Add(this.cmbxStatus);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.label14);
@@ -938,21 +935,22 @@
             this.r.TabStop = false;
             this.toolTip1.SetToolTip(this.r, "JO Number, Account Number and Account Name");
             // 
-            // comboBox1
+            // cmbxStatus
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmbxStatus.FormattingEnabled = true;
+            this.cmbxStatus.Items.AddRange(new object[] {
+            "All",
             "For Investigation",
             "For Recommendation",
             "For Approval",
             "Approved",
             "Disapproved"});
-            this.comboBox1.Location = new System.Drawing.Point(69, 10);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 23);
-            this.comboBox1.TabIndex = 38;
+            this.cmbxStatus.Location = new System.Drawing.Point(69, 10);
+            this.cmbxStatus.Name = "cmbxStatus";
+            this.cmbxStatus.Size = new System.Drawing.Size(140, 23);
+            this.cmbxStatus.TabIndex = 38;
             // 
             // button1
             // 
@@ -1010,8 +1008,8 @@
             // gbApproval
             // 
             this.gbApproval.Controls.Add(this.txtApprovalMessage);
-            this.gbApproval.Controls.Add(this.radioButton2);
-            this.gbApproval.Controls.Add(this.radioButton1);
+            this.gbApproval.Controls.Add(this.radDisapproved);
+            this.gbApproval.Controls.Add(this.radApproved);
             this.gbApproval.Enabled = false;
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbApproval.Location = new System.Drawing.Point(13, 651);
@@ -1032,47 +1030,29 @@
             this.txtApprovalMessage.Size = new System.Drawing.Size(547, 26);
             this.txtApprovalMessage.TabIndex = 2;
             // 
-            // radioButton2
+            // radDisapproved
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(662, 30);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(84, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Disapprove";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radDisapproved.AutoSize = true;
+            this.radDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radDisapproved.Location = new System.Drawing.Point(662, 30);
+            this.radDisapproved.Name = "radDisapproved";
+            this.radDisapproved.Size = new System.Drawing.Size(84, 19);
+            this.radDisapproved.TabIndex = 1;
+            this.radDisapproved.TabStop = true;
+            this.radDisapproved.Text = "Disapprove";
+            this.radDisapproved.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // radApproved
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(586, 30);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(70, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Approve";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.Color.White;
-            this.btnPrint.Enabled = false;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(6, 16);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(67, 23);
-            this.btnPrint.TabIndex = 26;
-            this.btnPrint.TabStop = false;
-            this.btnPrint.Text = "PRINT";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.radApproved.AutoSize = true;
+            this.radApproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radApproved.Location = new System.Drawing.Point(586, 30);
+            this.radApproved.Name = "radApproved";
+            this.radApproved.Size = new System.Drawing.Size(70, 19);
+            this.radApproved.TabIndex = 0;
+            this.radApproved.TabStop = true;
+            this.radApproved.Text = "Approve";
+            this.radApproved.UseVisualStyleBackColor = true;
             // 
             // gbComputation
             // 
@@ -1118,7 +1098,6 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.btnPrint);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.groupBox1.Location = new System.Drawing.Point(13, 5);
             this.groupBox1.Name = "groupBox1";
@@ -1182,7 +1161,6 @@
             this.gbApproval.PerformLayout();
             this.gbComputation.ResumeLayout(false);
             this.gbComputation.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -1241,12 +1219,11 @@
         internal System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView dgInvestigations;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label12;
         internal System.Windows.Forms.DateTimePicker dtpDate;
         internal System.Windows.Forms.GroupBox gbApproval;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radDisapproved;
+        private System.Windows.Forms.RadioButton radApproved;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.TextBox txtApprovalMessage;
@@ -1265,6 +1242,6 @@
         private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbxStatus;
     }
 }

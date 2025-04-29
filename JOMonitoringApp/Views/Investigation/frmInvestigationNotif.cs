@@ -15,9 +15,11 @@ namespace JOMonitoringApp.Views.Investigation
     {
         private Dictionary<string, string> _forRecommendationDict = new Dictionary<string, string>();
 
+        internal int _investigationId = 0;  
         internal int jobOrderId = 0;
         internal string address = string.Empty;
         internal string remark = string.Empty;  
+
         public frmInvestigationNotif(Dictionary<string, string> forRecommendationDict)
         {
             InitializeComponent();
@@ -34,9 +36,12 @@ namespace JOMonitoringApp.Views.Investigation
             lblAccountName.Text = _forRecommendationDict["customer_name"];
             lblInvestigatorComment.Text = _forRecommendationDict["investigator_comments"];
 
+            _investigationId = Convert.ToInt32(_forRecommendationDict["id"]);
+
             //customerAddress = _forRecommendationDict["customer_address"];
 
         }
+
         private void ShowAgainSettings()
         {
             bool dontShowAgain = cbxDontShowAgain.Checked;
@@ -56,32 +61,16 @@ namespace JOMonitoringApp.Views.Investigation
             
         }
 
-     
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
-            ShowAgainSettings();
-
-
-            foreach (Form form in Application.OpenForms)
-            {
-                if (form.Name == "frmInvestigation") // Replace "MyFormName" with your form's name
-                {
-                    form.BringToFront(); // Optional: bring the form to front
-                    form.Focus();        // Optional: focus the form
-                    return;              // Already open, no need to open again
-                }
-            }
-
-            // If not open, create a new instance
-
-            //lblJONumber.Text = _forRecommendationDict["job_order_no"];
-            //lblComplaint.Text = _forRecommendationDict["nature_of_complaint"];
-            //lblAccountNumber.Text = _forRecommendationDict["account_number"];
-            //lblAccountName.Text = _forRecommendationDict["customer_name"];
-            //lblInvestigatorComment.Text = _forRecommendationDict["investigator_comments"];
-            //frmInvestigation ucInvestigationForm = new frmInvestigation(false, lblJONumber.Text, lblAccountName.Text, lblAccountNumber.Text, customerAddress, remark);
-       
-            //ucInvestigationForm.Show();
+            Helper.notifViewed = true;
+            var investigationForm = new frmInvestigation();
+            investigationForm._selectedInvestigationID = _investigationId;
+            investigationForm.ShowDialog();
+            investigationForm.ucInvestigationForm.ViewInvestigationDetails();
+            investigationForm.BringToFront(); // Optional: bring the form to front
+            investigationForm.Focus();
+            return;
         }
     }
 }

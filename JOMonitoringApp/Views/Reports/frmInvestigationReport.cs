@@ -70,7 +70,7 @@ namespace JOMonitoringApp.Views.Reports
                 string imagePath1 = dictInvestigation["image_path"];
                 string imagePath2 = dictInvestigation["secondary_image_path"];
                 if (File.Exists(imagePath1) || File.Exists(imagePath2))
-                {
+                {  
                     parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");
                     parameters[17] = new ReportParameter("paramImage2", $"file:///{imagePath2}");
                 }
@@ -79,15 +79,15 @@ namespace JOMonitoringApp.Views.Reports
                     parameters[16] = new ReportParameter("paramImage1", string.Empty);
                     parameters[17] = new ReportParameter("paramImage2", string.Empty);
                 }
-
                 reportViewer1.LocalReport.SetParameters(parameters);
                 reportViewer1.ProcessingMode = ProcessingMode.Local;
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.Percent;
                 reportViewer1.RefreshReport();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show("Test " + ex.Message);
             }
             
         }

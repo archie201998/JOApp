@@ -25,5 +25,27 @@ namespace JOMonitoringApp.Model
         public string secondaryImagePath { get; set; }
         public int CreatedBy { get; set; }
 
+        //service condition
+        public int InvestigationId { get; set; }
+        public string MeterBrand { get; set; }
+        public string MeterSize { get; set; }
+        public string ReadingBeforeTest { get; set; }
+        public string ReadingAfterTest { get; set; }
+        public string CalibrationResult { get; set; }
+        public string OverRegistration { get; set; }
+        public string UnderRegistration { get; set; }
+        public string LeakingAfterTheMeter { get; set; }
+
+        //stat finding
+        public byte ImmediateMembersOfFam { get; set; }
+        public byte HouseHelper { get; set; }
+        public byte Relatives { get; set; }
+        public byte Boarders { get; set; }
+        public byte NoOfHoursServed { get; set; }
+        public byte NoServiceOutlets { get; set; }
+        public bool HhPurpose { get; set; }
+        public bool PromoteTradeBusiness { get; set; }
+        public bool SellToNeighbours { get; set; }
+        public string AlternativeSource { get; set; }
     }
 }

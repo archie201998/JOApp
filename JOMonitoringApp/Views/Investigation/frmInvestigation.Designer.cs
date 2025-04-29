@@ -90,6 +90,7 @@
             this.ucInvestigationForm1.Size = new System.Drawing.Size(1579, 743);
             this.ucInvestigationForm1.TabIndex = 0;
             this.ucInvestigationForm1.Load += new System.EventHandler(this.ucInvestigationForm1_Load);
+            this.ucInvestigationForm1.Click += new System.EventHandler(this.ucInvestigationForm1_Click);
             // 
             // frmInvestigation
             // 
@@ -105,8 +106,10 @@
             this.MinimizeBox = false;
             this.Name = "frmInvestigation";
             this.Padding = new System.Windows.Forms.Padding(4);
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | Investigation Form";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInvestigation_FormClosing);
             this.Load += new System.EventHandler(this.frmInvestigation_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInvestigation_KeyDown);
             this.panel4.ResumeLayout(false);

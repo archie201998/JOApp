@@ -15,6 +15,6 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetViewRecordById(int selectedId);
         Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId);
         Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber);
-        DataTable GetViewRecordsBySearch(string searchKey);
+        DataTable GetViewRecordsBySearch(int statusId, string searchKey);
     }
 }

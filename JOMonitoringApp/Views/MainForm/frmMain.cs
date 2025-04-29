@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
@@ -218,8 +219,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
 
-
-
         #endregion
 
 
@@ -250,6 +249,7 @@ namespace JOMonitoringApp.Views.MainForm
             StartUpdateTimer();
             LoadJobOrders();
             ucJoborder.OnLoad();
+
         }
 
         #endregion
@@ -573,6 +573,19 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
+        //This will save job order details into investigation if the particular selected is investigation
+        private bool CheckIfInvestigation()
+        {
+            foreach (var item in ucJoborder.clBoxParticulars.CheckedItems)
+            {
+                if (item.ToString().IndexOf("Investigation", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void ButtonSaveTrigger()
         {
             try
@@ -582,6 +595,9 @@ namespace JOMonitoringApp.Views.MainForm
                 if (success)
                 {
                     LogJOTransaction();
+
+                    if (CheckIfInvestigation()) InsertJobOrderToInvestigation();
+
                     string message = ucJoborder.isUpdate
                         ? "Job Order details successfully updated."
                         : "Job Order successfully created.";
@@ -634,6 +650,22 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
         #region Save Job orders
+
+        private void InsertJobOrderToInvestigation()
+        {
+            bool insertRes = Factory.InvestigationRepository().Insert(new InvestigationModel()
+            {
+                JobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId),
+                JobOrderNo = ucJoborder.txtJONumber.Text,
+                CustomerName = ucJoborder.txtAccountName.Text,
+                CustomerAddress = ucJoborder.txtAddress.Text,
+                CustomerAccountNumber = ucJoborder.txtAccountNumber.Text,
+                NatureOfComplaint = string.Join(", ", ucJoborder.clBoxParticulars.CheckedItems.Cast<object>()),
+                IsApproved = 0,
+                CreatedBy = Helper.UserId,
+            });
+        }
+        
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -968,7 +1000,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var frmInvestigation = new frmInvestigation(false, null, 0, null, null, null, null);
+            var frmInvestigation = new frmInvestigation();
             frmInvestigation.Show();
         }
 
@@ -1003,8 +1035,8 @@ namespace JOMonitoringApp.Views.MainForm
                     string particular = dgJobOrders.SelectedRows[0].Cells["particular"].Value.ToString();
 
 
-                    var frmInvestigation = new frmInvestigation(true, jobOrderNumber, selectedJobOrderId, accountName, accountNumber, address, particular);
-                    frmInvestigation.Show();
+                    var frmInvestigation = new frmInvestigation();
+                    frmInvestigation.ShowDialog();
                 }
                 catch (Exception ex)
                 {
@@ -1027,14 +1059,25 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void timer_investigator_Tick(object sender, EventArgs e)
         {
-            //Dictionary<string, string>  forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
-         
-            //if (Properties.Settings.Default.SkipMyMessage == false && forRecommendationDict.Count >= 1)
-            //{
-            //    timer_investigator.Stop();
-            //    var investigationNotif = new frmInvestigationNotif(forRecommendationDict).ShowDialog();
-            //    timer_investigator.Start();
-            //}
+            try
+            {
+                var forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
+
+                if (!Properties.Settings.Default.SkipMyMessage && forRecommendationDict != null && forRecommendationDict.Count > 0 && Helper.notifViewed == false)
+                {
+                    timer_investigator.Stop();
+
+                    using (var investigationNotif = new frmInvestigationNotif(forRecommendationDict))
+                    {
+                        investigationNotif.ShowDialog();
+                    }
+
+                    timer_investigator.Start();
+                }
+            }
+            catch (Exception)
+            {
+            }
 
         }
 
@@ -1042,6 +1085,11 @@ namespace JOMonitoringApp.Views.MainForm
         {
             Properties.Settings.Default.SkipMyMessage = false;
             Properties.Settings.Default.Save();
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

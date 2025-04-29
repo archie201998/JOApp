@@ -18,7 +18,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>\\192.168.18.183\J.O e-Monitoring Test Server\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
+    <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
@@ -26,13 +26,13 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>\\192.168.18.183\J.O e-Monitoring\</UpdateUrl>
+    <UpdateUrl>\\192.168.18.183\J.O e-Monitoring Test Server\</UpdateUrl>
     <ProductName>J.O e-Monitoring</ProductName>
     <PublisherName>ASale%40Pamana</PublisherName>
-    <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
+    <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>171</ApplicationRevision>
+    <ApplicationRevision>175</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -194,9 +194,7 @@
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
-    <Compile Include="Interface\IInvestigationConditionOfServiceFacilities.cs" />
     <Compile Include="Interface\IInvestigationRepository.cs" />
-    <Compile Include="Interface\IInvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IJobOrdersParticulars.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
@@ -205,9 +203,7 @@
     <Compile Include="Interface\IUsersRepository.cs" />
     <Compile Include="Model\MaterialsModel.cs" />
     <Compile Include="Model\PermissionsModel.cs" />
-    <Compile Include="Model\InvestigationConditionOfServiceFacilitiesModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
-    <Compile Include="Model\InvestigationStatFindingsModel.cs" />
     <Compile Include="Model\RoleHasPermissionModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\JobOrdersParticularsModel.cs" />
@@ -228,9 +224,7 @@
     <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IMaterialss.cs" />
-    <Compile Include="Repository\InvestigationConditionOfServiceFacilitiesRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
-    <Compile Include="Repository\InvestigationStatFindingsRepository.cs" />
     <Compile Include="Interface\IPermissions.cs" />
     <Compile Include="Interface\IRoleHasPermission.cs" />
     <Compile Include="Repository\JobOrdersParticularsRepository.cs" />

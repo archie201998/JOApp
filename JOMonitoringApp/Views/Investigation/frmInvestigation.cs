@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -13,36 +14,22 @@ namespace JOMonitoringApp.Views.Investigation
         private readonly string accountNumber;
         private readonly string customerAddress;
         private readonly string particular;
-        private ucInvestigationForm ucInvestigationForm;
+        internal ucInvestigationForm ucInvestigationForm;
         private readonly bool create;
+        internal int _selectedInvestigationID;
 
-        public frmInvestigation(bool create, string jobOrderNumber, int jobOrderId, string accountName, string accountNumber, string customerAddress, string remark)
+        public frmInvestigation()
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
             ucInvestigationForm = ucInvestigationForm1;
 
-            this.jobOrderNumber = jobOrderNumber;
-            this.jobOderId = jobOrderId;
-            this.accountName = accountName;
-            this.accountNumber = accountNumber;
-            this.customerAddress = customerAddress;
-            this.particular = particular;
-            this.create = create;
-
-            ucInvestigationForm.txtAccountName.Text = accountName;
-            ucInvestigationForm.txtAccountNumber.Text = accountNumber;
-            ucInvestigationForm.txtJONumber.Text = jobOrderNumber;
-            ucInvestigationForm._jobOrderId = jobOderId;
-            ucInvestigationForm.txtAddress.Text = customerAddress;
-            ucInvestigationForm.isCreate = create;
-            ucInvestigationForm.cmbxComplaint.Text = particular;
-            ucInvestigationForm.particular = particular; 
-
-            ucInvestigationForm.OnLoad();
-
-            ucInvestigationForm.EnableControls(create);
+            if (_selectedInvestigationID != 0)
+            {
+                ucInvestigationForm.selectedInvistigationID = _selectedInvestigationID;
+                ucInvestigationForm.ViewInvestigationDetails();
+            }
         }
 
         private void frmInvestigation_Load(object sender, EventArgs e)
@@ -73,7 +60,6 @@ namespace JOMonitoringApp.Views.Investigation
         {
             try
             {
-
                 if (ucInvestigationForm.SaveData())
                 {
                     UpdateJobOrderStatus();
@@ -135,6 +121,16 @@ namespace JOMonitoringApp.Views.Investigation
                     Cancel();
                 return;
             }
+        }
+
+        private void frmInvestigation_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+
+        private void ucInvestigationForm1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

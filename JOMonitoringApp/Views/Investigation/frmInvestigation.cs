@@ -51,7 +51,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void UpdateJobOrderStatus()
         {
             int jobOrderId = ucInvestigationForm._jobOrderId;
-            int jobOrderStatus = 0;
+            int jobOrderStatus = 1;
             int investigationStatusID = ucInvestigationForm.InvestigationStatusLogic();
 
             if (investigationStatusID == 4)
@@ -71,23 +71,25 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void SaveData()
         {
+            if (ucInvestigationForm.SaveData())
+            {
+                UpdateJobOrderStatus();
+                Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
+
+                btnSave.Text = "Save [Ctrl + S]";
+                btnSave.BackColor = Color.DodgerBlue;
+                btnSave.ForeColor = Color.White;
+
+                ucInvestigationForm.OnLoad();
+                ucInvestigationForm.ResetForm();
+                ucInvestigationForm.EnableControls(false);
+                ucInvestigationForm.isUpdate = false;
+
+            }
+
             try
             {
-                if (ucInvestigationForm.SaveData())
-                {
-                    UpdateJobOrderStatus();
-                    Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-
-                    btnSave.Text = "Save [Ctrl + S]";
-                    btnSave.BackColor = Color.DodgerBlue;
-                    btnSave.ForeColor = Color.White;
-
-                    ucInvestigationForm.OnLoad();
-                    ucInvestigationForm.ResetForm();
-                    ucInvestigationForm.EnableControls(false);
-                    ucInvestigationForm.isUpdate = false;
-                    
-                }
+                
             }
             catch (Exception ex)
             {
@@ -119,12 +121,6 @@ namespace JOMonitoringApp.Views.Investigation
             if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveData();
-            }
-            else if (e.KeyData == Keys.Escape)
-            {
-                if (Helper.MessageBoxConfirmCancel("Do you want to clear all inputs?"))
-                    Cancel();
-                return;
             }
         }
 

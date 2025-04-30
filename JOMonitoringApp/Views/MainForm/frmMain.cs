@@ -285,6 +285,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
             investigationsToolStripMenuItem.Enabled = adminMode ? true : Helper.UserHasPermission("TRANSACTION_INVESTIGATION");
+            timer_investigator.Enabled = Helper.UserHasPermission("INVESTIGATION_NOTIFICATION");
 
         }
         #endregion
@@ -363,8 +364,8 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dgJobOrders.Rows.Count == 0) return;
 
                 UpdateSettings();
-                ucJoborder.StoreOriginalValues();
                 LoadSelectedData();
+                ucJoborder.StoreOriginalValues();
             }
             catch (Exception)
             {

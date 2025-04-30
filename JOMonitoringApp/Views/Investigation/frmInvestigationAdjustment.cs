@@ -63,23 +63,21 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeLeaking()
         {
-            Helper.MessageBoxSuccess("Formula for Leaking retrieved.");
+            
         }
 
         private void ComputeLeakingNotVisible()
         {
-            Helper.MessageBoxSuccess("Formula for Not Leaking retrieved.");
+            
         }
 
         private void ComputeFailedCalibration()
         {
-            Helper.MessageBoxSuccess("Formula for Not failed calibration retrieved.");
+           
         }
         private void ComputeErroneousReading()
         {
-
-            Helper.MessageBoxSuccess("Formula for Not failed erroneous retrieved.");
-
+            
             if (_accountNumber != string.Empty)
             {
                 var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);

@@ -118,7 +118,7 @@ namespace AccountingSystem
             if (isUpdate)
             {
                 //ip address here.
-                return $"Updated the following fields : { changes }";
+                return $"CHANGES : { changes }";
                 //return "Updated : " + changes + " at : " + GetLocalIPAddress();
             }
 

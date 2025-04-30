@@ -37,6 +37,8 @@ namespace JOMonitoringApp.Views.Reports
 
         private void LoadReport()
         {
+          
+
             try
             {
                 string jobOrderNumber = txtJONo.Text;
@@ -46,7 +48,14 @@ namespace JOMonitoringApp.Views.Reports
 
                 Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
 
-                ReportParameter[] parameters = new ReportParameter[18];
+                if (dictInvestigation.Count == 0)
+                {
+                    Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                    Close();
+                    return;
+                }
+
+                ReportParameter[] parameters = new ReportParameter[21];
                 parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
                 parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
                 parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -66,11 +75,15 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[14] = new ReportParameter("paramCalibrationResult", dictInvestigation["calibration_result"]);
                 parameters[15] = new ReportParameter("paramImmediateMembers", dictInvestigation["immediate_members_of_fam"]);
 
+                parameters[18] = new ReportParameter("paramRecommendingApproval", Helper.CSDHead);
+                parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
+                parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
+
                 // Load image from file path
                 string imagePath1 = dictInvestigation["image_path"];
                 string imagePath2 = dictInvestigation["secondary_image_path"];
                 if (File.Exists(imagePath1) || File.Exists(imagePath2))
-                {  
+                {
                     parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");
                     parameters[17] = new ReportParameter("paramImage2", $"file:///{imagePath2}");
                 }
@@ -87,7 +100,8 @@ namespace JOMonitoringApp.Views.Reports
             }
             catch (Exception ex)
             {
-                Helper.MessageBoxSuccess("No Investigation data to print.");
+                Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                Close();
             }
             
         }

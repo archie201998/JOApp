@@ -71,63 +71,63 @@ namespace JOMonitoringApp.Views.JobOrder
                
                 if ((string)originalValues["AccountName"] != txtAccountName.Text)
                 {
-                    Helper.changes += $"Account Name, from {originalValues["AccountName"]} into {txtAccountName.Text}; ";
+                    Helper.changes += $"Account Name : from {originalValues["AccountName"]} into {txtAccountName.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["Address"] != txtAddress.Text)
                 {
-                    Helper.changes += $"Address , from {originalValues["Address"]} into {txtAddress.Text}; ";
+                    Helper.changes += $"Address : from {originalValues["Address"]} into {txtAddress.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["AccountNumber"] != txtAccountNumber.Text)
                 {
-                    Helper.changes += $"Account Number , from {originalValues["AccountNumber"]} into {txtAccountNumber.Text}; ";
+                    Helper.changes += $"Account Number : from {originalValues["AccountNumber"]} into {txtAccountNumber.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["Contact"] != txtContact.Text)
                 {
-                    Helper.changes += $"Contact Number , from {originalValues["Contact"]} into {txtContact.Text}; ";
+                    Helper.changes += $"Contact Number : from {originalValues["Contact"]} into {txtContact.Text}; ";
                     hasChanges = true;
                 }
 
 
                 if ((DateTime)originalValues["Date"] != dtpDate.Value)
                 {
-                    Helper.changes += $"Date, from  {originalValues["Date"]} into {dtpDate.Text}; ";
+                    Helper.changes += $"Date : from  {originalValues["Date"]} into {dtpDate.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["JONumber"] != txtJONumber.Text)
                 {
-                    Helper.changes += $"JO Number, from {originalValues["JONumber"]} into {txtJONumber.Text}; ";
+                    Helper.changes += $"JO Number : from {originalValues["JONumber"]} into {txtJONumber.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
                 {
-                    Helper.changes += $"MRS Number, from {originalValues["MRSNumber"]} into {txtMRSNumber.Text}; ";
+                    Helper.changes += $"MRS Number : from {originalValues["MRSNumber"]} into {txtMRSNumber.Text}; ";
                     hasChanges = true;
                 }
 
 
                 if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
                 {
-                    Helper.changes += $"WAR Number, from {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
+                    Helper.changes += $"WAR Number : from {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
                     return true;
                 }
 
                 if ((string)originalValues["ORNumber"] != txtORNumber.Text)
                 {
-                    Helper.changes += $"OR Number, from {originalValues["ORNumber"]} into {txtORNumber.Text}; ";
+                    Helper.changes += $"OR Number : from {originalValues["ORNumber"]} into {txtORNumber.Text}; ";
                     hasChanges = true;
                 }
 
                 if ((decimal)originalValues["Amount"] != nudAmount.Value)
                 {
-                    Helper.changes += $"Amount, from {originalValues["Amount"]} into {nudAmount.Value}; ";
+                    Helper.changes += $"Amount : from {originalValues["Amount"]} into {nudAmount.Value}; ";
                     hasChanges = true;
                 }
 

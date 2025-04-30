@@ -49,7 +49,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnShowHide = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -289,18 +288,6 @@
             this.timer1.Interval = 20000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Red;
-            this.label4.Location = new System.Drawing.Point(406, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 15);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "TEST SERVER";
-            this.label4.Visible = false;
-            // 
             // frmSignIn
             // 
             this.AcceptButton = this.btnSignIn;
@@ -308,7 +295,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(611, 299);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnShowHide);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel2);
@@ -357,7 +343,6 @@
         private System.Windows.Forms.Timer timer1;
         internal System.Windows.Forms.TextBox txtPassword;
         internal System.Windows.Forms.TextBox txtUserName;
-        private System.Windows.Forms.Label label4;
     }
 }
 

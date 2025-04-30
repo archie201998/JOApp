@@ -117,11 +117,11 @@ namespace JOMonitoringApp.Views.RolesAndPermissions
 
                         if (!insertRes)
                         {
-                            MessageBox.Show("error");
+                            Helper.MessageBoxSuccess("Something went wrong. Please Contact your system administrator.");
                         }
                     }
 
-                    Helper.MessageBoxSuccess("Role's permission(s) has been successfully updated.");
+                    Helper.MessageBoxSuccess("Role's permission(s) has been successfully updated. Please restart the system of the specific user role.");
                     LoadPermissions();
                     MarkPermissions();
                     scope.Complete();

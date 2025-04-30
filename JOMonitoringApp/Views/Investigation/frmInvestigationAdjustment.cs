@@ -1,17 +1,9 @@
 ﻿using AccountingSystem;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
 {
-    
     public partial class frmInvestigationAdjustment : Form
     {
 
@@ -71,16 +63,23 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeLeaking()
         {
-            MessageBox.Show("ComputeLeaking");
+            Helper.MessageBoxSuccess("Formula for Leaking retrieved.");
         }
 
         private void ComputeLeakingNotVisible()
         {
-            MessageBox.Show("ComputeLeakingNotVisible");
+            Helper.MessageBoxSuccess("Formula for Not Leaking retrieved.");
         }
 
+        private void ComputeFailedCalibration()
+        {
+            Helper.MessageBoxSuccess("Formula for Not failed calibration retrieved.");
+        }
         private void ComputeErroneousReading()
         {
+
+            Helper.MessageBoxSuccess("Formula for Not failed erroneous retrieved.");
+
             if (_accountNumber != string.Empty)
             {
                 var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
@@ -90,11 +89,6 @@ namespace JOMonitoringApp.Views.Investigation
                 txtActualReading.Focus();
             }
             
-        }
-
-        private void ComputeFailedCalibration()
-        {
-            MessageBox.Show("ComputeFailedCalibration");
         }
 
         private void txtActualReading_TextChanged(object sender, EventArgs e)

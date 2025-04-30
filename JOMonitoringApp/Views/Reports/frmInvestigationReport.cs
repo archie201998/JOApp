@@ -87,7 +87,7 @@ namespace JOMonitoringApp.Views.Reports
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Test " + ex.Message);
+                MessageBox.Show("Something went wrong. Please contact your system administrator.");
             }
             
         }

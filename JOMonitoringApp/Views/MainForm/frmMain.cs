@@ -28,12 +28,10 @@ namespace JOMonitoringApp.Views.MainForm
     public partial class frmMain : Form
     {
         private readonly ucJoborder ucJoborder;
-
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
         private Timer updateTimer;
-        bool isVisible = false;
-
+        bool updateLabelVisible = false;
         private readonly frmSignIn _frmSignIn;
 
         public frmMain(frmSignIn frmSignIn)
@@ -45,7 +43,7 @@ namespace JOMonitoringApp.Views.MainForm
             _frmSignIn = frmSignIn;
         }
 
-        #region AutoUpdate On Background
+        #region AutoUpdate Notifcation On Background
 
         private void StartUpdateTimer()
         {
@@ -71,8 +69,8 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     // Notify the user
 
-                    lblCheckingUpdate.Visible = isVisible;
-                    isVisible = !isVisible;
+                    lblCheckingUpdate.Visible = updateLabelVisible;
+                    updateLabelVisible = !updateLabelVisible;
 
                     // Optional: Auto-restart app if you want
                     // if (result == DialogResult.OK)
@@ -120,7 +118,6 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-
                 var parameters = ((string searchKey, int rowFilter, int statusId, string particular))e.Argument;
                 var dataTable = new DataTable();
                 var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.rowFilter, parameters.statusId, parameters.particular);
@@ -285,6 +282,7 @@ namespace JOMonitoringApp.Views.MainForm
 
 
             toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
+            investigationsToolStripMenuItem.Enabled = adminMode ? true : Helper.UserHasPermission("TRANSACTION_INVESTIGATION");
 
         }
         #endregion
@@ -361,10 +359,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 if (dgJobOrders.Rows.Count == 0) return;
 
-
                 UpdateSettings();
-
-                //SetPermissions();
                 ucJoborder.StoreOriginalValues();
                 LoadSelectedData();
             }
@@ -377,10 +372,10 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void UpdateSettings()
         {
+            ucJoborder.isUpdate = true;
             dgJobOrders.Enabled = false;
             btnSave.Text = "Save Changes [Ctrl + S]";
             btnSave.BackColor = Color.OrangeRed;
-            ucJoborder.isUpdate = true;
             previousSelection = dgJobOrders.SelectedRows[0].Index;
         }
 
@@ -390,7 +385,6 @@ namespace JOMonitoringApp.Views.MainForm
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
 
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
-
 
             //setting of data
             ucJoborder.jobOrderId = selectedJobOrderId;
@@ -455,8 +449,6 @@ namespace JOMonitoringApp.Views.MainForm
 
 
         #endregion
-
-
 
 
         private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1087,9 +1079,5 @@ namespace JOMonitoringApp.Views.MainForm
             Properties.Settings.Default.Save();
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

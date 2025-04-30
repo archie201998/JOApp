@@ -45,7 +45,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1579, 39);
             this.panel4.TabIndex = 7;
-            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // btnCancel
             // 
@@ -89,8 +88,6 @@
             this.ucInvestigationForm1.Name = "ucInvestigationForm1";
             this.ucInvestigationForm1.Size = new System.Drawing.Size(1579, 743);
             this.ucInvestigationForm1.TabIndex = 0;
-            this.ucInvestigationForm1.Load += new System.EventHandler(this.ucInvestigationForm1_Load);
-            this.ucInvestigationForm1.Click += new System.EventHandler(this.ucInvestigationForm1_Click);
             // 
             // frmInvestigation
             // 
@@ -102,6 +99,7 @@
             this.Controls.Add(this.ucInvestigationForm1);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInvestigation";
@@ -109,7 +107,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Job Order Monitoring App | Investigation Form";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInvestigation_FormClosing);
             this.Load += new System.EventHandler(this.frmInvestigation_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInvestigation_KeyDown);
             this.panel4.ResumeLayout(false);

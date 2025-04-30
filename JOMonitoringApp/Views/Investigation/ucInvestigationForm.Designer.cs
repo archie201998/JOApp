@@ -894,7 +894,6 @@
             this.dgInvestigations.Size = new System.Drawing.Size(676, 592);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
-            this.dgInvestigations.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellDoubleClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
             // 
@@ -912,7 +911,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(676, 41);
             this.panel1.TabIndex = 27;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // label18
             // 
@@ -1185,7 +1183,6 @@
         internal System.Windows.Forms.GroupBox gbComments;
         private System.Windows.Forms.Label label20;
         internal System.Windows.Forms.TextBox txtInvestigatorComments;
-        private System.Windows.Forms.Button btnAttachedImage;
         private System.Windows.Forms.Label label21;
         internal System.Windows.Forms.TextBox txtRecommendations;
         internal System.Windows.Forms.NumericUpDown nudNoOfHoursServed;
@@ -1224,14 +1221,11 @@
         internal System.Windows.Forms.GroupBox gbApproval;
         private System.Windows.Forms.RadioButton radDisapproved;
         private System.Windows.Forms.RadioButton radApproved;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.TextBox txtApprovalMessage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         internal System.Windows.Forms.TextBox txtSearch;
         internal System.Windows.Forms.GroupBox gbComputation;
-        private System.Windows.Forms.Button btnCompute;
         private System.Windows.Forms.Label label16;
         internal System.Windows.Forms.ComboBox cmbxMeterSize;
         internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
@@ -1243,5 +1237,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.ComboBox cmbxStatus;
+        internal System.Windows.Forms.Button btnCompute;
+        internal System.Windows.Forms.Button btnAttachedImage;
+        internal System.Windows.Forms.PictureBox pictureBox1;
+        internal System.Windows.Forms.PictureBox pictureBox2;
     }
 }

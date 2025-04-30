@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
 {
+
     public partial class ucInvestigationForm : UserControl
     {
 
@@ -50,13 +51,23 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
+        private void ValidateFormPermission()
+        {
+            bool adminMode = Helper.temporaryAdminMode;
+           gbAccountDetails.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_DATA");
+           gbStatisticalFindings.Enabled = adminMode ? true : Helper.UserHasPermission("STATISTICAL_FINDINGS");
+           gbConditionOfService.Enabled = adminMode ? true : Helper.UserHasPermission("CONDITION_OF_SERVICE_FACILITIES");
+           txtInvestigatorComments.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_COMMENTS");
+           txtRecommendations.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_RECOMMENDATION");
+           btnCompute.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_ADJUSTMENT_COMPUTATION");
+           btnAttachedImage.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_ATTACHED_IMAGE");
+           pictureBox1.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
+           pictureBox2.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
+           gbApproval.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_APPROVAL");
+        }
+
         internal bool SaveData()
         {
-            //TEMPORARY LANG TO
-            //if (!ValidateChildren(ValidationConstraints.Enabled))
-            //    return false;
-
-
             if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation data?"))
             {
                 using (var scope = new TransactionScope())
@@ -80,7 +91,7 @@ namespace JOMonitoringApp.Views.Investigation
           
         }
 
-        private int InvestigationStatusLogic()
+        internal int InvestigationStatusLogic()
         {
             bool noInvestigatorComments = string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
             bool noRecommendation = string.IsNullOrEmpty(txtRecommendations.Text.Trim());
@@ -455,6 +466,7 @@ namespace JOMonitoringApp.Views.Investigation
             ViewInvestigationDetails();
             UpdateSettings();
             EnableControls(true);
+            ValidateFormPermission();
         }
 
 
@@ -511,21 +523,11 @@ namespace JOMonitoringApp.Views.Investigation
             CalibrationResult();
         }
 
-        private void dgInvestigations_DockChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             GetInvestigationRecords();
-
         }
 
-        private void dgInvestigations_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
- 
-        }
 
         private void dgInvestigations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -562,11 +564,6 @@ namespace JOMonitoringApp.Views.Investigation
                         break;
                 }
             }
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
      

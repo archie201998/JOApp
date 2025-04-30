@@ -1,7 +1,9 @@
 ﻿using AccountingSystem;
+using Google.Apis.Logging;
 using MySqlX.XDevAPI.Common;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -37,6 +39,8 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.DataGridDoubleClicked += MyUserControl_DataGridClicked;
         }
 
+     
+
         private void MyUserControl_DataGridClicked(object sender, EventArgs e)
         {
             btnSave.Text = "Update [Ctrl + S]";
@@ -47,8 +51,17 @@ namespace JOMonitoringApp.Views.Investigation
         private void UpdateJobOrderStatus()
         {
             int jobOrderId = ucInvestigationForm._jobOrderId;
-            int statusId = 2;
-            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, statusId);
+            int jobOrderStatus = 0;
+            int investigationStatusID = ucInvestigationForm.InvestigationStatusLogic();
+
+            if (investigationStatusID == 4)
+                jobOrderStatus = 3; 
+            if (investigationStatusID == 3)
+                jobOrderStatus = 4;
+            if (investigationStatusID == 1 || investigationStatusID == 2)
+                jobOrderStatus = 2;
+
+            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -64,28 +77,24 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     UpdateJobOrderStatus();
                     Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-                    ucInvestigationForm.OnLoad();
-                    ucInvestigationForm.ResetForm();
 
                     btnSave.Text = "Save [Ctrl + S]";
                     btnSave.BackColor = Color.DodgerBlue;
                     btnSave.ForeColor = Color.White;
+
+                    ucInvestigationForm.OnLoad();
                     ucInvestigationForm.ResetForm();
                     ucInvestigationForm.EnableControls(false);
                     ucInvestigationForm.isUpdate = false;
-
+                    
                 }
             }
             catch (Exception ex)
             {
-                Helper.MessageBoxError("Something went wrong. Please contact your system administrator." + ex.Message);
+                Helper.MessageBoxError("Something went wrong. Please contact your system administrator.");
             }
         }
 
-        private void ucInvestigationForm1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -104,11 +113,7 @@ namespace JOMonitoringApp.Views.Investigation
                 ucInvestigationForm.isUpdate = false;
             }
         }
-        private void panel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        
         private void frmInvestigation_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.S)
@@ -123,14 +128,6 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-        private void frmInvestigation_FormClosing(object sender, FormClosingEventArgs e)
-        {
 
-        }
-
-        private void ucInvestigationForm1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

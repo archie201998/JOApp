@@ -8,17 +8,17 @@ namespace JOMonitoringApp.Views.Investigation
     {
 
         private readonly string _accountNumber;
-
+        private readonly ucInvestigationForm _ucInvestigationForm;
         int locationX = 0;
         int locationY = 0;
-        public frmInvestigationAdjustment(string accountNumber)
+        public frmInvestigationAdjustment(ucInvestigationForm ucInvestigationForm, string accountNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
             _accountNumber = accountNumber;
-
             lblAccountNumber.Text = _accountNumber;
+            _ucInvestigationForm = ucInvestigationForm;
 
             locationX = gbLeakingVisible.Location.X;
             locationY = gbLeakingVisible.Location.Y;
@@ -213,6 +213,12 @@ namespace JOMonitoringApp.Views.Investigation
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
             Komputadora();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _ucInvestigationForm.lblAdjustedAmount.Text = lblAdjustedAmount.Text;
+            Close();
         }
     }
 }

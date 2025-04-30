@@ -99,7 +99,7 @@
             this.radDisapproved = new System.Windows.Forms.RadioButton();
             this.radApproved = new System.Windows.Forms.RadioButton();
             this.gbComputation = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lblAdjustedAmount = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
@@ -1052,7 +1052,7 @@
             // 
             // gbComputation
             // 
-            this.gbComputation.Controls.Add(this.label16);
+            this.gbComputation.Controls.Add(this.lblAdjustedAmount);
             this.gbComputation.Controls.Add(this.btnCompute);
             this.gbComputation.Enabled = false;
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1063,15 +1063,15 @@
             this.gbComputation.TabStop = false;
             this.gbComputation.Text = "6. COMPUTATION";
             // 
-            // label16
+            // lblAdjustedAmount
             // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(148, 27);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(55, 15);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "RESULT";
+            this.lblAdjustedAmount.AutoSize = true;
+            this.lblAdjustedAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdjustedAmount.Location = new System.Drawing.Point(148, 27);
+            this.lblAdjustedAmount.Name = "lblAdjustedAmount";
+            this.lblAdjustedAmount.Size = new System.Drawing.Size(55, 15);
+            this.lblAdjustedAmount.TabIndex = 22;
+            this.lblAdjustedAmount.Text = "RESULT";
             // 
             // btnCompute
             // 
@@ -1224,7 +1224,6 @@
         private System.Windows.Forms.Label label14;
         internal System.Windows.Forms.TextBox txtSearch;
         internal System.Windows.Forms.GroupBox gbComputation;
-        private System.Windows.Forms.Label label16;
         internal System.Windows.Forms.ComboBox cmbxMeterSize;
         internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
         internal System.Windows.Forms.NumericUpDown nudReadingAfterTest;
@@ -1239,5 +1238,6 @@
         internal System.Windows.Forms.Button btnAttachedImage;
         internal System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.PictureBox pictureBox2;
+        internal System.Windows.Forms.Label lblAdjustedAmount;
     }
 }

@@ -469,7 +469,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
+            _ = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
         }
 
         private void CalibrationResult()

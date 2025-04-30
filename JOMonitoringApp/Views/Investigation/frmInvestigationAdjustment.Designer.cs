@@ -199,6 +199,7 @@
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "Save [Control + S]";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox5
             // 
@@ -217,7 +218,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.BackColor = System.Drawing.Color.OrangeRed;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -350,7 +351,7 @@
             this.cbxExtensionFee.Name = "cbxExtensionFee";
             this.cbxExtensionFee.Size = new System.Drawing.Size(121, 19);
             this.cbxExtensionFee.TabIndex = 17;
-            this.cbxExtensionFee.Text = "EXNTESION FEE";
+            this.cbxExtensionFee.Text = "EXTENSION FEE";
             this.cbxExtensionFee.UseVisualStyleBackColor = true;
             // 
             // cbxPenalty

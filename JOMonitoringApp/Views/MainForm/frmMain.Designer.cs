@@ -43,10 +43,12 @@
             this.toolStripSignatories = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripJOSummary = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
+            this.summaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.progressTrackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSROF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInvestigation = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFS = new System.Windows.Forms.ToolStripMenuItem();
+            this.hydrantWithdrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investigationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,6 +109,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
+            this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -227,24 +230,34 @@
             this.toolStripJOProgressTracking,
             this.toolStripSROF,
             this.toolStripInvestigation,
-            this.toolStripFS});
+            this.toolStripFS,
+            this.hydrantWithdrawToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.reportToolStripMenuItem.Text = "Reports";
             // 
             // toolStripJOSummary
             // 
+            this.toolStripJOSummary.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.summaryToolStripMenuItem,
+            this.progressTrackingToolStripMenuItem});
             this.toolStripJOSummary.Name = "toolStripJOSummary";
             this.toolStripJOSummary.Size = new System.Drawing.Size(310, 22);
             this.toolStripJOSummary.Text = "J.O Summary";
-            this.toolStripJOSummary.Click += new System.EventHandler(this.JOSummaryToolStripMenuItem_Click);
             // 
-            // toolStripJOProgressTracking
+            // summaryToolStripMenuItem
             // 
-            this.toolStripJOProgressTracking.Name = "toolStripJOProgressTracking";
-            this.toolStripJOProgressTracking.Size = new System.Drawing.Size(310, 22);
-            this.toolStripJOProgressTracking.Text = "J.O Progress Tracking";
-            this.toolStripJOProgressTracking.Click += new System.EventHandler(this.jOTrackingToolStripMenuItem_Click);
+            this.summaryToolStripMenuItem.Name = "summaryToolStripMenuItem";
+            this.summaryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.summaryToolStripMenuItem.Text = "Summary";
+            this.summaryToolStripMenuItem.Click += new System.EventHandler(this.summaryToolStripMenuItem_Click);
+            // 
+            // progressTrackingToolStripMenuItem
+            // 
+            this.progressTrackingToolStripMenuItem.Name = "progressTrackingToolStripMenuItem";
+            this.progressTrackingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.progressTrackingToolStripMenuItem.Text = "Progress Tracking";
+            this.progressTrackingToolStripMenuItem.Click += new System.EventHandler(this.progressTrackingToolStripMenuItem_Click);
             // 
             // toolStripSROF
             // 
@@ -266,6 +279,12 @@
             this.toolStripFS.Size = new System.Drawing.Size(310, 22);
             this.toolStripFS.Text = "FS / Estimates of Materials";
             this.toolStripFS.Click += new System.EventHandler(this.estimatesOfMaterialsToolStripMenuItem_Click);
+            // 
+            // hydrantWithdrawToolStripMenuItem
+            // 
+            this.hydrantWithdrawToolStripMenuItem.Name = "hydrantWithdrawToolStripMenuItem";
+            this.hydrantWithdrawToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.hydrantWithdrawToolStripMenuItem.Text = "Hydrant Withdraw";
             // 
             // transactionsToolStripMenuItem
             // 
@@ -319,9 +338,9 @@
             this.toolStripMenuItem2,
             this.hydrantWithdrawalToolStripMenuItem,
             this.toolStripMenuItem1,
+            this.investigationToolStripMenuItem,
             this.toolStripSeparator1,
-            this.trackJOProgressToolStripMenuItem,
-            this.investigationToolStripMenuItem});
+            this.trackJOProgressToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
             this.contextMenuStrip1.Text = "PRINT ";
@@ -372,7 +391,7 @@
             // printFormToolStripMenuItem
             // 
             this.printFormToolStripMenuItem.Name = "printFormToolStripMenuItem";
-            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printFormToolStripMenuItem.Text = "Print Form";
             this.printFormToolStripMenuItem.Click += new System.EventHandler(this.printFormToolStripMenuItem_Click);
             // 
@@ -380,7 +399,7 @@
             // 
             this.investigationDataToolStripMenuItem.Enabled = false;
             this.investigationDataToolStripMenuItem.Name = "investigationDataToolStripMenuItem";
-            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.investigationDataToolStripMenuItem.Text = "Investigation Data";
             this.investigationDataToolStripMenuItem.Click += new System.EventHandler(this.investigationDataToolStripMenuItem_Click);
             // 
@@ -845,6 +864,12 @@
             this.timer_investigator.Interval = 10000;
             this.timer_investigator.Tick += new System.EventHandler(this.timer_investigator_Tick);
             // 
+            // toolStripJOProgressTracking
+            // 
+            this.toolStripJOProgressTracking.Name = "toolStripJOProgressTracking";
+            this.toolStripJOProgressTracking.Size = new System.Drawing.Size(310, 22);
+            this.toolStripJOProgressTracking.Text = "J.O Progress Tracking";
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -913,7 +938,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripMenuItem toolStripSROF;
-        private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
         private System.Windows.Forms.ToolStripMenuItem toolStripInvestigation;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
         private System.Windows.Forms.Timer timer1;
@@ -968,5 +992,9 @@
         private System.Windows.Forms.ToolStripMenuItem printFormToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem investigationDataToolStripMenuItem;
         public System.Windows.Forms.Timer timer_investigator;
+        private System.Windows.Forms.ToolStripMenuItem summaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem progressTrackingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
     }
 }

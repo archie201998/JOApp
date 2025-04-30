@@ -453,7 +453,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOStatusSummary().ShowDialog();
+            
         }
 
 
@@ -759,7 +759,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOProgressTracking(string.Empty).ShowDialog();
+            
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1079,5 +1079,14 @@ namespace JOMonitoringApp.Views.MainForm
             Properties.Settings.Default.Save();
         }
 
+        private void progressTrackingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOProgressTracking(string.Empty).ShowDialog();
+        }
+
+        private void summaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOStatusSummary().ShowDialog();
+        }
     }
 }

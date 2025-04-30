@@ -34,6 +34,9 @@ namespace AccountingSystem
 
         internal static bool notifViewed = false;
         internal static string serverStatisIPAddress = "192.168.18.183";
+        internal static string CSDHead = "CHRISTOPHER JASON R. CABABARO";
+        internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
+
 
 
         public static Color StatusColor(string status)

@@ -170,12 +170,6 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-        private int LastInserted()
-        { 
-            return Factory.InvestigationRepository().GetLastInsertedId(Helper.UserId);
-        }
-
-      
         private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
         {
             if (cmbxComplaint.Text == string.Empty)
@@ -188,20 +182,6 @@ namespace JOMonitoringApp.Views.Investigation
         private void cmbxComplaint_Validated(object sender, EventArgs e)
         {
             Helper.ClearErrorComboBox(errorProvider1, cmbxComplaint);
-        }
-
-        private void nudImmediateFamily_Validating(object sender, CancelEventArgs e)
-        {
-            if (nudImmediateFamily.Value == 0)
-            {
-                e.Cancel = true;
-                Helper.ShowErrorNumericUpDownZero(errorProvider1, nudImmediateFamily, "Immediate Family.");
-            }
-        }
-
-        private void nudImmediateFamily_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorNumericUpDown(errorProvider1, nudImmediateFamily);
         }
 
         private void txtInvestigatorComments_Validating(object sender, CancelEventArgs e)

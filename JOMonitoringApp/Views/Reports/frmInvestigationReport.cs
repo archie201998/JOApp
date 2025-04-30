@@ -87,7 +87,7 @@ namespace JOMonitoringApp.Views.Reports
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something went wrong. Please contact your system administrator.");
+                Helper.MessageBoxSuccess("No Investigation data to print.");
             }
             
         }

@@ -425,7 +425,7 @@
             // 
             // nudNoOfHoursServed
             // 
-            this.nudNoOfHoursServed.DecimalPlaces = 2;
+            this.nudNoOfHoursServed.DecimalPlaces = 1;
             this.nudNoOfHoursServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoOfHoursServed.Location = new System.Drawing.Point(198, 145);
             this.nudNoOfHoursServed.Maximum = new decimal(new int[] {
@@ -538,8 +538,6 @@
             this.nudImmediateFamily.TabIndex = 0;
             this.nudImmediateFamily.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudImmediateFamily.ThousandsSeparator = true;
-            this.nudImmediateFamily.Validating += new System.ComponentModel.CancelEventHandler(this.nudImmediateFamily_Validating);
-            this.nudImmediateFamily.Validated += new System.EventHandler(this.nudImmediateFamily_Validated);
             // 
             // label3
             // 

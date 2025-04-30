@@ -469,14 +469,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (Helper.UserId == 15)
-            {
-
-                _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
-                return;
-            }
-
-            _ = new frmMessagePrompt().ShowDialog();
+            _ = new frmInvestigationAdjustment(txtAccountNumber.Text).ShowDialog();
         }
 
         private void CalibrationResult()

@@ -7,8 +7,10 @@ namespace JOMonitoringApp.Views.Investigation
     public partial class frmInvestigationAdjustment : Form
     {
 
-        private readonly string _accountNumber; 
+        private readonly string _accountNumber;
 
+        int locationX = 0;
+        int locationY = 0;
         public frmInvestigationAdjustment(string accountNumber)
         {
             InitializeComponent();
@@ -17,84 +19,93 @@ namespace JOMonitoringApp.Views.Investigation
             _accountNumber = accountNumber;
 
             lblAccountNumber.Text = _accountNumber;
-        }
 
-        private void frmInvestigationAdjustment_KeyDown(object sender, KeyEventArgs e)
-        {
-
+            locationX = gbLeakingVisible.Location.X;
+            locationY = gbLeakingVisible.Location.Y;
         }
 
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
         {
-
+            cmbxParticular.SelectedIndex = -1;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void ComputeIllegal()
         {
-            string particular = cmbxParticular.Text;
-            //Leaking
-            //Leaking(Not Visible)
-            //Failed Calibration
-            //Erroneous Reading
-            //RFB + Illegal
-
-
-            switch (particular)
-            {
-                case "Leaking":
-                    ComputeLeaking();
-                    break;
-                case "Failed Calibration":
-                    ComputeFailedCalibration();
-                    break;
-
-                case "Erroneous Reading":
-                    ComputeErroneousReading();
-                    break;
-
-                case "Leaking (Not Visible)":
-                    ComputeLeakingNotVisible();
-                    break;
-
-                default:
-                    break;
-            }
+            gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
         }
 
         private void ComputeLeaking()
         {
-            
+            gbLeakingVisible.Location = new System.Drawing.Point(locationX, locationY);
         }
 
         private void ComputeLeakingNotVisible()
         {
-            
+            gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
+
+            // Parse input values safely
+            if (int.TryParse(txtLeakingCurrentCons.Text.Trim(), out int currentCons) &&
+                int.TryParse(txtLeakingCorrectCons.Text.Trim(), out int correctCons))
+            {
+                decimal adjustedCons = currentCons * 0.7m;
+
+                lblAdjustedAmount.Text = GetRateByConsumption(Convert.ToInt32(adjustedCons)).ToString("N2");
+            }
+            else
+            {
+                //MessageBox.Show("Please enter valid numeric values for current and correct consumption.",
+                //                "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void ComputeFailedCalibration()
         {
-           
-        }
-        private void ComputeErroneousReading()
-        {
-            
-            if (_accountNumber != string.Empty)
+            gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
+
+            int last3Month, last2Month = 0, lastMonth = 0;
+
+            // Validate and parse all inputs safely
+            bool isValid =
+                int.TryParse(txtLast3Month.Text, out last3Month) &&
+                int.TryParse(txtLast2Month.Text, out last2Month) &&
+                int.TryParse(txtLastMonth.Text, out lastMonth);
+
+            if (isValid)
             {
-                var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
+                int average = (lastMonth + last2Month + last3Month) / 3;
+                txtNewAverageCons.Text = average.ToString();
 
-                txtPreviousReading.Text = readingDetails["Prev"].ToString();
-                txtPresentReading.Text = readingDetails["Pres"].ToString();
-                txtActualReading.Focus();
+                lblAdjustedAmount.Text = GetRateByConsumption(average).ToString("N2");
             }
-            
-        }
+            else
+            {
+                //MessageBox.Show("Please enter valid numeric values for all three months.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNewAverageCons.Text = ""; // Clear output if invalid
+            }
 
-        private void txtActualReading_TextChanged(object sender, EventArgs e)
+        }
+        private void GetPreviusReadingDetails()
         {
-            Compute();
+            try
+            {
+                gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
+
+                if (_accountNumber != string.Empty)
+                {
+                    var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
+
+                    txtPreviousReading.Text = readingDetails["Prev"].ToString();
+                    txtPresentReading.Text = readingDetails["Pres"].ToString();
+                    txtActualReading.Focus();
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
-        private void Compute()
+
+        private void ComputeErrorReading()
         {
             int previousReading, actualReading;
             double adjustedAmount = 0.0;
@@ -115,24 +126,13 @@ namespace JOMonitoringApp.Views.Investigation
 
                 adjustedAmount = underHundredRate;
 
-                if (cbxPenalty.Checked) 
-                    adjustedAmount += adjustedAmount * 0.10;
-
-                if (cbxExtensionFee.Checked)
-                    adjustedAmount += 30;
-
-
                 lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
 
                 
-
-
+                //6720
             }
             else
-            {
-                MessageBox.Show("Please enter valid numeric readings.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtConsumption.Text = "";
-            }
         }
 
         static double GetRateByConsumption(int consumption)
@@ -147,31 +147,72 @@ namespace JOMonitoringApp.Views.Investigation
             throw new ArgumentException("Invalid quantity. Must be between 1 and 100.");
         }
 
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void ComputePenaltyAndExtensionFee()
         {
+            decimal adjustedAmount;
 
+            if (!decimal.TryParse(lblAdjustedAmount.Text, out adjustedAmount))
+            {
+                return;
+            }
+
+            if (cbxPenalty.Checked)
+                adjustedAmount += adjustedAmount * 0.10m;
+
+            if (cbxExtensionFee.Checked)
+                adjustedAmount += 30;
+
+            lblAdjustedAmount.Text = adjustedAmount.ToString("0.00");
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
 
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Komputadora();
+            ComputePenaltyAndExtensionFee();
         }
 
-        private void textBox4_TextChanged(object sender, EventArgs e)
+        private void Komputadora()
         {
+            string particular = cmbxParticular.Text;
 
+            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
+            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
+            gbLeakingVisible.Location = new System.Drawing.Point(1000);
+            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
+            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
+
+            switch (particular)
+            {
+                case "Leaking":
+                    ComputeLeaking();
+                    break;
+                case "Failed Calibration":
+                    ComputeFailedCalibration();
+                    break;
+
+                case "Erroneous Reading":
+                    GetPreviusReadingDetails();
+                    ComputeErrorReading();
+                    break;
+
+                case "Leaking (Not Visible)":
+                    ComputeLeakingNotVisible();
+                    break;
+
+                case "RFB + Illegal":
+                    ComputeIllegal();
+                    break;
+
+                default:
+                    break;
+            }
         }
 
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Compute();
-        }
-
-        private void checkBox2_CheckedChanged(object sender, EventArgs e)
-        {
-            Compute();
+            Komputadora();
         }
     }
 }

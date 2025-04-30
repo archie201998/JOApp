@@ -133,6 +133,7 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     var newRow = dataTable.NewRow();
                     int id = Convert.ToInt32(row["id"]);
+                    string seriesNumber = row["series_number"].ToString();
                     string status = $"{row["status"]}";
                     int preparedById = Convert.ToInt32(row["prepared_by_id"]);
                     int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
@@ -153,6 +154,7 @@ namespace JOMonitoringApp.Views.MainForm
                     string materialsIssuedBy = $"{row["materials_issued_by"]}";
 
                     newRow["id"] = id;
+                    newRow["series_no"] = seriesNumber;
                     newRow["prepared_by_id"] = preparedById;
                     newRow["materials_issued_by_id"] = materialsIssuedById;
                     newRow["particular"] = particular;
@@ -326,6 +328,7 @@ namespace JOMonitoringApp.Views.MainForm
             return new DataColumn[]
             {
                 new DataColumn("id", typeof (int)),
+                new DataColumn("series_no", typeof (string)),
                 new DataColumn("status", typeof(string)),
                 new DataColumn("prepared_by_id", typeof(int)),
                 new DataColumn("particular", typeof (string)),

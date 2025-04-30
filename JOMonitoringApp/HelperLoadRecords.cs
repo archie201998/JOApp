@@ -106,11 +106,14 @@ namespace JOMonitoringApp
             dataGridView.EnableHeadersVisualStyles = false;
 
             dataGridView.Columns["id"].Visible = true;
-            dataGridView.Columns["id"].HeaderText = "NO. ";
+            dataGridView.Columns["id"].HeaderText = "ID";
             dataGridView.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["id"].MinimumWidth = 50;
 
-
+            dataGridView.Columns["series_no"].Visible = true;
+            dataGridView.Columns["series_no"].HeaderText = "SERIES NO. ";
+            dataGridView.Columns["series_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["series_no"].MinimumWidth = 80;
 
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;

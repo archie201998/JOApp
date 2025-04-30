@@ -299,6 +299,7 @@
             this.label4.Size = new System.Drawing.Size(80, 15);
             this.label4.TabIndex = 12;
             this.label4.Text = "TEST SERVER";
+            this.label4.Visible = false;
             // 
             // frmSignIn
             // 

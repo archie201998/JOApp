@@ -122,7 +122,7 @@ namespace JOMonitoringApp
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
             string particularFilter = particular == "All" ? string.Empty : $"AND particular LIKE @particular";
 
-            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war, remarks, date, prepared_by, materials_issued_by, status FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT series_number, id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war, remarks, date, prepared_by, materials_issued_by, status FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

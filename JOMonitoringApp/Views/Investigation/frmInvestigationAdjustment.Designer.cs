@@ -183,6 +183,7 @@
             this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "Cancel ";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -490,6 +491,7 @@
             this.txtLastMonth.Name = "txtLastMonth";
             this.txtLastMonth.Size = new System.Drawing.Size(112, 21);
             this.txtLastMonth.TabIndex = 18;
+            this.txtLastMonth.Leave += new System.EventHandler(this.txtLastMonth_Leave);
             // 
             // label15
             // 
@@ -665,7 +667,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 493);
+            this.ClientSize = new System.Drawing.Size(413, 493);
             this.Controls.Add(this.gbLeakingVisible);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);

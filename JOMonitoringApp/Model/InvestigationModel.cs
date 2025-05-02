@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,5 +48,14 @@ namespace JOMonitoringApp.Model
         public bool PromoteTradeBusiness { get; set; }
         public bool SellToNeighbours { get; set; }
         public string AlternativeSource { get; set; }
+
+        //adjustment details 
+        public string PreviousReading { get; set; }
+        public string PresentReading { get; set; }
+        public string PreviousConsumption { get; set; }
+        public string PresentConsumption { get; set; }
+        public string AverageConsumption { get; set; }
+        public string AdjustmentParticular { get; set; }
+        public string AdjustedAmount { get; set; }
     }
 }

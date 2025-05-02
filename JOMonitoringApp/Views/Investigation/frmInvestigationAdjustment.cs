@@ -217,8 +217,33 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _ucInvestigationForm.lblAdjustedAmount.Text = lblAdjustedAmount.Text;
+            Helper.adjustedAmount = lblAdjustedAmount.Text;
+            Helper.adjustmentParticular = cmbxParticular.Text;
+
+            _ucInvestigationForm.lblAdjustedAmount.Text = Helper.adjustedAmount;
             Close();
+        }
+
+        private void txtLastMonth_Leave(object sender, EventArgs e)
+        {
+            int last3Month, last2Month = 0, lastMonth = 0;
+
+            // Validate and parse all inputs safely
+            bool isValid =
+                int.TryParse(txtLast3Month.Text, out last3Month) &&
+                int.TryParse(txtLast2Month.Text, out last2Month) &&
+                int.TryParse(txtLastMonth.Text, out lastMonth);
+
+            if (isValid)
+            {
+                int average = (lastMonth + last2Month + last3Month) / 3;
+                txtNewAverageCons.Text = average.ToString();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }

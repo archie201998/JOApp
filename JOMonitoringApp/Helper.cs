@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -26,7 +27,6 @@ namespace AccountingSystem
     public static class Helper
     {
 
-
         public static byte UserId { get; internal set; }
         public static int UserRoleId { get; internal set; }
         internal static bool temporaryAdminMode = false;
@@ -37,6 +37,15 @@ namespace AccountingSystem
         internal static string CSDHead = "CHRISTOPHER JASON R. CABABARO";
         internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
 
+
+        //temporary until such time may viable ng paraan.
+        internal static string previousReading;
+        internal static string presentReading;
+        internal static string previousConsumption;
+        internal static string presentConsumption;
+        internal static string average;
+        internal static string adjustedAmount;
+        internal static string adjustmentParticular;
 
 
         public static Color StatusColor(string status)

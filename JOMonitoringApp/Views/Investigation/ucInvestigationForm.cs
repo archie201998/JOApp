@@ -346,7 +346,6 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void ViewInvestigationDetails()
         {
-
             if (selectedInvistigationID == 0)
             {
                 selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
@@ -407,7 +406,6 @@ namespace JOMonitoringApp.Views.Investigation
             radDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "4";
 
             //loading of picture box
-
             if (dictInvestigation.ContainsKey("image_path"))
             {
                 imageFilePath = dictInvestigation["image_path"]?.ToString();
@@ -434,7 +432,6 @@ namespace JOMonitoringApp.Views.Investigation
                     pictureBox2.Image = Properties.Resources.icons8_image_96;
                 }
             }
-
         }
    
         #region Updating of Records for investigator
@@ -469,7 +466,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
+            var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
+
         }
 
         private void CalibrationResult()
@@ -500,7 +498,6 @@ namespace JOMonitoringApp.Views.Investigation
         {
             GetInvestigationRecords();
         }
-
 
         private void dgInvestigations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
@@ -539,6 +536,5 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-     
     }
 }

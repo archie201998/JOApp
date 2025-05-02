@@ -37,10 +37,9 @@ namespace JOMonitoringApp.Views.Reports
 
         private void LoadReport()
         {
-          
-
             try
             {
+
                 string jobOrderNumber = txtJONo.Text;
 
                 reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form-initial-print.rdlc";
@@ -55,7 +54,7 @@ namespace JOMonitoringApp.Views.Reports
                     return;
                 }
 
-                ReportParameter[] parameters = new ReportParameter[21];
+                ReportParameter[] parameters = new ReportParameter[22];
                 parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
                 parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
                 parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -78,6 +77,11 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[18] = new ReportParameter("paramRecommendingApproval", Helper.CSDHead);
                 parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
                 parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
+                string particular = dictInvestigation["adjustment_particular"];
+                string adjustment = dictInvestigation["adjusted_amount"];
+
+
+                parameters[21] = new ReportParameter("paramAdjustments", $"{particular} {adjustment}");
 
                 // Load image from file path
                 string imagePath1 = dictInvestigation["image_path"];
@@ -100,7 +104,7 @@ namespace JOMonitoringApp.Views.Reports
             }
             catch (Exception ex)
             {
-                Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
                 Close();
             }
             

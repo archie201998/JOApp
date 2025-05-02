@@ -62,10 +62,12 @@ namespace JOMonitoringApp
                 new object[] { "@image_path", DbType.String, entity.imagePath },
                 new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
                 new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
+                new object[] { "@adjustment_particular", DbType.String, entity.AdjustmentParticular },
+                new object[] { "@adjusted_amount", DbType.String, entity.AdjustedAmount },
                 new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, date_of_investigation, approval_message, investigator_comments, recommendations, image_path, secondary_image_path, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @date_of_investigation, @approval_message, @investigator_comments, @recommendations, @image_path, @secondary_image_path, @is_approved, @created_by);";
+            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, date_of_investigation, approval_message, investigator_comments, recommendations, image_path, secondary_image_path, is_approved, created_by, adjustment_particular, adjustment_amount) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @date_of_investigation, @approval_message, @investigator_comments, @recommendations, @image_path, @secondary_image_path, @is_approved, @created_by, @adjustment_particular, @adjustment_amount);";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 

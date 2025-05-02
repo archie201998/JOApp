@@ -68,102 +68,35 @@ namespace JOMonitoringApp.Views.JobOrder
                 Helper.changes = string.Empty;
                 bool hasChanges = false;
 
-               
-                if ((string)originalValues["AccountName"] != txtAccountName.Text)
+                void CheckChange<T>(string label, T originalValue, T currentValue)
                 {
-                    Helper.changes += $"Account Name : from {originalValues["AccountName"]} into {txtAccountName.Text}; ";
-                    hasChanges = true;
+                    string originalValueString = originalValue != null ? originalValue.ToString() : "null";
+                    string currentValueString = currentValue != null ? currentValue.ToString() : "null";
+
+                    if (!EqualityComparer<T>.Default.Equals(originalValue, currentValue))
+                    {
+                        Helper.changes += $"{label} : from {originalValueString} into {currentValueString}; ";
+                        hasChanges = true;
+                    }
                 }
 
-                if ((string)originalValues["Address"] != txtAddress.Text)
-                {
-                    Helper.changes += $"Address : from {originalValues["Address"]} into {txtAddress.Text}; ";
-                    hasChanges = true;
-                }
+                CheckChange("Account Name", (string)originalValues["AccountName"], txtAccountName.Text);
+                CheckChange("Address", (string)originalValues["Address"], txtAddress.Text);
+                CheckChange("Account Number", (string)originalValues["AccountNumber"], txtAccountNumber.Text);
+                CheckChange("Contact Number", (string)originalValues["Contact"], txtContact.Text);
+                CheckChange("Date", ((DateTime)originalValues["Date"]).ToShortDateString(), dtpDate.Text);
+                CheckChange("JO Number", (string)originalValues["JONumber"], txtJONumber.Text);
+                CheckChange("MRS Number", (string)originalValues["MRSNumber"], txtMRSNumber.Text);
+                CheckChange("WAR Number", (string)originalValues["WARNumber"], txtWARNumber.Text);
+                CheckChange("OR Number", (string)originalValues["ORNumber"], txtORNumber.Text);
+                CheckChange("Amount", ((decimal)originalValues["Amount"]).ToString("N2"), nudAmount.Value.ToString("N2"));
 
-                if ((string)originalValues["AccountNumber"] != txtAccountNumber.Text)
-                {
-                    Helper.changes += $"Account Number : from {originalValues["AccountNumber"]} into {txtAccountNumber.Text}; ";
-                    hasChanges = true;
-                }
+                CheckChange("Materials Issued", originalValues["MaterialsIssuedBy"]?.ToString(), ((int?)cmbxMaterialsIssuedBy.SelectedValue)?.ToString());
+                CheckChange("Accomplished", originalValues["AccomplishedBy"]?.ToString(), ((int?)cmbxAccomplishedBy.SelectedValue)?.ToString());
 
-                if ((string)originalValues["Contact"] != txtContact.Text)
-                {
-                    Helper.changes += $"Contact Number : from {originalValues["Contact"]} into {txtContact.Text}; ";
-                    hasChanges = true;
-                }
-
-
-                if ((DateTime)originalValues["Date"] != dtpDate.Value)
-                {
-                    Helper.changes += $"Date : from  {originalValues["Date"]} into {dtpDate.Text}; ";
-                    hasChanges = true;
-                }
-
-                if ((string)originalValues["JONumber"] != txtJONumber.Text)
-                {
-                    Helper.changes += $"JO Number : from {originalValues["JONumber"]} into {txtJONumber.Text}; ";
-                    hasChanges = true;
-                }
-
-                if ((string)originalValues["MRSNumber"] != txtMRSNumber.Text)
-                {
-                    Helper.changes += $"MRS Number : from {originalValues["MRSNumber"]} into {txtMRSNumber.Text}; ";
-                    hasChanges = true;
-                }
-
-
-                if ((string)originalValues["WARNumber"] != txtWARNumber.Text)
-                {
-                    Helper.changes += $"WAR Number : from {originalValues["WARNumber"].ToString()} into {txtWARNumber.Text}; ";
-                    return true;
-                }
-
-                if ((string)originalValues["ORNumber"] != txtORNumber.Text)
-                {
-                    Helper.changes += $"OR Number : from {originalValues["ORNumber"]} into {txtORNumber.Text}; ";
-                    hasChanges = true;
-                }
-
-                if ((decimal)originalValues["Amount"] != nudAmount.Value)
-                {
-                    Helper.changes += $"Amount : from {originalValues["Amount"]} into {nudAmount.Value}; ";
-                    hasChanges = true;
-                }
-
-
-                if ((int?)originalValues["MaterialsIssuedBy"] != (int?)cmbxMaterialsIssuedBy.SelectedValue)
-                {
-                    Helper.changes += $"Materials Issued, from {originalValues["MaterialsIssuedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
-                    return true;
-                }
-
-
-                if ((int?)originalValues["AccomplishedBy"] != (int?)cmbxAccomplishedBy.SelectedValue)
-                {
-                    Helper.changes += $"Accomplished, from {originalValues["AccomplishedBy"]?.ToString() ?? "null"} into {cmbxMaterialsIssuedBy.Text}; ";
-                    hasChanges = true;
-                }
-
-                if ((string)originalValues["Particulars"] != GetSelectedParticulars())
-                {
-                    Helper.changes += $"Particulars, from {originalValues["Particulars"]} into {GetSelectedParticulars()}; ";
-                    hasChanges = true;
-                }
-
-
-                if ((string)originalValues["Remarks"] != txtRemarks.Text)
-                {
-                    Helper.changes += $"Remarks, from {originalValues["Remarks"]} into {txtRemarks.Text}; ";
-                    hasChanges = true;
-                }
-
-
-                if ((string)originalValues["Status"].ToString() != Status())
-                {
-                    Helper.changes += $"Status, from {originalValues["Status"]} into {Helper.StatusText(statusId)}; ";
-                    hasChanges = true;
-                }
+                CheckChange("Particulars", (string)originalValues["Particulars"], GetSelectedParticulars());
+                CheckChange("Remarks", (string)originalValues["Remarks"], txtRemarks.Text);
+                CheckChange("Status", originalValues["Status"].ToString(), Helper.StatusText(statusId));
 
                 return hasChanges;
             }

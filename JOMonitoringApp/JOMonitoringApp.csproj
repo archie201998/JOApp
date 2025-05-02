@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>182</ApplicationRevision>
+    <ApplicationRevision>183</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -424,6 +424,10 @@
     <Content Include="RDLC\hydrant-withdrawal.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="RDLC\InvestigationErrorReading.rdlc" />
+    <EmbeddedResource Include="RDLC\investigation-failed-calibration.rdlc" />
+    <EmbeddedResource Include="RDLC\investigation-illegal.rdlc" />
+    <EmbeddedResource Include="RDLC\investigation-leaking.rdlc" />
     <EmbeddedResource Include="Views\Admin\frmPassKey.resx">
       <DependentUpon>frmPassKey.cs</DependentUpon>
     </EmbeddedResource>

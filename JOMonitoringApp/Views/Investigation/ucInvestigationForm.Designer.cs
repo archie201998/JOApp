@@ -1061,15 +1061,16 @@
             this.gbComputation.Size = new System.Drawing.Size(339, 71);
             this.gbComputation.TabIndex = 28;
             this.gbComputation.TabStop = false;
-            this.gbComputation.Text = "6. COMPUTATION";
+            this.gbComputation.Text = "6. ADJUSTMENTS";
             // 
             // lblAdjustedAmount
             // 
             this.lblAdjustedAmount.AutoSize = true;
-            this.lblAdjustedAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdjustedAmount.Location = new System.Drawing.Point(148, 27);
+            this.lblAdjustedAmount.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Red;
+            this.lblAdjustedAmount.Location = new System.Drawing.Point(147, 31);
             this.lblAdjustedAmount.Name = "lblAdjustedAmount";
-            this.lblAdjustedAmount.Size = new System.Drawing.Size(55, 15);
+            this.lblAdjustedAmount.Size = new System.Drawing.Size(77, 21);
             this.lblAdjustedAmount.TabIndex = 22;
             this.lblAdjustedAmount.Text = "RESULT";
             // 

@@ -38,6 +38,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.cbxExtensionFee = new System.Windows.Forms.CheckBox();
+            this.cbxPenalty = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblAdjustedAmount = new System.Windows.Forms.TextBox();
@@ -49,8 +51,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPreviousReading = new System.Windows.Forms.TextBox();
-            this.cbxExtensionFee = new System.Windows.Forms.CheckBox();
-            this.cbxPenalty = new System.Windows.Forms.CheckBox();
             this.gbErrorReading = new System.Windows.Forms.GroupBox();
             this.gbLeakingVisible = new System.Windows.Forms.GroupBox();
             this.txtLeakingCorrectCons = new System.Windows.Forms.TextBox();
@@ -177,12 +177,11 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.DimGray;
-            this.btnCancel.Location = new System.Drawing.Point(295, 14);
+            this.btnCancel.Location = new System.Drawing.Point(269, 14);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 32);
             this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "Cancel [Esc]";
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.Text = "Cancel ";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // btnSave
@@ -193,11 +192,11 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(137, 14);
+            this.btnSave.Location = new System.Drawing.Point(172, 14);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(152, 32);
+            this.btnSave.Size = new System.Drawing.Size(91, 32);
             this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Save [Control + S]";
+            this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -214,6 +213,26 @@
             this.groupBox5.Size = new System.Drawing.Size(391, 122);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
+            // 
+            // cbxExtensionFee
+            // 
+            this.cbxExtensionFee.AutoSize = true;
+            this.cbxExtensionFee.Location = new System.Drawing.Point(172, 42);
+            this.cbxExtensionFee.Name = "cbxExtensionFee";
+            this.cbxExtensionFee.Size = new System.Drawing.Size(121, 19);
+            this.cbxExtensionFee.TabIndex = 17;
+            this.cbxExtensionFee.Text = "EXTENSION FEE";
+            this.cbxExtensionFee.UseVisualStyleBackColor = true;
+            // 
+            // cbxPenalty
+            // 
+            this.cbxPenalty.AutoSize = true;
+            this.cbxPenalty.Location = new System.Drawing.Point(172, 20);
+            this.cbxPenalty.Name = "cbxPenalty";
+            this.cbxPenalty.Size = new System.Drawing.Size(79, 19);
+            this.cbxPenalty.TabIndex = 17;
+            this.cbxPenalty.Text = "PENALTY";
+            this.cbxPenalty.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -343,26 +362,6 @@
             this.txtPreviousReading.Name = "txtPreviousReading";
             this.txtPreviousReading.Size = new System.Drawing.Size(112, 21);
             this.txtPreviousReading.TabIndex = 6;
-            // 
-            // cbxExtensionFee
-            // 
-            this.cbxExtensionFee.AutoSize = true;
-            this.cbxExtensionFee.Location = new System.Drawing.Point(172, 42);
-            this.cbxExtensionFee.Name = "cbxExtensionFee";
-            this.cbxExtensionFee.Size = new System.Drawing.Size(121, 19);
-            this.cbxExtensionFee.TabIndex = 17;
-            this.cbxExtensionFee.Text = "EXTENSION FEE";
-            this.cbxExtensionFee.UseVisualStyleBackColor = true;
-            // 
-            // cbxPenalty
-            // 
-            this.cbxPenalty.AutoSize = true;
-            this.cbxPenalty.Location = new System.Drawing.Point(172, 20);
-            this.cbxPenalty.Name = "cbxPenalty";
-            this.cbxPenalty.Size = new System.Drawing.Size(79, 19);
-            this.cbxPenalty.TabIndex = 17;
-            this.cbxPenalty.Text = "PENALTY";
-            this.cbxPenalty.UseVisualStyleBackColor = true;
             // 
             // gbErrorReading
             // 
@@ -666,7 +665,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(418, 493);
+            this.ClientSize = new System.Drawing.Size(1149, 493);
             this.Controls.Add(this.gbLeakingVisible);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);

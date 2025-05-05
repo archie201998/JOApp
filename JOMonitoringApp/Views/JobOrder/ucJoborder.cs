@@ -203,7 +203,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 particularsBuilder.Append($"{item.ToString()}");
 
                 if (moreThanOneItem)
-                    particularsBuilder.Append(" \\");
+                    particularsBuilder.Append("\\");
             }
 
             string particular = particularsBuilder.ToString().TrimEnd();

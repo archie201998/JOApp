@@ -35,6 +35,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private Dictionary<string, string> originalValues = new Dictionary<string, string>();
         private string _jobOrderNumber;
+        internal bool hasAdjustment;
 
         public ucInvestigationForm()
         {
@@ -47,6 +48,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
+                cmbxStatus.SelectedValue = 0;
                 GetInvestigationRecords();
             }
         }
@@ -137,7 +139,7 @@ namespace JOMonitoringApp.Views.Investigation
                 CustomerName = txtAccountName.Text,
                 CustomerAddress = txtAddress.Text,
                 CustomerAccountNumber = txtAccountNumber.Text,
-                NatureOfComplaint = cmbxComplaint.Text,
+                NatureOfComplaint = txtComplaint.Text,
                 InvestigatorComments = txtInvestigatorComments.Text,
                 DateOfInvestigation = dtpDate.Value,
                 ApprovalMessage = txtApprovalMessage.Text,
@@ -170,19 +172,6 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-        private void cmbxComplaint_Validating(object sender, CancelEventArgs e)
-        {
-            if (cmbxComplaint.Text == string.Empty)
-            {
-                e.Cancel = true;
-                Helper.ShowErrorComboBoxEmpty(errorProvider1, cmbxComplaint, "Nature of Complain.");
-            }
-        }
-
-        private void cmbxComplaint_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorComboBox(errorProvider1, cmbxComplaint);
-        }
 
         private void txtInvestigatorComments_Validating(object sender, CancelEventArgs e)
         {
@@ -203,7 +192,7 @@ namespace JOMonitoringApp.Views.Investigation
             txtAccountName.Clear();
             txtAccountNumber.Clear();
             txtAddress.Clear();
-            cmbxComplaint.SelectedIndex = -1;
+            txtComplaint.Clear();
             txtInvestigatorComments.Clear();
             txtRecommendations.Clear();
             cmbxMeterBrand.SelectedIndex = -1;
@@ -226,7 +215,10 @@ namespace JOMonitoringApp.Views.Investigation
             isUpdate = false;
             pictureBox1.Image = Properties.Resources.icons8_image_96;
             pictureBox2.Image = Properties.Resources.icons8_image_96;
-            cmbxStatus.SelectedValue = 5;
+            cmbxStatus.SelectedValue = 0;
+
+            lblAdjustedAmount.Text = "Result";
+            btnCompute.Text = "Make Computations";
         }
 
 
@@ -346,11 +338,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void ViewInvestigationDetails()
         {
-            if (selectedInvistigationID == 0)
-            {
-                selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-            }
-
+            selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
 
             string meterBrand = dictInvestigation["meter_brand"];
@@ -374,6 +362,22 @@ namespace JOMonitoringApp.Views.Investigation
             byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
             string alternativeSource = dictInvestigation["alternative_source"];
             string approvalMessage = dictInvestigation["approval_message"];
+            string natureOfComplaint = dictInvestigation["nature_of_complaint"];
+
+            string adjustmentParticular = dictInvestigation["adjustment_particular"];
+
+            if (adjustmentParticular != string.Empty)
+            {
+                lblAdjustedAmount.Text = dictInvestigation["adjusted_amount"];
+                btnCompute.Text = "View Adjustments";
+                hasAdjustment = true;
+            }
+            else
+            {
+                btnCompute.Text = "Make Computations";
+                lblAdjustedAmount.Text = dictInvestigation["adjusted_amount"];
+                hasAdjustment = false;
+            }
 
             cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
             cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
@@ -388,7 +392,7 @@ namespace JOMonitoringApp.Views.Investigation
             _jobOrderId = jobOrdersId;
             _jobOrderNumber = txtJONumber.Text;
 
-            cmbxComplaint.Text = dictInvestigation["nature_of_complaint"];
+            txtComplaint.Text = natureOfComplaint;
             txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
             txtRecommendations.Text = dictInvestigation["recommendations"];
             cmbxMeterBrand.Text = meterBrand;
@@ -404,6 +408,9 @@ namespace JOMonitoringApp.Views.Investigation
             txtApprovalMessage.Text = approvalMessage;
             radApproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
             radDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "4";
+
+            
+
 
             //loading of picture box
             if (dictInvestigation.ContainsKey("image_path"))
@@ -466,8 +473,13 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
+            var model = new InvestigationModel
+            {
+                Id = selectedInvistigationID,
+            };
 
+            var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
+            
         }
 
         private void CalibrationResult()
@@ -536,5 +548,18 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgInvestigations_SelectionChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

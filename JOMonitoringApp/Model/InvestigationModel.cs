@@ -24,7 +24,10 @@ namespace JOMonitoringApp.Model
         public string Recommendations { get; set; }
         public string imagePath { get; set; }
         public string secondaryImagePath { get; set; }
+        public decimal Penalty { get; set; }
+        public decimal ExtensionFee { get; set; }
         public int CreatedBy { get; set; }
+        public int UpdatedBy { get; set; }
 
         //service condition
         public int InvestigationId { get; set; }
@@ -52,10 +55,14 @@ namespace JOMonitoringApp.Model
         //adjustment details 
         public string PreviousReading { get; set; }
         public string PresentReading { get; set; }
+        public string ActualReading { get; set; }
         public string PreviousConsumption { get; set; }
         public string PresentConsumption { get; set; }
+
+        public string ActualConsumption{ get; set; }
         public string AverageConsumption { get; set; }
         public string AdjustmentParticular { get; set; }
-        public string AdjustedAmount { get; set; }
+        public decimal AmountDue { get; set; }
+        public decimal AdjustedAmount { get; set; }
     }
 }

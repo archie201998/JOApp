@@ -689,7 +689,7 @@
           <Line Name="Line3">
             <Top>5.00305in</Top>
             <Left>3.61218in</Left>
-            <Height>1.76956in</Height>
+            <Height>1.3772in</Height>
             <Width>0in</Width>
             <ZIndex>20</ZIndex>
             <Style>
@@ -798,7 +798,7 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>5.35827in</Top>
-            <Height>1.3449in</Height>
+            <Height>1.02198in</Height>
             <Width>3.46896in</Width>
             <ZIndex>23</ZIndex>
             <Style>
@@ -834,7 +834,7 @@
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>5.35827in</Top>
             <Left>3.77884in</Left>
-            <Height>1.3449in</Height>
+            <Height>1.02198in</Height>
             <Width>3.23624in</Width>
             <ZIndex>24</ZIndex>
             <Style>
@@ -1520,7 +1520,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>9.5076in</Top>
+            <Top>9.8826in</Top>
             <Height>0.23264in</Height>
             <Width>7.04812in</Width>
             <ZIndex>43</ZIndex>
@@ -1556,7 +1556,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>9.76743in</Top>
+            <Top>10.14243in</Top>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>44</ZIndex>
@@ -1953,7 +1953,7 @@
             <Source>External</Source>
             <Value>=Parameters!paramImage2.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>15.85771in</Top>
+            <Top>16.23271in</Top>
             <Height>5.20834in</Height>
             <Width>7.03834in</Width>
             <ZIndex>55</ZIndex>
@@ -1987,7 +1987,7 @@
             <Source>External</Source>
             <Value>=Parameters!paramImage1.Value</Value>
             <Sizing>FitProportional</Sizing>
-            <Top>10.06605in</Top>
+            <Top>10.44105in</Top>
             <Height>5.18402in</Height>
             <Width>7.03834in</Width>
             <ZIndex>56</ZIndex>
@@ -2018,7 +2018,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>15.44451in</Top>
+            <Top>15.81951in</Top>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>57</ZIndex>
@@ -2078,7 +2078,7 @@
               <BreakLocation>End</BreakLocation>
             </PageBreak>
             <KeepTogether>true</KeepTogether>
-            <Top>9.17914in</Top>
+            <Top>9.67914in</Top>
             <Height>0.10234in</Height>
             <Width>7.04812in</Width>
             <ZIndex>59</ZIndex>
@@ -2108,7 +2108,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>20.23332cm</Top>
+            <Top>20.86832cm</Top>
             <Height>0.70583cm</Height>
             <Width>4.43679cm</Width>
             <ZIndex>60</ZIndex>
@@ -2144,7 +2144,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.99043cm</Top>
+            <Top>22.62543cm</Top>
             <Height>0.70583cm</Height>
             <Width>5.07179cm</Width>
             <ZIndex>61</ZIndex>
@@ -2184,7 +2184,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.34457cm</Top>
+            <Top>21.97957cm</Top>
             <Height>0.70583cm</Height>
             <Width>5.07179cm</Width>
             <ZIndex>62</ZIndex>
@@ -2219,7 +2219,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>20.23332cm</Top>
+            <Top>20.86832cm</Top>
             <Left>6.28222cm</Left>
             <Height>0.70583cm</Height>
             <Width>4.57055cm</Width>
@@ -2271,7 +2271,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.99043cm</Top>
+            <Top>22.62543cm</Top>
             <Left>6.2293cm</Left>
             <Height>1.01818cm</Height>
             <Width>5.54951cm</Width>
@@ -2312,7 +2312,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.34457cm</Top>
+            <Top>21.97957cm</Top>
             <Left>6.2293cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.54951cm</Width>
@@ -2348,7 +2348,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>20.23332cm</Top>
+            <Top>20.86832cm</Top>
             <Left>12.61957cm</Left>
             <Height>0.70583cm</Height>
             <Width>4.51543cm</Width>
@@ -2385,7 +2385,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.99043cm</Top>
+            <Top>22.62543cm</Top>
             <Left>12.69629cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.01074cm</Width>
@@ -2426,7 +2426,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>21.34457cm</Top>
+            <Top>21.97957cm</Top>
             <Left>12.69629cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.01074cm</Width>
@@ -2443,7 +2443,7 @@
             </Style>
           </Textbox>
           <Line Name="Line4">
-            <Top>6.77261in</Top>
+            <Top>6.38511in</Top>
             <Height>0in</Height>
             <Width>7.04814in</Width>
             <ZIndex>69</ZIndex>
@@ -2454,7 +2454,7 @@
             </Style>
           </Line>
           <Line Name="Line5">
-            <Top>7.64761in</Top>
+            <Top>8.02261in</Top>
             <Height>0in</Height>
             <Width>7.04814in</Width>
             <ZIndex>70</ZIndex>
@@ -2485,7 +2485,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.84205in</Top>
+            <Top>6.45455in</Top>
             <Left>0.00003cm</Left>
             <Height>0.21633in</Height>
             <Width>1.0092in</Width>
@@ -2524,10 +2524,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>17.37882cm</Top>
+            <Top>16.39458cm</Top>
             <Left>2.85883cm</Left>
-            <Height>1.70084cm</Height>
-            <Width>13.32408cm</Width>
+            <Height>3.58499cm</Height>
+            <Width>6.31611cm</Width>
             <ZIndex>72</ZIndex>
             <Style>
               <Border>
@@ -2540,8 +2540,44 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramAdjustmentsValues.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>16.38223cm</Top>
+            <Left>9.28077cm</Left>
+            <Height>3.58499cm</Height>
+            <Width>8.44211cm</Width>
+            <ZIndex>73</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>53.78844cm</Height>
+        <Height>54.46027cm</Height>
         <Style />
       </Body>
       <Width>17.98074cm</Width>
@@ -2843,6 +2879,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramAdjustmentsValues">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -2963,6 +3005,11 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>5</RowIndex>
           <ParameterName>paramAdjustments</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramAdjustmentsValues</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

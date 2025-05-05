@@ -1,5 +1,10 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.PromptBox;
+using Mysqlx.Crud;
 using System;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -9,8 +14,11 @@ namespace JOMonitoringApp.Views.Investigation
 
         private readonly string _accountNumber;
         private readonly ucInvestigationForm _ucInvestigationForm;
+        private bool _hasAdjustment;
+
         int locationX = 0;
         int locationY = 0;
+
         public frmInvestigationAdjustment(ucInvestigationForm ucInvestigationForm, string accountNumber)
         {
             InitializeComponent();
@@ -26,8 +34,25 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
         {
-            cmbxParticular.SelectedIndex = -1;
+            if (_ucInvestigationForm.hasAdjustment)
+            {
+                LoadAdjustments();
+            }
         }
+
+        private void LoadAdjustments()
+        {
+            int investigationID = _ucInvestigationForm.selectedInvistigationID;
+            var adjustmentDict = Factory.InvestigationRepository().GetViewRecordById(investigationID);
+
+            if (adjustmentDict.Count != 0)
+            {
+                cmbxParticular.Text = adjustmentDict["adjustment_particular"];
+                lblAdjustedAmount.Text = adjustmentDict["adjusted_amount"];
+            }
+
+        }
+
 
         private void ComputeIllegal()
         {
@@ -165,12 +190,11 @@ namespace JOMonitoringApp.Views.Investigation
             lblAdjustedAmount.Text = adjustedAmount.ToString("0.00");
         }
 
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Komputadora();
-            ComputePenaltyAndExtensionFee();
+            //Komputadora();
+            //ComputePenaltyAndExtensionFee();
+            _ = new frmMessagePrompt().ShowDialog();
         }
 
         private void Komputadora()
@@ -221,7 +245,100 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.adjustmentParticular = cmbxParticular.Text;
 
             _ucInvestigationForm.lblAdjustedAmount.Text = Helper.adjustedAmount;
-            Close();
+
+
+            bool result = Factory.InvestigationRepository().SaveComputation(InvestigationModel());
+
+            if (result)
+            {
+                Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
+                Close();
+            }
+        }
+
+        private InvestigationModel InvestigationModel()
+        {
+            if (cmbxParticular.Text == "Erroneous Reading")
+            {
+                var investigationModel = new InvestigationModel()
+                {
+                    Id = _ucInvestigationForm.selectedInvistigationID,
+                    PreviousReading = txtPreviousReading.Text,
+                    PresentReading = txtPresentReading.Text,
+                    ActualReading = txtActualReading.Text,
+                    PresentConsumption = txtConsumption.Text,
+
+                    Penalty = Convert.ToDecimal(txtPenalty.Text),
+                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
+                    AmountDue = Convert.ToDecimal(txtAmountDue.Text),
+                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
+                    AdjustmentParticular = "Erroneous Reading",
+                    UpdatedBy = Helper.UserId,
+                };
+
+                return investigationModel;
+            }
+
+
+            if (cmbxParticular.Text == "Failed Calibration")
+            {
+                var investigationModel = new InvestigationModel()
+                {
+                    Id = _ucInvestigationForm.selectedInvistigationID,
+                    AverageConsumption = txtNewAverageCons.Text,
+
+                    Penalty = Convert.ToDecimal(txtPenalty.Text),
+                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
+                    AmountDue = Convert.ToDecimal(txtAmountDue.Text),
+                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
+                    AdjustmentParticular = "Failed Calibration",
+                    UpdatedBy = Helper.UserId,
+                };
+
+                return investigationModel;
+            }
+
+            if (cmbxParticular.Text == "Leaking (Not Visible)")
+            {
+                var investigationModel = new InvestigationModel()
+                {
+                    Id = _ucInvestigationForm.selectedInvistigationID,
+                    PresentConsumption = txtLeakingNotVisCurrentCons.Text,
+                    ActualConsumption = txtLeakingNotVisNewCons.Text,
+
+                    Penalty = Convert.ToDecimal(txtPenalty.Text),
+                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
+                    AmountDue = Convert.ToDecimal(txtAmountDue.Text),
+                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
+                    AdjustmentParticular = "Leaking (Not Visible)",
+                    UpdatedBy = Helper.UserId,
+                };
+
+                return investigationModel;
+            }
+
+            if (cmbxParticular.Text == "RFB + ILLEGAL")
+            {
+                var investigationModel = new InvestigationModel()
+                {
+                    Id = _ucInvestigationForm.selectedInvistigationID,
+
+                    PreviousConsumption = txtConsOnDisconnection.Text,
+                    ActualReading = txtConsAfterDisconnection.Text,
+
+                    Penalty = Convert.ToDecimal(txtPenalty.Text),
+                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
+                    AmountDue = Convert.ToDecimal(txtAmountDue.Text),
+                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
+                    AdjustmentParticular = "RFB + Illegal",
+                    UpdatedBy = Helper.UserId,
+                };
+
+                return investigationModel;
+            }
+
+
+            return null;
         }
 
         private void txtLastMonth_Leave(object sender, EventArgs e)
@@ -244,6 +361,34 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+        }
+
+        private void cbxExtensionFee_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxExtensionFee.Checked)
+                txtExtensionFee.Text = "30";
+            else
+                txtExtensionFee.Text = "0";
+        }
+
+        private void cbxPenalty_CheckedChanged(object sender, EventArgs e)
+        {
+            decimal adjustmentAmount = Convert.ToDecimal(lblAdjustedAmount.Text);
+            if (cbxPenalty.Checked)
+                txtPenalty.Text = (adjustmentAmount * 0.10m).ToString("N2");
+            else
+                txtPenalty.Text = "0";
+        }
+
+        private void txtActualReading_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                txtConsumption.Text = (Convert.ToDecimal(txtActualReading.Text) - Convert.ToDecimal(txtPreviousReading.Text)).ToString();
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }

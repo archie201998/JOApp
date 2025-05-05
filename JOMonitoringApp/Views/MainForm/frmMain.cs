@@ -286,7 +286,6 @@ namespace JOMonitoringApp.Views.MainForm
             toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
             investigationsToolStripMenuItem.Enabled = adminMode ? true : Helper.UserHasPermission("TRANSACTION_INVESTIGATION");
             timer_investigator.Enabled = Helper.UserHasPermission("INVESTIGATION_NOTIFICATION");
-
         }
         #endregion
 

@@ -319,19 +319,17 @@ namespace JOMonitoringApp
                 return;
             }
 
-
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
-
             dgInvestigations.Columns["approval_status"].HeaderText = "INV. STATUS";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
             dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. Number";
             dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
             dgInvestigations.Columns["customer_name"].HeaderText = "NAME";
-            dgInvestigations.Columns["customer_name"].HeaderText = "ADDRESS";
+            dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER";
+            dgInvestigations.Columns["customer_address"].HeaderText = "ADDRESS";
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
-
-            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 

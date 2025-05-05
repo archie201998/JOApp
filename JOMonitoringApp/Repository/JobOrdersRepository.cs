@@ -310,7 +310,7 @@ namespace JOMonitoringApp
                 new object[] { "@date_to", DbType.DateTime, dateTo },
             };
 
-            string query = $"SELECT particular, COUNT(*) AS total_count, SUM(CASE WHEN status_id = 1 THEN 1 ELSE 0 END) AS pending, SUM(CASE WHEN status_id = 2 THEN 1 ELSE 0 END) AS processing, SUM(CASE WHEN status_id = 3 THEN 1 ELSE 0 END) AS cancelled, SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) AS accomplished FROM view_job_orders WHERE date BETWEEN @date_from AND @date_to AND is_deleted = 0 GROUP BY particular ORDER BY total_count DESC;";
+            string query = $"SELECT particular, COUNT(*) AS total_count, SUM(CASE WHEN status_id = 1 THEN 1 ELSE 0 END) AS pending, SUM(CASE WHEN status_id = 2 THEN 1 ELSE 0 END) AS processing, SUM(CASE WHEN status_id = 3 THEN 1 ELSE 0 END) AS cancelled, SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) AS accomplished FROM view_job_orders WHERE date BETWEEN @date_from AND @date_to AND is_deleted = 0 GROUP BY particular ORDER BY total_count DESC";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);

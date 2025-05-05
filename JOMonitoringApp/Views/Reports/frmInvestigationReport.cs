@@ -54,7 +54,7 @@ namespace JOMonitoringApp.Views.Reports
                     return;
                 }
 
-                ReportParameter[] parameters = new ReportParameter[22];
+                ReportParameter[] parameters = new ReportParameter[23];
                 parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
                 parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
                 parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -77,11 +77,56 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[18] = new ReportParameter("paramRecommendingApproval", Helper.CSDHead);
                 parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
                 parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
+
                 string particular = dictInvestigation["adjustment_particular"];
                 string adjustment = dictInvestigation["adjusted_amount"];
 
+                //string display here
+                string _particular = dictInvestigation["adjustment_particular"];
+                string amountDue = dictInvestigation["amount_due"];
+                string adjustmentAmount = dictInvestigation["adjusted_amount"];
+                string penalty = dictInvestigation["penalty"];
+                string extensionFee = dictInvestigation["extension_fee"];
 
-                parameters[21] = new ReportParameter("paramAdjustments", $"{particular} {adjustment}");
+                string previousReading = dictInvestigation["previous_reading"];
+                string presentReading = dictInvestigation["present_reading"];
+                string actualReading = dictInvestigation["actual_reading"];
+
+                string previousConsumption = dictInvestigation["previous_consumption"];
+                string presentConsumption = dictInvestigation["present_consumption"]; 
+                string actualConsumption = dictInvestigation["actual_consumption"];
+                string averageConsumption = dictInvestigation["last_three_months_consumption"];
+
+                //string details =
+                //    $"Particular           : {_particular}\n" +
+                //    $"Amount Due           : {amountDue}\n" +
+                //    $"Adjustment Amount    : {adjustmentAmount}\n" +
+                //    $"Penalty              : {penalty}\n" +
+                //    $"Extension Fee        : {extensionFee}\n\n" +
+                //    $"Previous Reading     : {previousReading}\n" +
+                //    $"Present Reading      : {presentReading}\n" +
+                //    $"Actual Reading       : {actualReading}\n\n" +
+                //    $"Previous Consumption : {previousConsumption}\n" +
+                //    $"Present Consumption  : {presentConsumption}\n" +
+                //    $"Actual Consumption   : {actualConsumption}\n" +
+                //    $"Average Consumption  : {averageConsumption}";
+
+                string details =
+                    $"Particular                  \n" +
+                    $"Amount Due                  \n" +
+                    $"Adjustment Amount           \n" +
+                    $"Penalty                     \n" +
+                    $"Extension Fee               \n\n";
+
+                string detailsValues =
+                    $": {_particular}\n" +
+                    $": {amountDue}\n" +
+                    $": {adjustmentAmount}\n" +
+                    $": {penalty}\n" +
+                    $": {extensionFee}\n\n";
+
+                parameters[21] = new ReportParameter("paramAdjustments", $"{details}");
+                parameters[22] = new ReportParameter("paramAdjustmentsValues", $"{detailsValues}");
 
                 // Load image from file path
                 string imagePath1 = dictInvestigation["image_path"];

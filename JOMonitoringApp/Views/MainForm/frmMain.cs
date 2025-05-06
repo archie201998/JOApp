@@ -10,6 +10,7 @@ using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
+using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -590,7 +591,6 @@ namespace JOMonitoringApp.Views.MainForm
                 if (success)
                 {
                     LogJOTransaction();
-
                     if (CheckIfInvestigation()) InsertJobOrderToInvestigation();
 
                     string message = ucJoborder.isUpdate
@@ -599,15 +599,13 @@ namespace JOMonitoringApp.Views.MainForm
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
                 }
+
             }
             catch (Exception ex)
             {
                 Helper.MessageBoxError(ex.Message);
             }
         }
-
-   
-
 
         private bool UpdateData()
         {
@@ -648,15 +646,31 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void InsertJobOrderToInvestigation()
         {
-            bool insertRes = Factory.InvestigationRepository().Insert(new InvestigationModel()
+            string meterBrand = string.Empty;
+            string meterSize = string.Empty;
+            string meterNumber = string.Empty;
+            string accountNumber = ucJoborder.txtAccountNumber.Text;
+            int jobOrderID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
+
+            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
+            if (meterDict.Count != 0)
             {
-                JobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId),
+                meterBrand = meterDict["MeterBrand"].ToString().ToUpper();
+                meterSize = meterDict["MeterSize"].ToString().ToUpper();
+                meterNumber = meterDict["MeterNumber"].ToString().ToUpper();
+            }
+
+            _ = Factory.InvestigationRepository().Insert(new InvestigationModel()
+            {
+                JobOrderId = jobOrderID,
                 JobOrderNo = ucJoborder.txtJONumber.Text,
                 CustomerName = ucJoborder.txtAccountName.Text,
                 CustomerAddress = ucJoborder.txtAddress.Text,
-                CustomerAccountNumber = ucJoborder.txtAccountNumber.Text,
-                NatureOfComplaint = string.Join(", ", ucJoborder.clBoxParticulars.CheckedItems.Cast<object>()),
-                IsApproved = 0,
+                CustomerAccountNumber = accountNumber,
+                NatureOfComplaint = string.Join(",", ucJoborder.clBoxParticulars.CheckedItems.Cast<object>()),
+                MeterBrand = meterBrand,
+                MeterSize = meterSize,
+                MeterNumber = meterNumber,
                 CreatedBy = Helper.UserId,
             });
         }
@@ -1056,19 +1070,19 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                var forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
+                //var forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
 
-                if (!Properties.Settings.Default.SkipMyMessage && forRecommendationDict != null && forRecommendationDict.Count > 0 && Helper.notifViewed == false)
-                {
-                    timer_investigator.Stop();
+                //if (!Properties.Settings.Default.SkipMyMessage && forRecommendationDict != null && forRecommendationDict.Count > 0 && Helper.notifViewed == false)
+                //{
+                //    timer_investigator.Stop();
 
-                    using (var investigationNotif = new frmInvestigationNotif(forRecommendationDict))
-                    {
-                        investigationNotif.ShowDialog();
-                    }
+                //    using (var investigationNotif = new frmInvestigationNotif(forRecommendationDict))
+                //    {
+                //        investigationNotif.ShowDialog();
+                //    }
 
-                    timer_investigator.Start();
-                }
+                //    timer_investigator.Start();
+                //}
             }
             catch (Exception)
             {

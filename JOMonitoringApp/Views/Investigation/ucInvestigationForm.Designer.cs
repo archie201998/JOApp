@@ -68,10 +68,11 @@
             this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.btnAttachedImage = new System.Windows.Forms.Button();
             this.gbConditionOfService = new System.Windows.Forms.GroupBox();
+            this.txtMeterNumber = new System.Windows.Forms.TextBox();
+            this.txtMeterSize = new System.Windows.Forms.TextBox();
+            this.txtMeterBrand = new System.Windows.Forms.TextBox();
             this.nudReadingAfterTest = new System.Windows.Forms.NumericUpDown();
-            this.cmbxMeterSize = new System.Windows.Forms.ComboBox();
             this.nudReadingBeforeTest = new System.Windows.Forms.NumericUpDown();
-            this.cmbxMeterBrand = new System.Windows.Forms.ComboBox();
             this.txtServiceLineDefects = new System.Windows.Forms.TextBox();
             this.txtCalibrationResult = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -101,7 +102,6 @@
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.lblAdjustedAmount = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gbAccountDetails.SuspendLayout();
@@ -145,9 +145,9 @@
             this.gbAccountDetails.Controls.Add(this.label7);
             this.gbAccountDetails.Enabled = false;
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAccountDetails.Location = new System.Drawing.Point(13, 56);
+            this.gbAccountDetails.Location = new System.Drawing.Point(13, 10);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(429, 250);
+            this.gbAccountDetails.Size = new System.Drawing.Size(429, 292);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "1. INVESTIGATION FORM";
@@ -157,7 +157,7 @@
             this.dtpDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(199, 219);
+            this.dtpDate.Location = new System.Drawing.Point(199, 246);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(198, 21);
             this.dtpDate.TabIndex = 45;
@@ -166,7 +166,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(28, 219);
+            this.label12.Location = new System.Drawing.Point(28, 246);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(126, 15);
             this.label12.TabIndex = 44;
@@ -177,14 +177,14 @@
             this.txtComplaint.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtComplaint.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtComplaint.BackColor = System.Drawing.Color.White;
-            this.txtComplaint.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtComplaint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtComplaint.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComplaint.Location = new System.Drawing.Point(199, 186);
             this.txtComplaint.Multiline = true;
             this.txtComplaint.Name = "txtComplaint";
             this.txtComplaint.ReadOnly = true;
-            this.txtComplaint.Size = new System.Drawing.Size(198, 27);
+            this.txtComplaint.Size = new System.Drawing.Size(198, 54);
             this.txtComplaint.TabIndex = 43;
             this.txtComplaint.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -193,7 +193,7 @@
             this.txtJONumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtJONumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtJONumber.BackColor = System.Drawing.Color.White;
-            this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJONumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtJONumber.Location = new System.Drawing.Point(199, 153);
@@ -208,7 +208,7 @@
             this.txtAccountNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.BackColor = System.Drawing.Color.White;
-            this.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAccountNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNumber.Location = new System.Drawing.Point(199, 23);
@@ -223,7 +223,7 @@
             this.txtAccountName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAccountName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountName.BackColor = System.Drawing.Color.White;
-            this.txtAccountName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAccountName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAccountName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountName.Location = new System.Drawing.Point(199, 56);
@@ -238,7 +238,7 @@
             this.txtAddress.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAddress.BackColor = System.Drawing.Color.White;
-            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(199, 97);
@@ -320,9 +320,9 @@
             this.gbStatisticalFindings.Controls.Add(this.label3);
             this.gbStatisticalFindings.Enabled = false;
             this.gbStatisticalFindings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 309);
+            this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 308);
             this.gbStatisticalFindings.Name = "gbStatisticalFindings";
-            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 336);
+            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 291);
             this.gbStatisticalFindings.TabIndex = 2;
             this.gbStatisticalFindings.TabStop = false;
             this.gbStatisticalFindings.Text = "2. STATISTICAL FINDING";
@@ -334,7 +334,7 @@
             this.txtAlternativeSource.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAlternativeSource.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAlternativeSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAlternativeSource.Location = new System.Drawing.Point(198, 199);
+            this.txtAlternativeSource.Location = new System.Drawing.Point(198, 188);
             this.txtAlternativeSource.Name = "txtAlternativeSource";
             this.txtAlternativeSource.Size = new System.Drawing.Size(199, 21);
             this.txtAlternativeSource.TabIndex = 6;
@@ -343,7 +343,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(28, 201);
+            this.label9.Location = new System.Drawing.Point(28, 190);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(140, 15);
             this.label9.TabIndex = 14;
@@ -353,7 +353,7 @@
             // 
             this.cbSellToNeighbours.AutoSize = true;
             this.cbSellToNeighbours.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSellToNeighbours.Location = new System.Drawing.Point(199, 276);
+            this.cbSellToNeighbours.Location = new System.Drawing.Point(199, 265);
             this.cbSellToNeighbours.Name = "cbSellToNeighbours";
             this.cbSellToNeighbours.Size = new System.Drawing.Size(145, 17);
             this.cbSellToNeighbours.TabIndex = 9;
@@ -364,7 +364,7 @@
             // 
             this.cbPromoteTrade.AutoSize = true;
             this.cbPromoteTrade.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbPromoteTrade.Location = new System.Drawing.Point(199, 253);
+            this.cbPromoteTrade.Location = new System.Drawing.Point(199, 242);
             this.cbPromoteTrade.Name = "cbPromoteTrade";
             this.cbPromoteTrade.Size = new System.Drawing.Size(185, 17);
             this.cbPromoteTrade.TabIndex = 8;
@@ -375,7 +375,7 @@
             // 
             this.cbHHPurpose.AutoSize = true;
             this.cbHHPurpose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbHHPurpose.Location = new System.Drawing.Point(199, 230);
+            this.cbHHPurpose.Location = new System.Drawing.Point(199, 219);
             this.cbHHPurpose.Name = "cbHHPurpose";
             this.cbHHPurpose.Size = new System.Drawing.Size(97, 17);
             this.cbHHPurpose.TabIndex = 7;
@@ -386,7 +386,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(28, 227);
+            this.label25.Location = new System.Drawing.Point(28, 216);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(107, 15);
             this.label25.TabIndex = 10;
@@ -395,7 +395,7 @@
             // nudNoServiceOfOutlets
             // 
             this.nudNoServiceOfOutlets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNoServiceOfOutlets.Location = new System.Drawing.Point(198, 172);
+            this.nudNoServiceOfOutlets.Location = new System.Drawing.Point(198, 161);
             this.nudNoServiceOfOutlets.Maximum = new decimal(new int[] {
             255,
             0,
@@ -411,7 +411,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(28, 174);
+            this.label24.Location = new System.Drawing.Point(28, 163);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(159, 15);
             this.label24.TabIndex = 8;
@@ -421,7 +421,7 @@
             // 
             this.nudNoOfHoursServed.DecimalPlaces = 1;
             this.nudNoOfHoursServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudNoOfHoursServed.Location = new System.Drawing.Point(198, 145);
+            this.nudNoOfHoursServed.Location = new System.Drawing.Point(198, 134);
             this.nudNoOfHoursServed.Maximum = new decimal(new int[] {
             255,
             0,
@@ -437,7 +437,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(28, 147);
+            this.label23.Location = new System.Drawing.Point(28, 136);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(152, 15);
             this.label23.TabIndex = 8;
@@ -446,7 +446,7 @@
             // nudBoarders
             // 
             this.nudBoarders.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudBoarders.Location = new System.Drawing.Point(198, 118);
+            this.nudBoarders.Location = new System.Drawing.Point(198, 107);
             this.nudBoarders.Maximum = new decimal(new int[] {
             255,
             0,
@@ -462,7 +462,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 120);
+            this.label6.Location = new System.Drawing.Point(28, 109);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(98, 15);
             this.label6.TabIndex = 6;
@@ -471,7 +471,7 @@
             // nudRelatives
             // 
             this.nudRelatives.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudRelatives.Location = new System.Drawing.Point(198, 91);
+            this.nudRelatives.Location = new System.Drawing.Point(198, 80);
             this.nudRelatives.Maximum = new decimal(new int[] {
             255,
             0,
@@ -487,7 +487,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 93);
+            this.label5.Location = new System.Drawing.Point(28, 82);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(95, 15);
             this.label5.TabIndex = 6;
@@ -496,7 +496,7 @@
             // nudHouseHelper
             // 
             this.nudHouseHelper.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudHouseHelper.Location = new System.Drawing.Point(198, 64);
+            this.nudHouseHelper.Location = new System.Drawing.Point(198, 53);
             this.nudHouseHelper.Maximum = new decimal(new int[] {
             255,
             0,
@@ -512,7 +512,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 66);
+            this.label4.Location = new System.Drawing.Point(28, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(126, 15);
             this.label4.TabIndex = 6;
@@ -521,7 +521,7 @@
             // nudImmediateFamily
             // 
             this.nudImmediateFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudImmediateFamily.Location = new System.Drawing.Point(198, 37);
+            this.nudImmediateFamily.Location = new System.Drawing.Point(198, 26);
             this.nudImmediateFamily.Maximum = new decimal(new int[] {
             255,
             0,
@@ -537,7 +537,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 39);
+            this.label3.Location = new System.Drawing.Point(28, 28);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(146, 15);
             this.label3.TabIndex = 6;
@@ -551,7 +551,7 @@
             this.gbComments.Controls.Add(this.txtInvestigatorComments);
             this.gbComments.Enabled = false;
             this.gbComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComments.Location = new System.Drawing.Point(448, 378);
+            this.gbComments.Location = new System.Drawing.Point(448, 332);
             this.gbComments.Name = "gbComments";
             this.gbComments.Size = new System.Drawing.Size(339, 191);
             this.gbComments.TabIndex = 4;
@@ -621,10 +621,11 @@
             // 
             // gbConditionOfService
             // 
+            this.gbConditionOfService.Controls.Add(this.txtMeterNumber);
+            this.gbConditionOfService.Controls.Add(this.txtMeterSize);
+            this.gbConditionOfService.Controls.Add(this.txtMeterBrand);
             this.gbConditionOfService.Controls.Add(this.nudReadingAfterTest);
-            this.gbConditionOfService.Controls.Add(this.cmbxMeterSize);
             this.gbConditionOfService.Controls.Add(this.nudReadingBeforeTest);
-            this.gbConditionOfService.Controls.Add(this.cmbxMeterBrand);
             this.gbConditionOfService.Controls.Add(this.txtServiceLineDefects);
             this.gbConditionOfService.Controls.Add(this.txtCalibrationResult);
             this.gbConditionOfService.Controls.Add(this.label19);
@@ -635,95 +636,80 @@
             this.gbConditionOfService.Controls.Add(this.label17);
             this.gbConditionOfService.Enabled = false;
             this.gbConditionOfService.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConditionOfService.Location = new System.Drawing.Point(448, 56);
+            this.gbConditionOfService.Location = new System.Drawing.Point(448, 12);
             this.gbConditionOfService.Name = "gbConditionOfService";
             this.gbConditionOfService.Size = new System.Drawing.Size(339, 197);
             this.gbConditionOfService.TabIndex = 0;
             this.gbConditionOfService.TabStop = false;
             this.gbConditionOfService.Text = "3. CONDITION OF SERVICE FACILITIES";
             // 
+            // txtMeterNumber
+            // 
+            this.txtMeterNumber.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtMeterNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtMeterNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMeterNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMeterNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeterNumber.Location = new System.Drawing.Point(216, 32);
+            this.txtMeterNumber.Name = "txtMeterNumber";
+            this.txtMeterNumber.Size = new System.Drawing.Size(93, 21);
+            this.txtMeterNumber.TabIndex = 31;
+            this.txtMeterNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtMeterSize
+            // 
+            this.txtMeterSize.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtMeterSize.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtMeterSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMeterSize.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeterSize.Location = new System.Drawing.Point(164, 59);
+            this.txtMeterSize.Name = "txtMeterSize";
+            this.txtMeterSize.Size = new System.Drawing.Size(145, 21);
+            this.txtMeterSize.TabIndex = 30;
+            this.txtMeterSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtMeterBrand
+            // 
+            this.txtMeterBrand.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtMeterBrand.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtMeterBrand.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtMeterBrand.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtMeterBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMeterBrand.Location = new System.Drawing.Point(164, 32);
+            this.txtMeterBrand.Name = "txtMeterBrand";
+            this.txtMeterBrand.Size = new System.Drawing.Size(46, 21);
+            this.txtMeterBrand.TabIndex = 29;
+            this.txtMeterBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // nudReadingAfterTest
             // 
             this.nudReadingAfterTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudReadingAfterTest.Location = new System.Drawing.Point(197, 113);
+            this.nudReadingAfterTest.Location = new System.Drawing.Point(164, 113);
             this.nudReadingAfterTest.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
             this.nudReadingAfterTest.Name = "nudReadingAfterTest";
-            this.nudReadingAfterTest.Size = new System.Drawing.Size(112, 21);
+            this.nudReadingAfterTest.Size = new System.Drawing.Size(145, 21);
             this.nudReadingAfterTest.TabIndex = 27;
-            this.nudReadingAfterTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.nudReadingAfterTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudReadingAfterTest.ValueChanged += new System.EventHandler(this.nudReadingAfterTest_ValueChanged);
-            // 
-            // cmbxMeterSize
-            // 
-            this.cmbxMeterSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxMeterSize.FormattingEnabled = true;
-            this.cmbxMeterSize.Items.AddRange(new object[] {
-            "3/8",
-            "1/2",
-            "3/4",
-            "1",
-            "1 1/4",
-            "1 1/2",
-            "3",
-            "2 1/2",
-            "3",
-            "6",
-            "4"});
-            this.cmbxMeterSize.Location = new System.Drawing.Point(197, 58);
-            this.cmbxMeterSize.Name = "cmbxMeterSize";
-            this.cmbxMeterSize.Size = new System.Drawing.Size(112, 23);
-            this.cmbxMeterSize.TabIndex = 26;
             // 
             // nudReadingBeforeTest
             // 
             this.nudReadingBeforeTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudReadingBeforeTest.Location = new System.Drawing.Point(197, 86);
+            this.nudReadingBeforeTest.Location = new System.Drawing.Point(164, 86);
             this.nudReadingBeforeTest.Maximum = new decimal(new int[] {
             99999,
             0,
             0,
             0});
             this.nudReadingBeforeTest.Name = "nudReadingBeforeTest";
-            this.nudReadingBeforeTest.Size = new System.Drawing.Size(112, 21);
+            this.nudReadingBeforeTest.Size = new System.Drawing.Size(145, 21);
             this.nudReadingBeforeTest.TabIndex = 26;
-            this.nudReadingBeforeTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // cmbxMeterBrand
-            // 
-            this.cmbxMeterBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxMeterBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbxMeterBrand.FormattingEnabled = true;
-            this.cmbxMeterBrand.Items.AddRange(new object[] {
-            "Arad",
-            "Janseen",
-            "Asashi",
-            "Evjet",
-            "yt",
-            "Andrae",
-            "Arctic",
-            "Preciflo",
-            "Konyi",
-            "Kim Sung",
-            "Ever",
-            "Kumho",
-            "Kent",
-            "Great V",
-            "Barindo",
-            "Asiam",
-            "E-Jet",
-            "MC-SX",
-            "Aqua-Jet",
-            "CMI",
-            "Herco-Tech"});
-            this.cmbxMeterBrand.Location = new System.Drawing.Point(197, 30);
-            this.cmbxMeterBrand.Name = "cmbxMeterBrand";
-            this.cmbxMeterBrand.Size = new System.Drawing.Size(112, 23);
-            this.cmbxMeterBrand.TabIndex = 8;
+            this.nudReadingBeforeTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtServiceLineDefects
             // 
@@ -732,10 +718,11 @@
             this.txtServiceLineDefects.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtServiceLineDefects.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtServiceLineDefects.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServiceLineDefects.Location = new System.Drawing.Point(197, 166);
+            this.txtServiceLineDefects.Location = new System.Drawing.Point(164, 166);
             this.txtServiceLineDefects.Name = "txtServiceLineDefects";
-            this.txtServiceLineDefects.Size = new System.Drawing.Size(112, 21);
+            this.txtServiceLineDefects.Size = new System.Drawing.Size(145, 21);
             this.txtServiceLineDefects.TabIndex = 5;
+            this.txtServiceLineDefects.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtCalibrationResult
             // 
@@ -744,10 +731,10 @@
             this.txtCalibrationResult.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCalibrationResult.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCalibrationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCalibrationResult.Location = new System.Drawing.Point(197, 140);
+            this.txtCalibrationResult.Location = new System.Drawing.Point(164, 140);
             this.txtCalibrationResult.Name = "txtCalibrationResult";
             this.txtCalibrationResult.ReadOnly = true;
-            this.txtCalibrationResult.Size = new System.Drawing.Size(112, 21);
+            this.txtCalibrationResult.Size = new System.Drawing.Size(145, 21);
             this.txtCalibrationResult.TabIndex = 4;
             this.txtCalibrationResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -755,7 +742,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(18, 168);
+            this.label19.Location = new System.Drawing.Point(9, 168);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(146, 15);
             this.label19.TabIndex = 7;
@@ -765,7 +752,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(18, 142);
+            this.label10.Location = new System.Drawing.Point(9, 142);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 15);
             this.label10.TabIndex = 6;
@@ -775,7 +762,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(18, 114);
+            this.label11.Location = new System.Drawing.Point(9, 114);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(135, 15);
             this.label11.TabIndex = 6;
@@ -785,7 +772,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(18, 87);
+            this.label13.Location = new System.Drawing.Point(9, 87);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(146, 15);
             this.label13.TabIndex = 6;
@@ -795,7 +782,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(18, 61);
+            this.label15.Location = new System.Drawing.Point(9, 61);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(33, 15);
             this.label15.TabIndex = 6;
@@ -805,11 +792,11 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(18, 34);
+            this.label17.Location = new System.Drawing.Point(9, 34);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(95, 15);
+            this.label17.Size = new System.Drawing.Size(125, 15);
             this.label17.TabIndex = 6;
-            this.label17.Text = "METER BRAND";
+            this.label17.Text = "METER BRAND / NO,";
             // 
             // gbImage
             // 
@@ -818,7 +805,7 @@
             this.gbImage.Controls.Add(this.btnAttachedImage);
             this.gbImage.Enabled = false;
             this.gbImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbImage.Location = new System.Drawing.Point(448, 259);
+            this.gbImage.Location = new System.Drawing.Point(448, 213);
             this.gbImage.Name = "gbImage";
             this.gbImage.Size = new System.Drawing.Size(339, 113);
             this.gbImage.TabIndex = 23;
@@ -859,10 +846,10 @@
             this.groupBox5.Controls.Add(this.panel2);
             this.groupBox5.Controls.Add(this.panel1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(793, 56);
+            this.groupBox5.Location = new System.Drawing.Point(793, 10);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(696, 666);
+            this.groupBox5.Size = new System.Drawing.Size(696, 703);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "7. JOB ORDER INVESTIGATION RECORDS";
@@ -873,7 +860,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(676, 592);
+            this.panel2.Size = new System.Drawing.Size(676, 629);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -883,10 +870,10 @@
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(676, 592);
+            this.dgInvestigations.Size = new System.Drawing.Size(676, 629);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
-            this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
+            this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.SelectionChanged += new System.EventHandler(this.dgInvestigations_SelectionChanged);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
@@ -1004,9 +991,9 @@
             this.gbApproval.Controls.Add(this.radApproved);
             this.gbApproval.Enabled = false;
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbApproval.Location = new System.Drawing.Point(13, 651);
+            this.gbApproval.Location = new System.Drawing.Point(13, 605);
             this.gbApproval.Name = "gbApproval";
-            this.gbApproval.Size = new System.Drawing.Size(774, 71);
+            this.gbApproval.Size = new System.Drawing.Size(774, 108);
             this.gbApproval.TabIndex = 26;
             this.gbApproval.TabStop = false;
             this.gbApproval.Text = "7. APPROVAL ";
@@ -1019,7 +1006,7 @@
             this.txtApprovalMessage.Location = new System.Drawing.Point(23, 26);
             this.txtApprovalMessage.Multiline = true;
             this.txtApprovalMessage.Name = "txtApprovalMessage";
-            this.txtApprovalMessage.Size = new System.Drawing.Size(547, 26);
+            this.txtApprovalMessage.Size = new System.Drawing.Size(547, 72);
             this.txtApprovalMessage.TabIndex = 2;
             // 
             // radDisapproved
@@ -1052,7 +1039,7 @@
             this.gbComputation.Controls.Add(this.btnCompute);
             this.gbComputation.Enabled = false;
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComputation.Location = new System.Drawing.Point(448, 574);
+            this.gbComputation.Location = new System.Drawing.Point(448, 528);
             this.gbComputation.Name = "gbComputation";
             this.gbComputation.Size = new System.Drawing.Size(339, 71);
             this.gbComputation.TabIndex = 28;
@@ -1086,17 +1073,6 @@
             this.btnCompute.UseVisualStyleBackColor = false;
             this.btnCompute.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.groupBox1.Location = new System.Drawing.Point(13, 5);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1479, 45);
-            this.groupBox1.TabIndex = 29;
-            this.groupBox1.TabStop = false;
-            // 
             // errorProvider1
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -1113,7 +1089,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.Controls.Add(this.gbComments);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbComputation);
             this.Controls.Add(this.gbApproval);
             this.Controls.Add(this.gbImage);
@@ -1199,7 +1174,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label8;
-        internal System.Windows.Forms.ComboBox cmbxMeterBrand;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         internal System.Windows.Forms.GroupBox gbImage;
         internal System.Windows.Forms.TextBox txtJONumber;
@@ -1219,10 +1193,8 @@
         private System.Windows.Forms.Label label14;
         internal System.Windows.Forms.TextBox txtSearch;
         internal System.Windows.Forms.GroupBox gbComputation;
-        internal System.Windows.Forms.ComboBox cmbxMeterSize;
         internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
         internal System.Windows.Forms.NumericUpDown nudReadingAfterTest;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox r;
@@ -1235,5 +1207,8 @@
         internal System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.Label lblAdjustedAmount;
         internal System.Windows.Forms.TextBox txtComplaint;
+        internal System.Windows.Forms.TextBox txtMeterSize;
+        internal System.Windows.Forms.TextBox txtMeterBrand;
+        internal System.Windows.Forms.TextBox txtMeterNumber;
     }
 }

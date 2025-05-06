@@ -37,6 +37,9 @@ namespace JOMonitoringApp.Views.Investigation
         private string _jobOrderNumber;
         internal bool hasAdjustment;
 
+        internal string meterBrandAndNumber;
+        internal string meterSize;
+
         public ucInvestigationForm()
         {
             InitializeComponent();
@@ -68,6 +71,23 @@ namespace JOMonitoringApp.Views.Investigation
            gbApproval.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_APPROVAL");
         }
 
+        internal void UpdateJobOrderStatus()
+        {
+            int jobOrderId = _jobOrderId;
+            int jobOrderStatus = 1;
+            int investigationStatusID = InvestigationStatusLogic();
+
+            if (investigationStatusID == 4)
+                jobOrderStatus = 3;
+            if (investigationStatusID == 3)
+                jobOrderStatus = 4;
+            if (investigationStatusID == 1 || investigationStatusID == 2)
+                jobOrderStatus = 2;
+
+            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
+        }
+
+
         internal bool SaveData()
         {
             if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation data?"))
@@ -79,6 +99,7 @@ namespace JOMonitoringApp.Views.Investigation
                  
                     if (investigationResult)
                     {
+                        UpdateJobOrderStatus();
                         UploadImage();
                         ResetForm();
                         scope.Complete();
@@ -95,38 +116,32 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal int InvestigationStatusLogic()
         {
-            bool noInvestigatorComments = string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
-            bool noRecommendation = string.IsNullOrEmpty(txtRecommendations.Text.Trim());
-            bool noApprovalMessage = string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
+            bool hasComment = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
+            bool hasRecommendation = !string.IsNullOrEmpty(txtRecommendations.Text.Trim());
+            bool hasApproval = !string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
             bool isApproved = radApproved.Checked;
 
-
-            if (noInvestigatorComments && noRecommendation)
+            if (hasComment && !hasRecommendation && !hasApproval)
             {
-                return 0;
+                return 1;
             }
 
-            if (noInvestigatorComments == false && noRecommendation)
-            {
-                return 1; 
-            }
-
-            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage)
+            if (hasComment && hasRecommendation && !hasApproval  && !isApproved)
             {
                 return 2;
             }
-
-            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radApproved.Checked)
+        
+            if (hasComment && hasRecommendation && hasApproval && isApproved)
             {
                 return 3;
             }
 
-            if (noInvestigatorComments == false && noRecommendation == false && noApprovalMessage == false && radDisapproved.Checked == false)
+            if (hasComment && hasRecommendation && hasApproval && isApproved)
             {
                 return 4;
             }
 
-            return 0;
+            return 1;
         }
 
         private InvestigationModel InvestigationModel()
@@ -148,8 +163,9 @@ namespace JOMonitoringApp.Views.Investigation
                 secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
                 IsApproved = InvestigationStatusLogic(),
                 AlternativeSource = txtAlternativeSource.Text,
-                MeterBrand = cmbxMeterBrand.Text,
-                MeterSize = cmbxMeterSize.Text,
+                MeterBrand = txtMeterBrand.Text,
+                MeterSize = txtMeterSize.Text,
+                MeterNumber = txtMeterNumber.Text,
                 ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
                 ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
                 CalibrationResult = txtCalibrationResult.Text,
@@ -195,8 +211,8 @@ namespace JOMonitoringApp.Views.Investigation
             txtComplaint.Clear();
             txtInvestigatorComments.Clear();
             txtRecommendations.Clear();
-            cmbxMeterBrand.SelectedIndex = -1;
-            cmbxMeterSize.SelectedIndex = -1;
+            txtMeterBrand.Clear();
+            txtMeterSize.Clear();
             nudReadingAfterTest.Value = 0 ;
             txtJONumber.Clear();
             nudReadingBeforeTest.Value = 0;
@@ -216,7 +232,6 @@ namespace JOMonitoringApp.Views.Investigation
             pictureBox1.Image = Properties.Resources.icons8_image_96;
             pictureBox2.Image = Properties.Resources.icons8_image_96;
             cmbxStatus.SelectedValue = 0;
-
             lblAdjustedAmount.Text = "Result";
             btnCompute.Text = "Make Computations";
         }
@@ -341,8 +356,13 @@ namespace JOMonitoringApp.Views.Investigation
             selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
 
-            string meterBrand = dictInvestigation["meter_brand"];
-            string meterSize = dictInvestigation["meter_size"];
+            if (dictInvestigation.Count == 0)
+            {
+                ResetForm();
+            }
+
+
+
             decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
             decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 :  Convert.ToDecimal(dictInvestigation["reading_after_test"]);
             string calibrationResult = dictInvestigation["calibration_result"];
@@ -363,6 +383,7 @@ namespace JOMonitoringApp.Views.Investigation
             string alternativeSource = dictInvestigation["alternative_source"];
             string approvalMessage = dictInvestigation["approval_message"];
             string natureOfComplaint = dictInvestigation["nature_of_complaint"];
+
 
             string adjustmentParticular = dictInvestigation["adjustment_particular"];
 
@@ -395,8 +416,24 @@ namespace JOMonitoringApp.Views.Investigation
             txtComplaint.Text = natureOfComplaint;
             txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
             txtRecommendations.Text = dictInvestigation["recommendations"];
-            cmbxMeterBrand.Text = meterBrand;
-            cmbxMeterSize.Text = meterSize;
+
+
+            string meterBrand = string.Empty;
+            string meterSize = string.Empty;
+            string meterNumber = string.Empty;  
+
+            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
+            if (meterDict.Count != 0)
+            {
+               meterBrand = meterDict["MeterBrand"];
+               meterSize = meterDict["MeterSize"];
+               meterNumber = meterDict["MeterNumber"];
+            }
+
+            txtMeterBrand.Text = meterBrand;
+            txtMeterNumber.Text = meterNumber;
+            txtMeterSize.Text = meterSize;
+
             nudReadingBeforeTest.Value = readingBeforeTest;
             nudReadingAfterTest.Value = readingAfterTest;
             txtCalibrationResult.Text = calibrationResult;
@@ -549,11 +586,6 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

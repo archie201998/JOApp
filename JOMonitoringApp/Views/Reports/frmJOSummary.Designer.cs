@@ -309,8 +309,6 @@
             this.reportViewer1.ShowBackButton = false;
             this.reportViewer1.ShowCredentialPrompts = false;
             this.reportViewer1.ShowDocumentMapButton = false;
-            this.reportViewer1.ShowFindControls = false;
-            this.reportViewer1.ShowPageNavigationControls = false;
             this.reportViewer1.Size = new System.Drawing.Size(1709, 596);
             this.reportViewer1.TabIndex = 14;
             // 

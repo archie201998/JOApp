@@ -55,19 +55,14 @@ namespace JOMonitoringApp
                 new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
                 new object[] { "@nature_of_complaint", DbType.String, entity.NatureOfComplaint },
-                new object[] { "@date_of_investigation", DbType.DateTime, entity.DateOfInvestigation },
-                new object[] { "@approval_message", DbType.String, entity.ApprovalMessage },
-                new object[] { "@investigator_comments", DbType.String, entity.InvestigatorComments },
-                new object[] { "@recommendations", DbType.String, entity.Recommendations },
-                new object[] { "@image_path", DbType.String, entity.imagePath },
-                new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
+                new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
+                new object[] { "@meter_size", DbType.String, entity.MeterSize },
+                new object[] { "@meter_number", DbType.String, entity.MeterNumber },
                 new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
-                new object[] { "@adjustment_particular", DbType.String, entity.AdjustmentParticular },
-                new object[] { "@adjusted_amount", DbType.String, entity.AdjustedAmount },
                 new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, date_of_investigation, approval_message, investigator_comments, recommendations, image_path, secondary_image_path, is_approved, created_by, adjustment_particular, adjustment_amount) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @date_of_investigation, @approval_message, @investigator_comments, @recommendations, @image_path, @secondary_image_path, @is_approved, @created_by, @adjustment_particular, @adjustment_amount);";
+            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
@@ -78,7 +73,6 @@ namespace JOMonitoringApp
                 new object[] { "@id", DbType.Int32, entity.Id },
                 new object[] { "@job_orders_id", DbType.Int32, entity.JobOrderId },
                 new object[] { "@job_order_no", DbType.String, entity.JobOrderNo },
-                new object[] { "@customers_id", DbType.Int32, entity.CustomerId },
                 new object[] { "@customer_name", DbType.String, entity.CustomerName },
                 new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
@@ -103,6 +97,7 @@ namespace JOMonitoringApp
                 new object[] { "@alternative_source", DbType.String, entity.AlternativeSource },
                 new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
                 new object[] { "@meter_size", DbType.String, entity.MeterSize },
+                new object[] { "@meter_number", DbType.String, entity.MeterNumber },
                 new object[] { "@reading_before_test", DbType.String, entity.ReadingBeforeTest },
                 new object[] { "@reading_after_test", DbType.String, entity.ReadingAfterTest },
                 new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
@@ -114,7 +109,6 @@ namespace JOMonitoringApp
             string query = $@"UPDATE {tableName} 
                             SET job_orders_id = @job_orders_id, 
                                 job_order_no = @job_order_no, 
-                                customers_id = @customers_id, 
                                 customer_name = @customer_name, 
                                 customer_address = @customer_address, 
                                 account_number = @account_number, 
@@ -139,6 +133,7 @@ namespace JOMonitoringApp
                                 alternative_source = @alternative_source, 
                                 meter_brand = @meter_brand, 
                                 meter_size = @meter_size, 
+                                meter_number = @meter_number, 
                                 reading_before_test = @reading_before_test, 
                                 reading_after_test = @reading_after_test, 
                                 calibration_result = @calibration_result, 
@@ -287,7 +282,6 @@ namespace JOMonitoringApp
                 new object[] { "@under_registration", DbType.String, entity.UnderRegistration },
                 new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter },
 
-                //erroneous reading.
                 new object[] { "@previous_reading", DbType.String, entity.PreviousReading },
                 new object[] { "@present_reading", DbType.String, entity.PresentReading },
                 new object[] { "@actual_reading", DbType.String, entity.ActualReading },

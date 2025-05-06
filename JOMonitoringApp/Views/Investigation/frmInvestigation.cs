@@ -48,22 +48,7 @@ namespace JOMonitoringApp.Views.Investigation
             btnSave.ForeColor = Color.White;
         }
 
-        private void UpdateJobOrderStatus()
-        {
-            int jobOrderId = ucInvestigationForm._jobOrderId;
-            int jobOrderStatus = 1;
-            int investigationStatusID = ucInvestigationForm.InvestigationStatusLogic();
-
-            if (investigationStatusID == 4)
-                jobOrderStatus = 3; 
-            if (investigationStatusID == 3)
-                jobOrderStatus = 4;
-            if (investigationStatusID == 1 || investigationStatusID == 2)
-                jobOrderStatus = 2;
-
-            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
-        }
-
+    
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveData();
@@ -71,25 +56,23 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void SaveData()
         {
-            if (ucInvestigationForm.SaveData())
-            {
-                UpdateJobOrderStatus();
-                Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-
-                btnSave.Text = "Save [Ctrl + S]";
-                btnSave.BackColor = Color.DodgerBlue;
-                btnSave.ForeColor = Color.White;
-
-                ucInvestigationForm.OnLoad();
-                ucInvestigationForm.ResetForm();
-                ucInvestigationForm.EnableControls(false);
-                ucInvestigationForm.isUpdate = false;
-
-            }
-
             try
             {
-                
+                if (ucInvestigationForm.SaveData())
+                {
+                    Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
+
+                    btnSave.Text = "Save [Ctrl + S]";
+                    btnSave.BackColor = Color.DodgerBlue;
+                    btnSave.ForeColor = Color.White;
+
+                    ucInvestigationForm.OnLoad();
+                    ucInvestigationForm.ResetForm();
+                    ucInvestigationForm.EnableControls(false);
+                    ucInvestigationForm.isUpdate = false;
+
+                }
+
             }
             catch (Exception ex)
             {

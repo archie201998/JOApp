@@ -84,7 +84,7 @@ namespace JOMonitoringApp
                 new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
                 new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
                 new object[] { "@approval_message", DbType.String, entity.ApprovalMessage },
-                new object[] { "@created_by", DbType.Int32, entity.CreatedBy },
+                new object[] { "@updated_by", DbType.Int32, entity.UpdatedBy },
                 new object[] { "@immediate_members_of_fam", DbType.Int32, entity.ImmediateMembersOfFam },
                 new object[] { "@house_helper", DbType.Int32, entity.HouseHelper },
                 new object[] { "@relatives", DbType.Int32, entity.Relatives },
@@ -92,6 +92,7 @@ namespace JOMonitoringApp
                 new object[] { "@no_of_hours_served", DbType.Int32, entity.NoOfHoursServed },
                 new object[] { "@no_service_outlets", DbType.Int32, entity.NoServiceOutlets },
                 new object[] { "@hh_purpose", DbType.Int32, entity.HhPurpose },
+                new object[] { "@government", DbType.Int32, entity.Government },
                 new object[] { "@promote_trade_business", DbType.Int32, entity.PromoteTradeBusiness },
                 new object[] { "@sell_to_neighbours", DbType.Int32, entity.SellToNeighbours },
                 new object[] { "@alternative_source", DbType.String, entity.AlternativeSource },
@@ -120,7 +121,7 @@ namespace JOMonitoringApp
                                 secondary_image_path = @secondary_image_path, 
                                 is_approved = @is_approved, 
                                 approval_message = @approval_message, 
-                                created_by = @created_by, 
+                                updated_by = @updated_by, 
                                 immediate_members_of_fam = @immediate_members_of_fam, 
                                 house_helper = @house_helper, 
                                 relatives = @relatives, 
@@ -128,6 +129,7 @@ namespace JOMonitoringApp
                                 no_of_hours_served = @no_of_hours_served, 
                                 no_service_outlets = @no_service_outlets, 
                                 hh_purpose = @hh_purpose, 
+                                government = @government, 
                                 promote_trade_business = @promote_trade_business, 
                                 sell_to_neighbours = @sell_to_neighbours, 
                                 alternative_source = @alternative_source, 
@@ -240,7 +242,7 @@ namespace JOMonitoringApp
                 }
             }
 
-            string query = $"SELECT id, job_orders_id, CASE is_approved WHEN 0 THEN 'FOR INVESTIGATION' WHEN 1 THEN 'FOR RECOMMENDATION' WHEN 2 THEN 'FOR APPROVAL' WHEN 3 THEN 'APPROVED' ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC;";
+            string query = $"SELECT id, job_orders_id, CASE is_approved WHEN 0 THEN 'FOR INVESTIGATION' WHEN 1 THEN 'FOR RECOMMENDATION' WHEN 2 THEN 'FOR APPROVAL' WHEN 3 THEN 'APPROVED' WHEN 5 THEN 'FOR INVESTIGATION' ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC;";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

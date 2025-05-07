@@ -128,11 +128,18 @@ namespace JOMonitoringApp.Views.Investigation
                 return 1;
             }
 
+            if (hasComment && hasRecommendation && !hasApproval && !isApproved && cbxRecommendationDisapproved.Checked)
+            {
+                return 0;
+            }
+
             if (hasComment && hasRecommendation && !hasApproval  && !isApproved)
             {
                 return 2;
             }
-        
+
+          
+
             if (hasComment && hasRecommendation && hasApproval && isApproved)
             {
                 return 3;
@@ -152,19 +159,19 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 Id = selectedInvistigationID,
                 JobOrderId = _jobOrderId,
-                JobOrderNo = txtJONumber.Text,
-                CustomerName = txtAccountName.Text,
-                CustomerAddress = txtAddress.Text,
-                CustomerAccountNumber = txtAccountNumber.Text,
-                NatureOfComplaint = txtComplaint.Text,
-                InvestigatorComments = txtInvestigatorComments.Text,
+                JobOrderNo = txtJONumber.Text.Trim(),
+                CustomerName = txtAccountName.Text.Trim(),
+                CustomerAddress = txtAddress.Text.Trim(),
+                CustomerAccountNumber = txtAccountNumber.Text.Trim(),
+                NatureOfComplaint = txtComplaint.Text.Trim(),
+                InvestigatorComments = txtInvestigatorComments.Text.Trim(),
                 DateOfInvestigation = dtpDate.Value,
-                ApprovalMessage = txtApprovalMessage.Text,
-                Recommendations = txtRecommendations.Text,
+                ApprovalMessage = txtApprovalMessage.Text.Trim(),
+                Recommendations = txtRecommendations.Text.Trim(),
                 imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
                 secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
                 IsApproved = InvestigationStatusLogic(),
-                AlternativeSource = txtAlternativeSource.Text,
+                AlternativeSource = txtAlternativeSource.Text.Trim(),
                 MeterBrand = txtMeterBrand.Text,
                 MeterSize = txtMeterSize.Text,
                 MeterNumber = txtMeterNumber.Text,
@@ -181,10 +188,10 @@ namespace JOMonitoringApp.Views.Investigation
                 NoOfHoursServed = Convert.ToByte(nudNoOfHoursServed.Value),
                 NoServiceOutlets = Convert.ToByte(nudNoServiceOfOutlets.Value),
                 HhPurpose = Convert.ToBoolean(cbHHPurpose.Checked),
+                Government = Convert.ToBoolean(cbGovernment.Checked),
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
-                CreatedBy = Helper.UserId,
-
+                UpdatedBy = Helper.UserId,
             };
 
             return model;
@@ -370,6 +377,7 @@ namespace JOMonitoringApp.Views.Investigation
             string alternativeSource = dictInvestigation["alternative_source"];
             string approvalMessage = dictInvestigation["approval_message"];
             string natureOfComplaint = dictInvestigation["nature_of_complaint"];
+            
 
 
             string adjustmentParticular = dictInvestigation["adjustment_particular"];
@@ -432,7 +440,7 @@ namespace JOMonitoringApp.Views.Investigation
             txtApprovalMessage.Text = approvalMessage;
             radApproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
             radDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "4";
-
+            cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
             
 
 
@@ -584,6 +592,14 @@ namespace JOMonitoringApp.Views.Investigation
         private void txtApprovalMessage_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                GetInvestigationRecords();
+            }
         }
     }
 }

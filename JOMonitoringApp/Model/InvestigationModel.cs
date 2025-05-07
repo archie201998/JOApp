@@ -49,6 +49,7 @@ namespace JOMonitoringApp.Model
         public byte NoOfHoursServed { get; set; }
         public byte NoServiceOutlets { get; set; }
         public bool HhPurpose { get; set; }
+        public bool Government { get; set; }
         public bool PromoteTradeBusiness { get; set; }
         public bool SellToNeighbours { get; set; }
         public string AlternativeSource { get; set; }

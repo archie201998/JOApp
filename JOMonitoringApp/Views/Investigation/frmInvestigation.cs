@@ -104,12 +104,11 @@ namespace JOMonitoringApp.Views.Investigation
                 SaveData();
             }
 
-            if (e.Control && e.KeyCode == Keys.Enter)
-            {
-                ucInvestigationForm.GetInvestigationRecords();
-            }
         }
 
+        private void ucInvestigationForm1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

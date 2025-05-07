@@ -169,11 +169,11 @@ namespace JOMonitoringApp.Views.MainForm
                     newRow["mris"] = MRISNumber;
                     newRow["mrs"] = MRSNumber;
                     newRow["war"] = WARNumber;
-                    newRow["remarks"] = remarks;
                     newRow["date"] = date;
                     newRow["prepared_by"] = preparedBy;
                     newRow["materials_issued_by"] = materialsIssuedBy;
                     newRow["status"] = status.ToUpper();
+                    newRow["remarks"] = remarks;
                     progressCount++;
                     Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
                     dataTable.Rows.Add(newRow);
@@ -344,10 +344,10 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("mris", typeof(string)),
                 new DataColumn("mrs", typeof(string)),
                 new DataColumn("war", typeof(string)),
-                new DataColumn("remarks", typeof(string)),
                 new DataColumn("date", typeof(DateTime)),
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
+                new DataColumn("remarks", typeof(string)),
 
             };
         }

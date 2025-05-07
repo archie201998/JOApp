@@ -225,6 +225,11 @@ namespace JOMonitoringApp.Views.Investigation
         {
             Compute();
 
+            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
+            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
+            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
+            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)

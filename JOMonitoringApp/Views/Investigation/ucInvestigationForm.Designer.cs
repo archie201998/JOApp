@@ -43,6 +43,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.gbStatisticalFindings = new System.Windows.Forms.GroupBox();
+            this.cbGovernment = new System.Windows.Forms.CheckBox();
             this.txtAlternativeSource = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.cbSellToNeighbours = new System.Windows.Forms.CheckBox();
@@ -62,6 +63,7 @@
             this.nudImmediateFamily = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.gbComments = new System.Windows.Forms.GroupBox();
+            this.cbxRecommendationDisapproved = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtRecommendations = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -103,8 +105,6 @@
             this.lblAdjustedAmount = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.gbAccountDetails.SuspendLayout();
             this.gbStatisticalFindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -177,7 +177,6 @@
             this.txtComplaint.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtComplaint.BackColor = System.Drawing.Color.White;
             this.txtComplaint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtComplaint.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtComplaint.Location = new System.Drawing.Point(199, 186);
             this.txtComplaint.Multiline = true;
@@ -193,7 +192,6 @@
             this.txtJONumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtJONumber.BackColor = System.Drawing.Color.White;
             this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtJONumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtJONumber.Location = new System.Drawing.Point(199, 153);
             this.txtJONumber.Multiline = true;
@@ -208,7 +206,6 @@
             this.txtAccountNumber.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountNumber.BackColor = System.Drawing.Color.White;
             this.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAccountNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountNumber.Location = new System.Drawing.Point(199, 23);
             this.txtAccountNumber.Multiline = true;
@@ -223,7 +220,6 @@
             this.txtAccountName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAccountName.BackColor = System.Drawing.Color.White;
             this.txtAccountName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAccountName.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountName.Location = new System.Drawing.Point(199, 56);
             this.txtAccountName.Multiline = true;
@@ -238,7 +234,6 @@
             this.txtAddress.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtAddress.BackColor = System.Drawing.Color.White;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAddress.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.Location = new System.Drawing.Point(199, 97);
             this.txtAddress.Multiline = true;
@@ -299,7 +294,7 @@
             // 
             // gbStatisticalFindings
             // 
-            this.gbStatisticalFindings.Controls.Add(this.checkBox1);
+            this.gbStatisticalFindings.Controls.Add(this.cbGovernment);
             this.gbStatisticalFindings.Controls.Add(this.txtAlternativeSource);
             this.gbStatisticalFindings.Controls.Add(this.label9);
             this.gbStatisticalFindings.Controls.Add(this.cbSellToNeighbours);
@@ -325,6 +320,17 @@
             this.gbStatisticalFindings.TabIndex = 2;
             this.gbStatisticalFindings.TabStop = false;
             this.gbStatisticalFindings.Text = " STATISTICAL FINDING";
+            // 
+            // cbGovernment
+            // 
+            this.cbGovernment.AutoSize = true;
+            this.cbGovernment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbGovernment.Location = new System.Drawing.Point(199, 288);
+            this.cbGovernment.Name = "cbGovernment";
+            this.cbGovernment.Size = new System.Drawing.Size(103, 17);
+            this.cbGovernment.TabIndex = 15;
+            this.cbGovernment.Text = "GOVERNMENT";
+            this.cbGovernment.UseVisualStyleBackColor = true;
             // 
             // txtAlternativeSource
             // 
@@ -544,7 +550,7 @@
             // 
             // gbComments
             // 
-            this.gbComments.Controls.Add(this.checkBox2);
+            this.gbComments.Controls.Add(this.cbxRecommendationDisapproved);
             this.gbComments.Controls.Add(this.label21);
             this.gbComments.Controls.Add(this.txtRecommendations);
             this.gbComments.Controls.Add(this.label20);
@@ -557,6 +563,17 @@
             this.gbComments.TabStop = false;
             this.gbComments.Text = "COMMENTS AND RECOMMENDATIONS";
             this.gbComments.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // cbxRecommendationDisapproved
+            // 
+            this.cbxRecommendationDisapproved.AutoSize = true;
+            this.cbxRecommendationDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cbxRecommendationDisapproved.Location = new System.Drawing.Point(238, 543);
+            this.cbxRecommendationDisapproved.Name = "cbxRecommendationDisapproved";
+            this.cbxRecommendationDisapproved.Size = new System.Drawing.Size(92, 19);
+            this.cbxRecommendationDisapproved.TabIndex = 23;
+            this.cbxRecommendationDisapproved.Text = "Disapproved";
+            this.cbxRecommendationDisapproved.UseVisualStyleBackColor = true;
             // 
             // label21
             // 
@@ -981,6 +998,7 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(175, 21);
             this.txtSearch.TabIndex = 2;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // gbApproval
             // 
@@ -1074,28 +1092,6 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "You may search for";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(199, 288);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(103, 17);
-            this.checkBox1.TabIndex = 15;
-            this.checkBox1.Text = "GOVERNMENT";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.checkBox2.Location = new System.Drawing.Point(238, 543);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(92, 19);
-            this.checkBox2.TabIndex = 23;
-            this.checkBox2.Text = "Disapproved";
-            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // ucInvestigationForm
             // 
@@ -1220,8 +1216,8 @@
         internal System.Windows.Forms.TextBox txtMeterBrand;
         internal System.Windows.Forms.TextBox txtMeterNumber;
         internal System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox cbGovernment;
+        private System.Windows.Forms.CheckBox cbxRecommendationDisapproved;
         protected System.Windows.Forms.GroupBox gbAccountDetails;
     }
 }

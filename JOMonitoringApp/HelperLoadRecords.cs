@@ -119,7 +119,6 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
             dataGridView.Columns["address"].Visible = false;
-            dataGridView.Columns["remarks"].Visible = false;
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["status"].HeaderText = "STATUS";
@@ -187,6 +186,11 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["materials_issued_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
+
+            dataGridView.Columns["remarks"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["remarks"].HeaderText = "REMARKS";
+            dataGridView.Columns["remarks"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["remarks"].MinimumWidth = 120;
         }
 
         public static void AccountsDataGridView(DataGridView dataGridView, DataTable dataTable)
@@ -323,15 +327,18 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["job_orders_id"].Visible = false;
             dgInvestigations.Columns["approval_status"].HeaderText = "INV. STATUS";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
-            dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. Number";
+            dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. NO.";
             dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
-            dgInvestigations.Columns["customer_name"].HeaderText = "NAME";
             dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER";
             dgInvestigations.Columns["customer_address"].HeaderText = "ADDRESS";
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
-            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgInvestigations.Columns["created_at"].HeaderText = "DATED COMPLAINED";
+
+
+            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             foreach (DataGridViewColumn column in dgInvestigations.Columns)
             {

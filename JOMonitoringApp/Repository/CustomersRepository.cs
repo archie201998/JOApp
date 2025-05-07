@@ -10,6 +10,7 @@ internal class CustomersRepository : ICustomersRepository
     private GenericCommands sqlGenericCommands;
     private readonly string tableName = "tbl_CustomerMaster";
 
+
     public CustomersRepository(GenericCommands sqlGenericCommands, GenericCommands mySqlGenericCommands)
     {
         this.mySqlGenericCommands = mySqlGenericCommands;
@@ -161,6 +162,30 @@ internal class CustomersRepository : ICustomersRepository
 
         var dataTable = new DataTable();
         return sqlGenericCommands.MainDB_Fill(query, dataTable);
+    }
+
+    public Dictionary<string, string> GetCustomerAccountDetails(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+           new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT Category, MeterSize, AccountName FROM vue_CustomerMaster WHERE AccountNo = @account_number";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+        }
+
+        return result;
     }
 
     public Dictionary<string, string> GetCustomerMeterDetails(string accountNumber)

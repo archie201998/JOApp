@@ -102,8 +102,9 @@
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.lblAdjustedAmount = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.gbAccountDetails.SuspendLayout();
             this.gbStatisticalFindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -126,7 +127,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.gbApproval.SuspendLayout();
             this.gbComputation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -143,14 +143,13 @@
             this.gbAccountDetails.Controls.Add(this.label2);
             this.gbAccountDetails.Controls.Add(this.label1);
             this.gbAccountDetails.Controls.Add(this.label7);
-            this.gbAccountDetails.Enabled = false;
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(13, 10);
             this.gbAccountDetails.Name = "gbAccountDetails";
             this.gbAccountDetails.Size = new System.Drawing.Size(429, 292);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
-            this.gbAccountDetails.Text = "1. INVESTIGATION FORM";
+            this.gbAccountDetails.Text = "INVESTIGATION FORM";
             // 
             // dtpDate
             // 
@@ -300,6 +299,7 @@
             // 
             // gbStatisticalFindings
             // 
+            this.gbStatisticalFindings.Controls.Add(this.checkBox1);
             this.gbStatisticalFindings.Controls.Add(this.txtAlternativeSource);
             this.gbStatisticalFindings.Controls.Add(this.label9);
             this.gbStatisticalFindings.Controls.Add(this.cbSellToNeighbours);
@@ -318,14 +318,13 @@
             this.gbStatisticalFindings.Controls.Add(this.label4);
             this.gbStatisticalFindings.Controls.Add(this.nudImmediateFamily);
             this.gbStatisticalFindings.Controls.Add(this.label3);
-            this.gbStatisticalFindings.Enabled = false;
             this.gbStatisticalFindings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 308);
             this.gbStatisticalFindings.Name = "gbStatisticalFindings";
-            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 291);
+            this.gbStatisticalFindings.Size = new System.Drawing.Size(429, 319);
             this.gbStatisticalFindings.TabIndex = 2;
             this.gbStatisticalFindings.TabStop = false;
-            this.gbStatisticalFindings.Text = "2. STATISTICAL FINDING";
+            this.gbStatisticalFindings.Text = " STATISTICAL FINDING";
             // 
             // txtAlternativeSource
             // 
@@ -545,25 +544,25 @@
             // 
             // gbComments
             // 
+            this.gbComments.Controls.Add(this.checkBox2);
             this.gbComments.Controls.Add(this.label21);
             this.gbComments.Controls.Add(this.txtRecommendations);
             this.gbComments.Controls.Add(this.label20);
             this.gbComments.Controls.Add(this.txtInvestigatorComments);
-            this.gbComments.Enabled = false;
             this.gbComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbComments.Location = new System.Drawing.Point(448, 332);
             this.gbComments.Name = "gbComments";
-            this.gbComments.Size = new System.Drawing.Size(339, 191);
+            this.gbComments.Size = new System.Drawing.Size(339, 566);
             this.gbComments.TabIndex = 4;
             this.gbComments.TabStop = false;
-            this.gbComments.Text = "5.  COMMENTS AND RECOMMENDATIONS";
+            this.gbComments.Text = "COMMENTS AND RECOMMENDATIONS";
             this.gbComments.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(18, 114);
+            this.label21.Location = new System.Drawing.Point(9, 281);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(135, 15);
             this.label21.TabIndex = 22;
@@ -574,17 +573,17 @@
             this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecommendations.Location = new System.Drawing.Point(21, 132);
+            this.txtRecommendations.Location = new System.Drawing.Point(10, 301);
             this.txtRecommendations.Multiline = true;
             this.txtRecommendations.Name = "txtRecommendations";
-            this.txtRecommendations.Size = new System.Drawing.Size(288, 52);
+            this.txtRecommendations.Size = new System.Drawing.Size(321, 236);
             this.txtRecommendations.TabIndex = 1;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(18, 33);
+            this.label20.Location = new System.Drawing.Point(12, 31);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(167, 15);
             this.label20.TabIndex = 16;
@@ -592,16 +591,17 @@
             // 
             // txtInvestigatorComments
             // 
+            this.txtInvestigatorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvestigatorComments.Location = new System.Drawing.Point(21, 51);
+            this.txtInvestigatorComments.Location = new System.Drawing.Point(12, 56);
             this.txtInvestigatorComments.Multiline = true;
             this.txtInvestigatorComments.Name = "txtInvestigatorComments";
-            this.txtInvestigatorComments.Size = new System.Drawing.Size(288, 54);
+            this.txtInvestigatorComments.Size = new System.Drawing.Size(318, 222);
             this.txtInvestigatorComments.TabIndex = 0;
-            this.txtInvestigatorComments.Validating += new System.ComponentModel.CancelEventHandler(this.txtInvestigatorComments_Validating);
-            this.txtInvestigatorComments.Validated += new System.EventHandler(this.txtInvestigatorComments_Validated);
             // 
             // btnAttachedImage
             // 
@@ -634,14 +634,13 @@
             this.gbConditionOfService.Controls.Add(this.label13);
             this.gbConditionOfService.Controls.Add(this.label15);
             this.gbConditionOfService.Controls.Add(this.label17);
-            this.gbConditionOfService.Enabled = false;
             this.gbConditionOfService.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbConditionOfService.Location = new System.Drawing.Point(448, 12);
             this.gbConditionOfService.Name = "gbConditionOfService";
             this.gbConditionOfService.Size = new System.Drawing.Size(339, 197);
             this.gbConditionOfService.TabIndex = 0;
             this.gbConditionOfService.TabStop = false;
-            this.gbConditionOfService.Text = "3. CONDITION OF SERVICE FACILITIES";
+            this.gbConditionOfService.Text = "CONDITION OF SERVICE FACILITIES";
             // 
             // txtMeterNumber
             // 
@@ -803,14 +802,13 @@
             this.gbImage.Controls.Add(this.pictureBox2);
             this.gbImage.Controls.Add(this.pictureBox1);
             this.gbImage.Controls.Add(this.btnAttachedImage);
-            this.gbImage.Enabled = false;
             this.gbImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbImage.Location = new System.Drawing.Point(448, 213);
             this.gbImage.Name = "gbImage";
             this.gbImage.Size = new System.Drawing.Size(339, 113);
             this.gbImage.TabIndex = 23;
             this.gbImage.TabStop = false;
-            this.gbImage.Text = "4. IMAGE ATTACHMENTS";
+            this.gbImage.Text = "IMAGE ATTACHMENTS";
             // 
             // pictureBox2
             // 
@@ -849,7 +847,7 @@
             this.groupBox5.Location = new System.Drawing.Point(793, 10);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(696, 703);
+            this.groupBox5.Size = new System.Drawing.Size(696, 997);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "7. JOB ORDER INVESTIGATION RECORDS";
@@ -860,7 +858,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 64);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(676, 629);
+            this.panel2.Size = new System.Drawing.Size(676, 923);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -870,7 +868,7 @@
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(676, 629);
+            this.dgInvestigations.Size = new System.Drawing.Size(676, 923);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
             this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
@@ -989,14 +987,13 @@
             this.gbApproval.Controls.Add(this.txtApprovalMessage);
             this.gbApproval.Controls.Add(this.radDisapproved);
             this.gbApproval.Controls.Add(this.radApproved);
-            this.gbApproval.Enabled = false;
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbApproval.Location = new System.Drawing.Point(13, 605);
+            this.gbApproval.Location = new System.Drawing.Point(13, 904);
             this.gbApproval.Name = "gbApproval";
-            this.gbApproval.Size = new System.Drawing.Size(774, 108);
+            this.gbApproval.Size = new System.Drawing.Size(774, 102);
             this.gbApproval.TabIndex = 26;
             this.gbApproval.TabStop = false;
-            this.gbApproval.Text = "7. APPROVAL ";
+            this.gbApproval.Text = "APPROVAL ";
             // 
             // txtApprovalMessage
             // 
@@ -1006,14 +1003,15 @@
             this.txtApprovalMessage.Location = new System.Drawing.Point(23, 26);
             this.txtApprovalMessage.Multiline = true;
             this.txtApprovalMessage.Name = "txtApprovalMessage";
-            this.txtApprovalMessage.Size = new System.Drawing.Size(547, 72);
+            this.txtApprovalMessage.Size = new System.Drawing.Size(743, 45);
             this.txtApprovalMessage.TabIndex = 2;
+            this.txtApprovalMessage.TextChanged += new System.EventHandler(this.txtApprovalMessage_TextChanged);
             // 
             // radDisapproved
             // 
             this.radDisapproved.AutoSize = true;
             this.radDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDisapproved.Location = new System.Drawing.Point(662, 30);
+            this.radDisapproved.Location = new System.Drawing.Point(605, 77);
             this.radDisapproved.Name = "radDisapproved";
             this.radDisapproved.Size = new System.Drawing.Size(84, 19);
             this.radDisapproved.TabIndex = 1;
@@ -1025,7 +1023,7 @@
             // 
             this.radApproved.AutoSize = true;
             this.radApproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radApproved.Location = new System.Drawing.Point(586, 30);
+            this.radApproved.Location = new System.Drawing.Point(695, 77);
             this.radApproved.Name = "radApproved";
             this.radApproved.Size = new System.Drawing.Size(70, 19);
             this.radApproved.TabIndex = 0;
@@ -1037,21 +1035,20 @@
             // 
             this.gbComputation.Controls.Add(this.lblAdjustedAmount);
             this.gbComputation.Controls.Add(this.btnCompute);
-            this.gbComputation.Enabled = false;
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComputation.Location = new System.Drawing.Point(448, 528);
+            this.gbComputation.Location = new System.Drawing.Point(13, 633);
             this.gbComputation.Name = "gbComputation";
-            this.gbComputation.Size = new System.Drawing.Size(339, 71);
+            this.gbComputation.Size = new System.Drawing.Size(429, 265);
             this.gbComputation.TabIndex = 28;
             this.gbComputation.TabStop = false;
-            this.gbComputation.Text = "6. ADJUSTMENTS";
+            this.gbComputation.Text = "ADJUSTMENTS";
             // 
             // lblAdjustedAmount
             // 
             this.lblAdjustedAmount.AutoSize = true;
             this.lblAdjustedAmount.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Red;
-            this.lblAdjustedAmount.Location = new System.Drawing.Point(144, 27);
+            this.lblAdjustedAmount.Location = new System.Drawing.Point(10, 68);
             this.lblAdjustedAmount.Name = "lblAdjustedAmount";
             this.lblAdjustedAmount.Size = new System.Drawing.Size(77, 21);
             this.lblAdjustedAmount.TabIndex = 22;
@@ -1064,7 +1061,7 @@
             this.btnCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCompute.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCompute.Location = new System.Drawing.Point(21, 24);
+            this.btnCompute.Location = new System.Drawing.Point(11, 29);
             this.btnCompute.Name = "btnCompute";
             this.btnCompute.Size = new System.Drawing.Size(112, 28);
             this.btnCompute.TabIndex = 21;
@@ -1073,15 +1070,32 @@
             this.btnCompute.UseVisualStyleBackColor = false;
             this.btnCompute.Click += new System.EventHandler(this.button1_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            // 
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.toolTip1.ToolTipTitle = "You may search for";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(199, 288);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(103, 17);
+            this.checkBox1.TabIndex = 15;
+            this.checkBox1.Text = "GOVERNMENT";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.checkBox2.Location = new System.Drawing.Point(238, 543);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(92, 19);
+            this.checkBox2.TabIndex = 23;
+            this.checkBox2.Text = "Disapproved";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // ucInvestigationForm
             // 
@@ -1097,7 +1111,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
-            this.Size = new System.Drawing.Size(1502, 729);
+            this.Size = new System.Drawing.Size(1502, 1026);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
@@ -1128,14 +1142,11 @@
             this.gbApproval.PerformLayout();
             this.gbComputation.ResumeLayout(false);
             this.gbComputation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        internal System.Windows.Forms.GroupBox gbAccountDetails;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label2;
@@ -1174,7 +1185,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         internal System.Windows.Forms.GroupBox gbImage;
         internal System.Windows.Forms.TextBox txtJONumber;
         internal System.Windows.Forms.TextBox txtAccountNumber;
@@ -1196,7 +1206,6 @@
         internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
         internal System.Windows.Forms.NumericUpDown nudReadingAfterTest;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label label18;
@@ -1210,5 +1219,9 @@
         internal System.Windows.Forms.TextBox txtMeterSize;
         internal System.Windows.Forms.TextBox txtMeterBrand;
         internal System.Windows.Forms.TextBox txtMeterNumber;
+        internal System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        protected System.Windows.Forms.GroupBox gbAccountDetails;
     }
 }

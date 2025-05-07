@@ -68,7 +68,6 @@ namespace JOMonitoringApp.Views.Investigation
 
                     ucInvestigationForm.OnLoad();
                     ucInvestigationForm.ResetForm();
-                    ucInvestigationForm.EnableControls(false);
                     ucInvestigationForm.isUpdate = false;
 
                 }
@@ -94,7 +93,6 @@ namespace JOMonitoringApp.Views.Investigation
                 btnSave.BackColor = Color.DodgerBlue;
                 btnSave.ForeColor = Color.White;
                 ucInvestigationForm.ResetForm();
-                ucInvestigationForm.EnableControls(false);
                 ucInvestigationForm.isUpdate = false;
             }
         }
@@ -104,6 +102,11 @@ namespace JOMonitoringApp.Views.Investigation
             if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveData();
+            }
+
+            if (e.Control && e.KeyCode == Keys.Enter)
+            {
+                ucInvestigationForm.GetInvestigationRecords();
             }
         }
 

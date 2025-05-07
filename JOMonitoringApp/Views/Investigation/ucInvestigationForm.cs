@@ -53,22 +53,23 @@ namespace JOMonitoringApp.Views.Investigation
                 HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
                 cmbxStatus.SelectedValue = 0;
                 GetInvestigationRecords();
+                EnableControls(false);
             }
         }
 
         private void ValidateFormPermission()
         {
             bool adminMode = Helper.temporaryAdminMode;
-           gbAccountDetails.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_DATA");
-           gbStatisticalFindings.Enabled = adminMode ? true : Helper.UserHasPermission("STATISTICAL_FINDINGS");
-           gbConditionOfService.Enabled = adminMode ? true : Helper.UserHasPermission("CONDITION_OF_SERVICE_FACILITIES");
-           txtInvestigatorComments.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_COMMENTS");
-           txtRecommendations.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_RECOMMENDATION");
-           btnCompute.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_ADJUSTMENT_COMPUTATION");
-           btnAttachedImage.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_ATTACHED_IMAGE");
-           pictureBox1.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
-           pictureBox2.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
-           gbApproval.Enabled = adminMode ? true : Helper.UserHasPermission("INVESTIGATION_APPROVAL");
+            gbAccountDetails.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_DATA");
+            gbStatisticalFindings.Enabled = adminMode || Helper.UserHasPermission("STATISTICAL_FINDINGS");
+            gbConditionOfService.Enabled = adminMode || Helper.UserHasPermission("CONDITION_OF_SERVICE_FACILITIES");
+            txtInvestigatorComments.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_COMMENTS");
+            txtRecommendations.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_RECOMMENDATION");
+            btnCompute.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_ADJUSTMENT_COMPUTATION");
+            btnAttachedImage.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_ATTACHED_IMAGE");
+            pictureBox1.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
+            pictureBox2.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
+            gbApproval.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_APPROVAL");
         }
 
         internal void UpdateJobOrderStatus()
@@ -79,10 +80,11 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (investigationStatusID == 4)
                 jobOrderStatus = 3;
-            if (investigationStatusID == 3)
+            if (investigationStatusID == 3) //if disapproved
                 jobOrderStatus = 4;
             if (investigationStatusID == 1 || investigationStatusID == 2)
                 jobOrderStatus = 2;
+
 
             Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
         }
@@ -188,21 +190,6 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-
-        private void txtInvestigatorComments_Validating(object sender, CancelEventArgs e)
-        {
-            if (txtInvestigatorComments.Text.Trim() == string.Empty)
-            {
-                e.Cancel = true;
-                Helper.ShowErrorTextBoxEmpty(errorProvider1, txtInvestigatorComments, "Investigator Comment.");
-            }
-        }
-
-        private void txtInvestigatorComments_Validated(object sender, EventArgs e)
-        {
-            Helper.ClearErrorTextBox(errorProvider1, txtInvestigatorComments);
-        }
-
         internal void ResetForm()
         {
             txtAccountName.Clear();
@@ -231,9 +218,9 @@ namespace JOMonitoringApp.Views.Investigation
             isUpdate = false;
             pictureBox1.Image = Properties.Resources.icons8_image_96;
             pictureBox2.Image = Properties.Resources.icons8_image_96;
-            cmbxStatus.SelectedValue = 0;
             lblAdjustedAmount.Text = "Result";
             btnCompute.Text = "Make Computations";
+            EnableControls(false);
         }
 
 
@@ -324,7 +311,7 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
 
-        private void GetInvestigationRecords()
+        internal void GetInvestigationRecords()
         {
             string searchKey = txtSearch.Text.Trim();
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
@@ -486,8 +473,8 @@ namespace JOMonitoringApp.Views.Investigation
 
             ViewInvestigationDetails();
             UpdateSettings();
-            EnableControls(true);
             ValidateFormPermission();
+            EnableControls(true);
         }
 
 
@@ -543,7 +530,7 @@ namespace JOMonitoringApp.Views.Investigation
             CalibrationResult();
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        internal void btnSearch_Click(object sender, EventArgs e)
         {
             GetInvestigationRecords();
         }
@@ -592,6 +579,11 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void dgInvestigations_SelectionChanged(object sender, EventArgs e)
         {
+        }
+
+        private void txtApprovalMessage_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

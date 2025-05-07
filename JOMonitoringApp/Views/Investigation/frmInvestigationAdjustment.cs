@@ -25,18 +25,30 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.LoadFormIcon(this);
 
             _accountNumber = accountNumber;
-            lblAccountNumber.Text = _accountNumber;
+            txtAccountNumber.Text = _accountNumber;
             _ucInvestigationForm = ucInvestigationForm;
 
-            locationX = gbLeakingVisible.Location.X;
-            locationY = gbLeakingVisible.Location.Y;
+            locationX = gbLeakingNotVisible.Location.X;
+            locationY = gbLeakingNotVisible.Location.Y;
         }
 
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
         {
+            LoadAccountDetails();
+
             if (_ucInvestigationForm.hasAdjustment)
-            {
                 LoadAdjustments();
+        }
+        private void LoadAccountDetails()
+        {
+
+            var dictCustomerAccountDetails = Factory.CustomersRepository().GetCustomerAccountDetails(_accountNumber);
+
+            if (dictCustomerAccountDetails.Count != 0)
+            {
+                txtAccountType.Text = dictCustomerAccountDetails["Category"];
+                txtAccountName.Text = dictCustomerAccountDetails["AccountName"];
+                txtAccountNumber.Text = _accountNumber;
             }
         }
 
@@ -48,7 +60,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (adjustmentDict.Count != 0)
             {
                 cmbxParticular.Text = adjustmentDict["adjustment_particular"];
-                lblAdjustedAmount.Text = adjustmentDict["adjusted_amount"];
+                
             }
 
         }
@@ -59,28 +71,30 @@ namespace JOMonitoringApp.Views.Investigation
             gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
         }
 
-        private void ComputeLeaking()
-        {
-            gbLeakingVisible.Location = new System.Drawing.Point(locationX, locationY);
-        }
-
         private void ComputeLeakingNotVisible()
         {
             gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
 
-            // Parse input values safely
-            if (int.TryParse(txtLeakingCurrentCons.Text.Trim(), out int currentCons) &&
-                int.TryParse(txtLeakingCorrectCons.Text.Trim(), out int correctCons))
-            {
-                decimal adjustedCons = currentCons * 0.7m;
+            var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
 
-                lblAdjustedAmount.Text = GetRateByConsumption(Convert.ToInt32(adjustedCons)).ToString("N2");
-            }
-            else
+            if (dictReadingDetails.Count != 0 )
             {
-                //MessageBox.Show("Please enter valid numeric values for current and correct consumption.",
-                //                "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]);
+                int averageCons = int.Parse(dictReadingDetails["AverageCons"]);
+                decimal consumption = currentCons == 0 ? averageCons : currentCons;
+
+                decimal adjustmentConsumption = (currentCons * 0.70m);
+                decimal adjustedConsumption = (currentCons - adjustmentConsumption );
+
+
+                txtLeakingNotVisCurrentCons.Text = consumption.ToString("N0");
+                txtAdjustedConsumption.Text = adjustedConsumption.ToString("N0");
+                txtAdjustmentConsumption.Text = adjustmentConsumption.ToString("N0");
+
+                double amountDue = GetRateByConsumption((int)adjustmentConsumption);
+                txtAmountDue.Text = amountDue.ToString("N0");
             }
+
         }
 
         private void ComputeFailedCalibration()
@@ -100,7 +114,6 @@ namespace JOMonitoringApp.Views.Investigation
                 int average = (lastMonth + last2Month + last3Month) / 3;
                 txtNewAverageCons.Text = average.ToString();
 
-                lblAdjustedAmount.Text = GetRateByConsumption(average).ToString("N2");
             }
             else
             {
@@ -151,7 +164,6 @@ namespace JOMonitoringApp.Views.Investigation
 
                 adjustedAmount = underHundredRate;
 
-                lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
 
                 
                 //6720
@@ -160,58 +172,33 @@ namespace JOMonitoringApp.Views.Investigation
                 txtConsumption.Text = "";
         }
 
-        static double GetRateByConsumption(int consumption)
+        private double GetRateByConsumption(int consumption)
         {
-            var rateDict = Helper.DomesticRate();
+            var rateDict = Helper.WaterRates();
 
             if (rateDict.TryGetValue(consumption, out double rate))
             {
-                return rate;
+
+                bool isCommercial = txtAccountType.Text != "RESIDENTIAL";
+                return isCommercial ? rate * 2: rate;
             }
 
             throw new ArgumentException("Invalid quantity. Must be between 1 and 100.");
         }
 
-        private void ComputePenaltyAndExtensionFee()
-        {
-            decimal adjustedAmount;
-
-            if (!decimal.TryParse(lblAdjustedAmount.Text, out adjustedAmount))
-            {
-                return;
-            }
-
-            if (cbxPenalty.Checked)
-                adjustedAmount += adjustedAmount * 0.10m;
-
-            if (cbxExtensionFee.Checked)
-                adjustedAmount += 30;
-
-            lblAdjustedAmount.Text = adjustedAmount.ToString("0.00");
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            //Komputadora();
+            Compute();
             //ComputePenaltyAndExtensionFee();
-            _ = new frmMessagePrompt().ShowDialog();
+           
         }
 
-        private void Komputadora()
+        private void Compute()
         {
             string particular = cmbxParticular.Text;
 
-            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
-            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
-            gbLeakingVisible.Location = new System.Drawing.Point(1000);
-            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
-            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
-
             switch (particular)
             {
-                case "Leaking":
-                    ComputeLeaking();
-                    break;
                 case "Failed Calibration":
                     ComputeFailedCalibration();
                     break;
@@ -236,12 +223,12 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Komputadora();
+            Compute();
+
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Helper.adjustedAmount = lblAdjustedAmount.Text;
             Helper.adjustmentParticular = cmbxParticular.Text;
 
             _ucInvestigationForm.lblAdjustedAmount.Text = Helper.adjustedAmount;
@@ -271,7 +258,6 @@ namespace JOMonitoringApp.Views.Investigation
                     Penalty = Convert.ToDecimal(txtPenalty.Text),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text),
-                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
                     AdjustmentParticular = "Erroneous Reading",
                     UpdatedBy = Helper.UserId,
                 };
@@ -290,7 +276,6 @@ namespace JOMonitoringApp.Views.Investigation
                     Penalty = Convert.ToDecimal(txtPenalty.Text),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text),
-                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
                     AdjustmentParticular = "Failed Calibration",
                     UpdatedBy = Helper.UserId,
                 };
@@ -304,12 +289,11 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     Id = _ucInvestigationForm.selectedInvistigationID,
                     PresentConsumption = txtLeakingNotVisCurrentCons.Text,
-                    ActualConsumption = txtLeakingNotVisNewCons.Text,
+                    ActualConsumption = txtAdjustmentConsumption.Text,
 
                     Penalty = Convert.ToDecimal(txtPenalty.Text),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text),
-                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
                     AdjustmentParticular = "Leaking (Not Visible)",
                     UpdatedBy = Helper.UserId,
                 };
@@ -329,7 +313,6 @@ namespace JOMonitoringApp.Views.Investigation
                     Penalty = Convert.ToDecimal(txtPenalty.Text),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text),
-                    AdjustedAmount = Convert.ToDecimal(lblAdjustedAmount.Text),
                     AdjustmentParticular = "RFB + Illegal",
                     UpdatedBy = Helper.UserId,
                 };
@@ -373,9 +356,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cbxPenalty_CheckedChanged(object sender, EventArgs e)
         {
-            decimal adjustmentAmount = Convert.ToDecimal(lblAdjustedAmount.Text);
             if (cbxPenalty.Checked)
-                txtPenalty.Text = (adjustmentAmount * 0.10m).ToString("N2");
+                txtPenalty.Text = (Convert.ToDecimal(txtAmountDue.Text) * 0.10m).ToString();
             else
                 txtPenalty.Text = "0";
         }
@@ -389,6 +371,33 @@ namespace JOMonitoringApp.Views.Investigation
             catch (Exception)
             {
             }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label21_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPenalty_TextChanged(object sender, EventArgs e)
+        {
+            CalculateTotal();
+        }
+
+        private void CalculateTotal()
+        {
+            decimal amountDue = Convert.ToDecimal(txtAmountDue.Text);
+            decimal penalty = Convert.ToDecimal(txtPenalty.Text);
+            decimal extensionFee = Convert.ToDecimal(txtExtensionFee.Text);
+
+
+            bool isCommercial = txtAccountType.Text != "RESIDENTIAL";
+
+            txtAmountDueAfterAdjustment.Text = (amountDue + penalty + extensionFee).ToString("N2");
         }
     }
 }

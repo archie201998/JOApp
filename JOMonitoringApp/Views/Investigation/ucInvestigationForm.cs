@@ -42,7 +42,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
-                cmbxStatus.SelectedValue = 0;
+                cmbxStatus.SelectedValue = 6;
                 GetInvestigationRecords();
                 EnableControls(false);
             }
@@ -107,8 +107,7 @@ namespace JOMonitoringApp.Views.Investigation
             ForAdjustment = 2,
             ForApproval = 3,
             Approved = 4,
-            Disapproved = 5,
-            ForReInvestigation = 6,
+            ForReInvestigation = 5,
         }
 
         internal int InvestigationStatusLogic()
@@ -534,8 +533,8 @@ namespace JOMonitoringApp.Views.Investigation
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("APPROVED"); // approved color :contentReference[oaicite:3]{index=3}
                         e.CellStyle.ForeColor = Color.White;
                         break;
-                    case "DISAPPROVED":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("DISAPPROVED");    // disapproved color :contentReference[oaicite:4]{index=4}
+                    case "FOR REINVESTIGATION":
+                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR REINVESTIGATION");    // disapproved color :contentReference[oaicite:4]{index=4}
                         e.CellStyle.ForeColor = Color.White;
                         break;  
                     default:

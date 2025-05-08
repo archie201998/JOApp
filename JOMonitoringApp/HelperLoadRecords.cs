@@ -295,7 +295,7 @@ namespace JOMonitoringApp
             dataTable.Columns.Add("status", typeof(string));
 
             // Insert "All" first
-            dataTable.Rows.Add(5, "All");
+            dataTable.Rows.Add(6, "All");
 
             // Then the rest
             dataTable.Rows.Add(0, "For Investigation");
@@ -314,14 +314,13 @@ namespace JOMonitoringApp
 
         internal static void InvestigationDatagridView(DataGridView dgInvestigations, DataTable dtInvestigation)
         {
-            if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)
+            if (dgInvestigations.InvokeRequired)
             {
-                dgInvestigations.DataSource = dtInvestigation;
+                dgInvestigations.Invoke(new Action(() => dgInvestigations.DataSource = dtInvestigation));
             }
             else
             {
-                dgInvestigations.DataSource = null;
-                return;
+                dgInvestigations.DataSource = dtInvestigation;
             }
 
             dgInvestigations.Columns["id"].Visible = false;
@@ -335,8 +334,6 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
             dgInvestigations.Columns["created_at"].HeaderText = "DATED COMPLAINED";
 
-
-            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

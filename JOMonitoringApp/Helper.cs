@@ -76,6 +76,8 @@ namespace AccountingSystem
                     return Color.IndianRed;
                 case "APPROVED":
                     return Color.SteelBlue;
+                case "FOR REINVESTIGATION":
+                    return Color.MediumVioletRed;
                 default:
                     return Color.Gray;
             }

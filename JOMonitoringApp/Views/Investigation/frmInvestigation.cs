@@ -121,7 +121,10 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            SaveData();
+            if (Helper.MessageBoxConfirmCancel("Are you sure you want update this investigation record?"))
+                SaveData();
+
+            return;
         }
 
         private async void SaveData()

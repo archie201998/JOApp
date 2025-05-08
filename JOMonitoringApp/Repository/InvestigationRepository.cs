@@ -217,7 +217,7 @@ namespace JOMonitoringApp
 
             string statusQuery = string.Empty;
 
-            if (statusId != 5)
+            if (statusId != 6)
             {
                 switch (statusId)
                 {

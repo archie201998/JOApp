@@ -1952,7 +1952,7 @@
           <Image Name="Image4">
             <Source>External</Source>
             <Value>=Parameters!paramImage2.Value</Value>
-            <Sizing>FitProportional</Sizing>
+            <Sizing>Fit</Sizing>
             <Top>16.23271in</Top>
             <Height>5.20834in</Height>
             <Width>7.03834in</Width>
@@ -1986,7 +1986,7 @@
           <Image Name="Image5">
             <Source>External</Source>
             <Value>=Parameters!paramImage1.Value</Value>
-            <Sizing>FitProportional</Sizing>
+            <Sizing>Fit</Sizing>
             <Top>10.44105in</Top>
             <Height>5.18402in</Height>
             <Width>7.03834in</Width>

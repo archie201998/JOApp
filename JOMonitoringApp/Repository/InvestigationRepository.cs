@@ -236,40 +236,28 @@ namespace JOMonitoringApp
                     case 4:
                         statusQuery = "is_approved = 4 AND ";
                         break;
+                    case 5:
+                        statusQuery = "is_approved = 5 AND ";
+                        break;
                     default:
                         statusQuery = string.Empty;
                         break;
                 }
             }
 
-            string query = $"SELECT id, job_orders_id, CASE is_approved WHEN 0 THEN 'FOR INVESTIGATION' WHEN 1 THEN 'FOR RECOMMENDATION' WHEN 2 THEN 'FOR APPROVAL' WHEN 3 THEN 'APPROVED' WHEN 5 THEN 'FOR INVESTIGATION' ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC;";
+            string query = $"SELECT id, job_orders_id, " +
+                           $"CASE is_approved " +
+                           $"WHEN 0 THEN 'FOR INVESTIGATION' " +
+                           $"WHEN 1 THEN 'FOR RECOMMENDATION' " +
+                           $"WHEN 2 THEN 'FOR ADJUSTMENT' " +
+                           $"WHEN 3 THEN 'FOR APPROVAL' " +
+                           $"WHEN 4 THEN 'APPROVED' " +
+                           $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
+                           $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC LIMIT 100";
+
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
-        }
-
-        public Dictionary<string, string> GetForRecommendation()
-        {
-            var parameters = new object[][]
-             {
-                new object[] { "@is_approved", DbType.String, "1" }, // you could also use DbType.Int32
-             };
-
-            string query = $"SELECT * FROM {tableName} WHERE is_approved = @is_approved";
-
-            var dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
-
-            if (dataTable.Rows.Count != 0)
-            {
-                var result = new Dictionary<string, string>();
-                foreach (DataColumn column in dataTable.Columns)
-                {
-                    result[column.ColumnName] = dataTable.Rows[0][column].ToString();
-                }
-
-                return result;
-            }
-
-            return null;
         }
 
         public bool SaveComputation(InvestigationModel entity)

@@ -41,7 +41,7 @@
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(4, 747);
+            this.panel4.Location = new System.Drawing.Point(4, 1018);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1579, 39);
             this.panel4.TabIndex = 7;
@@ -87,7 +87,7 @@
             this.ucInvestigationForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ucInvestigationForm1.Location = new System.Drawing.Point(4, 4);
             this.ucInvestigationForm1.Name = "ucInvestigationForm1";
-            this.ucInvestigationForm1.Size = new System.Drawing.Size(1579, 743);
+            this.ucInvestigationForm1.Size = new System.Drawing.Size(1579, 1014);
             this.ucInvestigationForm1.TabIndex = 0;
             this.ucInvestigationForm1.Load += new System.EventHandler(this.ucInvestigationForm1_Load);
             // 
@@ -97,7 +97,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1587, 790);
+            this.ClientSize = new System.Drawing.Size(1587, 1061);
             this.Controls.Add(this.ucInvestigationForm1);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

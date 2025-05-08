@@ -63,6 +63,7 @@
             this.nudImmediateFamily = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.gbComments = new System.Windows.Forms.GroupBox();
+            this.cbxNoAdjustment = new System.Windows.Forms.CheckBox();
             this.cbxRecommendationDisapproved = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtRecommendations = new System.Windows.Forms.TextBox();
@@ -98,9 +99,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.gbApproval = new System.Windows.Forms.GroupBox();
+            this.cbxDisapproved = new System.Windows.Forms.CheckBox();
             this.txtApprovalMessage = new System.Windows.Forms.TextBox();
-            this.radDisapproved = new System.Windows.Forms.RadioButton();
-            this.radApproved = new System.Windows.Forms.RadioButton();
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.lblAdjustedAmount = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
@@ -550,6 +550,7 @@
             // 
             // gbComments
             // 
+            this.gbComments.Controls.Add(this.cbxNoAdjustment);
             this.gbComments.Controls.Add(this.cbxRecommendationDisapproved);
             this.gbComments.Controls.Add(this.label21);
             this.gbComments.Controls.Add(this.txtRecommendations);
@@ -564,11 +565,22 @@
             this.gbComments.Text = "COMMENTS AND RECOMMENDATIONS";
             this.gbComments.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
+            // cbxNoAdjustment
+            // 
+            this.cbxNoAdjustment.AutoSize = true;
+            this.cbxNoAdjustment.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cbxNoAdjustment.Location = new System.Drawing.Point(10, 540);
+            this.cbxNoAdjustment.Name = "cbxNoAdjustment";
+            this.cbxNoAdjustment.Size = new System.Drawing.Size(107, 19);
+            this.cbxNoAdjustment.TabIndex = 24;
+            this.cbxNoAdjustment.Text = "No Adjustment";
+            this.cbxNoAdjustment.UseVisualStyleBackColor = true;
+            // 
             // cbxRecommendationDisapproved
             // 
             this.cbxRecommendationDisapproved.AutoSize = true;
             this.cbxRecommendationDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbxRecommendationDisapproved.Location = new System.Drawing.Point(238, 543);
+            this.cbxRecommendationDisapproved.Location = new System.Drawing.Point(243, 540);
             this.cbxRecommendationDisapproved.Name = "cbxRecommendationDisapproved";
             this.cbxRecommendationDisapproved.Size = new System.Drawing.Size(92, 19);
             this.cbxRecommendationDisapproved.TabIndex = 23;
@@ -938,9 +950,10 @@
             "All",
             "For Investigation",
             "For Recommendation",
+            "For Adjustment",
             "For Approval",
-            "Approved",
-            "Disapproved"});
+            "For ReInvestigation",
+            "Approved"});
             this.cmbxStatus.Location = new System.Drawing.Point(69, 10);
             this.cmbxStatus.Name = "cmbxStatus";
             this.cmbxStatus.Size = new System.Drawing.Size(140, 23);
@@ -1002,9 +1015,8 @@
             // 
             // gbApproval
             // 
+            this.gbApproval.Controls.Add(this.cbxDisapproved);
             this.gbApproval.Controls.Add(this.txtApprovalMessage);
-            this.gbApproval.Controls.Add(this.radDisapproved);
-            this.gbApproval.Controls.Add(this.radApproved);
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbApproval.Location = new System.Drawing.Point(13, 904);
             this.gbApproval.Name = "gbApproval";
@@ -1012,6 +1024,17 @@
             this.gbApproval.TabIndex = 26;
             this.gbApproval.TabStop = false;
             this.gbApproval.Text = "APPROVAL ";
+            // 
+            // cbxDisapproved
+            // 
+            this.cbxDisapproved.AutoSize = true;
+            this.cbxDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cbxDisapproved.Location = new System.Drawing.Point(673, 74);
+            this.cbxDisapproved.Name = "cbxDisapproved";
+            this.cbxDisapproved.Size = new System.Drawing.Size(92, 19);
+            this.cbxDisapproved.TabIndex = 24;
+            this.cbxDisapproved.Text = "Disapproved";
+            this.cbxDisapproved.UseVisualStyleBackColor = true;
             // 
             // txtApprovalMessage
             // 
@@ -1024,30 +1047,6 @@
             this.txtApprovalMessage.Size = new System.Drawing.Size(743, 45);
             this.txtApprovalMessage.TabIndex = 2;
             this.txtApprovalMessage.TextChanged += new System.EventHandler(this.txtApprovalMessage_TextChanged);
-            // 
-            // radDisapproved
-            // 
-            this.radDisapproved.AutoSize = true;
-            this.radDisapproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radDisapproved.Location = new System.Drawing.Point(605, 77);
-            this.radDisapproved.Name = "radDisapproved";
-            this.radDisapproved.Size = new System.Drawing.Size(84, 19);
-            this.radDisapproved.TabIndex = 1;
-            this.radDisapproved.TabStop = true;
-            this.radDisapproved.Text = "Disapprove";
-            this.radDisapproved.UseVisualStyleBackColor = true;
-            // 
-            // radApproved
-            // 
-            this.radApproved.AutoSize = true;
-            this.radApproved.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radApproved.Location = new System.Drawing.Point(695, 77);
-            this.radApproved.Name = "radApproved";
-            this.radApproved.Size = new System.Drawing.Size(70, 19);
-            this.radApproved.TabIndex = 0;
-            this.radApproved.TabStop = true;
-            this.radApproved.Text = "Approve";
-            this.radApproved.UseVisualStyleBackColor = true;
             // 
             // gbComputation
             // 
@@ -1174,9 +1173,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.CheckBox cbHHPurpose;
-        private System.Windows.Forms.CheckBox cbPromoteTrade;
-        private System.Windows.Forms.CheckBox cbSellToNeighbours;
         internal System.Windows.Forms.TextBox txtAlternativeSource;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label22;
@@ -1192,8 +1188,6 @@
         private System.Windows.Forms.Label label12;
         internal System.Windows.Forms.DateTimePicker dtpDate;
         internal System.Windows.Forms.GroupBox gbApproval;
-        private System.Windows.Forms.RadioButton radDisapproved;
-        private System.Windows.Forms.RadioButton radApproved;
         internal System.Windows.Forms.TextBox txtApprovalMessage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
@@ -1216,8 +1210,13 @@
         internal System.Windows.Forms.TextBox txtMeterBrand;
         internal System.Windows.Forms.TextBox txtMeterNumber;
         internal System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.CheckBox cbGovernment;
         private System.Windows.Forms.CheckBox cbxRecommendationDisapproved;
         protected System.Windows.Forms.GroupBox gbAccountDetails;
+        private System.Windows.Forms.CheckBox cbxNoAdjustment;
+        private System.Windows.Forms.CheckBox cbxDisapproved;
+        internal System.Windows.Forms.CheckBox cbHHPurpose;
+        internal System.Windows.Forms.CheckBox cbPromoteTrade;
+        internal System.Windows.Forms.CheckBox cbSellToNeighbours;
+        internal System.Windows.Forms.CheckBox cbGovernment;
     }
 }

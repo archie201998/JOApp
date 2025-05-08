@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -21,24 +22,14 @@ namespace JOMonitoringApp.Views.Investigation
         internal string _customerAddress;
         internal bool isUpdate;
         internal int selectedInvistigationID;
-        string originalFileName = string.Empty;
-        private string trimedAccountName;
-        private string newFileName;
-        string selectedFilePath = string.Empty;
         private Dictionary<string, string> dictInvestigation;
         internal string particular = string.Empty;
-
         internal bool isCreate = false;
-
         string imageFilePath = string.Empty;
         string secondaryImageFilePath = string.Empty;
 
-        private Dictionary<string, string> originalValues = new Dictionary<string, string>();
         private string _jobOrderNumber;
         internal bool hasAdjustment;
-
-        internal string meterBrandAndNumber;
-        internal string meterSize;
 
         public ucInvestigationForm()
         {
@@ -92,65 +83,63 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal bool SaveData()
         {
-            if (Helper.MessageBoxConfirmCancel("Do you want to update this investigation data?"))
+            using (var scope = new TransactionScope())
             {
-                using (var scope = new TransactionScope())
-                {
-                    var investigationModel = InvestigationModel();
-                    var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
-                 
-                    if (investigationResult)
-                    {
-                        UpdateJobOrderStatus();
-                        UploadImage();
-                        ResetForm();
-                        scope.Complete();
-                        return true;
-                    }
-                    else
-                        return false;
-                }
-            }
+                var investigationModel = InvestigationModel();
+                var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
 
-            return false;
-          
+                if (investigationResult)
+                {
+                    UpdateJobOrderStatus();
+                    UploadImage();
+                    scope.Complete();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public enum InvestigationStatus
+        {
+            ForInvestigation = 0,
+            ForRecommendation = 1,
+            ForAdjustment = 2,
+            ForApproval = 3,
+            Approved = 4,
+            Disapproved = 5,
+            ForReInvestigation = 6,
         }
 
         internal int InvestigationStatusLogic()
         {
-            bool hasComment = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
+            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
             bool hasRecommendation = !string.IsNullOrEmpty(txtRecommendations.Text.Trim());
             bool hasApproval = !string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
-            bool isApproved = radApproved.Checked;
 
-            if (hasComment && !hasRecommendation && !hasApproval)
-            {
-                return 1;
-            }
+            bool isDisapproved = cbxDisapproved.Checked;
+            bool isRecommendationDisapproved = cbxRecommendationDisapproved.Checked;
+            bool hasNoAdjustment = cbxNoAdjustment.Checked;
 
-            if (hasComment && hasRecommendation && !hasApproval && !isApproved && cbxRecommendationDisapproved.Checked)
-            {
-                return 0;
-            }
+            if (hasInvestigatorComments && !hasRecommendation && !hasApproval)
+                return (int)InvestigationStatus.ForRecommendation;
 
-            if (hasComment && hasRecommendation && !hasApproval  && !isApproved)
-            {
-                return 2;
-            }
+            if (hasInvestigatorComments && hasRecommendation && isRecommendationDisapproved)
+                return (int)InvestigationStatus.ForReInvestigation;
 
-          
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && !hasNoAdjustment)
+                return (int)InvestigationStatus.ForAdjustment;
 
-            if (hasComment && hasRecommendation && hasApproval && isApproved)
-            {
-                return 3;
-            }
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasNoAdjustment)
+                return (int)InvestigationStatus.ForApproval;
 
-            if (hasComment && hasRecommendation && hasApproval && isApproved)
-            {
-                return 4;
-            }
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasApproval && isDisapproved)
+                return (int)InvestigationStatus.ForReInvestigation;
 
-            return 1;
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasApproval && !isDisapproved)
+                return (int)InvestigationStatus.Approved;
+
+            return (int)InvestigationStatus.ForInvestigation;
         }
 
         private InvestigationModel InvestigationModel()
@@ -197,39 +186,7 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-        internal void ResetForm()
-        {
-            txtAccountName.Clear();
-            txtAccountNumber.Clear();
-            txtAddress.Clear();
-            txtComplaint.Clear();
-            txtInvestigatorComments.Clear();
-            txtRecommendations.Clear();
-            txtMeterBrand.Clear();
-            txtMeterSize.Clear();
-            nudReadingAfterTest.Value = 0 ;
-            txtJONumber.Clear();
-            nudReadingBeforeTest.Value = 0;
-            txtCalibrationResult.Clear();
-            txtServiceLineDefects.Clear();
-            nudImmediateFamily.Value = 0;
-            nudHouseHelper.Value = 0;
-            nudRelatives.Value = 0;
-            nudBoarders.Value = 0;
-            nudNoOfHoursServed.Value = 0;
-            nudNoServiceOfOutlets.Value = 0;
-            cbHHPurpose.Checked = false;
-            cbPromoteTrade.Checked = false;
-            cbSellToNeighbours.Checked = false;
-            txtAlternativeSource.Clear();
-            isUpdate = false;
-            pictureBox1.Image = Properties.Resources.icons8_image_96;
-            pictureBox2.Image = Properties.Resources.icons8_image_96;
-            lblAdjustedAmount.Text = "Result";
-            btnCompute.Text = "Make Computations";
-            EnableControls(false);
-        }
-
+      
 
         private void btnAttachedImage_Click(object sender, EventArgs e)
         {
@@ -312,17 +269,22 @@ namespace JOMonitoringApp.Views.Investigation
 
         }
 
-        internal void OnLoad()
-        {
-            GetInvestigationRecords();
-        }
-
-
         internal void GetInvestigationRecords()
         {
             string searchKey = txtSearch.Text.Trim();
-            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+            int statusId = 0;
 
+            if (cmbxStatus.InvokeRequired)
+            {
+                cmbxStatus.Invoke(new Action(() =>
+                {
+                    statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+                }));
+            }
+            else
+            {
+                statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+            }
 
             var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, searchKey);
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
@@ -347,18 +309,17 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void ViewInvestigationDetails()
         {
+            Cursor.Current = Cursors.WaitCursor;
+            this.SuspendLayout();
+
             selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
 
-            if (dictInvestigation.Count == 0)
-            {
-                ResetForm();
-            }
+            if (dictInvestigation.Count == 0) return;
 
 
-
-            decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ?  0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
-            decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 :  Convert.ToDecimal(dictInvestigation["reading_after_test"]);
+            decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
+            decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_after_test"]);
             string calibrationResult = dictInvestigation["calibration_result"];
             string overRegistration = dictInvestigation["over_registration"];
             string underRegistration = dictInvestigation["under_registration"];
@@ -377,10 +338,8 @@ namespace JOMonitoringApp.Views.Investigation
             string alternativeSource = dictInvestigation["alternative_source"];
             string approvalMessage = dictInvestigation["approval_message"];
             string natureOfComplaint = dictInvestigation["nature_of_complaint"];
-            
-
-
             string adjustmentParticular = dictInvestigation["adjustment_particular"];
+            int noAdjustment = string.IsNullOrEmpty(dictInvestigation["has_adjustment"]) ? 0 : Convert.ToInt32(dictInvestigation["has_adjustment"]);
 
             if (adjustmentParticular != string.Empty)
             {
@@ -412,22 +371,13 @@ namespace JOMonitoringApp.Views.Investigation
             txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
             txtRecommendations.Text = dictInvestigation["recommendations"];
 
-
-            string meterBrand = string.Empty;
-            string meterSize = string.Empty;
-            string meterNumber = string.Empty;  
-
             Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
             if (meterDict.Count != 0)
             {
-               meterBrand = meterDict["MeterBrand"];
-               meterSize = meterDict["MeterSize"];
-               meterNumber = meterDict["MeterNumber"];
+                txtMeterBrand.Text = meterDict["MeterBrand"];
+                txtMeterNumber.Text = meterDict["MeterSize"];
+                txtMeterSize.Text = meterDict["MeterNumber"];
             }
-
-            txtMeterBrand.Text = meterBrand;
-            txtMeterNumber.Text = meterNumber;
-            txtMeterSize.Text = meterSize;
 
             nudReadingBeforeTest.Value = readingBeforeTest;
             nudReadingAfterTest.Value = readingAfterTest;
@@ -438,11 +388,9 @@ namespace JOMonitoringApp.Views.Investigation
             nudRelatives.Value = relatives;
             nudBoarders.Value = boarders;
             txtApprovalMessage.Text = approvalMessage;
-            radApproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
-            radDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "4";
+            cbxDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
             cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
-            
-
+            cbxNoAdjustment.Checked = noAdjustment != 0;
 
             //loading of picture box
             if (dictInvestigation.ContainsKey("image_path"))
@@ -452,7 +400,7 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     pictureBox1.Image = Image.FromFile(imageFilePath);
                 }
-                else 
+                else
                 {
                     pictureBox1.Image = Properties.Resources.icons8_image_96;
                 }
@@ -471,20 +419,38 @@ namespace JOMonitoringApp.Views.Investigation
                     pictureBox2.Image = Properties.Resources.icons8_image_96;
                 }
             }
+
+            this.ResumeLayout();
+            Cursor.Current = Cursors.Default;
         }
-   
+
         #region Updating of Records for investigator
 
-        private void dgInvestigations_DoubleClick(object sender, EventArgs e)
+        private async void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
             if (dgInvestigations.SelectedRows.Count == 0) return;
 
-            ViewInvestigationDetails();
-            UpdateSettings();
-            ValidateFormPermission();
-            EnableControls(true);
-        }
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                await Task.Run(() =>
+                {
+                    ViewInvestigationDetails();
+                    UpdateSettings();
+                });
 
+                ValidateFormPermission();
+                EnableControls(true);
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxError("Error loading investigation details.");
+            }
+            finally
+            {
+                Cursor.Current = Cursors.Default;
+            }
+        }
 
         #endregion
         private void UpdateSettings()

@@ -300,9 +300,10 @@ namespace JOMonitoringApp
             // Then the rest
             dataTable.Rows.Add(0, "For Investigation");
             dataTable.Rows.Add(1, "For Recommendation");
-            dataTable.Rows.Add(2, "For Approval");
-            dataTable.Rows.Add(3, "Approved");
-            dataTable.Rows.Add(4, "Disapproved");
+            dataTable.Rows.Add(2, "For Adjustment");
+            dataTable.Rows.Add(5, "For ReInvestigation");
+            dataTable.Rows.Add(3, "For Approval");
+            dataTable.Rows.Add(4, "Approved");
 
             // Bind to ComboBox
             comboBox.DataSource = dataTable;

@@ -117,74 +117,77 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
+            this.SuspendLayout();
+
             try
             {
                 var parameters = ((string searchKey, int rowFilter, int statusId, string particular))e.Argument;
+
+                // Fetch the data from the repository
+                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                    parameters.searchKey,
+                    parameters.rowFilter,
+                    parameters.statusId,
+                    parameters.particular
+                );
+
+                // Create a new DataTable and define its schema using JobOrdersColumns
                 var dataTable = new DataTable();
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(parameters.searchKey, parameters.rowFilter, parameters.statusId, parameters.particular);
                 dataTable.Columns.AddRange(JobOrdersColumns());
 
-                int progressCount = 0;
-                int totalProgressCount = dtJobOrders.Rows.Count;
+                int totalCount = dtJobOrders.Rows.Count;
+                if (totalCount == 0)
+                {
+                    backgroundWorker1.ReportProgress(100);
+                    e.Result = dataTable;
+                    return;
+                }
 
-                if (dtJobOrders.Rows.Count < 1) { backgroundWorker1.ReportProgress(100); e.Result = dataTable; return; }
-                int index = dtJobOrders.Rows.Count;
+                int progress = 0;
 
                 foreach (DataRow row in dtJobOrders.Rows)
                 {
                     var newRow = dataTable.NewRow();
-                    int id = Convert.ToInt32(row["id"]);
-                    string seriesNumber = row["series_number"].ToString();
-                    string status = $"{row["status"]}";
-                    int preparedById = Convert.ToInt32(row["prepared_by_id"]);
-                    int materialsIssuedById = string.IsNullOrEmpty(row["materials_issued_by_id"].ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
-                    int statusId = Convert.ToInt32(row["status_id"]);
-                    DateTime date = Convert.ToDateTime(row["date"]);
-                    string accountNumber = $"{row["account_number"]}";
-                    string accountName = $"{row["account_name"]}";
-                    string address = $"{row["address"]}";
-                    string jobOrderNumber = $"{row["job_order_no"]}";
-                    string particular = $"{row["particular"]}";
-                    string orNumber = $"{row["or_number"]}";
-                    decimal amount = string.IsNullOrEmpty(row["or_number"].ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
-                    string MRISNumber = $"{row["mris"]}";
-                    string MRSNumber = $"{row["mrs"]}";
-                    string WARNumber = $"{row["war"]}";
-                    string remarks = $"{row["remarks"]}";
-                    string preparedBy = $"{row["prepared_by"]}";
-                    string materialsIssuedBy = $"{row["materials_issued_by"]}";
 
-                    newRow["id"] = id;
-                    newRow["series_no"] = seriesNumber;
-                    newRow["prepared_by_id"] = preparedById;
-                    newRow["materials_issued_by_id"] = materialsIssuedById;
-                    newRow["particular"] = particular;
-                    newRow["status_id"] = statusId;
-                    newRow["job_order_no"] = jobOrderNumber;
-                    newRow["account_number"] = accountNumber;
-                    newRow["account_name"] = accountName;
-                    newRow["address"] = address;
-                    newRow["or_number"] = orNumber;
-                    newRow["amount"] = amount;
-                    newRow["mris"] = MRISNumber;
-                    newRow["mrs"] = MRSNumber;
-                    newRow["war"] = WARNumber;
-                    newRow["date"] = date;
-                    newRow["prepared_by"] = preparedBy;
-                    newRow["materials_issued_by"] = materialsIssuedBy;
-                    newRow["status"] = status.ToUpper();
-                    newRow["remarks"] = remarks;
-                    progressCount++;
-                    Helper.ProgressCounter(backgroundWorker1, totalProgressCount, progressCount);
+                    newRow["id"] = Convert.ToInt32(row["id"]);
+                    newRow["series_no"] = row["series_number"].ToString();
+                    newRow["status"] = row["status"].ToString().ToUpper();
+                    newRow["prepared_by_id"] = Convert.ToInt32(row["prepared_by_id"]);
+                    newRow["materials_issued_by_id"] = string.IsNullOrEmpty(row["materials_issued_by_id"]?.ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
+                    newRow["status_id"] = Convert.ToInt32(row["status_id"]);
+                    newRow["date"] = Convert.ToDateTime(row["date"]);
+                    newRow["account_number"] = row["account_number"].ToString();
+                    newRow["account_name"] = row["account_name"].ToString();
+                    newRow["address"] = row["address"].ToString();
+                    newRow["job_order_no"] = row["job_order_no"].ToString();
+                    newRow["particular"] = row["particular"].ToString();
+                    newRow["or_number"] = row["or_number"].ToString();
+                    newRow["amount"] = string.IsNullOrEmpty(row["amount"]?.ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
+                    newRow["mris"] = row["mris"].ToString();
+                    newRow["mrs"] = row["mrs"].ToString();
+                    newRow["war"] = row["war"].ToString();
+                    newRow["remarks"] = row["remarks"].ToString();
+                    newRow["prepared_by"] = row["prepared_by"].ToString();
+                    newRow["materials_issued_by"] = row["materials_issued_by"].ToString();
+
                     dataTable.Rows.Add(newRow);
-                }
-                e.Result = dataTable;
 
+                    // Update progress bar
+                    progress++;
+                    Helper.ProgressCounter(backgroundWorker1, totalCount, progress);
+                }
+
+                e.Result = dataTable;
             }
             catch (Exception ex)
             {
                 Helper.MessageBoxError(ex.Message);
             }
+
+            this.ResumeLayout();
+            Cursor.Current = Cursors.Default;
+
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -199,23 +202,30 @@ namespace JOMonitoringApp.Views.MainForm
                 if (e.Cancelled)
                     return;
 
-
-                if (!(e.Result is DataTable))
+                var dataTable = e.Result as DataTable;
+                if (dataTable == null)
                     return;
 
-                DataTable dataTable = (DataTable)e.Result;
+                dgJobOrders.SuspendLayout();
+                dgJobOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dgJobOrders.DataSource = null; // Reset to clear previous data
+                dgJobOrders.Columns.Clear();   // Clear old structure
+                dgJobOrders.DataSource = dataTable;
 
+                if (dgJobOrders.Rows.Count > 0)
+                {
+                    dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
+                    dgJobOrders.Rows[previousSelection].Selected = true;
+                }
+
+                dgJobOrders.ResumeLayout();
+                dgJobOrders.AutoResizeColumns(); // Optional
                 HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
-                dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
-
-                dgJobOrders.Rows[previousSelection].Selected = true;
-
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Helper.MessageBoxError("Unexpected error: " + ex.Message);
             }
-
         }
 
 
@@ -494,58 +504,78 @@ namespace JOMonitoringApp.Views.MainForm
         #region Reset Input
         internal void ResetInputForm()
         {
-            ucJoborder.txtJONumber.Clear();
-            ucJoborder.dtpDate.Value = DateTime.Now;
-            ucJoborder.txtMRISNumber.Clear();
-            ucJoborder.txtMRSNumber.Clear();
-            ucJoborder.txtORNumber.Clear();
-            ucJoborder.nudAmount.Value = 0;
-            ucJoborder.txtWARNumber.Clear();
+            this.SuspendLayout(); // Improves UI responsiveness during bulk updates
+            ucJoborder.SuspendLayout();
 
-            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
-            ucJoborder.cmbxAccomplishedBy.SelectedValue = -1;
-
-            ucJoborder.jobOrderId = 0;
-            ucJoborder.statusId = 1;
-            ucJoborder.radPending.Checked = true;
-
-            btnSave.BackColor = Color.DodgerBlue;
-            btnSave.Text = "Save [Ctrl + S]";
-            ucJoborder.isUpdate = false;
-
-            dgJobOrders.Enabled = true;
-            ucJoborder.errorProvider1.Clear();
-
-            ucJoborder.txtAcc1.Clear();
-            ucJoborder.txtAcc2.Clear();
-            ucJoborder.txtAcc3.Clear();
-            ucJoborder.txtAcc4.Clear();
-            ucJoborder.txtRemarks.Clear();
-
-            ucJoborder.groupBox4.Enabled = true;
-            ucJoborder.gbAccountDetails.Enabled = true;
-            ucJoborder.gbIssuanceAndAssignment.Enabled = true;
-            ucJoborder.gbJODetails.Enabled = true;
-
-            // Clear checked items in CheckedListBox
-            if (ucJoborder.clBoxParticulars.Items.Count > 0)
+            try
             {
+                // Clear general fields
+                ucJoborder.txtJONumber.Clear();
+                ucJoborder.dtpDate.Value = DateTime.Now;
+                ucJoborder.txtMRISNumber.Clear();
+                ucJoborder.txtMRSNumber.Clear();
+                ucJoborder.txtORNumber.Clear();
+                ucJoborder.nudAmount.Value = 0;
+                ucJoborder.txtWARNumber.Clear();
+
+                // Reset dropdowns
+                ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
+                ucJoborder.cmbxAccomplishedBy.SelectedValue = -1;
+
+                // Reset job order state
+                ucJoborder.jobOrderId = 0;
+                ucJoborder.statusId = 1;
+                ucJoborder.radPending.Checked = true;
+                ucJoborder.isUpdate = false;
+
+                // Reset form controls
+                btnSave.BackColor = Color.DodgerBlue;
+                btnSave.Text = "Save [Ctrl + S]";
+                dgJobOrders.Enabled = true;
+                ucJoborder.errorProvider1.Clear();
+
+                // Clear account-related fields
+                ucJoborder.txtAcc1.Clear();
+                ucJoborder.txtAcc2.Clear();
+                ucJoborder.txtAcc3.Clear();
+                ucJoborder.txtAcc4.Clear();
+                ucJoborder.txtRemarks.Clear();
+
+                // Enable groupboxes
+                ucJoborder.groupBox4.Enabled = true;
+                ucJoborder.gbAccountDetails.Enabled = true;
+                ucJoborder.gbIssuanceAndAssignment.Enabled = true;
+                ucJoborder.gbJODetails.Enabled = true;
+
+                // Clear CheckedListBox selections
                 for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
                 {
                     ucJoborder.clBoxParticulars.SetItemChecked(i, false);
                 }
-            }
 
-            Helper.temporaryAdminMode = false;
-            ucJoborder.accountId = 0;
-            ucJoborder.txtAccountName.Clear();
-            ucJoborder.txtAccountName.Focus();
-            ucJoborder.txtAccountNumber.Clear();
-            ucJoborder.txtAddress.Clear();
-            ucJoborder.txtContact.Clear();
-            btnX.Visible = false;
-            ValidatePermissions();
-            LoadJobOrders();
+                // Reset hidden state/flags
+                Helper.temporaryAdminMode = false;
+                ucJoborder.accountId = 0;
+
+                // Clear account details
+                ucJoborder.txtAccountName.Clear();
+                ucJoborder.txtAccountNumber.Clear();
+                ucJoborder.txtAddress.Clear();
+                ucJoborder.txtContact.Clear();
+
+                btnX.Visible = false;
+
+                ValidatePermissions();
+
+                if (!backgroundWorker1.IsBusy)
+                    backgroundWorker1.RunWorkerAsync(LoadJobOrdersParameters());
+            }
+            finally
+            {
+                ucJoborder.ResumeLayout();
+                this.ResumeLayout();
+                this.BeginInvoke(new Action(() => ucJoborder.txtAccountName.Focus()));
+            }
         }
         #endregion
 

@@ -187,7 +187,6 @@ namespace JOMonitoringApp.Views.MainForm
 
             this.ResumeLayout();
             Cursor.Current = Cursors.Default;
-
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)

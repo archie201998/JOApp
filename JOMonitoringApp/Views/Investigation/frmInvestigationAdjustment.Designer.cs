@@ -44,6 +44,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtAmountDueAfterAdjustment = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -85,7 +86,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtLeakingNotVisCurrentCons = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -243,7 +243,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox4.Location = new System.Drawing.Point(0, 674);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1371, 59);
+            this.groupBox4.Size = new System.Drawing.Size(589, 59);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -308,6 +308,16 @@
             this.groupBox5.Size = new System.Drawing.Size(567, 332);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(233, 103);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(119, 15);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "----------------------------";
             // 
             // label22
             // 
@@ -804,21 +814,11 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "CURRENT CONS. : ";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(233, 103);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 15);
-            this.label12.TabIndex = 28;
-            this.label12.Text = "----------------------------";
-            // 
             // frmInvestigationAdjustment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1371, 733);
+            this.ClientSize = new System.Drawing.Size(589, 733);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);
             this.Controls.Add(this.gbIllegal);

@@ -116,7 +116,7 @@ namespace JOMonitoringApp.Views.Investigation
 
             bool isDisapproved = cbxDisapproved.Checked;
             bool isRecommendationDisapproved = cbxRecommendationDisapproved.Checked;
-            bool hasNoAdjustment = cbxNoAdjustment.Checked;
+            bool hasNoAdjustment = cbxForAdjustment.Checked;
 
             if (hasInvestigatorComments && !hasRecommendation && !hasApproval)
                 return (int)InvestigationStatus.ForRecommendation;
@@ -177,7 +177,7 @@ namespace JOMonitoringApp.Views.Investigation
                 Government = Convert.ToBoolean(cbGovernment.Checked),
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
-                HasAdjustment = !cbxNoAdjustment.Checked,
+                HasAdjustment = cbxForAdjustment.Checked,
                 UpdatedBy = Helper.UserId,
                 
             };
@@ -389,7 +389,7 @@ namespace JOMonitoringApp.Views.Investigation
             txtApprovalMessage.Text = approvalMessage;
             cbxDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
             cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
-            cbxNoAdjustment.Checked = noAdjustment != 0;
+            cbxForAdjustment.Checked = noAdjustment != 0;
 
             //loading of picture box
             if (dictInvestigation.ContainsKey("image_path"))
@@ -565,6 +565,11 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 GetInvestigationRecords();
             }
+        }
+
+        private void cbxForAdjustment_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -38,6 +38,11 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (_ucInvestigationForm.hasAdjustment)
                 LoadAdjustments();
+
+
+            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
+            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
+            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
         }
         private void LoadAccountDetails()
         {
@@ -68,7 +73,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeIllegal()
         {
-            gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
+
         }
 
         private void ComputeLeakingNotVisible()
@@ -99,7 +104,6 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ComputeFailedCalibration()
         {
-            gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
 
             int last3Month, last2Month = 0, lastMonth = 0;
 
@@ -126,8 +130,6 @@ namespace JOMonitoringApp.Views.Investigation
         {
             try
             {
-                gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
-
                 if (_accountNumber != string.Empty)
                 {
                     var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
@@ -163,9 +165,6 @@ namespace JOMonitoringApp.Views.Investigation
                 txtConsumption.Text = consumption.ToString();
 
                 adjustedAmount = underHundredRate;
-
-
-                
                 //6720
             }
             else
@@ -188,7 +187,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Compute();
+            
             //ComputePenaltyAndExtensionFee();
            
         }
@@ -200,19 +199,24 @@ namespace JOMonitoringApp.Views.Investigation
             switch (particular)
             {
                 case "Failed Calibration":
+
+                    gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeFailedCalibration();
                     break;
 
                 case "Erroneous Reading":
+                    gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
                     GetPreviusReadingDetails();
                     ComputeErrorReading();
                     break;
 
                 case "Leaking (Not Visible)":
+                    gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeLeakingNotVisible();
                     break;
 
                 case "RFB + Illegal":
+                    gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeIllegal();
                     break;
 
@@ -223,12 +227,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Compute();
 
-            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
-            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
-            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
-            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
+            Compute();
 
         }
 

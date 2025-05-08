@@ -63,7 +63,7 @@
             this.nudImmediateFamily = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.gbComments = new System.Windows.Forms.GroupBox();
-            this.cbxNoAdjustment = new System.Windows.Forms.CheckBox();
+            this.cbxForAdjustment = new System.Windows.Forms.CheckBox();
             this.cbxRecommendationDisapproved = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.txtRecommendations = new System.Windows.Forms.TextBox();
@@ -550,7 +550,7 @@
             // 
             // gbComments
             // 
-            this.gbComments.Controls.Add(this.cbxNoAdjustment);
+            this.gbComments.Controls.Add(this.cbxForAdjustment);
             this.gbComments.Controls.Add(this.cbxRecommendationDisapproved);
             this.gbComments.Controls.Add(this.label21);
             this.gbComments.Controls.Add(this.txtRecommendations);
@@ -565,16 +565,17 @@
             this.gbComments.Text = "COMMENTS AND RECOMMENDATIONS";
             this.gbComments.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
-            // cbxNoAdjustment
+            // cbxForAdjustment
             // 
-            this.cbxNoAdjustment.AutoSize = true;
-            this.cbxNoAdjustment.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cbxNoAdjustment.Location = new System.Drawing.Point(10, 540);
-            this.cbxNoAdjustment.Name = "cbxNoAdjustment";
-            this.cbxNoAdjustment.Size = new System.Drawing.Size(107, 19);
-            this.cbxNoAdjustment.TabIndex = 24;
-            this.cbxNoAdjustment.Text = "No Adjustment";
-            this.cbxNoAdjustment.UseVisualStyleBackColor = true;
+            this.cbxForAdjustment.AutoSize = true;
+            this.cbxForAdjustment.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.cbxForAdjustment.Location = new System.Drawing.Point(10, 540);
+            this.cbxForAdjustment.Name = "cbxForAdjustment";
+            this.cbxForAdjustment.Size = new System.Drawing.Size(108, 19);
+            this.cbxForAdjustment.TabIndex = 24;
+            this.cbxForAdjustment.Text = "For Adjustment";
+            this.cbxForAdjustment.UseVisualStyleBackColor = true;
+            this.cbxForAdjustment.CheckedChanged += new System.EventHandler(this.cbxForAdjustment_CheckedChanged);
             // 
             // cbxRecommendationDisapproved
             // 
@@ -1212,7 +1213,7 @@
         internal System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.CheckBox cbxRecommendationDisapproved;
         protected System.Windows.Forms.GroupBox gbAccountDetails;
-        private System.Windows.Forms.CheckBox cbxNoAdjustment;
+        private System.Windows.Forms.CheckBox cbxForAdjustment;
         private System.Windows.Forms.CheckBox cbxDisapproved;
         internal System.Windows.Forms.CheckBox cbHHPurpose;
         internal System.Windows.Forms.CheckBox cbPromoteTrade;

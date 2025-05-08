@@ -55,6 +55,7 @@ namespace JOMonitoringApp.Model
         public string AlternativeSource { get; set; }
 
         //adjustment details 
+        public bool HasAdjustment { get; set; }
         public string PreviousReading { get; set; }
         public string PresentReading { get; set; }
         public string ActualReading { get; set; }

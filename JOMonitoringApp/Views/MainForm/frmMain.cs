@@ -397,6 +397,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void LoadSelectedData()
         {
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+           
 
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
 
@@ -621,7 +622,8 @@ namespace JOMonitoringApp.Views.MainForm
                 if (success)
                 {
                     LogJOTransaction();
-                    if (CheckIfInvestigation()) InsertJobOrderToInvestigation();
+                    if (CheckIfInvestigation())
+                        InsertJobOrderToInvestigation(); //<-- Save to investigation table
 
                     string message = ucJoborder.isUpdate
                         ? "Job Order details successfully updated."
@@ -629,7 +631,6 @@ namespace JOMonitoringApp.Views.MainForm
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
                 }
-
             }
             catch (Exception ex)
             {
@@ -646,7 +647,10 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             if (ucJoborder.HasDataChanged())
+            {
                 return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
+            }
+            
 
             else
             {
@@ -676,33 +680,39 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void InsertJobOrderToInvestigation()
         {
-            string meterBrand = string.Empty;
-            string meterSize = string.Empty;
-            string meterNumber = string.Empty;
             string accountNumber = ucJoborder.txtAccountNumber.Text;
             int jobOrderID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
 
-            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
-            if (meterDict.Count != 0)
-            {
-                meterBrand = meterDict["MeterBrand"].ToString().ToUpper();
-                meterSize = meterDict["MeterSize"].ToString().ToUpper();
-                meterNumber = meterDict["MeterNumber"].ToString().ToUpper();
-            }
+            var meterDetails = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
 
-            _ = Factory.InvestigationRepository().Insert(new InvestigationModel()
+            string meterBrand = meterDetails.ContainsKey("MeterBrand") ? meterDetails["MeterBrand"].ToUpper() : string.Empty;
+            string meterSize = meterDetails.ContainsKey("MeterSize") ? meterDetails["MeterSize"].ToUpper() : string.Empty;
+            string meterNumber = meterDetails.ContainsKey("MeterNumber") ? meterDetails["MeterNumber"].ToUpper() : string.Empty;
+
+            string natureOfComplaint = string.Join(",", ucJoborder.clBoxParticulars.CheckedItems.Cast<object>());
+
+            var investigation = new InvestigationModel
             {
-                JobOrderId = jobOrderID,
+                JobOrderId = ucJoborder.isUpdate ? ucJoborder.jobOrderId : jobOrderID,
                 JobOrderNo = ucJoborder.txtJONumber.Text,
                 CustomerName = ucJoborder.txtAccountName.Text,
                 CustomerAddress = ucJoborder.txtAddress.Text,
                 CustomerAccountNumber = accountNumber,
-                NatureOfComplaint = string.Join(",", ucJoborder.clBoxParticulars.CheckedItems.Cast<object>()),
+                NatureOfComplaint = natureOfComplaint,
                 MeterBrand = meterBrand,
                 MeterSize = meterSize,
                 MeterNumber = meterNumber,
-                CreatedBy = Helper.UserId,
-            });
+                CreatedBy = Helper.UserId
+            };
+
+            if (ucJoborder.isUpdate)
+            {
+                _ = Factory.InvestigationRepository().UpdateInvestigation(investigation);
+            }
+            else
+            {
+                _ = Factory.InvestigationRepository().Insert(investigation);
+            }
         }
         
 
@@ -723,12 +733,11 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
-                    return Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                   Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+
                 }
             }
             return false;
-
-
         }
         #endregion
 

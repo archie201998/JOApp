@@ -240,8 +240,8 @@ namespace JOMonitoringApp.Views.JobOrder
             string WAR = txtWARNumber.Text.Trim();
             string remarks = txtRemarks.Text.Trim();
             int preparedById = Helper.UserId;
-            int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
-            int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
+            int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 || cmbxMaterialsIssuedBy.SelectedValue == null ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
+            int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 || cmbxAccomplishedBy.SelectedValue == null ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             int statusId = this.statusId;
             string particular = GetSelectedParticulars();
 

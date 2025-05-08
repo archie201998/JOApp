@@ -66,6 +66,35 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
+        public bool UpdateInvestigation(InvestigationModel entity) //<-- Temporary only
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_orders_id", DbType.Int32,  entity.JobOrderId },
+                new object[] { "@job_order_no", DbType.String,  entity.JobOrderNo }, 
+                new object[] { "@customer_name", DbType.String, entity.CustomerName },
+                new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
+                new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
+                new object[] { "@nature_of_complaint", DbType.String, entity.NatureOfComplaint },
+                new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
+                new object[] { "@meter_size", DbType.String, entity.MeterSize },
+                new object[] { "@meter_number", DbType.String, entity.MeterNumber },
+            };
+
+            string query = $"UPDATE {tableName} SET " +
+                            $"job_order_no = @job_order_no, " +
+                            $"customer_name = @customer_name, " +
+                            $"customer_address = @customer_address," +
+                            $"account_number = @account_number," +
+                            $"nature_of_complaint = @nature_of_complaint," +
+                            $"meter_brand = @meter_brand," +
+                            $"meter_size = @meter_size," +
+                            $"meter_number = @meter_number " +
+                            $"WHERE job_orders_id = @job_orders_id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
         public bool Update(InvestigationModel entity)
         {
             var parameters = new object[][]
@@ -104,6 +133,7 @@ namespace JOMonitoringApp
                 new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
                 new object[] { "@over_registration", DbType.String, entity.OverRegistration },
                 new object[] { "@under_registration", DbType.String, entity.UnderRegistration },
+                new object[] { "@has_adjustment", DbType.Boolean, entity.HasAdjustment },
                 new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter }
             };
 
@@ -141,7 +171,8 @@ namespace JOMonitoringApp
                                 calibration_result = @calibration_result, 
                                 over_registration = @over_registration, 
                                 under_registration = @under_registration, 
-                                leaking_after_the_meter = @leaking_after_the_meter 
+                                leaking_after_the_meter = @leaking_after_the_meter,
+                                has_adjustment = @has_adjustment 
                             WHERE id = @id;";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);

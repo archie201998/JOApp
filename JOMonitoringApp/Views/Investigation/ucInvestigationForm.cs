@@ -70,12 +70,10 @@ namespace JOMonitoringApp.Views.Investigation
             int investigationStatusID = InvestigationStatusLogic();
 
             if (investigationStatusID == 4)
-                jobOrderStatus = 3;
-            if (investigationStatusID == 3) //if disapproved
                 jobOrderStatus = 4;
-            if (investigationStatusID == 1 || investigationStatusID == 2)
-                jobOrderStatus = 2;
 
+            if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5) 
+                jobOrderStatus = 2;
 
             Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
         }
@@ -179,7 +177,9 @@ namespace JOMonitoringApp.Views.Investigation
                 Government = Convert.ToBoolean(cbGovernment.Checked),
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
+                HasAdjustment = !cbxNoAdjustment.Checked,
                 UpdatedBy = Helper.UserId,
+                
             };
 
             return model;

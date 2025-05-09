@@ -27,9 +27,8 @@ namespace JOMonitoringApp.Views.Investigation
             _accountNumber = accountNumber;
             txtAccountNumber.Text = _accountNumber;
             _ucInvestigationForm = ucInvestigationForm;
-
-            locationX = gbLeakingNotVisible.Location.X;
-            locationY = gbLeakingNotVisible.Location.Y;
+            locationX = 12;
+            locationY = 182;
         }
 
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
@@ -40,9 +39,6 @@ namespace JOMonitoringApp.Views.Investigation
                 LoadAdjustments();
 
 
-            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
-            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
-            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
         }
         private void LoadAccountDetails()
         {
@@ -185,13 +181,6 @@ namespace JOMonitoringApp.Views.Investigation
             throw new ArgumentException("Invalid quantity. Must be between 1 and 100.");
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            //ComputePenaltyAndExtensionFee();
-           
-        }
-
         private void Compute()
         {
             string particular = cmbxParticular.Text;
@@ -200,23 +189,19 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 case "Failed Calibration":
 
-                    gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeFailedCalibration();
                     break;
 
                 case "Erroneous Reading":
-                    gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
                     GetPreviusReadingDetails();
                     ComputeErrorReading();
                     break;
 
                 case "Leaking (Not Visible)":
-                    gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeLeakingNotVisible();
                     break;
 
                 case "RFB + Illegal":
-                    gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
                     ComputeIllegal();
                     break;
 
@@ -227,9 +212,87 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
+            SetFields();
+        }
 
+        private void SetFields()
+        {
+            string particular = cmbxParticular.Text;
+
+            btnAutoCompute.Enabled = true;
+            btnManualCompute.Enabled = true;
+            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
+            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
+            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
+            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
+
+            switch (particular)
+            {
+                case "Failed Calibration":
+
+                    gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
+                    break;
+
+                case "Erroneous Reading":
+                    gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
+                    ComputeErrorReading();
+                    break;
+
+                case "Leaking (Not Visible)":
+                    gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
+                    break;
+
+                case "RFB + Illegal":
+                    gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
+                    break;
+
+                default:
+
+                    gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
+                    gbIllegal.Location = new System.Drawing.Point(1000, 1000);
+                    gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
+                    gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
+                    btnAutoCompute.Enabled = false;
+                    btnManualCompute.Enabled = false;
+                    break;
+            }
+        }
+
+        private void btnManualCompute_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+            LoadAccountDetails();
+        }
+
+        private void ClearFields()
+        {
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox textBox)
+                {
+                    textBox.Clear();
+                }
+                else if (control is GroupBox groupBox)
+                {
+                    foreach (Control innerControl in groupBox.Controls)
+                    {
+                        if (innerControl is TextBox innerTextBox)
+                        {
+                            innerTextBox.Clear();
+                        }
+                    }
+                }
+            }
+
+            txtAmountDue.Text = "0";    
+            txtPenalty.Text = "0";
+            txtExtensionFee.Text = "0";
+            txtAmountDueAfterAdjustment.Text = "0";
+        }
+
+        private void btnAutoCompute_Click(object sender, EventArgs e)
+        {
             Compute();
-
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -361,10 +424,14 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cbxPenalty_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbxPenalty.Checked)
-                txtPenalty.Text = (Convert.ToDecimal(txtAmountDue.Text) * 0.10m).ToString();
-            else
-                txtPenalty.Text = "0";
+            try
+            {
+                if (cbxPenalty.Checked)
+                    txtPenalty.Text = (Convert.ToDecimal(txtAmountDue.Text) * 0.10m).ToString();
+                else
+                    txtPenalty.Text = "0";
+            }
+            catch (Exception) { }
         }
 
         private void txtActualReading_Leave(object sender, EventArgs e)
@@ -395,14 +462,40 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void CalculateTotal()
         {
-            decimal amountDue = Convert.ToDecimal(txtAmountDue.Text);
-            decimal penalty = Convert.ToDecimal(txtPenalty.Text);
-            decimal extensionFee = Convert.ToDecimal(txtExtensionFee.Text);
+            try
+            {
+                decimal amountDue = Convert.ToDecimal(txtAmountDue.Text);
+                decimal penalty = Convert.ToDecimal(txtPenalty.Text);
+                decimal extensionFee = Convert.ToDecimal(txtExtensionFee.Text);
 
 
-            bool isCommercial = txtAccountType.Text != "RESIDENTIAL";
+                bool isCommercial = txtAccountType.Text != "RESIDENTIAL";
 
-            txtAmountDueAfterAdjustment.Text = (amountDue + penalty + extensionFee).ToString("N2");
+                txtAmountDueAfterAdjustment.Text = (amountDue + penalty + extensionFee).ToString("N2");
+            }
+            catch (Exception) { }
+         
         }
+
+        private void txtAdjustmentConsumption_TextChanged(object sender, EventArgs e)
+        {
+            ComputeLeakingNotVisible(); 
+        }
+
+        private void txtConsumption_TextChanged(object sender, EventArgs e)
+        {
+            ComputeErrorReading();
+        }
+
+        private void txtLast3Month_TextChanged(object sender, EventArgs e)
+        {
+            ComputeFailedCalibration();
+        }
+
+        private void txtConsOnDisconnection_TextChanged(object sender, EventArgs e)
+        {
+            ComputeIllegal();
+        }
+
     }
 }

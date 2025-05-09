@@ -47,6 +47,13 @@ namespace JOMonitoringApp.Views.Investigation
                 EnableControls(false);
             }
         }
+      
+
+        private bool IsImageFile(string path)
+        {
+            string ext = Path.GetExtension(path).ToLower();
+            return ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif";
+        }
 
         private void ValidateFormPermission()
         {
@@ -185,34 +192,35 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
-      
-
         private void btnAttachedImage_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
                 openFileDialog.Multiselect = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (openFileDialog.FileNames.Length > 2)
+                    int selectedCount = openFileDialog.FileNames.Length;
+
+                    if (selectedCount > 2)
                     {
-                        Helper.MessageBoxSuccess("Please select 2 images");
+                        Helper.MessageBoxSuccess("Please select only 1 or 2 images.");
                         return;
                     }
 
                     imageFilePath = openFileDialog.FileNames[0];
-                    secondaryImageFilePath = openFileDialog.FileNames.Length == 1
-                        ? openFileDialog.FileNames[0]
-                        : openFileDialog.FileNames[1];
+                    secondaryImageFilePath = selectedCount == 2
+                        ? openFileDialog.FileNames[1]
+                        : null;
 
                     pictureBox1.Image = Image.FromFile(imageFilePath);
-                    pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
-
+                    pictureBox2.Image = secondaryImageFilePath != null
+                        ? Image.FromFile(secondaryImageFilePath)
+                        : null;
                 }
             }
         }
@@ -304,6 +312,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void dgInvestigations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ViewInvestigationDetails();
+            ViewAdjustment();
         }
 
         internal void ViewInvestigationDetails()
@@ -340,19 +349,7 @@ namespace JOMonitoringApp.Views.Investigation
             string adjustmentParticular = dictInvestigation["adjustment_particular"];
             int noAdjustment = string.IsNullOrEmpty(dictInvestigation["has_adjustment"]) ? 0 : Convert.ToInt32(dictInvestigation["has_adjustment"]);
 
-            if (adjustmentParticular != string.Empty)
-            {
-                lblAdjustedAmount.Text = dictInvestigation["adjusted_amount"];
-                btnCompute.Text = "View Adjustments";
-                hasAdjustment = true;
-            }
-            else
-            {
-                btnCompute.Text = "Make Computations";
-                lblAdjustedAmount.Text = dictInvestigation["adjusted_amount"];
-                hasAdjustment = false;
-            }
-
+         
             cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
             cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
             cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
@@ -365,7 +362,7 @@ namespace JOMonitoringApp.Views.Investigation
             txtAddress.Text = dictInvestigation["customer_address"];
             _jobOrderId = jobOrdersId;
             _jobOrderNumber = txtJONumber.Text;
-
+            hasAdjustment = string.IsNullOrEmpty(dictInvestigation["adjustment_amount"]) ? false : true;
             txtComplaint.Text = natureOfComplaint;
             txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
             txtRecommendations.Text = dictInvestigation["recommendations"];
@@ -476,7 +473,30 @@ namespace JOMonitoringApp.Views.Investigation
             };
 
             var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
-            
+            ViewAdjustment();
+        }
+
+        internal void ViewAdjustment()
+        {
+            var adjustments = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
+
+            if (adjustments.Count != 0)
+            {
+                decimal amountDue = !string.IsNullOrWhiteSpace(adjustments["amount_due"]?.ToString()) ? Convert.ToDecimal(adjustments["amount_due"]) : 0;
+                decimal penalty = !string.IsNullOrWhiteSpace(adjustments["penalty"]?.ToString()) ? Convert.ToDecimal(adjustments["penalty"]) : 0;
+                decimal extensionFee = !string.IsNullOrWhiteSpace(adjustments["extension_fee"]?.ToString()) ? Convert.ToDecimal(adjustments["extension_fee"]) : 0;
+                decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["adjustment_amount"]?.ToString()) ? Convert.ToDecimal(adjustments["adjustment_amount"]) : 0;
+                decimal adjustedAmount = (amountDue + penalty + extensionFee) - adjustment;
+                string adjustedConsumption = adjustments["actual_consumption"];
+
+                lblAmountDue.Text = amountDue.ToString("N2");
+                lblExtensionFee.Text = extensionFee.ToString("N2");
+                lblPenalty.Text = penalty.ToString("N2");
+
+                lblAdjustedAmount.Text = adjustment.ToString("N2"); 
+                lblAdjustment.Text = adjustedAmount.ToString("N2");
+
+            }
         }
 
         private void CalibrationResult()

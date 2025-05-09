@@ -312,7 +312,7 @@ namespace JOMonitoringApp
 
                 new object[] { "@last_three_months_consumption", DbType.String, entity.AverageConsumption },
                 new object[] { "@amount_due", DbType.String, entity.AmountDue },
-                new object[] { "@adjusted_amount", DbType.String, entity.AdjustedAmount },
+                new object[] { "@adjustment_amount", DbType.String, entity.Adjustment },
 
                 new object[] { "@extension_fee", DbType.String, entity.ExtensionFee },
                 new object[] { "@penalty", DbType.String, entity.Penalty },
@@ -341,7 +341,7 @@ namespace JOMonitoringApp
 
                                 last_three_months_consumption = @last_three_months_consumption,
                                 amount_due = @amount_due,
-                                adjusted_amount = @adjusted_amount, 
+                                adjustment_amount = @adjustment_amount, 
                                 adjustment_particular = @adjustment_particular, 
 
                                 extension_fee = @extension_fee, 

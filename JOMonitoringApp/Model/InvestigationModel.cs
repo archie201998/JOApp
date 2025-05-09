@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
@@ -26,6 +27,7 @@ namespace JOMonitoringApp.Model
         public string secondaryImagePath { get; set; }
         public decimal Penalty { get; set; }
         public decimal ExtensionFee { get; set; }
+        public decimal Adjustment { get; set; }
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
 
@@ -66,6 +68,6 @@ namespace JOMonitoringApp.Model
         public string AverageConsumption { get; set; }
         public string AdjustmentParticular { get; set; }
         public decimal AmountDue { get; set; }
-        public decimal AdjustedAmount { get; set; }
+        public decimal AdjustmentAmount { get; set; }
     }
 }

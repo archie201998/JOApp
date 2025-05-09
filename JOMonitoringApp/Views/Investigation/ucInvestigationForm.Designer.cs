@@ -103,6 +103,15 @@
             this.txtApprovalMessage = new System.Windows.Forms.TextBox();
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.lblAdjustedAmount = new System.Windows.Forms.Label();
+            this.lblAdjustment = new System.Windows.Forms.Label();
+            this.lblExtensionFee = new System.Windows.Forms.Label();
+            this.lblPenalty = new System.Windows.Forms.Label();
+            this.lblAmountDue = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.btnCompute = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.gbAccountDetails.SuspendLayout();
@@ -1052,6 +1061,15 @@
             // gbComputation
             // 
             this.gbComputation.Controls.Add(this.lblAdjustedAmount);
+            this.gbComputation.Controls.Add(this.lblAdjustment);
+            this.gbComputation.Controls.Add(this.lblExtensionFee);
+            this.gbComputation.Controls.Add(this.lblPenalty);
+            this.gbComputation.Controls.Add(this.lblAmountDue);
+            this.gbComputation.Controls.Add(this.label30);
+            this.gbComputation.Controls.Add(this.label31);
+            this.gbComputation.Controls.Add(this.label29);
+            this.gbComputation.Controls.Add(this.label28);
+            this.gbComputation.Controls.Add(this.label16);
             this.gbComputation.Controls.Add(this.btnCompute);
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbComputation.Location = new System.Drawing.Point(13, 633);
@@ -1064,13 +1082,112 @@
             // lblAdjustedAmount
             // 
             this.lblAdjustedAmount.AutoSize = true;
-            this.lblAdjustedAmount.Font = new System.Drawing.Font("Rockwell", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdjustedAmount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Red;
-            this.lblAdjustedAmount.Location = new System.Drawing.Point(10, 68);
+            this.lblAdjustedAmount.Location = new System.Drawing.Point(193, 170);
             this.lblAdjustedAmount.Name = "lblAdjustedAmount";
-            this.lblAdjustedAmount.Size = new System.Drawing.Size(77, 21);
-            this.lblAdjustedAmount.TabIndex = 22;
-            this.lblAdjustedAmount.Text = "RESULT";
+            this.lblAdjustedAmount.Size = new System.Drawing.Size(50, 21);
+            this.lblAdjustedAmount.TabIndex = 31;
+            this.lblAdjustedAmount.Text = "00.00";
+            // 
+            // lblAdjustment
+            // 
+            this.lblAdjustment.AutoSize = true;
+            this.lblAdjustment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
+            this.lblAdjustment.ForeColor = System.Drawing.Color.Green;
+            this.lblAdjustment.Location = new System.Drawing.Point(193, 198);
+            this.lblAdjustment.Name = "lblAdjustment";
+            this.lblAdjustment.Size = new System.Drawing.Size(50, 21);
+            this.lblAdjustment.TabIndex = 31;
+            this.lblAdjustment.Text = "00.00";
+            // 
+            // lblExtensionFee
+            // 
+            this.lblExtensionFee.AutoSize = true;
+            this.lblExtensionFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExtensionFee.ForeColor = System.Drawing.Color.Red;
+            this.lblExtensionFee.Location = new System.Drawing.Point(193, 142);
+            this.lblExtensionFee.Name = "lblExtensionFee";
+            this.lblExtensionFee.Size = new System.Drawing.Size(49, 21);
+            this.lblExtensionFee.TabIndex = 31;
+            this.lblExtensionFee.Text = "00.00";
+            // 
+            // lblPenalty
+            // 
+            this.lblPenalty.AutoSize = true;
+            this.lblPenalty.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPenalty.ForeColor = System.Drawing.Color.Red;
+            this.lblPenalty.Location = new System.Drawing.Point(193, 114);
+            this.lblPenalty.Name = "lblPenalty";
+            this.lblPenalty.Size = new System.Drawing.Size(49, 21);
+            this.lblPenalty.TabIndex = 31;
+            this.lblPenalty.Text = "00.00";
+            // 
+            // lblAmountDue
+            // 
+            this.lblAmountDue.AutoSize = true;
+            this.lblAmountDue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountDue.ForeColor = System.Drawing.Color.Black;
+            this.lblAmountDue.Location = new System.Drawing.Point(193, 86);
+            this.lblAmountDue.Name = "lblAmountDue";
+            this.lblAmountDue.Size = new System.Drawing.Size(49, 21);
+            this.lblAmountDue.TabIndex = 30;
+            this.lblAmountDue.Text = "00.00";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(18, 141);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(115, 21);
+            this.label30.TabIndex = 29;
+            this.label30.Text = "Extension Fee : ";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.ForeColor = System.Drawing.Color.Black;
+            this.label31.Location = new System.Drawing.Point(18, 113);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(71, 21);
+            this.label31.TabIndex = 28;
+            this.label31.Text = "Penalty : ";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(18, 169);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(142, 21);
+            this.label29.TabIndex = 27;
+            this.label29.Text = "Adjusted Amount : ";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(18, 197);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(101, 21);
+            this.label28.TabIndex = 25;
+            this.label28.Text = "Adjustment : ";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(18, 85);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(109, 21);
+            this.label16.TabIndex = 23;
+            this.label16.Text = "Amount Due : ";
             // 
             // btnCompute
             // 
@@ -1205,7 +1322,6 @@
         internal System.Windows.Forms.Button btnAttachedImage;
         internal System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.PictureBox pictureBox2;
-        internal System.Windows.Forms.Label lblAdjustedAmount;
         internal System.Windows.Forms.TextBox txtComplaint;
         internal System.Windows.Forms.TextBox txtMeterSize;
         internal System.Windows.Forms.TextBox txtMeterBrand;
@@ -1219,5 +1335,15 @@
         internal System.Windows.Forms.CheckBox cbPromoteTrade;
         internal System.Windows.Forms.CheckBox cbSellToNeighbours;
         internal System.Windows.Forms.CheckBox cbGovernment;
+        internal System.Windows.Forms.Label label30;
+        internal System.Windows.Forms.Label label31;
+        internal System.Windows.Forms.Label label29;
+        internal System.Windows.Forms.Label label28;
+        internal System.Windows.Forms.Label label16;
+        internal System.Windows.Forms.Label lblAmountDue;
+        internal System.Windows.Forms.Label lblAdjustedAmount;
+        internal System.Windows.Forms.Label lblAdjustment;
+        internal System.Windows.Forms.Label lblExtensionFee;
+        internal System.Windows.Forms.Label lblPenalty;
     }
 }

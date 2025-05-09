@@ -79,12 +79,12 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
 
                 string particular = dictInvestigation["adjustment_particular"];
-                string adjustment = dictInvestigation["adjusted_amount"];
+                string adjustment = dictInvestigation["adjustment_amount"];
 
                 //string display here
                 string _particular = dictInvestigation["adjustment_particular"];
                 string amountDue = dictInvestigation["amount_due"];
-                string adjustmentAmount = dictInvestigation["adjusted_amount"];
+                string adjustmentAmount = dictInvestigation["adjustment_amount"];
                 string penalty = dictInvestigation["penalty"];
                 string extensionFee = dictInvestigation["extension_fee"];
 
@@ -114,18 +114,18 @@ namespace JOMonitoringApp.Views.Reports
                 string details =
                     $"Particular                  \n" +
                     $"Amount Due                  \n" +
-                    $"Adjustment Amount           \n" +
                     $"Penalty                     \n" +
-                    $"Extension Fee               \n\n";
+                    $"Extension Fee               \n" +
+                    $"Adjustment Amount           \n\n";
 
                 string detailsValues =
                     $": {_particular}\n" +
                     $": {amountDue}\n" +
-                    $": {adjustmentAmount}\n" +
                     $": {penalty}\n" +
-                    $": {extensionFee}\n\n";
+                    $": {extensionFee}\n\n" +
+                    $": {adjustmentAmount}\n";
 
-                parameters[21] = new ReportParameter("paramAdjustments", $"{details}");
+            parameters[21] = new ReportParameter("paramAdjustments", $"{details}");
                 parameters[22] = new ReportParameter("paramAdjustmentsValues", $"{detailsValues}");
 
                 // Load image from file path

@@ -62,6 +62,35 @@ namespace JOMonitoringApp
             dataGridView.Columns["total_count"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["total_count"].MinimumWidth = 20;
         }
+        public static void JOStatusPhase(DataGridView dataGridView, DataTable dataTable)
+        {
+            dataGridView.DataSource = dataTable;
+
+            dataGridView.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridView.Columns["id"].HeaderText = "id";
+            dataGridView.Columns["id"].Visible = false;
+
+
+            dataGridView.Columns["job_order_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["job_order_no"].HeaderText = "JO Number";
+            dataGridView.Columns["job_order_no"].MinimumWidth =10;
+
+            dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["particular"].HeaderText = "Particular";
+            dataGridView.Columns["particular"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["particular"].MinimumWidth = 80;
+
+            dataGridView.Columns["created_at"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["created_at"].HeaderText = "Date Created";
+            dataGridView.Columns["created_at"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["created_at"].MinimumWidth = 80;
+
+            dataGridView.Columns["created_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["created_by"].HeaderText = "Created By";
+            dataGridView.Columns["created_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["created_by"].MinimumWidth = 80;
+
+        }
 
         public static void JobOrdersDataGridView(DataGridView dataGridView, DataTable dataTable)
         {
@@ -77,17 +106,19 @@ namespace JOMonitoringApp
             dataGridView.EnableHeadersVisualStyles = false;
 
             dataGridView.Columns["id"].Visible = true;
-            dataGridView.Columns["id"].HeaderText = "NO. ";
+            dataGridView.Columns["id"].HeaderText = "ID";
             dataGridView.Columns["id"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["id"].MinimumWidth = 50;
 
-
+            dataGridView.Columns["series_no"].Visible = true;
+            dataGridView.Columns["series_no"].HeaderText = "SERIES NO. ";
+            dataGridView.Columns["series_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridView.Columns["series_no"].MinimumWidth = 80;
 
             dataGridView.Columns["prepared_by_id"].Visible = false;
             dataGridView.Columns["materials_issued_by_id"].Visible = false;
             dataGridView.Columns["status_id"].Visible = false;
             dataGridView.Columns["address"].Visible = false;
-            dataGridView.Columns["remarks"].Visible = false;
 
             dataGridView.Columns["status"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["status"].HeaderText = "STATUS";
@@ -155,13 +186,16 @@ namespace JOMonitoringApp
             dataGridView.Columns["materials_issued_by"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["materials_issued_by"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["materials_issued_by"].HeaderText = "MATERIALS ISSUED BY";
+
+            dataGridView.Columns["remarks"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["remarks"].HeaderText = "REMARKS";
+            dataGridView.Columns["remarks"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["remarks"].MinimumWidth = 120;
         }
 
         public static void AccountsDataGridView(DataGridView dataGridView, DataTable dataTable)
         {
             dataGridView.DataSource = dataTable;
-
-            dataGridView.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dataGridView.Columns["id"].Visible = false;
             dataGridView.Columns["address"].Visible = false;
@@ -177,26 +211,20 @@ namespace JOMonitoringApp
             dataGridView.Columns["account_number"].MinimumWidth = 100;
         }
 
-        internal static void CustomersCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
-        {
-            cmbx.DataSource = dataTable;
-            cmbx.ValueMember = valueMember;
-            cmbx.DisplayMember = displayMember;
-            cmbx.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-        }
 
-        internal static void ParticularsCombobox(ComboBox cmbx, DataTable dataTable, string valueMember, string displayMember)
+        internal static void ParticularsCombobox(ComboBox cmbx)
         {
-            // Add a new row to the dataTable
+
+            var dataTable = Factory.ParticularsRepository().GetRecords();
             DataRow newRow = dataTable.NewRow();
 
-            newRow[valueMember] = "0"; // Replace with actual value
-            newRow[displayMember] = "All"; // Replace with actual display text
+            newRow["id"] = "0";
+            newRow["particular"] = "All"; 
             dataTable.Rows.InsertAt(newRow, 0);
 
             cmbx.DataSource = dataTable;
-            cmbx.ValueMember = valueMember;
-            cmbx.DisplayMember = displayMember;
+            cmbx.ValueMember = "id";
+            cmbx.DisplayMember = "particular";
         }
 
         internal static void EmployeeCombobox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)
@@ -260,42 +288,55 @@ namespace JOMonitoringApp
             comboBox.DisplayMember = "status";
         }
 
+        internal static void InvestigationStatusCombobox(ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("id", typeof(int));
+            dataTable.Columns.Add("status", typeof(string));
+
+            // Insert "All" first
+            dataTable.Rows.Add(6, "All");
+
+            // Then the rest
+            dataTable.Rows.Add(0, "For Investigation");
+            dataTable.Rows.Add(1, "For Recommendation");
+            dataTable.Rows.Add(2, "For Adjustment");
+            dataTable.Rows.Add(5, "For ReInvestigation");
+            dataTable.Rows.Add(3, "For Approval");
+            dataTable.Rows.Add(4, "Approved");
+
+            // Bind to ComboBox
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "status";
+        }
+
+
         internal static void InvestigationDatagridView(DataGridView dgInvestigations, DataTable dtInvestigation)
         {
-            if (dtInvestigation != null && dtInvestigation.Rows.Count > 0)
+            if (dgInvestigations.InvokeRequired)
             {
-                dgInvestigations.DataSource = dtInvestigation;
+                dgInvestigations.Invoke(new Action(() => dgInvestigations.DataSource = dtInvestigation));
             }
             else
             {
-                dgInvestigations.DataSource = null;
-                return;
+                dgInvestigations.DataSource = dtInvestigation;
             }
 
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
-            dgInvestigations.Columns["customers_id"].Visible = false;
-            dgInvestigations.Columns["customer_address"].Visible = false;
-            dgInvestigations.Columns["investigator_comments"].Visible = false;
-            dgInvestigations.Columns["recommendations"].Visible = false;
-            dgInvestigations.Columns["image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["approval_message"].Visible = false;
-            dgInvestigations.Columns["created_by"].Visible = false;
-
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-            dgInvestigations.Columns["secondary_image_path"].Visible = false;
-
-            dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER NAME";
-            dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["approval_status"].HeaderText = "INV. STATUS";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
+            dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. NO.";
+            dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER";
+            dgInvestigations.Columns["customer_address"].HeaderText = "ADDRESS";
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
-            dgInvestigations.Columns["is_approved"].HeaderText = "STATUS";
+            dgInvestigations.Columns["created_at"].HeaderText = "DATED COMPLAINED";
 
+            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["account_number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
             foreach (DataGridViewColumn column in dgInvestigations.Columns)
             {
@@ -307,7 +348,6 @@ namespace JOMonitoringApp
         internal static void ParticularsDataGridView(DataGridView dgvParticulars)
         {
             // Set header text and width
-            dgvParticulars.ColumnHeadersDefaultCellStyle.BackColor = Color.LightGray; // Set background color
 
             dgvParticulars.Columns[0].Visible = false;
             dgvParticulars.Columns[0].HeaderText = "ID";
@@ -316,8 +356,8 @@ namespace JOMonitoringApp
             dgvParticulars.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgvParticulars.Columns[1].Width = 100;
             dgvParticulars.Columns[2].HeaderText = "DESCRIPTION";
-            dgvParticulars.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgvParticulars.Columns[2].Width = 200;
+            dgvParticulars.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvParticulars.Columns[2].Width = 400;
         }
 
         internal static void RolesDatagridView(DataGridView dgRoles, DataTable dataTable)

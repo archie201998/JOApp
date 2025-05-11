@@ -26,7 +26,6 @@ namespace JOMonitoringApp
 
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
-        
             try
             {
                 ValidateLoginCredentials();
@@ -37,8 +36,8 @@ namespace JOMonitoringApp
         private void ValidateLoginCredentials()
         {
 
-            string username = txtUserName.Text;
-            string password = txtPassword.Text;
+            string username = txtUserName.Text.Trim();
+            string password = txtPassword.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {

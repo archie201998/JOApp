@@ -2,80 +2,157 @@
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmInvestigationReport : Form
     {
-        Dictionary<string, string> _dictInvestigation = new Dictionary<string, string>();
 
-        public frmInvestigationReport(Dictionary<string, string> dictInvestigation)
+        private readonly int? _jobOrderId;
+        private readonly string _jobOrderNumber = string.Empty;
+
+        public frmInvestigationReport(int? jobOrderId, string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
-            
-            _dictInvestigation = dictInvestigation;
-            txtJONo.Text = _dictInvestigation["job_order_no"]; 
+            _jobOrderId = jobOrderId;
+            _jobOrderNumber = jobOrderNumber;
         }
-                                                        
+
         private void frmInvestigation_Load(object sender, EventArgs e)
         {
-                                                                                                                
+            txtJONo.Text = _jobOrderNumber;
+
+            if (!string.IsNullOrEmpty(txtJONo.Text))
+                LoadReport();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            string searchText = txtJONo.Text;
-            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form.rdlc";
-            reportViewer1.LocalReport.EnableExternalImages = true;
-            ReportParameter[] parameters = new ReportParameter[18];
-            parameters[0] = new ReportParameter("paramCustomer", _dictInvestigation["customer_name"]);
-            parameters[1] = new ReportParameter("paramAccountNumber", _dictInvestigation["account_number"]);
-            parameters[2] = new ReportParameter("paramAddress", _dictInvestigation["customer_address"]);
-            parameters[3] = new ReportParameter("paramNatureOfComplaint", _dictInvestigation["nature_of_complaint"]);
-            parameters[4] = new ReportParameter("paramComments", _dictInvestigation["investigator_comments"]);
-            parameters[5] = new ReportParameter("paramRecommendations", _dictInvestigation["recommendations"]);
+            LoadReport();
+        }
 
-            parameters[6] = new ReportParameter("paramRelatives", _dictInvestigation["relatives"]);
-            parameters[7] = new ReportParameter("paramHouseHelpers", _dictInvestigation["house_helper"]);
-            parameters[8] = new ReportParameter("paramBoarders", _dictInvestigation["boarders"]);
-            parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", _dictInvestigation["immediate_members_of_fam"]);
-
-            parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{_dictInvestigation["meter_brand"]} - {_dictInvestigation["meter_size"]} ");
-            parameters[11] = new ReportParameter("paramMeterNumber", _dictInvestigation["meter_size"]);
-            parameters[12] = new ReportParameter("paramReadingBeforeTest", _dictInvestigation["reading_before_test"]);
-            parameters[13] = new ReportParameter("paramReadingAfterTest", _dictInvestigation["reading_after_test"]);
-            parameters[14] = new ReportParameter("paramCalibrationResult", _dictInvestigation["calibration_result"]);
-            parameters[15] = new ReportParameter("paramImmediateMembers", _dictInvestigation["immediate_members_of_fam"]);
-
-            // Load image from file path
-            string imagePath1 = @"\\192.168.18.183\InvestigationImages\Dacol\123.jpg";
-            string imagePath2 = @"\\192.168.18.183\InvestigationImages\Dacol\456.png";
-            if (File.Exists(imagePath1) || File.Exists(imagePath2))
+        private void LoadReport()
+        {
+            try
             {
-                parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");
-                parameters[17] = new ReportParameter("paramImage2", $"file:///{imagePath2}");
-            }
-            else
-            {
-                parameters[16] = new ReportParameter("paramImage1", string.Empty);
-                parameters[17] = new ReportParameter("paramImage2", string.Empty);
-            }
 
-            reportViewer1.LocalReport.SetParameters(parameters);
-            reportViewer1.ProcessingMode = ProcessingMode.Local;
-            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-            reportViewer1.ZoomMode = ZoomMode.Percent;
-            reportViewer1.RefreshReport();
+                string jobOrderNumber = txtJONo.Text;
+
+                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form-initial-print.rdlc";
+                reportViewer1.LocalReport.EnableExternalImages = true;
+
+                Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
+
+                if (dictInvestigation.Count == 0)
+                {
+                    Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                    Close();
+                    return;
+                }
+
+                ReportParameter[] parameters = new ReportParameter[23];
+                parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
+                parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
+                parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
+                parameters[3] = new ReportParameter("paramNatureOfComplaint", dictInvestigation["nature_of_complaint"]);
+                parameters[4] = new ReportParameter("paramComments", dictInvestigation["investigator_comments"]);
+                parameters[5] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
+
+                parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);
+                parameters[7] = new ReportParameter("paramHouseHelpers", dictInvestigation["house_helper"]);
+                parameters[8] = new ReportParameter("paramBoarders", dictInvestigation["boarders"]);
+                parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", dictInvestigation["immediate_members_of_fam"]);
+
+                parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{dictInvestigation["meter_brand"]} - {dictInvestigation["meter_size"]} ");
+                parameters[11] = new ReportParameter("paramMeterNumber", dictInvestigation["meter_size"]);
+                parameters[12] = new ReportParameter("paramReadingBeforeTest", dictInvestigation["reading_before_test"]);
+                parameters[13] = new ReportParameter("paramReadingAfterTest", dictInvestigation["reading_after_test"]);
+                parameters[14] = new ReportParameter("paramCalibrationResult", dictInvestigation["calibration_result"]);
+                parameters[15] = new ReportParameter("paramImmediateMembers", dictInvestigation["immediate_members_of_fam"]);
+
+                parameters[18] = new ReportParameter("paramRecommendingApproval", Helper.CSDHead);
+                parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
+                parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
+
+                string particular = dictInvestigation["adjustment_particular"];
+                string adjustment = dictInvestigation["adjustment_amount"];
+
+                //string display here
+                string _particular = dictInvestigation["adjustment_particular"];
+                string amountDue = dictInvestigation["amount_due"];
+                string adjustmentAmount = dictInvestigation["adjustment_amount"];
+                string penalty = dictInvestigation["penalty"];
+                string extensionFee = dictInvestigation["extension_fee"];
+
+                string previousReading = dictInvestigation["previous_reading"];
+                string presentReading = dictInvestigation["present_reading"];
+                string actualReading = dictInvestigation["actual_reading"];
+
+                string previousConsumption = dictInvestigation["previous_consumption"];
+                string presentConsumption = dictInvestigation["present_consumption"]; 
+                string actualConsumption = dictInvestigation["actual_consumption"];
+                string averageConsumption = dictInvestigation["last_three_months_consumption"];
+
+                //string details =
+                //    $"Particular           : {_particular}\n" +
+                //    $"Amount Due           : {amountDue}\n" +
+                //    $"Adjustment Amount    : {adjustmentAmount}\n" +
+                //    $"Penalty              : {penalty}\n" +
+                //    $"Extension Fee        : {extensionFee}\n\n" +
+                //    $"Previous Reading     : {previousReading}\n" +
+                //    $"Present Reading      : {presentReading}\n" +
+                //    $"Actual Reading       : {actualReading}\n\n" +
+                //    $"Previous Consumption : {previousConsumption}\n" +
+                //    $"Present Consumption  : {presentConsumption}\n" +
+                //    $"Actual Consumption   : {actualConsumption}\n" +
+                //    $"Average Consumption  : {averageConsumption}";
+
+                string details =
+                    $"Particular                  \n" +
+                    $"Amount Due                  \n" +
+                    $"Penalty                     \n" +
+                    $"Extension Fee               \n" +
+                    $"Adjustment Amount           \n\n";
+
+                string detailsValues =
+                    $": {_particular}\n" +
+                    $": {amountDue}\n" +
+                    $": {penalty}\n" +
+                    $": {extensionFee}\n\n" +
+                    $": {adjustmentAmount}\n";
+
+            parameters[21] = new ReportParameter("paramAdjustments", $"{details}");
+                parameters[22] = new ReportParameter("paramAdjustmentsValues", $"{detailsValues}");
+
+                // Load image from file path
+                string imagePath1 = dictInvestigation["image_path"];
+                string imagePath2 = dictInvestigation["secondary_image_path"];
+                if (File.Exists(imagePath1) || File.Exists(imagePath2))
+                {
+                    parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");
+                    parameters[17] = new ReportParameter("paramImage2", $"file:///{imagePath2}");
+                }
+                else
+                {
+                    parameters[16] = new ReportParameter("paramImage1", string.Empty);
+                    parameters[17] = new ReportParameter("paramImage2", string.Empty);
+                }
+                reportViewer1.LocalReport.SetParameters(parameters);
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
+                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+                reportViewer1.ZoomMode = ZoomMode.Percent;
+                reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
+                Close();
+            }
+            
         }
     }
 

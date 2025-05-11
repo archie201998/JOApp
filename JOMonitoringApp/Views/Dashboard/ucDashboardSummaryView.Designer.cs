@@ -62,6 +62,17 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblRecentMovement = new System.Windows.Forms.Label();
+            this.cmbxStatus = new System.Windows.Forms.ComboBox();
+            this.btnCountPending = new System.Windows.Forms.Button();
+            this.cmbxCount = new System.Windows.Forms.ComboBox();
+            this.cmbxPeriod = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -77,6 +88,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgStatPerParticular)).BeginInit();
             this.gbParticulars.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel6
@@ -341,7 +354,7 @@
             this.panel3.BackColor = System.Drawing.Color.SteelBlue;
             this.panel3.Controls.Add(this.lblPercentage);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Location = new System.Drawing.Point(10, 226);
+            this.panel3.Location = new System.Drawing.Point(10, 222);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(342, 39);
             this.panel3.TabIndex = 4;
@@ -420,16 +433,16 @@
             this.dgStatPerParticular.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgStatPerParticular.Location = new System.Drawing.Point(3, 3);
             this.dgStatPerParticular.Name = "dgStatPerParticular";
-            this.dgStatPerParticular.Size = new System.Drawing.Size(546, 275);
+            this.dgStatPerParticular.Size = new System.Drawing.Size(546, 365);
             this.dgStatPerParticular.TabIndex = 9;
             // 
             // gbParticulars
             // 
             this.gbParticulars.Controls.Add(this.panel5);
             this.gbParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.gbParticulars.Location = new System.Drawing.Point(10, 284);
+            this.gbParticulars.Location = new System.Drawing.Point(10, 280);
             this.gbParticulars.Name = "gbParticulars";
-            this.gbParticulars.Size = new System.Drawing.Size(558, 300);
+            this.gbParticulars.Size = new System.Drawing.Size(558, 390);
             this.gbParticulars.TabIndex = 10;
             this.gbParticulars.TabStop = false;
             this.gbParticulars.Text = "STATUS PER PARTICULAR";
@@ -441,7 +454,7 @@
             this.panel5.Location = new System.Drawing.Point(3, 16);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(3);
-            this.panel5.Size = new System.Drawing.Size(552, 281);
+            this.panel5.Size = new System.Drawing.Size(552, 371);
             this.panel5.TabIndex = 0;
             // 
             // progressBar1
@@ -463,10 +476,181 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.lblRecentMovement);
+            this.groupBox1.Controls.Add(this.cmbxStatus);
+            this.groupBox1.Controls.Add(this.btnCountPending);
+            this.groupBox1.Controls.Add(this.cmbxCount);
+            this.groupBox1.Controls.Add(this.cmbxPeriod);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.groupBox1.Location = new System.Drawing.Point(574, 280);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(549, 390);
+            this.groupBox1.TabIndex = 12;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "JOB ORDER PHASE";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(6, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 15);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "STATUS ";
+            // 
+            // lblRecentMovement
+            // 
+            this.lblRecentMovement.AutoSize = true;
+            this.lblRecentMovement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecentMovement.ForeColor = System.Drawing.Color.Black;
+            this.lblRecentMovement.Location = new System.Drawing.Point(118, 87);
+            this.lblRecentMovement.Name = "lblRecentMovement";
+            this.lblRecentMovement.Size = new System.Drawing.Size(14, 15);
+            this.lblRecentMovement.TabIndex = 19;
+            this.lblRecentMovement.Text = "- ";
+            // 
+            // cmbxStatus
+            // 
+            this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxStatus.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxStatus.FormattingEnabled = true;
+            this.cmbxStatus.Items.AddRange(new object[] {
+            "Pending",
+            "Processing",
+            "Cancelled",
+            "Accomplished"});
+            this.cmbxStatus.Location = new System.Drawing.Point(61, 30);
+            this.cmbxStatus.Name = "cmbxStatus";
+            this.cmbxStatus.Size = new System.Drawing.Size(105, 23);
+            this.cmbxStatus.TabIndex = 17;
+            // 
+            // btnCountPending
+            // 
+            this.btnCountPending.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCountPending.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCountPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCountPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCountPending.ForeColor = System.Drawing.Color.White;
+            this.btnCountPending.Location = new System.Drawing.Point(471, 29);
+            this.btnCountPending.Name = "btnCountPending";
+            this.btnCountPending.Size = new System.Drawing.Size(68, 23);
+            this.btnCountPending.TabIndex = 17;
+            this.btnCountPending.Text = "Count";
+            this.btnCountPending.UseVisualStyleBackColor = false;
+            this.btnCountPending.Click += new System.EventHandler(this.btnCountPending_Click);
+            // 
+            // cmbxCount
+            // 
+            this.cmbxCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxCount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxCount.FormattingEnabled = true;
+            this.cmbxCount.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31"});
+            this.cmbxCount.Location = new System.Drawing.Point(213, 31);
+            this.cmbxCount.Name = "cmbxCount";
+            this.cmbxCount.Size = new System.Drawing.Size(55, 23);
+            this.cmbxCount.TabIndex = 16;
+            // 
+            // cmbxPeriod
+            // 
+            this.cmbxPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxPeriod.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbxPeriod.FormattingEnabled = true;
+            this.cmbxPeriod.Items.AddRange(new object[] {
+            "Day/s",
+            "Week/s",
+            "Month/s",
+            "Year/s"});
+            this.cmbxPeriod.Location = new System.Drawing.Point(341, 30);
+            this.cmbxPeriod.Name = "cmbxPeriod";
+            this.cmbxPeriod.Size = new System.Drawing.Size(121, 23);
+            this.cmbxPeriod.TabIndex = 15;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(176, 33);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(31, 15);
+            this.label6.TabIndex = 21;
+            this.label6.Text = "NO. ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(284, 33);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 15);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "PERIOD";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(6, 87);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 15);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "SEARCH RESULT : ";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(9, 115);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(530, 269);
+            this.dataGridView1.TabIndex = 24;
+            // 
             // ucDashboardSummaryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.gbParticulars);
             this.Controls.Add(this.panel2);
@@ -478,7 +662,7 @@
             this.Controls.Add(this.panel6);
             this.Name = "ucDashboardSummaryView";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1133, 629);
+            this.Size = new System.Drawing.Size(1133, 704);
             this.Load += new System.EventHandler(this.UcDashboardSummaryView_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -507,6 +691,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgStatPerParticular)).EndInit();
             this.gbParticulars.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -546,5 +733,16 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox cmbxCount;
+        private System.Windows.Forms.ComboBox cmbxPeriod;
+        private System.Windows.Forms.Button btnCountPending;
+        private System.Windows.Forms.ComboBox cmbxStatus;
+        private System.Windows.Forms.Label lblRecentMovement;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

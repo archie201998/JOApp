@@ -14,7 +14,7 @@
                   <TextRun>
                     <Value>Concessionaire's Name : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -27,9 +27,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.11813in</Top>
-            <Left>0.125in</Left>
+            <Left>0.05908cm</Left>
             <Height>0.23264in</Height>
-            <Width>1.4532in</Width>
+            <Width>1.57047in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -50,7 +50,7 @@
                   <TextRun>
                     <Value>=Parameters!paramCustomer.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -62,9 +62,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.11813in</Top>
-            <Left>1.64765in</Left>
+            <Left>1.76286in</Left>
             <Height>0.24652in</Height>
-            <Width>1.8113in</Width>
+            <Width>2.40505in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -86,7 +86,7 @@
                   <TextRun>
                     <Value>Addresss : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -99,9 +99,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.37021in</Top>
-            <Left>0.125in</Left>
+            <Left>0.05908cm</Left>
             <Height>0.24652in</Height>
-            <Width>1.4532in</Width>
+            <Width>1.57047in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -123,7 +123,7 @@
                   <TextRun>
                     <Value>Account Number : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -136,9 +136,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.63201in</Top>
-            <Left>0.125in</Left>
+            <Left>0.05908cm</Left>
             <Height>0.24652in</Height>
-            <Width>1.4532in</Width>
+            <Width>1.57047in</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -160,7 +160,7 @@
                   <TextRun>
                     <Value>Nature of Complaint : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -173,9 +173,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.11813in</Top>
-            <Left>3.58785in</Left>
+            <Left>4.21075in</Left>
             <Height>0.24652in</Height>
-            <Width>1.32457in</Width>
+            <Width>1.59578in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -197,7 +197,7 @@
                   <TextRun>
                     <Value>=Parameters!paramNatureOfComplaint.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -209,15 +209,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.11813in</Top>
-            <Left>4.98187in</Left>
-            <Height>0.24652in</Height>
-            <Width>1.38919in</Width>
+            <Left>5.85796in</Left>
+            <Height>0.4986in</Height>
+            <Width>1.17059in</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -233,7 +233,7 @@
                   <TextRun>
                     <Value>=Parameters!paramAddress.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -245,9 +245,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.36465in</Top>
-            <Left>1.64765in</Left>
+            <Left>1.76286in</Left>
             <Height>0.24652in</Height>
-            <Width>1.8113in</Width>
+            <Width>2.40505in</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -269,7 +269,7 @@
                   <TextRun>
                     <Value>=Parameters!paramAccountNumber.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -281,9 +281,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.63201in</Top>
-            <Left>1.64765in</Left>
+            <Left>1.76286in</Left>
             <Height>0.24652in</Height>
-            <Width>1.8113in</Width>
+            <Width>2.40505in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -305,7 +305,7 @@
                   <TextRun>
                     <Value>A. STATISTICAL FINDINGS : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -318,9 +318,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.96276in</Top>
-            <Left>0.125in</Left>
+            <Left>0.05908cm</Left>
             <Height>0.24652in</Height>
-            <Width>1.69475in</Width>
+            <Width>2.35467in</Width>
             <ZIndex>8</ZIndex>
             <Style>
               <Border>
@@ -342,7 +342,7 @@
                   <TextRun>
                     <Value>B. CONDITION OF SERVICE FACILITIES : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -355,9 +355,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>0.96276in</Top>
-            <Left>3.98096in</Left>
+            <Left>4.21075in</Left>
             <Height>0.24652in</Height>
-            <Width>2.1401in</Width>
+            <Width>2.71364in</Width>
             <ZIndex>9</ZIndex>
             <Style>
               <Border>
@@ -371,10 +371,10 @@
             </Style>
           </Textbox>
           <Line Name="Line1">
-            <Top>3.76869in</Top>
-            <Left>0.125in</Left>
+            <Top>3.51869in</Top>
+            <Left>0.05908cm</Left>
             <Height>0in</Height>
-            <Width>6.24607in</Width>
+            <Width>7.04814in</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -391,7 +391,7 @@
                   <TextRun>
                     <Value>CONCESSIONAIRE'S CONFORMANCE:</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -403,8 +403,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>3.76869in</Top>
-            <Left>0.125in</Left>
+            <Top>3.51869in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.24652in</Height>
             <Width>2.87229in</Width>
             <ZIndex>11</ZIndex>
@@ -428,7 +428,7 @@
                   <TextRun>
                     <Value>                  I HEREBY certify to the correctness of the foregoing data and conform to the correctness of the test result made on my service connection facilities: </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -439,10 +439,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.01521in</Top>
-            <Left>0.125in</Left>
-            <Height>0.32955in</Height>
-            <Width>6.24606in</Width>
+            <Top>3.76521in</Top>
+            <Left>0.05908cm</Left>
+            <Height>0.42723in</Height>
+            <Width>7.04814in</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -464,9 +464,9 @@
                   <TextRun>
                     <Value>Requested by </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontStyle>Italic</FontStyle>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -476,8 +476,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.6171in</Top>
-            <Left>0.125in</Left>
+            <Top>4.4921in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.21633in</Height>
             <Width>1.69474in</Width>
             <ZIndex>13</ZIndex>
@@ -504,7 +504,7 @@
                   <TextRun>
                     <Value />
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -515,8 +515,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.38688in</Top>
-            <Left>0.125in</Left>
+            <Top>4.26188in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.21633in</Height>
             <Width>1.69474in</Width>
             <ZIndex>14</ZIndex>
@@ -540,9 +540,9 @@
                   <TextRun>
                     <Value>Concessionaire</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontStyle>Italic</FontStyle>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -552,10 +552,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.6171in</Top>
-            <Left>3.17452in</Left>
+            <Top>4.4921in</Top>
+            <Left>3.16473in</Left>
             <Height>0.21633in</Height>
-            <Width>1.76237in</Width>
+            <Width>2.51237in</Width>
             <ZIndex>15</ZIndex>
             <Style>
               <Border>
@@ -580,7 +580,7 @@
                   <TextRun>
                     <Value>=Parameters!paramCustomer.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -591,10 +591,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.38688in</Top>
-            <Left>3.17452in</Left>
+            <Top>4.26188in</Top>
+            <Left>3.16473in</Left>
             <Height>0.21633in</Height>
-            <Width>1.76237in</Width>
+            <Width>2.51237in</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -616,9 +616,9 @@
                   <TextRun>
                     <Value>Date</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>9pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontStyle>Italic</FontStyle>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -628,10 +628,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.6171in</Top>
-            <Left>5.24275in</Left>
+            <Top>4.4921in</Top>
+            <Left>5.85796in</Left>
             <Height>0.21633in</Height>
-            <Width>1.12831in</Width>
+            <Width>1.18039in</Width>
             <ZIndex>17</ZIndex>
             <Style>
               <Border>
@@ -656,7 +656,7 @@
                   <TextRun>
                     <Value>=Globals!ExecutionTime</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <Format>d</Format>
                     </Style>
@@ -668,10 +668,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.38688in</Top>
-            <Left>5.24275in</Left>
+            <Top>4.26188in</Top>
+            <Left>5.85796in</Left>
             <Height>0.21633in</Height>
-            <Width>1.12831in</Width>
+            <Width>1.18039in</Width>
             <ZIndex>18</ZIndex>
             <Style>
               <Border>
@@ -685,10 +685,10 @@
             </Style>
           </Textbox>
           <Line Name="Line2">
-            <Top>4.87805in</Top>
-            <Left>0.125in</Left>
+            <Top>5.00305in</Top>
+            <Left>0.05908cm</Left>
             <Height>0in</Height>
-            <Width>6.24607in</Width>
+            <Width>7.04814in</Width>
             <ZIndex>19</ZIndex>
             <Style>
               <Border>
@@ -697,9 +697,9 @@
             </Style>
           </Line>
           <Line Name="Line3">
-            <Top>4.87805in</Top>
-            <Left>3.14523in</Left>
-            <Height>1.59623in</Height>
+            <Top>5.00305in</Top>
+            <Left>3.63544in</Left>
+            <Height>2.13206in</Height>
             <Width>0in</Width>
             <ZIndex>20</ZIndex>
             <Style>
@@ -717,7 +717,7 @@
                   <TextRun>
                     <Value>Investigator's Comments :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -729,8 +729,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.96139in</Top>
-            <Left>0.12501in</Left>
+            <Top>5.08639in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.21633in</Height>
             <Width>1.69474in</Width>
             <ZIndex>21</ZIndex>
@@ -757,7 +757,7 @@
                   <TextRun>
                     <Value>Recommendations : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -769,8 +769,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>4.9475in</Top>
-            <Left>3.31189in</Left>
+            <Top>5.0725in</Top>
+            <Left>3.8021in</Left>
             <Height>0.21633in</Height>
             <Width>1.69474in</Width>
             <ZIndex>22</ZIndex>
@@ -797,7 +797,7 @@
                   <TextRun>
                     <Value>=Parameters!paramComments.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -808,10 +808,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>5.23327in</Top>
-            <Left>0.12501in</Left>
-            <Height>1.24101in</Height>
-            <Width>2.87228in</Width>
+            <Top>5.35827in</Top>
+            <Left>0.05908cm</Left>
+            <Height>1.72128in</Height>
+            <Width>3.46896in</Width>
             <ZIndex>23</ZIndex>
             <Style>
               <Border>
@@ -833,7 +833,7 @@
                   <TextRun>
                     <Value>=Parameters!paramRecommendations.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
@@ -844,10 +844,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>5.23327in</Top>
-            <Left>3.31189in</Left>
-            <Height>1.24101in</Height>
-            <Width>2.87228in</Width>
+            <Top>5.35827in</Top>
+            <Left>3.8021in</Left>
+            <Height>1.72128in</Height>
+            <Width>3.23624in</Width>
             <ZIndex>24</ZIndex>
             <Style>
               <Border>
@@ -869,8 +869,8 @@
                   <TextRun>
                     <Value>I. Data on Occupancy / No. of Users:</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -882,15 +882,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.23038in</Top>
-            <Left>0.12501in</Left>
+            <Left>0.05908cm</Left>
             <Height>0.19417in</Height>
-            <Width>2.11323in</Width>
+            <Width>2.35468in</Width>
             <ZIndex>25</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -906,8 +906,8 @@
                   <TextRun>
                     <Value>1. Immediate Members of the Family</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -918,15 +918,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.43124in</Top>
-            <Left>0.32391in</Left>
+            <Left>0.18912in</Left>
             <Height>0.19417in</Height>
-            <Width>1.91432in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>26</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -942,8 +942,8 @@
                   <TextRun>
                     <Value>2. Other  than Immediate Members </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -954,15 +954,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.62541in</Top>
-            <Left>0.32391in</Left>
+            <Left>0.18912in</Left>
             <Height>0.19417in</Height>
-            <Width>1.91432in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>27</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -976,10 +976,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>2.a House helpers </Value>
+                    <Value>2.a House helpers  :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -990,15 +990,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.81958in</Top>
-            <Left>0.51089in</Left>
+            <Left>0.3761in</Left>
             <Height>0.19417in</Height>
-            <Width>1.06731in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>28</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1012,10 +1012,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>2.b Relatives</Value>
+                    <Value>2.b Relatives :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1026,15 +1026,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.01375in</Top>
-            <Left>0.51089in</Left>
+            <Left>0.3761in</Left>
             <Height>0.19417in</Height>
-            <Width>1.06731in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>29</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1048,10 +1048,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>3.c Boarders</Value>
+                    <Value>3.c Boarders :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1062,15 +1062,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.20792in</Top>
-            <Left>0.51089in</Left>
+            <Left>0.3761in</Left>
             <Height>0.19417in</Height>
-            <Width>1.06731in</Width>
+            <Width>1.42344in</Width>
             <ZIndex>30</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1084,10 +1084,10 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>3. Other HH dependents from service</Value>
+                    <Value>3. Other HH dependents from service : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1098,15 +1098,15 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.41598in</Top>
-            <Left>0.32391in</Left>
+            <Left>0.18912in</Left>
             <Height>0.19417in</Height>
-            <Width>1.91432in</Width>
+            <Width>2.32243in</Width>
             <ZIndex>31</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1120,9 +1120,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Total Number of Users:</Value>
+                    <Value>Total Number of Users :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1134,16 +1134,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.60822in</Top>
-            <Left>0.32391in</Left>
+            <Top>2.65822in</Top>
+            <Left>0.18912in</Left>
             <Height>0.19417in</Height>
-            <Width>1.91432in</Width>
+            <Width>2.15576in</Width>
             <ZIndex>32</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1157,9 +1157,9 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>II. Water Service Demand: </Value>
+                    <Value>II. Water Service Demand : </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1171,16 +1171,16 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.79571in</Top>
-            <Left>0.12501in</Left>
+            <Top>2.92071in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.19417in</Height>
-            <Width>2.11323in</Width>
+            <Width>2.35467in</Width>
             <ZIndex>33</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
-              <VerticalAlign>Middle</VerticalAlign>
+              <VerticalAlign>Top</VerticalAlign>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -1196,7 +1196,7 @@
                   <TextRun>
                     <Value>I. Meter Accuracy Test</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1209,9 +1209,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.23038in</Top>
-            <Left>4.07683in</Left>
+            <Left>4.47117in</Left>
             <Height>0.19417in</Height>
-            <Width>2.11323in</Width>
+            <Width>2.2091in</Width>
             <ZIndex>34</ZIndex>
             <Style>
               <Border>
@@ -1233,7 +1233,7 @@
                   <TextRun>
                     <Value>II. Service Line Defects: </Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1245,8 +1245,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.79571in</Top>
-            <Left>4.07683in</Left>
+            <Top>2.67071in</Top>
+            <Left>4.56704in</Left>
             <Height>0.19417in</Height>
             <Width>2.11323in</Width>
             <ZIndex>35</ZIndex>
@@ -1270,8 +1270,8 @@
                   <TextRun>
                     <Value>1. Meter Brand, Size:</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1282,9 +1282,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.43705in</Top>
-            <Left>4.19703in</Left>
+            <Left>4.46637in</Left>
             <Height>0.19417in</Height>
-            <Width>1.22514in</Width>
+            <Width>1.57101in</Width>
             <ZIndex>36</ZIndex>
             <Style>
               <Border>
@@ -1306,8 +1306,8 @@
                   <TextRun>
                     <Value>2. Meter Number :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1317,10 +1317,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>1.62541in</Top>
-            <Left>4.19703in</Left>
+            <Top>1.63791in</Top>
+            <Left>4.46637in</Left>
             <Height>0.19417in</Height>
-            <Width>1.22514in</Width>
+            <Width>1.57101in</Width>
             <ZIndex>37</ZIndex>
             <Style>
               <Border>
@@ -1342,8 +1342,8 @@
                   <TextRun>
                     <Value>3. Reading before Test :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1353,10 +1353,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>1.80708in</Top>
-            <Left>4.19703in</Left>
+            <Top>1.83208in</Top>
+            <Left>4.46637in</Left>
             <Height>0.19417in</Height>
-            <Width>1.22514in</Width>
+            <Width>1.57101in</Width>
             <ZIndex>38</ZIndex>
             <Style>
               <Border>
@@ -1378,8 +1378,8 @@
                   <TextRun>
                     <Value>4. Reading after Test :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1389,10 +1389,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>1.98875in</Top>
-            <Left>4.19703in</Left>
+            <Top>2.03875in</Top>
+            <Left>4.46637in</Left>
             <Height>0.20667in</Height>
-            <Width>1.22514in</Width>
+            <Width>1.57101in</Width>
             <ZIndex>39</ZIndex>
             <Style>
               <Border>
@@ -1414,8 +1414,8 @@
                   <TextRun>
                     <Value>5. Calibration Result:</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1425,10 +1425,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.19542in</Top>
-            <Left>4.19703in</Left>
+            <Top>2.24542in</Top>
+            <Left>4.46637in</Left>
             <Height>0.19417in</Height>
-            <Width>1.22514in</Width>
+            <Width>1.57101in</Width>
             <ZIndex>40</ZIndex>
             <Style>
               <Border>
@@ -1450,7 +1450,7 @@
                   <TextRun>
                     <Value>(Schematic Diagram at the back showing line defects)</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1461,8 +1461,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>3.03155in</Top>
-            <Left>4.07683in</Left>
+            <Top>2.90655in</Top>
+            <Left>4.56704in</Left>
             <Height>0.33439in</Height>
             <Width>2.10734in</Width>
             <ZIndex>41</ZIndex>
@@ -1486,7 +1486,7 @@
                   <TextRun>
                     <Value>Leaking after the meter at the rate of :</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>8pt</FontSize>
                     </Style>
                   </TextRun>
@@ -1497,8 +1497,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>3.37983in</Top>
-            <Left>4.07683in</Left>
+            <Top>3.25483in</Top>
+            <Left>4.56704in</Left>
             <Height>0.20084in</Height>
             <Width>2.10734in</Width>
             <ZIndex>42</ZIndex>
@@ -1520,24 +1520,24 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Captured Image :</Value>
+                    <Value>Captured Image</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
+                      <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
-                  <TextAlign>Left</TextAlign>
+                  <TextAlign>Center</TextAlign>
                 </Style>
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.5576in</Top>
-            <Left>0.12501in</Left>
+            <Top>11.3826in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.23264in</Height>
-            <Width>1.00528in</Width>
+            <Width>7.04812in</Width>
             <ZIndex>43</ZIndex>
             <Style>
               <Border>
@@ -1571,11 +1571,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.89243in</Top>
-            <Left>0.125in</Left>
+            <Top>11.76743in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>44</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1596,8 +1599,8 @@
                   <TextRun>
                     <Value>=Parameters!paramImmediateMembers.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1608,10 +1611,13 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.43124in</Top>
-            <Left>2.30767in</Left>
+            <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>1.65894in</Width>
+            <Width>0.62293in</Width>
             <ZIndex>45</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramImmediateMembers.Value = 0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1632,8 +1638,8 @@
                   <TextRun>
                     <Value>=Parameters!paramHouseHelpers.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1644,10 +1650,13 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.81958in</Top>
-            <Left>2.30767in</Left>
+            <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>1.65895in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>46</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramHouseHelpers.Value = 0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1668,8 +1677,8 @@
                   <TextRun>
                     <Value>=Parameters!paramRelatives.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1680,10 +1689,13 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.01375in</Top>
-            <Left>2.30767in</Left>
+            <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>1.65895in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>47</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramRelatives.Value = 0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1704,8 +1716,8 @@
                   <TextRun>
                     <Value>=Parameters!paramBoarders.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1716,10 +1728,13 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.20792in</Top>
-            <Left>2.30767in</Left>
+            <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>1.65895in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>48</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramBoarders.Value = 0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1740,8 +1755,8 @@
                   <TextRun>
                     <Value>=Parameters!paramOtherHHDependentsFromService.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1752,10 +1767,13 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>2.40209in</Top>
-            <Left>2.30767in</Left>
+            <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>1.65895in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>49</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramOtherHHDependentsFromService.Value = 0</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1776,8 +1794,8 @@
                   <TextRun>
                     <Value>=Parameters!paramMeterBrandAndSize.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1788,9 +1806,9 @@
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
             <Top>1.43844in</Top>
-            <Left>5.46384in</Left>
+            <Left>6.10682in</Left>
             <Height>0.19417in</Height>
-            <Width>0.90722in</Width>
+            <Width>0.93152in</Width>
             <ZIndex>50</ZIndex>
             <Style>
               <Border>
@@ -1812,8 +1830,8 @@
                   <TextRun>
                     <Value>=Parameters!paramMeterNumber.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1823,10 +1841,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>1.63261in</Top>
-            <Left>5.46384in</Left>
+            <Top>1.64511in</Top>
+            <Left>6.10682in</Left>
             <Height>0.19417in</Height>
-            <Width>0.90722in</Width>
+            <Width>0.93152in</Width>
             <ZIndex>51</ZIndex>
             <Style>
               <Border>
@@ -1848,8 +1866,8 @@
                   <TextRun>
                     <Value>=Parameters!paramReadingBeforeTest.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1859,10 +1877,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>1.82678in</Top>
-            <Left>5.46385in</Left>
+            <Top>1.85178in</Top>
+            <Left>6.10683in</Left>
             <Height>0.19417in</Height>
-            <Width>0.90722in</Width>
+            <Width>0.93152in</Width>
             <ZIndex>52</ZIndex>
             <Style>
               <Border>
@@ -1884,8 +1902,8 @@
                   <TextRun>
                     <Value>=Parameters!paramReadingAfterTest.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1895,10 +1913,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.02095in</Top>
-            <Left>5.46384in</Left>
+            <Top>2.07095in</Top>
+            <Left>6.10682in</Left>
             <Height>0.19417in</Height>
-            <Width>0.90722in</Width>
+            <Width>0.93152in</Width>
             <ZIndex>53</ZIndex>
             <Style>
               <Border>
@@ -1920,8 +1938,8 @@
                   <TextRun>
                     <Value>=Parameters!paramCalibrationResult.Value</Value>
                     <Style>
-                      <FontFamily>calibri</FontFamily>
-                      <FontSize>8pt</FontSize>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -1931,10 +1949,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>2.20792in</Top>
-            <Left>5.46384in</Left>
+            <Top>2.25792in</Top>
+            <Left>6.10682in</Left>
             <Height>0.19417in</Height>
-            <Width>0.90722in</Width>
+            <Width>0.93152in</Width>
             <ZIndex>54</ZIndex>
             <Style>
               <Border>
@@ -1950,30 +1968,32 @@
           <Image Name="Image4">
             <Source>External</Source>
             <Value>=Parameters!paramImage2.Value</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>7.18063in</Top>
-            <Left>3.31778in</Left>
-            <Height>1.79167in</Height>
-            <Width>2.87228in</Width>
+            <Sizing>Fit</Sizing>
+            <Top>23.73271in</Top>
+            <Left>0.05908cm</Left>
+            <Height>11.01471in</Height>
+            <Width>7.03834in</Width>
             <ZIndex>55</ZIndex>
+            <Visibility>
+              <Hidden>=Parameters!paramImage2.Value = string.Empty</Hidden>
+            </Visibility>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
             </Style>
           </Image>
           <Image Name="Image5">
             <Source>External</Source>
             <Value>=Parameters!paramImage1.Value</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>7.18063in</Top>
-            <Left>0.125in</Left>
-            <Height>1.79167in</Height>
-            <Width>2.87228in</Width>
+            <Sizing>Fit</Sizing>
+            <Top>12.06951in</Top>
+            <Height>11.01471in</Height>
+            <Width>7.03834in</Width>
             <ZIndex>56</ZIndex>
             <Style>
               <Border>
-                <Style>None</Style>
+                <Style>Solid</Style>
               </Border>
             </Style>
           </Image>
@@ -1998,11 +2018,14 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>6.89243in</Top>
-            <Left>3.31189in</Left>
+            <Top>23.31951in</Top>
+            <Left>0.05908cm</Left>
             <Height>0.23264in</Height>
             <Width>2.87228in</Width>
             <ZIndex>57</ZIndex>
+            <Visibility>
+              <Hidden>true</Hidden>
+            </Visibility>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2014,14 +2037,572 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="paramNatureOfComplaint55">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=CInt(Parameters!paramImmediateMembers.Value) + CInt(Parameters!paramHouseHelpers.Value) + CInt(Parameters!paramRelatives.Value) + CInt(Parameters!paramOtherHHDependentsFromService.Value)</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
+            <Top>2.67072in</Top>
+            <Left>2.66956in</Left>
+            <Height>0.19417in</Height>
+            <Width>0.62294in</Width>
+            <ZIndex>58</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Rectangle Name="Rectangle1">
+            <PageBreak>
+              <BreakLocation>End</BreakLocation>
+            </PageBreak>
+            <KeepTogether>true</KeepTogether>
+            <Top>11.17914in</Top>
+            <Left>0.05908cm</Left>
+            <Height>0.10234in</Height>
+            <Width>7.04812in</Width>
+            <ZIndex>59</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Textbox Name="Textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Prepared By :</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>25.31332cm</Top>
+            <Left>0.05908cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>4.43679cm</Width>
+            <ZIndex>60</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox12">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>User</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>27.07043cm</Top>
+            <Left>0.05908cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5.07179cm</Width>
+            <ZIndex>61</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+              </TopBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox14">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramPreparedBy.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>26.42457cm</Top>
+            <Left>0.05908cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5.07179cm</Width>
+            <ZIndex>62</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Recommending Approval : </Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>25.31332cm</Top>
+            <Left>6.3413cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>4.57055cm</Width>
+            <ZIndex>63</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Commercial Head, </Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Commercial Service  Division</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>27.07043cm</Top>
+            <Left>6.28838cm</Left>
+            <Height>1.01818cm</Height>
+            <Width>5.54951cm</Width>
+            <ZIndex>64</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+              </TopBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramRecommendingApproval.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>26.42457cm</Top>
+            <Left>6.28838cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5.54951cm</Width>
+            <ZIndex>65</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox19">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Approved :</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>25.31332cm</Top>
+            <Left>12.67865cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>4.51543cm</Width>
+            <ZIndex>66</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Branch Manager</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>27.07043cm</Top>
+            <Left>12.75537cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5.01074cm</Width>
+            <ZIndex>67</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Color>Black</Color>
+                <Style>Solid</Style>
+              </TopBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramApproved.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>26.42457cm</Top>
+            <Left>12.75537cm</Left>
+            <Height>0.70583cm</Height>
+            <Width>5.01074cm</Width>
+            <ZIndex>68</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Line Name="Line4">
+            <Top>7.13511in</Top>
+            <Left>0.05908cm</Left>
+            <Height>0in</Height>
+            <Width>7.04814in</Width>
+            <ZIndex>69</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Line Name="Line5">
+            <Top>9.52261in</Top>
+            <Left>0.05908cm</Left>
+            <Height>0in</Height>
+            <Width>7.04814in</Width>
+            <ZIndex>70</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="paramNatureOfComplaint56">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Adjustments : </Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontSize>9pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
+            <Top>7.20455in</Top>
+            <Left>0.05911cm</Left>
+            <Height>0.21633in</Height>
+            <Width>1.0092in</Width>
+            <ZIndex>71</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <TopBorder>
+                <Style>None</Style>
+              </TopBorder>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox11">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramAdjustments.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Normal</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>19.2146cm</Top>
+            <Left>2.91791cm</Left>
+            <Height>4.66212cm</Height>
+            <Width>6.31611cm</Width>
+            <ZIndex>72</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!paramAdjustmentsValues.Value</Value>
+                    <Style>
+                      <FontFamily>arial</FontFamily>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>19.20225cm</Top>
+            <Left>9.33985cm</Left>
+            <Height>4.66212cm</Height>
+            <Width>8.44211cm</Width>
+            <ZIndex>73</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Top</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Line Name="Line6">
+            <Top>11.1554in</Top>
+            <Left>0.09831cm</Left>
+            <Height>0in</Height>
+            <Width>7.04814in</Width>
+            <ZIndex>74</ZIndex>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
         </ReportItems>
-        <Height>23.05357cm</Height>
+        <Height>88.78675cm</Height>
         <Style />
       </Body>
-      <Width>16.5cm</Width>
+      <Width>18.03982cm</Width>
       <Page>
         <PageHeader>
-          <Height>1.39104in</Height>
+          <Height>2.27165cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2044,9 +2625,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.3175cm</Top>
+              <Top>0.31332cm</Top>
+              <Left>0.05911cm</Left>
               <Height>1.15562cm</Height>
-              <Width>16.5cm</Width>
+              <Width>17.90228cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2079,8 +2661,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.88685cm</Top>
+              <Left>0.05908cm</Left>
               <Height>1.15562cm</Height>
-              <Width>16.5cm</Width>
+              <Width>17.90231cm</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -2100,35 +2683,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>H. Broca St. Corner Sabellano St., Sta. Maria District, Pagadian City, Zamboanga Del Sur </Value>
-                      <Style>
-                        <FontFamily>CALIBRI</FontFamily>
-                        <FontWeight>Normal</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Mobile Number: 0938-308-5011, 0970-050-2705 (Smart) </Value>
-                      <Style>
-                        <FontFamily>CALIBRI</FontFamily>
-                        <FontWeight>Normal</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </Paragraph>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>Telephone Number: 062-308-9177 (Globe)</Value>
+                      <Value />
                       <Style>
                         <FontFamily>CALIBRI</FontFamily>
                         <FontWeight>Normal</FontWeight>
@@ -2141,9 +2696,10 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>1.90136cm</Top>
-              <Height>1.52604cm</Height>
-              <Width>16.5cm</Width>
+              <Top>2.02836cm</Top>
+              <Left>0.05908cm</Left>
+              <Height>0.19808cm</Height>
+              <Width>17.90231cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>
@@ -2164,8 +2720,8 @@
               <Source>Embedded</Source>
               <Value>thumbnail_PAMANACOREL</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.3175cm</Top>
-              <Left>0.3175cm</Left>
+              <Top>0.31332cm</Top>
+              <Left>1.98597cm</Left>
               <Height>1.78194cm</Height>
               <Width>1.75035cm</Width>
               <ZIndex>3</ZIndex>
@@ -2179,10 +2735,10 @@
               <Source>Embedded</Source>
               <Value>thumbnail_PAWADCOREL</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.3175cm</Top>
-              <Left>14.33444cm</Left>
+              <Top>0.26053cm</Top>
+              <Left>14.8652cm</Left>
               <Height>1.78194cm</Height>
-              <Width>1.84806cm</Width>
+              <Width>2.00838cm</Width>
               <ZIndex>4</ZIndex>
               <Style>
                 <Border>
@@ -2197,11 +2753,13 @@
             </Border>
           </Style>
         </PageHeader>
-        <PageHeight>14in</PageHeight>
-        <LeftMargin>1in</LeftMargin>
-        <RightMargin>1in</RightMargin>
-        <TopMargin>1in</TopMargin>
-        <BottomMargin>1in</BottomMargin>
+        <PageHeight>35.56cm</PageHeight>
+        <PageWidth>21.59cm</PageWidth>
+        <LeftMargin>1.5cm</LeftMargin>
+        <RightMargin>1.5cm</RightMargin>
+        <TopMargin>1.5cm</TopMargin>
+        <BottomMargin>1.5cm</BottomMargin>
+        <ColumnSpacing>1.27cm</ColumnSpacing>
         <Style />
       </Page>
     </ReportSection>
@@ -2250,25 +2808,23 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramImmediateMembers">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramHouseHelpers">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramRelatives">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
+      <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramOtherHHDependentsFromService">
-      <DataType>String</DataType>
+      <DataType>Integer</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="paramMeterBrandAndSize">
@@ -2319,11 +2875,41 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="paramPreparedBy">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramApproved">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramRecommendingApproval">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramAdjustments">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="paramAdjustmentsValues">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>5</NumberOfRows>
+      <NumberOfRows>6</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -2419,6 +3005,31 @@
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>4</RowIndex>
           <ParameterName>paramImage2</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>4</RowIndex>
+          <ParameterName>paramPreparedBy</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramApproved</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramRecommendingApproval</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramAdjustments</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>3</ColumnIndex>
+          <RowIndex>5</RowIndex>
+          <ParameterName>paramAdjustmentsValues</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>
@@ -3085,6 +3696,6 @@ aKajUX3rwZejo5Oxy/oAAAAA8CcR/AIAAAB4bVfee++4tLS8Jxb1W2TvqunfiEq/t3rSFQCAzKyYjJva
 zGbjOJ7N5XLz9+7dWwsHAQAAAAB2BsEvAAAAADSQgYGBI7lcrtjU1FSMzIqi2qOmRT9zC88b7hEV35cQGoeQOMzlwnHAG1L3eiYm85aGuLO+P6s+Z2q+b7Ox6vzW1tZ8vV6fHxsb20yOAgAAAADsOYJfAAAAANinoijKDQ0Ndfp5XUfey8/uvHIdUZSOfclbKupb6zLTLg1z6TOJt6vghYOn6hWelVsRk4q/FiqqtiCiCyYW5r/110IljrWiUveSSk197HX//v3FOI5D+AsAAAAA2GcIfgEAAADgkOrt7S2cbG3tiAuFjhAe55LgOOqIzLeRbQfHnX7a2Orjo6FU062fSYbQ+Khm81nlvfD91bzCbZDX/O812frfawhv1/zvPtlP5lRWTSzcWvlbjbUSq1RU4ko9CXa1ElWrlWerq5WpqalwLAAAAADgkCH4BQAAAAC8EeE21U1NTUdVNamoHhUkC4pfbr0iL9M4CY5FtcW3LWqaM7VITPMaAmSVvJ+uRhrmfN98PmzTfU3mRCwf1oe1Po7M55Njs3lTP14kW5uo+RlwrCaxnw3X/PuE/ZqKxT6OxaS2PR/W+veJ/f/rPV+TzPvxvq/qx/vacGxY73/22P/s4SrZdTFb9+2a/zGrfuDL0NbXv9zGubjq5+Jroba2tta4XTIAAAAA4PWJ/B92Ix7VU6OEWQAAAABJRU5ErkJggg==</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>02f8cb32-dc95-424b-93c8-4a253ad8ea69</rd:ReportID>
 </Report>

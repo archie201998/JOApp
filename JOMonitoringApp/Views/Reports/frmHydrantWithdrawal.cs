@@ -45,15 +45,15 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\hydrant-withdrawal.rdlc";
                 reportViewer1.LocalReport.EnableExternalImages = true;
 
-                ReportParameter[] parameters = new ReportParameter[6];
+                ReportParameter[] parameters = new ReportParameter[7];
 
-                parameters[0] = new ReportParameter("paramCSDHead", "CRISTOHER JASON CABABARO");
+                parameters[0] = new ReportParameter("paramCSDHead", Helper.CSDHead);
                 parameters[1] = new ReportParameter("paramCustomer", dictJODetails["account_name"]);
                 parameters[2] = new ReportParameter("paramAddress", dictJODetails["address"]);
                 parameters[3] = new ReportParameter("paramContact", dictJODetails["contact_number"]);
                 parameters[4] = new ReportParameter("paramJONumber", dictJODetails["job_order_no"]);
                 parameters[5] = new ReportParameter("paramAccountNumber", string.IsNullOrEmpty(dictJODetails["account_number"]) ? "-" : dictJODetails["account_number"]);
-
+                parameters[6] = new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString());
 
                 reportViewer1.LocalReport.DataSources.Clear();
 

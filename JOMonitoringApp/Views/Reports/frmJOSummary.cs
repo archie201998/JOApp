@@ -48,9 +48,7 @@ namespace JOMonitoringApp.Views.Reports
         private void LoadParticulars()
         {
             cmbxParticular.Items.Clear();
-            var dtParticulars = Factory.ParticularsRepository().GetRecords();
-            HelperLoadRecords.ParticularsCombobox(cmbxParticular, dtParticulars, "id", "particular");
-
+            HelperLoadRecords.ParticularsCombobox(cmbxParticular);
             particular = cmbxParticular.Text;
         }
 
@@ -121,8 +119,8 @@ namespace JOMonitoringApp.Views.Reports
                 var userData = Helper.LoggedInUserData();
 
                 reportParameters1.Add(new ReportParameter("paramPreparedBy", userData["user_full_name"].ToUpper()));
-                reportParameters1.Add(new ReportParameter("paramRecommendingApproval", "CHRISTOPHER JASON R. CABABARO"));
-                reportParameters1.Add(new ReportParameter("paramApproved", "ENG. VIVIEL MAY B. RAMIREZ"));
+                reportParameters1.Add(new ReportParameter("paramRecommendingApproval", Helper.CSDHead));
+                reportParameters1.Add(new ReportParameter("paramApproved", Helper.BranchManager));
                 reportParameters1.Add(new ReportParameter("paramMonth", $"Period :  {dtpFrom.Value.ToString("MMMM dd, yyyy")} - {dtpTo.Value.ToString("MMMM dd, yyyy")}"));
 
 

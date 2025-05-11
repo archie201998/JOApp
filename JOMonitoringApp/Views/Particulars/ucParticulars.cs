@@ -1,13 +1,5 @@
 ﻿using AccountingSystem;
-using Mysqlx.Crud;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Particulars
@@ -23,8 +15,7 @@ namespace JOMonitoringApp.Views.Particulars
         {
             if (!DesignMode)
             {
-                textBox1.CausesValidation = false;
-                textBox2.CausesValidation = false;
+                txtBoxParticular.CausesValidation = false;
             }
 
         }
@@ -46,11 +37,7 @@ namespace JOMonitoringApp.Views.Particulars
         public bool ValidateChildren()
         {
             bool isValid = true;
-            if (!ValidateTextBox(textBox1, "Particular"))
-            {
-                isValid = false;
-            }
-            if (!ValidateTextBox(textBox2, "Description"))
+            if (!ValidateTextBox(txtBoxParticular, "Particular"))
             {
                 isValid = false;
             }
@@ -61,8 +48,7 @@ namespace JOMonitoringApp.Views.Particulars
         {
             var errorArray = new string[]
             {
-                errorProvider1.GetError(textBox1),
-                errorProvider1.GetError(textBox2),
+                errorProvider1.GetError(txtBoxParticular),
             };
 
             return Factory.CreateErrors(errorArray).GenerateErrorMessage();

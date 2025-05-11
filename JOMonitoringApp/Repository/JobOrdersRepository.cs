@@ -122,7 +122,7 @@ namespace JOMonitoringApp
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
             string particularFilter = particular == "All" ? string.Empty : $"AND particular LIKE @particular";
 
-            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war, remarks, date, prepared_by, materials_issued_by, status FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT series_number, id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -215,13 +215,12 @@ namespace JOMonitoringApp
                 new object[]{"@mrs", DbType.String, entity.MRS},
                 new object[]{"@war", DbType.String, entity.WAR},
                 new object[]{"@remarks", DbType.String, entity.Remarks},
-                new object[]{"@prepared_by", DbType.String, entity.PreparedBy},
                 new object[]{"@materials_issued_by", DbType.Int32, entity.MaterialsIssuedBy == 0 ? null : entity.MaterialsIssuedBy },
                 new object[]{"@accomplished_by", DbType.Int32, entity.AccomplishedBy == 0 ? null : entity.AccomplishedBy },
                 new object[]{"@status_id", DbType.Int16, entity.StatusId},
             };
 
-            string query = $"UPDATE {tableName} SET  particular=@particular, account_number = @account_number, account_name = @account_name, contact_number = @contact_number, address = @address, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, prepared_by=@prepared_by, status_id=@status_id WHERE id = @id";
+            string query = $"UPDATE {tableName} SET  particular=@particular, account_number = @account_number, account_name = @account_name, contact_number = @contact_number, address = @address, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, status_id=@status_id WHERE id = @id";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
@@ -246,7 +245,7 @@ namespace JOMonitoringApp
                 new object[] { "@jo_number", DbType.Int32, joNumber}
             };
 
-            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @jo_number";
+            string query = $"SELECT * FROM {viewTableName} WHERE job_order_no = @jo_number AND is_deleted = 0";
 
             DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
 
@@ -310,7 +309,34 @@ namespace JOMonitoringApp
                 new object[] { "@date_to", DbType.DateTime, dateTo },
             };
 
-            string query = $"SELECT particular, COUNT(*) AS total_count, SUM(CASE WHEN status_id = 1 THEN 1 ELSE 0 END) AS pending, SUM(CASE WHEN status_id = 2 THEN 1 ELSE 0 END) AS processing, SUM(CASE WHEN status_id = 3 THEN 1 ELSE 0 END) AS cancelled, SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) AS accomplished FROM view_job_orders WHERE date BETWEEN @date_from AND @date_to AND is_deleted = 0 GROUP BY particular ORDER BY total_count DESC;";
+            string query = $"SELECT particular, COUNT(*) AS total_count, SUM(CASE WHEN status_id = 1 THEN 1 ELSE 0 END) AS pending, SUM(CASE WHEN status_id = 2 THEN 1 ELSE 0 END) AS processing, SUM(CASE WHEN status_id = 3 THEN 1 ELSE 0 END) AS cancelled, SUM(CASE WHEN status_id = 4 THEN 1 ELSE 0 END) AS accomplished FROM view_job_orders WHERE date BETWEEN @date_from AND @date_to AND is_deleted = 0 GROUP BY particular ORDER BY particular ASC";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public bool SoftDelete(int jobOrderId, int deleteBy)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId },
+                new object[] { "@user_id", DbType.Int32, deleteBy }
+            };
+
+            string query = $"UPDATE {tableName} SET is_deleted = 1, deleted_by = @user_id WHERE id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public DataTable JOPhasePerPeriod(string status, int daysMultiplier)
+        {
+
+            var parameters = new object[][]
+            {
+                new object[] { "@status", DbType.String, status },
+                new object[] { "@period", DbType.Int32, daysMultiplier },
+            };
+
+            string query = $"SELECT id, job_order_no, particular, created_at, prepared_by FROM {viewTableName} WHERE status = @status AND  date >= CURDATE() - INTERVAL @period DAY AND is_deleted=0";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);

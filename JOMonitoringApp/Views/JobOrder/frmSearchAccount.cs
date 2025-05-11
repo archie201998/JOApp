@@ -7,19 +7,19 @@ namespace JOMonitoringApp.Views.JobOrder
 {
     public partial class frmSearchAccount : Form
     {
-        ucJoborder _ucJobOrder;
-        public frmSearchAccount(ucJoborder ucJoborder)
+        readonly ucJoborder _ucJobOrder;
+        public frmSearchAccount(ucJoborder ucJobOrder)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            Helper.DatagridFullRowSelectStyle(dgAccounts, true);
-            _ucJobOrder = ucJoborder;
+            Helper.DatagridFullRowSelectStyle(dgAccounts);
+            _ucJobOrder = ucJobOrder;
         }
 
         private void FrmSearchAccount_Load(object sender, EventArgs e)
         {
             txtAcc1.Focus();
-            LoadAccountsByAccountNumber();
+            LoadCustomerByAccountNumber();
         }
 
 
@@ -34,16 +34,14 @@ namespace JOMonitoringApp.Views.JobOrder
             };
         }
 
-        private void LoadAccountsByAccountNumber()
+        private void LoadCustomerByAccountNumber()
         {
-            //string searchKey = txtAccountName.Text.Trim();
             string searchKey = $"{txtAcc1.Text}-{txtAcc2.Text}-{txtAcc3.Text}-{txtAcc4.Text}";
             int charCount = searchKey.Length;
             if (charCount <= 3)
                 return;
 
             var dataTable = new DataTable();
-            //DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
             DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(searchKey);
 
             dataTable.Columns.AddRange(JobOrdersColumns());
@@ -67,16 +65,14 @@ namespace JOMonitoringApp.Views.JobOrder
             HelperLoadRecords.AccountsDataGridView(dgAccounts, dataTable);
         }
 
-        private void LoadAccountsByName()
+        private void LoadCustomerByAccountsByName()
         {
-            //string searchKey = txtAccountName.Text.Trim();
             string searchKey = $"{txtAccountName.Text.Trim()}";
             int charCount = searchKey.Length;
             if (charCount <= 3)
                 return;
 
             var dataTable = new DataTable();
-            //DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumberAndAccountName(searchKey);
             DataTable dtJobOrders = Factory.CustomersRepository().GetRecordsBySearchByAccountNumber(searchKey);
 
             dataTable.Columns.AddRange(JobOrdersColumns());
@@ -102,19 +98,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void TxtAccountNumber_TextChanged(object sender, EventArgs e)
         {
-            LoadAccountsByName();
-        }
-
-      
-
-        private void DgAccounts_DoubleClick(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DgAccounts_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            LoadCustomerByAccountsByName();
         }
 
         private void DgAccounts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -124,29 +108,33 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void SelectData()
         {
-            if (dgAccounts.SelectedRows.Count == 0)
-                return;
 
-            int selectedAccountId = Convert.ToInt32(dgAccounts.SelectedRows[0].Cells["id"].Value);
-            string selectedAccountName = dgAccounts.SelectedRows[0].Cells["account_name"].Value.ToString();
-            string selectedAccountNumber = dgAccounts.SelectedRows[0].Cells["account_number"].Value.ToString();
-            string selectedAddress = dgAccounts.SelectedRows[0].Cells["address"].Value.ToString();
+            int selectedRowCount = dgAccounts.SelectedRows.Count;
+            if (selectedRowCount == 0 || selectedRowCount > 1)
+                Helper.MessageBoxWarning("Please select at least one record to proceed.");
+            else
+            {
+                int selectedAccountId = Convert.ToInt32(dgAccounts.SelectedRows[0].Cells["id"].Value);
+                string selectedAccountName = dgAccounts.SelectedRows[0].Cells["account_name"].Value.ToString();
+                string selectedAccountNumber = dgAccounts.SelectedRows[0].Cells["account_number"].Value.ToString();
+                string selectedAddress = dgAccounts.SelectedRows[0].Cells["address"].Value.ToString();
 
-            char[] delimiter = new char[] { '-' };
-            string[] accountNumber = selectedAccountNumber.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
-            _ucJobOrder.txtAcc1.Text = accountNumber[0];
-            _ucJobOrder.txtAcc2.Text = accountNumber[1];
-            _ucJobOrder.txtAcc3.Text = accountNumber[2];
-            _ucJobOrder.txtAcc4.Text = accountNumber[3];
+                char[] delimiter = new char[] { '-' };
+                string[] accountNumber = selectedAccountNumber.Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
+                _ucJobOrder.txtAcc1.Text = accountNumber[0];
+                _ucJobOrder.txtAcc2.Text = accountNumber[1];
+                _ucJobOrder.txtAcc3.Text = accountNumber[2];
+                _ucJobOrder.txtAcc4.Text = accountNumber[3];
 
-            _ucJobOrder.isNewAccount = false;
-            _ucJobOrder.accountId = selectedAccountId;
-            _ucJobOrder.txtAccountName.Text = selectedAccountName;
-            _ucJobOrder.txtAccountNumber.Text = selectedAccountNumber;
-            _ucJobOrder.txtAddress.Text = selectedAddress;
-            _ucJobOrder.txtJONumber.Focus();
+                _ucJobOrder.isNewAccount = false;
+                _ucJobOrder.accountId = selectedAccountId;
+                _ucJobOrder.txtAccountName.Text = selectedAccountName;
+                _ucJobOrder.txtAccountNumber.Text = selectedAccountNumber;
+                _ucJobOrder.txtAddress.Text = selectedAddress;
+                _ucJobOrder.txtJONumber.Focus();
 
-            Close();
+                Close();
+            }
         }
 
         private void TxtAccountName_KeyDown(object sender, KeyEventArgs e)
@@ -177,27 +165,29 @@ namespace JOMonitoringApp.Views.JobOrder
             else if (txtAcc3.Text.Length == 3 && txtBox == txtAcc3)
                 txtAcc4.Focus();
 
-            LoadAccountsByAccountNumber();
+            LoadCustomerByAccountNumber();
         }
 
         private void txtAcc4_KeyDown(object sender, KeyEventArgs e)
         {
             var txtBox = sender as TextBox;
 
+            // Handle Backspace key
             if (e.KeyCode == Keys.Back)
             {
-                if (txtAcc2.Text.Length == 1 && txtBox == txtAcc2)
+                if (txtBox == txtAcc2 && txtAcc2.Text.Length <= 1)
                     txtAcc1.Focus();
-                else if (txtAcc3.Text.Length == 1 && txtBox == txtAcc3)
+                else if (txtBox == txtAcc3 && txtAcc3.Text.Length <= 1)
                     txtAcc2.Focus();
-                else if (txtAcc4.Text.Length == 1 && txtBox == txtAcc4)
+                else if (txtBox == txtAcc4 && txtAcc4.Text.Length <= 1)
                     txtAcc3.Focus();
             }
+            // Handle Enter key
             else if (e.KeyCode == Keys.Enter)
             {
                 SelectData();
             }
-
+            // Handle Left Arrow key
             else if (e.KeyCode == Keys.Left)
             {
                 if (txtBox == txtAcc2)
@@ -207,7 +197,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 else if (txtBox == txtAcc4)
                     txtAcc3.Focus();
             }
-
+            // Handle Right Arrow key
             else if (e.KeyCode == Keys.Right)
             {
                 if (txtBox == txtAcc1)
@@ -217,11 +207,10 @@ namespace JOMonitoringApp.Views.JobOrder
                 else if (txtBox == txtAcc3)
                     txtAcc4.Focus();
             }
-
-
+            // Handle Down Arrow key
             else if (e.KeyCode == Keys.Down)
             {
-                dgAccounts.Focus();
+                dgAccounts?.Focus(); // null check in case dgAccounts is not initialized
             }
         }
 

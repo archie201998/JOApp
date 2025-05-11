@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtJONo = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.cbxFullPage = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +49,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbxFullPage);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtJONo);
             this.panel1.Controls.Add(this.btnSearch);
@@ -82,13 +84,26 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(210, 5);
+            this.btnSearch.Location = new System.Drawing.Point(361, 5);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(94, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Generate";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // cbxFullPage
+            // 
+            this.cbxFullPage.AutoSize = true;
+            this.cbxFullPage.BackColor = System.Drawing.Color.Transparent;
+            this.cbxFullPage.Checked = true;
+            this.cbxFullPage.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxFullPage.Location = new System.Drawing.Point(209, 9);
+            this.cbxFullPage.Name = "cbxFullPage";
+            this.cbxFullPage.Size = new System.Drawing.Size(150, 17);
+            this.cbxFullPage.TabIndex = 18;
+            this.cbxFullPage.Text = "Full Page Print ( 2 Copies) ";
+            this.cbxFullPage.UseVisualStyleBackColor = false;
             // 
             // frmHydrantWithdrawal
             // 
@@ -116,5 +131,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtJONo;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox cbxFullPage;
     }
 }

@@ -24,7 +24,6 @@ namespace JOMonitoringApp
 
         public static IError CreateErrors(Array errors) => new Error(errors);
 
-        public static IJobOrdersParticulars JobOrdersParticularsRepository() => new JobOrdersParticularsRepository(mySqlGenericCommands);
         public static IJOLogsRepository JOLogsRepository() => new JobOrdersLogsRepository(mySqlGenericCommands);
 
         public static IRolesRepository RolesRepository() => new RolesRepository(mySqlGenericCommands);
@@ -35,6 +34,7 @@ namespace JOMonitoringApp
         internal static IRoleHasPermission RoleHasPermissionRepository() => new RoleHasPermissionRepository(mySqlGenericCommands);
 
         internal static IMaterials MaterialsRepository() => new MaterialsRepository(mySqlGenericCommands);
+        internal static IJobOrderParticularsRepository JobOrderParticularsRepository() => new JobOrderParticularsRepository(mySqlGenericCommands);
 
     }
 }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IParticularsRepository : IRoleHasPermission<ParticularsModel>
+    public interface IParticularsRepository : IRepository<ParticularsModel>
     {
-
+        int GetIdByParticularName(string particularName);
     }
 }

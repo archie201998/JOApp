@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IInvestigationRepository : IRoleHasPermission<InvestigationModel>
+    public interface IInvestigationRepository : IRepository<InvestigationModel>
     {
         int GetLastInsertedId(int userId);
         Dictionary<string, string> GetViewRecordById(int selectedId);

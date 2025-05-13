@@ -4,7 +4,7 @@ using System.Data;
 
 namespace JOMonitoringApp
 {
-    internal interface IRoleHasPermission : IRoleHasPermission<RoleHasPermissionModel>
+    internal interface IRoleHasPermission : IRepository<RoleHasPermissionModel>
     {
         bool DeleteRolePermissions(int selectedRoleId);
         DataTable GetPermissionsByRolesId(int selectedRoleId);

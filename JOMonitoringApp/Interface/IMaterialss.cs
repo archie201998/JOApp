@@ -3,7 +3,7 @@ using Microsoft.ReportingServices.Interfaces;
 
 namespace JOMonitoringApp
 {
-    internal interface IMaterials : IRoleHasPermission<MaterialsModel>
+    internal interface IMaterials : IRepository<MaterialsModel>
     {
  
     }

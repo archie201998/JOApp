@@ -33,7 +33,7 @@ namespace AccountingSystem
         internal static string changes;
 
         internal static bool notifViewed = false;
-        internal static string serverStatisIPAddress = "192.168.18.183";
+        internal static string serverStatisIPAddress = "192.168.18.68";
         internal static string CSDHead = "CHRISTOPHER JASON R. CABABARO";
         internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
 

@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>198</ApplicationRevision>
+    <ApplicationRevision>199</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -195,13 +195,14 @@
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
     <Compile Include="Interface\IInvestigationRepository.cs" />
-    <Compile Include="Interface\IJobOrdersParticulars.cs" />
+    <Compile Include="Interface\IJobOrderParticularsRepository.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersRepository.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Model\JobOrderParticularsModel.cs" />
     <Compile Include="Model\MaterialsModel.cs" />
     <Compile Include="Model\PermissionsModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
@@ -228,7 +229,7 @@
     <Compile Include="Repository\InvestigationRepository.cs" />
     <Compile Include="Interface\IPermissions.cs" />
     <Compile Include="Interface\IRoleHasPermission.cs" />
-    <Compile Include="Repository\JobOrdersParticularsRepository.cs" />
+    <Compile Include="Repository\JobOrderParticularsRepository.cs" />
     <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
     <Compile Include="Repository\MaterialsRepository.cs" />

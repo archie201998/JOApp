@@ -253,7 +253,6 @@ namespace JOMonitoringApp.Views.JobOrder
                 AccountName = accountName,
                 Address = address,
                 ContactNumber = contact,    
-                Particulars = particular,
                 PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,
                 Date = date,
@@ -273,9 +272,9 @@ namespace JOMonitoringApp.Views.JobOrder
         internal void LoadParticular()
         {
             clBoxParticulars.Items.Clear();
-            var dtAccoutnableForm = Factory.ParticularsRepository().GetRecords();
+            var dtParticulars = Factory.ParticularsRepository().GetRecords();
 
-            foreach (DataRow item in dtAccoutnableForm.Rows)
+            foreach (DataRow item in dtParticulars.Rows)
             {
                 clBoxParticulars.Items.Add(item["particular"].ToString());
             }

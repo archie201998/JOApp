@@ -15,13 +15,11 @@ namespace JOMonitoringApp.Model
         public string AccountNumber { get; set; }
         public string Address { get; set; }
         public string ContactNumber { get; set; }
-        public int ParticularID { get; set; }
         public int? MaterialsIssuedBy { get; set; }
         public int? AccomplishedBy { get; set; }
         public DateTime Date { get; set; }
         public string ORNumber{ get; set; }
         public string JONUmber { get; set; }
-        public string Particulars { get; set; }
         public string MRIS { get; set; }
         public string MRS { get; set; }
         public string WAR { get; set; }

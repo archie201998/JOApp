@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IRoleHasPermission<T> where T : class
+    public interface IRepository<T> where T : class
     {
         bool IdExist(int id);
 

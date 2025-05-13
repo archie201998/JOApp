@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using JOMonitoringApp.Interface;
+﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System.Collections.Generic;
+using System.Data;
 
 namespace JOMonitoringApp
 {
@@ -76,6 +77,16 @@ namespace JOMonitoringApp
         public bool Update(ParticularsModel entity)
         {
             throw new System.NotImplementedException();
+        }
+
+        public int GetIdByParticularName(string particularName)
+        {
+            var parameters = new object[][]
+            {  new object[] { "@particular", DbType.String, particularName} };
+
+            string query = $"SELECT id FROM {tableName} WHERE particular = @particular";
+
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IUsersRepository : IRoleHasPermission<UsersModel>
+    public interface IUsersRepository : IRepository<UsersModel>
     {
         Dictionary<string, string> GetRecordsbyUserName(string userName);
         int GetUserRoleId(byte userId);

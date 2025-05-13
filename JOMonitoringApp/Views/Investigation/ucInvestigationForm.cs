@@ -229,7 +229,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (!string.IsNullOrEmpty(imageFilePath) && !string.IsNullOrEmpty(secondaryImageFilePath))
             {
-                string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol";
+                string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol";
 
                 try
                 {

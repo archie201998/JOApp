@@ -108,6 +108,7 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
+            this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -406,10 +407,6 @@
             this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
             this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
             // 
-            // backgroundWorker1
-            // 
-          
-            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -423,7 +420,8 @@
             this.toolStripStatusLabel6,
             this.lblPing,
             this.toolStripStatusLabel9,
-            this.lblCheckingUpdate});
+            this.lblCheckingUpdate,
+            this.lblRetrieved});
             this.statusStrip1.Location = new System.Drawing.Point(5, 948);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1753, 22);
@@ -841,6 +839,16 @@
             this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1739, 1944);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
+            // lblRetrieved
+            // 
+            this.lblRetrieved.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetrieved.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblRetrieved.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.lblRetrieved.Name = "lblRetrieved";
+            this.lblRetrieved.Size = new System.Drawing.Size(184, 17);
+            this.lblRetrieved.Text = "Retrieving Records. Please Wait....";
+            this.lblRetrieved.Visible = false;
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -964,5 +972,6 @@
         private System.Windows.Forms.ToolStripMenuItem progressTrackingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
+        private System.Windows.Forms.ToolStripStatusLabel lblRetrieved;
     }
 }

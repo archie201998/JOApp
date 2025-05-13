@@ -103,7 +103,7 @@ namespace JOMonitoringApp.Views.MainForm
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-
+                lblRetrieved.Visible = true;
 
                 string searchKey = txtSearch.Text.Trim();
                 int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
@@ -164,6 +164,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 // Reset UI state
                 Cursor.Current = Cursors.Default;
+                lblRetrieved.Visible = false;
             }
         }
 

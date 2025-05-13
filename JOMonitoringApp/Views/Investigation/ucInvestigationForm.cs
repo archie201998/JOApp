@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
+using JOMonitoringApp.Views.Reports;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -267,7 +268,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
             else
             {
-                Helper.MessageBoxSuccess("One or both file paths are empty or null.");
+                Helper.MessageBoxSuccess("No image uploaded. Click Ok to continue.");
             }
         }
 
@@ -294,6 +295,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, searchKey);
+            lblRecordCount.Text = dtInvestigation.Rows.Count.ToString();
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
@@ -307,6 +309,10 @@ namespace JOMonitoringApp.Views.Investigation
             gbApproval.Enabled = enable;
             gbComputation.Enabled = enable;
             dgInvestigations.Enabled = !enable;
+            btnSearch.Enabled = !enable;
+            cmbxStatus.Enabled = !enable;
+            txtSearch.Enabled = !enable;
+            btnPrint.Enabled = enable;
         }
 
         private void dgInvestigations_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -590,6 +596,14 @@ namespace JOMonitoringApp.Views.Investigation
         private void cbxForAdjustment_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+            string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+
+            _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
         }
     }
 }

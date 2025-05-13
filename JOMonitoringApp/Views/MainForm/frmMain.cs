@@ -170,9 +170,13 @@ namespace JOMonitoringApp.Views.MainForm
 
                     dataTable.Rows.Add(newRow);
 
-                    // Update progress bar
+                    // Update progress every 5% or every 100 rows
                     progress++;
-                    Helper.ProgressCounter(backgroundWorker1, totalCount, progress);
+                    if (progress % Math.Max(1, totalCount / 20) == 0)
+                    {
+                        int percent = (int)((progress / (float)totalCount) * 100);
+                        backgroundWorker1.ReportProgress(percent);
+                    }
                 }
 
                 e.Result = dataTable;
@@ -187,6 +191,8 @@ namespace JOMonitoringApp.Views.MainForm
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
+
+
         }
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -200,7 +206,6 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dataTable == null)
                     return;
 
-                dgJobOrders.SuspendLayout();
                 dgJobOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 dgJobOrders.DataSource = null; // Reset to clear previous data
                 dgJobOrders.Columns.Clear();   // Clear old structure
@@ -212,8 +217,6 @@ namespace JOMonitoringApp.Views.MainForm
                     dgJobOrders.Rows[previousSelection].Selected = true;
                 }
 
-                dgJobOrders.ResumeLayout();
-                dgJobOrders.AutoResizeColumns(); // Optional
                 HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             }
             catch (Exception ex)
@@ -712,7 +715,12 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (ucJoborder.isUpdate)
             {
-                _ = Factory.InvestigationRepository().UpdateInvestigation(investigation);
+                bool updateRes = Factory.InvestigationRepository().UpdateInvestigation(investigation);
+
+                if (!updateRes)//insert to investigation table if updateRes = false
+                {
+                    _ = Factory.InvestigationRepository().Insert(investigation);
+                }
             }
             else
             {

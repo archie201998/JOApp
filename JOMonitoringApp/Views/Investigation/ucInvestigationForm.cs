@@ -44,8 +44,8 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
                 cmbxStatus.SelectedValue = 6;
-                GetInvestigationRecords();
                 EnableControls(false);
+                GetInvestigationRecords();
             }
         }
       

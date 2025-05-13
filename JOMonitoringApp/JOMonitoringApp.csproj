@@ -388,7 +388,7 @@
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
     <Content Include="adjusted-system-icon.ico" />
-    <Content Include="RDLC\investigation-form-initial-print.rdlc">
+    <Content Include="RDLC\investigation-form.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\icons8-notification-50.png" />
@@ -425,7 +425,6 @@
     <Content Include="RDLC\hydrant-withdrawal.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="RDLC\investigation-failed-calibration.rdlc" />
     <EmbeddedResource Include="Views\Admin\frmPassKey.resx">
       <DependentUpon>frmPassKey.cs</DependentUpon>
     </EmbeddedResource>

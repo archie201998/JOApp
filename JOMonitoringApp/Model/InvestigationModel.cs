@@ -69,5 +69,6 @@ namespace JOMonitoringApp.Model
         public string AdjustmentParticular { get; set; }
         public decimal AmountDue { get; set; }
         public decimal AdjustmentAmount { get; set; }
+        public decimal AdjustedAmountDue { get; set; }
     }
 }

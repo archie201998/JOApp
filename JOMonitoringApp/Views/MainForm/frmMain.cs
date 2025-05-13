@@ -93,138 +93,79 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                LoadJobOrders();
+                LoadJobOrdersAsync();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
 
-        internal void LoadJobOrders()
-        {
-            if (!backgroundWorker1.IsBusy)
-            {
-                progressBar1.Value = 0;
-                backgroundWorker1.RunWorkerAsync(LoadJobOrdersParameters());
-            }
-        }
-
-        private (string searchKey, int rowFilter, int statusId, string particular) LoadJobOrdersParameters()
-        {
-            string searchKey = txtSearch.Text.Trim();
-            int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
-            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            string  particular = cmbxParticulars.Text;
-            return (searchKey, rowFilter, statusId, particular);
-        }
-
-        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        internal async Task LoadJobOrdersAsync()
         {
             try
             {
-                var parameters = ((string searchKey, int rowFilter, int statusId, string particular))e.Argument;
+                Cursor.Current = Cursors.WaitCursor;
 
-                // Fetch the data from the repository
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
-                    parameters.searchKey,
-                    parameters.rowFilter,
-                    parameters.statusId,
-                    parameters.particular
-                );
 
-                // Create a new DataTable and define its schema using JobOrdersColumns
-                var dataTable = new DataTable();
-                dataTable.Columns.AddRange(JobOrdersColumns());
+                string searchKey = txtSearch.Text.Trim();
+                int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
+                int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
+                string particular = cmbxParticulars.Text;
 
-                int totalCount = dtJobOrders.Rows.Count;
-                if (totalCount == 0)
+                // Run the data loading in a background task
+                DataTable dataTable = await Task.Run(() =>
                 {
-                    backgroundWorker1.ReportProgress(100);
-                    e.Result = dataTable;
-                    return;
-                }
+                    var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                        searchKey,
+                        rowFilter,
+                        statusId,
+                        particular
+                    );
 
-                int progress = 0;
+                    var tempTable = new DataTable();
+                    tempTable.Columns.AddRange(JobOrdersColumns());
 
-                foreach (DataRow row in dtJobOrders.Rows)
-                {
-                    var newRow = dataTable.NewRow();
-
-                    newRow["id"] = Convert.ToInt32(row["id"]);
-                    newRow["status"] = row["status"].ToString().ToUpper();
-                    newRow["prepared_by_id"] = Convert.ToInt32(row["prepared_by_id"]);
-                    newRow["materials_issued_by_id"] = string.IsNullOrEmpty(row["materials_issued_by_id"]?.ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
-                    newRow["status_id"] = Convert.ToInt32(row["status_id"]);
-                    newRow["date"] = Convert.ToDateTime(row["date"]);
-                    newRow["account_number"] = row["account_number"].ToString();
-                    newRow["account_name"] = row["account_name"].ToString();
-                    newRow["address"] = row["address"].ToString();
-                    newRow["job_order_no"] = row["job_order_no"].ToString();
-                    newRow["particular"] = row["particular"].ToString();
-                    newRow["or_number"] = row["or_number"].ToString();
-                    newRow["amount"] = string.IsNullOrEmpty(row["amount"]?.ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
-                    newRow["mris"] = row["mris"].ToString();
-                    newRow["mrs"] = row["mrs"].ToString();
-                    newRow["war"] = row["war"].ToString();
-                    newRow["remarks"] = row["remarks"].ToString();
-                    newRow["prepared_by"] = row["prepared_by"].ToString();
-                    newRow["materials_issued_by"] = row["materials_issued_by"].ToString();
-
-                    dataTable.Rows.Add(newRow);
-
-                    // Update progress every 5% or every 100 rows
-                    progress++;
-                    if (progress % Math.Max(1, totalCount / 20) == 0)
+                    foreach (DataRow row in dtJobOrders.Rows)
                     {
-                        int percent = (int)((progress / (float)totalCount) * 100);
-                        backgroundWorker1.ReportProgress(percent);
-                    }
-                }
+                        var newRow = tempTable.NewRow();
 
-                e.Result = dataTable;
+                        newRow["id"] = Convert.ToInt32(row["id"]);
+                        newRow["status"] = row["status"].ToString().ToUpper();
+                        newRow["prepared_by_id"] = Convert.ToInt32(row["prepared_by_id"]);
+                        newRow["materials_issued_by_id"] = string.IsNullOrEmpty(row["materials_issued_by_id"]?.ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
+                        newRow["status_id"] = Convert.ToInt32(row["status_id"]);
+                        newRow["date"] = Convert.ToDateTime(row["date"]);
+                        newRow["account_number"] = row["account_number"].ToString();
+                        newRow["account_name"] = row["account_name"].ToString();
+                        newRow["address"] = row["address"].ToString();
+                        newRow["job_order_no"] = row["job_order_no"].ToString();
+                        newRow["particular"] = row["particular"].ToString();
+                        newRow["or_number"] = row["or_number"].ToString();
+                        newRow["amount"] = string.IsNullOrEmpty(row["amount"]?.ToString()) ? 0 : Convert.ToDecimal(row["amount"]);
+                        newRow["mris"] = row["mris"].ToString();
+                        newRow["mrs"] = row["mrs"].ToString();
+                        newRow["war"] = row["war"].ToString();
+                        newRow["remarks"] = row["remarks"].ToString();
+                        newRow["prepared_by"] = row["prepared_by"].ToString();
+                        newRow["materials_issued_by"] = row["materials_issued_by"].ToString();
+
+                        tempTable.Rows.Add(newRow);
+                    }
+
+                    return tempTable;
+                });
+
+                // Load into DataGridView
+                HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             }
             catch (Exception ex)
             {
                 Helper.MessageBoxError(ex.Message);
             }
-
-        }
-
-        private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            progressBar1.Value = e.ProgressPercentage;
-
-
-        }
-
-        private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            try
+            finally
             {
-                if (e.Cancelled)
-                    return;
-
-                var dataTable = e.Result as DataTable;
-                if (dataTable == null)
-                    return;
-
-                dgJobOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                dgJobOrders.DataSource = null; // Reset to clear previous data
-                dgJobOrders.Columns.Clear();   // Clear old structure
-                dgJobOrders.DataSource = dataTable;
-
-                if (dgJobOrders.Rows.Count > 0)
-                {
-                    dgJobOrders.CurrentCell = dgJobOrders.FirstDisplayedCell;
-                    dgJobOrders.Rows[previousSelection].Selected = true;
-                }
-
-                HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
-            }
-            catch (Exception ex)
-            {
-                Helper.MessageBoxError("Unexpected error: " + ex.Message);
+                // Reset UI state
+                Cursor.Current = Cursors.Default;
             }
         }
-
 
         #endregion
 
@@ -254,7 +195,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             ValidatePermissions();
             StartUpdateTimer();
-            LoadJobOrders();
+            LoadJobOrdersAsync();
             ucJoborder.OnLoad();
 
         }
@@ -561,8 +502,6 @@ namespace JOMonitoringApp.Views.MainForm
 
                 ValidatePermissions();
 
-                if (!backgroundWorker1.IsBusy)
-                    backgroundWorker1.RunWorkerAsync(LoadJobOrdersParameters());
             }
             finally
             {
@@ -608,23 +547,22 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ButtonSaveTrigger()
         {
-            bool success = ucJoborder.isUpdate ? UpdateData() : SaveData();
-
-            if (success)
-            {
-                LogJOTransaction();
-                if (CheckIfInvestigation())
-                    InsertJobOrderToInvestigation(); //<-- Save to investigation table
-
-                string message = ucJoborder.isUpdate
-                    ? "Job Order details successfully updated."
-                    : "Job Order successfully created.";
-                Helper.MessageBoxSuccess(message);
-                ResetInputForm();
-            }
             try
             {
-               
+                bool success = ucJoborder.isUpdate ? UpdateData() : SaveData();
+
+                if (success)
+                {
+                    LogJOTransaction();
+                    if (CheckIfInvestigation())
+                        InsertJobOrderToInvestigation(); //<-- Save to investigation table
+
+                    string message = ucJoborder.isUpdate
+                        ? "Job Order details successfully updated."
+                        : "Job Order successfully created.";
+                    Helper.MessageBoxSuccess(message);
+                    ResetInputForm();
+                }
             }
             catch (Exception ex)
             {
@@ -1078,23 +1016,6 @@ namespace JOMonitoringApp.Views.MainForm
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
             _ = new frmInvestigationReport(jobOrderId,jobOrderNumber).ShowDialog();
 
-            //if (dgJobOrders.SelectedRows.Count > 0)
-            //{
-            //    int selectedIndex = dgJobOrders.SelectedRows[0].Index;
-            //    if (selectedIndex >= 0)
-            //    {
-
-            //        string jobOrderNumber = dgJobOrders.Rows[selectedIndex].Cells["job_order_no"].Value.ToString();
-            //        string accountName = dgJobOrders.Rows[selectedIndex].Cells["account_name"].Value.ToString();
-            //        string accountNumber = dgJobOrders.Rows[selectedIndex].Cells["account_number"].Value.ToString();
-            //        string customerAddress = dgJobOrders.Rows[selectedIndex].Cells["address"].Value.ToString();
-            //        string remarks = dgJobOrders.Rows[selectedIndex].Cells["remarks"].Value.ToString();
-            //        int jobOrderId = Convert.ToInt32(dgJobOrders.Rows[selectedIndex].Cells["id"].Value);
-
-            //        var frmInvestigation = new frmInvestigation(true, jobOrderNumber, jobOrderId, accountName, accountNumber, customerAddress, remarks);
-            //        frmInvestigation.Show();
-            //    }
-            //}
         }
 
 
@@ -1112,7 +1033,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void btnX_Click(object sender, EventArgs e)
         {
             txtSearch.Clear();
-            LoadJobOrders();
+            LoadJobOrdersAsync();
         }
 
         private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)

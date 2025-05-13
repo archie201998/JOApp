@@ -135,7 +135,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox1.Location = new System.Drawing.Point(12, 100);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(567, 76);
+            this.groupBox1.Size = new System.Drawing.Size(567, 54);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
@@ -147,11 +147,11 @@
             this.btnManualCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnManualCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnManualCompute.ForeColor = System.Drawing.Color.White;
-            this.btnManualCompute.Location = new System.Drawing.Point(427, 17);
+            this.btnManualCompute.Location = new System.Drawing.Point(435, 17);
             this.btnManualCompute.Name = "btnManualCompute";
-            this.btnManualCompute.Size = new System.Drawing.Size(112, 38);
+            this.btnManualCompute.Size = new System.Drawing.Size(104, 23);
             this.btnManualCompute.TabIndex = 21;
-            this.btnManualCompute.Text = "Manual Compute";
+            this.btnManualCompute.Text = "Manual Input";
             this.btnManualCompute.UseVisualStyleBackColor = false;
             this.btnManualCompute.Click += new System.EventHandler(this.btnManualCompute_Click);
             // 
@@ -165,9 +165,9 @@
             this.btnAutoCompute.ForeColor = System.Drawing.Color.White;
             this.btnAutoCompute.Location = new System.Drawing.Point(327, 17);
             this.btnAutoCompute.Name = "btnAutoCompute";
-            this.btnAutoCompute.Size = new System.Drawing.Size(94, 38);
+            this.btnAutoCompute.Size = new System.Drawing.Size(102, 23);
             this.btnAutoCompute.TabIndex = 20;
-            this.btnAutoCompute.Text = "Auto Compute";
+            this.btnAutoCompute.Text = "Auto Input";
             this.btnAutoCompute.UseVisualStyleBackColor = false;
             this.btnAutoCompute.Click += new System.EventHandler(this.btnAutoCompute_Click);
             // 
@@ -196,7 +196,7 @@
             this.txtAccountType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountType.Location = new System.Drawing.Point(371, 20);
             this.txtAccountType.Name = "txtAccountType";
-            this.txtAccountType.Size = new System.Drawing.Size(177, 21);
+            this.txtAccountType.Size = new System.Drawing.Size(168, 21);
             this.txtAccountType.TabIndex = 23;
             // 
             // label21
@@ -219,7 +219,7 @@
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountName.Location = new System.Drawing.Point(150, 47);
             this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(398, 21);
+            this.txtAccountName.Size = new System.Drawing.Size(389, 21);
             this.txtAccountName.TabIndex = 22;
             // 
             // txtAccountNumber
@@ -263,7 +263,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox4.Location = new System.Drawing.Point(0, 557);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1226, 58);
+            this.groupBox4.Size = new System.Drawing.Size(590, 58);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -385,7 +385,7 @@
             this.txtAmountDueAfterAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAmountDueAfterAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountDueAfterAdjustment.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(258, 148);
+            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(258, 146);
             this.txtAmountDueAfterAdjustment.Name = "txtAmountDueAfterAdjustment";
             this.txtAmountDueAfterAdjustment.Size = new System.Drawing.Size(176, 38);
             this.txtAmountDueAfterAdjustment.TabIndex = 27;
@@ -880,7 +880,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 615);
+            this.ClientSize = new System.Drawing.Size(590, 615);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);
             this.Controls.Add(this.gbIllegal);
@@ -894,7 +894,7 @@
             this.MinimizeBox = false;
             this.Name = "frmInvestigationAdjustment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Adjustment Computation";
+            this.Text = "Bill Adjustments";
             this.Load += new System.EventHandler(this.frmInvestigationAdjustment_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

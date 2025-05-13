@@ -261,7 +261,6 @@ namespace JOMonitoringApp.Views.Investigation
 
                 case "Erroneous Reading":
                     gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
-                    ComputeErrorReading();
                     break;
 
                 case "Leaking (Not Visible)":
@@ -364,7 +363,6 @@ namespace JOMonitoringApp.Views.Investigation
                     Id = _ucInvestigationForm.selectedInvistigationID,
                     PresentConsumption = txtLeakingNotVisCurrentCons.Text,
                     ActualConsumption = txtAdjustmentConsumption.Text,
-
                     AdjustmentParticular = "Leaking (Not Visible)",
 
                     Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
@@ -386,15 +384,17 @@ namespace JOMonitoringApp.Views.Investigation
                     PreviousReading = txtPreviousReading.Text,
                     PresentReading = txtPresentReading.Text,
                     ActualReading = txtActualReading.Text,
-                    PresentConsumption = txtConsumption.Text,
 
+
+
+                    ActualConsumption = txtConsumption.Text,
                     AdjustmentParticular = "Erroneous Reading",
 
                     Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
                     Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
+                    AdjustedAmountDue = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
                     UpdatedBy = Helper.UserId,
                 };
 
@@ -431,7 +431,7 @@ namespace JOMonitoringApp.Views.Investigation
                     Id = _ucInvestigationForm.selectedInvistigationID,
 
                     PreviousConsumption = txtConsOnDisconnection.Text,
-                    ActualReading = txtConsAfterDisconnection.Text,
+                    ActualConsumption = txtConsAfterDisconnection.Text,
 
                     AdjustmentParticular = "RFB + Illegal",
 

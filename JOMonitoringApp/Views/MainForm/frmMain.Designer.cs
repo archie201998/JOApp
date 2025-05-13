@@ -85,13 +85,10 @@
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgJobOrders = new System.Windows.Forms.DataGridView();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnX = new System.Windows.Forms.Button();
             this.cmbxParticulars = new System.Windows.Forms.ComboBox();
@@ -104,12 +101,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelInputField = new System.Windows.Forms.Panel();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -119,7 +117,6 @@
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
-            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -411,11 +408,7 @@
             // 
             // backgroundWorker1
             // 
-            this.backgroundWorker1.WorkerReportsProgress = true;
-            this.backgroundWorker1.WorkerSupportsCancellation = true;
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
-            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
+          
             // 
             // statusStrip1
             // 
@@ -564,16 +557,6 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1739, 1944);
-            this.ucDashboardSummaryView1.TabIndex = 0;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.panel1);
@@ -589,7 +572,6 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.panel6);
-            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(466, 3);
@@ -602,10 +584,10 @@
             // 
             this.panel6.Controls.Add(this.dgJobOrders);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(5, 61);
+            this.panel6.Location = new System.Drawing.Point(5, 43);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(4);
-            this.panel6.Size = new System.Drawing.Size(1266, 818);
+            this.panel6.Size = new System.Drawing.Size(1266, 836);
             this.panel6.TabIndex = 9;
             // 
             // dgJobOrders
@@ -620,32 +602,12 @@
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.RowHeadersWidth = 51;
-            this.dgJobOrders.Size = new System.Drawing.Size(1258, 810);
+            this.dgJobOrders.Size = new System.Drawing.Size(1258, 828);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
             this.dgJobOrders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgJobOrders_KeyDown);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.progressBar1);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(5, 43);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5);
-            this.panel3.Size = new System.Drawing.Size(1266, 18);
-            this.panel3.TabIndex = 3;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.progressBar1.Location = new System.Drawing.Point(5, 5);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1256, 8);
-            this.progressBar1.TabIndex = 2;
             // 
             // panel2
             // 
@@ -796,17 +758,6 @@
             this.panelInputField.Size = new System.Drawing.Size(463, 884);
             this.panelInputField.TabIndex = 1;
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(463, 840);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
@@ -869,6 +820,27 @@
             this.timer_investigator.Interval = 10000;
             this.timer_investigator.Tick += new System.EventHandler(this.timer_investigator_Tick);
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucJoborder1.Size = new System.Drawing.Size(463, 840);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1739, 1944);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -903,7 +875,6 @@
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
-            this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelInputField.ResumeLayout(false);
@@ -965,8 +936,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.DataGridView dgJobOrders;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ComboBox cmbxParticulars;
         private System.Windows.Forms.Label label1;

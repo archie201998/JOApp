@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IInvestigationRepository : IRoleHasPermission<InvestigationModel>
+    public interface IInvestigationRepository : IRepository<InvestigationModel>
     {
         int GetLastInsertedId(int userId);
         Dictionary<string, string> GetViewRecordById(int selectedId);
@@ -16,7 +16,8 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber);
         DataTable GetViewRecordsBySearch(int statusId, string searchKey);
         bool SaveComputation(InvestigationModel investigationModel);
-
         bool UpdateInvestigation(InvestigationModel investigationModel);
+
+        int RecordCount();
     }
 }

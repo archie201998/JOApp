@@ -122,7 +122,7 @@ namespace JOMonitoringApp
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
             string particularFilter = particular == "All" ? string.Empty : $"AND particular LIKE @particular";
 
-            string query = $"SELECT series_number, id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -160,7 +160,6 @@ namespace JOMonitoringApp
                 new object[]{"@contact_number", DbType.String, entity.ContactNumber},
                 new object[]{"@date", DbType.DateTime, entity.Date},
                 new object[]{"@job_order_no", DbType.String, entity.JONUmber},
-                new object[]{"@particular", DbType.String, entity.Particulars},
                 new object[]{"@or_number", DbType.String, entity.ORNumber},
                 new object[]{"@amount", DbType.Decimal, entity.Amount},
                 new object[]{"@mris", DbType.String, entity.MRIS},
@@ -173,7 +172,7 @@ namespace JOMonitoringApp
                 new object[]{"@status_id", DbType.Int16, entity.StatusId},
             };
 
-            string query = $"INSERT INTO {tableName} (account_name, account_number, address, contact_number,  particular, date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@account_name, @account_number, @address, @contact_number, @particular, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
+            string query = $"INSERT INTO {tableName} (account_name, account_number, address, contact_number,  date, job_order_no, or_number, amount, mris, mrs, war, remarks, materials_issued_by, prepared_by, accomplished_by, status_id, created_by) VALUES (@account_name, @account_number, @address, @contact_number, @date, @job_order_no, @or_number, @amount, @mris, @mrs, @war, @remarks, @materials_issued_by, @prepared_by, @accomplished_by, @status_id, @prepared_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
@@ -202,7 +201,6 @@ namespace JOMonitoringApp
         {
             var parameter = new object[][] {
                 new object[]{"@id", DbType.Int32, entity.ID},
-                new object[]{"@particular", DbType.String, entity.Particulars},
                 new object[]{"@account_number", DbType.String, entity.AccountNumber},
                 new object[]{"@account_name", DbType.String, entity.AccountName},
                 new object[]{"@address", DbType.String, entity.Address},
@@ -220,7 +218,7 @@ namespace JOMonitoringApp
                 new object[]{"@status_id", DbType.Int16, entity.StatusId},
             };
 
-            string query = $"UPDATE {tableName} SET  particular=@particular, account_number = @account_number, account_name = @account_name, contact_number = @contact_number, address = @address, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, status_id=@status_id WHERE id = @id";
+            string query = $"UPDATE {tableName} SET  account_number = @account_number, account_name = @account_name, contact_number = @contact_number, address = @address, date=@date, job_order_no=@job_order_no, or_number=@or_number, amount=@amount, mris=@mris,  mrs=@mrs, war=@war, remarks=@remarks, materials_issued_by=@materials_issued_by, accomplished_by = @accomplished_by, status_id=@status_id WHERE id = @id";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
@@ -340,6 +338,18 @@ namespace JOMonitoringApp
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+
+        public bool DeleteJobOrderParticulars(int jobOrderId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId},
+            };
+
+            string query = $"DELETE FROM tbl_job_orders_particular WHERE job_order_id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

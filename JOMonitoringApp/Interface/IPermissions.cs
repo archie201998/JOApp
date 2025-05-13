@@ -2,7 +2,7 @@
 
 namespace JOMonitoringApp
 {
-    internal interface IPermissions : IRoleHasPermission<PermissionsModel>
+    internal interface IPermissions : IRepository<PermissionsModel>
     {
         bool CheckPermission(string permissionName);
         bool CheckPermission(string permissionName, int userId);

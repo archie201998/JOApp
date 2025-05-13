@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface ICustomersRepository : IRoleHasPermission<CustomersModel>
+    public interface ICustomersRepository : IRepository<CustomersModel>
     {
         int GetLastInsertedID(int userId);
         DataTable GetCustomersName(string searchKey);

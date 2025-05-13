@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -285,7 +286,7 @@ namespace JOMonitoringApp
                            $"WHEN 4 THEN 'APPROVED' " +
                            $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
                            $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
-                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC LIMIT 100";
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
@@ -351,6 +352,12 @@ namespace JOMonitoringApp
                             WHERE id = @id;";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public int RecordCount()
+        {
+            string query = $"SELECT COUNT(*) FROM {tableName}";
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query));
         }
     }
 }

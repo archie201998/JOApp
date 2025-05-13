@@ -22,6 +22,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm
@@ -111,15 +112,12 @@ namespace JOMonitoringApp.Views.MainForm
             string searchKey = txtSearch.Text.Trim();
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            string particular = cmbxParticulars.Text;
+            string  particular = cmbxParticulars.Text;
             return (searchKey, rowFilter, statusId, particular);
         }
 
         private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            Cursor.Current = Cursors.WaitCursor;
-            this.SuspendLayout();
-
             try
             {
                 var parameters = ((string searchKey, int rowFilter, int statusId, string particular))e.Argument;
@@ -151,7 +149,6 @@ namespace JOMonitoringApp.Views.MainForm
                     var newRow = dataTable.NewRow();
 
                     newRow["id"] = Convert.ToInt32(row["id"]);
-                    newRow["series_no"] = row["series_number"].ToString();
                     newRow["status"] = row["status"].ToString().ToUpper();
                     newRow["prepared_by_id"] = Convert.ToInt32(row["prepared_by_id"]);
                     newRow["materials_issued_by_id"] = string.IsNullOrEmpty(row["materials_issued_by_id"]?.ToString()) ? 0 : Convert.ToInt32(row["materials_issued_by_id"]);
@@ -173,9 +170,13 @@ namespace JOMonitoringApp.Views.MainForm
 
                     dataTable.Rows.Add(newRow);
 
-                    // Update progress bar
+                    // Update progress every 5% or every 100 rows
                     progress++;
-                    Helper.ProgressCounter(backgroundWorker1, totalCount, progress);
+                    if (progress % Math.Max(1, totalCount / 20) == 0)
+                    {
+                        int percent = (int)((progress / (float)totalCount) * 100);
+                        backgroundWorker1.ReportProgress(percent);
+                    }
                 }
 
                 e.Result = dataTable;
@@ -185,13 +186,13 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError(ex.Message);
             }
 
-            this.ResumeLayout();
-            Cursor.Current = Cursors.Default;
         }
 
         private void BackgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
+
+
         }
 
         private void BackgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -205,7 +206,6 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dataTable == null)
                     return;
 
-                dgJobOrders.SuspendLayout();
                 dgJobOrders.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
                 dgJobOrders.DataSource = null; // Reset to clear previous data
                 dgJobOrders.Columns.Clear();   // Clear old structure
@@ -217,8 +217,6 @@ namespace JOMonitoringApp.Views.MainForm
                     dgJobOrders.Rows[previousSelection].Selected = true;
                 }
 
-                dgJobOrders.ResumeLayout();
-                dgJobOrders.AutoResizeColumns(); // Optional
                 HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             }
             catch (Exception ex)
@@ -338,7 +336,6 @@ namespace JOMonitoringApp.Views.MainForm
             return new DataColumn[]
             {
                 new DataColumn("id", typeof (int)),
-                new DataColumn("series_no", typeof (string)),
                 new DataColumn("status", typeof(string)),
                 new DataColumn("prepared_by_id", typeof(int)),
                 new DataColumn("particular", typeof (string)),
@@ -368,13 +365,14 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
+            if (dgJobOrders.Rows.Count == 0) return;
+
+            UpdateSettings();
+            ucJoborder.StoreOriginalValues();
+            LoadSelectedData();
             try
             {
-                if (dgJobOrders.Rows.Count == 0) return;
-
-                UpdateSettings();
-                LoadSelectedData();
-                ucJoborder.StoreOriginalValues();
+   
             }
             catch (Exception)
             {
@@ -396,8 +394,6 @@ namespace JOMonitoringApp.Views.MainForm
         private void LoadSelectedData()
         {
             int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-           
-
             Dictionary<string, string> dictJobOrders = Factory.JobOrdersRepository().GetRecordByID(selectedJobOrderId);
 
             //setting of data
@@ -408,22 +404,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAddress.Text = dictJobOrders["address"];
             ucJoborder.txtContact.Text = dictJobOrders["contact_number"];
 
-            char[] delimiters = new char[] { '\\' };
-            string[] particulars = dictJobOrders["particular"].ToString().Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-
-
-            foreach (var item in particulars)
-            {
-                for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
-                {
-                    if (ucJoborder.clBoxParticulars.Items[i].ToString().Trim() == item.Trim())
-                    {
-                        ucJoborder.clBoxParticulars.SetItemChecked(i, true);
-                        break;
-                    }
-                }
-            }
-
+            //account number setup
             char[] delimiter = new char[] { '-' };
             string[] accountNumber = dictJobOrders["account_number"].ToString().Split(delimiter, StringSplitOptions.RemoveEmptyEntries);
             bool noAccountNumber = string.IsNullOrEmpty(dictJobOrders["account_number"].ToString());
@@ -432,6 +413,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAcc2.Text = noAccountNumber ? string.Empty : accountNumber[1];
             ucJoborder.txtAcc3.Text = noAccountNumber ? string.Empty : accountNumber[2];
             ucJoborder.txtAcc4.Text = noAccountNumber ? string.Empty : accountNumber[3];
+            //end of account number setup
 
             ucJoborder.txtJONumber.Text = dictJobOrders["job_order_no"];
             ucJoborder.dtpDate.Value = Convert.ToDateTime(dictJobOrders["date"]);
@@ -444,11 +426,29 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.cmbxAccomplishedBy.SelectedValue = string.IsNullOrEmpty(dictJobOrders["accomplished_by_id"]) ? -1 : Convert.ToInt32(dictJobOrders["accomplished_by_id"]);
             ucJoborder.txtRemarks.Text = dictJobOrders["remarks"].ToString();
 
+            //status setup
             int statusId = Convert.ToInt16(dictJobOrders["status_id"]);
             ucJoborder.radPending.Checked = (statusId == Convert.ToInt16(ucJoborder.radPending.Tag));
             ucJoborder.radProcessing.Checked = (statusId == Convert.ToInt16(ucJoborder.radProcessing.Tag));
             ucJoborder.radCancel.Checked = (statusId == Convert.ToInt16(ucJoborder.radCancel.Tag));
             ucJoborder.radAccomplished.Checked = (statusId == Convert.ToInt16(ucJoborder.radAccomplished.Tag));
+            //end of status setup
+
+            //particulars setup 
+            DataTable jobOrderParticulars = Factory.JobOrderParticularsRepository().GetParticularIdByJOId(selectedJobOrderId);
+
+            foreach (DataRow item in jobOrderParticulars.Rows)
+            {
+                string particular = item["particular"].ToString();
+
+                for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
+                {
+                    if (ucJoborder.clBoxParticulars.Items[i].ToString() == particular)
+                    {
+                        ucJoborder.clBoxParticulars.SetItemChecked(i, true);
+                    }
+                }
+            }
 
 
             //restrict user to update if job order is accomplished
@@ -463,12 +463,6 @@ namespace JOMonitoringApp.Views.MainForm
 
 
         #endregion
-
-
-        private void JOSummaryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
 
 
         #region Logout
@@ -614,22 +608,23 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void ButtonSaveTrigger()
         {
+            bool success = ucJoborder.isUpdate ? UpdateData() : SaveData();
+
+            if (success)
+            {
+                LogJOTransaction();
+                if (CheckIfInvestigation())
+                    InsertJobOrderToInvestigation(); //<-- Save to investigation table
+
+                string message = ucJoborder.isUpdate
+                    ? "Job Order details successfully updated."
+                    : "Job Order successfully created.";
+                Helper.MessageBoxSuccess(message);
+                ResetInputForm();
+            }
             try
             {
-                bool success = ucJoborder.isUpdate ? UpdateData() : SaveData();
-
-                if (success)
-                {
-                    LogJOTransaction();
-                    if (CheckIfInvestigation())
-                        InsertJobOrderToInvestigation(); //<-- Save to investigation table
-
-                    string message = ucJoborder.isUpdate
-                        ? "Job Order details successfully updated."
-                        : "Job Order successfully created.";
-                    Helper.MessageBoxSuccess(message);
-                    ResetInputForm();
-                }
+               
             }
             catch (Exception ex)
             {
@@ -639,23 +634,37 @@ namespace JOMonitoringApp.Views.MainForm
 
         private bool UpdateData()
         {
-            if (!ucJoborder.ValidateChildren())
+            using (TransactionScope scope = new TransactionScope())
             {
-                Helper.MessageBoxError(ucJoborder.GetFormErrors());
-                return false;
-            }
+                if (!ucJoborder.ValidateChildren())
+                {
+                    Helper.MessageBoxError(ucJoborder.GetFormErrors());
+                    return false;
+                }
 
-            if (ucJoborder.HasDataChanged())
-            {
-                return Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
-            }
-            
+                if (ucJoborder.HasDataChanged())
+                {
+                    int jobOrderId = ucJoborder.jobOrderId;
+                    bool updateRes = Factory.JobOrdersRepository().Update(ucJoborder.JobOrderModel());
 
-            else
-            {
-                // No changes detected
-                Helper.MessageBoxSuccess("No changes detected.");
-                return false;
+                    if (updateRes)
+                    {
+                        InsertJobOrderParticulars(jobOrderId);
+                        scope.Complete();
+                        return true;
+                    }
+                    else
+                    {
+                        Helper.MessageBoxError("Failed to update job order.");
+                    }
+
+                    return false;
+                }
+                else
+                {
+                    Helper.MessageBoxSuccess("No changes detected.");
+                    return false;
+                }
             }
         }
 
@@ -706,7 +715,12 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (ucJoborder.isUpdate)
             {
-                _ = Factory.InvestigationRepository().UpdateInvestigation(investigation);
+                bool updateRes = Factory.InvestigationRepository().UpdateInvestigation(investigation);
+
+                if (!updateRes)//insert to investigation table if updateRes = false
+                {
+                    _ = Factory.InvestigationRepository().Insert(investigation);
+                }
             }
             else
             {
@@ -728,15 +742,59 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            if (CheckPossibleDuplicateEntry())
+            if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
             {
-                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                using (TransactionScope scope = new TransactionScope())
                 {
-                   Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                    bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                    if (successInsert)
+                    {
+                        int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
 
+                        if (InsertJobOrderParticulars(jobOrderId))
+                        {
+                            scope.Complete();
+                            return true;
+                        }
+                        else { return false;  }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
+
+            //if (CheckPossibleDuplicateEntry())
+            //{
+           
+            //}
             return false;
+        }
+
+
+        private bool InsertJobOrderParticulars(int jobOrderId)
+        {
+            if (ucJoborder.isUpdate)
+              Factory.JobOrdersRepository().DeleteJobOrderParticulars(jobOrderId);
+           
+           
+
+            foreach (var item in ucJoborder.clBoxParticulars.CheckedItems)
+            {
+                string particularName = item.ToString();
+                int particularId = Factory.ParticularsRepository().GetIdByParticularName(particularName);
+
+                bool success = Factory.JobOrderParticularsRepository().InsertJobOrdersParticulars(jobOrderId, particularId);
+                if (!success)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+         
+            
         }
         #endregion
 
@@ -810,11 +868,6 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 return;
             }
-        }
-
-        private void jOTrackingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)

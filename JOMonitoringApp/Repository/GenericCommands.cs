@@ -74,7 +74,6 @@ namespace JOMonitoringApp.Repository
                     adapter.Fill(dataTable);
                 }
             }
-
             return dataTable;
         }
         public DataTable SQLFillBySearch(string query, DataTable dataTable, params object[][] parameters)

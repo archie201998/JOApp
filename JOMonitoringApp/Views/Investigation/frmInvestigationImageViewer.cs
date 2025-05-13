@@ -31,7 +31,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
-            string sharedFolderPath = @"\\192.168.18.183\InvestigationImages\Dacol"; // Replace with your shared folder path
+            string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol"; // Replace with your shared folder path
 
             if (Directory.Exists(sharedFolderPath))
             {

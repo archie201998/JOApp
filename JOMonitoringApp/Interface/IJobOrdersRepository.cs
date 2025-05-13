@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    public interface IJobOrdersRepository : IRoleHasPermission<JobOrdersModel>
+    public interface IJobOrdersRepository : IRepository<JobOrdersModel>
     {
         DataTable GetViewRecords();
 
@@ -34,5 +34,6 @@ namespace JOMonitoringApp.Interface
         DataTable JOStatusPerParticular(DateTime dateFrom, DateTime dateTo);
         bool SoftDelete(int jobOrderId, int userId);
         DataTable JOPhasePerPeriod(string status, int daysMultiplier);
+        bool DeleteJobOrderParticulars(int jobOrderId);
     }
 }

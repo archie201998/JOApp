@@ -31,6 +31,7 @@
             this.cmbxParticular = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnManualCompute = new System.Windows.Forms.Button();
             this.btnAutoCompute = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtAccountType = new System.Windows.Forms.TextBox();
@@ -44,6 +45,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtAdjustment = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.txtAmountDueAfterAdjustment = new System.Windows.Forms.TextBox();
@@ -86,9 +89,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtLeakingNotVisCurrentCons = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnManualCompute = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtAdjustment = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -138,6 +138,22 @@
             this.groupBox1.Size = new System.Drawing.Size(567, 76);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
+            // 
+            // btnManualCompute
+            // 
+            this.btnManualCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnManualCompute.BackColor = System.Drawing.Color.Blue;
+            this.btnManualCompute.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnManualCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnManualCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnManualCompute.ForeColor = System.Drawing.Color.White;
+            this.btnManualCompute.Location = new System.Drawing.Point(427, 17);
+            this.btnManualCompute.Name = "btnManualCompute";
+            this.btnManualCompute.Size = new System.Drawing.Size(112, 38);
+            this.btnManualCompute.TabIndex = 21;
+            this.btnManualCompute.Text = "Manual Compute";
+            this.btnManualCompute.UseVisualStyleBackColor = false;
+            this.btnManualCompute.Click += new System.EventHandler(this.btnManualCompute_Click);
             // 
             // btnAutoCompute
             // 
@@ -309,17 +325,43 @@
             this.groupBox5.Controls.Add(this.cbxPenalty);
             this.groupBox5.Controls.Add(this.txtPenalty);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox5.Location = new System.Drawing.Point(12, 358);
+            this.groupBox5.Location = new System.Drawing.Point(12, 359);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(567, 200);
+            this.groupBox5.Size = new System.Drawing.Size(567, 199);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
+            // 
+            // txtAdjustment
+            // 
+            this.txtAdjustment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAdjustment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.txtAdjustment.ForeColor = System.Drawing.Color.Red;
+            this.txtAdjustment.Location = new System.Drawing.Point(322, 52);
+            this.txtAdjustment.Name = "txtAdjustment";
+            this.txtAdjustment.Size = new System.Drawing.Size(112, 21);
+            this.txtAdjustment.TabIndex = 30;
+            this.txtAdjustment.Text = "0";
+            this.txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAdjustment.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(103, 54);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(152, 15);
+            this.label23.TabIndex = 29;
+            this.label23.Text = "ADJUSTMENT AMOUNT : ";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(319, 131);
+            this.label12.Location = new System.Drawing.Point(319, 128);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(119, 15);
             this.label12.TabIndex = 28;
@@ -329,11 +371,11 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(101, 156);
+            this.label22.Location = new System.Drawing.Point(101, 149);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(138, 30);
+            this.label22.Size = new System.Drawing.Size(134, 15);
             this.label22.TabIndex = 26;
-            this.label22.Text = "AMOUNT DUE \r\nAFTER ADJUSTMENT : ";
+            this.label22.Text = "ADJUSTED AMOUNT : ";
             // 
             // txtAmountDueAfterAdjustment
             // 
@@ -343,7 +385,7 @@
             this.txtAmountDueAfterAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAmountDueAfterAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountDueAfterAdjustment.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(258, 155);
+            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(258, 148);
             this.txtAmountDueAfterAdjustment.Name = "txtAmountDueAfterAdjustment";
             this.txtAmountDueAfterAdjustment.Size = new System.Drawing.Size(176, 38);
             this.txtAmountDueAfterAdjustment.TabIndex = 27;
@@ -354,7 +396,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(103, 83);
+            this.label11.Location = new System.Drawing.Point(103, 111);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 15);
             this.label11.TabIndex = 25;
@@ -364,7 +406,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(103, 57);
+            this.label10.Location = new System.Drawing.Point(103, 85);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(111, 15);
             this.label10.TabIndex = 24;
@@ -373,7 +415,7 @@
             // cbxExtensionFee
             // 
             this.cbxExtensionFee.AutoSize = true;
-            this.cbxExtensionFee.Location = new System.Drawing.Point(304, 54);
+            this.cbxExtensionFee.Location = new System.Drawing.Point(304, 82);
             this.cbxExtensionFee.Name = "cbxExtensionFee";
             this.cbxExtensionFee.Size = new System.Drawing.Size(15, 14);
             this.cbxExtensionFee.TabIndex = 17;
@@ -387,7 +429,7 @@
             this.txtExtensionFee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtExtensionFee.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtExtensionFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtExtensionFee.Location = new System.Drawing.Point(322, 51);
+            this.txtExtensionFee.Location = new System.Drawing.Point(322, 79);
             this.txtExtensionFee.Name = "txtExtensionFee";
             this.txtExtensionFee.Size = new System.Drawing.Size(112, 21);
             this.txtExtensionFee.TabIndex = 20;
@@ -401,9 +443,9 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(103, 28);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(94, 15);
+            this.label9.Size = new System.Drawing.Size(97, 15);
             this.label9.TabIndex = 22;
-            this.label9.Text = "AMOUNT DUE :";
+            this.label9.Text = "DUE AMOUNT : ";
             // 
             // txtAmountDue
             // 
@@ -424,7 +466,7 @@
             // cbxPenalty
             // 
             this.cbxPenalty.AutoSize = true;
-            this.cbxPenalty.Location = new System.Drawing.Point(304, 81);
+            this.cbxPenalty.Location = new System.Drawing.Point(304, 109);
             this.cbxPenalty.Name = "cbxPenalty";
             this.cbxPenalty.Size = new System.Drawing.Size(15, 14);
             this.cbxPenalty.TabIndex = 17;
@@ -438,7 +480,7 @@
             this.txtPenalty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPenalty.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPenalty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtPenalty.Location = new System.Drawing.Point(322, 78);
+            this.txtPenalty.Location = new System.Drawing.Point(322, 106);
             this.txtPenalty.Name = "txtPenalty";
             this.txtPenalty.Size = new System.Drawing.Size(112, 21);
             this.txtPenalty.TabIndex = 20;
@@ -833,48 +875,6 @@
             this.label8.Size = new System.Drawing.Size(115, 15);
             this.label8.TabIndex = 10;
             this.label8.Text = "CURRENT CONS. : ";
-            // 
-            // btnManualCompute
-            // 
-            this.btnManualCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnManualCompute.BackColor = System.Drawing.Color.Blue;
-            this.btnManualCompute.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnManualCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManualCompute.ForeColor = System.Drawing.Color.White;
-            this.btnManualCompute.Location = new System.Drawing.Point(427, 17);
-            this.btnManualCompute.Name = "btnManualCompute";
-            this.btnManualCompute.Size = new System.Drawing.Size(112, 38);
-            this.btnManualCompute.TabIndex = 21;
-            this.btnManualCompute.Text = "Manual Compute";
-            this.btnManualCompute.UseVisualStyleBackColor = false;
-            this.btnManualCompute.Click += new System.EventHandler(this.btnManualCompute_Click);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(103, 107);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(100, 15);
-            this.label23.TabIndex = 29;
-            this.label23.Text = "ADJUSTMENT  : ";
-            // 
-            // txtAdjustment
-            // 
-            this.txtAdjustment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAdjustment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtAdjustment.ForeColor = System.Drawing.Color.Red;
-            this.txtAdjustment.Location = new System.Drawing.Point(322, 105);
-            this.txtAdjustment.Name = "txtAdjustment";
-            this.txtAdjustment.Size = new System.Drawing.Size(112, 21);
-            this.txtAdjustment.TabIndex = 30;
-            this.txtAdjustment.Text = "0";
-            this.txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAdjustment.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
             // 
             // frmInvestigationAdjustment
             // 

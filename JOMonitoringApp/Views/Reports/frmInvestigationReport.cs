@@ -52,7 +52,7 @@ namespace JOMonitoringApp.Views.Reports
                 return;
             }
 
-            ReportParameter[] parameters = new ReportParameter[29];
+            ReportParameter[] parameters = new ReportParameter[30];
             parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
             parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
             parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -76,6 +76,8 @@ namespace JOMonitoringApp.Views.Reports
             parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
             parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
 
+            string status = Helper.InvestigationStatusText(Convert.ToInt32(dictInvestigation["is_approved"]));
+            parameters[29] = new ReportParameter("paramStatus", status);
             string particular = dictInvestigation["adjustment_particular"];
             string adjustment = dictInvestigation["adjustment_amount"];
 
@@ -136,6 +138,8 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[16] = new ReportParameter("paramImage1", string.Empty);
                 parameters[17] = new ReportParameter("paramImage2", string.Empty);
             }
+
+
             reportViewer1.LocalReport.SetParameters(parameters);
             reportViewer1.ProcessingMode = ProcessingMode.Local;
             reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);

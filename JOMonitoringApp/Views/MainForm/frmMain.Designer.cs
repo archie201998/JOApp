@@ -77,6 +77,7 @@
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCheckingUpdate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -108,7 +109,6 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
-            this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -494,6 +494,16 @@
     " THE UPDATE.";
             this.lblCheckingUpdate.Visible = false;
             // 
+            // lblRetrieved
+            // 
+            this.lblRetrieved.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetrieved.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lblRetrieved.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.lblRetrieved.Name = "lblRetrieved";
+            this.lblRetrieved.Size = new System.Drawing.Size(184, 17);
+            this.lblRetrieved.Text = "Retrieving Records. Please Wait....";
+            this.lblRetrieved.Visible = false;
+            // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
@@ -629,6 +639,7 @@
             // btnX
             // 
             this.btnX.BackColor = System.Drawing.Color.Transparent;
+            this.btnX.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnX.FlatAppearance.BorderSize = 0;
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -639,6 +650,7 @@
             this.btnX.TabIndex = 32;
             this.btnX.TabStop = false;
             this.btnX.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.toolTip1.SetToolTip(this.btnX, "Clear Search");
             this.btnX.UseVisualStyleBackColor = false;
             this.btnX.Visible = false;
             this.btnX.Click += new System.EventHandler(this.btnX_Click);
@@ -838,16 +850,6 @@
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
             this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1739, 1944);
             this.ucDashboardSummaryView1.TabIndex = 0;
-            // 
-            // lblRetrieved
-            // 
-            this.lblRetrieved.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRetrieved.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lblRetrieved.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.lblRetrieved.Name = "lblRetrieved";
-            this.lblRetrieved.Size = new System.Drawing.Size(184, 17);
-            this.lblRetrieved.Text = "Retrieving Records. Please Wait....";
-            this.lblRetrieved.Visible = false;
             // 
             // frmMain
             // 

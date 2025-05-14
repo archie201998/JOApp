@@ -52,13 +52,14 @@ namespace JOMonitoringApp.Views.Reports
                 return;
             }
 
-            ReportParameter[] parameters = new ReportParameter[30];
+            ReportParameter[] parameters = new ReportParameter[31];
             parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
             parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
             parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
             parameters[3] = new ReportParameter("paramNatureOfComplaint", dictInvestigation["nature_of_complaint"]);
             parameters[4] = new ReportParameter("paramComments", dictInvestigation["investigator_comments"]);
             parameters[5] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
+            parameters[30] = new ReportParameter("paramJobOrderNumber", jobOrderNumber);
 
             parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);
             parameters[7] = new ReportParameter("paramHouseHelpers", dictInvestigation["house_helper"]);
@@ -82,11 +83,30 @@ namespace JOMonitoringApp.Views.Reports
             string adjustment = dictInvestigation["adjustment_amount"];
 
             //string display here
-            string _particular = dictInvestigation["adjustment_particular"];
-            string amountDue = dictInvestigation["amount_due"];
-            string adjustmentAmount = dictInvestigation["adjustment_amount"];
-            string penalty = dictInvestigation["penalty"];
-            string extensionFee = dictInvestigation["extension_fee"];
+            string _particular = dictInvestigation.ContainsKey("adjustment_particular") && dictInvestigation["adjustment_particular"] != null
+      ? dictInvestigation["adjustment_particular"]
+    : "";
+            string amountDue = dictInvestigation.ContainsKey("amount_due") && decimal.TryParse(Convert.ToString(dictInvestigation["amount_due"]), out var amountDueDecimal)
+                ? (amountDueDecimal == 0 ? "0" : amountDueDecimal.ToString("N2"))
+                : "0";
+            string adjustmentAmount = dictInvestigation.ContainsKey("adjustment_amount") && decimal.TryParse(Convert.ToString(dictInvestigation["adjustment_amount"]), out var adjustmentDecimal)
+                ? adjustmentDecimal.ToString("N2")
+                : "0";
+            string adjustedAmount = dictInvestigation.ContainsKey("adjusted_amount") && decimal.TryParse(Convert.ToString(dictInvestigation["adjusted_amount"]), out var adjustedDecimal)
+                ? adjustedDecimal.ToString("N2")
+                : "0";
+            string penalty = dictInvestigation.ContainsKey("penalty") && decimal.TryParse(Convert.ToString(dictInvestigation["penalty"]), out var penaltyDecimal)
+                ? penaltyDecimal.ToString("N2")
+                : "0";
+            string extensionFee = dictInvestigation.ContainsKey("extension_fee") && decimal.TryParse(Convert.ToString(dictInvestigation["extension_fee"]), out var extensionDecimal)
+                ? extensionDecimal.ToString("N2")
+                : "0";
+
+
+
+
+
+
 
             string previousReading = dictInvestigation["previous_reading"];
             string presentReading = dictInvestigation["present_reading"];
@@ -96,23 +116,24 @@ namespace JOMonitoringApp.Views.Reports
             string presentConsumption = dictInvestigation["present_consumption"];
             string actualConsumption = dictInvestigation["actual_consumption"];
             string averageConsumption = dictInvestigation["last_three_months_consumption"];
-            string adjustedAmount = dictInvestigation["adjusted_amount"];
 
             string details =
-                $"Particular                  \n" +
-                $"Amount Due                  \n" +
-                $"Penalty                     \n" +
-                $"Extension Fee               \n" +
-                $"Adjustment Amount           \n" +
-                $"Adjusted Amount           \n\n";
+                $"Particular           \n" +
+                $"Amount Due           \n" +
+                $"Penalty              \n" +
+                $"Extension Fee        \n" +
+                $"Adjustment Amount    \n" +
+                $"_____________________\n" +
+                $"Adjusted Amount      ";
 
             string detailsValues =
-                $": {_particular}\n" +
-                $": {amountDue}\n" +
-                $": {penalty}\n" +
-                $": {extensionFee}\n\n" +
-                $": {adjustmentAmount}\n" +
-                $": {adjustedAmount}\n";
+                $"{_particular}\n" +
+                $"{amountDue}\n" +
+                $"{penalty}\n" +
+                $"{extensionFee}\n" +
+                $"{adjustmentAmount}\n" +
+                $"_____________________\n" +
+                $"{adjustedAmount}";
 
             parameters[21] = new ReportParameter("paramAdjustments", $"{details}");
             parameters[22] = new ReportParameter("paramAdjustmentsValues", $"{detailsValues}");

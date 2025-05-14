@@ -314,7 +314,8 @@ namespace JOMonitoringApp
 
                 new object[] { "@last_three_months_consumption", DbType.String, entity.AverageConsumption },
                 new object[] { "@amount_due", DbType.String, entity.AmountDue },
-                new object[] { "@adjustment_amount", DbType.String, entity.Adjustment },
+                new object[] { "@adjustment_amount", DbType.String, entity.AdjustmentAmount },
+                new object[] { "@adjusted_amount", DbType.String, entity.AdjustedAmountDue },
 
                 new object[] { "@extension_fee", DbType.String, entity.ExtensionFee },
                 new object[] { "@penalty", DbType.String, entity.Penalty },

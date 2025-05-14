@@ -368,8 +368,8 @@ namespace JOMonitoringApp.Views.Investigation
                     Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
                     ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
                     AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
-                    Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
+                    AdjustmentAmount = Convert.ToDecimal(txtAdjustment.Text.Trim()),
+                    AdjustedAmountDue = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
                     UpdatedBy = Helper.UserId,
                 };
 

@@ -119,6 +119,10 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigatorDailyAccomplishmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbAccountDetails.SuspendLayout();
             this.gbStatisticalFindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -143,6 +147,7 @@
             this.gbApproval.SuspendLayout();
             this.gbComputation.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -911,6 +916,7 @@
             // dgInvestigations
             // 
             this.dgInvestigations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvestigations.ContextMenuStrip = this.contextMenuStrip1;
             this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
@@ -1272,6 +1278,35 @@
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.button2_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(100, 26);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.investigationFormToolStripMenuItem,
+            this.investigatorDailyAccomplishmentToolStripMenuItem});
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            // 
+            // investigationFormToolStripMenuItem
+            // 
+            this.investigationFormToolStripMenuItem.Name = "investigationFormToolStripMenuItem";
+            this.investigationFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.investigationFormToolStripMenuItem.Text = "Investigation Form";
+            this.investigationFormToolStripMenuItem.Click += new System.EventHandler(this.investigationFormToolStripMenuItem_Click);
+            // 
+            // investigatorDailyAccomplishmentToolStripMenuItem
+            // 
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Name = "investigatorDailyAccomplishmentToolStripMenuItem";
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Text = "Investigator Accomplishment";
+            // 
             // ucInvestigationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1321,6 +1356,7 @@
             this.gbComputation.ResumeLayout(false);
             this.gbComputation.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1416,5 +1452,9 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         internal System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investigationFormToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investigatorDailyAccomplishmentToolStripMenuItem;
     }
 }

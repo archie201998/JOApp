@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using Mysqlx.Crud;
@@ -26,6 +27,7 @@ namespace JOMonitoringApp.Views.Investigation
         public frmInvestigationAdjustment(ucInvestigationForm ucInvestigationForm, string accountNumber)
         {
             InitializeComponent();
+            Helper.DatagridFullRowSelectStyleEditable(dgParticularAdjustment);
             Helper.LoadFormIcon(this);
 
             _accountNumber = accountNumber;
@@ -57,7 +59,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void LoadAdjustments()
         {
-            int investigationID = _ucInvestigationForm.selectedInvistigationID;
+            int investigationID = _ucInvestigationForm.selectedInvestigationID;
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(investigationID);
 
             if (adjustments.Count != 0)
@@ -246,7 +248,6 @@ namespace JOMonitoringApp.Views.Investigation
             string particular = cmbxParticular.Text;
 
             btnAutoCompute.Enabled = true;
-            btnManualCompute.Enabled = true;
             gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
             gbIllegal.Location = new System.Drawing.Point(1000, 1000);
             gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
@@ -278,58 +279,71 @@ namespace JOMonitoringApp.Views.Investigation
                     gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
                     gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
                     btnAutoCompute.Enabled = false;
-                    btnManualCompute.Enabled = false;
                     break;
             }
         }
 
-        private void btnManualCompute_Click(object sender, EventArgs e)
-        {
-            manualComputeMode = true;
-            ClearFields();
-            LoadAccountDetails();
-            Helper.MessageBoxSuccess("Manual Computation Enabled.");
-        }
-
-        private void ClearFields()
-        {
-            foreach (Control control in this.Controls)
-            {
-                if (control is TextBox textBox)
-                {
-                    textBox.Clear();
-                }
-                else if (control is GroupBox groupBox)
-                {
-                    foreach (Control innerControl in groupBox.Controls)
-                    {
-                        if (innerControl is TextBox innerTextBox)
-                        {
-                            innerTextBox.Clear();
-                        }
-                    }
-                }
-            }
-
-            txtAmountDue.Text = "0";
-            txtAdjustment.Text = "0";
-            txtPenalty.Text = "0";
-            txtExtensionFee.Text = "0";
-            txtAmountDueAfterAdjustment.Text = "0";
-        }
 
         private void btnAutoCompute_Click(object sender, EventArgs e)
         {
-            manualComputeMode = false;
-            Compute();
+            ComputeFactors();
         }
+
+        private void ComputeFactors()
+        {
+            string accountNumber = txtAccountNumber.Text.Trim();
+            var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(accountNumber);
+
+
+            foreach (DataGridViewRow dgvRow in dgParticularAdjustment.Rows)
+            {
+                
+                if (dgvRow.IsNewRow) continue;
+
+                var particular = dgvRow.Cells["particular"].Value?.ToString();
+
+                if (particular == "Average Consumption (Last 3 Months)")
+                {
+                    dgvRow.Cells["_value"].Value = dictReadingDetails["AverageCons"];
+                }
+                else if (particular == "Previous Reading (Previous Month)")
+                {
+                    dgvRow.Cells["_value"].Value = dictReadingDetails["Prev"];
+                }
+                else if (particular == "Present Reading (Current Month)")
+                {
+                    dgvRow.Cells["_value"].Value = dictReadingDetails["Pres"];
+                }
+                
+                else if (particular == "Illegal Connection")
+                {
+                    dgvRow.Cells["_value"].Value = "6000";
+                }
+                else if (particular == "VAT (12%)")
+                {
+                    dgvRow.Cells["_value"].Value = "720";
+                }
+
+
+                txtAmountDue.Text = dictReadingDetails["AmountDue"];
+            }
+        }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (updateAdjustment)
                 UpdateAdjustment();
             else
-                SaveAdjustment();
+            {
+                if (SaveAdjustment())
+                {
+                    Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
+                    Close();
+                }
+               
+            }
+                
         }
 
         private void UpdateAdjustment()
@@ -337,20 +351,30 @@ namespace JOMonitoringApp.Views.Investigation
             throw new NotImplementedException();
         }
 
-        private void SaveAdjustment()
+        private bool SaveAdjustment()
         {
             if (Helper.MessageBoxConfirmCancel("Do you confirm to save this adjustment?"))
             {
-                bool result = Factory.InvestigationRepository().SaveComputation(InvestigationModel());
-
-                if (result)
+                foreach (DataGridViewRow dgvRow in dgParticularAdjustment.Rows)
                 {
-                    Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
-                    Close();
+                    string particular = dgvRow.Cells["particular"].Value?.ToString();
+                    string value = dgvRow.Cells["_value"].Value?.ToString();
+
+                    var investigationAdjustmentModel = new InvestigationAdjustmentModel
+                    {
+                        Particular = particular,
+                        Value = value,
+                        InvestigationId = _ucInvestigationForm.selectedInvestigationID,
+                    };
+
+                    bool result = Factory.InvestigationAdjustmentRepository().Insert(investigationAdjustmentModel);
+
+                    if (!result) return false;
                 }
+                return true;
             }
 
-            return;
+            return false;
         }
 
         private InvestigationModel InvestigationModel()
@@ -358,7 +382,7 @@ namespace JOMonitoringApp.Views.Investigation
 
             var investigationModel = new InvestigationModel
             {
-                Id = _ucInvestigationForm.selectedInvistigationID,
+                Id = _ucInvestigationForm.selectedInvestigationID,
                 UpdatedBy = Helper.UserId
             };
 
@@ -506,5 +530,51 @@ namespace JOMonitoringApp.Views.Investigation
                 ComputeIllegal();
         }
 
+        private void particularFactors_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            string itemText = particularFactors.Items[e.Index].ToString();
+
+            if (e.NewValue == CheckState.Checked)
+            {
+                dgParticularAdjustment.Rows.Add(itemText);
+            }
+            else
+            {
+                foreach (DataGridViewRow row in dgParticularAdjustment.Rows)
+                {
+                    if (row.Cells[0].Value.ToString() == itemText)
+                    {
+                        dgParticularAdjustment.Rows.Remove(row);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+        private void dgParticularAdjustment_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                // Get the value entered in the cell
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    string cellValue = dgParticularAdjustment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                    // Proceed with the rest of the logic
+                    if (!decimal.TryParse(cellValue, out decimal numericValue))
+                    {
+                        Helper.MessageBoxWarning("Please enter a valid numeric value.");
+                        dgParticularAdjustment.CancelEdit();
+                    }
+
+                }
+                   
+            }
+        }
+
+        private void particularFactors_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

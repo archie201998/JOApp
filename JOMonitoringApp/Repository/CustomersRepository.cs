@@ -206,6 +206,8 @@ internal class CustomersRepository : ICustomersRepository
             foreach (DataColumn column in dataTable.Columns)
             {
                 result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+
+
             }
         }
 
@@ -234,5 +236,35 @@ internal class CustomersRepository : ICustomersRepository
         }
 
         return result;
+    }
+
+    public string GetAverageConsumption(string accountNumber)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetPreviousReading(string accountNumber)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetPresentReading(string accountNumber)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetPreviousConsumption(string accountNumber)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetPresentConsumption(string accountNumber)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string GetConsumptionUponDisconnection(string accountNumber)
+    {
+        throw new System.NotImplementedException();
     }
 }

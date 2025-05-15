@@ -22,7 +22,7 @@ namespace JOMonitoringApp.Views.Investigation
         internal int _jobOrderId;
         internal string _customerAddress;
         internal bool isUpdate;
-        internal int selectedInvistigationID;
+        internal int selectedInvestigationID;
         private Dictionary<string, string> dictInvestigation;
         internal string particular = string.Empty;
         internal bool isCreate = false;
@@ -151,7 +151,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationModel
             {
-                Id = selectedInvistigationID,
+                Id = selectedInvestigationID,
                 JobOrderId = _jobOrderId,
                 JobOrderNo = txtJONumber.Text.Trim(),
                 CustomerName = txtAccountName.Text.Trim(),
@@ -326,8 +326,8 @@ namespace JOMonitoringApp.Views.Investigation
             Cursor.Current = Cursors.WaitCursor;
             this.SuspendLayout();
 
-            selectedInvistigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-            dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
+            selectedInvestigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+            dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
 
             if (dictInvestigation.Count == 0) return;
 
@@ -475,7 +475,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationModel
             {
-                Id = selectedInvistigationID,
+                Id = selectedInvestigationID,
             };
 
             var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
@@ -484,7 +484,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void ViewAdjustment()
         {
-            var adjustments = Factory.InvestigationRepository().GetViewRecordById(selectedInvistigationID);
+            var adjustments = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
 
             if (adjustments.Count != 0)
             {

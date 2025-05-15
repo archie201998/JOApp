@@ -30,8 +30,6 @@
         {
             this.cmbxParticular = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnManualCompute = new System.Windows.Forms.Button();
             this.btnAutoCompute = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtAccountType = new System.Windows.Forms.TextBox();
@@ -89,7 +87,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtLeakingNotVisCurrentCons = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.particularFactors = new System.Windows.Forms.CheckedListBox();
+            this.dgParticularAdjustment = new System.Windows.Forms.DataGridView();
+            this.particular = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._value = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -97,6 +100,9 @@
             this.gbFailedCalibration.SuspendLayout();
             this.gbIllegal.SuspendLayout();
             this.gbLeakingNotVisible.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgParticularAdjustment)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            this.groupBox6.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbxParticular
@@ -110,9 +116,9 @@
             "Failed Calibration",
             "Erroneous Reading",
             "RFB + Illegal"});
-            this.cmbxParticular.Location = new System.Drawing.Point(150, 17);
+            this.cmbxParticular.Location = new System.Drawing.Point(150, 16);
             this.cmbxParticular.Name = "cmbxParticular";
-            this.cmbxParticular.Size = new System.Drawing.Size(169, 23);
+            this.cmbxParticular.Size = new System.Drawing.Size(438, 23);
             this.cmbxParticular.TabIndex = 0;
             this.cmbxParticular.SelectedIndexChanged += new System.EventHandler(this.cmbxParticular_SelectedIndexChanged);
             // 
@@ -120,54 +126,25 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(15, 20);
+            this.label24.Location = new System.Drawing.Point(6, 20);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(90, 15);
             this.label24.TabIndex = 9;
             this.label24.Text = "PARTICULAR : ";
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btnManualCompute);
-            this.groupBox1.Controls.Add(this.cmbxParticular);
-            this.groupBox1.Controls.Add(this.label24);
-            this.groupBox1.Controls.Add(this.btnAutoCompute);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(12, 100);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(567, 54);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            // 
-            // btnManualCompute
-            // 
-            this.btnManualCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnManualCompute.BackColor = System.Drawing.Color.Blue;
-            this.btnManualCompute.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnManualCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManualCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManualCompute.ForeColor = System.Drawing.Color.White;
-            this.btnManualCompute.Location = new System.Drawing.Point(435, 17);
-            this.btnManualCompute.Name = "btnManualCompute";
-            this.btnManualCompute.Size = new System.Drawing.Size(104, 23);
-            this.btnManualCompute.TabIndex = 21;
-            this.btnManualCompute.Text = "Manual Input";
-            this.btnManualCompute.UseVisualStyleBackColor = false;
-            this.btnManualCompute.Click += new System.EventHandler(this.btnManualCompute_Click);
-            // 
             // btnAutoCompute
             // 
-            this.btnAutoCompute.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAutoCompute.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnAutoCompute.BackColor = System.Drawing.Color.OrangeRed;
             this.btnAutoCompute.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnAutoCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoCompute.ForeColor = System.Drawing.Color.White;
-            this.btnAutoCompute.Location = new System.Drawing.Point(327, 17);
+            this.btnAutoCompute.Location = new System.Drawing.Point(508, 11);
             this.btnAutoCompute.Name = "btnAutoCompute";
             this.btnAutoCompute.Size = new System.Drawing.Size(102, 23);
             this.btnAutoCompute.TabIndex = 20;
-            this.btnAutoCompute.Text = "Auto Input";
+            this.btnAutoCompute.Text = "Load Values";
             this.btnAutoCompute.UseVisualStyleBackColor = false;
             this.btnAutoCompute.Click += new System.EventHandler(this.btnAutoCompute_Click);
             // 
@@ -182,7 +159,7 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox3.Location = new System.Drawing.Point(12, 12);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(567, 82);
+            this.groupBox3.Size = new System.Drawing.Size(616, 82);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
@@ -196,7 +173,7 @@
             this.txtAccountType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountType.Location = new System.Drawing.Point(371, 20);
             this.txtAccountType.Name = "txtAccountType";
-            this.txtAccountType.Size = new System.Drawing.Size(168, 21);
+            this.txtAccountType.Size = new System.Drawing.Size(217, 21);
             this.txtAccountType.TabIndex = 23;
             // 
             // label21
@@ -219,7 +196,7 @@
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccountName.Location = new System.Drawing.Point(150, 47);
             this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(389, 21);
+            this.txtAccountName.Size = new System.Drawing.Size(438, 21);
             this.txtAccountName.TabIndex = 22;
             // 
             // txtAccountNumber
@@ -261,9 +238,9 @@
             this.groupBox4.Controls.Add(this.btnSave);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox4.Location = new System.Drawing.Point(0, 557);
+            this.groupBox4.Location = new System.Drawing.Point(0, 807);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(591, 58);
+            this.groupBox4.Size = new System.Drawing.Size(640, 58);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -272,7 +249,7 @@
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label19.Location = new System.Drawing.Point(274, 34);
+            this.label19.Location = new System.Drawing.Point(327, 33);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(298, 16);
             this.label19.TabIndex = 20;
@@ -325,9 +302,9 @@
             this.groupBox5.Controls.Add(this.cbxPenalty);
             this.groupBox5.Controls.Add(this.txtPenalty);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox5.Location = new System.Drawing.Point(12, 359);
+            this.groupBox5.Location = new System.Drawing.Point(12, 600);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(567, 199);
+            this.groupBox5.Size = new System.Drawing.Size(616, 199);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             // 
@@ -339,9 +316,9 @@
             this.txtAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.txtAdjustment.ForeColor = System.Drawing.Color.Red;
-            this.txtAdjustment.Location = new System.Drawing.Point(322, 52);
+            this.txtAdjustment.Location = new System.Drawing.Point(303, 49);
             this.txtAdjustment.Name = "txtAdjustment";
-            this.txtAdjustment.Size = new System.Drawing.Size(112, 21);
+            this.txtAdjustment.Size = new System.Drawing.Size(307, 21);
             this.txtAdjustment.TabIndex = 30;
             this.txtAdjustment.Text = "0";
             this.txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -351,7 +328,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(103, 54);
+            this.label23.Location = new System.Drawing.Point(14, 54);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(152, 15);
             this.label23.TabIndex = 29;
@@ -361,17 +338,18 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(319, 128);
+            this.label12.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label12.Location = new System.Drawing.Point(302, 125);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(119, 15);
+            this.label12.Size = new System.Drawing.Size(311, 15);
             this.label12.TabIndex = 28;
-            this.label12.Text = "----------------------------";
+            this.label12.Text = "----------------------------------------------------------------------------";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(101, 149);
+            this.label22.Location = new System.Drawing.Point(12, 149);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(134, 15);
             this.label22.TabIndex = 26;
@@ -385,9 +363,9 @@
             this.txtAmountDueAfterAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAmountDueAfterAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountDueAfterAdjustment.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(258, 146);
+            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(303, 143);
             this.txtAmountDueAfterAdjustment.Name = "txtAmountDueAfterAdjustment";
-            this.txtAmountDueAfterAdjustment.Size = new System.Drawing.Size(176, 38);
+            this.txtAmountDueAfterAdjustment.Size = new System.Drawing.Size(307, 38);
             this.txtAmountDueAfterAdjustment.TabIndex = 27;
             this.txtAmountDueAfterAdjustment.Text = "0";
             this.txtAmountDueAfterAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -396,7 +374,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(103, 111);
+            this.label11.Location = new System.Drawing.Point(14, 111);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(69, 15);
             this.label11.TabIndex = 25;
@@ -406,7 +384,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(103, 85);
+            this.label10.Location = new System.Drawing.Point(14, 85);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(111, 15);
             this.label10.TabIndex = 24;
@@ -415,7 +393,7 @@
             // cbxExtensionFee
             // 
             this.cbxExtensionFee.AutoSize = true;
-            this.cbxExtensionFee.Location = new System.Drawing.Point(304, 82);
+            this.cbxExtensionFee.Location = new System.Drawing.Point(286, 79);
             this.cbxExtensionFee.Name = "cbxExtensionFee";
             this.cbxExtensionFee.Size = new System.Drawing.Size(15, 14);
             this.cbxExtensionFee.TabIndex = 17;
@@ -429,9 +407,9 @@
             this.txtExtensionFee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtExtensionFee.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtExtensionFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtExtensionFee.Location = new System.Drawing.Point(322, 79);
+            this.txtExtensionFee.Location = new System.Drawing.Point(303, 76);
             this.txtExtensionFee.Name = "txtExtensionFee";
-            this.txtExtensionFee.Size = new System.Drawing.Size(112, 21);
+            this.txtExtensionFee.Size = new System.Drawing.Size(307, 21);
             this.txtExtensionFee.TabIndex = 20;
             this.txtExtensionFee.Text = "0";
             this.txtExtensionFee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -441,11 +419,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(103, 28);
+            this.label9.Location = new System.Drawing.Point(14, 28);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(97, 15);
             this.label9.TabIndex = 22;
-            this.label9.Text = "DUE AMOUNT : ";
+            this.label9.Text = "AMOUNT DUE : ";
             // 
             // txtAmountDue
             // 
@@ -455,9 +433,9 @@
             this.txtAmountDue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAmountDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmountDue.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtAmountDue.Location = new System.Drawing.Point(322, 24);
+            this.txtAmountDue.Location = new System.Drawing.Point(303, 21);
             this.txtAmountDue.Name = "txtAmountDue";
-            this.txtAmountDue.Size = new System.Drawing.Size(112, 22);
+            this.txtAmountDue.Size = new System.Drawing.Size(307, 22);
             this.txtAmountDue.TabIndex = 23;
             this.txtAmountDue.Text = "0";
             this.txtAmountDue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -466,7 +444,7 @@
             // cbxPenalty
             // 
             this.cbxPenalty.AutoSize = true;
-            this.cbxPenalty.Location = new System.Drawing.Point(304, 109);
+            this.cbxPenalty.Location = new System.Drawing.Point(286, 106);
             this.cbxPenalty.Name = "cbxPenalty";
             this.cbxPenalty.Size = new System.Drawing.Size(15, 14);
             this.cbxPenalty.TabIndex = 17;
@@ -480,9 +458,9 @@
             this.txtPenalty.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPenalty.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPenalty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtPenalty.Location = new System.Drawing.Point(322, 106);
+            this.txtPenalty.Location = new System.Drawing.Point(303, 103);
             this.txtPenalty.Name = "txtPenalty";
-            this.txtPenalty.Size = new System.Drawing.Size(112, 21);
+            this.txtPenalty.Size = new System.Drawing.Size(307, 21);
             this.txtPenalty.TabIndex = 20;
             this.txtPenalty.Text = "0";
             this.txtPenalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -876,11 +854,78 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "CURRENT CONS. : ";
             // 
+            // particularFactors
+            // 
+            this.particularFactors.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.particularFactors.FormattingEnabled = true;
+            this.particularFactors.Items.AddRange(new object[] {
+            "Average Consumption (Last 3 Months)",
+            "Previous Reading (Previous Month)",
+            "Present Reading (Current Month)",
+            "Actual Reading (Correct Reading after verification)",
+            "Previous Consumption",
+            "Present Consumption",
+            "Actual Consumption",
+            "Consumption Upon Disconnection",
+            "Illegal Connection",
+            "VAT (12%)"});
+            this.particularFactors.Location = new System.Drawing.Point(3, 45);
+            this.particularFactors.Name = "particularFactors";
+            this.particularFactors.Size = new System.Drawing.Size(610, 184);
+            this.particularFactors.TabIndex = 20;
+            this.particularFactors.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.particularFactors_ItemCheck);
+            // 
+            // dgParticularAdjustment
+            // 
+            this.dgParticularAdjustment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgParticularAdjustment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.particular,
+            this._value});
+            this.dgParticularAdjustment.Location = new System.Drawing.Point(6, 40);
+            this.dgParticularAdjustment.Name = "dgParticularAdjustment";
+            this.dgParticularAdjustment.Size = new System.Drawing.Size(604, 210);
+            this.dgParticularAdjustment.TabIndex = 21;
+            this.dgParticularAdjustment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgParticularAdjustment_CellValueChanged);
+            // 
+            // particular
+            // 
+            this.particular.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.particular.HeaderText = "Variable";
+            this.particular.Name = "particular";
+            // 
+            // _value
+            // 
+            this._value.HeaderText = "Value";
+            this._value.Name = "_value";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgParticularAdjustment);
+            this.groupBox2.Controls.Add(this.btnAutoCompute);
+            this.groupBox2.Location = new System.Drawing.Point(12, 338);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(616, 256);
+            this.groupBox2.TabIndex = 22;
+            this.groupBox2.TabStop = false;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.cmbxParticular);
+            this.groupBox6.Controls.Add(this.label24);
+            this.groupBox6.Controls.Add(this.particularFactors);
+            this.groupBox6.Location = new System.Drawing.Point(12, 100);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(616, 232);
+            this.groupBox6.TabIndex = 22;
+            this.groupBox6.TabStop = false;
+            // 
             // frmInvestigationAdjustment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(591, 615);
+            this.ClientSize = new System.Drawing.Size(640, 865);
+            this.Controls.Add(this.groupBox6);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);
             this.Controls.Add(this.gbIllegal);
@@ -888,7 +933,6 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -896,8 +940,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bill Adjustments";
             this.Load += new System.EventHandler(this.frmInvestigationAdjustment_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -912,6 +954,10 @@
             this.gbIllegal.PerformLayout();
             this.gbLeakingNotVisible.ResumeLayout(false);
             this.gbLeakingNotVisible.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgParticularAdjustment)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -920,7 +966,6 @@
 
         private System.Windows.Forms.ComboBox cmbxParticular;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox4;
@@ -976,8 +1021,13 @@
         internal System.Windows.Forms.TextBox txtAdjustedConsumption;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Button btnManualCompute;
         internal System.Windows.Forms.TextBox txtAdjustment;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckedListBox particularFactors;
+        private System.Windows.Forms.DataGridView dgParticularAdjustment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn particular;
+        private System.Windows.Forms.DataGridViewTextBoxColumn _value;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox6;
     }
 }

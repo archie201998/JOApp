@@ -31,7 +31,7 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (_selectedInvestigationID != 0)
             {
-                ucInvestigationForm.selectedInvistigationID = _selectedInvestigationID;
+                ucInvestigationForm.selectedInvestigationID = _selectedInvestigationID;
                 ucInvestigationForm.ViewInvestigationDetails();
             }
         }

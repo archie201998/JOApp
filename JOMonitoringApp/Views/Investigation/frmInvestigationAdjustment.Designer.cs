@@ -263,7 +263,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox4.Location = new System.Drawing.Point(0, 557);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(1350, 58);
+            this.groupBox4.Size = new System.Drawing.Size(591, 58);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -880,7 +880,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 615);
+            this.ClientSize = new System.Drawing.Size(591, 615);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);
             this.Controls.Add(this.gbIllegal);

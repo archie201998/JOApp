@@ -17,6 +17,7 @@ namespace JOMonitoringApp.Model
         public string CustomerName { get; set; }
         public string CustomerAddress{ get; set; }
         public string CustomerAccountNumber { get; set; }
+        public string CustomerContactNumber { get; set; }
         public string NatureOfComplaint { get; set; }
         public DateTime DateOfInvestigation { get; set; }
         public int IsApproved { get; set; }

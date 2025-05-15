@@ -52,7 +52,7 @@ namespace JOMonitoringApp.Views.Reports
                 return;
             }
 
-            ReportParameter[] parameters = new ReportParameter[31];
+            ReportParameter[] parameters = new ReportParameter[32];
             parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
             parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
             parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -60,6 +60,7 @@ namespace JOMonitoringApp.Views.Reports
             parameters[4] = new ReportParameter("paramComments", dictInvestigation["investigator_comments"]);
             parameters[5] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
             parameters[30] = new ReportParameter("paramJobOrderNumber", jobOrderNumber);
+            parameters[31] = new ReportParameter("paramContactNumber", dictInvestigation["contact_number"]);
 
             parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);
             parameters[7] = new ReportParameter("paramHouseHelpers", dictInvestigation["house_helper"]);
@@ -67,7 +68,7 @@ namespace JOMonitoringApp.Views.Reports
             parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", dictInvestigation["immediate_members_of_fam"]);
 
             parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{dictInvestigation["meter_brand"]} - {dictInvestigation["meter_size"]} ");
-            parameters[11] = new ReportParameter("paramMeterNumber", dictInvestigation["meter_size"]);
+            parameters[11] = new ReportParameter("paramMeterNumber", dictInvestigation["meter_number"]);
             parameters[12] = new ReportParameter("paramReadingBeforeTest", dictInvestigation["reading_before_test"]);
             parameters[13] = new ReportParameter("paramReadingAfterTest", dictInvestigation["reading_after_test"]);
             parameters[14] = new ReportParameter("paramCalibrationResult", dictInvestigation["calibration_result"]);
@@ -101,12 +102,6 @@ namespace JOMonitoringApp.Views.Reports
             string extensionFee = dictInvestigation.ContainsKey("extension_fee") && decimal.TryParse(Convert.ToString(dictInvestigation["extension_fee"]), out var extensionDecimal)
                 ? extensionDecimal.ToString("N2")
                 : "0";
-
-
-
-
-
-
 
             string previousReading = dictInvestigation["previous_reading"];
             string presentReading = dictInvestigation["present_reading"];

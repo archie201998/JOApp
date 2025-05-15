@@ -56,6 +56,7 @@ namespace JOMonitoringApp
                 new object[] { "@customer_name", DbType.String, entity.CustomerName },
                 new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
+                new object[] { "@contact_number", DbType.String, entity.CustomerContactNumber },
                 new object[] { "@nature_of_complaint", DbType.String, entity.NatureOfComplaint },
                 new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
                 new object[] { "@meter_size", DbType.String, entity.MeterSize },
@@ -64,7 +65,7 @@ namespace JOMonitoringApp
                 new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";
+            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, contact_number, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @contact_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
@@ -77,6 +78,7 @@ namespace JOMonitoringApp
                 new object[] { "@customer_name", DbType.String, entity.CustomerName },
                 new object[] { "@customer_address", DbType.String, entity.CustomerAddress },
                 new object[] { "@account_number", DbType.String, entity.CustomerAccountNumber },
+                new object[] { "@contact_number", DbType.String, entity.CustomerContactNumber },
                 new object[] { "@nature_of_complaint", DbType.String, entity.NatureOfComplaint },
                 new object[] { "@meter_brand", DbType.String, entity.MeterBrand },
                 new object[] { "@meter_size", DbType.String, entity.MeterSize },
@@ -86,6 +88,7 @@ namespace JOMonitoringApp
             string query = $"UPDATE {tableName} SET " +
                             $"job_order_no = @job_order_no, " +
                             $"customer_name = @customer_name, " +
+                            $"contact_number = @contact_number, " +
                             $"customer_address = @customer_address," +
                             $"account_number = @account_number," +
                             $"nature_of_complaint = @nature_of_complaint," +

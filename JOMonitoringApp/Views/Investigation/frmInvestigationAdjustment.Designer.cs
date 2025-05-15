@@ -263,7 +263,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox4.Location = new System.Drawing.Point(0, 557);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(590, 58);
+            this.groupBox4.Size = new System.Drawing.Size(591, 58);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -812,9 +812,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(28, 62);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 15);
+            this.label1.Size = new System.Drawing.Size(137, 15);
             this.label1.TabIndex = 22;
-            this.label1.Text = "ADJUSTED CONS. : ";
+            this.label1.Text = "ADJUSTMENT CONS. : ";
             // 
             // label13
             // 
@@ -848,9 +848,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(28, 88);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 15);
+            this.label4.Size = new System.Drawing.Size(119, 15);
             this.label4.TabIndex = 15;
-            this.label4.Text = "70% ADJUSTMENT : ";
+            this.label4.Text = "ADJUSTED CONS. : ";
             // 
             // txtLeakingNotVisCurrentCons
             // 
@@ -880,7 +880,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 615);
+            this.ClientSize = new System.Drawing.Size(591, 615);
             this.Controls.Add(this.gbErrorReading);
             this.Controls.Add(this.gbLeakingNotVisible);
             this.Controls.Add(this.gbIllegal);

@@ -103,7 +103,7 @@ namespace JOMonitoringApp.Views.MainForm
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
-
+                lblRetrieved.Visible = true;
 
                 string searchKey = txtSearch.Text.Trim();
                 int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
@@ -164,6 +164,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 // Reset UI state
                 Cursor.Current = Cursors.Default;
+                lblRetrieved.Visible = false;
             }
         }
 
@@ -438,77 +439,63 @@ namespace JOMonitoringApp.Views.MainForm
 
         #region Reset Input
         internal void ResetInputForm()
-        {
-            this.SuspendLayout(); // Improves UI responsiveness during bulk updates
-            ucJoborder.SuspendLayout();
+    {
+            // Clear general fields
+            ucJoborder.txtJONumber.Clear();
+            ucJoborder.dtpDate.Value = DateTime.Now;
+            ucJoborder.txtMRISNumber.Clear();
+            ucJoborder.txtMRSNumber.Clear();
+            ucJoborder.txtORNumber.Clear();
+            ucJoborder.nudAmount.Value = 0;
+            ucJoborder.txtWARNumber.Clear();
 
-            try
+            // Reset dropdowns
+            ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
+            ucJoborder.cmbxAccomplishedBy.SelectedValue = -1;
+
+            // Reset job order state
+            ucJoborder.jobOrderId = 0;
+            ucJoborder.statusId = 1;
+            ucJoborder.radPending.Checked = true;
+            ucJoborder.isUpdate = false;
+
+            // Reset form controls
+            btnSave.BackColor = Color.DodgerBlue;
+            btnSave.Text = "Save [Ctrl + S]";
+            dgJobOrders.Enabled = true;
+            ucJoborder.errorProvider1.Clear();
+
+            // Clear account-related fields
+            ucJoborder.txtAcc1.Clear();
+            ucJoborder.txtAcc2.Clear();
+            ucJoborder.txtAcc3.Clear();
+            ucJoborder.txtAcc4.Clear();
+            ucJoborder.txtRemarks.Clear();
+
+            // Enable groupboxes
+            ucJoborder.groupBox4.Enabled = true;
+            ucJoborder.gbAccountDetails.Enabled = true;
+            ucJoborder.gbIssuanceAndAssignment.Enabled = true;
+            ucJoborder.gbJODetails.Enabled = true;
+
+            // Clear CheckedListBox selections
+            for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
             {
-                // Clear general fields
-                ucJoborder.txtJONumber.Clear();
-                ucJoborder.dtpDate.Value = DateTime.Now;
-                ucJoborder.txtMRISNumber.Clear();
-                ucJoborder.txtMRSNumber.Clear();
-                ucJoborder.txtORNumber.Clear();
-                ucJoborder.nudAmount.Value = 0;
-                ucJoborder.txtWARNumber.Clear();
-
-                // Reset dropdowns
-                ucJoborder.cmbxMaterialsIssuedBy.SelectedValue = -1;
-                ucJoborder.cmbxAccomplishedBy.SelectedValue = -1;
-
-                // Reset job order state
-                ucJoborder.jobOrderId = 0;
-                ucJoborder.statusId = 1;
-                ucJoborder.radPending.Checked = true;
-                ucJoborder.isUpdate = false;
-
-                // Reset form controls
-                btnSave.BackColor = Color.DodgerBlue;
-                btnSave.Text = "Save [Ctrl + S]";
-                dgJobOrders.Enabled = true;
-                ucJoborder.errorProvider1.Clear();
-
-                // Clear account-related fields
-                ucJoborder.txtAcc1.Clear();
-                ucJoborder.txtAcc2.Clear();
-                ucJoborder.txtAcc3.Clear();
-                ucJoborder.txtAcc4.Clear();
-                ucJoborder.txtRemarks.Clear();
-
-                // Enable groupboxes
-                ucJoborder.groupBox4.Enabled = true;
-                ucJoborder.gbAccountDetails.Enabled = true;
-                ucJoborder.gbIssuanceAndAssignment.Enabled = true;
-                ucJoborder.gbJODetails.Enabled = true;
-
-                // Clear CheckedListBox selections
-                for (int i = 0; i < ucJoborder.clBoxParticulars.Items.Count; i++)
-                {
-                    ucJoborder.clBoxParticulars.SetItemChecked(i, false);
-                }
-
-                // Reset hidden state/flags
-                Helper.temporaryAdminMode = false;
-                ucJoborder.accountId = 0;
-
-                // Clear account details
-                ucJoborder.txtAccountName.Clear();
-                ucJoborder.txtAccountNumber.Clear();
-                ucJoborder.txtAddress.Clear();
-                ucJoborder.txtContact.Clear();
-
-                btnX.Visible = false;
-
-                ValidatePermissions();
-
+                ucJoborder.clBoxParticulars.SetItemChecked(i, false);
             }
-            finally
-            {
-                ucJoborder.ResumeLayout();
-                this.ResumeLayout();
-                this.BeginInvoke(new Action(() => ucJoborder.txtAccountName.Focus()));
-            }
+
+            // Reset hidden state/flags
+            Helper.temporaryAdminMode = false;
+            ucJoborder.accountId = 0;
+
+            // Clear account details
+            ucJoborder.txtAccountName.Clear();
+            ucJoborder.txtAccountNumber.Clear();
+            ucJoborder.txtAddress.Clear();
+            ucJoborder.txtContact.Clear();
+
+            ValidatePermissions();
+
         }
         #endregion
 
@@ -644,6 +631,7 @@ namespace JOMonitoringApp.Views.MainForm
                 CustomerName = ucJoborder.txtAccountName.Text,
                 CustomerAddress = ucJoborder.txtAddress.Text,
                 CustomerAccountNumber = accountNumber,
+                CustomerContactNumber = ucJoborder.txtContact.Text,
                 NatureOfComplaint = natureOfComplaint,
                 MeterBrand = meterBrand,
                 MeterSize = meterSize,
@@ -1034,6 +1022,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             txtSearch.Clear();
             LoadJobOrdersAsync();
+            btnX.Visible = false;
         }
 
         private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)

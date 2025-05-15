@@ -356,98 +356,42 @@ namespace JOMonitoringApp.Views.Investigation
         private InvestigationModel InvestigationModel()
         {
 
+            var investigationModel = new InvestigationModel
+            {
+                Id = _ucInvestigationForm.selectedInvistigationID,
+                UpdatedBy = Helper.UserId
+            };
+
             if (cmbxParticular.Text == "Leaking (Not Visible)")
             {
-                var investigationModel = new InvestigationModel()
-                {
-                    Id = _ucInvestigationForm.selectedInvistigationID,
-                    PresentConsumption = txtLeakingNotVisCurrentCons.Text,
-                    ActualConsumption = txtAdjustmentConsumption.Text,
-                    AdjustmentParticular = "Leaking (Not Visible)",
-
-                    Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
-                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                    AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
-                    Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
-                    UpdatedBy = Helper.UserId,
-                };
-
-                return investigationModel;
+                investigationModel.AdjustmentParticular = "Leaking (Not Visible)";
+                investigationModel.ActualConsumption = txtAdjustmentConsumption.Text;
             }
 
             if (cmbxParticular.Text == "Erroneous Reading")
             {
-                var investigationModel = new InvestigationModel()
-                {
-                    Id = _ucInvestigationForm.selectedInvistigationID,
-                    PreviousReading = txtPreviousReading.Text,
-                    PresentReading = txtPresentReading.Text,
-                    ActualReading = txtActualReading.Text,
-
-
-
-                    ActualConsumption = txtConsumption.Text,
-                    AdjustmentParticular = "Erroneous Reading",
-
-                    Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
-                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                    AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
-                    Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustedAmountDue = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
-                    UpdatedBy = Helper.UserId,
-                };
-
-                return investigationModel;
+                investigationModel.AdjustmentParticular = "Erroneous Reading";
+                investigationModel.ActualConsumption = txtConsumption.Text;
             }
-
 
             if (cmbxParticular.Text == "Failed Calibration")
             {
-                var investigationModel = new InvestigationModel()
-                {
-                    Id = _ucInvestigationForm.selectedInvistigationID,
-                    AverageConsumption = txtNewAverageCons.Text,
-
-                    AdjustmentParticular = "Failed Calibration",
-
-                    Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
-                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                    AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
-                    Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
-                    UpdatedBy = Helper.UserId,
-                };
-
-                return investigationModel;
+                investigationModel.AdjustmentParticular = "Failed Calibration";
             }
-
-           
 
             if (cmbxParticular.Text == "RFB + ILLEGAL")
             {
-                var investigationModel = new InvestigationModel()
-                {
-                    Id = _ucInvestigationForm.selectedInvistigationID,
-
-                    PreviousConsumption = txtConsOnDisconnection.Text,
-                    ActualConsumption = txtConsAfterDisconnection.Text,
-
-                    AdjustmentParticular = "RFB + Illegal",
-
-                    Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
-                    ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                    AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim()),
-                    Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim()),
-                    AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim()),
-                    UpdatedBy = Helper.UserId,
-                };
-
-                return investigationModel;
+                investigationModel.AdjustmentParticular = "RFB + ILLEGAL";
+                investigationModel.ActualConsumption = txtConsAfterDisconnection.Text;
             }
 
+            investigationModel.Penalty = Convert.ToDecimal(txtPenalty.Text.Trim());
+            investigationModel.ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim());
+            investigationModel.AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim());
+            investigationModel.Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim());
+            investigationModel.AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim());
+            return investigationModel;
 
-            return null;
         }
 
         private void txtLastMonth_Leave(object sender, EventArgs e)

@@ -774,6 +774,26 @@ namespace AccountingSystem
         }
 
 
+        internal static string InvestigationStatusText(int statusId)
+        {
+            switch (statusId)
+            {
+                case 0:
+                    return "For Investigation";
+                case 1:
+                    return "For Recommendation";
+                case 2:
+                    return "For Adjustment";
+                case 3:
+                    return "For Approval";
+                case 4:
+                    return "Approved";
+                case 5:
+                    return "For ReInvestigation";
+                default:
+                    return "Unknown";
+            }
+        }
 
         internal static decimal Domestic(int consumption)
         {

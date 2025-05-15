@@ -600,6 +600,16 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button2_Click(object sender, EventArgs e)
         {
+            InvestigationForm();
+        }
+
+        private void investigationFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm();
+        }
+
+        private void InvestigationForm()
+        {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
 

@@ -8,6 +8,7 @@ namespace JOMonitoringApp.Interface
 {
     internal interface IInvestigationAdjustmentRepository : IRepository<InvestigationAdjustmentModel>
     {
-
+        bool DeleteAdjustments(int investigationID);
+        string GetValueByInvestigationParticularAndID(string itemText, int selectedInvestigationID);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections.Generic;
 using System.Data;
 
@@ -65,6 +66,30 @@ namespace JOMonitoringApp
         public bool Update(InvestigationAdjustmentModel entity)
         {
             throw new System.NotImplementedException();
+        }
+
+        public string GetValueByInvestigationParticularAndID(string itemText, int selectedInvestigationID)
+        {
+            var parameters = new object[][]
+            {  
+                new object[] { "@particular", DbType.String, itemText}, 
+                new object[] { "@investigation_id", DbType.Int32, selectedInvestigationID}, 
+            };
+
+            string query = $"SELECT value FROM {tableName} WHERE particular = @particular AND investigation_id = @investigation_id";
+
+            return mySqlGenericCommands.ExecuteScalar(query, parameters).ToString();
+        }
+
+        public bool DeleteAdjustments(int investigationID)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@investigation_id", DbType.Int32, investigationID},
+            };
+
+            string query = $"DELETE FROM {tableName} WHERE investigation_id = @investigation_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

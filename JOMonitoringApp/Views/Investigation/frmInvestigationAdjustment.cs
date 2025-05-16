@@ -4,8 +4,11 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using Mysqlx.Crud;
 using System;
+using System.Data;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -61,6 +64,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int investigationID = _ucInvestigationForm.selectedInvestigationID;
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(investigationID);
+            var adjustmentDetails = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
 
             if (adjustments.Count != 0)
             {
@@ -80,17 +84,18 @@ namespace JOMonitoringApp.Views.Investigation
                 txtAmountDueAfterAdjustment.Text = adjustedAmount.ToString("N2");
 
 
-                txtPreviousReading.Text = adjustments["previous_reading"].ToString();
-                txtPresentReading.Text = adjustments["present_reading"].ToString();
-                txtActualReading.Text = adjustments["actual_reading"].ToString();
-                txtConsumption .Text = adjustments["present_consumption"].ToString();
 
-                txtConsOnDisconnection.Text = adjustments["previous_consumption"].ToString();
-                txtConsAfterDisconnection.Text = adjustments["present_consumption"].ToString();
-
-                //txtLeakingNotVisCurrentCons.Text = adjustments["last_three_months_consumption"].ToString();
-                //txtAdjustmentConsumption.Text = adjustments["actual_consumption"].ToString();
-                //txtAdjustedConsumption.Text = adjustments["actual_consumption"].ToString();
+                var itemsCopy = particularFactors.Items.Cast<object>().ToList();
+                foreach (var item in itemsCopy)
+                {
+                    foreach (DataRow row in adjustmentDetails.Rows)
+                    {
+                        if (row["particular"].ToString() == item.ToString())
+                        {
+                            particularFactors.SetItemChecked(particularFactors.Items.IndexOf(item), true);
+                        }
+                    }
+                }
 
             }
         }
@@ -101,99 +106,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         }
 
-        private void ComputeLeakingNotVisible()
-        {
-            gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
-
-            var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
-
-            if (dictReadingDetails.Count != 0)
-            {
-                decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]);
-                int averageCons = int.Parse(dictReadingDetails["AverageCons"]);
-                decimal consumption = currentCons == 0 ? averageCons : currentCons;
-
-                decimal adjustmentConsumption = (currentCons * 0.70m);
-                decimal adjustedConsumption = (currentCons - adjustmentConsumption);
-
-                txtLeakingNotVisCurrentCons.Text = consumption.ToString("N0");
-                txtAdjustedConsumption.Text = adjustedConsumption.ToString("N0");
-                txtAdjustmentConsumption.Text = adjustmentConsumption.ToString("N0");
-
-                double amountDue = GetRateByConsumption((int)currentCons);
-                txtAmountDue.Text = amountDue.ToString("N0");
-            }
-
-        }
-
-        private void ComputeFailedCalibration()
-        {
-
-            int last3Month, last2Month = 0, lastMonth = 0;
-
-            // Validate and parse all inputs safely
-            bool isValid =
-                int.TryParse(txtLast3Month.Text, out last3Month) &&
-                int.TryParse(txtLast2Month.Text, out last2Month) &&
-                int.TryParse(txtLastMonth.Text, out lastMonth);
-
-            if (isValid)
-            {
-                int average = (lastMonth + last2Month + last3Month) / 3;
-                txtNewAverageCons.Text = average.ToString();
-
-            }
-            else
-            {
-                //MessageBox.Show("Please enter valid numeric values for all three months.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNewAverageCons.Text = ""; // Clear output if invalid
-            }
-
-        }
-        private void GetPreviusReadingDetails()
-        {
-            try
-            {
-                if (_accountNumber != string.Empty)
-                {
-                    var readingDetails = Factory.CustomersRepository().GetBillingDetails(_accountNumber);
-
-                    txtPreviousReading.Text = readingDetails["Prev"].ToString();
-                    txtPresentReading.Text = readingDetails["Pres"].ToString();
-                    txtActualReading.Focus();
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-
-        private void ComputeErrorReading()
-        {
-            int previousReading, actualReading;
-            double adjustedAmount = 0.0;
-
-            double overHundredRate = 0.0;
-
-
-            if (int.TryParse(txtPreviousReading.Text, out previousReading) &&
-                int.TryParse(txtActualReading.Text, out actualReading))
-            {
-                int consumption = actualReading - previousReading;
-                double underHundredRate = 0;
-
-                if (consumption < 100 && consumption > 1)
-                    underHundredRate = GetRateByConsumption(consumption);
-
-                txtConsumption.Text = consumption.ToString();
-
-                adjustedAmount = underHundredRate;
-                //6720
-            }
-            else
-                txtConsumption.Text = "";
-        }
+      
 
         private double GetRateByConsumption(int consumption)
         {
@@ -209,80 +122,11 @@ namespace JOMonitoringApp.Views.Investigation
             throw new ArgumentException("Invalid quantity. Must be between 1 and 100.");
         }
 
-        private void Compute()
-        {
-            string particular = cmbxParticular.Text;
-
-            switch (particular)
-            {
-                case "Failed Calibration":
-
-                    ComputeFailedCalibration();
-                    break;
-
-                case "Erroneous Reading":
-                    GetPreviusReadingDetails();
-                    ComputeErrorReading();
-                    break;
-
-                case "Leaking (Not Visible)":
-                    ComputeLeakingNotVisible();
-                    break;
-
-                case "RFB + Illegal":
-                    ComputeIllegal();
-                    break;
-
-                default:
-                    break;
-            }
-        }
 
         private void cmbxParticular_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetFields();
+
         }
-
-        private void SetFields()
-        {
-            string particular = cmbxParticular.Text;
-
-            btnAutoCompute.Enabled = true;
-            gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
-            gbIllegal.Location = new System.Drawing.Point(1000, 1000);
-            gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
-            gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
-
-            switch (particular)
-            {
-                case "Failed Calibration":
-
-                    gbFailedCalibration.Location = new System.Drawing.Point(locationX, locationY);
-                    break;
-
-                case "Erroneous Reading":
-                    gbErrorReading.Location = new System.Drawing.Point(locationX, locationY);
-                    break;
-
-                case "Leaking (Not Visible)":
-                    gbLeakingNotVisible.Location = new System.Drawing.Point(locationX, locationY);
-                    break;
-
-                case "RFB + Illegal":
-                    gbIllegal.Location = new System.Drawing.Point(locationX, locationY);
-                    break;
-
-                default:
-
-                    gbErrorReading.Location = new System.Drawing.Point(1000, 1000);
-                    gbIllegal.Location = new System.Drawing.Point(1000, 1000);
-                    gbFailedCalibration.Location = new System.Drawing.Point(1000, 1000);
-                    gbLeakingNotVisible.Location = new System.Drawing.Point(1000, 1000);
-                    btnAutoCompute.Enabled = false;
-                    break;
-            }
-        }
-
 
         private void btnAutoCompute_Click(object sender, EventArgs e)
         {
@@ -294,7 +138,7 @@ namespace JOMonitoringApp.Views.Investigation
             string accountNumber = txtAccountNumber.Text.Trim();
             var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(accountNumber);
 
-
+             
             foreach (DataGridViewRow dgvRow in dgParticularAdjustment.Rows)
             {
                 
@@ -314,16 +158,36 @@ namespace JOMonitoringApp.Views.Investigation
                 {
                     dgvRow.Cells["_value"].Value = dictReadingDetails["Pres"];
                 }
+
+                else if (particular == "Present Consumption")
+                {
+                    dgvRow.Cells["_value"].Value = dictReadingDetails["CurrentCons"];
+                }
+
+                else if (particular == "30% of Current Consumption")
+                {
+                    decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.30m;
+                    dgvRow.Cells["_value"].Value = currentCons;
+                    MessageBox.Show(" " + GetRateByConsumption((int)currentCons));
+                    txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
+                }
                 
+                else if (particular == "70% of Current Consumption")
+                {
+                    decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.70m;
+                    dgvRow.Cells["_value"].Value = currentCons;
+                    txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
+                }
+
+
                 else if (particular == "Illegal Connection")
                 {
                     dgvRow.Cells["_value"].Value = "6000";
                 }
-                else if (particular == "VAT (12%)")
+                else if (particular == "+ VAT (12%)")
                 {
                     dgvRow.Cells["_value"].Value = "720";
                 }
-
 
                 txtAmountDue.Text = dictReadingDetails["AmountDue"];
             }
@@ -332,23 +196,34 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (updateAdjustment)
-                UpdateAdjustment();
-            else
+            try
             {
+                Factory.InvestigationRepository().SaveComputation(InvestigationModel());
+
+                if (updateAdjustment)
+                    UpdateAdjustment();
+               
                 if (SaveAdjustment())
                 {
                     Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
                     Close();
                 }
-               
             }
+            catch (Exception)
+            {
+                Helper.MessageBoxError("Something went wrong. Please contact your system administrator.");
+            }
+            
                 
         }
 
         private void UpdateAdjustment()
         {
-            throw new NotImplementedException();
+            int investigationID = _ucInvestigationForm.selectedInvestigationID;
+            if (Factory.InvestigationAdjustmentRepository().DeleteAdjustments(investigationID))
+            {
+                return;
+            }
         }
 
         private bool SaveAdjustment()
@@ -377,7 +252,7 @@ namespace JOMonitoringApp.Views.Investigation
             return false;
         }
 
-        private InvestigationModel InvestigationModel()
+          private InvestigationModel InvestigationModel()
         {
 
             var investigationModel = new InvestigationModel
@@ -389,12 +264,10 @@ namespace JOMonitoringApp.Views.Investigation
             if (cmbxParticular.Text == "Leaking (Not Visible)")
             {
                 investigationModel.AdjustmentParticular = "Leaking (Not Visible)";
-                investigationModel.ActualConsumption = txtAdjustmentConsumption.Text;
             }
             if (cmbxParticular.Text == "Erroneous Reading")
             {
                 investigationModel.AdjustmentParticular = "Erroneous Reading";
-                investigationModel.ActualConsumption = txtConsumption.Text;
             }
 
             if (cmbxParticular.Text == "Failed Calibration")
@@ -405,34 +278,17 @@ namespace JOMonitoringApp.Views.Investigation
             if (cmbxParticular.Text == "RFB + ILLEGAL")
             {
                 investigationModel.AdjustmentParticular = "RFB + ILLEGAL";
-                investigationModel.ActualConsumption = txtConsAfterDisconnection.Text;
             }
 
             investigationModel.Penalty = Convert.ToDecimal(txtPenalty.Text.Trim());
             investigationModel.ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim());
             investigationModel.AmountDue = Convert.ToDecimal(txtAmountDue.Text.Trim());
-            investigationModel.Adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim());
-            investigationModel.AdjustmentAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim());
+            investigationModel.AdjustmentAmount = Convert.ToDecimal(txtAdjustment.Text.Trim());
+            investigationModel.AdjustedAmountDue = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim());
             return investigationModel;
 
         }
 
-        private void txtLastMonth_Leave(object sender, EventArgs e)
-        {
-            int last3Month, last2Month = 0, lastMonth = 0;
-
-            // Validate and parse all inputs safely
-            bool isValid =
-                int.TryParse(txtLast3Month.Text, out last3Month) &&
-                int.TryParse(txtLast2Month.Text, out last2Month) &&
-                int.TryParse(txtLastMonth.Text, out lastMonth);
-
-            if (isValid)
-            {
-                int average = (lastMonth + last2Month + last3Month) / 3;
-                txtNewAverageCons.Text = average.ToString();
-            }
-        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -457,17 +313,6 @@ namespace JOMonitoringApp.Views.Investigation
                     txtPenalty.Text = "0";
             }
             catch (Exception) { }
-        }
-
-        private void txtActualReading_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                txtConsumption.Text = (Convert.ToDecimal(txtActualReading.Text) - Convert.ToDecimal(txtPreviousReading.Text)).ToString();
-            }
-            catch (Exception)
-            {
-            }
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -503,26 +348,6 @@ namespace JOMonitoringApp.Views.Investigation
          
         }
 
-        private void txtAdjustmentConsumption_TextChanged(object sender, EventArgs e)
-        {
-            if (!manualComputeMode)
-            {
-                ComputeLeakingNotVisible();
-            }
-        }
-
-        private void txtConsumption_TextChanged(object sender, EventArgs e)
-        {
-            if (!manualComputeMode)
-                ComputeErrorReading();
-        }
-
-        private void txtLast3Month_TextChanged(object sender, EventArgs e)
-        {
-            if (!manualComputeMode)
-                ComputeFailedCalibration();
-        }
-
         private void txtConsOnDisconnection_TextChanged(object sender, EventArgs e)
         {
             if (!manualComputeMode)
@@ -535,7 +360,16 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (e.NewValue == CheckState.Checked)
             {
-                dgParticularAdjustment.Rows.Add(itemText);
+                if (_ucInvestigationForm.hasAdjustment)
+                {
+                    updateAdjustment = true;
+                    dgParticularAdjustment.Rows.Add(itemText, Factory.InvestigationAdjustmentRepository().GetValueByInvestigationParticularAndID(itemText, _ucInvestigationForm.selectedInvestigationID));
+                }
+                else 
+                {
+                    dgParticularAdjustment.Rows.Add(itemText);
+                }
+                
             }
             else
             {

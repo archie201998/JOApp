@@ -214,62 +214,43 @@ namespace JOMonitoringApp.Views.Investigation
                     }
 
                     imageFilePath = openFileDialog.FileNames[0];
-                    secondaryImageFilePath = selectedCount == 2
-                        ? openFileDialog.FileNames[1]
-                        : null;
+                    secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
 
                     pictureBox1.Image = Image.FromFile(imageFilePath);
-                    pictureBox2.Image = secondaryImageFilePath != null
-                        ? Image.FromFile(secondaryImageFilePath)
-                        : null;
+                    pictureBox2.Image = secondaryImageFilePath != null ? Image.FromFile(secondaryImageFilePath) : null;
                 }
             }
         }
 
         private void UploadImage()
         {
-            if (!string.IsNullOrEmpty(imageFilePath) && !string.IsNullOrEmpty(secondaryImageFilePath))
+            try
             {
-                string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol";
-
-                try
+                if (!string.IsNullOrEmpty(imageFilePath) || !string.IsNullOrEmpty(secondaryImageFilePath))
                 {
+                    string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol";
+
                     if (!Directory.Exists(sharedFolderPath))
                     {
                         Helper.MessageBoxSuccess("Shared folder not found: " + sharedFolderPath);
                         return;
                     }
 
-                    // Ensure image files are not locked by the app
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
 
-                    // Copy original image
                     string destination1 = Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath));
                     File.Copy(imageFilePath, destination1, true);
 
-                    // Copy secondary image
                     string destination2 = Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath));
                     File.Copy(secondaryImageFilePath, destination2, true);
 
                 }
-                catch (IOException ioEx)
-                {
-                    //Helper.MessageBoxSuccess("File I/O error: " + ioEx.Message);
-                }
-                catch (UnauthorizedAccessException unAuthEx)
-                {
-                    //Helper.MessageBoxSuccess("Access error: " + unAuthEx.Message);
-                }
-                catch (Exception ex)
-                {
-                    //Helper.MessageBoxSuccess("Unexpected error: " + ex.Message);
-                }
             }
-            else
+            catch (Exception)
             {
-                Helper.MessageBoxSuccess("No image uploaded. Click Ok to continue.");
             }
+            
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -374,11 +355,13 @@ namespace JOMonitoringApp.Views.Investigation
             txtRecommendations.Text = dictInvestigation["recommendations"];
 
             Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
+
+           
             if (meterDict.Count != 0)
             {
                 txtMeterBrand.Text = meterDict["MeterBrand"];
-                txtMeterNumber.Text = meterDict["MeterSize"];
-                txtMeterSize.Text = meterDict["MeterNumber"];
+                txtMeterNumber.Text = meterDict["MeterNumber"];
+                txtMeterSize.Text = meterDict["MeterSize"];
             }
 
             nudReadingBeforeTest.Value = readingBeforeTest;
@@ -499,8 +482,8 @@ namespace JOMonitoringApp.Views.Investigation
                 lblExtensionFee.Text = extensionFee.ToString("N2");
                 lblPenalty.Text = penalty.ToString("N2");
 
-                lblAdjustedAmount.Text = adjustment.ToString("N2"); 
-                lblAdjustment.Text = adjustedAmount.ToString("N2");
+                lblAdjustedAmount.Text = adjustedAmount.ToString("N2"); 
+                lblAdjustment.Text = adjustment.ToString("N2");
 
             }
         }
@@ -514,9 +497,9 @@ namespace JOMonitoringApp.Views.Investigation
 
             string result;
 
-            if (difference == 0.20m)
+            if (difference == 0.020m)
                 result = "Passed";
-            else if (difference < 0.20m)
+            else if (difference < 0.020m)
                 result = "Failed Under";
             else
                 result = "Failed Over";
@@ -614,6 +597,11 @@ namespace JOMonitoringApp.Views.Investigation
             string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
 
             _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

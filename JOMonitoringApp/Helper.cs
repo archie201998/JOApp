@@ -846,6 +846,21 @@ namespace AccountingSystem
 
         }
 
+        public static Dictionary<int, double> AnyWaterRates(int numberOfEntries)
+        {
+            var result = new Dictionary<int, double>();
+
+            double baseValue = 252.000; // Initial value for key 1
+            double incrementFactor = 0.112; // A rough increment factor based on observation
+
+            for (int i = 1; i <= numberOfEntries; i++)
+            {
+                double value = baseValue * Math.Pow(1 + incrementFactor, i - 1);
+                result.Add(i, value);
+            }
+
+            return result;
+        }
 
         internal static Dictionary<int, double> WaterRates()
         {

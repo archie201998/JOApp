@@ -65,7 +65,7 @@ namespace JOMonitoringApp
                 new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
             };
 
-            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, contact_number, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @account_number, @contact_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";
+            string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, contact_number, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @contact_number, @account_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
@@ -335,24 +335,19 @@ namespace JOMonitoringApp
                                 over_registration = @over_registration, 
                                 under_registration = @under_registration, 
                                 leaking_after_the_meter = @leaking_after_the_meter, 
-
                                 previous_reading = @previous_reading, 
                                 present_reading = @present_reading, 
                                 actual_reading = @actual_reading, 
-
                                 previous_consumption = @previous_consumption, 
                                 present_consumption = @present_consumption, 
                                 actual_consumption = @actual_consumption, 
-
-
                                 last_three_months_consumption = @last_three_months_consumption,
+                                adjusted_amount = @adjusted_amount,
                                 amount_due = @amount_due,
                                 adjustment_amount = @adjustment_amount, 
                                 adjustment_particular = @adjustment_particular, 
-
                                 extension_fee = @extension_fee, 
                                 penalty = @penalty, 
-
                                 updated_by = @updated_by
                             WHERE id = @id;";
 

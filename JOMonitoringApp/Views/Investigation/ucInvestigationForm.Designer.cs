@@ -90,6 +90,10 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigatorDailyAccomplishmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.lblRecordCount = new System.Windows.Forms.Label();
@@ -119,10 +123,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.investigationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.investigatorDailyAccomplishmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gbAccountDetails.SuspendLayout();
             this.gbStatisticalFindings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudNoServiceOfOutlets)).BeginInit();
@@ -141,13 +141,13 @@
             this.groupBox5.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.gbApproval.SuspendLayout();
             this.gbComputation.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -700,9 +700,9 @@
             this.txtMeterNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMeterNumber.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMeterNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeterNumber.Location = new System.Drawing.Point(216, 32);
+            this.txtMeterNumber.Location = new System.Drawing.Point(164, 59);
             this.txtMeterNumber.Name = "txtMeterNumber";
-            this.txtMeterNumber.Size = new System.Drawing.Size(93, 21);
+            this.txtMeterNumber.Size = new System.Drawing.Size(145, 21);
             this.txtMeterNumber.TabIndex = 31;
             this.txtMeterNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -713,9 +713,9 @@
             this.txtMeterSize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMeterSize.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMeterSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMeterSize.Location = new System.Drawing.Point(164, 59);
+            this.txtMeterSize.Location = new System.Drawing.Point(252, 32);
             this.txtMeterSize.Name = "txtMeterSize";
-            this.txtMeterSize.Size = new System.Drawing.Size(145, 21);
+            this.txtMeterSize.Size = new System.Drawing.Size(57, 21);
             this.txtMeterSize.TabIndex = 30;
             this.txtMeterSize.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -728,12 +728,13 @@
             this.txtMeterBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMeterBrand.Location = new System.Drawing.Point(164, 32);
             this.txtMeterBrand.Name = "txtMeterBrand";
-            this.txtMeterBrand.Size = new System.Drawing.Size(46, 21);
+            this.txtMeterBrand.Size = new System.Drawing.Size(82, 21);
             this.txtMeterBrand.TabIndex = 29;
             this.txtMeterBrand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // nudReadingAfterTest
             // 
+            this.nudReadingAfterTest.DecimalPlaces = 3;
             this.nudReadingAfterTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudReadingAfterTest.Location = new System.Drawing.Point(164, 113);
             this.nudReadingAfterTest.Maximum = new decimal(new int[] {
@@ -749,6 +750,7 @@
             // 
             // nudReadingBeforeTest
             // 
+            this.nudReadingBeforeTest.DecimalPlaces = 3;
             this.nudReadingBeforeTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudReadingBeforeTest.Location = new System.Drawing.Point(164, 86);
             this.nudReadingBeforeTest.Maximum = new decimal(new int[] {
@@ -760,6 +762,7 @@
             this.nudReadingBeforeTest.Size = new System.Drawing.Size(145, 21);
             this.nudReadingBeforeTest.TabIndex = 26;
             this.nudReadingBeforeTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudReadingBeforeTest.ValueChanged += new System.EventHandler(this.nudReadingAfterTest_ValueChanged);
             // 
             // txtServiceLineDefects
             // 
@@ -783,7 +786,6 @@
             this.txtCalibrationResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCalibrationResult.Location = new System.Drawing.Point(164, 140);
             this.txtCalibrationResult.Name = "txtCalibrationResult";
-            this.txtCalibrationResult.ReadOnly = true;
             this.txtCalibrationResult.Size = new System.Drawing.Size(145, 21);
             this.txtCalibrationResult.TabIndex = 4;
             this.txtCalibrationResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -834,9 +836,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(9, 61);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(33, 15);
+            this.label15.Size = new System.Drawing.Size(110, 15);
             this.label15.TabIndex = 6;
-            this.label15.Text = "SIZE";
+            this.label15.Text = "METER NUMBER ";
             // 
             // label17
             // 
@@ -844,9 +846,9 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(9, 34);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(125, 15);
+            this.label17.Size = new System.Drawing.Size(130, 15);
             this.label17.TabIndex = 6;
-            this.label17.Text = "METER BRAND / NO,";
+            this.label17.Text = "METER BRAND / SIZE";
             // 
             // gbImage
             // 
@@ -927,6 +929,35 @@
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.SelectionChanged += new System.EventHandler(this.dgInvestigations_SelectionChanged);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.printToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(100, 26);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.investigationFormToolStripMenuItem,
+            this.investigatorDailyAccomplishmentToolStripMenuItem});
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            // 
+            // investigationFormToolStripMenuItem
+            // 
+            this.investigationFormToolStripMenuItem.Name = "investigationFormToolStripMenuItem";
+            this.investigationFormToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.investigationFormToolStripMenuItem.Text = "Investigation Form";
+            this.investigationFormToolStripMenuItem.Click += new System.EventHandler(this.investigationFormToolStripMenuItem_Click);
+            // 
+            // investigatorDailyAccomplishmentToolStripMenuItem
+            // 
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Name = "investigatorDailyAccomplishmentToolStripMenuItem";
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
+            this.investigatorDailyAccomplishmentToolStripMenuItem.Text = "Investigator Accomplishment";
             // 
             // panel3
             // 
@@ -1126,8 +1157,8 @@
             // 
             this.lblAdjustedAmount.AutoSize = true;
             this.lblAdjustedAmount.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Red;
-            this.lblAdjustedAmount.Location = new System.Drawing.Point(193, 170);
+            this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Green;
+            this.lblAdjustedAmount.Location = new System.Drawing.Point(195, 197);
             this.lblAdjustedAmount.Name = "lblAdjustedAmount";
             this.lblAdjustedAmount.Size = new System.Drawing.Size(50, 21);
             this.lblAdjustedAmount.TabIndex = 31;
@@ -1137,8 +1168,8 @@
             // 
             this.lblAdjustment.AutoSize = true;
             this.lblAdjustment.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold);
-            this.lblAdjustment.ForeColor = System.Drawing.Color.Green;
-            this.lblAdjustment.Location = new System.Drawing.Point(193, 198);
+            this.lblAdjustment.ForeColor = System.Drawing.Color.Red;
+            this.lblAdjustment.Location = new System.Drawing.Point(195, 169);
             this.lblAdjustment.Name = "lblAdjustment";
             this.lblAdjustment.Size = new System.Drawing.Size(50, 21);
             this.lblAdjustment.TabIndex = 31;
@@ -1149,7 +1180,7 @@
             this.lblExtensionFee.AutoSize = true;
             this.lblExtensionFee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExtensionFee.ForeColor = System.Drawing.Color.Red;
-            this.lblExtensionFee.Location = new System.Drawing.Point(193, 142);
+            this.lblExtensionFee.Location = new System.Drawing.Point(195, 142);
             this.lblExtensionFee.Name = "lblExtensionFee";
             this.lblExtensionFee.Size = new System.Drawing.Size(49, 21);
             this.lblExtensionFee.TabIndex = 31;
@@ -1160,7 +1191,7 @@
             this.lblPenalty.AutoSize = true;
             this.lblPenalty.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPenalty.ForeColor = System.Drawing.Color.Red;
-            this.lblPenalty.Location = new System.Drawing.Point(193, 114);
+            this.lblPenalty.Location = new System.Drawing.Point(195, 114);
             this.lblPenalty.Name = "lblPenalty";
             this.lblPenalty.Size = new System.Drawing.Size(49, 21);
             this.lblPenalty.TabIndex = 31;
@@ -1171,7 +1202,7 @@
             this.lblAmountDue.AutoSize = true;
             this.lblAmountDue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmountDue.ForeColor = System.Drawing.Color.Black;
-            this.lblAmountDue.Location = new System.Drawing.Point(193, 86);
+            this.lblAmountDue.Location = new System.Drawing.Point(195, 86);
             this.lblAmountDue.Name = "lblAmountDue";
             this.lblAmountDue.Size = new System.Drawing.Size(49, 21);
             this.lblAmountDue.TabIndex = 30;
@@ -1260,6 +1291,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1476, 39);
             this.panel4.TabIndex = 29;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // btnPrint
             // 
@@ -1277,35 +1309,6 @@
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrint.UseVisualStyleBackColor = false;
             this.btnPrint.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(100, 26);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.investigationFormToolStripMenuItem,
-            this.investigatorDailyAccomplishmentToolStripMenuItem});
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
-            this.printToolStripMenuItem.Text = "Print";
-            // 
-            // investigationFormToolStripMenuItem
-            // 
-            this.investigationFormToolStripMenuItem.Name = "investigationFormToolStripMenuItem";
-            this.investigationFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.investigationFormToolStripMenuItem.Text = "Investigation Form";
-            this.investigationFormToolStripMenuItem.Click += new System.EventHandler(this.investigationFormToolStripMenuItem_Click);
-            // 
-            // investigatorDailyAccomplishmentToolStripMenuItem
-            // 
-            this.investigatorDailyAccomplishmentToolStripMenuItem.Name = "investigatorDailyAccomplishmentToolStripMenuItem";
-            this.investigatorDailyAccomplishmentToolStripMenuItem.Size = new System.Drawing.Size(230, 22);
-            this.investigatorDailyAccomplishmentToolStripMenuItem.Text = "Investigator Accomplishment";
             // 
             // ucInvestigationForm
             // 
@@ -1346,6 +1349,7 @@
             this.groupBox5.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -1356,7 +1360,6 @@
             this.gbComputation.ResumeLayout(false);
             this.gbComputation.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

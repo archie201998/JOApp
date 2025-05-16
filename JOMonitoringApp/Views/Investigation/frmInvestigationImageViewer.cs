@@ -46,6 +46,7 @@ namespace JOMonitoringApp.Views.Investigation
                 else
                 {
                     MessageBox.Show("No images found in the folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Close();
                 }
             }
             else
@@ -76,6 +77,7 @@ namespace JOMonitoringApp.Views.Investigation
                 catch (Exception ex)
                 {
                     Helper.MessageBoxSuccess("No image uploaded");
+                    Close();
                 }
             }
 

@@ -56,37 +56,6 @@
             this.txtAmountDue = new System.Windows.Forms.TextBox();
             this.cbxPenalty = new System.Windows.Forms.CheckBox();
             this.txtPenalty = new System.Windows.Forms.TextBox();
-            this.txtPresentReading = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtConsumption = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtActualReading = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtPreviousReading = new System.Windows.Forms.TextBox();
-            this.gbErrorReading = new System.Windows.Forms.GroupBox();
-            this.gbFailedCalibration = new System.Windows.Forms.GroupBox();
-            this.txtNewAverageCons = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.txtLastMonth = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtLast2Month = new System.Windows.Forms.TextBox();
-            this.lblasdasd = new System.Windows.Forms.Label();
-            this.txtLast3Month = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.gbIllegal = new System.Windows.Forms.GroupBox();
-            this.txtConsAfterDisconnection = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtConsOnDisconnection = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.gbLeakingNotVisible = new System.Windows.Forms.GroupBox();
-            this.txtAdjustedConsumption = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtAdjustmentConsumption = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtLeakingNotVisCurrentCons = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.particularFactors = new System.Windows.Forms.CheckedListBox();
             this.dgParticularAdjustment = new System.Windows.Forms.DataGridView();
             this.particular = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,10 +65,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.gbErrorReading.SuspendLayout();
-            this.gbFailedCalibration.SuspendLayout();
-            this.gbIllegal.SuspendLayout();
-            this.gbLeakingNotVisible.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgParticularAdjustment)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -140,7 +105,7 @@
             this.btnAutoCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAutoCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoCompute.ForeColor = System.Drawing.Color.White;
-            this.btnAutoCompute.Location = new System.Drawing.Point(508, 11);
+            this.btnAutoCompute.Location = new System.Drawing.Point(508, 12);
             this.btnAutoCompute.Name = "btnAutoCompute";
             this.btnAutoCompute.Size = new System.Drawing.Size(102, 23);
             this.btnAutoCompute.TabIndex = 20;
@@ -240,7 +205,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.groupBox4.Location = new System.Drawing.Point(0, 807);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(640, 58);
+            this.groupBox4.Size = new System.Drawing.Size(644, 58);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             // 
@@ -466,414 +431,29 @@
             this.txtPenalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPenalty.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
             // 
-            // txtPresentReading
-            // 
-            this.txtPresentReading.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPresentReading.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtPresentReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPresentReading.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPresentReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPresentReading.Location = new System.Drawing.Point(172, 53);
-            this.txtPresentReading.Name = "txtPresentReading";
-            this.txtPresentReading.Size = new System.Drawing.Size(112, 21);
-            this.txtPresentReading.TabIndex = 16;
-            this.txtPresentReading.TextChanged += new System.EventHandler(this.txtConsumption_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(28, 55);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(130, 15);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "PRESENT READING : ";
-            // 
-            // txtConsumption
-            // 
-            this.txtConsumption.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtConsumption.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtConsumption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConsumption.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtConsumption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsumption.Location = new System.Drawing.Point(172, 107);
-            this.txtConsumption.Name = "txtConsumption";
-            this.txtConsumption.Size = new System.Drawing.Size(112, 21);
-            this.txtConsumption.TabIndex = 14;
-            this.txtConsumption.TextChanged += new System.EventHandler(this.txtConsumption_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(28, 109);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(103, 15);
-            this.label7.TabIndex = 13;
-            this.label7.Text = "CONSUMPTION :";
-            // 
-            // txtActualReading
-            // 
-            this.txtActualReading.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtActualReading.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtActualReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtActualReading.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtActualReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtActualReading.Location = new System.Drawing.Point(172, 80);
-            this.txtActualReading.Name = "txtActualReading";
-            this.txtActualReading.Size = new System.Drawing.Size(112, 21);
-            this.txtActualReading.TabIndex = 12;
-            this.txtActualReading.TextChanged += new System.EventHandler(this.txtConsumption_TextChanged);
-            this.txtActualReading.Leave += new System.EventHandler(this.txtActualReading_Leave);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 82);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "ACTUAL READING : ";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 28);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(134, 15);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "PREVIOUS READING : ";
-            // 
-            // txtPreviousReading
-            // 
-            this.txtPreviousReading.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtPreviousReading.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtPreviousReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPreviousReading.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPreviousReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPreviousReading.Location = new System.Drawing.Point(172, 26);
-            this.txtPreviousReading.Name = "txtPreviousReading";
-            this.txtPreviousReading.Size = new System.Drawing.Size(112, 21);
-            this.txtPreviousReading.TabIndex = 6;
-            this.txtPreviousReading.TextChanged += new System.EventHandler(this.txtConsumption_TextChanged);
-            // 
-            // gbErrorReading
-            // 
-            this.gbErrorReading.Controls.Add(this.txtPresentReading);
-            this.gbErrorReading.Controls.Add(this.label7);
-            this.gbErrorReading.Controls.Add(this.label2);
-            this.gbErrorReading.Controls.Add(this.txtPreviousReading);
-            this.gbErrorReading.Controls.Add(this.txtConsumption);
-            this.gbErrorReading.Controls.Add(this.label5);
-            this.gbErrorReading.Controls.Add(this.label6);
-            this.gbErrorReading.Controls.Add(this.txtActualReading);
-            this.gbErrorReading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbErrorReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.gbErrorReading.Location = new System.Drawing.Point(650, 229);
-            this.gbErrorReading.Name = "gbErrorReading";
-            this.gbErrorReading.Size = new System.Drawing.Size(315, 146);
-            this.gbErrorReading.TabIndex = 17;
-            this.gbErrorReading.TabStop = false;
-            this.gbErrorReading.Text = "ERROR READING";
-            // 
-            // gbFailedCalibration
-            // 
-            this.gbFailedCalibration.Controls.Add(this.txtNewAverageCons);
-            this.gbFailedCalibration.Controls.Add(this.label16);
-            this.gbFailedCalibration.Controls.Add(this.txtLastMonth);
-            this.gbFailedCalibration.Controls.Add(this.label15);
-            this.gbFailedCalibration.Controls.Add(this.txtLast2Month);
-            this.gbFailedCalibration.Controls.Add(this.lblasdasd);
-            this.gbFailedCalibration.Controls.Add(this.txtLast3Month);
-            this.gbFailedCalibration.Controls.Add(this.label14);
-            this.gbFailedCalibration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbFailedCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.gbFailedCalibration.Location = new System.Drawing.Point(650, 382);
-            this.gbFailedCalibration.Name = "gbFailedCalibration";
-            this.gbFailedCalibration.Size = new System.Drawing.Size(315, 138);
-            this.gbFailedCalibration.TabIndex = 19;
-            this.gbFailedCalibration.TabStop = false;
-            this.gbFailedCalibration.Text = "FAILED IN CALIBRATION";
-            // 
-            // txtNewAverageCons
-            // 
-            this.txtNewAverageCons.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtNewAverageCons.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtNewAverageCons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNewAverageCons.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtNewAverageCons.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewAverageCons.Location = new System.Drawing.Point(172, 107);
-            this.txtNewAverageCons.Name = "txtNewAverageCons";
-            this.txtNewAverageCons.Size = new System.Drawing.Size(112, 21);
-            this.txtNewAverageCons.TabIndex = 20;
-            this.txtNewAverageCons.TextChanged += new System.EventHandler(this.txtLast3Month_TextChanged);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(28, 110);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(84, 15);
-            this.label16.TabIndex = 19;
-            this.label16.Text = "NEW CONS.  :";
-            // 
-            // txtLastMonth
-            // 
-            this.txtLastMonth.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtLastMonth.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtLastMonth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLastMonth.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLastMonth.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLastMonth.Location = new System.Drawing.Point(172, 80);
-            this.txtLastMonth.Name = "txtLastMonth";
-            this.txtLastMonth.Size = new System.Drawing.Size(112, 21);
-            this.txtLastMonth.TabIndex = 18;
-            this.txtLastMonth.TextChanged += new System.EventHandler(this.txtLast3Month_TextChanged);
-            this.txtLastMonth.Leave += new System.EventHandler(this.txtLastMonth_Leave);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(28, 82);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(133, 15);
-            this.label15.TabIndex = 17;
-            this.label15.Text = "LAST MONTH CONS. : ";
-            // 
-            // txtLast2Month
-            // 
-            this.txtLast2Month.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtLast2Month.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtLast2Month.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLast2Month.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLast2Month.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLast2Month.Location = new System.Drawing.Point(172, 53);
-            this.txtLast2Month.Name = "txtLast2Month";
-            this.txtLast2Month.Size = new System.Drawing.Size(112, 21);
-            this.txtLast2Month.TabIndex = 16;
-            this.txtLast2Month.TextChanged += new System.EventHandler(this.txtLast3Month_TextChanged);
-            // 
-            // lblasdasd
-            // 
-            this.lblasdasd.AutoSize = true;
-            this.lblasdasd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblasdasd.Location = new System.Drawing.Point(28, 55);
-            this.lblasdasd.Name = "lblasdasd";
-            this.lblasdasd.Size = new System.Drawing.Size(143, 15);
-            this.lblasdasd.TabIndex = 15;
-            this.lblasdasd.Text = "LAST 2 MONTH CONS. : ";
-            // 
-            // txtLast3Month
-            // 
-            this.txtLast3Month.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtLast3Month.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtLast3Month.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLast3Month.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLast3Month.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLast3Month.Location = new System.Drawing.Point(172, 26);
-            this.txtLast3Month.Name = "txtLast3Month";
-            this.txtLast3Month.Size = new System.Drawing.Size(112, 21);
-            this.txtLast3Month.TabIndex = 6;
-            this.txtLast3Month.TextChanged += new System.EventHandler(this.txtLast3Month_TextChanged);
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(28, 28);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(143, 15);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "LAST 3 MONTH CONS. : ";
-            // 
-            // gbIllegal
-            // 
-            this.gbIllegal.Controls.Add(this.txtConsAfterDisconnection);
-            this.gbIllegal.Controls.Add(this.label17);
-            this.gbIllegal.Controls.Add(this.txtConsOnDisconnection);
-            this.gbIllegal.Controls.Add(this.label18);
-            this.gbIllegal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbIllegal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.gbIllegal.Location = new System.Drawing.Point(971, 229);
-            this.gbIllegal.Name = "gbIllegal";
-            this.gbIllegal.Size = new System.Drawing.Size(315, 86);
-            this.gbIllegal.TabIndex = 19;
-            this.gbIllegal.TabStop = false;
-            this.gbIllegal.Text = "RFB + ILLEGAL";
-            // 
-            // txtConsAfterDisconnection
-            // 
-            this.txtConsAfterDisconnection.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtConsAfterDisconnection.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtConsAfterDisconnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConsAfterDisconnection.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtConsAfterDisconnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsAfterDisconnection.Location = new System.Drawing.Point(172, 53);
-            this.txtConsAfterDisconnection.Name = "txtConsAfterDisconnection";
-            this.txtConsAfterDisconnection.Size = new System.Drawing.Size(112, 21);
-            this.txtConsAfterDisconnection.TabIndex = 16;
-            this.txtConsAfterDisconnection.TextChanged += new System.EventHandler(this.txtConsOnDisconnection_TextChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(28, 55);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(115, 15);
-            this.label17.TabIndex = 15;
-            this.label17.Text = "CURRENT CONS. : ";
-            // 
-            // txtConsOnDisconnection
-            // 
-            this.txtConsOnDisconnection.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtConsOnDisconnection.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtConsOnDisconnection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtConsOnDisconnection.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtConsOnDisconnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtConsOnDisconnection.Location = new System.Drawing.Point(172, 26);
-            this.txtConsOnDisconnection.Name = "txtConsOnDisconnection";
-            this.txtConsOnDisconnection.Size = new System.Drawing.Size(112, 21);
-            this.txtConsOnDisconnection.TabIndex = 6;
-            this.txtConsOnDisconnection.TextChanged += new System.EventHandler(this.txtConsOnDisconnection_TextChanged);
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(28, 28);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(134, 15);
-            this.label18.TabIndex = 10;
-            this.label18.Text = "CONS. UPON DISCO. : ";
-            // 
-            // gbLeakingNotVisible
-            // 
-            this.gbLeakingNotVisible.Controls.Add(this.txtAdjustedConsumption);
-            this.gbLeakingNotVisible.Controls.Add(this.label1);
-            this.gbLeakingNotVisible.Controls.Add(this.label13);
-            this.gbLeakingNotVisible.Controls.Add(this.txtAdjustmentConsumption);
-            this.gbLeakingNotVisible.Controls.Add(this.label4);
-            this.gbLeakingNotVisible.Controls.Add(this.txtLeakingNotVisCurrentCons);
-            this.gbLeakingNotVisible.Controls.Add(this.label8);
-            this.gbLeakingNotVisible.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gbLeakingNotVisible.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.gbLeakingNotVisible.Location = new System.Drawing.Point(650, 77);
-            this.gbLeakingNotVisible.Name = "gbLeakingNotVisible";
-            this.gbLeakingNotVisible.Size = new System.Drawing.Size(567, 131);
-            this.gbLeakingNotVisible.TabIndex = 19;
-            this.gbLeakingNotVisible.TabStop = false;
-            this.gbLeakingNotVisible.Text = "LEAKING NOT VISIBLE";
-            // 
-            // txtAdjustedConsumption
-            // 
-            this.txtAdjustedConsumption.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAdjustedConsumption.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAdjustedConsumption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdjustedConsumption.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdjustedConsumption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdjustedConsumption.ForeColor = System.Drawing.Color.Red;
-            this.txtAdjustedConsumption.Location = new System.Drawing.Point(172, 62);
-            this.txtAdjustedConsumption.Name = "txtAdjustedConsumption";
-            this.txtAdjustedConsumption.Size = new System.Drawing.Size(112, 21);
-            this.txtAdjustedConsumption.TabIndex = 23;
-            this.txtAdjustedConsumption.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAdjustedConsumption.TextChanged += new System.EventHandler(this.txtAdjustmentConsumption_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(28, 62);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 15);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "ADJUSTMENT CONS. : ";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label13.Location = new System.Drawing.Point(298, 37);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(145, 16);
-            this.label13.TabIndex = 21;
-            this.label13.Text = "*Average Consumption";
-            this.label13.Visible = false;
-            // 
-            // txtAdjustmentConsumption
-            // 
-            this.txtAdjustmentConsumption.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAdjustmentConsumption.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAdjustmentConsumption.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdjustmentConsumption.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdjustmentConsumption.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdjustmentConsumption.Location = new System.Drawing.Point(172, 89);
-            this.txtAdjustmentConsumption.Name = "txtAdjustmentConsumption";
-            this.txtAdjustmentConsumption.Size = new System.Drawing.Size(112, 21);
-            this.txtAdjustmentConsumption.TabIndex = 16;
-            this.txtAdjustmentConsumption.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtAdjustmentConsumption.TextChanged += new System.EventHandler(this.txtAdjustmentConsumption_TextChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 88);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 15);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "ADJUSTED CONS. : ";
-            // 
-            // txtLeakingNotVisCurrentCons
-            // 
-            this.txtLeakingNotVisCurrentCons.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtLeakingNotVisCurrentCons.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtLeakingNotVisCurrentCons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLeakingNotVisCurrentCons.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtLeakingNotVisCurrentCons.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLeakingNotVisCurrentCons.Location = new System.Drawing.Point(172, 35);
-            this.txtLeakingNotVisCurrentCons.Name = "txtLeakingNotVisCurrentCons";
-            this.txtLeakingNotVisCurrentCons.Size = new System.Drawing.Size(112, 21);
-            this.txtLeakingNotVisCurrentCons.TabIndex = 6;
-            this.txtLeakingNotVisCurrentCons.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtLeakingNotVisCurrentCons.TextChanged += new System.EventHandler(this.txtAdjustmentConsumption_TextChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(28, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(115, 15);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "CURRENT CONS. : ";
-            // 
             // particularFactors
             // 
             this.particularFactors.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.particularFactors.FormattingEnabled = true;
             this.particularFactors.Items.AddRange(new object[] {
-            "Average Consumption (Last 3 Months)",
-            "Previous Reading (Previous Month)",
-            "Present Reading (Current Month)",
-            "Actual Reading (Correct Reading after verification)",
-            "Previous Consumption",
-            "Present Consumption",
             "Actual Consumption",
+            "Actual Reading (Correct Reading after verification)",
+            "Average Consumption (Last 3 Months)",
             "Consumption Upon Disconnection",
             "Illegal Connection",
-            "VAT (12%)"});
+            "Previous Consumption",
+            "Previous Reading (Previous Month)",
+            "Present Consumption",
+            "Present Reading (Current Month)",
+            "+ VAT (12%)",
+            "30% of Current Consumption",
+            "70% of Current Consumption"});
             this.particularFactors.Location = new System.Drawing.Point(3, 45);
             this.particularFactors.Name = "particularFactors";
-            this.particularFactors.Size = new System.Drawing.Size(610, 184);
+            this.particularFactors.Size = new System.Drawing.Size(610, 244);
             this.particularFactors.TabIndex = 20;
             this.particularFactors.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.particularFactors_ItemCheck);
+            this.particularFactors.SelectedIndexChanged += new System.EventHandler(this.particularFactors_SelectedIndexChanged);
             // 
             // dgParticularAdjustment
             // 
@@ -881,9 +461,9 @@
             this.dgParticularAdjustment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.particular,
             this._value});
-            this.dgParticularAdjustment.Location = new System.Drawing.Point(6, 40);
+            this.dgParticularAdjustment.Location = new System.Drawing.Point(6, 41);
             this.dgParticularAdjustment.Name = "dgParticularAdjustment";
-            this.dgParticularAdjustment.Size = new System.Drawing.Size(604, 210);
+            this.dgParticularAdjustment.Size = new System.Drawing.Size(604, 153);
             this.dgParticularAdjustment.TabIndex = 21;
             this.dgParticularAdjustment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgParticularAdjustment_CellValueChanged);
             // 
@@ -902,9 +482,9 @@
             // 
             this.groupBox2.Controls.Add(this.dgParticularAdjustment);
             this.groupBox2.Controls.Add(this.btnAutoCompute);
-            this.groupBox2.Location = new System.Drawing.Point(12, 338);
+            this.groupBox2.Location = new System.Drawing.Point(12, 398);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(616, 256);
+            this.groupBox2.Size = new System.Drawing.Size(616, 201);
             this.groupBox2.TabIndex = 22;
             this.groupBox2.TabStop = false;
             // 
@@ -915,7 +495,7 @@
             this.groupBox6.Controls.Add(this.particularFactors);
             this.groupBox6.Location = new System.Drawing.Point(12, 100);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(616, 232);
+            this.groupBox6.Size = new System.Drawing.Size(616, 292);
             this.groupBox6.TabIndex = 22;
             this.groupBox6.TabStop = false;
             // 
@@ -923,13 +503,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 865);
+            this.ClientSize = new System.Drawing.Size(644, 865);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.gbErrorReading);
-            this.Controls.Add(this.gbLeakingNotVisible);
-            this.Controls.Add(this.gbIllegal);
-            this.Controls.Add(this.gbFailedCalibration);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -946,14 +522,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
-            this.gbErrorReading.ResumeLayout(false);
-            this.gbErrorReading.PerformLayout();
-            this.gbFailedCalibration.ResumeLayout(false);
-            this.gbFailedCalibration.PerformLayout();
-            this.gbIllegal.ResumeLayout(false);
-            this.gbIllegal.PerformLayout();
-            this.gbLeakingNotVisible.ResumeLayout(false);
-            this.gbLeakingNotVisible.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgParticularAdjustment)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
@@ -972,36 +540,8 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox5;
-        internal System.Windows.Forms.TextBox txtConsumption;
-        private System.Windows.Forms.Label label7;
-        internal System.Windows.Forms.TextBox txtActualReading;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        internal System.Windows.Forms.TextBox txtPreviousReading;
-        internal System.Windows.Forms.TextBox txtPresentReading;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox cbxExtensionFee;
         private System.Windows.Forms.CheckBox cbxPenalty;
-        private System.Windows.Forms.GroupBox gbErrorReading;
-        private System.Windows.Forms.GroupBox gbFailedCalibration;
-        internal System.Windows.Forms.TextBox txtLast2Month;
-        private System.Windows.Forms.Label lblasdasd;
-        internal System.Windows.Forms.TextBox txtLast3Month;
-        private System.Windows.Forms.Label label14;
-        internal System.Windows.Forms.TextBox txtLastMonth;
-        private System.Windows.Forms.Label label15;
-        internal System.Windows.Forms.TextBox txtNewAverageCons;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.GroupBox gbIllegal;
-        internal System.Windows.Forms.TextBox txtConsAfterDisconnection;
-        private System.Windows.Forms.Label label17;
-        internal System.Windows.Forms.TextBox txtConsOnDisconnection;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.GroupBox gbLeakingNotVisible;
-        internal System.Windows.Forms.TextBox txtAdjustmentConsumption;
-        private System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.TextBox txtLeakingNotVisCurrentCons;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnAutoCompute;
         internal System.Windows.Forms.TextBox txtPenalty;
         internal System.Windows.Forms.TextBox txtExtensionFee;
@@ -1017,9 +557,6 @@
         internal System.Windows.Forms.TextBox txtAccountType;
         private System.Windows.Forms.Label label22;
         internal System.Windows.Forms.TextBox txtAmountDueAfterAdjustment;
-        private System.Windows.Forms.Label label13;
-        internal System.Windows.Forms.TextBox txtAdjustedConsumption;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label12;
         internal System.Windows.Forms.TextBox txtAdjustment;
         private System.Windows.Forms.Label label23;

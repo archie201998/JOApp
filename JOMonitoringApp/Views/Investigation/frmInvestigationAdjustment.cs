@@ -391,7 +391,6 @@ namespace JOMonitoringApp.Views.Investigation
                 investigationModel.AdjustmentParticular = "Leaking (Not Visible)";
                 investigationModel.ActualConsumption = txtAdjustmentConsumption.Text;
             }
-
             if (cmbxParticular.Text == "Erroneous Reading")
             {
                 investigationModel.AdjustmentParticular = "Erroneous Reading";

@@ -62,7 +62,8 @@ namespace JOMonitoringApp
                 new object[] { "@meter_size", DbType.String, entity.MeterSize },
                 new object[] { "@meter_number", DbType.String, entity.MeterNumber },
                 new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
-                new object[] { "@created_by", DbType.Int32, entity.CreatedBy }
+                new object[] { "@created_by", DbType.Int32, entity.CreatedBy },
+                new object[] { "@created_by", DbType.DateTime2, entity.CreatedBy }
             };
 
             string query = $"INSERT INTO {tableName} (job_orders_id, job_order_no, customer_name, customer_address, contact_number, account_number, nature_of_complaint, meter_brand, meter_size, meter_number, is_approved, created_by) VALUES (@job_orders_id, @job_order_no, @customer_name, @customer_address, @contact_number, @account_number, @nature_of_complaint, @meter_brand, @meter_size, @meter_number, @is_approved, @created_by)";

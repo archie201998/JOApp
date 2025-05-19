@@ -881,7 +881,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>I. Data on Occupancy / No. of Users:</Value>
+                    <Value>I. Data on Occupancy / No. of Users</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -918,7 +918,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>1. Immediate Members of the Family</Value>
+                    <Value>1. Immediate Members of the Family :</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
@@ -2097,24 +2097,6 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Rectangle Name="Rectangle1">
-            <PageBreak>
-              <BreakLocation>End</BreakLocation>
-            </PageBreak>
-            <Top>11.17914in</Top>
-            <Left>0.05908cm</Left>
-            <Height>0.10234in</Height>
-            <Width>7.04812in</Width>
-            <ZIndex>59</ZIndex>
-            <Visibility>
-              <Hidden>=Parameters!paramStatus.Value = "For Investigation"</Hidden>
-            </Visibility>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Rectangle>
           <Textbox Name="Textbox10">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -2139,7 +2121,7 @@
             <Left>0.05908cm</Left>
             <Height>0.70583cm</Height>
             <Width>4.43679cm</Width>
-            <ZIndex>60</ZIndex>
+            <ZIndex>59</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2176,7 +2158,7 @@
             <Left>0.05908cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.07179cm</Width>
-            <ZIndex>61</ZIndex>
+            <ZIndex>60</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2217,7 +2199,7 @@
             <Left>0.05908cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.07179cm</Width>
-            <ZIndex>62</ZIndex>
+            <ZIndex>61</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2253,7 +2235,7 @@
             <Left>6.3413cm</Left>
             <Height>0.70583cm</Height>
             <Width>4.57055cm</Width>
-            <ZIndex>63</ZIndex>
+            <ZIndex>62</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2305,7 +2287,7 @@
             <Left>6.28838cm</Left>
             <Height>1.01818cm</Height>
             <Width>5.54951cm</Width>
-            <ZIndex>64</ZIndex>
+            <ZIndex>63</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2346,7 +2328,7 @@
             <Left>6.28838cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.54951cm</Width>
-            <ZIndex>65</ZIndex>
+            <ZIndex>64</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2382,7 +2364,7 @@
             <Left>12.67865cm</Left>
             <Height>0.70583cm</Height>
             <Width>4.51543cm</Width>
-            <ZIndex>66</ZIndex>
+            <ZIndex>65</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2419,7 +2401,7 @@
             <Left>12.75537cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.01074cm</Width>
-            <ZIndex>67</ZIndex>
+            <ZIndex>66</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2460,7 +2442,7 @@
             <Left>12.75537cm</Left>
             <Height>0.70583cm</Height>
             <Width>5.01074cm</Width>
-            <ZIndex>68</ZIndex>
+            <ZIndex>67</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2477,7 +2459,7 @@
             <Left>0.05908cm</Left>
             <Height>0in</Height>
             <Width>7.04814in</Width>
-            <ZIndex>69</ZIndex>
+            <ZIndex>68</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2489,7 +2471,7 @@
             <Left>0.05908cm</Left>
             <Height>0in</Height>
             <Width>7.04814in</Width>
-            <ZIndex>70</ZIndex>
+            <ZIndex>69</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2521,7 +2503,7 @@
             <Left>0.05911cm</Left>
             <Height>0.21633in</Height>
             <Width>1.0092in</Width>
-            <ZIndex>71</ZIndex>
+            <ZIndex>70</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2557,11 +2539,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>paramNatureOfComplaint</rd:DefaultName>
-            <Top>0.45701in</Top>
+            <Top>0.49451in</Top>
             <Left>4.21076in</Left>
             <Height>0.24652in</Height>
             <Width>0.80406in</Width>
-            <ZIndex>72</ZIndex>
+            <ZIndex>71</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2597,7 +2579,7 @@
             <Left>5.08427in</Left>
             <Height>0.24652in</Height>
             <Width>1.96483in</Width>
-            <ZIndex>73</ZIndex>
+            <ZIndex>72</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2634,7 +2616,7 @@
             <Left>11.71158cm</Left>
             <Height>0.21633in</Height>
             <Width>2.42749in</Width>
-            <ZIndex>74</ZIndex>
+            <ZIndex>73</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2674,7 +2656,7 @@
             <Left>4.21075in</Left>
             <Height>0.24652in</Height>
             <Width>1.05208in</Width>
-            <ZIndex>75</ZIndex>
+            <ZIndex>74</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2712,7 +2694,7 @@
             <Left>5.30451in</Left>
             <Height>0.24096in</Height>
             <Width>1.75708in</Width>
-            <ZIndex>76</ZIndex>
+            <ZIndex>75</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2728,7 +2710,7 @@
             <Top>1.00271in</Top>
             <Height>0in</Height>
             <Width>7.04814in</Width>
-            <ZIndex>77</ZIndex>
+            <ZIndex>76</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -2756,7 +2738,7 @@
             <Left>0.05908cm</Left>
             <Height>3.80146cm</Height>
             <Width>7.8485cm</Width>
-            <ZIndex>78</ZIndex>
+            <ZIndex>77</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2788,7 +2770,7 @@
             <Left>8.08397cm</Left>
             <Height>3.80146cm</Height>
             <Width>2.82788cm</Width>
-            <ZIndex>79</ZIndex>
+            <ZIndex>78</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2824,7 +2806,7 @@
             <Left>0.05911cm</Left>
             <Height>0.21633in</Height>
             <Width>3.08995in</Width>
-            <ZIndex>80</ZIndex>
+            <ZIndex>79</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2864,7 +2846,7 @@
             <Left>0.05907cm</Left>
             <Height>0.2125in</Height>
             <Width>1.57047in</Width>
-            <ZIndex>81</ZIndex>
+            <ZIndex>80</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2900,7 +2882,7 @@
             <Left>1.66317in</Left>
             <Height>0.24652in</Height>
             <Width>2.47812in</Width>
-            <ZIndex>82</ZIndex>
+            <ZIndex>81</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2937,7 +2919,7 @@
             <Left>4.20937in</Left>
             <Height>0.24652in</Height>
             <Width>1.28747in</Width>
-            <ZIndex>83</ZIndex>
+            <ZIndex>82</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -2956,10 +2938,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!paramDateComplained.Value</Value>
+                    <Value>=CDate(Parameters!paramDateComplained.Value)</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>8.5pt</FontSize>
+                      <Format>d</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -2973,7 +2956,7 @@
             <Left>5.52462in</Left>
             <Height>0.24652in</Height>
             <Width>1.52309in</Width>
-            <ZIndex>84</ZIndex>
+            <ZIndex>83</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

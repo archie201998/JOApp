@@ -632,6 +632,7 @@ namespace JOMonitoringApp.Views.MainForm
                 CustomerAddress = ucJoborder.txtAddress.Text,
                 CustomerAccountNumber = accountNumber,
                 CustomerContactNumber = ucJoborder.txtContact.Text,
+                CreatedAt = ucJoborder.dtpDate.Value,
                 NatureOfComplaint = natureOfComplaint,
                 MeterBrand = meterBrand,
                 MeterSize = meterSize,

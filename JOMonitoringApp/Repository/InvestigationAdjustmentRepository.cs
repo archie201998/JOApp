@@ -1,8 +1,10 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Repository;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace JOMonitoringApp
 {
@@ -91,5 +93,7 @@ namespace JOMonitoringApp
             string query = $"DELETE FROM {tableName} WHERE investigation_id = @investigation_id";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
+
+    
     }
 }

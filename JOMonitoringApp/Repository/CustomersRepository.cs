@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
@@ -33,16 +35,6 @@ internal class CustomersRepository : ICustomersRepository
 
         var dataTable = new DataTable();
         return mySqlGenericCommands.Fill(query, dataTable);
-    }
-
-    public int GetLastInsertedID(int userId)
-    {
-        var parameters = new object[][]
-        {  new object[] { "@user_id", DbType.Int32, userId}, };
-
-        string query = $"SELECT MAX(id) FROM {tableName} WHERE created_by = @user_id";
-
-        return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
     }
 
     public DataTable GetRecordsBySearch(string searchText)
@@ -101,19 +93,6 @@ internal class CustomersRepository : ICustomersRepository
         return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
     }
 
-    
-    //public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
-    //{
-    //    var parameters = new object[][]
-    //    {
-    //        new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
-    //    };
-
-    //    string query = $"SELECT id, account_number, account_name, address FROM {tableName} WHERE account_number LIKE @search_key OR account_name  like @search_key LIMIT 10";
-
-    //    var dataTable = new DataTable();
-    //    return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
-    //}
 
     //This will fetch the records from the main database
     public DataTable GetRecordsBySearchByAccountNumber(string searchKey)
@@ -238,9 +217,36 @@ internal class CustomersRepository : ICustomersRepository
         return result;
     }
 
+    public DataTable GetAverageCons(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT TOP(3) CurrentCons FROM txn_ReadingDetails WHERE AccountNo = @account_number ORDER BY ReadingDate DESC";
+
+        var dataTable = new DataTable();
+        return sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+    }
+
     public string GetAverageConsumption(string accountNumber)
     {
-        throw new System.NotImplementedException();
+        var parameters = new object[][]
+        {
+            new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = @"
+            SELECT ROUND(AVG(CurrentCons), 2) AS AverageCons
+            FROM txn_ReadingDetails
+            WHERE (ReadingDate >= DATEADD(MONTH, -3, GETDATE()))
+                AND (CurrentCons IS NOT NULL)
+                AND (AccountNo = @account_number)";
+
+        object result = sqlGenericCommands.ExecuteScalar(query, parameters);
+
+        return result != null && result != DBNull.Value ? result.ToString() : "0";
     }
 
     public string GetPreviousReading(string accountNumber)

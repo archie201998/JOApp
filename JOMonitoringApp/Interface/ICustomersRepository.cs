@@ -11,7 +11,6 @@ namespace JOMonitoringApp.Interface
 {
     public interface ICustomersRepository : IRepository<CustomersModel>
     {
-        int GetLastInsertedID(int userId);
         DataTable GetCustomersName(string searchKey);
         DataTable GetRecordsBySearchByAccountNumber(string searchKey);
         DataTable GetRecordsBySearchByAccountName(string searchKey);
@@ -20,17 +19,12 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetCustomerMeterDetails(string accountNumber);
         Dictionary<string, string> GetCustomerAccountDetails(string accountNumber);
         Dictionary<string, string> GetBillingDetails(string accountNumber);
-
-
+        DataTable GetAverageCons(string accountNumber);
         string GetAverageConsumption(string accountNumber);
         string GetPreviousReading(string accountNumber);
         string GetPresentReading(string accountNumber);
         string GetPreviousConsumption(string accountNumber);
         string GetPresentConsumption(string accountNumber);
         string GetConsumptionUponDisconnection(string accountNumber);
-
-
-
-
     }
 }

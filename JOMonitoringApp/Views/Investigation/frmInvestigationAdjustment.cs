@@ -4,6 +4,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using Mysqlx.Crud;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -112,6 +113,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var rateDict = Helper.WaterRates();
 
+            
             if (rateDict.TryGetValue(consumption, out double rate))
             {
 
@@ -133,6 +135,19 @@ namespace JOMonitoringApp.Views.Investigation
             ComputeFactors();
         }
 
+
+        public decimal GetAverageCons(string accountNumber)
+        {
+            DataTable dt = Factory.CustomersRepository().GetAverageCons(accountNumber);
+
+            decimal totalCons = 0;
+            foreach (DataRow item in dt.Rows)
+            {
+                totalCons += Convert.ToDecimal(item["CurrentCons"]);
+            }
+
+            return totalCons/3;
+        }
         private void ComputeFactors()
         {
             string accountNumber = txtAccountNumber.Text.Trim();
@@ -148,7 +163,9 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (particular == "Average Consumption (Last 3 Months)")
                 {
-                    dgvRow.Cells["_value"].Value = dictReadingDetails["AverageCons"];
+                    dgvRow.Cells["_value"].Value = GetAverageCons(accountNumber).ToString("N2");
+                    double amountDue = Convert.ToDouble(txtAmountDue.Text);
+                    txtAdjustment.Text = (amountDue - GetRateByConsumption((int)GetAverageCons(accountNumber))).ToString("N2");
                 }
                 else if (particular == "Previous Reading (Previous Month)")
                 {
@@ -162,16 +179,25 @@ namespace JOMonitoringApp.Views.Investigation
                 else if (particular == "Present Consumption")
                 {
                     dgvRow.Cells["_value"].Value = dictReadingDetails["CurrentCons"];
+                }  
+
+                else if (particular == "Actual Consumption")
+                {
+                    if (!string.IsNullOrEmpty(dgvRow.Cells["_value"].Value.ToString()))
+                    {
+                        decimal actualConsumption = Convert.ToDecimal(dgvRow.Cells["_value"].Value);
+                        txtAdjustment.Text = GetRateByConsumption((int)actualConsumption).ToString("N2");
+                    }
+             
                 }
 
                 else if (particular == "30% of Current Consumption")
                 {
                     decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.30m;
                     dgvRow.Cells["_value"].Value = currentCons;
-                    MessageBox.Show(" " + GetRateByConsumption((int)currentCons));
                     txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
                 }
-                
+
                 else if (particular == "70% of Current Consumption")
                 {
                     decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.70m;
@@ -179,17 +205,30 @@ namespace JOMonitoringApp.Views.Investigation
                     txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
                 }
 
-
                 else if (particular == "Illegal Connection")
                 {
-                    dgvRow.Cells["_value"].Value = "6000";
+                    dgvRow.Cells["_value"].Value = Helper.illegalConnectionFee.ToString("N2");
+
+                    decimal adjustedAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim());
+                    adjustedAmount += Helper.illegalConnectionFee;
+                    txtAmountDueAfterAdjustment.Text = adjustedAmount.ToString("N2");
                 }
                 else if (particular == "+ VAT (12%)")
                 {
-                    dgvRow.Cells["_value"].Value = "720";
+                    dgvRow.Cells["_value"].Value = Helper.illegalConnectionFeeVAT.ToString("N2");
+
+
+                    decimal adjustedAmount = Convert.ToDecimal(txtAmountDueAfterAdjustment.Text.Trim());
+                    adjustedAmount +=  Helper.illegalConnectionFeeVAT;
+                    txtAmountDueAfterAdjustment.Text = adjustedAmount.ToString("N2");   
                 }
 
-                txtAmountDue.Text = dictReadingDetails["AmountDue"];
+                else
+                {
+                  
+                }
+
+                txtAmountDue.Text = Convert.ToDecimal(dictReadingDetails["AmountDue"]).ToString("N2");
             }
         }
 
@@ -399,7 +438,7 @@ namespace JOMonitoringApp.Views.Investigation
                         Helper.MessageBoxWarning("Please enter a valid numeric value.");
                         dgParticularAdjustment.CancelEdit();
                     }
-
+                    ComputeFactors();
                 }
                    
             }

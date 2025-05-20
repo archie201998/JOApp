@@ -185,7 +185,6 @@ namespace JOMonitoringApp.Views.Investigation
                 Government = Convert.ToBoolean(cbGovernment.Checked),
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
-                HasAdjustment = cbxForAdjustment.Checked,
                 UpdatedBy = Helper.UserId,
                 
             };
@@ -304,109 +303,117 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void ViewInvestigationDetails()
         {
-            Cursor.Current = Cursors.WaitCursor;
-            this.SuspendLayout();
-
-            selectedInvestigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-            dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
-
-            if (dictInvestigation.Count == 0) return;
-
-
-            decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
-            decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_after_test"]);
-            string calibrationResult = dictInvestigation["calibration_result"];
-            string overRegistration = dictInvestigation["over_registration"];
-            string underRegistration = dictInvestigation["under_registration"];
-            string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
-            int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
-            string customerAddress = dictInvestigation["customer_address"];
-            byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
-            byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
-            byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
-            byte boarders = Convert.ToByte(dictInvestigation["boarders"]);
-            byte noOfHoursServed = Convert.ToByte(dictInvestigation["no_of_hours_served"]);
-            byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
-            byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
-            byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
-            byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
-            string alternativeSource = dictInvestigation["alternative_source"];
-            string approvalMessage = dictInvestigation["approval_message"];
-            string natureOfComplaint = dictInvestigation["nature_of_complaint"];
-            string adjustmentParticular = dictInvestigation["adjustment_particular"];
-            int noAdjustment = string.IsNullOrEmpty(dictInvestigation["has_adjustment"]) ? 0 : Convert.ToInt32(dictInvestigation["has_adjustment"]);
-
-         
-            cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
-            cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
-            cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
-            txtAlternativeSource.Text = alternativeSource;
-            nudNoOfHoursServed.Value = noOfHoursServed;
-            nudNoServiceOfOutlets.Value = noServiceOutlets;
-            txtAccountName.Text = dictInvestigation["customer_name"];
-            txtAccountNumber.Text = dictInvestigation["account_number"];
-            txtJONumber.Text = dictInvestigation["job_order_no"];
-            txtAddress.Text = dictInvestigation["customer_address"];
-            _jobOrderId = jobOrdersId;
-            _jobOrderNumber = txtJONumber.Text;
-            hasAdjustment = string.IsNullOrEmpty(dictInvestigation["adjustment_amount"]) ? false : true;
-            txtComplaint.Text = natureOfComplaint;
-            txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
-            txtRecommendations.Text = dictInvestigation["recommendations"];
-
-            Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
-
-           
-            if (meterDict.Count != 0)
+            try
             {
-                txtMeterBrand.Text = meterDict["MeterBrand"];
-                txtMeterNumber.Text = meterDict["MeterNumber"];
-                txtMeterSize.Text = meterDict["MeterSize"];
+                Cursor.Current = Cursors.WaitCursor;
+                this.SuspendLayout();
+
+                selectedInvestigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
+
+                if (dictInvestigation.Count == 0) return;
+
+
+                decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
+                decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_after_test"]);
+                string calibrationResult = dictInvestigation["calibration_result"];
+                string overRegistration = dictInvestigation["over_registration"];
+                string underRegistration = dictInvestigation["under_registration"];
+                string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
+                int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
+                string customerAddress = dictInvestigation["customer_address"];
+                byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
+                byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
+                byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
+                byte boarders = Convert.ToByte(dictInvestigation["boarders"]);
+                byte noOfHoursServed = Convert.ToByte(dictInvestigation["no_of_hours_served"]);
+                byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
+                byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
+                byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
+                byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
+                string alternativeSource = dictInvestigation["alternative_source"];
+                string approvalMessage = dictInvestigation["approval_message"];
+                string natureOfComplaint = dictInvestigation["nature_of_complaint"];
+                string adjustmentParticular = dictInvestigation["adjustment_particular"];
+                int noAdjustment = string.IsNullOrEmpty(dictInvestigation["has_adjustment"]) ? 0 : Convert.ToInt32(dictInvestigation["has_adjustment"]);
+
+
+                cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
+                cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
+                cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
+                txtAlternativeSource.Text = alternativeSource;
+                nudNoOfHoursServed.Value = noOfHoursServed;
+                nudNoServiceOfOutlets.Value = noServiceOutlets;
+                txtAccountName.Text = dictInvestigation["customer_name"];
+                txtAccountNumber.Text = dictInvestigation["account_number"];
+                txtJONumber.Text = dictInvestigation["job_order_no"];
+                txtAddress.Text = dictInvestigation["customer_address"];
+                _jobOrderId = jobOrdersId;
+                _jobOrderNumber = txtJONumber.Text;
+                hasAdjustment = string.IsNullOrEmpty(dictInvestigation["adjustment_amount"]) ? false : true;
+                txtComplaint.Text = natureOfComplaint;
+                txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
+                txtRecommendations.Text = dictInvestigation["recommendations"];
+
+                Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
+
+
+                if (meterDict.Count != 0)
+                {
+                    txtMeterBrand.Text = meterDict["MeterBrand"];
+                    txtMeterNumber.Text = meterDict["MeterNumber"];
+                    txtMeterSize.Text = meterDict["MeterSize"];
+                }
+
+                nudReadingBeforeTest.Value = readingBeforeTest;
+                nudReadingAfterTest.Value = readingAfterTest;
+                txtCalibrationResult.Text = calibrationResult;
+                txtServiceLineDefects.Text = leakingAfterTheMeter;
+                nudImmediateFamily.Value = immediateMembersOfFam;
+                nudHouseHelper.Value = houseHelper;
+                nudRelatives.Value = relatives;
+                nudBoarders.Value = boarders;
+                txtApprovalMessage.Text = approvalMessage;
+                cbxDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
+                cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
+                cbxForAdjustment.Checked = noAdjustment != 0;
+
+                //loading of picture box
+                if (dictInvestigation.ContainsKey("image_path"))
+                {
+                    imageFilePath = dictInvestigation["image_path"]?.ToString();
+                    if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
+                    {
+                        pictureBox1.Image = Image.FromFile(imageFilePath);
+                    }
+                    else
+                    {
+                        pictureBox1.Image = Properties.Resources.icons8_image_96;
+                    }
+
+                }
+
+                if (dictInvestigation.ContainsKey("secondary_image_path"))
+                {
+                    secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
+                    if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
+                    {
+                        pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
+                    }
+                    else
+                    {
+                        pictureBox2.Image = Properties.Resources.icons8_image_96;
+                    }
+                }
+
+                this.ResumeLayout();
+                Cursor.Current = Cursors.Default;
             }
-
-            nudReadingBeforeTest.Value = readingBeforeTest;
-            nudReadingAfterTest.Value = readingAfterTest;
-            txtCalibrationResult.Text = calibrationResult;
-            txtServiceLineDefects.Text = leakingAfterTheMeter;
-            nudImmediateFamily.Value = immediateMembersOfFam;
-            nudHouseHelper.Value = houseHelper;
-            nudRelatives.Value = relatives;
-            nudBoarders.Value = boarders;
-            txtApprovalMessage.Text = approvalMessage;
-            cbxDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
-            cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
-            cbxForAdjustment.Checked = noAdjustment != 0;
-
-            //loading of picture box
-            if (dictInvestigation.ContainsKey("image_path"))
+            catch (Exception)
             {
-                imageFilePath = dictInvestigation["image_path"]?.ToString();
-                if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
-                {
-                    pictureBox1.Image = Image.FromFile(imageFilePath);
-                }
-                else
-                {
-                    pictureBox1.Image = Properties.Resources.icons8_image_96;
-                }
-
+                
             }
-
-            if (dictInvestigation.ContainsKey("secondary_image_path"))
-            {
-                secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
-                if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
-                {
-                    pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
-                }
-                else
-                {
-                    pictureBox2.Image = Properties.Resources.icons8_image_96;
-                }
-            }
-
-            this.ResumeLayout();
-            Cursor.Current = Cursors.Default;
+          
         }
 
         #region Updating of Records for investigator

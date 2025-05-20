@@ -28,6 +28,7 @@ namespace JOMonitoringApp.Views.Investigation
         bool manualComputeMode = false;
         bool _isUpdate;
 
+        private bool isUpdating = false;
         public frmInvestigationAdjustment(ucInvestigationForm ucInvestigationForm, string accountNumber)
         {
             InitializeComponent();
@@ -45,9 +46,17 @@ namespace JOMonitoringApp.Views.Investigation
         {
             LoadAccountDetails();
 
+            //initial load.
+            string accountNumber = txtAccountNumber.Text.Trim();
+            var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(accountNumber);
+            txtAmountDue.Text = Convert.ToDecimal(dictReadingDetails["AmountDue"]).ToString("N2");
+
+            //initial load.
+
             if (_ucInvestigationForm.hasAdjustment)
                 LoadAdjustments();
         }
+
         private void LoadAccountDetails()
         {
 
@@ -74,11 +83,15 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal penalty = !string.IsNullOrWhiteSpace(adjustments["penalty"]?.ToString()) ? Convert.ToDecimal(adjustments["penalty"]) : 0;
                 decimal extensionFee = !string.IsNullOrWhiteSpace(adjustments["extension_fee"]?.ToString()) ? Convert.ToDecimal(adjustments["extension_fee"]) : 0;
                 decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["adjustment_amount"]?.ToString()) ? Convert.ToDecimal(adjustments["adjustment_amount"]) : 0;
-                decimal adjustedAmount = (amountDue + penalty + extensionFee) - adjustment;
+                decimal adjustedAmount = (amountDue - adjustment) + penalty + extensionFee;
                 string particular = adjustments["adjustment_particular"].ToString();
+                decimal _adjustedAmount = !string.IsNullOrWhiteSpace(adjustments["adjusted_amount"]?.ToString()) ? Convert.ToDecimal(adjustments["adjusted_amount"]) : 0;
 
                 cmbxParticular.SelectedItem = particular;
                 txtAmountDue.Text = amountDue.ToString("N2");
+
+
+                txtAdjustedDue.Text  = (_adjustedAmount - extensionFee - penalty).ToString("N2");
                 txtExtensionFee.Text = extensionFee.ToString("N2");
                 txtPenalty.Text = penalty.ToString("N2");
                 txtAdjustment.Text = adjustment.ToString("N2");
@@ -150,10 +163,6 @@ namespace JOMonitoringApp.Views.Investigation
         }
         private void ComputeFactors()
         {
-            string accountNumber = txtAccountNumber.Text.Trim();
-            var dictReadingDetails = Factory.CustomersRepository().GetBillingDetails(accountNumber);
-
-             
             foreach (DataGridViewRow dgvRow in dgParticularAdjustment.Rows)
             {
                 
@@ -163,46 +172,35 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (particular == "Average Consumption (Last 3 Months)")
                 {
-                    dgvRow.Cells["_value"].Value = GetAverageCons(accountNumber).ToString("N2");
-                    double amountDue = Convert.ToDouble(txtAmountDue.Text);
-                    txtAdjustment.Text = (amountDue - GetRateByConsumption((int)GetAverageCons(accountNumber))).ToString("N2");
+
                 }
                 else if (particular == "Previous Reading (Previous Month)")
                 {
-                    dgvRow.Cells["_value"].Value = dictReadingDetails["Prev"];
+
                 }
                 else if (particular == "Present Reading (Current Month)")
                 {
-                    dgvRow.Cells["_value"].Value = dictReadingDetails["Pres"];
+
                 }
 
                 else if (particular == "Present Consumption")
                 {
-                    dgvRow.Cells["_value"].Value = dictReadingDetails["CurrentCons"];
+
                 }  
 
                 else if (particular == "Actual Consumption")
                 {
-                    if (!string.IsNullOrEmpty(dgvRow.Cells["_value"].Value.ToString()))
-                    {
-                        decimal actualConsumption = Convert.ToDecimal(dgvRow.Cells["_value"].Value);
-                        txtAdjustment.Text = GetRateByConsumption((int)actualConsumption).ToString("N2");
-                    }
-             
+        
                 }
 
                 else if (particular == "30% of Current Consumption")
                 {
-                    decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.30m;
-                    dgvRow.Cells["_value"].Value = currentCons;
-                    txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
+                  
                 }
 
                 else if (particular == "70% of Current Consumption")
                 {
-                    decimal currentCons = Convert.ToDecimal(dictReadingDetails["CurrentCons"]) * 0.70m;
-                    dgvRow.Cells["_value"].Value = currentCons;
-                    txtAdjustment.Text = (Convert.ToDecimal(txtAmountDue.Text) - (decimal)GetRateByConsumption((int)currentCons)).ToString("N2");
+                    
                 }
 
                 else if (particular == "Illegal Connection")
@@ -222,16 +220,16 @@ namespace JOMonitoringApp.Views.Investigation
                     adjustedAmount +=  Helper.illegalConnectionFeeVAT;
                     txtAmountDueAfterAdjustment.Text = adjustedAmount.ToString("N2");   
                 }
-
+                else if (particular == "Previous Consumption")
+                {
+                  
+                }
                 else
                 {
                   
                 }
-
-                txtAmountDue.Text = Convert.ToDecimal(dictReadingDetails["AmountDue"]).ToString("N2");
             }
         }
-
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -252,8 +250,6 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 Helper.MessageBoxError("Something went wrong. Please contact your system administrator.");
             }
-            
-                
         }
 
         private void UpdateAdjustment()
@@ -336,22 +332,11 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void cbxExtensionFee_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbxExtensionFee.Checked)
-                txtExtensionFee.Text = "30";
-            else
-                txtExtensionFee.Text = "0";
+            
         }
 
         private void cbxPenalty_CheckedChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (cbxPenalty.Checked)
-                    txtPenalty.Text = (Convert.ToDecimal(txtAmountDue.Text) * 0.10m).ToString();
-                else
-                    txtPenalty.Text = "0";
-            }
-            catch (Exception) { }
         }
 
         private void groupBox3_Enter(object sender, EventArgs e)
@@ -371,20 +356,36 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void CalculateTotal()
         {
+            if (isUpdating) return;
+
             try
             {
-                decimal amountDue = Convert.ToDecimal(txtAmountDue.Text.Trim());
-                decimal penalty = Convert.ToDecimal(txtPenalty.Text.Trim());
-                decimal extensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim());
-                decimal adjustment = Convert.ToDecimal(txtAdjustment.Text.Trim());
-                decimal adjustedAmount = ((amountDue - adjustment) + penalty + extensionFee);
+                isUpdating = true;
 
-                bool isCommercial = txtAccountType.Text != "RESIDENTIAL";
+                decimal amountDue = decimal.Parse(txtAmountDue.Text.Trim());
 
+                decimal textAdjustedDue = decimal.Parse(txtAdjustedDue.Text.Trim());
+                decimal penalty = decimal.Parse(txtPenalty.Text.Trim());
+                decimal extensionFee = decimal.Parse(txtExtensionFee.Text.Trim());
+                decimal adjustedDue = textAdjustedDue + penalty + extensionFee;
+
+
+
+                decimal adjustment = decimal.Parse(txtAdjustment.Text.Trim());
+
+                decimal adjustedAmount = amountDue - adjustment;
+
+                txtAdjustment.Text = (amountDue - adjustedDue).ToString("N2");
                 txtAmountDueAfterAdjustment.Text = adjustedAmount.ToString("N2");
             }
-            catch (Exception) { }
-         
+            catch (FormatException)
+            {
+                //MessageBox.Show("Please enter valid numbers.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                isUpdating = false;
+            }
         }
 
         private void txtConsOnDisconnection_TextChanged(object sender, EventArgs e)
@@ -447,6 +448,21 @@ namespace JOMonitoringApp.Views.Investigation
         private void particularFactors_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtAdjustment_Leave(object sender, EventArgs e)
+        {
+            txtAdjustment.Text = Convert.ToDecimal(txtAdjustment.Text).ToString("N2");
+        }
+
+        private void txtAmountDue_Leave(object sender, EventArgs e)
+        {
+            txtAmountDue.Text = Convert.ToDecimal(txtAmountDue.Text).ToString("N2");
+        }
+
+        private void txtAdjustedDue_Leave(object sender, EventArgs e)
+        {
+            txtAdjustedDue.Text = Convert.ToDecimal(txtAdjustedDue.Text).ToString("N2");
         }
     }
 }

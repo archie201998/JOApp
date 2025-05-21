@@ -19,8 +19,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private readonly string _accountNumber;
         private readonly ucInvestigationForm _ucInvestigationForm;
-        private bool _hasAdjustment;
-
+   
         int locationX = 0;
         int locationY = 0;
 

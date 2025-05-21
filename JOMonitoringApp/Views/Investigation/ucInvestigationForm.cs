@@ -20,17 +20,17 @@ namespace JOMonitoringApp.Views.Investigation
         public event EventHandler DataGridDoubleClicked;
 
         internal int _jobOrderId;
-        internal string _customerAddress;
         internal bool isUpdate;
         internal int selectedInvestigationID;
+
         private Dictionary<string, string> dictInvestigation;
-        internal string particular = string.Empty;
-        internal bool isCreate = false;
         string imageFilePath = string.Empty;
         string secondaryImageFilePath = string.Empty;
 
         private string _jobOrderNumber;
         internal bool hasAdjustment;
+        internal bool _isForReinvestigation = false;
+        internal bool _hasAdjustment;
 
         public ucInvestigationForm()
         {
@@ -49,13 +49,6 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
       
-
-        private bool IsImageFile(string path)
-        {
-            string ext = Path.GetExtension(path).ToLower();
-            return ext == ".jpg" || ext == ".jpeg" || ext == ".png" || ext == ".bmp" || ext == ".gif";
-        }
-
         private void ValidateFormPermission()
         {
             bool adminMode = Helper.temporaryAdminMode;
@@ -73,9 +66,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal void UpdateJobOrderStatus()
         {
-            int jobOrderId = _jobOrderId;
             int jobOrderStatus = 1;
-            int investigationStatusID = InvestigationStatusLogic();
+            int investigationStatusID = GetInvestigationStatus();
 
             if (investigationStatusID == 4)
                 jobOrderStatus = 4;
@@ -83,7 +75,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5) 
                 jobOrderStatus = 2;
 
-            Factory.JobOrdersRepository().UpdateStatus(jobOrderId, jobOrderStatus);
+            Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, jobOrderStatus);
         }
 
 
@@ -116,15 +108,21 @@ namespace JOMonitoringApp.Views.Investigation
             ForReInvestigation = 5,
         }
 
-        internal int InvestigationStatusLogic()
+        internal int GetInvestigationStatus()
         {
-            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
+            // mag true if naay sulod.
+            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim()); 
             bool hasRecommendation = !string.IsNullOrEmpty(txtRecommendations.Text.Trim());
             bool hasApproval = !string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
 
-            bool isDisapproved = cbxDisapproved.Checked;
+            bool isDisapproved = cbxInvestigationDisapproved.Checked;
             bool isRecommendationDisapproved = cbxRecommendationDisapproved.Checked;
-            bool hasNoAdjustment = cbxForAdjustment.Checked;
+            bool isForAdjustment = cbxForAdjustment.Checked;
+
+
+            //for reinvestigation
+            if (_isForReinvestigation)
+                return (int)InvestigationStatus.ForRecommendation;
 
             if (hasInvestigatorComments && !hasRecommendation && !hasApproval)
                 return (int)InvestigationStatus.ForRecommendation;
@@ -132,10 +130,10 @@ namespace JOMonitoringApp.Views.Investigation
             if (hasInvestigatorComments && hasRecommendation && isRecommendationDisapproved)
                 return (int)InvestigationStatus.ForReInvestigation;
 
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && !hasNoAdjustment)
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && isForAdjustment)
                 return (int)InvestigationStatus.ForAdjustment;
 
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasNoAdjustment)
+            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && !hasApproval && !isForAdjustment && _hasAdjustment)
                 return (int)InvestigationStatus.ForApproval;
 
             if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasApproval && isDisapproved)
@@ -164,7 +162,7 @@ namespace JOMonitoringApp.Views.Investigation
                 Recommendations = txtRecommendations.Text.Trim(),
                 imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
                 secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
-                IsApproved = InvestigationStatusLogic(),
+                IsApproved = GetInvestigationStatus(),
                 AlternativeSource = txtAlternativeSource.Text.Trim(),
                 MeterBrand = txtMeterBrand.Text,
                 MeterSize = txtMeterSize.Text,
@@ -178,6 +176,7 @@ namespace JOMonitoringApp.Views.Investigation
                 ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
                 HouseHelper = Convert.ToByte(nudHouseHelper.Value),
                 Relatives = Convert.ToByte(nudRelatives.Value),
+                HasAdjustment = cbxForAdjustment.Checked,
                 Boarders = Convert.ToByte(nudBoarders.Value),
                 NoOfHoursServed = Convert.ToByte(nudNoOfHoursServed.Value),
                 NoServiceOutlets = Convert.ToByte(nudNoServiceOfOutlets.Value),
@@ -335,7 +334,7 @@ namespace JOMonitoringApp.Views.Investigation
                 string approvalMessage = dictInvestigation["approval_message"];
                 string natureOfComplaint = dictInvestigation["nature_of_complaint"];
                 string adjustmentParticular = dictInvestigation["adjustment_particular"];
-                int noAdjustment = string.IsNullOrEmpty(dictInvestigation["has_adjustment"]) ? 0 : Convert.ToInt32(dictInvestigation["has_adjustment"]);
+                bool hasAdjustment = dictInvestigation["has_adjustment"].ToString() == "0" ? false : true;
 
 
                 cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
@@ -354,7 +353,7 @@ namespace JOMonitoringApp.Views.Investigation
                 txtComplaint.Text = natureOfComplaint;
                 txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
                 txtRecommendations.Text = dictInvestigation["recommendations"];
-
+                _hasAdjustment = hasAdjustment;
                 Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
 
 
@@ -374,9 +373,10 @@ namespace JOMonitoringApp.Views.Investigation
                 nudRelatives.Value = relatives;
                 nudBoarders.Value = boarders;
                 txtApprovalMessage.Text = approvalMessage;
-                cbxDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
+                cbxInvestigationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
                 cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
-                cbxForAdjustment.Checked = noAdjustment != 0;
+                _isForReinvestigation = dictInvestigation["is_approved"].ToString() == "5";
+                cbxForAdjustment.Checked = hasAdjustment;
 
                 //loading of picture box
                 if (dictInvestigation.ContainsKey("image_path"))
@@ -581,11 +581,6 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 GetInvestigationRecords();
             }
-        }
-
-        private void cbxForAdjustment_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -22,6 +22,7 @@ namespace JOMonitoringApp.Views.Investigation
         private readonly bool create;
         internal int _selectedInvestigationID;
 
+
         public frmInvestigation()
         {
             InitializeComponent();

@@ -262,6 +262,7 @@
             this.toolStripFS.Name = "toolStripFS";
             this.toolStripFS.Size = new System.Drawing.Size(310, 22);
             this.toolStripFS.Text = "FS / Estimates of Materials";
+            this.toolStripFS.Click += new System.EventHandler(this.estimatesOfMaterialsToolStripMenuItem_Click);
             // 
             // hydrantWithdrawToolStripMenuItem
             // 
@@ -280,7 +281,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -332,7 +333,7 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(212, 22);
             this.toolStripMenuItem2.Text = "FS / Estimates of Materials";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // hydrantWithdrawalToolStripMenuItem
             // 
@@ -360,7 +361,7 @@
             // printFormToolStripMenuItem
             // 
             this.printFormToolStripMenuItem.Name = "printFormToolStripMenuItem";
-            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.printFormToolStripMenuItem.Text = "Print Form";
             this.printFormToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click_1);
             // 
@@ -368,7 +369,7 @@
             // 
             this.investigationDataToolStripMenuItem.Enabled = false;
             this.investigationDataToolStripMenuItem.Name = "investigationDataToolStripMenuItem";
-            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.investigationDataToolStripMenuItem.Text = "Investigation Data";
             // 
             // toolStripSeparator1

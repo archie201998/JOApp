@@ -2,40 +2,31 @@
 using JOMonitoringApp.Dataset;
 using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmEstimateOfMaterials : Form
     {
-        Dictionary<string, string> _fs = new Dictionary<string, string>();
-        string _jobOrderNumber = string.Empty;  
+        string jobOrderNumber = string.Empty;  
 
         public frmEstimateOfMaterials(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            _jobOrderNumber = jobOrderNumber;
-            if (!string.IsNullOrEmpty(_jobOrderNumber))
+            this.jobOrderNumber = jobOrderNumber;
+
+            if (!string.IsNullOrEmpty(jobOrderNumber))
             {
-                txtJONo.Text = _jobOrderNumber;
+                txtJONo.Text = jobOrderNumber;
                 LoadReport();
             }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
             LoadReport();
-
         }
 
         private void LoadReport()
@@ -113,14 +104,5 @@ namespace JOMonitoringApp.Views.Reports
 
         }
 
-        private void frmEstimateOfMaterials_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void reportViewer1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

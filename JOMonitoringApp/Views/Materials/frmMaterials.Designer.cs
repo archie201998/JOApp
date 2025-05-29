@@ -48,7 +48,7 @@
             // 
             // toolStripButton2
             // 
-            //this.toolStripButton2.Image = global::JOMonitoringApp.Properties.Resources.icon;
+            this.toolStripButton2.Image = global::JOMonitoringApp.Properties.Resources.icons8_open_box_30;
             this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -60,7 +60,7 @@
             // 
             // toolStripButton1
             // 
-            //this.toolStripButton1.Image = global::JOMonitoringApp.Properties.Resources.icons8_give_30;
+            this.toolStripButton1.Image = global::JOMonitoringApp.Properties.Resources.icons8_give_30;
             this.toolStripButton1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";

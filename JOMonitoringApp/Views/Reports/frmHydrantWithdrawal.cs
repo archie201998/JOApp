@@ -17,13 +17,13 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmHydrantWithdrawal : Form
     {
-        string _jobOrderNumber;
+        string jobOrderNumber;
 
         public frmHydrantWithdrawal(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            _jobOrderNumber = jobOrderNumber;   
+            jobOrderNumber = jobOrderNumber;   
             txtJONo.Text = jobOrderNumber;  
         }
 
@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Reports
 
         private void frmHydrantWithdrawal_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(_jobOrderNumber))
+            if (!string.IsNullOrEmpty(jobOrderNumber))
             {
                 LoadReport();
             }

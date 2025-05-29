@@ -13,7 +13,7 @@ namespace JOMonitoringApp.Views.Reports
     {
 
         private readonly int? _jobOrderId;
-        private readonly string _jobOrderNumber = string.Empty;
+        private readonly string jobOrderNumber = string.Empty;
 
         public frmInvestigationReport(int? jobOrderId, string jobOrderNumber)
         {
@@ -21,12 +21,12 @@ namespace JOMonitoringApp.Views.Reports
             Helper.LoadFormIcon(this);
 
             _jobOrderId = jobOrderId;
-            _jobOrderNumber = jobOrderNumber;
+            jobOrderNumber = jobOrderNumber;
         }
 
         private void frmInvestigation_Load(object sender, EventArgs e)
         {
-            txtJONo.Text = _jobOrderNumber;
+            txtJONo.Text = jobOrderNumber;
 
             if (!string.IsNullOrEmpty(txtJONo.Text))
                 LoadReport();

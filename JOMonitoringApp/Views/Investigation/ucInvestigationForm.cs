@@ -29,7 +29,7 @@ namespace JOMonitoringApp.Views.Investigation
         string imageFilePath = string.Empty;
         string secondaryImageFilePath = string.Empty;
 
-        private string _jobOrderNumber;
+        private string jobOrderNumber;
         internal bool hasAdjustment;
         internal bool _isForReinvestigation = false;
         internal bool _hasAdjustment;

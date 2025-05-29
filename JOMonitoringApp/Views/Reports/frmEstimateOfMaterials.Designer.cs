@@ -111,7 +111,6 @@
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(1389, 886);
             this.reportViewer1.TabIndex = 16;
-            this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // frmEstimateOfMaterials
             // 
@@ -125,7 +124,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reports > Estimate of Material";
-            this.Load += new System.EventHandler(this.frmEstimateOfMaterials_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

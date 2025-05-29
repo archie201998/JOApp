@@ -73,6 +73,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_clipboard_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clipboard_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_delete_14 {
             get {
                 object obj = ResourceManager.GetObject("icons8_delete_14", resourceCulture);
@@ -86,6 +96,16 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap icons8_form_14 {
             get {
                 object obj = ResourceManager.GetObject("icons8_form_14", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_give_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_give_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,6 +153,26 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_investigation_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_investigation_30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_investigation_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_investigation_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_notification_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8_notification_50", resourceCulture);
@@ -153,6 +193,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_open_box_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_open_box_30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_print_14 {
             get {
                 object obj = ResourceManager.GetObject("icons8_print_14", resourceCulture);
@@ -166,6 +216,26 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap icons8_programmer_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8_programmer_96", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_report_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_report_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_reports_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_reports_30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,6 +273,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_settings_48_blue {
+            get {
+                object obj = ResourceManager.GetObject("icons8_settings_48_blue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_summary_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8_summary_24", resourceCulture);
@@ -226,6 +306,26 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap icons8_user_24_flat {
             get {
                 object obj = ResourceManager.GetObject("icons8_user_24_flat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_user_30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_user_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

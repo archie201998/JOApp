@@ -22,14 +22,14 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmServiceRequestAndOrderForm : Form
     {
-        private string _jobOrderNumber;
+        private string jobOrderNumber;
         private int jobOrderId;
         public frmServiceRequestAndOrderForm(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
             panel3.Controls.Add(reportViewer1);
-            _jobOrderNumber = jobOrderNumber;
+            this.jobOrderNumber = jobOrderNumber;
         }
 
         private void frmServiceRequestAndOrderForm_Load(object sender, EventArgs e)
@@ -39,8 +39,8 @@ namespace JOMonitoringApp.Views.Reports
 
         private void OnLoad()
         {
-            txtJONumberFrom.Text = _jobOrderNumber;
-            if (!string.IsNullOrEmpty(_jobOrderNumber)) LoadReport();
+            txtJONumberFrom.Text = jobOrderNumber;
+            if (!string.IsNullOrEmpty(jobOrderNumber)) LoadReport();
         }
 
         private void ToogleRunButton(bool isGenerated)

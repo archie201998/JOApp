@@ -47,6 +47,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -377,6 +378,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnSearch;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ComboBox cmbxParticular;

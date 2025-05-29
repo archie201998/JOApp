@@ -7,6 +7,7 @@ using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
+using JOMonitoringApp.Views.Materials;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
@@ -15,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Deployment.Application;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -57,32 +57,32 @@ namespace JOMonitoringApp.Views.MainForm
 
         public async void CheckForUpdateAsync()
         {
-            if (!ApplicationDeployment.IsNetworkDeployed)
-                return;
+            //if (!ApplicationDeployment.IsNetworkDeployed)
+            //    return;
 
-            try
-            {
-                var deployment = ApplicationDeployment.CurrentDeployment;
+            //try
+            //{
+            //    var deployment = ApplicationDeployment.CurrentDeployment;
 
-                // Check in background thread
-                var updateInfo = await Task.Run(() => deployment.CheckForDetailedUpdate());
+            //    // Check in background thread
+            //    var updateInfo = await Task.Run(() => deployment.CheckForDetailedUpdate());
 
-                if (updateInfo.UpdateAvailable)
-                {
-                    // Notify the user
+            //    if (updateInfo.UpdateAvailable)
+            //    {
+            //        // Notify the user
 
-                    lblCheckingUpdate.Visible = updateLabelVisible;
-                    updateLabelVisible = !updateLabelVisible;
+            //        lblCheckingUpdate.Visible = updateLabelVisible;
+            //        updateLabelVisible = !updateLabelVisible;
 
-                    // Optional: Auto-restart app if you want
-                    // if (result == DialogResult.OK)
-                    //     Application.Restart();
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log or handle errors like no network, update server unreachable, etc.
-            }
+            //        // Optional: Auto-restart app if you want
+            //        // if (result == DialogResult.OK)
+            //        //     Application.Restart();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log or handle errors like no network, update server unreachable, etc.
+            //}
         }
         #endregion
 
@@ -188,11 +188,11 @@ namespace JOMonitoringApp.Views.MainForm
             HelperLoadRecords.StatusCombobox(cmbxStatus);
             HelperLoadRecords.ParticularsCombobox(cmbxParticulars);
 
-
             Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
             lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             lblUserRole.Text = userDict["role_name"].ToString().ToUpper();
             cmbxStatus.SelectedValue = 5;
+            cmbxRowLimit.SelectedIndex = 1;
 
             ValidatePermissions();
             StartUpdateTimer();
@@ -302,19 +302,17 @@ namespace JOMonitoringApp.Views.MainForm
 
         #endregion
 
-
         #region Update
 
         private void DgJobOrders_DoubleClick(object sender, EventArgs e)
         {
-            if (dgJobOrders.Rows.Count == 0) return;
-
-            UpdateSettings();
-            ucJoborder.StoreOriginalValues();
-            LoadSelectedData();
             try
             {
-   
+                if (dgJobOrders.Rows.Count == 0) return;
+
+                UpdateSettings();
+                ucJoborder.StoreOriginalValues();
+                LoadSelectedData();
             }
             catch (Exception)
             {
@@ -439,7 +437,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         #region Reset Input
         internal void ResetInputForm()
-    {
+        {
             // Clear general fields
             ucJoborder.txtJONumber.Clear();
             ucJoborder.dtpDate.Value = DateTime.Now;
@@ -549,6 +547,7 @@ namespace JOMonitoringApp.Views.MainForm
                         : "Job Order successfully created.";
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
+                    LoadJobOrdersAsync();
                 }
             }
             catch (Exception ex)
@@ -654,7 +653,7 @@ namespace JOMonitoringApp.Views.MainForm
                 _ = Factory.InvestigationRepository().Insert(investigation);
             }
         }
-        
+
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
@@ -683,7 +682,7 @@ namespace JOMonitoringApp.Views.MainForm
                             scope.Complete();
                             return true;
                         }
-                        else { return false;  }
+                        else { return false; }
                     }
                     else
                     {
@@ -694,7 +693,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             //if (CheckPossibleDuplicateEntry())
             //{
-           
+
             //}
             return false;
         }
@@ -703,9 +702,9 @@ namespace JOMonitoringApp.Views.MainForm
         private bool InsertJobOrderParticulars(int jobOrderId)
         {
             if (ucJoborder.isUpdate)
-              Factory.JobOrdersRepository().DeleteJobOrderParticulars(jobOrderId);
-           
-           
+                Factory.JobOrdersRepository().DeleteJobOrderParticulars(jobOrderId);
+
+
 
             foreach (var item in ucJoborder.clBoxParticulars.CheckedItems)
             {
@@ -720,8 +719,8 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             return true;
-         
-            
+
+
         }
         #endregion
 
@@ -802,12 +801,7 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmUsers().ShowDialog();
         }
 
-        private void investigationToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _ = new frmInvestigationReport(null, null).ShowDialog();
-        }
-
-
+        
         #region Server Pinging
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -852,7 +846,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void toolStripMaterials_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
+           var frmMaterials = new frmMaterials();
+           frmMaterials.Show();
         }
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1003,7 +998,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-            _ = new frmInvestigationReport(jobOrderId,jobOrderNumber).ShowDialog();
+            _ = new frmInvestigationReport(jobOrderId, jobOrderNumber).ShowDialog();
 
         }
 
@@ -1028,7 +1023,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)
         {
-            
+
         }
 
         private void investigationDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1062,33 +1057,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void printFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-            string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-
-            _ = new frmInvestigationReport(selectedJobOrderId, jobOrderNumber).ShowDialog();
-        }
-
-        private void timer_investigator_Tick(object sender, EventArgs e)
-        {
-            try
-            {
-                //var forRecommendationDict = Factory.InvestigationRepository().GetForRecommendation();
-
-                //if (!Properties.Settings.Default.SkipMyMessage && forRecommendationDict != null && forRecommendationDict.Count > 0 && Helper.notifViewed == false)
-                //{
-                //    timer_investigator.Stop();
-
-                //    using (var investigationNotif = new frmInvestigationNotif(forRecommendationDict))
-                //    {
-                //        investigationNotif.ShowDialog();
-                //    }
-
-                //    timer_investigator.Start();
-                //}
-            }
-            catch (Exception)
-            {
-            }
 
         }
 
@@ -1105,7 +1073,12 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void summaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOStatusSummary().ShowDialog();
+            _ = new frmJOStatusSummary().ShowDialog();  
+        }
+
+        private void toolStripMaterials_Click_1(object sender, EventArgs e)
+        {
+            _ = new frmMaterials().ShowDialog();
         }
     }
 }

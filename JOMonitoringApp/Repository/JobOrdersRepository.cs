@@ -119,10 +119,11 @@ namespace JOMonitoringApp
                 new object[] { "@particular", DbType.String, $"%{particular}%"},
             };
 
+            string rowFilterValue = rowFilter == 0 ? string.Empty : $"LIMIT @row_filter";
             string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = {statusId}";
-            string particularFilter = particular == "All" ? string.Empty : $"AND particular LIKE @particular";
+            string particularFilter = particular == "All Particulars" ? string.Empty : $"AND particular LIKE @particular";
 
-            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC LIMIT @row_filter ";
+            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} ORDER BY id DESC {rowFilterValue}";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -130,7 +131,7 @@ namespace JOMonitoringApp
         public DataTable GetViewRecordsBySearch(DateTime dateFrom, DateTime dateTo, string particulars, string status, string orderBy)
         {
 
-            if (particulars == "All") particulars = "%%";
+            if (particulars == "All Particulars") particulars = "%%";
 
             var parameters = new object[][]
             {

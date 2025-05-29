@@ -36,7 +36,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridView.Columns["particular"].HeaderText = "PARTICULAR";
             dataGridView.Columns["particular"].MinimumWidth = 120;
-            
+
 
             dataGridView.Columns["pending"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["pending"].HeaderText = "PENDING";
@@ -73,7 +73,7 @@ namespace JOMonitoringApp
 
             dataGridView.Columns["job_order_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["job_order_no"].HeaderText = "JO Number";
-            dataGridView.Columns["job_order_no"].MinimumWidth =10;
+            dataGridView.Columns["job_order_no"].MinimumWidth = 10;
 
             dataGridView.Columns["particular"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.Columns["particular"].HeaderText = "Particular";
@@ -209,12 +209,11 @@ namespace JOMonitoringApp
 
         internal static void ParticularsCombobox(ComboBox cmbx)
         {
-
             var dataTable = Factory.ParticularsRepository().GetRecords();
             DataRow newRow = dataTable.NewRow();
 
             newRow["id"] = "0";
-            newRow["particular"] = "All"; 
+            newRow["particular"] = "All Particulars";
             dataTable.Rows.InsertAt(newRow, 0);
 
             cmbx.DataSource = dataTable;
@@ -256,14 +255,22 @@ namespace JOMonitoringApp
 
             dataTable.Columns.AddRange(columns);
 
-            int[] values = { 10, 50, 100, 250, 500, 1000, 10000 };
+            int[] values = { 0, 10, 50, 100, 250, 500, 1000 };
 
             foreach (int value in values)
             {
                 var newRow = dataTable.NewRow();
 
-                newRow["id"] = value;
-                newRow["description"] = $" {value} records";
+                if (value == 0)
+                {
+                    newRow["id"] = 0;
+                    newRow["description"] = $"All Records";
+                }
+                else
+                {
+                    newRow["id"] = value;
+                    newRow["description"] = $"{value} records";
+                }
                 dataTable.Rows.Add(newRow);
             }
 
@@ -290,7 +297,7 @@ namespace JOMonitoringApp
             dataTable.Columns.Add("status", typeof(string));
 
             // Insert "All" first
-            dataTable.Rows.Add(6, "All");
+            dataTable.Rows.Add(6, "All Status");
 
             // Then the rest
             dataTable.Rows.Add(0, "For Investigation");
@@ -320,14 +327,16 @@ namespace JOMonitoringApp
 
             dgInvestigations.Columns["id"].Visible = false;
             dgInvestigations.Columns["job_orders_id"].Visible = false;
+            dgInvestigations.Columns["customer_address"].Visible = false;
+
             dgInvestigations.Columns["approval_status"].HeaderText = "INV. STATUS";
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
             dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. NO.";
             dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
             dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER";
             dgInvestigations.Columns["customer_address"].HeaderText = "ADDRESS";
-            dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE OF INVESTIGATION";
             dgInvestigations.Columns["created_at"].HeaderText = "DATED COMPLAINED";
+            dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE INVESTIGATED";
 
             dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;

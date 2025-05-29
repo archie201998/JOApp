@@ -1,10 +1,6 @@
 ﻿using AccountingSystem;
-using Google.Apis.Logging;
-using Mysqlx.Crud;
-using MySqlX.XDevAPI.Common;
 using System;
 using System.Drawing;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -12,16 +8,7 @@ namespace JOMonitoringApp.Views.Investigation
 {
     public partial class frmInvestigation : Form
     {
-        private readonly string jobOrderNumber;
-        private readonly int jobOderId;
-        private readonly string accountName;
-        private readonly string accountNumber;
-        private readonly string customerAddress;
-        private readonly string particular;
-        internal ucInvestigationForm ucInvestigationForm;
-        private readonly bool create;
-        internal int _selectedInvestigationID;
-
+        internal readonly ucInvestigationForm ucInvestigationForm;
 
         public frmInvestigation()
         {
@@ -29,12 +16,6 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.LoadFormIcon(this);
 
             ucInvestigationForm = ucInvestigationForm1;
-
-            if (_selectedInvestigationID != 0)
-            {
-                ucInvestigationForm.selectedInvestigationID = _selectedInvestigationID;
-                ucInvestigationForm.ViewInvestigationDetails();
-            }
         }
 
         internal void ResetForm()
@@ -53,7 +34,6 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.txtMeterSize.Clear();
             ucInvestigationForm.txtJONumber.Clear();
             ucInvestigationForm.txtCalibrationResult.Clear();
-            ucInvestigationForm.txtServiceLineDefects.Clear();
             ucInvestigationForm.txtAlternativeSource.Clear();
 
             // Reset numeric fields
@@ -73,14 +53,12 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.cbGovernment.Checked = false;
 
             // Reset images only if different
-            if (ucInvestigationForm.pictureBox1.Image != Properties.Resources.icons8_image_96)
-                ucInvestigationForm.pictureBox1.Image = Properties.Resources.icons8_image_96;
-            if (ucInvestigationForm.pictureBox2.Image != Properties.Resources.icons8_image_96)
-                ucInvestigationForm.pictureBox2.Image = Properties.Resources.icons8_image_96;
+            ucInvestigationForm.ResetPictureBox(ucInvestigationForm.pictureBox1);
+            ucInvestigationForm.ResetPictureBox(ucInvestigationForm.pictureBox2);
 
             // Other resets
-            ucInvestigationForm.lblAdjustedAmount.Text = "Result";
-            ucInvestigationForm.btnCompute.Text = "Make Computations";
+            ucInvestigationForm.lblAdjustedWaterBill.Text = "Result";
+            ucInvestigationForm.btnAdjustmentForm.Text = "Adjustment Form";
             ucInvestigationForm.isUpdate = false;
             ucInvestigationForm.EnableControls(false);
 
@@ -88,6 +66,8 @@ namespace JOMonitoringApp.Views.Investigation
             btnSave.Text = "Save [Ctrl + S]";
             btnSave.BackColor = Color.DodgerBlue;
             btnSave.ForeColor = Color.White;
+
+
 
             ucInvestigationForm.ResumeLayout();
             this.ResumeLayout();
@@ -99,7 +79,7 @@ namespace JOMonitoringApp.Views.Investigation
             ucInvestigationForm.DataGridDoubleClicked += MyUserControl_DataGridClicked;
         }
 
-     
+
 
         private void MyUserControl_DataGridClicked(object sender, EventArgs e)
         {
@@ -130,20 +110,25 @@ namespace JOMonitoringApp.Views.Investigation
 
         private async void SaveData()
         {
+            btnSave.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
+
+            btnSave.Enabled = false;
+            Cursor.Current = Cursors.WaitCursor;
+
+            bool success = await Task.Run(() => ucInvestigationForm.SaveData());
+
+            if (success)
+            {
+                Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
+
+                await Task.Run(() => ucInvestigationForm.GetInvestigationRecords());
+                ResetForm();
+            }
+
             try
             {
-                btnSave.Enabled = false;
-                Cursor.Current = Cursors.WaitCursor;
 
-                bool success = await Task.Run(() => ucInvestigationForm.SaveData());
-
-                if (success)
-                {
-                    Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-
-                    await Task.Run(() => ucInvestigationForm.GetInvestigationRecords());
-                    ResetForm();
-                }
             }
             catch (Exception ex)
             {
@@ -170,19 +155,14 @@ namespace JOMonitoringApp.Views.Investigation
                 ResetForm();
             }
         }
-        
+
         private void frmInvestigation_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.S)
             {
                 SaveData();
             }
-
         }
 
-        private void ucInvestigationForm1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

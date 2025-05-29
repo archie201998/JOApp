@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using Google.Protobuf;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
@@ -21,7 +23,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal int _jobOrderId;
         internal bool isUpdate;
-        internal int selectedInvestigationID;
+        internal int investigationId;
 
         private Dictionary<string, string> dictInvestigation;
         string imageFilePath = string.Empty;
@@ -46,9 +48,11 @@ namespace JOMonitoringApp.Views.Investigation
                 cmbxStatus.SelectedValue = 6;
                 EnableControls(false);
                 GetInvestigationRecords();
+
+                dtpDate.Enabled = false;
             }
         }
-      
+
         private void ValidateFormPermission()
         {
             bool adminMode = Helper.temporaryAdminMode;
@@ -57,7 +61,7 @@ namespace JOMonitoringApp.Views.Investigation
             gbConditionOfService.Enabled = adminMode || Helper.UserHasPermission("CONDITION_OF_SERVICE_FACILITIES");
             txtInvestigatorComments.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_COMMENTS");
             txtRecommendations.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_RECOMMENDATION");
-            btnCompute.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_ADJUSTMENT_COMPUTATION");
+            btnAdjustmentForm.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_ADJUSTMENT_COMPUTATION");
             btnAttachedImage.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_ATTACHED_IMAGE");
             pictureBox1.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
             pictureBox2.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_VIEW_ATTACHED_IMAGE");
@@ -72,12 +76,11 @@ namespace JOMonitoringApp.Views.Investigation
             if (investigationStatusID == 4)
                 jobOrderStatus = 4;
 
-            if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5) 
+            if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5)
                 jobOrderStatus = 2;
 
             Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, jobOrderStatus);
         }
-
 
         internal bool SaveData()
         {
@@ -111,7 +114,7 @@ namespace JOMonitoringApp.Views.Investigation
         internal int GetInvestigationStatus()
         {
             // mag true if naay sulod.
-            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim()); 
+            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
             bool hasRecommendation = !string.IsNullOrEmpty(txtRecommendations.Text.Trim());
             bool hasApproval = !string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
 
@@ -149,7 +152,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var model = new InvestigationModel
             {
-                Id = selectedInvestigationID,
+                Id = investigationId,
                 JobOrderId = _jobOrderId,
                 JobOrderNo = txtJONumber.Text.Trim(),
                 CustomerName = txtAccountName.Text.Trim(),
@@ -157,7 +160,7 @@ namespace JOMonitoringApp.Views.Investigation
                 CustomerAccountNumber = txtAccountNumber.Text.Trim(),
                 NatureOfComplaint = txtComplaint.Text.Trim(),
                 InvestigatorComments = txtInvestigatorComments.Text.Trim(),
-                DateOfInvestigation = dtpDate.Value,
+                DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDate.Value : null,
                 ApprovalMessage = txtApprovalMessage.Text.Trim(),
                 Recommendations = txtRecommendations.Text.Trim(),
                 imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
@@ -170,9 +173,6 @@ namespace JOMonitoringApp.Views.Investigation
                 ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
                 ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
                 CalibrationResult = txtCalibrationResult.Text,
-                OverRegistration = txtServiceLineDefects.Text,
-                UnderRegistration = txtServiceLineDefects.Text,
-                LeakingAfterTheMeter = txtServiceLineDefects.Text,
                 ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
                 HouseHelper = Convert.ToByte(nudHouseHelper.Value),
                 Relatives = Convert.ToByte(nudRelatives.Value),
@@ -185,39 +185,10 @@ namespace JOMonitoringApp.Views.Investigation
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
                 UpdatedBy = Helper.UserId,
-                
+
             };
 
             return model;
-        }
-
-        private void btnAttachedImage_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "C:\\";
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-                openFileDialog.Multiselect = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    int selectedCount = openFileDialog.FileNames.Length;
-
-                    if (selectedCount > 2)
-                    {
-                        Helper.MessageBoxSuccess("Please select only 1 or 2 images.");
-                        return;
-                    }
-
-                    imageFilePath = openFileDialog.FileNames[0];
-                    secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
-
-                    pictureBox1.Image = Image.FromFile(imageFilePath);
-                    pictureBox2.Image = secondaryImageFilePath != null ? Image.FromFile(secondaryImageFilePath) : null;
-                }
-            }
         }
 
         private void UploadImage()
@@ -248,13 +219,9 @@ namespace JOMonitoringApp.Views.Investigation
             catch (Exception)
             {
             }
-            
-        }
-
-        private void groupBox3_Enter(object sender, EventArgs e)
-        {
 
         }
+
 
         internal void GetInvestigationRecords()
         {
@@ -284,7 +251,7 @@ namespace JOMonitoringApp.Views.Investigation
             gbAccountDetails.Enabled = enable;
             gbComments.Enabled = enable;
             gbConditionOfService.Enabled = enable;
-            gbImage.Enabled = enable;
+            //gbImage.Enabled = enable;
             gbApproval.Enabled = enable;
             gbComputation.Enabled = enable;
             dgInvestigations.Enabled = !enable;
@@ -292,6 +259,10 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxStatus.Enabled = !enable;
             txtSearch.Enabled = !enable;
             btnPrint.Enabled = enable;
+
+
+            btnAdjustmentForm.Visible = enable;
+            btnAttachedImage.Visible = enable;
         }
 
         private void dgInvestigations_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -307,8 +278,8 @@ namespace JOMonitoringApp.Views.Investigation
                 Cursor.Current = Cursors.WaitCursor;
                 this.SuspendLayout();
 
-                selectedInvestigationID = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
+                investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(investigationId);
 
                 if (dictInvestigation.Count == 0) return;
 
@@ -316,11 +287,10 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal readingBeforeTest = string.IsNullOrEmpty(dictInvestigation["reading_before_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_before_test"]);
                 decimal readingAfterTest = string.IsNullOrEmpty(dictInvestigation["reading_after_test"]) ? 0 : Convert.ToDecimal(dictInvestigation["reading_after_test"]);
                 string calibrationResult = dictInvestigation["calibration_result"];
-                string overRegistration = dictInvestigation["over_registration"];
-                string underRegistration = dictInvestigation["under_registration"];
-                string leakingAfterTheMeter = dictInvestigation["leaking_after_the_meter"];
+
                 int jobOrdersId = Convert.ToInt32(dictInvestigation["job_orders_id"]);
-                string customerAddress = dictInvestigation["customer_address"];
+
+
                 byte immediateMembersOfFam = Convert.ToByte(dictInvestigation["immediate_members_of_fam"]);
                 byte houseHelper = Convert.ToByte(dictInvestigation["house_helper"]);
                 byte relatives = Convert.ToByte(dictInvestigation["relatives"]);
@@ -329,33 +299,42 @@ namespace JOMonitoringApp.Views.Investigation
                 byte noServiceOutlets = Convert.ToByte(dictInvestigation["no_service_outlets"]);
                 byte hhPurpose = Convert.ToByte(dictInvestigation["hh_purpose"]);
                 byte promoteTradeBusiness = Convert.ToByte(dictInvestigation["promote_trade_business"]);
-                byte sellToNeighbours = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
+                byte sellToNeighbor = Convert.ToByte(dictInvestigation["sell_to_neighbours"]);
+                byte government = Convert.ToByte(dictInvestigation["government"]);
                 string alternativeSource = dictInvestigation["alternative_source"];
                 string approvalMessage = dictInvestigation["approval_message"];
                 string natureOfComplaint = dictInvestigation["nature_of_complaint"];
-                string adjustmentParticular = dictInvestigation["adjustment_particular"];
-                bool hasAdjustment = dictInvestigation["has_adjustment"].ToString() == "0" ? false : true;
 
+                bool forAdjustment = dictInvestigation["has_adjustment"].ToString() == "0" ? false : true;
+                string accountName = dictInvestigation["customer_name"];
+                string accountNumber = dictInvestigation["account_number"];
+                string jobOrderNumber = dictInvestigation["job_order_no"];
+                string address = dictInvestigation["customer_address"];
+                string investigatorComments = dictInvestigation["investigator_comments"];
+                string recommendations = dictInvestigation["recommendations"];
 
                 cbHHPurpose.Checked = Convert.ToBoolean(hhPurpose);
                 cbPromoteTrade.Checked = Convert.ToBoolean(promoteTradeBusiness);
-                cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbours);
+                cbSellToNeighbours.Checked = Convert.ToBoolean(sellToNeighbor);
+                cbGovernment.Checked = Convert.ToBoolean(government);
                 txtAlternativeSource.Text = alternativeSource;
                 nudNoOfHoursServed.Value = noOfHoursServed;
                 nudNoServiceOfOutlets.Value = noServiceOutlets;
-                txtAccountName.Text = dictInvestigation["customer_name"];
-                txtAccountNumber.Text = dictInvestigation["account_number"];
-                txtJONumber.Text = dictInvestigation["job_order_no"];
-                txtAddress.Text = dictInvestigation["customer_address"];
-                _jobOrderId = jobOrdersId;
-                _jobOrderNumber = txtJONumber.Text;
-                hasAdjustment = string.IsNullOrEmpty(dictInvestigation["adjustment_amount"]) ? false : true;
+                txtAccountName.Text = accountName;
+                txtAccountNumber.Text = accountNumber;
+                cbxDateOfInvestigation.Checked = !string.IsNullOrEmpty(dictInvestigation["date_of_investigation"]);
+                dtpDate.Value = cbxDateOfInvestigation.Checked ? Convert.ToDateTime(dictInvestigation["date_of_investigation"]) : DateTime.Now;
+                txtJONumber.Text = jobOrderNumber;
+                txtAddress.Text = address;
+                //potential bug cause
+                hasAdjustment = string.IsNullOrEmpty(dictInvestigation["water_bill_adjustment"]) ? false : true;
                 txtComplaint.Text = natureOfComplaint;
-                txtInvestigatorComments.Text = dictInvestigation["investigator_comments"];
-                txtRecommendations.Text = dictInvestigation["recommendations"];
+                txtInvestigatorComments.Text = investigatorComments;
+                txtRecommendations.Text = recommendations;
+                _jobOrderId = jobOrdersId;
                 _hasAdjustment = hasAdjustment;
-                Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
 
+                Dictionary<string, string> meterDict = Factory.CustomersRepository().GetCustomerMeterDetails(txtAccountNumber.Text);
 
                 if (meterDict.Count != 0)
                 {
@@ -367,7 +346,6 @@ namespace JOMonitoringApp.Views.Investigation
                 nudReadingBeforeTest.Value = readingBeforeTest;
                 nudReadingAfterTest.Value = readingAfterTest;
                 txtCalibrationResult.Text = calibrationResult;
-                txtServiceLineDefects.Text = leakingAfterTheMeter;
                 nudImmediateFamily.Value = immediateMembersOfFam;
                 nudHouseHelper.Value = houseHelper;
                 nudRelatives.Value = relatives;
@@ -376,7 +354,7 @@ namespace JOMonitoringApp.Views.Investigation
                 cbxInvestigationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "3";
                 cbxRecommendationDisapproved.Checked = dictInvestigation["is_approved"].ToString() == "5";
                 _isForReinvestigation = dictInvestigation["is_approved"].ToString() == "5";
-                cbxForAdjustment.Checked = hasAdjustment;
+                cbxForAdjustment.Checked = forAdjustment;
 
                 //loading of picture box
                 if (dictInvestigation.ContainsKey("image_path"))
@@ -384,11 +362,14 @@ namespace JOMonitoringApp.Views.Investigation
                     imageFilePath = dictInvestigation["image_path"]?.ToString();
                     if (!string.IsNullOrEmpty(imageFilePath) && File.Exists(imageFilePath))
                     {
+                        pictureBox1.Visible = true;
+                        btnClearImage1.Visible = true;
                         pictureBox1.Image = Image.FromFile(imageFilePath);
                     }
                     else
                     {
-                        pictureBox1.Image = Properties.Resources.icons8_image_96;
+                        pictureBox1.Visible = false;
+                        btnClearImage1.Visible = false;
                     }
 
                 }
@@ -398,11 +379,14 @@ namespace JOMonitoringApp.Views.Investigation
                     secondaryImageFilePath = dictInvestigation["secondary_image_path"]?.ToString();
                     if (!string.IsNullOrEmpty(secondaryImageFilePath) && File.Exists(secondaryImageFilePath))
                     {
+                        pictureBox2.Visible = true;
+                        btnClearImage2.Visible = true;
                         pictureBox2.Image = Image.FromFile(secondaryImageFilePath);
                     }
                     else
                     {
-                        pictureBox2.Image = Properties.Resources.icons8_image_96;
+                        pictureBox2.Visible = false;
+                        btnClearImage2.Visible = false;
                     }
                 }
 
@@ -411,9 +395,9 @@ namespace JOMonitoringApp.Views.Investigation
             }
             catch (Exception)
             {
-                
+
             }
-          
+
         }
 
         #region Updating of Records for investigator
@@ -427,8 +411,8 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 await Task.Run(() =>
                 {
-                    ViewInvestigationDetails();
                     UpdateSettings();
+                    ViewInvestigationDetails();
                 });
 
                 ValidateFormPermission();
@@ -445,12 +429,15 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
         #endregion
+
         private void UpdateSettings()
         {
             isUpdate = true;
             DataGridDoubleClicked?.Invoke(this, EventArgs.Empty);
         }
 
+
+        //viewing of image
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             _ = new frmInvestigationImageViewer(imageFilePath).ShowDialog();
@@ -461,37 +448,35 @@ namespace JOMonitoringApp.Views.Investigation
             _ = new frmInvestigationImageViewer(secondaryImageFilePath).ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var model = new InvestigationModel
-            {
-                Id = selectedInvestigationID,
-            };
-
-            var frmAdjustment = new frmInvestigationAdjustment(this, txtAccountNumber.Text).ShowDialog();
-            ViewAdjustment();
-        }
-
         internal void ViewAdjustment()
         {
-            var adjustments = Factory.InvestigationRepository().GetViewRecordById(selectedInvestigationID);
+            var adjustments = Factory.InvestigationRepository().GetViewRecordById(investigationId);
 
             if (adjustments.Count != 0)
             {
-                decimal amountDue = !string.IsNullOrWhiteSpace(adjustments["amount_due"]?.ToString()) ? Convert.ToDecimal(adjustments["amount_due"]) : 0;
-                decimal penalty = !string.IsNullOrWhiteSpace(adjustments["penalty"]?.ToString()) ? Convert.ToDecimal(adjustments["penalty"]) : 0;
-                decimal extensionFee = !string.IsNullOrWhiteSpace(adjustments["extension_fee"]?.ToString()) ? Convert.ToDecimal(adjustments["extension_fee"]) : 0;
-                decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["adjustment_amount"]?.ToString()) ? Convert.ToDecimal(adjustments["adjustment_amount"]) : 0;
-                decimal adjustedAmount = (amountDue + penalty + extensionFee) - adjustment;
-                string adjustedConsumption = adjustments["actual_consumption"];
+                decimal waterBill = Convert.ToDecimal(adjustments["water_bill"]);
+                decimal waterBillAdjustment = Convert.ToDecimal(adjustments["water_bill_adjustment"]);
+                decimal penalty = Convert.ToDecimal(adjustments["penalty"]);
+                decimal extensionFee = Convert.ToDecimal(adjustments["extension_fee"]);
+                decimal adjustedAmount = waterBill - waterBillAdjustment;
+                decimal adjustedWaterBill = Convert.ToDecimal(adjustments["adjusted_water_bill"]);
 
-                lblAmountDue.Text = amountDue.ToString("N2");
+                lblWaterBill.Text = waterBill.ToString("N2");
+                lblWaterBIllAdjustment.Text = waterBillAdjustment.ToString("N2");
                 lblExtensionFee.Text = extensionFee.ToString("N2");
                 lblPenalty.Text = penalty.ToString("N2");
+                lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
+                lblAdjustedWaterBill.Text = adjustedWaterBill.ToString("N2");
+            }
 
-                lblAdjustedAmount.Text = adjustedAmount.ToString("N2"); 
-                lblAdjustment.Text = adjustment.ToString("N2");
-
+            else
+            {
+                lblWaterBill.Text = "0.00";
+                lblWaterBIllAdjustment.Text = "0.00";
+                lblExtensionFee.Text = "0.00";
+                lblPenalty.Text = "0.00";
+                lblAdjustedAmount.Text = "0.00";
+                lblAdjustedWaterBill.Text = "0.00";
             }
         }
 
@@ -511,7 +496,7 @@ namespace JOMonitoringApp.Views.Investigation
             else
                 result = "Failed Over";
 
-            txtCalibrationResult.Text = result; 
+            txtCalibrationResult.Text = result;
         }
 
         private void nudReadingAfterTest_ValueChanged(object sender, EventArgs e)
@@ -552,27 +537,13 @@ namespace JOMonitoringApp.Views.Investigation
                     case "FOR REINVESTIGATION":
                         e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR REINVESTIGATION");    // disapproved color :contentReference[oaicite:4]{index=4}
                         e.CellStyle.ForeColor = Color.White;
-                        break;  
+                        break;
                     default:
                         e.CellStyle.BackColor = Color.LightGray;
                         e.CellStyle.ForeColor = Color.Black;
                         break;
                 }
             }
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgInvestigations_SelectionChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtApprovalMessage_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
@@ -601,9 +572,100 @@ namespace JOMonitoringApp.Views.Investigation
             _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
         }
 
-        private void panel4_Paint(object sender, PaintEventArgs e)
+        private void cbxDateOfInvestigation_CheckedChanged(object sender, EventArgs e)
         {
+            dtpDate.Enabled = cbxDateOfInvestigation.Checked;
+        }
 
+    
+        private void gbAccountDetails_Enter(object sender, EventArgs e)
+        {
+            dtpDate.Enabled = cbxDateOfInvestigation.Checked;
+        }
+
+  
+        private void btnClearImage1_Click(object sender, EventArgs e)
+        {
+            ResetPictureBox(pictureBox1);
+        }
+
+        private void btnClearImage2_Click(object sender, EventArgs e)
+        {
+            ResetPictureBox(pictureBox2);
+        }
+
+
+        internal void ResetPictureBox(PictureBox picBox)
+        {
+            picBox.Image = Properties.Resources.icons8_image_96;
+            picBox.Visible = false;
+            picBox.Visible = false;
+
+
+            if (picBox == pictureBox1)
+            {
+                imageFilePath = string.Empty;
+                btnClearImage1.Visible = false;
+            }
+            else
+            {
+                secondaryImageFilePath = string.Empty;
+                btnClearImage2.Visible = false;
+            }
+        }
+
+        private void label36_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    int selectedCount = openFileDialog.FileNames.Length;
+
+                    if (selectedCount > 2)
+                    {
+                        Helper.MessageBoxSuccess("Please select only 1 or 2 images.");
+                        return;
+                    }
+
+                    imageFilePath = openFileDialog.FileNames[0];
+                    secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
+
+                    pictureBox1.Image = Image.FromFile(imageFilePath);
+                    pictureBox2.Image = secondaryImageFilePath != null ? Image.FromFile(secondaryImageFilePath) : null;
+
+                    if (selectedCount == 2)
+                    {
+                        pictureBox1.Visible = true;
+                        pictureBox2.Visible = true;
+                        btnClearImage1.Visible = true;
+                        btnClearImage2.Visible = true;
+                    }
+                    else
+                    {
+                        pictureBox1.Visible = true;
+                        btnClearImage1.Visible = true;
+                    }
+
+
+                }
+            }
+        }
+
+        private void btnAdjustmentForm_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationAdjustment(this).ShowDialog();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            InvestigationForm();
         }
     }
 }

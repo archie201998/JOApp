@@ -1,6 +1,6 @@
-﻿namespace JOMonitoringApp.Views.MainForm
+﻿namespace JOMonitoringApp.Views.Materials
 {
-    partial class frmMainDashboard
+    partial class frmJobOrderMaterials
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // frmMainDashboard
+            // frmJobOrderMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1106, 751);
-            this.Name = "frmMainDashboard";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main Form";
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Name = "frmJobOrderMaterials";
+            this.Text = "Job Order Monitoring App | Job Order Materials";
             this.ResumeLayout(false);
 
         }

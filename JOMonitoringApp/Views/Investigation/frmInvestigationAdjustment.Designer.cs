@@ -30,7 +30,6 @@
         {
             this.cmbxParticular = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.btnAutoCompute = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtAccountType = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -43,17 +42,17 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.txtAdjustedDue = new System.Windows.Forms.TextBox();
+            this.txtWaterBillAdjustment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtAdjustment = new System.Windows.Forms.TextBox();
+            this.txtWaterBillAdjustedAmount = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtAmountDueAfterAdjustment = new System.Windows.Forms.TextBox();
+            this.txtAdjustedWaterBill = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtAmountDue = new System.Windows.Forms.TextBox();
+            this.txtWaterBill = new System.Windows.Forms.TextBox();
             this.txtExtensionFee = new System.Windows.Forms.TextBox();
             this.txtPenalty = new System.Windows.Forms.TextBox();
             this.particularFactors = new System.Windows.Forms.CheckedListBox();
@@ -97,22 +96,6 @@
             this.label24.TabIndex = 9;
             this.label24.Text = "PARTICULAR : ";
             // 
-            // btnAutoCompute
-            // 
-            this.btnAutoCompute.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAutoCompute.BackColor = System.Drawing.Color.OrangeRed;
-            this.btnAutoCompute.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnAutoCompute.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAutoCompute.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAutoCompute.ForeColor = System.Drawing.Color.White;
-            this.btnAutoCompute.Location = new System.Drawing.Point(507, 171);
-            this.btnAutoCompute.Name = "btnAutoCompute";
-            this.btnAutoCompute.Size = new System.Drawing.Size(102, 23);
-            this.btnAutoCompute.TabIndex = 20;
-            this.btnAutoCompute.Text = "Load Values";
-            this.btnAutoCompute.UseVisualStyleBackColor = false;
-            this.btnAutoCompute.Click += new System.EventHandler(this.btnAutoCompute_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtAccountType);
@@ -127,7 +110,6 @@
             this.groupBox3.Size = new System.Drawing.Size(616, 82);
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // txtAccountType
             // 
@@ -150,7 +132,6 @@
             this.label21.Size = new System.Drawing.Size(106, 15);
             this.label21.TabIndex = 15;
             this.label21.Text = "ACCOUNT TYPE : ";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // txtAccountName
             // 
@@ -231,7 +212,7 @@
             this.btnCancel.Location = new System.Drawing.Point(109, 18);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 32);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel ";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -246,24 +227,24 @@
             this.btnSave.Location = new System.Drawing.Point(12, 18);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 32);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.txtAdjustedDue);
+            this.groupBox5.Controls.Add(this.txtWaterBillAdjustment);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.label11);
-            this.groupBox5.Controls.Add(this.txtAdjustment);
+            this.groupBox5.Controls.Add(this.txtWaterBillAdjustedAmount);
             this.groupBox5.Controls.Add(this.label23);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.Controls.Add(this.label22);
             this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Controls.Add(this.txtAmountDueAfterAdjustment);
+            this.groupBox5.Controls.Add(this.txtAdjustedWaterBill);
             this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Controls.Add(this.txtAmountDue);
+            this.groupBox5.Controls.Add(this.txtWaterBill);
             this.groupBox5.Controls.Add(this.txtExtensionFee);
             this.groupBox5.Controls.Add(this.txtPenalty);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -273,22 +254,22 @@
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             // 
-            // txtAdjustedDue
+            // txtWaterBillAdjustment
             // 
-            this.txtAdjustedDue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAdjustedDue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAdjustedDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdjustedDue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdjustedDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtAdjustedDue.ForeColor = System.Drawing.Color.DarkOrange;
-            this.txtAdjustedDue.Location = new System.Drawing.Point(303, 49);
-            this.txtAdjustedDue.Name = "txtAdjustedDue";
-            this.txtAdjustedDue.Size = new System.Drawing.Size(307, 21);
-            this.txtAdjustedDue.TabIndex = 32;
-            this.txtAdjustedDue.Text = "0";
-            this.txtAdjustedDue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAdjustedDue.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
-            this.txtAdjustedDue.Leave += new System.EventHandler(this.txtAdjustedDue_Leave);
+            this.txtWaterBillAdjustment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtWaterBillAdjustment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtWaterBillAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWaterBillAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtWaterBillAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.txtWaterBillAdjustment.ForeColor = System.Drawing.Color.DarkOrange;
+            this.txtWaterBillAdjustment.Location = new System.Drawing.Point(303, 49);
+            this.txtWaterBillAdjustment.Name = "txtWaterBillAdjustment";
+            this.txtWaterBillAdjustment.Size = new System.Drawing.Size(307, 21);
+            this.txtWaterBillAdjustment.TabIndex = 1;
+            this.txtWaterBillAdjustment.Text = "0";
+            this.txtWaterBillAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWaterBillAdjustment.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
+            this.txtWaterBillAdjustment.Leave += new System.EventHandler(this.txtAdjustedDue_Leave);
             // 
             // label1
             // 
@@ -296,9 +277,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(20, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 15);
+            this.label1.Size = new System.Drawing.Size(164, 15);
             this.label1.TabIndex = 31;
-            this.label1.Text = "ADJUSTED DUE : ";
+            this.label1.Text = "WATER BILL ADJUSTMENT ";
             // 
             // label11
             // 
@@ -306,26 +287,26 @@
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.Location = new System.Drawing.Point(20, 106);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(69, 15);
+            this.label11.Size = new System.Drawing.Size(63, 15);
             this.label11.TabIndex = 25;
-            this.label11.Text = "PENALTY : ";
+            this.label11.Text = "PENALTY ";
             // 
-            // txtAdjustment
+            // txtWaterBillAdjustedAmount
             // 
-            this.txtAdjustment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAdjustment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.txtAdjustment.ForeColor = System.Drawing.Color.Red;
-            this.txtAdjustment.Location = new System.Drawing.Point(303, 130);
-            this.txtAdjustment.Name = "txtAdjustment";
-            this.txtAdjustment.Size = new System.Drawing.Size(307, 21);
-            this.txtAdjustment.TabIndex = 30;
-            this.txtAdjustment.Text = "0";
-            this.txtAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAdjustment.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
-            this.txtAdjustment.Leave += new System.EventHandler(this.txtAdjustment_Leave);
+            this.txtWaterBillAdjustedAmount.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtWaterBillAdjustedAmount.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtWaterBillAdjustedAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWaterBillAdjustedAmount.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtWaterBillAdjustedAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.txtWaterBillAdjustedAmount.ForeColor = System.Drawing.Color.Red;
+            this.txtWaterBillAdjustedAmount.Location = new System.Drawing.Point(303, 130);
+            this.txtWaterBillAdjustedAmount.Name = "txtWaterBillAdjustedAmount";
+            this.txtWaterBillAdjustedAmount.Size = new System.Drawing.Size(307, 21);
+            this.txtWaterBillAdjustedAmount.TabIndex = 4;
+            this.txtWaterBillAdjustedAmount.Text = "0";
+            this.txtWaterBillAdjustedAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWaterBillAdjustedAmount.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
+            this.txtWaterBillAdjustedAmount.Leave += new System.EventHandler(this.txtAdjustment_Leave);
             // 
             // label23
             // 
@@ -333,9 +314,9 @@
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.Location = new System.Drawing.Point(20, 132);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(152, 15);
+            this.label23.Size = new System.Drawing.Size(125, 15);
             this.label23.TabIndex = 29;
-            this.label23.Text = "ADJUSTMENT AMOUNT : ";
+            this.label23.Text = "ADJUSTED AMOUNT";
             // 
             // label12
             // 
@@ -354,9 +335,9 @@
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.Location = new System.Drawing.Point(20, 184);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(134, 15);
+            this.label22.Size = new System.Drawing.Size(143, 15);
             this.label22.TabIndex = 26;
-            this.label22.Text = "ADJUSTED AMOUNT : ";
+            this.label22.Text = "ADJUSTED WATER BILL";
             // 
             // label10
             // 
@@ -364,24 +345,24 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(20, 80);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(111, 15);
+            this.label10.Size = new System.Drawing.Size(105, 15);
             this.label10.TabIndex = 24;
-            this.label10.Text = "EXTENSION FEE : ";
+            this.label10.Text = "EXTENSION FEE ";
             // 
-            // txtAmountDueAfterAdjustment
+            // txtAdjustedWaterBill
             // 
-            this.txtAmountDueAfterAdjustment.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAmountDueAfterAdjustment.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAmountDueAfterAdjustment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAmountDueAfterAdjustment.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAmountDueAfterAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountDueAfterAdjustment.ForeColor = System.Drawing.Color.ForestGreen;
-            this.txtAmountDueAfterAdjustment.Location = new System.Drawing.Point(303, 178);
-            this.txtAmountDueAfterAdjustment.Name = "txtAmountDueAfterAdjustment";
-            this.txtAmountDueAfterAdjustment.Size = new System.Drawing.Size(307, 38);
-            this.txtAmountDueAfterAdjustment.TabIndex = 27;
-            this.txtAmountDueAfterAdjustment.Text = "0";
-            this.txtAmountDueAfterAdjustment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAdjustedWaterBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAdjustedWaterBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAdjustedWaterBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAdjustedWaterBill.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtAdjustedWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAdjustedWaterBill.ForeColor = System.Drawing.Color.ForestGreen;
+            this.txtAdjustedWaterBill.Location = new System.Drawing.Point(303, 178);
+            this.txtAdjustedWaterBill.Name = "txtAdjustedWaterBill";
+            this.txtAdjustedWaterBill.Size = new System.Drawing.Size(307, 38);
+            this.txtAdjustedWaterBill.TabIndex = 5;
+            this.txtAdjustedWaterBill.Text = "0";
+            this.txtAdjustedWaterBill.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -389,26 +370,27 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(20, 28);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 15);
+            this.label9.Size = new System.Drawing.Size(77, 15);
             this.label9.TabIndex = 22;
-            this.label9.Text = "AMOUNT DUE : ";
+            this.label9.Text = "WATER BILL";
             // 
-            // txtAmountDue
+            // txtWaterBill
             // 
-            this.txtAmountDue.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtAmountDue.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtAmountDue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAmountDue.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtAmountDue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountDue.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.txtAmountDue.Location = new System.Drawing.Point(303, 21);
-            this.txtAmountDue.Name = "txtAmountDue";
-            this.txtAmountDue.Size = new System.Drawing.Size(307, 22);
-            this.txtAmountDue.TabIndex = 23;
-            this.txtAmountDue.Text = "0";
-            this.txtAmountDue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtAmountDue.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
-            this.txtAmountDue.Leave += new System.EventHandler(this.txtAmountDue_Leave);
+            this.txtWaterBill.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtWaterBill.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtWaterBill.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtWaterBill.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtWaterBill.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtWaterBill.Location = new System.Drawing.Point(303, 21);
+            this.txtWaterBill.Name = "txtWaterBill";
+            this.txtWaterBill.Size = new System.Drawing.Size(307, 22);
+
+            this.txtWaterBill.TabIndex = 0;
+            this.txtWaterBill.Text = "0";
+            this.txtWaterBill.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtWaterBill.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
+            this.txtWaterBill.Leave += new System.EventHandler(this.txtAmountDue_Leave);
             // 
             // txtExtensionFee
             // 
@@ -420,7 +402,7 @@
             this.txtExtensionFee.Location = new System.Drawing.Point(303, 76);
             this.txtExtensionFee.Name = "txtExtensionFee";
             this.txtExtensionFee.Size = new System.Drawing.Size(307, 21);
-            this.txtExtensionFee.TabIndex = 20;
+            this.txtExtensionFee.TabIndex = 2;
             this.txtExtensionFee.Text = "0";
             this.txtExtensionFee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtExtensionFee.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
@@ -435,7 +417,7 @@
             this.txtPenalty.Location = new System.Drawing.Point(303, 103);
             this.txtPenalty.Name = "txtPenalty";
             this.txtPenalty.Size = new System.Drawing.Size(307, 21);
-            this.txtPenalty.TabIndex = 20;
+            this.txtPenalty.TabIndex = 3;
             this.txtPenalty.Text = "0";
             this.txtPenalty.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtPenalty.TextChanged += new System.EventHandler(this.txtPenalty_TextChanged);
@@ -461,7 +443,6 @@
             this.particularFactors.Size = new System.Drawing.Size(610, 184);
             this.particularFactors.TabIndex = 20;
             this.particularFactors.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.particularFactors_ItemCheck);
-            this.particularFactors.SelectedIndexChanged += new System.EventHandler(this.particularFactors_SelectedIndexChanged);
             // 
             // dgParticularAdjustment
             // 
@@ -471,7 +452,7 @@
             this._value});
             this.dgParticularAdjustment.Location = new System.Drawing.Point(5, 15);
             this.dgParticularAdjustment.Name = "dgParticularAdjustment";
-            this.dgParticularAdjustment.Size = new System.Drawing.Size(604, 153);
+            this.dgParticularAdjustment.Size = new System.Drawing.Size(604, 179);
             this.dgParticularAdjustment.TabIndex = 21;
             this.dgParticularAdjustment.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgParticularAdjustment_CellValueChanged);
             // 
@@ -489,7 +470,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dgParticularAdjustment);
-            this.groupBox2.Controls.Add(this.btnAutoCompute);
             this.groupBox2.Location = new System.Drawing.Point(12, 339);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(616, 200);
@@ -548,11 +528,10 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Button btnAutoCompute;
         internal System.Windows.Forms.TextBox txtPenalty;
         internal System.Windows.Forms.TextBox txtExtensionFee;
         private System.Windows.Forms.Label label9;
-        internal System.Windows.Forms.TextBox txtAmountDue;
+        internal System.Windows.Forms.TextBox txtWaterBill;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label19;
@@ -562,9 +541,9 @@
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.TextBox txtAccountType;
         private System.Windows.Forms.Label label22;
-        internal System.Windows.Forms.TextBox txtAmountDueAfterAdjustment;
+        internal System.Windows.Forms.TextBox txtAdjustedWaterBill;
         private System.Windows.Forms.Label label12;
-        internal System.Windows.Forms.TextBox txtAdjustment;
+        internal System.Windows.Forms.TextBox txtWaterBillAdjustedAmount;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.CheckedListBox particularFactors;
         private System.Windows.Forms.DataGridView dgParticularAdjustment;
@@ -572,7 +551,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _value;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox6;
-        internal System.Windows.Forms.TextBox txtAdjustedDue;
+        internal System.Windows.Forms.TextBox txtWaterBillAdjustment;
         private System.Windows.Forms.Label label1;
     }
 }

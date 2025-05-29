@@ -37,6 +37,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.cbxFullPage = new System.Windows.Forms.CheckBox();
@@ -205,6 +206,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Panel panel3;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;

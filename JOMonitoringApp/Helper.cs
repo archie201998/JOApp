@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Deployment.Application;
+// TODO Although ClickOnce is supported on .NET 5+, apps do not have access to the System.Deployment.Application namespace. For more details see https://github.com/dotnet/deployment-tools/issues/27 and https://github.com/dotnet/deployment-tools/issues/53.
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -92,22 +92,7 @@ namespace AccountingSystem
 
         public static string GetCurrentVersion()
         {
-            try
-            {
-                if (ApplicationDeployment.IsNetworkDeployed)
-                {
-                    System.Version version = ApplicationDeployment.CurrentDeployment.CurrentVersion;
-                    return version.ToString();
-                }
-                else
-                {
-                    return string.Empty;
-                }
-            }
-            catch (InvalidDeploymentException)
-            {
-                return "Not a ClickOnce application";
-            }
+            return "1.0";
         }
 
         public static string GetLocalIPAddress()
@@ -802,14 +787,16 @@ namespace AccountingSystem
         }
         public static string GetPublishVersion()
         {
-            try
-            {
-                return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
-            }
-            catch (InvalidDeploymentException)
-            {
-                return "Not a ClickOnce application";
-            }
+            //try
+            //{
+            //    return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            //}
+            //catch (InvalidDeploymentException)
+            //{
+            //    return "Not a ClickOnce application";
+            //}
+
+            return string.Empty;
         }
 
         internal static bool IsInvestigator()

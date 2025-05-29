@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtJONo = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -137,6 +138,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtJONo;
         private System.Windows.Forms.Button btnSearch;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.CheckBox cbxFullPage;
     }

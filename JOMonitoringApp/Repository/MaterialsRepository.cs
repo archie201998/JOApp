@@ -50,5 +50,29 @@ namespace JOMonitoringApp
         {
             throw new System.NotImplementedException();
         }
+
+        public DataTable GetMaterialsById(int itemId)
+        {
+            return new DataTable();
+        }
+
+        public DataTable GetAllMaterials()
+        {
+            string query = $"SELECT id, item_no, item_name, in_stock, is_inventory_item FROM {tableName} LIMIT 100";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
+        }
+
+        public DataTable SearchMaterials(string searchText)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@search_key", DbType.String, $"%{searchText}%"}
+            };
+
+            string query = $"SELECT * FROM {tableName} WHERE item_no LIKE @search_key OR  item_name LIKE @search_key LIMIT 30";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
     }
 }

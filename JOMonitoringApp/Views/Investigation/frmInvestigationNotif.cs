@@ -65,7 +65,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             Helper.notifViewed = true;
             var investigationForm = new frmInvestigation();
-            investigationForm._selectedInvestigationID = _investigationId;
+
             investigationForm.ShowDialog();
             investigationForm.ucInvestigationForm.ViewInvestigationDetails();
             investigationForm.BringToFront(); // Optional: bring the form to front

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -126,7 +127,8 @@
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
+                private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtJONo;

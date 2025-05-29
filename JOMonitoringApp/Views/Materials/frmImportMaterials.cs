@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JOMonitoringApp.Views.MainForm
+namespace JOMonitoringApp.Views.Materials
 {
-    public partial class frmMainDashboard : Form
+    public partial class frmImportMaterials : Form
     {
-        public frmMainDashboard()
+        public frmImportMaterials()
         {
             InitializeComponent();
+        }
+
+        private void frmImportMaterials_Load(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application excelApp;
         }
     }
 }

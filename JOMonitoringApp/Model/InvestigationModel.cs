@@ -15,11 +15,11 @@ namespace JOMonitoringApp.Model
         public string JobOrderNo { get; set; }
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public string CustomerAddress{ get; set; }
+        public string CustomerAddress { get; set; }
         public string CustomerAccountNumber { get; set; }
         public string CustomerContactNumber { get; set; }
         public string NatureOfComplaint { get; set; }
-        public DateTime DateOfInvestigation { get; set; }
+        public DateTime? DateOfInvestigation { get; set; }
         public int IsApproved { get; set; }
         public string ApprovalMessage { get; set; }
         public string InvestigatorComments { get; set; }
@@ -28,11 +28,12 @@ namespace JOMonitoringApp.Model
         public string secondaryImagePath { get; set; }
 
         //amount
-        public decimal AmountDue { get; set; }
+        public decimal WaterBill { get; set; }
+        public decimal WaterBillAdjustment { get; set; }
         public decimal Penalty { get; set; }
         public decimal ExtensionFee { get; set; }
-        public decimal AdjustmentAmount { get; set; }
-        public decimal AdjustedAmountDue { get; set; }
+        public decimal AdjustedAmount { get; set; }
+        public decimal AdjustedWaterBill { get; set; }
 
         //amount
 
@@ -45,7 +46,7 @@ namespace JOMonitoringApp.Model
         public int InvestigationId { get; set; }
         public string MeterBrand { get; set; }
         public string MeterSize { get; set; }
-        public string MeterNumber { get; set; }   
+        public string MeterNumber { get; set; }
         public string ReadingBeforeTest { get; set; }
         public string ReadingAfterTest { get; set; }
         public string CalibrationResult { get; set; }
@@ -74,7 +75,7 @@ namespace JOMonitoringApp.Model
         public string PreviousConsumption { get; set; }
         public string PresentConsumption { get; set; }
 
-        public string ActualConsumption{ get; set; }
+        public string ActualConsumption { get; set; }
         public string AverageConsumption { get; set; }
         public string AdjustmentParticular { get; set; }
 

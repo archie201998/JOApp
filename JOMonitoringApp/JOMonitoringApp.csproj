@@ -108,6 +108,10 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -186,55 +190,55 @@
       <DependentUpon>dsReport.xsd</DependentUpon>
     </Compile>
     <Compile Include="Dataset\dsReport.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsReport.xsd</DependentUpon>
+      <DependentUpon>dsReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="HelperLoadRecords.cs" />
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
+    <Compile Include="Interface\IError.cs" />
     <Compile Include="Interface\IGenericCommands.cs" />
     <Compile Include="Interface\IInvestigationAdjustmentRepository.cs" />
     <Compile Include="Interface\IInvestigationRepository.cs" />
     <Compile Include="Interface\IJobOrderParticularsRepository.cs" />
     <Compile Include="Interface\IJobOrdersRepository.cs" />
     <Compile Include="Interface\IJOLogsRepository.cs" />
-    <Compile Include="Model\InvestigationAdjustmentModel.cs" />
+    <Compile Include="Interface\IMaterials.cs" />
+    <Compile Include="Interface\IParticularsRepository.cs" />
+    <Compile Include="Interface\IPermissions.cs" />
     <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IRoleHasPermission.cs" />
+    <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
-    <Compile Include="Interface\IUsersRepository.cs" />
+    <Compile Include="Interface\IUsersrepository.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="Model\JobOrderParticularsModel.cs" />
-    <Compile Include="Model\MaterialsModel.cs" />
-    <Compile Include="Model\PermissionsModel.cs" />
-    <Compile Include="Model\InvestigationModel.cs" />
-    <Compile Include="Model\RoleHasPermissionModel.cs" />
-    <Compile Include="Model\RolesModel.cs" />
-    <Compile Include="Model\JobOrdersParticularsModel.cs" />
-    <Compile Include="Model\JOLogsModel.cs" />
-    <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />
+    <Compile Include="Model\InvestigationAdjustmentModel.cs" />
+    <Compile Include="Model\InvestigationModel.cs" />
+    <Compile Include="Model\JobOrderParticularsModel.cs" />
     <Compile Include="Model\JobOrdersModel.cs" />
-    <Compile Include="Interface\IParticularsRepository.cs" />
+    <Compile Include="Model\JobOrdersParticularsModel.cs" />
+    <Compile Include="Model\JOLogsModel.cs" />
+    <Compile Include="Model\MaterialsModel.cs" />
     <Compile Include="Model\ParticularsModel.cs" />
+    <Compile Include="Model\PermissionsModel.cs" />
+    <Compile Include="Model\RoleHasPermissionModel.cs" />
+    <Compile Include="Model\RolesModel.cs" />
+    <Compile Include="Model\StatusModel.cs" />
     <Compile Include="Model\UsersModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CustomersRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\Error.cs" />
     <Compile Include="Repository\Factory.cs" />
-    <Compile Include="Helper.cs" />
     <Compile Include="Repository\GenericCommands.cs" />
-    <Compile Include="Interface\IError.cs" />
-    <Compile Include="Interface\IRolesRepository.cs" />
-    <Compile Include="Interface\IMaterialss.cs" />
     <Compile Include="Repository\InvestigationAdjustmentRepository.cs" />
     <Compile Include="Repository\InvestigationRepository.cs" />
-    <Compile Include="Interface\IPermissions.cs" />
-    <Compile Include="Interface\IRoleHasPermission.cs" />
     <Compile Include="Repository\JobOrderParticularsRepository.cs" />
-    <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\JobOrdersLogsRepository.cs" />
+    <Compile Include="Repository\JobOrdersRepository.cs" />
     <Compile Include="Repository\MaterialsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\PermissionsRepository.cs" />
@@ -314,6 +318,30 @@
     <Compile Include="Views\MainForm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Materials\frmImportMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Materials\frmImportMaterials.Designer.cs">
+      <DependentUpon>frmImportMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Materials\frmJobOrderMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Materials\frmJobOrderMaterials.Designer.cs">
+      <DependentUpon>frmJobOrderMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Materials\frmListOfMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Materials\frmListOfMaterials.Designer.cs">
+      <DependentUpon>frmListOfMaterials.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Materials\frmMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Materials\frmMaterials.Designer.cs">
+      <DependentUpon>frmMaterials.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Particulars\frmParticulars.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,11 +368,9 @@
     </Compile>
     <Compile Include="Views\Reports\frmHydrantWithdrawal.cs">
       <SubType>Form</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Views\Reports\frmHydrantWithdrawal.Designer.cs">
       <DependentUpon>frmHydrantWithdrawal.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
     <Compile Include="Views\Reports\frmInvestigationReport.cs">
       <SubType>Form</SubType>
@@ -382,8 +408,6 @@
     <Compile Include="Views\SignIn\frmSignIn.Designer.cs">
       <DependentUpon>frmSignIn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\Users\frmUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -391,45 +415,52 @@
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
     <Content Include="adjusted-system-icon.ico" />
-    <Content Include="RDLC\investigation-form.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Resources\icons8-notification-50.png" />
-    <None Include="Resources\icons8-image-96.png" />
-    <None Include="Resources\icons8-image-48.png" />
-    <None Include="Resources\icons8-x-24.png" />
-    <None Include="Resources\icons8-x-14.png" />
-    <None Include="Resources\Job_Order_e-Monitoring System User Guide.pdf" />
-    <None Include="Resources\new_system_logo.ico" />
-    <None Include="Resources\logo.ico" />
-    <None Include="Resources\new_sys_icon.ico" />
-    <None Include="Resources\icons8-online-maintenance-portal-100.png" />
-    <None Include="Resources\icons8-programmer-96.png" />
-    <None Include="Resources\icons8-user-24-3d.png" />
-    <None Include="Resources\icons8-user-24-flat.png" />
-    <None Include="Resources\icons8-summary-24.png" />
-    <None Include="Resources\icons8-search-24.png" />
-    <None Include="Resources\icons8-water-96x.png" />
-    <None Include="Resources\icons8-water-96.png" />
-    <None Include="Resources\icons8-water-48.png" />
-    <None Include="Resources\icons8-delete-14.png" />
-    <None Include="Resources\icons8-information-14.png" />
-    <None Include="Resources\icons8-water-24.png" />
-    <None Include="Resources\icons8-water-14.png" />
-    <None Include="Resources\icons8-form-14.png" />
-    <None Include="Resources\icons8-save-14.png" />
-    <None Include="Resources\icons8-search-14.png" />
-    <None Include="Resources\icons8-image-14.png" />
-    <None Include="Resources\icons8-view-14.png" />
-    <None Include="Resources\icons8-print-14.png" />
-    <Content Include="RDLC\estimate-of-materials.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RDLC\hydrant-withdrawal.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Resources\btn-search.png" />
+    <Content Include="Resources\icons8-delete-14.png" />
+    <Content Include="Resources\icons8-form-14.png" />
+    <Content Include="Resources\icons8-give-30.png" />
+    <Content Include="Resources\icons8-image-14.png" />
+    <Content Include="Resources\icons8-image-48.png" />
+    <Content Include="Resources\icons8-image-96.png" />
+    <Content Include="Resources\icons8-information-14.png" />
+    <Content Include="Resources\icons8-notification-50.png" />
+    <Content Include="Resources\icons8-online-maintenance-portal-100.png" />
+    <Content Include="Resources\icons8-open-box-30-download.png" />
+    <Content Include="Resources\icons8-open-box-30.png" />
+    <Content Include="Resources\icons8-print-14.png" />
+    <Content Include="Resources\icons8-printer-24.png" />
+    <Content Include="Resources\icons8-programmer-96.png" />
+    <Content Include="Resources\icons8-save-14.png" />
+    <Content Include="Resources\icons8-search-14.png" />
+    <Content Include="Resources\icons8-search-24.png" />
+    <Content Include="Resources\icons8-summary-24.png" />
+    <Content Include="Resources\icons8-user-24-3d.png" />
+    <Content Include="Resources\icons8-user-24-flat.png" />
+    <Content Include="Resources\icons8-view-14.png" />
+    <Content Include="Resources\icons8-water-14.png" />
+    <Content Include="Resources\icons8-water-24.png" />
+    <Content Include="Resources\icons8-water-48.png" />
+    <Content Include="Resources\icons8-water-96.png" />
+    <Content Include="Resources\icons8-water-96x.png" />
+    <Content Include="Resources\icons8-x-14.png" />
+    <Content Include="Resources\icons8-x-24.png" />
+    <Content Include="Resources\icons824.png" />
+    <Content Include="Resources\icons8241.png" />
+    <Content Include="Resources\invisible-16px.png" />
+    <Content Include="Resources\logo.ico" />
+    <Content Include="Resources\logo.png" />
+    <Content Include="Resources\new_system_logo.ico" />
+    <Content Include="Resources\new_sys_icon.ico" />
+    <Content Include="Resources\thumbnail_PAMANA COREL.ico" />
+    <Content Include="Resources\thumbnail_PAMANA COREL.png" />
+    <Content Include="Resources\thumbnail_PAWAD COREL.png" />
+    <Content Include="Resources\visible-16px.png" />
+    <Content Include="Resources\Your paragraph text %284%29.ico" />
     <EmbeddedResource Include="Views\Admin\frmPassKey.resx">
       <DependentUpon>frmPassKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
+      <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Database\frmDBBackup.resx">
       <DependentUpon>frmDBBackup.cs</DependentUpon>
@@ -449,6 +480,30 @@
     <EmbeddedResource Include="Views\Investigation\ucInvestigationForm.resx">
       <DependentUpon>ucInvestigationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\JobOrder\frmJOProgressTracking.resx">
+      <DependentUpon>frmJOProgressTracking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\JobOrder\frmSearchAccount.resx">
+      <DependentUpon>frmSearchAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
+      <DependentUpon>ucJoborder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Materials\frmImportMaterials.resx">
+      <DependentUpon>frmImportMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Materials\frmJobOrderMaterials.resx">
+      <DependentUpon>frmJobOrderMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Materials\frmListOfMaterials.resx">
+      <DependentUpon>frmListOfMaterials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Materials\frmMaterials.resx">
+      <DependentUpon>frmMaterials.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Particulars\frmParticulars.resx">
       <DependentUpon>frmParticulars.cs</DependentUpon>
     </EmbeddedResource>
@@ -463,10 +518,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmHydrantWithdrawal.resx">
       <DependentUpon>frmHydrantWithdrawal.cs</DependentUpon>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmInvestigationReport.resx">
       <DependentUpon>frmInvestigationReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\frmJOSummary.resx">
+      <DependentUpon>frmJOSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\frmServiceRequestAndOrderForm.resx">
+      <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RolesAndPermissions\frmRolesAndPermissions.resx">
       <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>
@@ -474,16 +534,22 @@
     <EmbeddedResource Include="Views\Signatories\frmReportSignatories.resx">
       <DependentUpon>frmReportSignatories.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\SignIn\frmSignIn.resx">
+      <DependentUpon>frmSignIn.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Resources\visible-16px.png" />
-    <None Include="Resources\invisible-16px.png" />
+    <None Include="Dataset\dsReport.xsc">
+      <DependentUpon>dsReport.xsd</DependentUpon>
+    </None>
+    <None Include="Dataset\dsReport.xsd" />
+    <None Include="Dataset\dsReport.xss">
+      <DependentUpon>dsReport.xsd</DependentUpon>
+    </None>
     <None Include="JOMonitoringApp_1_TemporaryKey.pfx" />
     <None Include="Properties\app.manifest" />
-    <None Include="Resources\btn-search.png" />
     <None Include="JOMonitoringApp_TemporaryKey.pfx" />
-    <None Include="Resources\Your paragraph text %284%29.ico" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -495,47 +561,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Content Include="J.O e-Monitoring.ico" />
-    <Content Include="RDLC\job-order-summary.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="RDLC\service-request-and-order-form.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
-      <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\JobOrder\frmJOProgressTracking.resx">
-      <DependentUpon>frmJOProgressTracking.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\JobOrder\frmSearchAccount.resx">
-      <DependentUpon>frmSearchAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
-      <DependentUpon>ucJoborder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainForm\frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Reports\frmJOSummary.resx">
-      <DependentUpon>frmJOSummary.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Reports\frmServiceRequestAndOrderForm.resx">
-      <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SignIn\frmSignIn.resx">
-      <DependentUpon>frmSignIn.cs</DependentUpon>
-    </EmbeddedResource>
-    <None Include="Dataset\dsReport.xsc">
-      <DependentUpon>dsReport.xsd</DependentUpon>
-    </None>
-    <None Include="Dataset\dsReport.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsReport.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Dataset\dsReport.xss">
-      <DependentUpon>dsReport.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -546,6 +571,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="RDLC\estimate-of-materials.rdlc" />
+    <None Include="RDLC\hydrant-withdrawal.rdlc" />
+    <None Include="RDLC\investigation-form.rdlc" />
+    <None Include="RDLC\job-order-summary.rdlc" />
+    <None Include="RDLC\service-request-and-order-form.rdlc" />
+    <None Include="Resources\Job_Order_e-Monitoring System User Guide.pdf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -556,15 +587,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_PAWAD COREL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_PAMANA COREL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\thumbnail_PAMANA COREL.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

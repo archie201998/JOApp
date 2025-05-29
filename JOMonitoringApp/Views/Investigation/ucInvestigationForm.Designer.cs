@@ -173,7 +173,7 @@
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(13, 16);
             this.gbAccountDetails.Name = "gbAccountDetails";
-            this.gbAccountDetails.Size = new System.Drawing.Size(345, 241);
+            this.gbAccountDetails.Size = new System.Drawing.Size(356, 241);
             this.gbAccountDetails.TabIndex = 1;
             this.gbAccountDetails.TabStop = false;
             // 
@@ -190,7 +190,7 @@
             // cbxDateOfInvestigation
             // 
             this.cbxDateOfInvestigation.AutoSize = true;
-            this.cbxDateOfInvestigation.Location = new System.Drawing.Point(307, 215);
+            this.cbxDateOfInvestigation.Location = new System.Drawing.Point(323, 216);
             this.cbxDateOfInvestigation.Name = "cbxDateOfInvestigation";
             this.cbxDateOfInvestigation.Size = new System.Drawing.Size(15, 14);
             this.cbxDateOfInvestigation.TabIndex = 46;
@@ -202,7 +202,7 @@
             this.dtpDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(122, 211);
+            this.dtpDate.Location = new System.Drawing.Point(138, 212);
             this.dtpDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(179, 21);
@@ -225,7 +225,7 @@
             this.txtComplaint.BackColor = System.Drawing.SystemColors.Window;
             this.txtComplaint.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtComplaint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComplaint.Location = new System.Drawing.Point(122, 185);
+            this.txtComplaint.Location = new System.Drawing.Point(138, 186);
             this.txtComplaint.MaxLength = 100;
             this.txtComplaint.Multiline = true;
             this.txtComplaint.Name = "txtComplaint";
@@ -240,7 +240,7 @@
             this.txtJONumber.BackColor = System.Drawing.SystemColors.Window;
             this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONumber.Location = new System.Drawing.Point(122, 159);
+            this.txtJONumber.Location = new System.Drawing.Point(138, 160);
             this.txtJONumber.MaxLength = 100;
             this.txtJONumber.Multiline = true;
             this.txtJONumber.Name = "txtJONumber";
@@ -255,7 +255,7 @@
             this.txtAccountNumber.BackColor = System.Drawing.SystemColors.Window;
             this.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAccountNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(122, 38);
+            this.txtAccountNumber.Location = new System.Drawing.Point(138, 39);
             this.txtAccountNumber.MaxLength = 100;
             this.txtAccountNumber.Multiline = true;
             this.txtAccountNumber.Name = "txtAccountNumber";
@@ -270,7 +270,7 @@
             this.txtAccountName.BackColor = System.Drawing.SystemColors.Window;
             this.txtAccountName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAccountName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAccountName.Location = new System.Drawing.Point(122, 65);
+            this.txtAccountName.Location = new System.Drawing.Point(138, 66);
             this.txtAccountName.MaxLength = 100;
             this.txtAccountName.Multiline = true;
             this.txtAccountName.Name = "txtAccountName";
@@ -285,7 +285,7 @@
             this.txtAddress.BackColor = System.Drawing.SystemColors.Window;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(122, 105);
+            this.txtAddress.Location = new System.Drawing.Point(138, 106);
             this.txtAddress.MaxLength = 100;
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
@@ -368,7 +368,7 @@
             this.gbStatisticalFindings.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbStatisticalFindings.Location = new System.Drawing.Point(13, 265);
             this.gbStatisticalFindings.Name = "gbStatisticalFindings";
-            this.gbStatisticalFindings.Size = new System.Drawing.Size(345, 328);
+            this.gbStatisticalFindings.Size = new System.Drawing.Size(356, 328);
             this.gbStatisticalFindings.TabIndex = 2;
             this.gbStatisticalFindings.TabStop = false;
             // 
@@ -403,7 +403,7 @@
             this.txtAlternativeSource.Location = new System.Drawing.Point(180, 209);
             this.txtAlternativeSource.MaxLength = 100;
             this.txtAlternativeSource.Name = "txtAlternativeSource";
-            this.txtAlternativeSource.Size = new System.Drawing.Size(140, 21);
+            this.txtAlternativeSource.Size = new System.Drawing.Size(156, 21);
             this.txtAlternativeSource.TabIndex = 6;
             // 
             // label9
@@ -464,7 +464,7 @@
             this.nudNoServiceOfOutlets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoServiceOfOutlets.Location = new System.Drawing.Point(180, 182);
             this.nudNoServiceOfOutlets.Name = "nudNoServiceOfOutlets";
-            this.nudNoServiceOfOutlets.Size = new System.Drawing.Size(140, 21);
+            this.nudNoServiceOfOutlets.Size = new System.Drawing.Size(156, 21);
             this.nudNoServiceOfOutlets.TabIndex = 5;
             this.nudNoServiceOfOutlets.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudNoServiceOfOutlets.ThousandsSeparator = true;
@@ -485,7 +485,7 @@
             this.nudNoOfHoursServed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudNoOfHoursServed.Location = new System.Drawing.Point(180, 155);
             this.nudNoOfHoursServed.Name = "nudNoOfHoursServed";
-            this.nudNoOfHoursServed.Size = new System.Drawing.Size(140, 21);
+            this.nudNoOfHoursServed.Size = new System.Drawing.Size(156, 21);
             this.nudNoOfHoursServed.TabIndex = 4;
             this.nudNoOfHoursServed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudNoOfHoursServed.ThousandsSeparator = true;
@@ -505,7 +505,7 @@
             this.nudBoarders.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudBoarders.Location = new System.Drawing.Point(180, 127);
             this.nudBoarders.Name = "nudBoarders";
-            this.nudBoarders.Size = new System.Drawing.Size(140, 21);
+            this.nudBoarders.Size = new System.Drawing.Size(156, 21);
             this.nudBoarders.TabIndex = 3;
             this.nudBoarders.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudBoarders.ThousandsSeparator = true;
@@ -525,7 +525,7 @@
             this.nudRelatives.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudRelatives.Location = new System.Drawing.Point(180, 101);
             this.nudRelatives.Name = "nudRelatives";
-            this.nudRelatives.Size = new System.Drawing.Size(140, 21);
+            this.nudRelatives.Size = new System.Drawing.Size(156, 21);
             this.nudRelatives.TabIndex = 2;
             this.nudRelatives.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudRelatives.ThousandsSeparator = true;
@@ -545,7 +545,7 @@
             this.nudHouseHelper.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudHouseHelper.Location = new System.Drawing.Point(180, 74);
             this.nudHouseHelper.Name = "nudHouseHelper";
-            this.nudHouseHelper.Size = new System.Drawing.Size(140, 21);
+            this.nudHouseHelper.Size = new System.Drawing.Size(156, 21);
             this.nudHouseHelper.TabIndex = 1;
             this.nudHouseHelper.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudHouseHelper.ThousandsSeparator = true;
@@ -565,7 +565,7 @@
             this.nudImmediateFamily.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudImmediateFamily.Location = new System.Drawing.Point(180, 47);
             this.nudImmediateFamily.Name = "nudImmediateFamily";
-            this.nudImmediateFamily.Size = new System.Drawing.Size(140, 21);
+            this.nudImmediateFamily.Size = new System.Drawing.Size(156, 21);
             this.nudImmediateFamily.TabIndex = 0;
             this.nudImmediateFamily.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.nudImmediateFamily.ThousandsSeparator = true;
@@ -596,7 +596,7 @@
             this.gbComments.Controls.Add(this.label20);
             this.gbComments.Controls.Add(this.txtInvestigatorComments);
             this.gbComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbComments.Location = new System.Drawing.Point(364, 196);
+            this.gbComments.Location = new System.Drawing.Point(375, 196);
             this.gbComments.Name = "gbComments";
             this.gbComments.Size = new System.Drawing.Size(329, 458);
             this.gbComments.TabIndex = 4;
@@ -783,7 +783,7 @@
             this.gbConditionOfService.Controls.Add(this.label15);
             this.gbConditionOfService.Controls.Add(this.label17);
             this.gbConditionOfService.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbConditionOfService.Location = new System.Drawing.Point(364, 16);
+            this.gbConditionOfService.Location = new System.Drawing.Point(375, 16);
             this.gbConditionOfService.Name = "gbConditionOfService";
             this.gbConditionOfService.Size = new System.Drawing.Size(329, 174);
             this.gbConditionOfService.TabIndex = 0;
@@ -940,10 +940,10 @@
             this.groupBox5.Controls.Add(this.panel2);
             this.groupBox5.Controls.Add(this.panel1);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(700, 16);
+            this.groupBox5.Location = new System.Drawing.Point(712, 16);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(798, 758);
+            this.groupBox5.Size = new System.Drawing.Size(786, 758);
             this.groupBox5.TabIndex = 25;
             this.groupBox5.TabStop = false;
             // 
@@ -954,7 +954,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(10, 86);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(778, 662);
+            this.panel2.Size = new System.Drawing.Size(766, 662);
             this.panel2.TabIndex = 26;
             // 
             // dgInvestigations
@@ -966,7 +966,7 @@
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
             this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(778, 637);
+            this.dgInvestigations.Size = new System.Drawing.Size(766, 637);
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
@@ -984,7 +984,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 637);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(778, 25);
+            this.panel3.Size = new System.Drawing.Size(766, 25);
             this.panel3.TabIndex = 28;
             // 
             // label26
@@ -1019,7 +1019,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(10, 23);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(778, 63);
+            this.panel1.Size = new System.Drawing.Size(766, 63);
             this.panel1.TabIndex = 27;
             // 
             // txtSearch
@@ -1052,7 +1052,7 @@
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.Location = new System.Drawing.Point(681, 32);
+            this.btnPrint.Location = new System.Drawing.Point(669, 32);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(94, 23);
             this.btnPrint.TabIndex = 29;
@@ -1143,7 +1143,7 @@
             this.gbApproval.Controls.Add(this.cbxInvestigationDisapproved);
             this.gbApproval.Controls.Add(this.txtApprovalMessage);
             this.gbApproval.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbApproval.Location = new System.Drawing.Point(364, 659);
+            this.gbApproval.Location = new System.Drawing.Point(375, 659);
             this.gbApproval.Name = "gbApproval";
             this.gbApproval.Size = new System.Drawing.Size(329, 116);
             this.gbApproval.TabIndex = 26;
@@ -1200,7 +1200,7 @@
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbComputation.Location = new System.Drawing.Point(13, 599);
             this.gbComputation.Name = "gbComputation";
-            this.gbComputation.Size = new System.Drawing.Size(345, 176);
+            this.gbComputation.Size = new System.Drawing.Size(356, 176);
             this.gbComputation.TabIndex = 28;
             this.gbComputation.TabStop = false;
             // 

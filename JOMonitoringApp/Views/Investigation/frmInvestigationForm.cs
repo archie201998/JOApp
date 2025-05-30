@@ -24,12 +24,13 @@ namespace JOMonitoringApp.Views.Investigation
 
         internal readonly int _investigationId;
         private int _jobOrderId;
-
         internal bool _hasAdjustment;
+        private bool _billAdjustmentIsAllowed = false;
 
         public frmInvestigationForm(int _investigationId)
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
             this._investigationId = _investigationId;   
         }
 
@@ -192,21 +193,27 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 case 0:
                     radInvestigation.Checked = true;
+                    _billAdjustmentIsAllowed = false;
                     break;
                 case 1:
                     radRecommendation.Checked = true;
+                    _billAdjustmentIsAllowed = false;
                     break;
                 case 2:
                     radAdjustment.Checked = true;
+                    _billAdjustmentIsAllowed = true;
                     break;
                 case 3:
                     radApproval.Checked = true;
+                    _billAdjustmentIsAllowed = true;
                     break;
                 case 4:
                     radApproved.Checked = true;
+                    _billAdjustmentIsAllowed = true;
                     break;
                 case 5:
                     radReInvestigation.Checked = true;
+                    _billAdjustmentIsAllowed = false;
                     break;
             }
         }
@@ -235,9 +242,7 @@ namespace JOMonitoringApp.Views.Investigation
                 if (SaveData())
                 {
                     Helper.MessageBoxSuccess("Investigation record has been updated successfully.");
-
-                    // await Task.Run(() => ucInvestigationForm.GetInvestigationRecords());
-
+                    Close();
                 }
             }
             catch (Exception ex)
@@ -443,10 +448,11 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnAdjustmentForm_Click(object sender, EventArgs e)
         {
-            if (radAdjustment.Checked || radApproval.Checked || radReInvestigation.Checked)
+            if (_billAdjustmentIsAllowed)
             {
                 _ = new frmInvestigationAdjustment(this).ShowDialog();
                 ViewAdjustment();
+                return;
             }
 
             Helper.MessageBoxSuccess("Adjustments cannot be made at this time. Please wait for further recommendations before proceeding.");
@@ -475,13 +481,14 @@ namespace JOMonitoringApp.Views.Investigation
 
             else
             {
-                lblWaterBill.Text = "0.00";
-                lblWaterBIllAdjustment.Text = "0.00";
-                lblExtensionFee.Text = "0.00";
-                lblPenalty.Text = "0.00";
-                lblAdjustedAmount.Text = "0.00";
-                lblAdjustedWaterBill.Text = "0.00";
+                lblWaterBill.Text = "00.00";
+                lblWaterBIllAdjustment.Text = "00.00";
+                lblExtensionFee.Text = "00.00";
+                lblPenalty.Text = "00.00";
+                lblAdjustedAmount.Text = "00.00";
+                lblAdjustedWaterBill.Text = "00.00";
             }
         }
+
     }
 }

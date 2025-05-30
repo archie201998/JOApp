@@ -60,6 +60,7 @@
             this.toolStripButton2.Text = "Investigations";
             this.toolStripButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.ToolTipText = "Investigation records and findings.\n\n\n";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton6
@@ -72,6 +73,7 @@
             this.toolStripButton6.Text = "Investigators";
             this.toolStripButton6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolStripButton6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton6.ToolTipText = "Manage Investigator and investigation schedule";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton1
@@ -84,6 +86,7 @@
             this.toolStripButton1.Text = "Message";
             this.toolStripButton1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton1.ToolTipText = "Send SMS to customer with investigation results.";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton4
@@ -96,6 +99,7 @@
             this.toolStripButton4.Text = "Reports";
             this.toolStripButton4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.toolStripButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton4.ToolTipText = "Generate Investigator Reports";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // frmInvestigation

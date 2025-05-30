@@ -54,6 +54,7 @@
             // panel2
             // 
             this.panel2.Controls.Add(this.dgInvestigations);
+            this.panel2.Controls.Add(this.lblRecordCount);
             this.panel2.Controls.Add(this.panel3);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(4, 34);
@@ -71,12 +72,12 @@
             this.dgInvestigations.Name = "dgInvestigations";
             this.dgInvestigations.Size = new System.Drawing.Size(1131, 558);
             this.dgInvestigations.TabIndex = 25;
+            this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label26);
-            this.panel3.Controls.Add(this.lblRecordCount);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 558);
             this.panel3.Name = "panel3";
@@ -90,18 +91,19 @@
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(77, 23);
             this.label26.TabIndex = 0;
-            this.label26.Text = "RECORDS : ";
+            this.label26.Text = "SHOWING : ";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lblRecordCount
             // 
             this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordCount.Location = new System.Drawing.Point(71, 1);
+            this.lblRecordCount.Location = new System.Drawing.Point(73, 561);
             this.lblRecordCount.Name = "lblRecordCount";
-            this.lblRecordCount.Size = new System.Drawing.Size(65, 23);
+            this.lblRecordCount.Size = new System.Drawing.Size(248, 17);
             this.lblRecordCount.TabIndex = 1;
             this.lblRecordCount.Text = "0";
-            this.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblRecordCount.Click += new System.EventHandler(this.lblRecordCount_Click);
             // 
             // panel1
             // 

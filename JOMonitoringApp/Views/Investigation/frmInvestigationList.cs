@@ -19,6 +19,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyle(dgInvestigations);
+            Helper.LoadFormIcon(this);
         }
 
 
@@ -85,7 +86,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, rowFilter, searchKey);
-            lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} / {Factory.InvestigationRepository().RecordCount()}";
+            lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} OUT OF {Factory.InvestigationRepository().RecordCount()} RECORDS.";
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
@@ -115,6 +116,16 @@ namespace JOMonitoringApp.Views.Investigation
         private void button3_Click(object sender, EventArgs e)
         {
             InvestigationForm();
+        }
+
+        private void lblRecordCount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -37,20 +37,13 @@ namespace JOMonitoringApp.Views.Investigation
         public ucInvestigationForm()
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyle(dgInvestigations);
         }
+
+    
 
         private void ucInvestigation_Load(object sender, EventArgs e)
         {
-            if (!DesignMode)
-            {
-                HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
-                cmbxStatus.SelectedValue = 6;
-                EnableControls(false);
-                GetInvestigationRecords();
-
-                dtpDate.Enabled = false;
-            }
+  
         }
 
         private void ValidateFormPermission()
@@ -68,38 +61,9 @@ namespace JOMonitoringApp.Views.Investigation
             gbApproval.Enabled = adminMode || Helper.UserHasPermission("INVESTIGATION_APPROVAL");
         }
 
-        internal void UpdateJobOrderStatus()
-        {
-            int jobOrderStatus = 1;
-            int investigationStatusID = GetInvestigationStatus();
+     
 
-            if (investigationStatusID == 4)
-                jobOrderStatus = 4;
-
-            if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5)
-                jobOrderStatus = 2;
-
-            Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, jobOrderStatus);
-        }
-
-        internal bool SaveData()
-        {
-            using (var scope = new TransactionScope())
-            {
-                var investigationModel = InvestigationModel();
-                var investigationResult = Factory.InvestigationRepository().Update(investigationModel);
-
-                if (investigationResult)
-                {
-                    UpdateJobOrderStatus();
-                    UploadImage();
-                    scope.Complete();
-                    return true;
-                }
-                else
-                    return false;
-            }
-        }
+  
 
         public enum InvestigationStatus
         {
@@ -111,160 +75,13 @@ namespace JOMonitoringApp.Views.Investigation
             ForReInvestigation = 5,
         }
 
-        internal int GetInvestigationStatus()
-        {
-            // mag true if naay sulod.
-            bool hasInvestigatorComments = !string.IsNullOrEmpty(txtInvestigatorComments.Text.Trim());
-            bool hasRecommendation = !string.IsNullOrEmpty(txtRecommendations.Text.Trim());
-            bool hasApproval = !string.IsNullOrEmpty(txtApprovalMessage.Text.Trim());
+       
 
-            bool isDisapproved = cbxInvestigationDisapproved.Checked;
-            bool isRecommendationDisapproved = cbxRecommendationDisapproved.Checked;
-            bool isForAdjustment = cbxForAdjustment.Checked;
+        
+  
 
 
-            //for reinvestigation
-            if (_isForReinvestigation)
-                return (int)InvestigationStatus.ForRecommendation;
-
-            if (hasInvestigatorComments && !hasRecommendation && !hasApproval)
-                return (int)InvestigationStatus.ForRecommendation;
-
-            if (hasInvestigatorComments && hasRecommendation && isRecommendationDisapproved)
-                return (int)InvestigationStatus.ForReInvestigation;
-
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && isForAdjustment)
-                return (int)InvestigationStatus.ForAdjustment;
-
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && !hasApproval && !isForAdjustment && _hasAdjustment)
-                return (int)InvestigationStatus.ForApproval;
-
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasApproval && isDisapproved)
-                return (int)InvestigationStatus.ForReInvestigation;
-
-            if (hasInvestigatorComments && hasRecommendation && !isRecommendationDisapproved && hasApproval && !isDisapproved)
-                return (int)InvestigationStatus.Approved;
-
-            return (int)InvestigationStatus.ForInvestigation;
-        }
-
-        private InvestigationModel InvestigationModel()
-        {
-            var model = new InvestigationModel
-            {
-                Id = investigationId,
-                JobOrderId = _jobOrderId,
-                JobOrderNo = txtJONumber.Text.Trim(),
-                CustomerName = txtAccountName.Text.Trim(),
-                CustomerAddress = txtAddress.Text.Trim(),
-                CustomerAccountNumber = txtAccountNumber.Text.Trim(),
-                NatureOfComplaint = txtComplaint.Text.Trim(),
-                InvestigatorComments = txtInvestigatorComments.Text.Trim(),
-                DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDate.Value : null,
-                ApprovalMessage = txtApprovalMessage.Text.Trim(),
-                Recommendations = txtRecommendations.Text.Trim(),
-                imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
-                secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
-                IsApproved = GetInvestigationStatus(),
-                AlternativeSource = txtAlternativeSource.Text.Trim(),
-                MeterBrand = txtMeterBrand.Text,
-                MeterSize = txtMeterSize.Text,
-                MeterNumber = txtMeterNumber.Text,
-                ReadingBeforeTest = nudReadingBeforeTest.Value.ToString(),
-                ReadingAfterTest = nudReadingAfterTest.Value.ToString(),
-                CalibrationResult = txtCalibrationResult.Text,
-                ImmediateMembersOfFam = Convert.ToByte(nudImmediateFamily.Value),
-                HouseHelper = Convert.ToByte(nudHouseHelper.Value),
-                Relatives = Convert.ToByte(nudRelatives.Value),
-                HasAdjustment = cbxForAdjustment.Checked,
-                Boarders = Convert.ToByte(nudBoarders.Value),
-                NoOfHoursServed = Convert.ToByte(nudNoOfHoursServed.Value),
-                NoServiceOutlets = Convert.ToByte(nudNoServiceOfOutlets.Value),
-                HhPurpose = Convert.ToBoolean(cbHHPurpose.Checked),
-                Government = Convert.ToBoolean(cbGovernment.Checked),
-                PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
-                SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
-                UpdatedBy = Helper.UserId,
-
-            };
-
-            return model;
-        }
-
-        private void UploadImage()
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(imageFilePath) || !string.IsNullOrEmpty(secondaryImageFilePath))
-                {
-                    string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol";
-
-                    if (!Directory.Exists(sharedFolderPath))
-                    {
-                        Helper.MessageBoxSuccess("Shared folder not found: " + sharedFolderPath);
-                        return;
-                    }
-
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-
-                    string destination1 = Path.Combine(sharedFolderPath, Path.GetFileName(imageFilePath));
-                    File.Copy(imageFilePath, destination1, true);
-
-                    string destination2 = Path.Combine(sharedFolderPath, Path.GetFileName(secondaryImageFilePath));
-                    File.Copy(secondaryImageFilePath, destination2, true);
-
-                }
-            }
-            catch (Exception)
-            {
-            }
-
-        }
-
-
-        internal void GetInvestigationRecords()
-        {
-            string searchKey = txtSearch.Text.Trim();
-            int statusId = 0;
-
-            if (cmbxStatus.InvokeRequired)
-            {
-                cmbxStatus.Invoke(new Action(() =>
-                {
-                    statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-                }));
-            }
-            else
-            {
-                statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            }
-
-            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, searchKey);
-            lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} / {Factory.InvestigationRepository().RecordCount()}";
-            HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
-        }
-
-        internal void EnableControls(bool enable)
-        {
-            gbStatisticalFindings.Enabled = enable;
-            gbAccountDetails.Enabled = enable;
-            gbComments.Enabled = enable;
-            gbConditionOfService.Enabled = enable;
-            //gbImage.Enabled = enable;
-            gbApproval.Enabled = enable;
-            gbComputation.Enabled = enable;
-            dgInvestigations.Enabled = !enable;
-            btnSearch.Enabled = !enable;
-            cmbxStatus.Enabled = !enable;
-            txtSearch.Enabled = !enable;
-            btnPrint.Enabled = enable;
-
-
-            btnAdjustmentForm.Visible = enable;
-            btnAttachedImage.Visible = enable;
-        }
-
+ 
         private void dgInvestigations_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ViewInvestigationDetails();
@@ -278,7 +95,7 @@ namespace JOMonitoringApp.Views.Investigation
                 Cursor.Current = Cursors.WaitCursor;
                 this.SuspendLayout();
 
-                investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                //investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
                 dictInvestigation = Factory.InvestigationRepository().GetViewRecordById(investigationId);
 
                 if (dictInvestigation.Count == 0) return;
@@ -371,7 +188,6 @@ namespace JOMonitoringApp.Views.Investigation
                         pictureBox1.Visible = false;
                         btnClearImage1.Visible = false;
                     }
-
                 }
 
                 if (dictInvestigation.ContainsKey("secondary_image_path"))
@@ -402,31 +218,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         #region Updating of Records for investigator
 
-        private async void dgInvestigations_DoubleClick(object sender, EventArgs e)
-        {
-            if (dgInvestigations.SelectedRows.Count == 0) return;
-
-            Cursor.Current = Cursors.WaitCursor;
-            try
-            {
-                await Task.Run(() =>
-                {
-                    UpdateSettings();
-                    ViewInvestigationDetails();
-                });
-
-                ValidateFormPermission();
-                EnableControls(true);
-            }
-            catch (Exception ex)
-            {
-                Helper.MessageBoxError("Error loading investigation details.");
-            }
-            finally
-            {
-                Cursor.Current = Cursors.Default;
-            }
-        }
+       
 
         #endregion
 
@@ -440,12 +232,11 @@ namespace JOMonitoringApp.Views.Investigation
         //viewing of image
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationImageViewer(imageFilePath).ShowDialog();
+            
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationImageViewer(secondaryImageFilePath).ShowDialog();
         }
 
         internal void ViewAdjustment()
@@ -504,74 +295,7 @@ namespace JOMonitoringApp.Views.Investigation
             CalibrationResult();
         }
 
-        internal void btnSearch_Click(object sender, EventArgs e)
-        {
-            GetInvestigationRecords();
-        }
-
-        private void dgInvestigations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-
-            if (dgInvestigations.Columns[e.ColumnIndex].Name == "approval_status" && e.Value != null)
-            {
-                string status = e.Value.ToString();
-
-                switch (status)
-                {
-                    case "FOR INVESTIGATION":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR INVESTIGATION");    // investigation color :contentReference[oaicite:0]{index=0}
-                        e.CellStyle.ForeColor = Color.White;
-                        break;
-                    case "FOR RECOMMENDATION":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR RECOMMENDATION"); // recommendation color :contentReference[oaicite:1]{index=1}
-                        e.CellStyle.ForeColor = Color.White;
-                        break;
-                    case "FOR APPROVAL":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR APPROVAL"); // approval-pending color :contentReference[oaicite:2]{index=2}
-                        e.CellStyle.ForeColor = Color.Black;
-                        break;
-                    case "APPROVED":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("APPROVED"); // approved color :contentReference[oaicite:3]{index=3}
-                        e.CellStyle.ForeColor = Color.White;
-                        break;
-                    case "FOR REINVESTIGATION":
-                        e.CellStyle.BackColor = Helper.InvestigationStatusColor("FOR REINVESTIGATION");    // disapproved color :contentReference[oaicite:4]{index=4}
-                        e.CellStyle.ForeColor = Color.White;
-                        break;
-                    default:
-                        e.CellStyle.BackColor = Color.LightGray;
-                        e.CellStyle.ForeColor = Color.Black;
-                        break;
-                }
-            }
-        }
-
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                GetInvestigationRecords();
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            InvestigationForm();
-        }
-
-        private void investigationFormToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            InvestigationForm();
-        }
-
-        private void InvestigationForm()
-        {
-            int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-            string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-
-            _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
-        }
-
+       
         private void cbxDateOfInvestigation_CheckedChanged(object sender, EventArgs e)
         {
             dtpDate.Enabled = cbxDateOfInvestigation.Checked;
@@ -660,18 +384,16 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnAdjustmentForm_Click(object sender, EventArgs e)
         {
-            _ = new frmInvestigationAdjustment(this).ShowDialog();
-            ViewAdjustment();
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
+        private void nudReadingBeforeTest_ValueChanged(object sender, EventArgs e)
         {
-            InvestigationForm();
+
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void nudReadingAfterTest_ValueChanged_1(object sender, EventArgs e)
         {
-
+            
         }
     }
 }

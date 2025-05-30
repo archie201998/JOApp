@@ -4,12 +4,8 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.PromptBox;
 using Mysqlx.Crud;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -18,24 +14,19 @@ namespace JOMonitoringApp.Views.Investigation
     {
 
         private readonly string _accountNumber;
-        private readonly ucInvestigationForm _ucInvestigationForm;
-
-        int locationX = 0;
-        int locationY = 0;
+        private readonly frmInvestigationForm _frmInvestigationForm;
 
         bool updateAdjustment = false;
-        bool manualComputeMode = false;
-        bool _isUpdate;
-
         private bool isUpdating = false;
 
-        public frmInvestigationAdjustment(ucInvestigationForm ucInvestigationForm)
+
+        public frmInvestigationAdjustment(frmInvestigationForm frmInvestigationForm)
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyleEditable(dgParticularAdjustment);
             Helper.LoadFormIcon(this);
-            _ucInvestigationForm = ucInvestigationForm;
-            _accountNumber = _ucInvestigationForm.txtAccountNumber.Text;
+            _frmInvestigationForm = frmInvestigationForm;
+            _accountNumber = frmInvestigationForm.txtAccountNumber.Text;
         }
 
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
@@ -43,7 +34,7 @@ namespace JOMonitoringApp.Views.Investigation
             LoadAccountDetails();
 
             //initial load.
-            if (_ucInvestigationForm.hasAdjustment)
+            if (_frmInvestigationForm._hasAdjustment)
                 LoadAdjustments();
         }
 
@@ -62,7 +53,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void LoadAdjustments()
         {
-            int investigationID = _ucInvestigationForm.investigationId;
+            int investigationID = _frmInvestigationForm._investigationId;
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(investigationID);
             var adjustmentDetails = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
 
@@ -132,7 +123,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void UpdateAdjustment()
         {
-            int investigationID = _ucInvestigationForm.investigationId;
+            int investigationID = _frmInvestigationForm._investigationId;
             if (Factory.InvestigationAdjustmentRepository().DeleteAdjustments(investigationID))
             {
                 return;
@@ -152,7 +143,7 @@ namespace JOMonitoringApp.Views.Investigation
                     {
                         Particular = particular,
                         Value = value,
-                        InvestigationId = _ucInvestigationForm.investigationId,
+                        InvestigationId = _frmInvestigationForm._investigationId,
                     };
 
                     bool result = Factory.InvestigationAdjustmentRepository().Insert(investigationAdjustmentModel);
@@ -169,7 +160,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var investigationModel = new InvestigationModel
             {
-                Id = _ucInvestigationForm.investigationId,
+                Id = _frmInvestigationForm._investigationId,
                 UpdatedBy = Helper.UserId,
                 AdjustmentParticular = cmbxParticular.Text,
                 WaterBill = Convert.ToDecimal(txtWaterBill.Text.Trim()),
@@ -212,7 +203,6 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal adjustedAmount = waterBill - waterBillAdjustedAmount;
                 decimal adjustedWaterBill = adjustedAmount + penalty + extensionFee;
 
-                //txtWaterBillAdjustedAmount.Text = adjustedAmount.ToString("N2");
                 txtAdjustedWaterBill.Text = waterBillAdjustedAmount.ToString("N2");
                 txtWaterBillAdjustment.Text = adjustedAmount.ToString("N2");
 
@@ -230,10 +220,10 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (e.NewValue == CheckState.Checked)
             {
-                if (_ucInvestigationForm.hasAdjustment)
+                if (_frmInvestigationForm._hasAdjustment)
                 {
                     updateAdjustment = true;
-                    dgParticularAdjustment.Rows.Add(itemText, Factory.InvestigationAdjustmentRepository().GetValueByInvestigationParticularAndID(itemText, _ucInvestigationForm.investigationId));
+                    dgParticularAdjustment.Rows.Add(itemText, Factory.InvestigationAdjustmentRepository().GetValueByInvestigationParticularAndID(itemText, _frmInvestigationForm._investigationId));
                 }
                 else
                 {
@@ -274,7 +264,6 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
      
-
         private void txtAdjustment_Leave(object sender, EventArgs e)
         {
             //txtWaterBillAdjustedAmount.Text = Convert.ToDecimal(txtWaterBillAdjustedAmount.Text).ToString("N2");

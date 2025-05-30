@@ -107,6 +107,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
+            this.investigationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -273,7 +274,8 @@
             // transactionsToolStripMenuItem
             // 
             this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.investigationsToolStripMenuItem});
+            this.investigationsToolStripMenuItem,
+            this.investigationFormToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.transactionsToolStripMenuItem.Text = "Transactions";
@@ -281,7 +283,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -325,7 +327,7 @@
             this.toolStripSeparator1,
             this.trackJOProgressToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 142);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
             this.contextMenuStrip1.Text = "PRINT ";
             // 
             // toolStripMenuItem2
@@ -361,7 +363,7 @@
             // printFormToolStripMenuItem
             // 
             this.printFormToolStripMenuItem.Name = "printFormToolStripMenuItem";
-            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.printFormToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.printFormToolStripMenuItem.Text = "Print Form";
             this.printFormToolStripMenuItem.Click += new System.EventHandler(this.investigationToolStripMenuItem_Click_1);
             // 
@@ -369,7 +371,7 @@
             // 
             this.investigationDataToolStripMenuItem.Enabled = false;
             this.investigationDataToolStripMenuItem.Name = "investigationDataToolStripMenuItem";
-            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.investigationDataToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.investigationDataToolStripMenuItem.Text = "Investigation Data";
             // 
             // toolStripSeparator1
@@ -822,6 +824,13 @@
             // 
             this.timer_investigator.Interval = 10000;
             // 
+            // investigationFormToolStripMenuItem
+            // 
+            this.investigationFormToolStripMenuItem.Name = "investigationFormToolStripMenuItem";
+            this.investigationFormToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.investigationFormToolStripMenuItem.Text = "Investigation Form";
+            this.investigationFormToolStripMenuItem.Click += new System.EventHandler(this.investigationFormToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -944,5 +953,6 @@
         private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
         private System.Windows.Forms.ToolStripStatusLabel lblRetrieved;
+        private System.Windows.Forms.ToolStripMenuItem investigationFormToolStripMenuItem;
     }
 }

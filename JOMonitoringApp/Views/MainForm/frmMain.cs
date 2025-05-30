@@ -1080,5 +1080,10 @@ namespace JOMonitoringApp.Views.MainForm
         {
             _ = new frmMaterials().ShowDialog();
         }
+
+        private void investigationFormToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

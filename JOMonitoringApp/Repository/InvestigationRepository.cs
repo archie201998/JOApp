@@ -287,7 +287,61 @@ namespace JOMonitoringApp
                            $"WHEN 4 THEN 'APPROVED' " +
                            $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
                            $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
-                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC LIMIT 300";
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC LIMIT 100";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public DataTable GetViewRecordsBySearch(int statusId, int rowLimit, string searchKey)
+        {
+            var parameters = new object[][] { 
+                new object[] { "@search_text", DbType.String, $"%{searchKey}%" },  
+                new object[] { "@row_filter", DbType.Int32, rowLimit }, 
+            
+            };
+
+            string rowFilterValue = rowLimit == 0 ? string.Empty : $" LIMIT @row_filter";
+            string statusQuery = string.Empty;
+
+            if (statusId != 6)
+            {
+                switch (statusId)
+                {
+                    case 0:
+                        statusQuery = "is_approved = 0 AND ";
+                        break;
+                    case 1:
+                        statusQuery = "is_approved = 1 AND ";
+                        break;
+                    case 2:
+                        statusQuery = "is_approved = 2 AND ";
+                        break;
+                    case 3:
+                        statusQuery = "is_approved = 3 AND ";
+                        break;
+                    case 4:
+                        statusQuery = "is_approved = 4 AND ";
+                        break;
+                    case 5:
+                        statusQuery = "is_approved = 5 AND ";
+                        break;
+                    default:
+                        statusQuery = string.Empty;
+                        break;
+                }
+            }
+
+            string query = $"SELECT id, job_orders_id, " +
+                           $"CASE is_approved " +
+                           $"WHEN 0 THEN 'FOR INVESTIGATION' " +
+                           $"WHEN 1 THEN 'FOR RECOMMENDATION' " +
+                           $"WHEN 2 THEN 'FOR ADJUSTMENT' " +
+                           $"WHEN 3 THEN 'FOR APPROVAL' " +
+                           $"WHEN 4 THEN 'APPROVED' " +
+                           $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
+                           $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC {rowFilterValue}";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);

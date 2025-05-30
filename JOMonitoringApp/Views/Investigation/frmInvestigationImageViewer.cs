@@ -18,19 +18,22 @@ namespace JOMonitoringApp.Views.Investigation
         private int currentImageIndex;
 
         private string _imageFilePath;
+        private string _secondaryImageFilePath;
 
-        public frmInvestigationImageViewer(string imageFilePath)
+        public frmInvestigationImageViewer(string imageFilePath, string secondaryImageFilePath)
         {
             InitializeComponent();
             imageFiles = new List<string>();
             currentImageIndex = 0;
             _imageFilePath = imageFilePath;
+            _secondaryImageFilePath = secondaryImageFilePath;
 
             Helper.LoadFormIcon(this);
         }
 
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
+            Cursor cursor = Cursors.WaitCursor;
             string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol"; // Replace with your shared folder path
 
             if (Directory.Exists(sharedFolderPath))
@@ -42,6 +45,7 @@ namespace JOMonitoringApp.Views.Investigation
                 if (imageFiles.Count > 0)
                 {
                     LoadImage();
+                    LoadSecondImage();
                 }
                 else
                 {
@@ -53,6 +57,7 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 MessageBox.Show("Shared folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            Cursor = Cursors.Default;
         }
 
 
@@ -77,12 +82,37 @@ namespace JOMonitoringApp.Views.Investigation
                 catch (Exception ex)
                 {
                     Helper.MessageBoxSuccess("No image uploaded");
-                    Close();
                 }
             }
 
         }
 
+        public void LoadSecondImage()
+        {
+            if (!string.IsNullOrEmpty(_secondaryImageFilePath))
+            {
+                try
+                {
+                    // Dispose the previous image if any
+                    if (pictureBox2.Image != null)
+                    {
+                        pictureBox2.Image.Dispose();
+                    }
+
+                    using (var tempImage = Image.FromFile(_secondaryImageFilePath))
+                    {
+                        // Clone the image to avoid locking the file
+                        pictureBox2.Image = new Bitmap(tempImage);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Helper.MessageBoxSuccess("No image uploaded");
+                }
+            }
+
+
+        }
         private void frmInvestigationImageViewer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

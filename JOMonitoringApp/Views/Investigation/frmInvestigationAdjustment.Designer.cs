@@ -509,8 +509,9 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInvestigationAdjustment";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "s";
+            this.Text = "Adjustment Form";
             this.Load += new System.EventHandler(this.frmInvestigationAdjustment_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();

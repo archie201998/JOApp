@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>220</ApplicationRevision>
+    <ApplicationRevision>221</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -288,6 +288,12 @@
     <Compile Include="Views\Investigation\frmInvestigationImageViewer.Designer.cs">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationList.Designer.cs">
+      <DependentUpon>frmInvestigationList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Investigation\frmInvestigationNotif.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -438,25 +444,31 @@
     <Content Include="Resources\icons8-information-14.png" />
     <None Include="Resources\icons8-investigation-48.png" />
     <None Include="Resources\icons8-investigation-30.png" />
+    <None Include="Resources\icons8-magnifying-16.png" />
+    <None Include="Resources\icons8-investigator-30.png" />
     <Content Include="Resources\icons8-notification-50.png" />
     <Content Include="Resources\icons8-online-maintenance-portal-100.png" />
     <Content Include="Resources\icons8-open-box-30-download.png" />
     <None Include="Resources\icons8-open-box-30.png" />
     <Content Include="Resources\icons8-print-14.png" />
-    <Content Include="Resources\icons8-printer-24.png" />
+    <None Include="Resources\icons8-printer-24.png" />
+    <None Include="Resources\icons8-printer-16.png" />
     <Content Include="Resources\icons8-programmer-96.png" />
     <None Include="Resources\icons8-report-48.png" />
     <None Include="Resources\icons8-reports-30.png" />
     <Content Include="Resources\icons8-save-14.png" />
     <Content Include="Resources\icons8-search-14.png" />
+    <None Include="Resources\icons8-search-16.png" />
     <Content Include="Resources\icons8-search-24.png" />
     <None Include="Resources\icons8-settings-48-blue.png" />
+    <None Include="Resources\icons8-sms-30.png" />
     <Content Include="Resources\icons8-summary-24.png" />
     <Content Include="Resources\icons8-user-24-3d.png" />
     <Content Include="Resources\icons8-user-24-flat.png" />
     <None Include="Resources\icons8-user-48.png" />
     <None Include="Resources\icons8-user-30.png" />
     <Content Include="Resources\icons8-view-14.png" />
+    <None Include="Resources\icons8-view-16.png" />
     <Content Include="Resources\icons8-water-14.png" />
     <Content Include="Resources\icons8-water-24.png" />
     <Content Include="Resources\icons8-water-48.png" />
@@ -496,6 +508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationImageViewer.resx">
       <DependentUpon>frmInvestigationImageViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\frmInvestigationList.resx">
+      <DependentUpon>frmInvestigationList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationNotif.resx">
       <DependentUpon>frmInvestigationNotif.cs</DependentUpon>

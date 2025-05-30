@@ -92,21 +92,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dgInvestigations = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.lblRecordCount = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.r = new System.Windows.Forms.PictureBox();
-            this.cmbxStatus = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investigationFormToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investigatorDailyAccomplishmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -144,12 +130,6 @@
             this.gbConditionOfService.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingAfterTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).BeginInit();
-            this.groupBox5.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
-            this.panel3.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.gbApproval.SuspendLayout();
             this.gbComputation.SuspendLayout();
             this.SuspendLayout();
@@ -852,6 +832,7 @@
             this.nudReadingAfterTest.Size = new System.Drawing.Size(145, 21);
             this.nudReadingAfterTest.TabIndex = 27;
             this.nudReadingAfterTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudReadingAfterTest.ValueChanged += new System.EventHandler(this.nudReadingAfterTest_ValueChanged_1);
             this.nudReadingAfterTest.Click += new System.EventHandler(this.nudReadingAfterTest_ValueChanged);
             // 
             // nudReadingBeforeTest
@@ -868,6 +849,7 @@
             this.nudReadingBeforeTest.Size = new System.Drawing.Size(145, 21);
             this.nudReadingBeforeTest.TabIndex = 26;
             this.nudReadingBeforeTest.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudReadingBeforeTest.ValueChanged += new System.EventHandler(this.nudReadingBeforeTest_ValueChanged);
             // 
             // txtCalibrationResult
             // 
@@ -932,196 +914,10 @@
             this.label17.TabIndex = 6;
             this.label17.Text = "METER BRAND / SIZE";
             // 
-            // groupBox5
-            // 
-            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox5.Controls.Add(this.panel2);
-            this.groupBox5.Controls.Add(this.panel1);
-            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(712, 16);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox5.Size = new System.Drawing.Size(786, 758);
-            this.groupBox5.TabIndex = 25;
-            this.groupBox5.TabStop = false;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgInvestigations);
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(10, 86);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(766, 662);
-            this.panel2.TabIndex = 26;
-            // 
-            // dgInvestigations
-            // 
-            this.dgInvestigations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgInvestigations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgInvestigations.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
-            this.dgInvestigations.MultiSelect = false;
-            this.dgInvestigations.Name = "dgInvestigations";
-            this.dgInvestigations.Size = new System.Drawing.Size(766, 637);
-            this.dgInvestigations.TabIndex = 25;
-            this.dgInvestigations.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellClick);
-            this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
-            this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
-            // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.label26);
-            this.panel3.Controls.Add(this.lblRecordCount);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 637);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(766, 25);
-            this.panel3.TabIndex = 28;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
-            // 
-            // label26
-            // 
-            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(3, 1);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(77, 23);
-            this.label26.TabIndex = 0;
-            this.label26.Text = "RECORDS : ";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRecordCount
-            // 
-            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordCount.Location = new System.Drawing.Point(71, 1);
-            this.lblRecordCount.Name = "lblRecordCount";
-            this.lblRecordCount.Size = new System.Drawing.Size(44, 23);
-            this.lblRecordCount.TabIndex = 1;
-            this.lblRecordCount.Text = "0";
-            this.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.txtSearch);
-            this.panel1.Controls.Add(this.label19);
-            this.panel1.Controls.Add(this.btnPrint);
-            this.panel1.Controls.Add(this.r);
-            this.panel1.Controls.Add(this.cmbxStatus);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.btnSearch);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(10, 23);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(766, 63);
-            this.panel1.TabIndex = 27;
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BackColor = System.Drawing.SystemColors.Window;
-            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(118, 35);
-            this.txtSearch.MaxLength = 20;
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(198, 21);
-            this.txtSearch.TabIndex = 42;
-            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(7, 3);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(237, 17);
-            this.label19.TabIndex = 40;
-            this.label19.Text = "JOB ORDER INVESTIGATION RECORDS";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.FlatAppearance.BorderSize = 0;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_print_14;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.Location = new System.Drawing.Point(669, 32);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(94, 23);
-            this.btnPrint.TabIndex = 29;
-            this.btnPrint.TabStop = false;
-            this.btnPrint.Text = "Print Form";
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.UseVisualStyleBackColor = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // r
-            // 
-            this.r.Image = global::JOMonitoringApp.Properties.Resources.icons8_information_14;
-            this.r.Location = new System.Drawing.Point(320, 36);
-            this.r.Name = "r";
-            this.r.Size = new System.Drawing.Size(16, 16);
-            this.r.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.r.TabIndex = 37;
-            this.r.TabStop = false;
-            this.toolTip1.SetToolTip(this.r, "JO Number, Account Number and Account Name");
-            // 
-            // cmbxStatus
-            // 
-            this.cmbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cmbxStatus.FormattingEnabled = true;
-            this.cmbxStatus.Items.AddRange(new object[] {
-            "All",
-            "For Investigation",
-            "For Recommendation",
-            "For Adjustment",
-            "For Approval",
-            "For ReInvestigation",
-            "Approved"});
-            this.cmbxStatus.Location = new System.Drawing.Point(7, 34);
-            this.cmbxStatus.Name = "cmbxStatus";
-            this.cmbxStatus.Size = new System.Drawing.Size(108, 23);
-            this.cmbxStatus.TabIndex = 38;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.button1.Location = new System.Drawing.Point(411, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(31, 23);
-            this.button1.TabIndex = 36;
-            this.button1.TabStop = false;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Visible = false;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(342, 33);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(70, 23);
-            this.btnSearch.TabIndex = 35;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // printToolStripMenuItem
             // 
@@ -1378,7 +1174,6 @@
             this.Controls.Add(this.gbConditionOfService);
             this.Controls.Add(this.gbStatisticalFindings);
             this.Controls.Add(this.gbAccountDetails);
-            this.Controls.Add(this.groupBox5);
             this.Name = "ucInvestigationForm";
             this.Size = new System.Drawing.Size(1502, 782);
             this.Load += new System.EventHandler(this.ucInvestigation_Load);
@@ -1400,13 +1195,6 @@
             this.gbConditionOfService.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingAfterTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).EndInit();
-            this.groupBox5.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
             this.gbApproval.ResumeLayout(false);
             this.gbApproval.PerformLayout();
             this.gbComputation.ResumeLayout(false);
@@ -1448,27 +1236,19 @@
         internal System.Windows.Forms.TextBox txtAccountNumber;
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.TextBox txtAddress;
-        internal System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.DataGridView dgInvestigations;
         internal System.Windows.Forms.DateTimePicker dtpDate;
         internal System.Windows.Forms.GroupBox gbApproval;
         internal System.Windows.Forms.TextBox txtApprovalMessage;
-        private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.GroupBox gbComputation;
         internal System.Windows.Forms.NumericUpDown nudReadingBeforeTest;
         internal System.Windows.Forms.NumericUpDown nudReadingAfterTest;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox r;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.ComboBox cmbxStatus;
         internal System.Windows.Forms.PictureBox pictureBox1;
         internal System.Windows.Forms.PictureBox pictureBox2;
         internal System.Windows.Forms.TextBox txtComplaint;
         internal System.Windows.Forms.TextBox txtMeterSize;
         internal System.Windows.Forms.TextBox txtMeterBrand;
         internal System.Windows.Forms.TextBox txtMeterNumber;
-        internal System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.CheckBox cbxRecommendationDisapproved;
         protected System.Windows.Forms.GroupBox gbAccountDetails;
         private System.Windows.Forms.CheckBox cbxForAdjustment;
@@ -1487,7 +1267,6 @@
         internal System.Windows.Forms.Label lblAdjustedAmount;
         internal System.Windows.Forms.Label lblExtensionFee;
         internal System.Windows.Forms.Label lblPenalty;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem investigationFormToolStripMenuItem;
@@ -1501,10 +1280,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label19;
-        internal System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Label label27;
-        internal System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label32;
@@ -1513,8 +1289,6 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button btnClearImage2;
         private System.Windows.Forms.Button btnClearImage1;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label lblRecordCount;
         private System.Windows.Forms.Label btnAttachedImage;
         internal System.Windows.Forms.Label btnAdjustmentForm;
     }

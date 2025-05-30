@@ -241,7 +241,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, searchKey);
-            lblRecordCount.Text = dtInvestigation.Rows.Count.ToString();
+            lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} / {Factory.InvestigationRepository().RecordCount()}";
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
 
@@ -460,13 +460,13 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal extensionFee = Convert.ToDecimal(adjustments["extension_fee"]);
                 decimal adjustedAmount = waterBill - waterBillAdjustment;
                 decimal adjustedWaterBill = Convert.ToDecimal(adjustments["adjusted_water_bill"]);
-
+                
                 lblWaterBill.Text = waterBill.ToString("N2");
                 lblWaterBIllAdjustment.Text = waterBillAdjustment.ToString("N2");
                 lblExtensionFee.Text = extensionFee.ToString("N2");
                 lblPenalty.Text = penalty.ToString("N2");
                 lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
-                lblAdjustedWaterBill.Text = adjustedWaterBill.ToString("N2");
+                lblAdjustedWaterBill.Text = adjustedAmount.ToString("N2");
             }
 
             else
@@ -661,11 +661,17 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnAdjustmentForm_Click(object sender, EventArgs e)
         {
             _ = new frmInvestigationAdjustment(this).ShowDialog();
+            ViewAdjustment();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
             InvestigationForm();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

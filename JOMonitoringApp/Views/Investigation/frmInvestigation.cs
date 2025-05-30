@@ -163,6 +163,5 @@ namespace JOMonitoringApp.Views.Investigation
                 SaveData();
             }
         }
-
     }
 }

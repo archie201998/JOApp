@@ -21,7 +21,7 @@ namespace JOMonitoringApp.Views.Reports
             Helper.LoadFormIcon(this);
 
             _jobOrderId = jobOrderId;
-            jobOrderNumber = jobOrderNumber;
+            this.jobOrderNumber = jobOrderNumber;
         }
 
         private void frmInvestigation_Load(object sender, EventArgs e)
@@ -87,8 +87,8 @@ namespace JOMonitoringApp.Views.Reports
                 _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n";
                 _values += Convert.ToDecimal(dictInvestigation["penalty"]).ToString("N2") + "\n";
                 _values += Convert.ToDecimal(dictInvestigation["extension_fee"]).ToString("N2") + "\n";
-                _values += adjustedAmount + "\n";
                 _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n";
+                _values += (Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]) + Convert.ToDecimal(dictInvestigation["penalty"]) + Convert.ToDecimal(dictInvestigation["extension_fee"])).ToString("N2") + "\n";
 
                 string status = Helper.InvestigationStatusText(Convert.ToInt32(dictInvestigation["is_approved"]));
 

@@ -1445,42 +1445,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="Textbox124">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!paramConcessionaire.Value</Value>
-                        <Style>
-                          <FontFamily>arial</FontFamily>
-                          <FontSize>9pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox13</rd:DefaultName>
-                <Top>5.17102cm</Top>
-                <Left>2.93539cm</Left>
-                <Height>1.09713cm</Height>
-                <Width>6.12551cm</Width>
-                <ZIndex>29</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Textbox Name="Textbox125">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -1503,7 +1467,7 @@
                 <Left>0.07208cm</Left>
                 <Height>0.65375cm</Height>
                 <Width>2.80855cm</Width>
-                <ZIndex>30</ZIndex>
+                <ZIndex>29</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1519,7 +1483,7 @@
                 <Left>2.95101cm</Left>
                 <Height>0cm</Height>
                 <Width>5.70607cm</Width>
-                <ZIndex>31</ZIndex>
+                <ZIndex>30</ZIndex>
                 <Style>
                   <Border>
                     <Style>Solid</Style>
@@ -1904,11 +1868,12 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Parameters!paramDate.Value</Value>
+                    <Value>=CDate(Parameters!paramDate.Value)</Value>
                     <Style>
                       <FontFamily>arial</FontFamily>
                       <FontSize>9pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Format>d</Format>
                     </Style>
                   </TextRun>
                 </TextRuns>

@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal penalty = !string.IsNullOrWhiteSpace(adjustments["penalty"]?.ToString()) ? Convert.ToDecimal(adjustments["penalty"]) : 0;
                 decimal extensionFee = !string.IsNullOrWhiteSpace(adjustments["extension_fee"]?.ToString()) ? Convert.ToDecimal(adjustments["extension_fee"]) : 0;
                 decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["water_bill_adjustment"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill_adjustment"]) : 0;
-                decimal adjustedAmount = (amountDue - adjustment) + penalty + extensionFee;
+                
                 string particular = adjustments["adjustment_particular"].ToString();
                 decimal _adjustedAmount = !string.IsNullOrWhiteSpace(adjustments["adjusted_water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["adjusted_water_bill"]) : 0;
 
@@ -83,9 +83,8 @@ namespace JOMonitoringApp.Views.Investigation
                 txtWaterBillAdjustment.Text  = adjustment.ToString("N2");
                 txtExtensionFee.Text = extensionFee.ToString("N2");
                 txtPenalty.Text = penalty.ToString("N2");
-                txtWaterBillAdjustedAmount.Text = adjustedAmount.ToString("N2");
-                txtAdjustedWaterBill.Text = _adjustedAmount.ToString("N2");
-
+                txtWaterBillAdjustedAamount.Text = _adjustedAmount.ToString("N2");
+                txtAdjustedWaterBill.Text = (_adjustedAmount + penalty + extensionFee).ToString("N2");
 
 
 
@@ -112,18 +111,10 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Factory.InvestigationRepository().SaveComputation(InvestigationModel());
-
-            if (updateAdjustment)
-                UpdateAdjustment();
-
-            if (SaveAdjustment())
-            {
-                Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
-                Close();
-            }
             try
             {
+                Factory.InvestigationRepository().SaveComputation(InvestigationModel());
+
                 if (updateAdjustment)
                     UpdateAdjustment();
 
@@ -182,10 +173,10 @@ namespace JOMonitoringApp.Views.Investigation
                 UpdatedBy = Helper.UserId,
                 AdjustmentParticular = cmbxParticular.Text,
                 WaterBill = Convert.ToDecimal(txtWaterBill.Text.Trim()),
-                WaterBillAdjustment = Convert.ToDecimal(txtWaterBillAdjustedAmount.Text.Trim()),
+                WaterBillAdjustment = Convert.ToDecimal(txtWaterBillAdjustment.Text.Trim()),
                 Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
                 ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                AdjustedWaterBill = Convert.ToDecimal(txtAdjustedWaterBill.Text.Trim())
+                AdjustedWaterBill = Convert.ToDecimal(txtWaterBillAdjustedAamount.Text.Trim())
             };
 
             investigationModel.AdjustedAmount = investigationModel.WaterBill - investigationModel.WaterBillAdjustment;
@@ -212,15 +203,18 @@ namespace JOMonitoringApp.Views.Investigation
 
                 decimal waterBill = decimal.Parse(txtWaterBill.Text.Trim());
                 decimal waterBillAdjustment = decimal.Parse(txtWaterBillAdjustment.Text.Trim());
+                decimal waterBillAdjustedAmount = decimal.Parse(txtWaterBillAdjustedAamount.Text.Trim());
                 decimal penalty = decimal.Parse(txtPenalty.Text.Trim());
                 decimal extensionFee = decimal.Parse(txtExtensionFee.Text.Trim());
-                decimal adjustedAmount = waterBill - waterBillAdjustment;
 
-                decimal adjustedWaterBill = (adjustedAmount) + penalty + extensionFee;
+                waterBillAdjustedAmount = waterBillAdjustedAmount + penalty + extensionFee;
 
-                txtWaterBillAdjustedAmount.Text = adjustedAmount.ToString("N2");
-                txtAdjustedWaterBill.Text = adjustedWaterBill.ToString("N2");
+                decimal adjustedAmount = waterBill - waterBillAdjustedAmount;
+                decimal adjustedWaterBill = adjustedAmount + penalty + extensionFee;
 
+                //txtWaterBillAdjustedAmount.Text = adjustedAmount.ToString("N2");
+                txtAdjustedWaterBill.Text = waterBillAdjustedAmount.ToString("N2");
+                txtWaterBillAdjustment.Text = adjustedAmount.ToString("N2");
 
             }
             catch (FormatException) { }
@@ -294,6 +288,11 @@ namespace JOMonitoringApp.Views.Investigation
         private void txtAdjustedDue_Leave(object sender, EventArgs e)
         {
             txtWaterBillAdjustment.Text = Convert.ToDecimal(txtWaterBillAdjustment.Text).ToString("N2");
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+          
         }
     }
 }

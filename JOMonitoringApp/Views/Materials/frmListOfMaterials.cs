@@ -58,7 +58,6 @@ namespace JOMonitoringApp.Views.MainForm
         private void LoadMaterials()
         {
             dgMaterials.Rows.Clear();
-            //int itemId = (int)dgMaterials.SelectedCells[0].Value;
             DataTable dtMaterials = Factory.MaterialsRepository().GetAllMaterials();
             foreach (DataRow item in dtMaterials.Rows)
             {

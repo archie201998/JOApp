@@ -986,6 +986,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(766, 25);
             this.panel3.TabIndex = 28;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // label26
             // 
@@ -1243,11 +1244,11 @@
             // lblAdjustedWaterBill
             // 
             this.lblAdjustedWaterBill.AutoSize = true;
-            this.lblAdjustedWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblAdjustedWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdjustedWaterBill.ForeColor = System.Drawing.Color.Green;
             this.lblAdjustedWaterBill.Location = new System.Drawing.Point(200, 154);
             this.lblAdjustedWaterBill.Name = "lblAdjustedWaterBill";
-            this.lblAdjustedWaterBill.Size = new System.Drawing.Size(38, 15);
+            this.lblAdjustedWaterBill.Size = new System.Drawing.Size(43, 16);
             this.lblAdjustedWaterBill.TabIndex = 31;
             this.lblAdjustedWaterBill.Text = "00.00";
             // 
@@ -1300,7 +1301,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(10, 107);
+            this.label30.Location = new System.Drawing.Point(10, 109);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(102, 15);
             this.label30.TabIndex = 29;
@@ -1311,7 +1312,7 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(10, 85);
+            this.label31.Location = new System.Drawing.Point(10, 87);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(60, 15);
             this.label31.TabIndex = 28;
@@ -1322,7 +1323,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(10, 128);
+            this.label29.Location = new System.Drawing.Point(10, 131);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(128, 15);
             this.label29.TabIndex = 27;
@@ -1333,7 +1334,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(10, 150);
+            this.label28.Location = new System.Drawing.Point(10, 154);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(146, 15);
             this.label28.TabIndex = 25;
@@ -1344,7 +1345,7 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(10, 63);
+            this.label25.Location = new System.Drawing.Point(10, 65);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(161, 15);
             this.label25.TabIndex = 23;

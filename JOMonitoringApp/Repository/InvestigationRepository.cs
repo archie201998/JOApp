@@ -287,7 +287,7 @@ namespace JOMonitoringApp
                            $"WHEN 4 THEN 'APPROVED' " +
                            $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
                            $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
-                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC";
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC LIMIT 300";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
@@ -336,7 +336,7 @@ namespace JOMonitoringApp
                                 actual_consumption = @actual_consumption, 
                                 last_three_months_consumption = @last_three_months_consumption,
                                 water_bill = @water_bill,
-                                water_bill_adjustment = @water_bill, 
+                                water_bill_adjustment = @water_bill_adjustment, 
                                 adjustment_particular = @adjustment_particular, 
                                 adjusted_water_bill = @adjusted_water_bill, 
                                 extension_fee = @extension_fee, 

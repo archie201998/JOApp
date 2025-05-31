@@ -4,10 +4,11 @@ using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.Materials;
 using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.PromptBox;
 using JOMonitoringApp.Views.Reports;
-using JOMonitoringApp.Views.Materials;
+using JOMonitoringApp.Views.Reports.SROF;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
@@ -879,7 +880,9 @@ namespace JOMonitoringApp.Views.MainForm
             }
 
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-            _ = new frmEstimateOfMaterials(jobOrderNumber).ShowDialog();
+            var frmJOFSTappingMaterials = new frmJOFSTappignMaterials();
+            frmJOFSTappingMaterials._jobOrderNumber = jobOrderNumber;
+            frmJOFSTappingMaterials.ShowDialog();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)

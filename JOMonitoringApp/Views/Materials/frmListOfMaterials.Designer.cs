@@ -201,7 +201,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.btnX.Location = new System.Drawing.Point(569, 10);
+            this.btnX.Location = new System.Drawing.Point(564, 10);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(31, 23);
             this.btnX.TabIndex = 33;

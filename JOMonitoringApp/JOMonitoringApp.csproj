@@ -336,12 +336,6 @@
     <Compile Include="Views\MainForm\frmMainDashboard.Designer.cs">
       <DependentUpon>frmMainDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Materials\frmImportMaterials.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Materials\frmImportMaterials.Designer.cs">
-      <DependentUpon>frmImportMaterials.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\Materials\frmJobOrderMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -378,10 +372,10 @@
     <Compile Include="Views\PromptBox\frmMessagePrompt.Designer.cs">
       <DependentUpon>frmMessagePrompt.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Reports\frmEstimateOfMaterials.cs">
+    <Compile Include="Views\Reports\JobOrderEstimateOfMaterials\frmEstimateOfMaterials.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Reports\frmEstimateOfMaterials.Designer.cs">
+    <Compile Include="Views\Reports\JobOrderEstimateOfMaterials\frmEstimateOfMaterials.Designer.cs">
       <DependentUpon>frmEstimateOfMaterials.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reports\frmHydrantWithdrawal.cs">
@@ -407,6 +401,12 @@
     </Compile>
     <Compile Include="Views\Reports\frmServiceRequestAndOrderForm.Designer.cs">
       <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reports\JobOrderEstimateOfMaterials\frmJOFSTappignMaterials.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reports\JobOrderEstimateOfMaterials\frmJOFSTappignMaterials.Designer.cs">
+      <DependentUpon>frmJOFSTappignMaterials.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\RolesAndPermissions\frmRolesAndPermissions.cs">
       <SubType>Form</SubType>
@@ -435,6 +435,7 @@
     <Content Include="adjusted-system-icon.ico" />
     <Content Include="Resources\btn-search.png" />
     <None Include="Resources\icons8-clipboard-48.png" />
+    <None Include="Resources\icons8-continue-16.png" />
     <Content Include="Resources\icons8-delete-14.png" />
     <Content Include="Resources\icons8-form-14.png" />
     <None Include="Resources\icons8-give-30.png" />
@@ -533,9 +534,6 @@
     <EmbeddedResource Include="Views\MainForm\frmMainDashboard.resx">
       <DependentUpon>frmMainDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Materials\frmImportMaterials.resx">
-      <DependentUpon>frmImportMaterials.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\Materials\frmJobOrderMaterials.resx">
       <DependentUpon>frmJobOrderMaterials.cs</DependentUpon>
     </EmbeddedResource>
@@ -554,7 +552,7 @@
     <EmbeddedResource Include="Views\PromptBox\frmMessagePrompt.resx">
       <DependentUpon>frmMessagePrompt.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Reports\frmEstimateOfMaterials.resx">
+    <EmbeddedResource Include="Views\Reports\JobOrderEstimateOfMaterials\frmEstimateOfMaterials.resx">
       <DependentUpon>frmEstimateOfMaterials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmHydrantWithdrawal.resx">
@@ -568,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reports\frmServiceRequestAndOrderForm.resx">
       <DependentUpon>frmServiceRequestAndOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reports\JobOrderEstimateOfMaterials\frmJOFSTappignMaterials.resx">
+      <DependentUpon>frmJOFSTappignMaterials.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\RolesAndPermissions\frmRolesAndPermissions.resx">
       <DependentUpon>frmRolesAndPermissions.cs</DependentUpon>

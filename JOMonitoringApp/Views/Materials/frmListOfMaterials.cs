@@ -13,7 +13,7 @@ namespace JOMonitoringApp.Views.MainForm
 {
     public partial class frmListOfMaterials : Form
     {
-
+        private bool _toSave = false;
 
         public frmListOfMaterials()
         {
@@ -69,6 +69,8 @@ namespace JOMonitoringApp.Views.MainForm
 
                 dgMaterials.Rows.Add(materialsId, itemNo, itemName, inStock, isInventoryItem);
             }
+
+            txtRecordCount.Text = dgMaterials.Rows.Count.ToString();
         }
 
         private void SearchMaterials()
@@ -94,16 +96,29 @@ namespace JOMonitoringApp.Views.MainForm
                 SearchMaterials();
             }
         }
-
+       
         private void btnImportFile_Click_1(object sender, EventArgs e)
         {
+            if (!_toSave)
+                ImportFile();
+            else
+                SaveImportedFile();
+        }
 
+        private void SaveImportedFile()
+        {
+            //save excel file to database.
+            _toSave = false;
+        }
+
+        private void ImportFile()
+        {
             Microsoft.Office.Interop.Excel.Application excelApp;
             Microsoft.Office.Interop.Excel.Workbook excelWB;
             Microsoft.Office.Interop.Excel.Worksheet excelWS;
             Microsoft.Office.Interop.Excel.Range excelRange;
 
-            int excelRow= 0;
+            int excelRow = 0;
             openFileDialog1.Filter = "Excel Office | *.xls; *xlsx";
             openFileDialog1.ShowDialog();
             string fileName = openFileDialog1.FileName;
@@ -121,7 +136,7 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     i++;
                     Cursor.Current = Cursors.WaitCursor;
-                    btnImportFile.Text = $"Importing ({i}) records...";   
+                    btnImportFile.Text = $"Importing ({i}) records...";
                 }
 
                 btnImportFile.BackColor = Color.Green;
@@ -129,19 +144,23 @@ namespace JOMonitoringApp.Views.MainForm
                 Cursor.Current = Cursors.Default;
                 btnX.Visible = true;
 
-                lblFileName.Text = $"{openFileDialog1.SafeFileName} ({i} records detected.)"; 
+                lblFileName.Text = $"{openFileDialog1.SafeFileName} ({i} records detected.)";
             }
 
-
-            //_ = new frmImportMaterials().ShowDialog(this);
+            _toSave = true;
         }
-
         private void btnX_Click(object sender, EventArgs e)
         {
-            btnImportFile.Text = "Import File";
-            btnImportFile.BackColor = Color.Red;
-            lblFileName.Text = "No file selected.";
-            btnX.Visible = false;
+            bool cancelImport = Helper.MessageBoxConfirmCancel("Do you want to cancel importing file?");
+            if (cancelImport)
+            {
+                btnImportFile.Text = "Import File";
+                btnImportFile.BackColor = Color.Red;
+                lblFileName.Text = "No file selected.";
+                btnX.Visible = false;
+                _toSave = false;
+            }
+         
         }
     }
 }

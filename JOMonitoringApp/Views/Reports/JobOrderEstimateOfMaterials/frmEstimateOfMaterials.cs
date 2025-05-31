@@ -9,13 +9,13 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmEstimateOfMaterials : Form
     {
-        string jobOrderNumber = string.Empty;  
+        string _jobOrderNumber = string.Empty;  
 
         public frmEstimateOfMaterials(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            this.jobOrderNumber = jobOrderNumber;
+            _jobOrderNumber = jobOrderNumber;
 
             if (!string.IsNullOrEmpty(jobOrderNumber))
             {
@@ -80,14 +80,15 @@ namespace JOMonitoringApp.Views.Reports
             //parameters[11] = new ReportParameter("paramCustomerContact", dictJODetails["contact_number"]);
 
             // Set the data source\\
-            var dtMaterialsFromDB = Factory.MaterialsRepository().GetRecords();
+            var dtTappingMaterials = Factory.MaterialsRepository().GetTappingDefaultMaterials();
             var dtMaterials = new dsReport.dtMaterialsDataTable().Clone();
 
-            foreach (DataRow dataRow in dtMaterialsFromDB.Rows)
+            foreach (DataRow dataRow in dtTappingMaterials.Rows)
             {
                 var newRow = dtMaterials.NewRow();
-                newRow["item"] = dataRow["material"];
-                dtMaterials.Rows.Add(newRow);
+                newRow["item"] = dataRow["item_name"];
+
+                dtMaterials.Rows.Add(dataRow["item_name"]);
             }
 
             ReportDataSource dataSource = new ReportDataSource("dsMaterials", dtMaterials);
@@ -104,5 +105,9 @@ namespace JOMonitoringApp.Views.Reports
 
         }
 
+        private void frmEstimateOfMaterials_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

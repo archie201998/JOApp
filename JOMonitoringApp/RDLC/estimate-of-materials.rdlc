@@ -672,7 +672,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.53492cm</Height>
+                  <Height>0.56104cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -847,8 +847,8 @@
             <DataSetName>dsMaterials</DataSetName>
             <Top>2.30268cm</Top>
             <Left>0.28194cm</Left>
-            <Height>1.13492cm</Height>
-            <Width>10.86053cm</Width>
+            <Height>1.16104cm</Height>
+            <Width>10.86054cm</Width>
             <ZIndex>12</ZIndex>
             <Style>
               <Border>
@@ -4774,7 +4774,7 @@
             </Style>
           </Rectangle>
         </ReportItems>
-        <Height>10.49277in</Height>
+        <Height>10.49278in</Height>
         <Style />
       </Body>
       <Width>7.4537in</Width>

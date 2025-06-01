@@ -369,7 +369,6 @@ namespace JOMonitoringApp.Views.JobOrder
             statusId = Convert.ToInt16(radAccomplished.Tag);
         }
 
-
         internal void BtnSearch_Click(object sender, EventArgs e)
         {
             _ = new frmSearchAccount(this).ShowDialog();
@@ -499,14 +498,6 @@ namespace JOMonitoringApp.Views.JobOrder
             Helper.ClearErrorTextBox(errorProvider1, txtRemarks);
         }
 
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ucJoborder_Load_1(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

@@ -35,10 +35,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpFrom = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.cb4 = new System.Windows.Forms.CheckBox();
-            this.cb3 = new System.Windows.Forms.CheckBox();
-            this.cb2 = new System.Windows.Forms.CheckBox();
-            this.cb1 = new System.Windows.Forms.CheckBox();
+            this.cbxAccomplished = new System.Windows.Forms.CheckBox();
+            this.cbxCancelled = new System.Windows.Forms.CheckBox();
+            this.cbxProcessing = new System.Windows.Forms.CheckBox();
+            this.cbxPending = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.radDate = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
@@ -47,7 +47,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -86,10 +85,10 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtpFrom);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.cb4);
-            this.panel1.Controls.Add(this.cb3);
-            this.panel1.Controls.Add(this.cb2);
-            this.panel1.Controls.Add(this.cb1);
+            this.panel1.Controls.Add(this.cbxAccomplished);
+            this.panel1.Controls.Add(this.cbxCancelled);
+            this.panel1.Controls.Add(this.cbxProcessing);
+            this.panel1.Controls.Add(this.cbxPending);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.radDate);
             this.panel1.Controls.Add(this.label5);
@@ -147,59 +146,59 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "FROM";
             // 
-            // cb4
+            // cbxAccomplished
             // 
-            this.cb4.AutoSize = true;
-            this.cb4.Checked = true;
-            this.cb4.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cb4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cb4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb4.Location = new System.Drawing.Point(1132, 5);
-            this.cb4.Name = "cb4";
-            this.cb4.Size = new System.Drawing.Size(118, 19);
-            this.cb4.TabIndex = 27;
-            this.cb4.Text = "ACCOMPLISHED";
-            this.cb4.UseVisualStyleBackColor = true;
-            this.cb4.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            this.cbxAccomplished.AutoSize = true;
+            this.cbxAccomplished.Checked = true;
+            this.cbxAccomplished.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxAccomplished.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxAccomplished.Location = new System.Drawing.Point(1132, 5);
+            this.cbxAccomplished.Name = "cbxAccomplished";
+            this.cbxAccomplished.Size = new System.Drawing.Size(118, 19);
+            this.cbxAccomplished.TabIndex = 27;
+            this.cbxAccomplished.Text = "ACCOMPLISHED";
+            this.cbxAccomplished.UseVisualStyleBackColor = true;
+            this.cbxAccomplished.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
             // 
-            // cb3
+            // cbxCancelled
             // 
-            this.cb3.AutoSize = true;
-            this.cb3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cb3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb3.Location = new System.Drawing.Point(1032, 5);
-            this.cb3.Name = "cb3";
-            this.cb3.Size = new System.Drawing.Size(94, 19);
-            this.cb3.TabIndex = 26;
-            this.cb3.Text = "CANCELLED";
-            this.cb3.UseVisualStyleBackColor = true;
-            this.cb3.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            this.cbxCancelled.AutoSize = true;
+            this.cbxCancelled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxCancelled.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxCancelled.Location = new System.Drawing.Point(1032, 5);
+            this.cbxCancelled.Name = "cbxCancelled";
+            this.cbxCancelled.Size = new System.Drawing.Size(94, 19);
+            this.cbxCancelled.TabIndex = 26;
+            this.cbxCancelled.Text = "CANCELLED";
+            this.cbxCancelled.UseVisualStyleBackColor = true;
+            this.cbxCancelled.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
             // 
-            // cb2
+            // cbxProcessing
             // 
-            this.cb2.AutoSize = true;
-            this.cb2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cb2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb2.Location = new System.Drawing.Point(924, 5);
-            this.cb2.Name = "cb2";
-            this.cb2.Size = new System.Drawing.Size(102, 19);
-            this.cb2.TabIndex = 25;
-            this.cb2.Text = "PROCESSING";
-            this.cb2.UseVisualStyleBackColor = true;
-            this.cb2.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            this.cbxProcessing.AutoSize = true;
+            this.cbxProcessing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxProcessing.Location = new System.Drawing.Point(924, 5);
+            this.cbxProcessing.Name = "cbxProcessing";
+            this.cbxProcessing.Size = new System.Drawing.Size(102, 19);
+            this.cbxProcessing.TabIndex = 25;
+            this.cbxProcessing.Text = "PROCESSING";
+            this.cbxProcessing.UseVisualStyleBackColor = true;
+            this.cbxProcessing.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
             // 
-            // cb1
+            // cbxPending
             // 
-            this.cb1.AutoSize = true;
-            this.cb1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cb1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb1.Location = new System.Drawing.Point(840, 5);
-            this.cb1.Name = "cb1";
-            this.cb1.Size = new System.Drawing.Size(78, 19);
-            this.cb1.TabIndex = 24;
-            this.cb1.Text = "PENDING";
-            this.cb1.UseVisualStyleBackColor = true;
-            this.cb1.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
+            this.cbxPending.AutoSize = true;
+            this.cbxPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cbxPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPending.Location = new System.Drawing.Point(840, 5);
+            this.cbxPending.Name = "cbxPending";
+            this.cbxPending.Size = new System.Drawing.Size(78, 19);
+            this.cbxPending.TabIndex = 24;
+            this.cbxPending.Text = "PENDING";
+            this.cbxPending.UseVisualStyleBackColor = true;
+            this.cbxPending.CheckedChanged += new System.EventHandler(this.cb1_CheckedChanged);
             // 
             // label6
             // 
@@ -390,10 +389,10 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel lblRecordsCount;
         private System.Windows.Forms.Label label6;
-        protected System.Windows.Forms.CheckBox cb2;
-        private System.Windows.Forms.CheckBox cb1;
-        protected System.Windows.Forms.CheckBox cb3;
-        protected System.Windows.Forms.CheckBox cb4;
+        protected System.Windows.Forms.CheckBox cbxProcessing;
+        private System.Windows.Forms.CheckBox cbxPending;
+        protected System.Windows.Forms.CheckBox cbxCancelled;
+        protected System.Windows.Forms.CheckBox cbxAccomplished;
         private System.Windows.Forms.DateTimePicker dtpTo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpFrom;

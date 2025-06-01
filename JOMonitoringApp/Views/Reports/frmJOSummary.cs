@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Reports
         {
             try
             {
-                if (cb1.Checked || cb2.Checked || cb3.Checked || cb4.Checked)
+                if (cbxPending.Checked || cbxProcessing.Checked || cbxCancelled.Checked || cbxAccomplished.Checked)
                 {
                     LoadReport();
                     return;
@@ -235,22 +235,22 @@ namespace JOMonitoringApp.Views.Reports
         {
             statusFilter = string.Empty;
 
-            if (cb1.Checked)
+            if (cbxPending.Checked)
                 statusFilter += "status_id = 1";
             else
                 RemoveFilter(ref statusFilter, "status_id = 1");
 
-            if (cb2.Checked)
+            if (cbxProcessing.Checked)
                 statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 2";
             else
                 RemoveFilter(ref statusFilter, "status_id = 2");
 
-            if (cb3.Checked)
+            if (cbxCancelled.Checked)
                 statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 3";
             else
                 RemoveFilter(ref statusFilter, "status_id = 3");
 
-            if (cb4.Checked)
+            if (cbxAccomplished.Checked)
                 statusFilter += (statusFilter == "" ? "" : " OR ") + "status_id = 4";
             else
                 RemoveFilter(ref statusFilter, "status_id = 4");

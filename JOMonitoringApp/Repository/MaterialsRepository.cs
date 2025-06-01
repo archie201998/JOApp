@@ -64,7 +64,7 @@ namespace JOMonitoringApp
 
         public DataTable GetAllMaterials()
         {
-            string query = $"SELECT id, item_no, item_name, in_stock, is_inventory_item FROM {tableName} LIMIT 100";
+            string query = $"SELECT id, item_no, item_name, in_stock, is_inventory_item FROM {tableName}";
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);
         }

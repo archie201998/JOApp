@@ -70,22 +70,10 @@ namespace JOMonitoringApp.Views.Investigation
         internal void GetInvestigationRecords()
         {
             string searchKey = txtSearch.Text.Trim();
-            int statusId = 0;
+            int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
-
-            if (cmbxStatus.InvokeRequired)
-            {
-                cmbxStatus.Invoke(new Action(() =>
-                {
-                    statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-                }));
-            }
-            else
-            {
-                statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
-            }
-
             var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, rowFilter, searchKey);
+   
             lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} OUT OF {Factory.InvestigationRepository().RecordCount()} RECORDS.";
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
         }
@@ -103,11 +91,21 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button2_Click_1(object sender, EventArgs e)
         {
+            ViewDetails();
+        }
+        private void dgInvestigations_DoubleClick(object sender, EventArgs e)
+        {
+            ViewDetails();
+        }
+
+        private void ViewDetails()
+        {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             var investigationForm = new frmInvestigationForm(investigationId);
             investigationForm.ShowDialog();
+            GetInvestigationRecords();
         }
-
+            
         private void btnSearch_Click(object sender, EventArgs e)
         {
             GetInvestigationRecords();
@@ -127,5 +125,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
 
         }
+
+     
     }
 }

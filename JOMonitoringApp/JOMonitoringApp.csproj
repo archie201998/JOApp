@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>221</ApplicationRevision>
+    <ApplicationRevision>226</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -458,6 +458,7 @@
     <None Include="Resources\icons8-report-48.png" />
     <None Include="Resources\icons8-reports-30.png" />
     <Content Include="Resources\icons8-save-14.png" />
+    <None Include="Resources\icons8-schedule-30.png" />
     <Content Include="Resources\icons8-search-14.png" />
     <None Include="Resources\icons8-search-16.png" />
     <Content Include="Resources\icons8-search-24.png" />

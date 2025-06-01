@@ -120,7 +120,7 @@ namespace JOMonitoringApp.Views.Reports
                 }
 
                 parameters[18] = new ReportParameter("paramRecommendingApproval", Helper.CSDHead);
-                parameters[19] = new ReportParameter("paramPreparedBy", string.Empty);
+                parameters[19] = new ReportParameter("paramPreparedBy", string.IsNullOrEmpty(dictInvestigation["investigated_by"]) ? string.Empty : dictInvestigation["investigated_by"].ToString().ToUpper());
                 parameters[20] = new ReportParameter("paramApproved", Helper.BranchManager);
                 parameters[21] = new ReportParameter("paramStatus", status);
                 parameters[22] = new ReportParameter("paramAdjustmentParticulars", particulars);

@@ -273,6 +273,7 @@
             this.cbxNA.TabIndex = 4;
             this.cbxNA.Text = "N/A";
             this.cbxNA.UseVisualStyleBackColor = true;
+            this.cbxNA.CheckedChanged += new System.EventHandler(this.cbxNA_CheckedChanged);
             // 
             // txtAcc4
             // 
@@ -299,6 +300,8 @@
             this.txtAccountName.Name = "txtAccountName";
             this.txtAccountName.Size = new System.Drawing.Size(200, 21);
             this.txtAccountName.TabIndex = 5;
+            this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountName_Validating);
+            this.txtAccountName.Validated += new System.EventHandler(this.TxtAccountName_Validated);
             // 
             // btnSearch
             // 
@@ -316,6 +319,7 @@
             this.btnSearch.Text = "Search Account  [F1]";
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // txtAcc3
             // 
@@ -440,6 +444,8 @@
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 21);
             this.txtJONumber.TabIndex = 0;
+            this.txtJONumber.Validating += new System.ComponentModel.CancelEventHandler(this.TxtJONumber_Validating);
+            this.txtJONumber.Validated += new System.EventHandler(this.TxtJONumber_Validated);
             // 
             // txtWARNumber
             // 
@@ -606,6 +612,7 @@
             this.radAccomplished.Tag = "4";
             this.radAccomplished.Text = "ACCOMPLISHED";
             this.radAccomplished.UseVisualStyleBackColor = true;
+            this.radAccomplished.CheckedChanged += new System.EventHandler(this.RadAccomplished_CheckedChanged);
             // 
             // radCancel
             // 
@@ -618,6 +625,7 @@
             this.radCancel.Tag = "3";
             this.radCancel.Text = "CANCEL";
             this.radCancel.UseVisualStyleBackColor = true;
+            this.radCancel.CheckedChanged += new System.EventHandler(this.RadCancel_CheckedChanged);
             // 
             // radProcessing
             // 
@@ -630,6 +638,7 @@
             this.radProcessing.Tag = "2";
             this.radProcessing.Text = "PROCESSING";
             this.radProcessing.UseVisualStyleBackColor = true;
+            this.radProcessing.CheckedChanged += new System.EventHandler(this.RadProcessing_CheckedChanged);
             // 
             // radPending
             // 
@@ -644,6 +653,7 @@
             this.radPending.Tag = "1";
             this.radPending.Text = "PENDING";
             this.radPending.UseVisualStyleBackColor = true;
+            this.radPending.CheckedChanged += new System.EventHandler(this.RadPending_CheckedChanged);
             // 
             // errorProvider1
             // 
@@ -661,9 +671,9 @@
             this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
-            this.Padding = new System.Windows.Forms.Padding(10, 10, 10, 10);
+            this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(392, 739);
-            this.Load += new System.EventHandler(this.ucJoborder_Load_1);
+            this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();

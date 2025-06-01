@@ -77,6 +77,7 @@
             this.cmbxParticular.FormattingEnabled = true;
             this.cmbxParticular.Items.AddRange(new object[] {
             "",
+            "Account Reclassication",
             "Leaking (Not Visible)",
             "Failed Calibration",
             "Erroneous Reading",

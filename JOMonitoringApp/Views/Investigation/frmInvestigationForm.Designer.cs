@@ -91,11 +91,9 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
+            this.lblImage = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtRecommendations = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -119,6 +117,9 @@
             this.label41 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtRecommendations = new System.Windows.Forms.TextBox();
+            this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -131,6 +132,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingAfterTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -917,43 +922,31 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label21);
+            this.groupBox3.Controls.Add(this.lblImage);
             this.groupBox3.Controls.Add(this.txtInvestigatorComments);
             this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox3.Location = new System.Drawing.Point(12, 373);
+            this.groupBox3.Location = new System.Drawing.Point(0, 0);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(552, 183);
+            this.groupBox3.Size = new System.Drawing.Size(551, 185);
             this.groupBox3.TabIndex = 86;
             this.groupBox3.TabStop = false;
             // 
-            // label21
+            // lblImage
             // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.DodgerBlue;
-            this.label21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(464, 19);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(82, 13);
-            this.label21.TabIndex = 88;
-            this.label21.Text = "Attach Image";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
-            // 
-            // txtInvestigatorComments
-            // 
-            this.txtInvestigatorComments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtInvestigatorComments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvestigatorComments.Location = new System.Drawing.Point(8, 37);
-            this.txtInvestigatorComments.MaxLength = 100;
-            this.txtInvestigatorComments.Multiline = true;
-            this.txtInvestigatorComments.Name = "txtInvestigatorComments";
-            this.txtInvestigatorComments.Size = new System.Drawing.Size(538, 140);
-            this.txtInvestigatorComments.TabIndex = 78;
+            this.lblImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblImage.AutoSize = true;
+            this.lblImage.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImage.ForeColor = System.Drawing.Color.White;
+            this.lblImage.Location = new System.Drawing.Point(463, 19);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(82, 13);
+            this.lblImage.TabIndex = 88;
+            this.lblImage.Text = "Attach Image";
+            this.lblImage.Click += new System.EventHandler(this.label21_Click);
             // 
             // label20
             // 
@@ -969,26 +962,13 @@
             // 
             this.groupBox4.Controls.Add(this.txtRecommendations);
             this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.groupBox4.Location = new System.Drawing.Point(570, 373);
+            this.groupBox4.Location = new System.Drawing.Point(0, 0);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(553, 183);
+            this.groupBox4.Size = new System.Drawing.Size(556, 185);
             this.groupBox4.TabIndex = 87;
             this.groupBox4.TabStop = false;
-            // 
-            // txtRecommendations
-            // 
-            this.txtRecommendations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtRecommendations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecommendations.Location = new System.Drawing.Point(6, 37);
-            this.txtRecommendations.MaxLength = 100;
-            this.txtRecommendations.Multiline = true;
-            this.txtRecommendations.Name = "txtRecommendations";
-            this.txtRecommendations.Size = new System.Drawing.Size(538, 140);
-            this.txtRecommendations.TabIndex = 78;
             // 
             // label8
             // 
@@ -1111,6 +1091,7 @@
             this.radInvestigation.TabStop = true;
             this.radInvestigation.Text = "INVESTIGATION";
             this.radInvestigation.UseVisualStyleBackColor = true;
+            this.radInvestigation.CheckedChanged += new System.EventHandler(this.radInvestigation_CheckedChanged);
             // 
             // txtApprovalMessage
             // 
@@ -1138,6 +1119,8 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox6.Controls.Add(this.txtApprovalMessage);
             this.groupBox6.Controls.Add(this.label14);
             this.groupBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
@@ -1256,6 +1239,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox5.Controls.Add(this.radApproved);
             this.groupBox5.Controls.Add(this.label32);
             this.groupBox5.Controls.Add(this.radApproval);
@@ -1280,6 +1264,59 @@
             this.label32.TabIndex = 47;
             this.label32.Text = "STATUS";
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Location = new System.Drawing.Point(12, 379);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer1.Size = new System.Drawing.Size(1111, 185);
+            this.splitContainer1.SplitterDistance = 551;
+            this.splitContainer1.TabIndex = 56;
+            // 
+            // txtRecommendations
+            // 
+            this.txtRecommendations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRecommendations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtRecommendations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecommendations.Location = new System.Drawing.Point(6, 37);
+            this.txtRecommendations.MaxLength = 999999;
+            this.txtRecommendations.Multiline = true;
+            this.txtRecommendations.Name = "txtRecommendations";
+            this.txtRecommendations.Size = new System.Drawing.Size(541, 142);
+            this.txtRecommendations.TabIndex = 78;
+            // 
+            // txtInvestigatorComments
+            // 
+            this.txtInvestigatorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInvestigatorComments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtInvestigatorComments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvestigatorComments.Location = new System.Drawing.Point(8, 37);
+            this.txtInvestigatorComments.MaxLength = 999999;
+            this.txtInvestigatorComments.Multiline = true;
+            this.txtInvestigatorComments.Name = "txtInvestigatorComments";
+            this.txtInvestigatorComments.Size = new System.Drawing.Size(537, 142);
+            this.txtInvestigatorComments.TabIndex = 78;
+            // 
             // frmInvestigationForm
             // 
             this.AcceptButton = this.btnSave;
@@ -1287,12 +1324,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1133, 704);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.gbConditionOfService);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.gbComputation);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -1323,6 +1359,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudReadingBeforeTest)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1388,12 +1428,10 @@
         internal System.Windows.Forms.Label label25;
         internal System.Windows.Forms.Label label5;
         protected System.Windows.Forms.GroupBox groupBox3;
-        internal System.Windows.Forms.TextBox txtInvestigatorComments;
         private System.Windows.Forms.Label label20;
         protected System.Windows.Forms.GroupBox groupBox4;
-        internal System.Windows.Forms.TextBox txtRecommendations;
         private System.Windows.Forms.Label label8;
-        internal System.Windows.Forms.Label label21;
+        internal System.Windows.Forms.Label lblImage;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSave;
@@ -1420,5 +1458,8 @@
         private System.Windows.Forms.ComboBox cmbxInvestigator;
         protected System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        internal System.Windows.Forms.TextBox txtInvestigatorComments;
+        internal System.Windows.Forms.TextBox txtRecommendations;
     }
 }

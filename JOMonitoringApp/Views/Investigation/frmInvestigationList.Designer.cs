@@ -30,9 +30,9 @@
         {
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
+            this.lblRecordCount = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
-            this.lblRecordCount = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.cmbxRowLimit = new System.Windows.Forms.ComboBox();
@@ -74,6 +74,18 @@
             this.dgInvestigations.TabIndex = 25;
             this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
+            this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
+            // 
+            // lblRecordCount
+            // 
+            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRecordCount.Location = new System.Drawing.Point(73, 561);
+            this.lblRecordCount.Name = "lblRecordCount";
+            this.lblRecordCount.Size = new System.Drawing.Size(248, 17);
+            this.lblRecordCount.TabIndex = 1;
+            this.lblRecordCount.Text = "0";
+            this.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.lblRecordCount.Click += new System.EventHandler(this.lblRecordCount_Click);
             // 
             // panel3
             // 
@@ -93,17 +105,6 @@
             this.label26.TabIndex = 0;
             this.label26.Text = "SHOWING : ";
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblRecordCount
-            // 
-            this.lblRecordCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordCount.Location = new System.Drawing.Point(73, 561);
-            this.lblRecordCount.Name = "lblRecordCount";
-            this.lblRecordCount.Size = new System.Drawing.Size(248, 17);
-            this.lblRecordCount.TabIndex = 1;
-            this.lblRecordCount.Text = "0";
-            this.lblRecordCount.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.lblRecordCount.Click += new System.EventHandler(this.lblRecordCount_Click);
             // 
             // panel1
             // 
@@ -267,6 +268,7 @@
             // 
             // frmInvestigationList
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1139, 621);

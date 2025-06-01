@@ -1,4 +1,5 @@
-﻿using JOMonitoringApp.Views.Materials;
+﻿using JOMonitoringApp.Views.Investigation;
+using JOMonitoringApp.Views.Materials;
 using System;
 using System.Windows.Forms;
 
@@ -14,7 +15,7 @@ namespace JOMonitoringApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMaterials());
+            Application.Run(new frmSignIn());
         }
     }
 }

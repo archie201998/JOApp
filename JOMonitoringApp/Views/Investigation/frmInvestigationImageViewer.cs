@@ -58,6 +58,33 @@ namespace JOMonitoringApp.Views.Investigation
                 MessageBox.Show("Shared folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             Cursor = Cursors.Default;
+
+            ChangeImageLayout();
+        }
+
+        private void ChangeImageLayout()
+        {
+            if (_secondaryImageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\")
+            {
+                // Make pictureBox1 fill the form
+                pictureBox1.Dock = DockStyle.Fill;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                // Optionally hide pictureBox2
+                pictureBox2.Visible = false;
+            }
+            else
+            {
+                // Restore layout if pictureBox2 is not empty
+                pictureBox1.Dock = DockStyle.None;
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+                // Set your own sizes and positions
+                pictureBox1.Location = new Point(10, 10);
+                pictureBox1.Size = new Size(625, 662);
+
+                pictureBox2.Visible = true;
+            }
         }
 
 
@@ -71,6 +98,7 @@ namespace JOMonitoringApp.Views.Investigation
                     if (pictureBox1.Image != null)
                     {
                         pictureBox1.Image.Dispose();
+                        pictureBox1.Visible = false;
                     }
 
                     using (var tempImage = Image.FromFile(_imageFilePath))
@@ -81,7 +109,7 @@ namespace JOMonitoringApp.Views.Investigation
                 }
                 catch (Exception ex)
                 {
-                    Helper.MessageBoxSuccess("No image uploaded");
+                    //Helper.MessageBoxSuccess("No image uploaded");
                 }
             }
 
@@ -97,6 +125,7 @@ namespace JOMonitoringApp.Views.Investigation
                     if (pictureBox2.Image != null)
                     {
                         pictureBox2.Image.Dispose();
+                        pictureBox2.Visible = true;
                     }
 
                     using (var tempImage = Image.FromFile(_secondaryImageFilePath))
@@ -107,7 +136,7 @@ namespace JOMonitoringApp.Views.Investigation
                 }
                 catch (Exception ex)
                 {
-                    Helper.MessageBoxSuccess("No image uploaded");
+                    //Helper.MessageBoxSuccess("No image uploaded");
                 }
             }
 

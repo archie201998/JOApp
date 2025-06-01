@@ -103,7 +103,8 @@ namespace JOMonitoringApp.Views.MainForm
                 string isInventoryItem = item["is_inventory_item"].ToString();
                 dgMaterials.Rows.Add(materialsId, itemNo, itemName, inStock, isInventoryItem);
             }
-            txtRecordCount.Text = dtMaterials.Rows.Count.ToString();
+            DataTable datatable = Factory.MaterialsRepository().GetAllMaterials();
+            txtRecordCount.Text = datatable.Rows.Count.ToString();
 
         }
 

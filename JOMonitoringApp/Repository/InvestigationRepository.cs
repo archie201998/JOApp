@@ -138,8 +138,9 @@ namespace JOMonitoringApp
                 new object[] { "@reading_after_test", DbType.String, entity.ReadingAfterTest },
                 new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
                 new object[] { "@has_adjustment", DbType.Boolean, entity.HasAdjustment },
-                new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter }
-            };
+                new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter },
+                new object[] { "@investigated_by", DbType.String, entity.InvestigatedBy }
+            };;
 
             string query = $@"UPDATE {tableName} 
                             SET job_orders_id = @job_orders_id, 
@@ -174,7 +175,8 @@ namespace JOMonitoringApp
                                 reading_after_test = @reading_after_test, 
                                 calibration_result = @calibration_result, 
                                 leaking_after_the_meter = @leaking_after_the_meter,
-                                has_adjustment = @has_adjustment 
+                                has_adjustment = @has_adjustment,
+                                investigated_by = @investigated_by 
                             WHERE id = @id;";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);

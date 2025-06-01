@@ -79,5 +79,6 @@ namespace JOMonitoringApp.Model
         public string AverageConsumption { get; set; }
         public string AdjustmentParticular { get; set; }
 
+        public string InvestigatedBy { get; set; }
     }
 }

@@ -290,6 +290,17 @@ namespace JOMonitoringApp
             comboBox.DisplayMember = "status";
         }
 
+        internal static void DateImportedCombobox(ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable = Factory.MaterialsRepository().GetImportedDates();
+
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "date_imported";
+        }
+
         internal static void InvestigationStatusCombobox(ComboBox comboBox)
         {
             DataTable dataTable = new DataTable();

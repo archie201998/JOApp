@@ -6,8 +6,9 @@
 
         public string ItemNo { get; set; }
         public string ItemName { get; set; }
-        public decimal InStock { get; set; }
-        public bool IsInventoryItem { get; set; }
+        public double InStock { get; set; }
+        public string IsInventoryItem { get; set; }
+        public int DateImportedId { get; set; }
 
     }
 }

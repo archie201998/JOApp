@@ -1,12 +1,15 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Views.Materials;
+using Microsoft.Reporting.WinForms.Internal.Soap.ReportingServices2005.Execution;
+using MySqlX.XDevAPI.Common;
 using System;
 using System.Data;
+using System.Data;
+using System.Drawing;
+using System.IO;
 using System.IO;
 using System.Windows.Forms;
-using System.Data;
-using System.IO;
-using JOMonitoringApp.Views.Materials;
-using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
 namespace JOMonitoringApp.Views.MainForm
@@ -14,6 +17,11 @@ namespace JOMonitoringApp.Views.MainForm
     public partial class frmListOfMaterials : Form
     {
         private bool _toSave = false;
+        Microsoft.Office.Interop.Excel.Application excelApp;
+        Microsoft.Office.Interop.Excel.Workbook excelWB;
+        Microsoft.Office.Interop.Excel.Worksheet excelWS;
+        Microsoft.Office.Interop.Excel.Range excelRange;
+        int excelRow = 0;
 
         public frmListOfMaterials()
         {
@@ -47,8 +55,11 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void frmListOfMaterials_Load(object sender, EventArgs e)
         {
-            LoadMaterials();
+            HelperLoadRecords.DateImportedCombobox(cmbxImportDate);
+            SearchMaterials();
         }
+
+      
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
@@ -77,7 +88,12 @@ namespace JOMonitoringApp.Views.MainForm
         {
             dgMaterials.Rows.Clear();
             string searchText = txtSearch.Text.Trim();
-            DataTable dtMaterials = Factory.MaterialsRepository().SearchMaterials(searchText);
+         
+            //getting the id of date
+            var drv = cmbxImportDate.SelectedItem as DataRowView;
+            int dateImportedId = Convert.ToInt32(drv["id"]);
+
+            DataTable dtMaterials = Factory.MaterialsRepository().SearchMaterials(searchText, dateImportedId);
             foreach (DataRow item in dtMaterials.Rows)
             {
                 int materialsId = (int)item["id"];
@@ -87,14 +103,13 @@ namespace JOMonitoringApp.Views.MainForm
                 string isInventoryItem = item["is_inventory_item"].ToString();
                 dgMaterials.Rows.Add(materialsId, itemNo, itemName, inStock, isInventoryItem);
             }
+            txtRecordCount.Text = dtMaterials.Rows.Count.ToString();
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtSearch.Text.Length > 3)
-            {
-                SearchMaterials();
-            }
+            SearchMaterials();
         }
        
         private void btnImportFile_Click_1(object sender, EventArgs e)
@@ -107,18 +122,61 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void SaveImportedFile()
         {
-            //save excel file to database.
-            _toSave = false;
+            if (Helper.MessageBoxConfirmCancel("Do you want to save imported data?"))
+            {
+                int i = 0;
+                bool success = false;
+
+                var currentDate = DateTime.Now;
+                Factory.MaterialsRepository().InsertMaterialsImportDate(currentDate);
+                int dateImportedId = Factory.MaterialsRepository().GetLastInsertedId();
+
+                // Calculate total rows from the Excel range
+                int totalRows = excelRange.Rows.Count - 1; // Subtract 1 to exclude the header row
+
+                for (excelRow = 2; excelRow <= excelRange.Rows.Count; excelRow++)
+                {
+                    i++;
+                    Cursor.Current = Cursors.WaitCursor;
+
+                    var id = Convert.ToInt32(excelRange.Cells[excelRow, 1].Value);
+                    var itemNo = (excelRange.Cells[excelRow, 2].Value.ToString());
+                    var itemDesc = excelRange.Cells[excelRow, 3].Value;  
+                    var inStock = Convert.ToDouble(excelRange.Cells[excelRow, 4].Value);
+                    var isInventoryItem = excelRange.Cells[excelRow, 5].Value;
+
+                    var materialsModel = new MaterialsModel()
+                    {
+                        Id = id,
+                        ItemNo = itemNo,
+                        ItemName = itemDesc,
+                        InStock = inStock,
+                        IsInventoryItem = isInventoryItem,
+                        DateImportedId = dateImportedId,
+                    };
+
+                    success = Factory.MaterialsRepository().InsertImportedMaterials(materialsModel);
+
+                    // Progress indicator
+                    double percent = (double)i / totalRows * 100;
+                    btnImportFile.Text = $"Saving... {percent:0}%";
+                    btnImportFile.Refresh();
+                }
+                if (success)
+                {
+                    Helper.MessageBoxSuccess($"{i} records successfully imported.");
+                    SearchMaterials();
+                    ResetButton();
+                }
+
+                _toSave = false;
+            }
+           
         }
 
         private void ImportFile()
         {
-            Microsoft.Office.Interop.Excel.Application excelApp;
-            Microsoft.Office.Interop.Excel.Workbook excelWB;
-            Microsoft.Office.Interop.Excel.Worksheet excelWS;
-            Microsoft.Office.Interop.Excel.Range excelRange;
-
-            int excelRow = 0;
+ 
             openFileDialog1.Filter = "Excel Office | *.xls; *xlsx";
             openFileDialog1.ShowDialog();
             string fileName = openFileDialog1.FileName;
@@ -149,18 +207,28 @@ namespace JOMonitoringApp.Views.MainForm
 
             _toSave = true;
         }
+
+        private void ResetButton()
+        {
+            btnImportFile.Text = "Import File";
+            btnImportFile.BackColor = Color.Red;
+            lblFileName.Text = "No file selected.";
+            btnX.Visible = false;
+            _toSave = false;
+        }
         private void btnX_Click(object sender, EventArgs e)
         {
             bool cancelImport = Helper.MessageBoxConfirmCancel("Do you want to cancel importing file?");
             if (cancelImport)
             {
-                btnImportFile.Text = "Import File";
-                btnImportFile.BackColor = Color.Red;
-                lblFileName.Text = "No file selected.";
-                btnX.Visible = false;
-                _toSave = false;
+                ResetButton();
             }
          
+        }
+
+        private void cmbxImportDate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SearchMaterials();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JOMonitoringApp.Repository;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -83,14 +84,15 @@ namespace JOMonitoringApp
         }
 
 
-        public DataTable SearchMaterials(string searchText)
+        public DataTable SearchMaterials(string searchText, int dateImportedId)
         {
             var parameters = new object[][]
             {
-                new object[] { "@search_key", DbType.String, $"%{searchText}%"}
+                new object[] { "@search_key", DbType.String, $"%{searchText}%"},
+                new object[] { "@date_imported_id", DbType.Int32, dateImportedId }
             };
 
-            string query = $"SELECT * FROM {tableName} WHERE item_no LIKE @search_key OR  item_name LIKE @search_key LIMIT 30";
+            string query = $"SELECT * FROM {tableName} WHERE (item_no LIKE @search_key OR item_name LIKE @search_key) AND imported_date_id = @date_imported_id LIMIT 200";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -122,6 +124,43 @@ namespace JOMonitoringApp
                  
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter); 
           
+        }
+
+        public bool InsertMaterialsImportDate(DateTime currentDate)
+        {
+            var parameter = new object[][] {
+                new object[]{"@date_imported", DbType.DateTime, currentDate},
+            };
+
+            string query = $"INSERT INTO tbl_materials_import_date(date_imported) VALUES (@date_imported)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+        }
+
+        public DataTable GetImportedDates()
+        {
+            string query = $"SELECT id, date_imported FROM tbl_materials_import_date";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
+        }
+
+        public int GetLastInsertedId()
+        {
+            string query = $"SELECT MAX(id) FROM tbl_materials_import_date";
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query));
+        }
+
+        public bool InsertImportedMaterials(MaterialsModel materialsModel)
+        {
+            var parameter = new object[][] {
+                new object[]{ "@item_no", DbType.String, materialsModel.ItemNo},
+                new object[]{ "@item_name", DbType.String, materialsModel.ItemName},
+                new object[]{ "@in_stock", DbType.Double, materialsModel.InStock},
+                new object[]{ "@is_inventory_item", DbType.String, materialsModel.IsInventoryItem},
+                new object[]{ "@imported_date_id", DbType.Int32, materialsModel.DateImportedId},
+            };
+
+            string query = $"INSERT INTO tbl_materials (item_no, item_name, in_stock, is_inventory_item, imported_date_id) VALUES (@item_no, @item_name, @in_stock, @is_inventory_item, @imported_date_id)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
     }
 }

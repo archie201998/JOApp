@@ -30,12 +30,10 @@
         {
             this.dgMaterials = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.txtLastUpdated = new System.Windows.Forms.TextBox();
             this.txtRecordCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -43,6 +41,7 @@
             this.btnImportFile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnX = new System.Windows.Forms.Button();
+            this.cmbxImportDate = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgMaterials)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +54,7 @@
             this.dgMaterials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMaterials.Location = new System.Drawing.Point(12, 67);
             this.dgMaterials.Name = "dgMaterials";
-            this.dgMaterials.Size = new System.Drawing.Size(924, 457);
+            this.dgMaterials.Size = new System.Drawing.Size(924, 475);
             this.dgMaterials.TabIndex = 0;
             // 
             // label1
@@ -68,17 +67,6 @@
             this.label1.Size = new System.Drawing.Size(115, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "RECORDS AS OF : ";
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(796, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(13, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "-";
             // 
             // label4
             // 
@@ -93,10 +81,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(141, 39);
+            this.txtSearch.Location = new System.Drawing.Point(141, 40);
             this.txtSearch.MaxLength = 200;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(215, 20);
+            this.txtSearch.Size = new System.Drawing.Size(291, 20);
             this.txtSearch.TabIndex = 0;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -117,22 +105,13 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(362, 38);
+            this.btnSearch.Location = new System.Drawing.Point(438, 39);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 14;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // txtLastUpdated
-            // 
-            this.txtLastUpdated.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtLastUpdated.Location = new System.Drawing.Point(796, 9);
-            this.txtLastUpdated.MaxLength = 200;
-            this.txtLastUpdated.Name = "txtLastUpdated";
-            this.txtLastUpdated.Size = new System.Drawing.Size(140, 20);
-            this.txtLastUpdated.TabIndex = 15;
             // 
             // txtRecordCount
             // 
@@ -211,22 +190,31 @@
             this.btnX.Visible = false;
             this.btnX.Click += new System.EventHandler(this.btnX_Click);
             // 
+            // cmbxImportDate
+            // 
+            this.cmbxImportDate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxImportDate.FormattingEnabled = true;
+            this.cmbxImportDate.Location = new System.Drawing.Point(796, 8);
+            this.cmbxImportDate.Name = "cmbxImportDate";
+            this.cmbxImportDate.Size = new System.Drawing.Size(140, 21);
+            this.cmbxImportDate.TabIndex = 34;
+            this.cmbxImportDate.SelectedIndexChanged += new System.EventHandler(this.cmbxImportDate_SelectedIndexChanged);
+            // 
             // frmListOfMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 536);
+            this.ClientSize = new System.Drawing.Size(948, 554);
+            this.Controls.Add(this.cmbxImportDate);
             this.Controls.Add(this.btnX);
             this.Controls.Add(this.btnImportFile);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtRecordCount);
-            this.Controls.Add(this.txtLastUpdated);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgMaterials);
             this.Name = "frmListOfMaterials";
@@ -244,12 +232,10 @@
 
         private System.Windows.Forms.DataGridView dgMaterials;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.TextBox txtLastUpdated;
         private System.Windows.Forms.TextBox txtRecordCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
@@ -257,5 +243,6 @@
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnX;
+        private System.Windows.Forms.ComboBox cmbxImportDate;
     }
 }

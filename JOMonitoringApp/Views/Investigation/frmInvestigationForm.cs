@@ -38,9 +38,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 LoadSelectedRecord();
-
-
-                lblImage.Text = string.IsNullOrEmpty(imageFilePath) ? "Attach Image" : "View Image" ;
+                lblImage.Text = imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" ? "Attach Image" : "View Image";
 
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
@@ -354,7 +352,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void label21_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(imageFilePath) && string.IsNullOrEmpty(secondaryImageFilePath)) //view file
+            if (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol") //view file
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {

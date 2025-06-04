@@ -309,6 +309,10 @@ namespace JOMonitoringApp.Views.Investigation
 
         private InvestigationModel InvestigationModel()
         {
+
+            string folderPath = "\\\\" + Helper.serverStatisIPAddress + "\\InvestigationImages\\Dacol\\";
+            string secondFolderPath = "\\\\" + Helper.serverStatisIPAddress + "\\InvestigationImages\\Dacol\\";
+
             var model = new InvestigationModel
             {
                 Id = _investigationId,
@@ -322,8 +326,8 @@ namespace JOMonitoringApp.Views.Investigation
                 DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDateInvestigated.Value : null,
                 ApprovalMessage = txtApprovalMessage.Text.Trim(),
                 Recommendations = txtRecommendations.Text.Trim(),
-                imagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(imageFilePath)}",
-                secondaryImagePath = $"\\\\{Helper.serverStatisIPAddress}\\InvestigationImages\\Dacol\\{Path.GetFileName(secondaryImageFilePath)}",
+                imagePath = string.IsNullOrEmpty(imageFilePath) ? string.Empty : folderPath + Path.GetFileName(imageFilePath),
+                secondaryImagePath = string.IsNullOrEmpty(secondaryImageFilePath) ? string.Empty : secondFolderPath + Path.GetFileName(secondaryImageFilePath),
                 IsApproved = GetInvestigationStatus(),
                 AlternativeSource = txtAlternativeSource.Text.Trim(),
                 MeterBrand = txtMeterBrand.Text,

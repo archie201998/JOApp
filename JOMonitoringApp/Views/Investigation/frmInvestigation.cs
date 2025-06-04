@@ -9,8 +9,6 @@ namespace JOMonitoringApp.Views.Investigation
 {
     public partial class frmInvestigation : Form
     {
-        internal readonly ucInvestigationForm ucInvestigationForm;
-
         public frmInvestigation()
         {
             InitializeComponent();
@@ -21,27 +19,6 @@ namespace JOMonitoringApp.Views.Investigation
         {
           
         }
-
-
-
-        private void MyUserControl_DataGridClicked(object sender, EventArgs e)
-        {
-           
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            Cancel();
-        }
-
-        private void Cancel()
-        {
-            if (Helper.MessageBoxConfirmCancel("Are you sure you want to cancel the update transaction?"))
-            {
-                Close();
-            }
-        }
-
 
         private void ShowMdiChildForm(Form form)
         {

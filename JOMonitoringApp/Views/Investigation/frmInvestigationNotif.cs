@@ -67,7 +67,6 @@ namespace JOMonitoringApp.Views.Investigation
             var investigationForm = new frmInvestigation();
 
             investigationForm.ShowDialog();
-            investigationForm.ucInvestigationForm.ViewInvestigationDetails();
             investigationForm.BringToFront(); // Optional: bring the form to front
             investigationForm.Focus();
             return;

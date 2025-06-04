@@ -27,36 +27,38 @@ namespace JOMonitoringApp.Views.Reports.SROF
 
         private void CreateTappingMaterialsColumns(DataGridView dataGrid)
         {
+            dataGrid.ReadOnly = false; 
             dataGrid.DefaultCellStyle.Font = new Font("Segiou", 8);
             dataGrid.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
-            dataGrid.EnableHeadersVisualStyles = false;
 
-            dataGrid.ColumnCount = 2;
+            dataGrid.ColumnCount = 4;
             dataGrid.Columns[0].Name = "id";
             dataGrid.Columns[1].Name = "item_name";
+            dataGrid.Columns[2].Name = "item_quantity";
+            dataGrid.Columns[3].Name = "item_cost";
+
+            dataGrid.Columns["id"].ReadOnly = true;
+            dataGrid.Columns["item_name"].ReadOnly = true;
+            dataGrid.Columns["item_cost"].ReadOnly = true;
+            dataGrid.Columns["item_quantity"].ReadOnly = false;
+
 
             dataGrid.Columns["item_name"].HeaderText = "ITEM NAME";
+            dataGrid.Columns["item_quantity"].HeaderText = "ITEM QTY";
+            dataGrid.Columns["item_cost"].HeaderText = "ITEM COST";
             dataGrid.Columns["id"].Visible = false;
             dataGrid.Columns["item_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGrid.Columns["item_name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
+            dataGrid.Columns["item_quantity"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
+
         private void btnContinue_Click(object sender, EventArgs e)
         {
-            //load items in srof table
-            //delete all
-            //insert dayon. 
-
             _ = new frmEstimateOfMaterials(_jobOrderNumber).ShowDialog();
         }
 
         private void frmJOFSTappignMaterials_Load(object sender, EventArgs e)
         {
-            //load materials from tbl_materials 
-            //implement search function. 
-            //dapat naka check na daan ang checkbox if naa na didto sa grid ang items. (check if same item_code)
-
-
             LoadMaterials();
             LoadDefaultMaterials();
         }
@@ -86,8 +88,10 @@ namespace JOMonitoringApp.Views.Reports.SROF
             {
                 int materialsId = (int)item["id"];
                 string itemName = item["item_name"].ToString();
+                string itemQty = item["item_quantity"].ToString();
+                string itemCost = item["item_cost"].ToString();
 
-                dgJOTappingMaterials.Rows.Add(materialsId, itemName);
+                dgJOTappingMaterials.Rows.Add(materialsId, itemName, itemQty, itemCost);
             }
         }
 
@@ -118,6 +122,8 @@ namespace JOMonitoringApp.Views.Reports.SROF
 
             if (e.NewValue == CheckState.Checked)
             {
+
+
                 Factory.MaterialsRepository().InsertJOFSMaterials(new MaterialsModel() {ItemName = itemText});
             }
             else
@@ -127,16 +133,61 @@ namespace JOMonitoringApp.Views.Reports.SROF
                     if (row.Cells[1].Value.ToString() == itemText)
                     {
                         bool res = Factory.MaterialsRepository().RemoveJOFSMaterials(new MaterialsModel() { ItemName = itemText });
-                      
                     }
                 }
             }
             LoadDefaultMaterials();
         }
 
-        private void clbMaterials_MouseDown(object sender, MouseEventArgs e)
+        private void dgJOTappingMaterials_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-          
+            var grid = sender as DataGridView;
+
+            // Make sure we're editing item_quantity
+            if (grid.Columns[e.ColumnIndex].Name == "item_quantity")
+            {
+                try
+                {
+                    DataGridViewRow row = grid.Rows[e.RowIndex];
+                    string id = row.Cells["id"].Value?.ToString();
+
+                    string qtyText = grid.Rows[e.RowIndex].Cells["item_quantity"].Value?.ToString();
+                    string unitText = grid.Rows[e.RowIndex].Cells["item_cost"].Value?.ToString();
+
+                    if (decimal.TryParse(qtyText, out decimal quantity) &&
+                        decimal.TryParse(unitText, out decimal unitPrice))
+                    {
+                        decimal totalCost = quantity * unitPrice;
+                        grid.Rows[e.RowIndex].Cells["item_cost"].Value = totalCost.ToString("0.00");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Helper.MessageBoxSuccess($"Error calculating cost: {ex.Message}");
+                }
+            }
+
+
+        }
+
+        private void UpdateDefaultTappingMaterials()
+        {
+            //List<MaterialsModel> materialsList = new List<MaterialsModel>();
+            //foreach (DataGridViewRow row in dgJOTappingMaterials.Rows)
+            //{
+            //    if (row.Cells["id"].Value != null && row.Cells["item_name"].Value != null && row.Cells["item_quantity"].Value != null)
+            //    {
+            //        materialsList.Add(new MaterialsModel
+            //        {
+            //            Id = Convert.ToInt32(row.Cells["id"].Value),
+            //            ItemName = row.Cells["item_name"].Value.ToString(),
+            //            q = Convert.ToDecimal(row.Cells["item_quantity"].Value),
+            //            StockPrice = Convert.ToDecimal(row.Cells["item_cost"].Value)
+            //        });
+            //    }
+            //}
+            //Factory.MaterialsRepository().UpdateDefaultTappingMaterials(materialsList);
+            //Helper.MessageBoxSuccess("Default Tapping Materials updated successfully.");
         }
     }
 }

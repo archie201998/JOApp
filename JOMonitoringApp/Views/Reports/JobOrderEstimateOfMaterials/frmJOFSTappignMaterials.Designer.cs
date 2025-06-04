@@ -72,6 +72,7 @@
             this.dgJOTappingMaterials.RowHeadersWidth = 51;
             this.dgJOTappingMaterials.Size = new System.Drawing.Size(474, 534);
             this.dgJOTappingMaterials.TabIndex = 3;
+            this.dgJOTappingMaterials.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJOTappingMaterials_CellEndEdit);
             // 
             // clbMaterials
             // 
@@ -85,7 +86,6 @@
             this.clbMaterials.TabIndex = 0;
             this.clbMaterials.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbMaterials_ItemCheck);
             this.clbMaterials.SelectedIndexChanged += new System.EventHandler(this.clbMaterials_SelectedIndexChanged);
-            this.clbMaterials.MouseDown += new System.Windows.Forms.MouseEventHandler(this.clbMaterials_MouseDown);
             // 
             // groupBox1
             // 
@@ -210,9 +210,9 @@
             this.btnContinue.ForeColor = System.Drawing.Color.White;
             this.btnContinue.Image = global::JOMonitoringApp.Properties.Resources.icons8_continue_16;
             this.btnContinue.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnContinue.Location = new System.Drawing.Point(356, 4);
+            this.btnContinue.Location = new System.Drawing.Point(358, 4);
             this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(93, 23);
+            this.btnContinue.Size = new System.Drawing.Size(119, 23);
             this.btnContinue.TabIndex = 37;
             this.btnContinue.Text = "Continue";
             this.btnContinue.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

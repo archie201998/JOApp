@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cbxFullPage = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtJONumberTo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,10 +38,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel3 = new System.Windows.Forms.Panel();
-            // TODO Microsoft.Reporting.WinForms.ReportViewer no longer supported.
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.cbxFullPage = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -60,6 +59,18 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(893, 31);
             this.panel1.TabIndex = 13;
+            // 
+            // cbxFullPage
+            // 
+            this.cbxFullPage.AutoSize = true;
+            this.cbxFullPage.Checked = true;
+            this.cbxFullPage.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbxFullPage.Location = new System.Drawing.Point(409, 8);
+            this.cbxFullPage.Name = "cbxFullPage";
+            this.cbxFullPage.Size = new System.Drawing.Size(150, 17);
+            this.cbxFullPage.TabIndex = 15;
+            this.cbxFullPage.Text = "Full Page Print ( 2 Copies) ";
+            this.cbxFullPage.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -107,11 +118,14 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
+            this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.icons8_create_16;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.Location = new System.Drawing.Point(568, 4);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(94, 23);
+            this.btnSearch.Size = new System.Drawing.Size(90, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Generate";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
@@ -163,18 +177,6 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackgroundWorker1_RunWorkerCompleted);
-            // 
-            // cbxFullPage
-            // 
-            this.cbxFullPage.AutoSize = true;
-            this.cbxFullPage.Checked = true;
-            this.cbxFullPage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxFullPage.Location = new System.Drawing.Point(409, 8);
-            this.cbxFullPage.Name = "cbxFullPage";
-            this.cbxFullPage.Size = new System.Drawing.Size(150, 17);
-            this.cbxFullPage.TabIndex = 15;
-            this.cbxFullPage.Text = "Full Page Print ( 2 Copies) ";
-            this.cbxFullPage.UseVisualStyleBackColor = true;
             // 
             // frmServiceRequestAndOrderForm
             // 

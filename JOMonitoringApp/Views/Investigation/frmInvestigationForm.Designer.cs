@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -92,8 +93,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.lblImage = new System.Windows.Forms.Label();
+            this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtRecommendations = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -118,8 +121,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label32 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.txtRecommendations = new System.Windows.Forms.TextBox();
-            this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbAccountDetails.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -136,6 +138,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // gbAccountDetails
@@ -429,6 +432,8 @@
             this.cmbxInvestigator.Name = "cmbxInvestigator";
             this.cmbxInvestigator.Size = new System.Drawing.Size(179, 23);
             this.cmbxInvestigator.TabIndex = 50;
+            this.cmbxInvestigator.Validating += new System.ComponentModel.CancelEventHandler(this.cmbxInvestigator_Validating);
+            this.cmbxInvestigator.Validated += new System.EventHandler(this.cmbxInvestigator_Validated);
             // 
             // label42
             // 
@@ -948,6 +953,23 @@
             this.lblImage.Text = "Attach Image";
             this.lblImage.Click += new System.EventHandler(this.label21_Click);
             // 
+            // txtInvestigatorComments
+            // 
+            this.txtInvestigatorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtInvestigatorComments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtInvestigatorComments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtInvestigatorComments.Location = new System.Drawing.Point(8, 37);
+            this.txtInvestigatorComments.MaxLength = 999999;
+            this.txtInvestigatorComments.Multiline = true;
+            this.txtInvestigatorComments.Name = "txtInvestigatorComments";
+            this.txtInvestigatorComments.Size = new System.Drawing.Size(537, 142);
+            this.txtInvestigatorComments.TabIndex = 78;
+            // 
             // label20
             // 
             this.label20.AutoSize = true;
@@ -969,6 +991,23 @@
             this.groupBox4.Size = new System.Drawing.Size(556, 185);
             this.groupBox4.TabIndex = 87;
             this.groupBox4.TabStop = false;
+            // 
+            // txtRecommendations
+            // 
+            this.txtRecommendations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRecommendations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtRecommendations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRecommendations.Location = new System.Drawing.Point(6, 37);
+            this.txtRecommendations.MaxLength = 999999;
+            this.txtRecommendations.Multiline = true;
+            this.txtRecommendations.Name = "txtRecommendations";
+            this.txtRecommendations.Size = new System.Drawing.Size(541, 142);
+            this.txtRecommendations.TabIndex = 78;
             // 
             // label8
             // 
@@ -1006,6 +1045,7 @@
             this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Cancel (Esc)";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnSave
             // 
@@ -1283,39 +1323,9 @@
             this.splitContainer1.SplitterDistance = 551;
             this.splitContainer1.TabIndex = 56;
             // 
-            // txtRecommendations
+            // errorProvider1
             // 
-            this.txtRecommendations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtRecommendations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtRecommendations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRecommendations.Location = new System.Drawing.Point(6, 37);
-            this.txtRecommendations.MaxLength = 999999;
-            this.txtRecommendations.Multiline = true;
-            this.txtRecommendations.Name = "txtRecommendations";
-            this.txtRecommendations.Size = new System.Drawing.Size(541, 142);
-            this.txtRecommendations.TabIndex = 78;
-            // 
-            // txtInvestigatorComments
-            // 
-            this.txtInvestigatorComments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtInvestigatorComments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txtInvestigatorComments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtInvestigatorComments.Location = new System.Drawing.Point(8, 37);
-            this.txtInvestigatorComments.MaxLength = 999999;
-            this.txtInvestigatorComments.Multiline = true;
-            this.txtInvestigatorComments.Name = "txtInvestigatorComments";
-            this.txtInvestigatorComments.Size = new System.Drawing.Size(537, 142);
-            this.txtInvestigatorComments.TabIndex = 78;
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmInvestigationForm
             // 
@@ -1333,11 +1343,13 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbAccountDetails);
+            this.KeyPreview = true;
             this.Name = "frmInvestigationForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Investigation Data";
             this.Load += new System.EventHandler(this.frmInvestigationForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInvestigationForm_KeyDown);
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1363,6 +1375,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1461,5 +1474,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         internal System.Windows.Forms.TextBox txtInvestigatorComments;
         internal System.Windows.Forms.TextBox txtRecommendations;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

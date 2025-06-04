@@ -713,14 +713,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox50">
+                        <Textbox Name="qty">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=IIf(Fields!qty.Value = 0, string.Empty, Fields!qty.Value)</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -732,7 +732,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox50</rd:DefaultName>
+                          <rd:DefaultName>qty</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -745,18 +745,19 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox51">
+                        <Textbox Name="unit_cost">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!unit_cost.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -768,7 +769,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox51</rd:DefaultName>
+                          <rd:DefaultName>unit_cost</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -792,7 +793,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>=Fields!amount.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -1649,7 +1650,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!paramReceivedBy.Value</Value>
+                        <Value />
                         <Style>
                           <FontFamily>arial</FontFamily>
                           <FontSize>8pt</FontSize>

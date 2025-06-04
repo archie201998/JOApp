@@ -56,7 +56,7 @@
             this.cbxFullPage.BackColor = System.Drawing.Color.Transparent;
             this.cbxFullPage.Checked = true;
             this.cbxFullPage.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbxFullPage.Location = new System.Drawing.Point(209, 8);
+            this.cbxFullPage.Location = new System.Drawing.Point(213, 8);
             this.cbxFullPage.Name = "cbxFullPage";
             this.cbxFullPage.Size = new System.Drawing.Size(150, 17);
             this.cbxFullPage.TabIndex = 17;
@@ -66,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 10);
+            this.label1.Location = new System.Drawing.Point(7, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(69, 13);
             this.label1.TabIndex = 16;
@@ -76,7 +76,7 @@
             // 
             this.txtJONo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJONo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtJONo.Location = new System.Drawing.Point(72, 5);
+            this.txtJONo.Location = new System.Drawing.Point(76, 5);
             this.txtJONo.Name = "txtJONo";
             this.txtJONo.Size = new System.Drawing.Size(132, 22);
             this.txtJONo.TabIndex = 0;
@@ -88,11 +88,14 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(359, 5);
+            this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.icons8_create_16;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(363, 5);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(94, 23);
+            this.btnSearch.Size = new System.Drawing.Size(90, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Generate";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 

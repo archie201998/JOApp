@@ -8,6 +8,8 @@
         public string ItemName { get; set; }
         public double InStock { get; set; }
         public string IsInventoryItem { get; set; }
+
+        public double StockPrice { get; set; }
         public int DateImportedId { get; set; }
 
     }

@@ -87,8 +87,9 @@ namespace JOMonitoringApp.Views.Reports
             {
                 var newRow = dtMaterials.NewRow();
                 newRow["item"] = dataRow["item_name"];
+                newRow["qty"] = dataRow["item_quantity"];
 
-                dtMaterials.Rows.Add(dataRow["item_name"]);
+                dtMaterials.Rows.Add(newRow);
             }
 
             ReportDataSource dataSource = new ReportDataSource("dsMaterials", dtMaterials);

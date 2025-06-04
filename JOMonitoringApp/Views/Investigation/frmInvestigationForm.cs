@@ -38,7 +38,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 LoadSelectedRecord();
-                lblImage.Text = imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" ? "Attach Image" : "View Image";
+                lblImage.Text = (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" || string.IsNullOrEmpty(imageFilePath)) ? "Attach Image" : "View Image";
 
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
@@ -352,7 +352,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void label21_Click(object sender, EventArgs e)
         {
-            if (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol") //view file
+            if (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" ||  string.IsNullOrEmpty(imageFilePath)) //view file
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
@@ -465,6 +465,34 @@ namespace JOMonitoringApp.Views.Investigation
         private void radInvestigation_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbxInvestigator_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void cmbxInvestigator_Validated(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmInvestigationForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                SaveClick();
+            }
+
+            if (e.Control && e.KeyCode == Keys.Escape)
+            {
+                Close();
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

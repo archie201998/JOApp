@@ -18,5 +18,7 @@ namespace JOMonitoringApp
         DataTable GetImportedDates();
         int GetLastInsertedId();
         bool InsertImportedMaterials(MaterialsModel materialsModel);
+        double GetStockPrice(string itemText);
+        bool UpdateTappingMaterials(MaterialsModel materialsModel);
     }
 }

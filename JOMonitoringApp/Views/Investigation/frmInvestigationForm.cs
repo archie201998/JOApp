@@ -438,7 +438,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(_investigationId);
 
-            if (adjustments.Count != 0)
+            if (adjustments.Count != 0) 
             {
                 decimal waterBill = Convert.ToDecimal(adjustments["water_bill"]);
                 decimal waterBillAdjustment = Convert.ToDecimal(adjustments["water_bill_adjustment"]);
@@ -462,7 +462,7 @@ namespace JOMonitoringApp.Views.Investigation
                 lblExtensionFee.Text = "00.00";
                 lblPenalty.Text = "00.00";
                 lblAdjustedAmount.Text = "00.00";
-                lblAdjustedWaterBill.Text = "00.00";
+                lblAdjustedWaterBill.Text = "00.00";    
             }
         }
 

@@ -108,9 +108,10 @@ namespace JOMonitoringApp
         {
             var parameter = new object[][] {
                 new object[]{"@item_name", DbType.String, materialsModel.ItemName},
+                new object[]{"@item_cost", DbType.String, materialsModel.StockPrice},
             };
 
-            string query = $"INSERT INTO {tableFSTappingDefaultMaterials} (item_name) VALUES (@item_name)";
+            string query = $"INSERT INTO {tableFSTappingDefaultMaterials} (item_name, item_cost) VALUES (@item_name, @item_cost)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
@@ -160,6 +161,29 @@ namespace JOMonitoringApp
             };
 
             string query = $"INSERT INTO tbl_materials (item_no, item_name, in_stock, is_inventory_item, imported_date_id) VALUES (@item_no, @item_name, @in_stock, @is_inventory_item, @imported_date_id)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+        }
+
+        public double GetStockPrice(string itemText)
+        {
+            var parameter = new object[][] {
+                new object[]{ "@item_name", DbType.String, itemText},
+            };
+
+            string query = $"SELECT item_cost FROM tbl_materials WHERE item_name = @item_name";
+            return double.Parse(mySqlGenericCommands.ExecuteScalar(query, parameter));
+        }
+
+        public bool UpdateTappingMaterials(MaterialsModel materialsModel)
+        {
+            var parameter = new object[][] {
+                new object[]{"@id", DbType.Int32, materialsModel.Id},
+                new object[]{"@item_quantity", DbType.Double, materialsModel.InStock},
+                new object[]{"@item_cost", DbType.Double, materialsModel.StockPrice },
+            };
+
+            string query = $"UPDATE tbl_tapping_materials SET  item_quantity = @item_quantity, item_cost = @item_cost WHERE id = @id";
+
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
     }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgJOTappingMaterials = new System.Windows.Forms.DataGridView();
-            this.clbMaterials = new System.Windows.Forms.CheckedListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cbxInStock = new System.Windows.Forms.CheckBox();
@@ -42,6 +42,7 @@
             this.lbl00 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnContinue = new System.Windows.Forms.Button();
+            this.clbMaterials = new System.Windows.Forms.CheckedListBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgJOTappingMaterials)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -64,6 +65,14 @@
             // 
             // dgJOTappingMaterials
             // 
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgJOTappingMaterials.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgJOTappingMaterials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJOTappingMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgJOTappingMaterials.Location = new System.Drawing.Point(3, 21);
@@ -73,19 +82,6 @@
             this.dgJOTappingMaterials.Size = new System.Drawing.Size(474, 534);
             this.dgJOTappingMaterials.TabIndex = 3;
             this.dgJOTappingMaterials.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgJOTappingMaterials_CellEndEdit);
-            // 
-            // clbMaterials
-            // 
-            this.clbMaterials.CheckOnClick = true;
-            this.clbMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.clbMaterials.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clbMaterials.FormattingEnabled = true;
-            this.clbMaterials.Location = new System.Drawing.Point(3, 83);
-            this.clbMaterials.Name = "clbMaterials";
-            this.clbMaterials.Size = new System.Drawing.Size(483, 475);
-            this.clbMaterials.TabIndex = 0;
-            this.clbMaterials.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbMaterials_ItemCheck);
-            this.clbMaterials.SelectedIndexChanged += new System.EventHandler(this.clbMaterials_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -219,6 +215,20 @@
             this.btnContinue.UseVisualStyleBackColor = false;
             this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
+            // clbMaterials
+            // 
+            this.clbMaterials.CheckOnClick = true;
+            this.clbMaterials.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.clbMaterials.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clbMaterials.FormattingEnabled = true;
+            this.clbMaterials.Location = new System.Drawing.Point(3, 83);
+            this.clbMaterials.Name = "clbMaterials";
+            this.clbMaterials.Size = new System.Drawing.Size(483, 475);
+            this.clbMaterials.TabIndex = 0;
+            this.clbMaterials.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbMaterials_ItemCheck);
+            this.clbMaterials.SelectedIndexChanged += new System.EventHandler(this.clbMaterials_SelectedIndexChanged);
+            this.clbMaterials.ImeModeChanged += new System.EventHandler(this.clbMaterials_ImeModeChanged);
+            // 
             // frmJOFSTappignMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,7 +257,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckedListBox clbMaterials;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbl00;
@@ -260,5 +269,6 @@
         private System.Windows.Forms.CheckBox cbxInStock;
         private System.Windows.Forms.Panel panel1;
         internal System.Windows.Forms.Button btnContinue;
+        private System.Windows.Forms.CheckedListBox clbMaterials;
     }
 }

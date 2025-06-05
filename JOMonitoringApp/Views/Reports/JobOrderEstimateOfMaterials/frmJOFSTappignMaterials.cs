@@ -99,7 +99,6 @@ namespace JOMonitoringApp.Views.Reports.SROF
         {
             LoadMaterials();
         }
-
         private void clbMaterials_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (AlreadyOnList())
@@ -122,9 +121,9 @@ namespace JOMonitoringApp.Views.Reports.SROF
 
             if (e.NewValue == CheckState.Checked)
             {
-
-
-                Factory.MaterialsRepository().InsertJOFSMaterials(new MaterialsModel() {ItemName = itemText});
+                Factory.MaterialsRepository().InsertJOFSMaterials(
+                    new MaterialsModel() {ItemName = itemText, StockPrice = Factory.MaterialsRepository().GetStockPrice(itemText) }
+                );
             }
             else
             {
@@ -143,7 +142,6 @@ namespace JOMonitoringApp.Views.Reports.SROF
         {
             var grid = sender as DataGridView;
 
-            // Make sure we're editing item_quantity
             if (grid.Columns[e.ColumnIndex].Name == "item_quantity")
             {
                 try
@@ -153,17 +151,27 @@ namespace JOMonitoringApp.Views.Reports.SROF
 
                     string qtyText = grid.Rows[e.RowIndex].Cells["item_quantity"].Value?.ToString();
                     string unitText = grid.Rows[e.RowIndex].Cells["item_cost"].Value?.ToString();
-
-                    if (decimal.TryParse(qtyText, out decimal quantity) &&
-                        decimal.TryParse(unitText, out decimal unitPrice))
+                    decimal itemCost = Convert.ToDecimal(unitText);
+                    if (decimal.TryParse(qtyText, out decimal quantity))
                     {
-                        decimal totalCost = quantity * unitPrice;
-                        grid.Rows[e.RowIndex].Cells["item_cost"].Value = totalCost.ToString("0.00");
+                        decimal totalCost = (quantity * itemCost) + (itemCost * Helper.DefaultMarkup); //with markup
+                        //decimal totalCost = quantity * itemCost; //without markup
+                        grid.Rows[e.RowIndex].Cells["item_cost"].Value = totalCost.ToString("N2");
+
+                        var a = Factory.MaterialsRepository().UpdateTappingMaterials(new MaterialsModel
+                        {
+                            Id = Convert.ToInt32(id),
+                            ItemName = row.Cells["item_name"].Value.ToString(),
+                            InStock = Convert.ToDouble(qtyText),
+                            StockPrice = Convert.ToDouble(totalCost)
+                        });
+
                     }
+
                 }
                 catch (Exception ex)
                 {
-                    Helper.MessageBoxSuccess($"Error calculating cost: {ex.Message}");
+                    //Helper.MessageBoxSuccess($"Error calculating cost: {ex.Message}");
                 }
             }
 
@@ -188,6 +196,11 @@ namespace JOMonitoringApp.Views.Reports.SROF
             //}
             //Factory.MaterialsRepository().UpdateDefaultTappingMaterials(materialsList);
             //Helper.MessageBoxSuccess("Default Tapping Materials updated successfully.");
+        }
+
+        private void clbMaterials_ImeModeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

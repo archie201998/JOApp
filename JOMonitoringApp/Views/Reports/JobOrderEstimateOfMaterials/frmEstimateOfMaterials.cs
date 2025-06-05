@@ -88,6 +88,10 @@ namespace JOMonitoringApp.Views.Reports
                 var newRow = dtMaterials.NewRow();
                 newRow["item"] = dataRow["item_name"];
                 newRow["qty"] = dataRow["item_quantity"];
+                newRow["unit_cost"] = dataRow["item_quantity"] != DBNull.Value && Convert.ToDecimal(dataRow["item_quantity"]) != 0
+    ? (Convert.ToDecimal(dataRow["item_cost"]) / Convert.ToDecimal(dataRow["item_quantity"])).ToString()
+    : "0";
+                newRow["amount"] = Convert.ToDecimal(dataRow["item_cost"]);
 
                 dtMaterials.Rows.Add(newRow);
             }

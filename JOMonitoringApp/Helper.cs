@@ -37,6 +37,8 @@ namespace AccountingSystem
         internal static string CSDHead = "CHRISTOPHER JASON R. CABABARO";
         internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
 
+        internal static decimal DefaultMarkup = 0.20m; // 20% markup for materials 
+
 
         //Default
         internal static decimal illegalConnectionFee = 6000;

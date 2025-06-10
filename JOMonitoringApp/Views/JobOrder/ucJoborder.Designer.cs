@@ -70,20 +70,20 @@
             this.gbIssuanceAndAssignment = new System.Windows.Forms.GroupBox();
             this.cmbxAccomplishedBy = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.txtRemarks = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.radAccomplished = new System.Windows.Forms.RadioButton();
-            this.radCancel = new System.Windows.Forms.RadioButton();
-            this.radProcessing = new System.Windows.Forms.RadioButton();
-            this.radPending = new System.Windows.Forms.RadioButton();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.radPending = new System.Windows.Forms.RadioButton();
+            this.radProcessing = new System.Windows.Forms.RadioButton();
+            this.radCancel = new System.Windows.Forms.RadioButton();
+            this.radAccomplished = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txtRemarks = new System.Windows.Forms.TextBox();
+            this.gbStatusAndRemaarks = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
             this.gbJODetails.SuspendLayout();
             this.gbIssuanceAndAssignment.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.gbStatusAndRemaarks.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -565,80 +565,10 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "ACCOMPLISHED BY";
             // 
-            // groupBox4
+            // errorProvider1
             // 
-            this.groupBox4.Controls.Add(this.txtRemarks);
-            this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.radAccomplished);
-            this.groupBox4.Controls.Add(this.radCancel);
-            this.groupBox4.Controls.Add(this.radProcessing);
-            this.groupBox4.Controls.Add(this.radPending);
-            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(10, 625);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(372, 73);
-            this.groupBox4.TabIndex = 18;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "STATUS AND REMARKS";
-            // 
-            // txtRemarks
-            // 
-            this.txtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRemarks.Location = new System.Drawing.Point(155, 20);
-            this.txtRemarks.Name = "txtRemarks";
-            this.txtRemarks.Size = new System.Drawing.Size(200, 21);
-            this.txtRemarks.TabIndex = 4;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(25, 22);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(70, 15);
-            this.label17.TabIndex = 7;
-            this.label17.Text = "REMARKS ";
-            // 
-            // radAccomplished
-            // 
-            this.radAccomplished.AutoSize = true;
-            this.radAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radAccomplished.Location = new System.Drawing.Point(264, 49);
-            this.radAccomplished.Name = "radAccomplished";
-            this.radAccomplished.Size = new System.Drawing.Size(120, 19);
-            this.radAccomplished.TabIndex = 3;
-            this.radAccomplished.Tag = "4";
-            this.radAccomplished.Text = "ACCOMPLISHED";
-            this.radAccomplished.UseVisualStyleBackColor = true;
-            this.radAccomplished.CheckedChanged += new System.EventHandler(this.RadAccomplished_CheckedChanged);
-            // 
-            // radCancel
-            // 
-            this.radCancel.AutoSize = true;
-            this.radCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCancel.Location = new System.Drawing.Point(192, 49);
-            this.radCancel.Name = "radCancel";
-            this.radCancel.Size = new System.Drawing.Size(72, 19);
-            this.radCancel.TabIndex = 2;
-            this.radCancel.Tag = "3";
-            this.radCancel.Text = "CANCEL";
-            this.radCancel.UseVisualStyleBackColor = true;
-            this.radCancel.CheckedChanged += new System.EventHandler(this.RadCancel_CheckedChanged);
-            // 
-            // radProcessing
-            // 
-            this.radProcessing.AutoSize = true;
-            this.radProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radProcessing.Location = new System.Drawing.Point(89, 49);
-            this.radProcessing.Name = "radProcessing";
-            this.radProcessing.Size = new System.Drawing.Size(104, 19);
-            this.radProcessing.TabIndex = 1;
-            this.radProcessing.Tag = "2";
-            this.radProcessing.Text = "PROCESSING";
-            this.radProcessing.UseVisualStyleBackColor = true;
-            this.radProcessing.CheckedChanged += new System.EventHandler(this.RadProcessing_CheckedChanged);
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
             // 
             // radPending
             // 
@@ -655,17 +585,87 @@
             this.radPending.UseVisualStyleBackColor = true;
             this.radPending.CheckedChanged += new System.EventHandler(this.RadPending_CheckedChanged);
             // 
-            // errorProvider1
+            // radProcessing
             // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
+            this.radProcessing.AutoSize = true;
+            this.radProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radProcessing.Location = new System.Drawing.Point(89, 49);
+            this.radProcessing.Name = "radProcessing";
+            this.radProcessing.Size = new System.Drawing.Size(104, 19);
+            this.radProcessing.TabIndex = 1;
+            this.radProcessing.Tag = "2";
+            this.radProcessing.Text = "PROCESSING";
+            this.radProcessing.UseVisualStyleBackColor = true;
+            this.radProcessing.CheckedChanged += new System.EventHandler(this.RadProcessing_CheckedChanged);
+            // 
+            // radCancel
+            // 
+            this.radCancel.AutoSize = true;
+            this.radCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radCancel.Location = new System.Drawing.Point(192, 49);
+            this.radCancel.Name = "radCancel";
+            this.radCancel.Size = new System.Drawing.Size(72, 19);
+            this.radCancel.TabIndex = 2;
+            this.radCancel.Tag = "3";
+            this.radCancel.Text = "CANCEL";
+            this.radCancel.UseVisualStyleBackColor = true;
+            this.radCancel.CheckedChanged += new System.EventHandler(this.RadCancel_CheckedChanged);
+            // 
+            // radAccomplished
+            // 
+            this.radAccomplished.AutoSize = true;
+            this.radAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radAccomplished.Location = new System.Drawing.Point(264, 49);
+            this.radAccomplished.Name = "radAccomplished";
+            this.radAccomplished.Size = new System.Drawing.Size(120, 19);
+            this.radAccomplished.TabIndex = 3;
+            this.radAccomplished.Tag = "4";
+            this.radAccomplished.Text = "ACCOMPLISHED";
+            this.radAccomplished.UseVisualStyleBackColor = true;
+            this.radAccomplished.CheckedChanged += new System.EventHandler(this.RadAccomplished_CheckedChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(25, 22);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(70, 15);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "REMARKS ";
+            // 
+            // txtRemarks
+            // 
+            this.txtRemarks.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRemarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRemarks.Location = new System.Drawing.Point(155, 20);
+            this.txtRemarks.Name = "txtRemarks";
+            this.txtRemarks.Size = new System.Drawing.Size(200, 21);
+            this.txtRemarks.TabIndex = 4;
+            // 
+            // gbStatusAndRemaarks
+            // 
+            this.gbStatusAndRemaarks.Controls.Add(this.txtRemarks);
+            this.gbStatusAndRemaarks.Controls.Add(this.label17);
+            this.gbStatusAndRemaarks.Controls.Add(this.radAccomplished);
+            this.gbStatusAndRemaarks.Controls.Add(this.radCancel);
+            this.gbStatusAndRemaarks.Controls.Add(this.radProcessing);
+            this.gbStatusAndRemaarks.Controls.Add(this.radPending);
+            this.gbStatusAndRemaarks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gbStatusAndRemaarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbStatusAndRemaarks.Location = new System.Drawing.Point(10, 625);
+            this.gbStatusAndRemaarks.Name = "gbStatusAndRemaarks";
+            this.gbStatusAndRemaarks.Size = new System.Drawing.Size(372, 73);
+            this.gbStatusAndRemaarks.TabIndex = 18;
+            this.gbStatusAndRemaarks.TabStop = false;
+            this.gbStatusAndRemaarks.Text = "STATUS AND REMARKS";
             // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.gbStatusAndRemaarks);
             this.Controls.Add(this.gbIssuanceAndAssignment);
             this.Controls.Add(this.gbJODetails);
             this.Controls.Add(this.txtAccountNumber);
@@ -681,9 +681,9 @@
             this.gbJODetails.PerformLayout();
             this.gbIssuanceAndAssignment.ResumeLayout(false);
             this.gbIssuanceAndAssignment.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.gbStatusAndRemaarks.ResumeLayout(false);
+            this.gbStatusAndRemaarks.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,11 +717,6 @@
         internal System.Windows.Forms.GroupBox gbJODetails;
         internal System.Windows.Forms.GroupBox gbAccountDetails;
         internal System.Windows.Forms.GroupBox gbIssuanceAndAssignment;
-        internal System.Windows.Forms.GroupBox groupBox4;
-        internal System.Windows.Forms.RadioButton radPending;
-        internal System.Windows.Forms.RadioButton radProcessing;
-        internal System.Windows.Forms.RadioButton radCancel;
-        internal System.Windows.Forms.RadioButton radAccomplished;
         private System.Windows.Forms.Button btnSearch;
         internal System.Windows.Forms.TextBox txtAccountName;
         internal System.Windows.Forms.ComboBox cmbxAccomplishedBy;
@@ -735,10 +730,15 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         internal System.Windows.Forms.TextBox txtAcc4;
-        internal System.Windows.Forms.Label label17;
-        internal System.Windows.Forms.TextBox txtRemarks;
         internal System.Windows.Forms.TextBox txtContact;
         private System.Windows.Forms.Label label18;
         internal System.Windows.Forms.TextBox txtAcc1;
+        internal System.Windows.Forms.GroupBox gbStatusAndRemaarks;
+        internal System.Windows.Forms.TextBox txtRemarks;
+        internal System.Windows.Forms.Label label17;
+        internal System.Windows.Forms.RadioButton radAccomplished;
+        internal System.Windows.Forms.RadioButton radCancel;
+        internal System.Windows.Forms.RadioButton radProcessing;
+        internal System.Windows.Forms.RadioButton radPending;
     }
 }

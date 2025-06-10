@@ -393,13 +393,15 @@ namespace JOMonitoringApp.Views.MainForm
 
 
             //restrict user to update if job order is accomplished
-            if (ucJoborder.radAccomplished.Checked)
-            {
-                ucJoborder.groupBox4.Enabled = false;
-                ucJoborder.gbAccountDetails.Enabled = false;
-                ucJoborder.gbIssuanceAndAssignment.Enabled = false;
-                ucJoborder.gbJODetails.Enabled = false;
-            }
+            bool isAccomplished = ucJoborder.radAccomplished.Checked;
+            bool isAdmin = Helper.temporaryAdminMode;
+
+            bool shouldEnable = !isAccomplished || isAdmin;
+            
+            ucJoborder.gbStatusAndRemaarks.Enabled = shouldEnable;
+            ucJoborder.gbAccountDetails.Enabled = shouldEnable;
+            ucJoborder.gbIssuanceAndAssignment.Enabled = shouldEnable;
+            ucJoborder.gbJODetails.Enabled = shouldEnable;
         }
 
 
@@ -472,7 +474,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtRemarks.Clear();
 
             // Enable groupboxes
-            ucJoborder.groupBox4.Enabled = true;
+            ucJoborder.gbStatusAndRemaarks.Enabled = true;
             ucJoborder.gbAccountDetails.Enabled = true;
             ucJoborder.gbIssuanceAndAssignment.Enabled = true;
             ucJoborder.gbJODetails.Enabled = true;

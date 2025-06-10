@@ -24,13 +24,9 @@ namespace JOMonitoringApp.Views.Admin
             textBox1.Focus();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
         {
+
             TextBox currentTextBox = sender as TextBox;
 
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -48,36 +44,41 @@ namespace JOMonitoringApp.Views.Admin
                     this.SelectNextControl(currentTextBox, true, true, true, true);
 
                     // Check if all boxes are filled
-                    if (AllBoxesFilled())
-                    {
-                        string pinEntered = GetPinFromBoxes();
-                        string correctPin = "284628"; // <- Your predefined PIN
-
-                        if (pinEntered == correctPin)
-                        {
-                            MessageBox.Show("PIN Verified!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            Helper.temporaryAdminMode = true;
-                            this.DialogResult = DialogResult.OK; // Set result
-                            this.Close(); // Close the form
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("Incorrect PIN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Helper.temporaryAdminMode = false;
-                            textBox1.Focus();
-
-                            textBox1.Clear();
-                            textBox2.Clear();
-                            textBox3.Clear();
-                            textBox4.Clear();
-                            textBox5.Clear();
-                            textBox6.Clear();
-                            textBox6.Clear();
-
-                        }
-                    }
+                    CheckPIN();
                 });
+            }
+        }
+
+        private void CheckPIN()
+        {
+            if (AllBoxesFilled())
+            {
+                string pinEntered = GetPinFromBoxes();
+                string correctPin = "284628"; // <- Your predefined PIN
+
+                if (pinEntered == correctPin)
+                {
+                    MessageBox.Show("PIN Verified!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Helper.temporaryAdminMode = true;
+                    this.DialogResult = DialogResult.OK; // Set result
+                    this.Close(); // Close the form
+
+                }
+                else
+                {
+                    MessageBox.Show("Incorrect PIN.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Helper.temporaryAdminMode = false;
+                    textBox1.Focus();
+
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    textBox4.Clear();
+                    textBox5.Clear();
+                    textBox6.Clear();
+                    textBox6.Clear();
+
+                }
             }
         }
 
@@ -116,6 +117,17 @@ namespace JOMonitoringApp.Views.Admin
                 this.SelectNextControl(current, false, true, true, true);
                 e.Handled = true;
             }
+            else if (e.KeyCode == Keys.Back)
+            {
+                this.SelectNextControl(current, false, true, true, true);
+                e.Handled = true;
+            }
+
+        }
+
+        private void btnVerifyPIN_Click(object sender, EventArgs e)
+        {
+            CheckPIN();
         }
     }
 }

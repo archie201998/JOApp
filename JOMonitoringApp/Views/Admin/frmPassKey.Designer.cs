@@ -35,6 +35,7 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnVerifyPIN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -47,8 +48,8 @@
             this.textBox1.PasswordChar = '•';
             this.textBox1.Size = new System.Drawing.Size(54, 80);
             this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "2";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
             // 
@@ -62,6 +63,7 @@
             this.textBox2.PasswordChar = '•';
             this.textBox2.Size = new System.Drawing.Size(54, 80);
             this.textBox2.TabIndex = 1;
+            this.textBox2.Text = "8";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
             this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
@@ -76,6 +78,7 @@
             this.textBox3.PasswordChar = '•';
             this.textBox3.Size = new System.Drawing.Size(54, 80);
             this.textBox3.TabIndex = 2;
+            this.textBox3.Text = "4";
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
             this.textBox3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
@@ -90,6 +93,7 @@
             this.textBox4.PasswordChar = '•';
             this.textBox4.Size = new System.Drawing.Size(54, 80);
             this.textBox4.TabIndex = 3;
+            this.textBox4.Text = "6";
             this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
             this.textBox4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
@@ -104,6 +108,7 @@
             this.textBox5.PasswordChar = '•';
             this.textBox5.Size = new System.Drawing.Size(54, 80);
             this.textBox5.TabIndex = 4;
+            this.textBox5.Text = "2";
             this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox5.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
             this.textBox5.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox6_KeyPress);
@@ -118,6 +123,7 @@
             this.textBox6.PasswordChar = '•';
             this.textBox6.Size = new System.Drawing.Size(54, 80);
             this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "8";
             this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox6.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             this.textBox6.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox6_KeyDown);
@@ -132,11 +138,23 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "ENTER YOUR PIN";
             // 
+            // btnVerifyPIN
+            // 
+            this.btnVerifyPIN.Location = new System.Drawing.Point(8, 115);
+            this.btnVerifyPIN.Name = "btnVerifyPIN";
+            this.btnVerifyPIN.Size = new System.Drawing.Size(334, 23);
+            this.btnVerifyPIN.TabIndex = 6;
+            this.btnVerifyPIN.Text = "Verify PIN [Enter]";
+            this.btnVerifyPIN.UseVisualStyleBackColor = true;
+            this.btnVerifyPIN.Click += new System.EventHandler(this.btnVerifyPIN_Click);
+            // 
             // frmPassKey
             // 
+            this.AcceptButton = this.btnVerifyPIN;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(354, 124);
+            this.ClientSize = new System.Drawing.Size(354, 143);
+            this.Controls.Add(this.btnVerifyPIN);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
@@ -145,6 +163,7 @@
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmPassKey";
@@ -166,5 +185,6 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnVerifyPIN;
     }
 }

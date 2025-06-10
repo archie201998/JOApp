@@ -131,6 +131,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 _ucJobOrder.txtAccountName.Text = selectedAccountName;
                 _ucJobOrder.txtAccountNumber.Text = selectedAccountNumber;
                 _ucJobOrder.txtAddress.Text = selectedAddress;
+                _ucJobOrder.cbxNA.Checked = false;
                 _ucJobOrder.txtJONumber.Focus();
 
                 Close();

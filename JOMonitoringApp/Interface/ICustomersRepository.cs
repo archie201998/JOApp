@@ -19,6 +19,7 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetCustomerMeterDetails(string accountNumber);
         Dictionary<string, string> GetCustomerAccountDetails(string accountNumber);
         Dictionary<string, string> GetBillingDetails(string accountNumber);
+        Dictionary<string, string> GetPaymentDetails(int customerId);
         DataTable GetAverageCons(string accountNumber);
         string GetAverageConsumption(string accountNumber);
         string GetPreviousReading(string accountNumber);
@@ -26,5 +27,9 @@ namespace JOMonitoringApp.Interface
         string GetPreviousConsumption(string accountNumber);
         string GetPresentConsumption(string accountNumber);
         string GetConsumptionUponDisconnection(string accountNumber);
+
+        decimal GetApplicationPaymentAmount(string orNumber);
+
+
     }
 }

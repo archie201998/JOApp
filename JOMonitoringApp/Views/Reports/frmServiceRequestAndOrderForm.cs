@@ -134,7 +134,16 @@ namespace JOMonitoringApp.Views.Reports
                 reportParameters1.Add(new ReportParameter("paramReceivedBy", receivedBy["user_full_name"].ToString().ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramWARNo", dtJobOrders["war"].ToUpper()));
                 reportParameters1.Add(new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString()));
-               
+
+                Dictionary<string, string> paymentDict = Factory.CustomersRepository().GetPaymentDetails(23609);
+                string orNumber = paymentDict["ORNumber"].ToString();
+                string total = paymentDict["Total"].ToString();
+
+                
+
+                //reportParameters1.Add(new ReportParameter("paramAmount", total));
+                //reportParameters1.Add(new ReportParameter("paramSINumber", orNumber));
+
                 string dateActed = string.Empty;
                 if (dtJobOrders["status_id"].ToString() == "4")
                     dateActed = dtJobOrders["updated_at"].ToString();

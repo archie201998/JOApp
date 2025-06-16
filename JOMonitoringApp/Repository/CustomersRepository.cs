@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Org.BouncyCastle.Tls.Crypto.Impl;
 
 internal class CustomersRepository : ICustomersRepository
 {
@@ -150,7 +151,7 @@ internal class CustomersRepository : ICustomersRepository
            new object[] { "@account_number", DbType.String, accountNumber }
         };
 
-        string query = $"SELECT Category, MeterSize, AccountName FROM vue_CustomerMaster WHERE AccountNo = @account_number";
+        string query = $"SELECT Category, MeterSize, AccountName, AccountNo, ORNumber FROM tbl_CustomerMaster WHERE AccountNo = @account_number";
 
         var dataTable = new DataTable();
         dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
@@ -186,6 +187,31 @@ internal class CustomersRepository : ICustomersRepository
             {
                 result[column.ColumnName] = dataTable.Rows[0][column].ToString();
 
+
+            }
+        }
+
+        return result;
+    }
+
+    public Dictionary<string, string> GetPaymentDetails(int customerId)
+    {
+        var parameters = new object[][]
+        {
+           new object[] { "@customer_id", DbType.Int32, customerId }
+        };
+
+        string query = $"SELECT ORNumber, SUM(Amount) AS Total FROM txn_PaymentDetailsOthers WHERE (CustomerID = @customer_id) GROUP BY ORNumber";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
 
             }
         }
@@ -272,5 +298,17 @@ internal class CustomersRepository : ICustomersRepository
     public string GetConsumptionUponDisconnection(string accountNumber)
     {
         throw new System.NotImplementedException();
+    }
+
+    public decimal GetApplicationPaymentAmount(string orNumber)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@or_number", DbType.String, orNumber }
+        };
+
+        string query = $"SELECT SUM(Amount) As Amount FROM txn_PaymentDetailsOthers WHERE or_number = @or_number";
+        return int.Parse(sqlGenericCommands.ExecuteScalar(query, parameters));
+
     }
 }

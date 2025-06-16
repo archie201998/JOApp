@@ -107,6 +107,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
+            this.applicationFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -281,7 +282,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -296,14 +297,15 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userManualToolStripMenuItem});
+            this.userManualToolStripMenuItem,
+            this.applicationFilesToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.helpToolStripMenuItem.Text = "Help";
@@ -311,7 +313,7 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.userManualToolStripMenuItem.Text = "User Guide";
             // 
             // contextMenuStrip1
@@ -822,6 +824,13 @@
             // 
             this.timer_investigator.Interval = 10000;
             // 
+            // applicationFilesToolStripMenuItem
+            // 
+            this.applicationFilesToolStripMenuItem.Name = "applicationFilesToolStripMenuItem";
+            this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.applicationFilesToolStripMenuItem.Text = "Application Files";
+            this.applicationFilesToolStripMenuItem.Click += new System.EventHandler(this.applicationFilesToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -944,5 +953,6 @@
         private System.Windows.Forms.ToolStripMenuItem hydrantWithdrawToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
         private System.Windows.Forms.ToolStripStatusLabel lblRetrieved;
+        private System.Windows.Forms.ToolStripMenuItem applicationFilesToolStripMenuItem;
     }
 }

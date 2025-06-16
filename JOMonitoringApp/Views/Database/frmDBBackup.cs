@@ -44,7 +44,6 @@ namespace JOMonitoringApp.Views.Database
             process.WaitForExit();
         }
 
-
         private async Task ShowSpinner(Label label, CancellationToken token)
         {
             string[] spinner = { "|", "/", "-", "\\" };

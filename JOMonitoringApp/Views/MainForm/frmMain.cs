@@ -12,16 +12,12 @@ using JOMonitoringApp.Views.Reports.SROF;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
-using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
@@ -1013,9 +1009,7 @@ namespace JOMonitoringApp.Views.MainForm
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
             _ = new frmInvestigationReport(jobOrderId, jobOrderNumber).ShowDialog();
-
         }
-
 
         private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -1098,6 +1092,36 @@ namespace JOMonitoringApp.Views.MainForm
         private void investigationFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void applicationFilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string networkFolderPath = @"\\192.168.18.102\scanned SA\";
+                if (!Directory.Exists(networkFolderPath))
+                {
+                    Helper.MessageBoxError("The network folder does not exist or is unreachable.");
+                    return;
+                }
+
+                using (var openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = networkFolderPath;
+                    openFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                    openFileDialog.Title = "Select a PDF file";
+                    openFileDialog.Multiselect = false;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        System.Diagnostics.Process.Start(openFileDialog.FileName);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxError($"Failed to open network folder: {ex.Message}");
+            }
         }
     }
 }

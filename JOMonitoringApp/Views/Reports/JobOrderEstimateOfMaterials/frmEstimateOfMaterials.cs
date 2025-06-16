@@ -39,7 +39,7 @@ namespace JOMonitoringApp.Views.Reports
 
             reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\estimate-of-materials.rdlc";
             reportViewer1.LocalReport.EnableExternalImages = true;
-            ReportParameter[] parameters = new ReportParameter[19];
+            ReportParameter[] parameters = new ReportParameter[21];
             var receivedBy = Helper.GetUserDataById(Convert.ToInt32(dictJODetails["prepared_by_id"].ToString()));
 
             parameters[0] = new ReportParameter("paramCustomerName", dictJODetails["account_name"]);
@@ -70,6 +70,12 @@ namespace JOMonitoringApp.Views.Reports
             parameters[17] = new ReportParameter("paramReceivedBy_", receivedBy["user_full_name"].ToString());
             parameters[18] = new ReportParameter("paramFullPagePrint", cbxFullPage.Checked.ToString());
 
+            parameters[19] = new ReportParameter("paramORNumber", "0");
+            parameters[20] = new ReportParameter("paramAmount", "0");
+
+
+
+            //OR and Amount 
 
             //string accountNumber = string.IsNullOrEmpty(dictJODetails["account_number"]) ? string.Empty : dictJODetails["account_number"];
 
@@ -89,8 +95,8 @@ namespace JOMonitoringApp.Views.Reports
                 newRow["item"] = dataRow["item_name"];
                 newRow["qty"] = dataRow["item_quantity"];
                 newRow["unit_cost"] = dataRow["item_quantity"] != DBNull.Value && Convert.ToDecimal(dataRow["item_quantity"]) != 0
-    ? (Convert.ToDecimal(dataRow["item_cost"]) / Convert.ToDecimal(dataRow["item_quantity"])).ToString()
-    : "0";
+                    ? (Convert.ToDecimal(dataRow["item_cost"]) / Convert.ToDecimal(dataRow["item_quantity"])).ToString()
+                    : "0";
                 newRow["amount"] = Convert.ToDecimal(dataRow["item_cost"]);
 
                 dtMaterials.Rows.Add(newRow);

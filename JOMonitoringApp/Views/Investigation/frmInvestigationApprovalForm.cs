@@ -40,8 +40,8 @@ namespace JOMonitoringApp.Views.Investigation
             if (result)
             {
                 Helper.MessageBoxSuccess("Investigation has been approved.");
+                _ = Factory.InvestigationRepository().UpdateStatus(_investigationId, 4);
                 _ = Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, 4);
-                //_ = Factory.InvestigationRepository().UpdateStatus(_investigationId, 4);
                 Close();
             }
         }
@@ -51,6 +51,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (string.IsNullOrEmpty(txtMessage.Text.Trim()))
             {
                 Helper.MessageBoxError("Please provide a reason for disapproval.");
+                _ = Factory.InvestigationRepository().UpdateStatus(_investigationId, 5);
                 return;
             }
         }

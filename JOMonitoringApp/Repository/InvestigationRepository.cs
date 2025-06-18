@@ -435,5 +435,18 @@ namespace JOMonitoringApp
             }
             return string.Empty;
         }
+
+        public bool UpdateStatus(int jobOrderId, int statusId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_id", DbType.Int32, jobOrderId},
+                new object[] { "@status_id", DbType.Int32, statusId},
+            };
+
+            string query = $"UPDATE {tableName} SET status_id = @status_id WHERE id = @job_order_id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
     }
 }

@@ -1,10 +1,6 @@
-﻿using AccountingSystem;
-using JOMonitoringApp.Interface;
+﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 
@@ -407,6 +403,37 @@ namespace JOMonitoringApp
         {
             string query = $"SELECT COUNT(*) FROM {tableName}";
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query));
+        }
+
+        public bool InsertApprovalMessage(InvestigationModel entity)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.String,  entity.InvestigationId },
+                new object[] { "@job_orders_id", DbType.Int32,  entity.JobOrderId },
+                new object[] { "@approval_message", DbType.String, entity.ApprovalMessage },
+            };
+
+            string query = $"UPDATE {tableName} SET " +
+                            $"approval_message = @approval_message " +
+                            $"WHERE id = @id AND job_orders_id = @job_orders_id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public string GetApprovalMessage(int investigationId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, investigationId }
+            };
+            string query = $"SELECT approval_message FROM {tableName} WHERE id = @id";
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+            if (dataTable.Rows.Count > 0)
+            {
+                return dataTable.Rows[0]["approval_message"].ToString();
+            }
+            return string.Empty;
         }
     }
 }

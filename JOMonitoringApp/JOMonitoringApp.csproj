@@ -288,6 +288,12 @@
     <Compile Include="Views\Investigation\frmInvestigationAdjustment.Designer.cs">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationApprovalForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\frmInvestigationApprovalForm.Designer.cs">
+      <DependentUpon>frmInvestigationApprovalForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Investigation\frmInvestigationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +456,8 @@
     <None Include="Resources\icons8-continue-16.png" />
     <None Include="Resources\icons8-create-30.png" />
     <None Include="Resources\icons8-create-16.png" />
+    <None Include="Resources\icons8-circled-x-24.png" />
+    <None Include="Resources\icons8-check-24.png" />
     <Content Include="Resources\icons8-delete-14.png" />
     <Content Include="Resources\icons8-form-14.png" />
     <None Include="Resources\icons8-give-30.png" />
@@ -518,6 +526,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationAdjustment.resx">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\frmInvestigationApprovalForm.resx">
+      <DependentUpon>frmInvestigationApprovalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationForm.resx">
       <DependentUpon>frmInvestigationForm.cs</DependentUpon>

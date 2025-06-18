@@ -45,5 +45,9 @@ namespace JOMonitoringApp.Views.Investigation
         {
             _ = new frmMessagePrompt().ShowDialog();
         }
+
+        private void viewBAMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

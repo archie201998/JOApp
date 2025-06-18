@@ -31,6 +31,15 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.LoadFormIcon(this);
         }
 
+        public frmInvestigationImageViewer(string jobOrderNumber)
+        {
+            InitializeComponent();
+            imageFiles = new List<string>();
+            currentImageIndex = 0;
+            Helper.LoadFormIcon(this);
+
+        }
+
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
             Cursor cursor = Cursors.WaitCursor;

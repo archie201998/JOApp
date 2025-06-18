@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgInvestigations = new System.Windows.Forms.DataGridView();
             this.lblRecordCount = new System.Windows.Forms.Label();
@@ -44,11 +45,15 @@
             this.cmbxStatus = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewBAMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seeImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -266,6 +271,28 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewBAMToolStripMenuItem,
+            this.seeImageToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // viewBAMToolStripMenuItem
+            // 
+            this.viewBAMToolStripMenuItem.Name = "viewBAMToolStripMenuItem";
+            this.viewBAMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewBAMToolStripMenuItem.Text = "BAM";
+            this.viewBAMToolStripMenuItem.Click += new System.EventHandler(this.viewBAMToolStripMenuItem_Click);
+            // 
+            // seeImageToolStripMenuItem
+            // 
+            this.seeImageToolStripMenuItem.Name = "seeImageToolStripMenuItem";
+            this.seeImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seeImageToolStripMenuItem.Text = "Image Attachments";
+            this.seeImageToolStripMenuItem.Click += new System.EventHandler(this.seeImageToolStripMenuItem_Click);
+            // 
             // frmInvestigationList
             // 
             this.AcceptButton = this.btnSearch;
@@ -284,6 +311,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -306,5 +334,8 @@
         private System.Windows.Forms.ComboBox cmbxRowLimit;
         private System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem viewBAMToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seeImageToolStripMenuItem;
     }
 }

@@ -144,12 +144,12 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label9.Location = new System.Drawing.Point(12, 192);
+            this.label9.Location = new System.Drawing.Point(9, 187);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(268, 45);
+            this.label9.Size = new System.Drawing.Size(271, 30);
             this.label9.TabIndex = 12;
-            this.label9.Text = "Efficiently track, manage, and monitor job orders \r\nwith ease. Stay updated on pr" +
-    "ogress, deadlines, \r\ncompletion status, and reports all in one place";
+            this.label9.Text = "An app for managing job orders, service requests, \r\nand account info for customer" +
+    "s.";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
@@ -158,11 +158,11 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(37, 143);
+            this.label8.Location = new System.Drawing.Point(35, 144);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(212, 17);
+            this.label8.Size = new System.Drawing.Size(198, 17);
             this.label8.TabIndex = 11;
-            this.label8.Text = "Job Order Monitoring Application";
+            this.label8.Text = "Commerial Services Application";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6

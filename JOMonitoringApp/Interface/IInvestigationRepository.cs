@@ -20,5 +20,7 @@ namespace JOMonitoringApp.Interface
         bool UpdateInvestigation(InvestigationModel investigationModel);
 
         int RecordCount();
+        bool InsertApprovalMessage(InvestigationModel investigationModel);
+        string GetApprovalMessage(int investigationId);
     }
 }

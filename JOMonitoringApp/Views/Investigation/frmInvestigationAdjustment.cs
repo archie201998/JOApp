@@ -29,6 +29,14 @@ namespace JOMonitoringApp.Views.Investigation
             _accountNumber = frmInvestigationForm.txtAccountNumber.Text;
         }
 
+        public frmInvestigationAdjustment(string accountNo)
+        {
+            InitializeComponent();
+            Helper.DatagridFullRowSelectStyleEditable(dgParticularAdjustment);
+            Helper.LoadFormIcon(this);
+            _accountNumber = accountNo; 
+        }
+
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
         {
             LoadAccountDetails();

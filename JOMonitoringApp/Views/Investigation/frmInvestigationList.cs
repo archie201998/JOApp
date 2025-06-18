@@ -86,6 +86,8 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxRowLimit.SelectedIndex = 1;
             cmbxStatus.SelectedValue = 6;
             GetInvestigationRecords();
+
+
         }
 
 
@@ -95,6 +97,16 @@ namespace JOMonitoringApp.Views.Investigation
         }
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
+            if (Helper.UserHasPermission("INVESTIGATION_APPROVAL"))
+            {
+                // Get investigationId and jobOrderId from the selected row
+                int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+                int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
+
+                _ = new frmInvestigationApprovalForm(investigationId, jobOrderId).ShowDialog();
+                return;
+            }
+
             ViewDetails();
         }
 
@@ -126,6 +138,14 @@ namespace JOMonitoringApp.Views.Investigation
 
         }
 
-     
+        private void viewBAMToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationAdjustment(string.Empty).ShowDialog();
+        }
+
+        private void seeImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmInvestigationImageViewer(string.Empty).ShowDialog();
+        }
     }
 }

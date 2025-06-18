@@ -1,27 +1,31 @@
 ﻿using AccountingSystem;
-using JOMonitoringApp.Views.Materials;
-using Microsoft.Reporting.WinForms.Internal.Soap.ReportingServices2005.Execution;
-using MySqlX.XDevAPI.Common;
+using Nancy.Json;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text.Json;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 
 
 namespace JOMonitoringApp.Views.MainForm
 {
     public partial class frmListOfMaterials : Form
-    {
+    {  
         private bool _toSave = false;
         Microsoft.Office.Interop.Excel.Application excelApp;
         Microsoft.Office.Interop.Excel.Workbook excelWB;
         Microsoft.Office.Interop.Excel.Worksheet excelWS;
         Microsoft.Office.Interop.Excel.Range excelRange;
         int excelRow = 0;
+
 
         public frmListOfMaterials()
         {
@@ -31,6 +35,52 @@ namespace JOMonitoringApp.Views.MainForm
             Helper.DatagridFullRowSelectStyle(dgMaterials);
         }
 
+        public void UpdateMasterList()
+        {
+            string apiKey = "dc8a5d065a9649a696c51324e8192dca";
+            string baseUrl = "http://10.100.76.101:9000";
+            string endpoint = "/api/v1/Items";
+            string apiUrl = baseUrl + endpoint + "?size=0&skip=0";
+
+            var request = (HttpWebRequest)WebRequest.Create(apiUrl);
+            request.Method = "GET";
+            request.Headers["X-Api-Key"] = apiKey;
+
+            string responseText = "";
+            using (var response = (HttpWebResponse)request.GetResponse())
+            using (var reader = new StreamReader(response.GetResponseStream()))
+            {
+                responseText = reader.ReadToEnd();
+            }
+
+            var serializer = new JavaScriptSerializer();
+            dynamic items = serializer.DeserializeObject(responseText);
+            foreach (var item in items)
+            {
+                var itemDict = item as Dictionary<string, object>;
+                if (itemDict == null) continue;
+
+                var itemCode = Convert.ToString(itemDict["itemCode"]);
+                var warehouses = itemDict["itemWarehouseInfoCollection"] as List<Dictionary<string, object>>;
+
+                foreach (var warehouse in warehouses)
+                {
+                    string warehouseCode = Convert.ToString(warehouse["warehouseCode"]);
+
+                    double inStock = Convert.ToDouble(warehouse["inStock"]);
+                    double averagePrice = Convert.ToDouble(warehouse["standardAveragePrice"]);
+
+                
+
+                    //if (warehouseCode == "SUM-INV")
+                    //{
+             
+                    //}
+                }
+            }
+
+            MessageBox.Show("Item list successfully updated", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void CreateMaterialsColumns(DataGridView dataGrid)
         {
@@ -230,6 +280,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void cmbxImportDate_SelectedIndexChanged(object sender, EventArgs e)
         {
             SearchMaterials();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateMasterList();
         }
     }
 }

@@ -117,16 +117,14 @@ namespace AccountingSystem
         }
 
 
-        public static string LogMessage(bool isUpdate)
+        public static string LogMessage(bool isUpdate, string jobNumber)
         {
             if (isUpdate)
             {
-                //ip address here.
                 return $"CHANGES : { changes }";
-                //return "Updated : " + changes + " at : " + GetLocalIPAddress();
             }
 
-            return $"Added ";
+            return $"Added " + jobNumber;
             
         }
 

@@ -42,6 +42,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.btnX = new System.Windows.Forms.Button();
             this.cmbxImportDate = new System.Windows.Forms.ComboBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgMaterials)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +55,7 @@
             this.dgMaterials.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMaterials.Location = new System.Drawing.Point(12, 67);
             this.dgMaterials.Name = "dgMaterials";
-            this.dgMaterials.Size = new System.Drawing.Size(924, 475);
+            this.dgMaterials.Size = new System.Drawing.Size(924, 434);
             this.dgMaterials.TabIndex = 0;
             // 
             // label1
@@ -200,11 +201,27 @@
             this.cmbxImportDate.TabIndex = 34;
             this.cmbxImportDate.SelectedIndexChanged += new System.EventHandler(this.cmbxImportDate_SelectedIndexChanged);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(12, 507);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 23);
+            this.button1.TabIndex = 35;
+            this.button1.Text = "Retrive From SAP";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmListOfMaterials
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(948, 554);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.cmbxImportDate);
             this.Controls.Add(this.btnX);
             this.Controls.Add(this.btnImportFile);
@@ -244,5 +261,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button btnX;
         private System.Windows.Forms.ComboBox cmbxImportDate;
+        private System.Windows.Forms.Button button1;
     }
 }

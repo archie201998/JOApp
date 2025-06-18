@@ -17,13 +17,13 @@ namespace JOMonitoringApp.Views.Reports
 {
     public partial class frmHydrantWithdrawal : Form
     {
-        string jobOrderNumber;
+        private string _jobOrderNumber = string.Empty;
 
         public frmHydrantWithdrawal(string jobOrderNumber)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            jobOrderNumber = jobOrderNumber;   
+            _jobOrderNumber = jobOrderNumber;   
             txtJONo.Text = jobOrderNumber;  
         }
 
@@ -68,12 +68,11 @@ namespace JOMonitoringApp.Views.Reports
             {
                 Helper.MessageBoxError("Something went wrong. Please contact your system administrator.");
             }
-           
         }
 
         private void frmHydrantWithdrawal_Load(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(jobOrderNumber))
+            if (!string.IsNullOrEmpty(_jobOrderNumber))
             {
                 LoadReport();
             }

@@ -149,7 +149,7 @@ namespace JOMonitoringApp.Views.MainForm
 
                     return tempTable;
                 });
-
+                toolStripStatusLabel3.Text = $"RECORDS COUNT : {dataTable.Rows.Count}";
                 // Load into DataGridView
                 HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             }
@@ -199,7 +199,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
         #endregion
-
 
         #region Permission and Controls Validation
         private void ValidatePermissions()
@@ -940,35 +939,35 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void dgJobOrders_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Delete)
+            if (Helper.temporaryAdminMode || Helper.UserHasPermission("DELETE_JOB_ORDER"))
             {
-                if (!Helper.temporaryAdminMode)
+                if (e.KeyCode == Keys.Delete)
                 {
-                    Helper.MessageBoxSuccess("User don't have permission to delete record(s). Please contact system administrator.");
-                    return;
-                }
-
-                if (dgJobOrders.SelectedRows.Count > 0)
-                {
-                    var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
-                                                  "Confirm Delete",
-                                                  MessageBoxButtons.YesNo,
-                                                  MessageBoxIcon.Warning);
-
-                    if (confirm == DialogResult.Yes)
+                    if (dgJobOrders.SelectedRows.Count > 0)
                     {
-                        int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                        int userId = Helper.UserId;
-                        bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
+                        var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
+                                                      "Confirm Delete",
+                                                      MessageBoxButtons.YesNo,
+                                                      MessageBoxIcon.Warning);
 
-                        if (deletedSuccessfully)
+                        if (confirm == DialogResult.Yes)
                         {
-                            Helper.MessageBoxSuccess("J.O Successfully deleted.");
-                            ResetInputForm();
+                            int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                            int userId = Helper.UserId;
+                            bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
+
+                            if (deletedSuccessfully)
+                            {
+                                Helper.MessageBoxSuccess("J.O Successfully deleted.");
+                                LoadJobOrdersAsync();
+                                ResetInputForm();
+                            }
                         }
                     }
                 }
             }
+
+            return;
         }
 
         #endregion
@@ -978,7 +977,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             if (dgJobOrders.SelectedRows.Count == 0)
             {
-                Helper.MessageBoxSuccess("Please select record to print.");
+                Helper.MessageBoxSuccess("Please select 1 record.");
                 return;
             }
 

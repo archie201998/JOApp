@@ -54,6 +54,7 @@
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.applicationFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +75,8 @@
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblPing = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCheckingUpdate = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -107,7 +110,6 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
-            this.applicationFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -297,7 +299,7 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -313,8 +315,15 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.userManualToolStripMenuItem.Text = "User Guide";
+            // 
+            // applicationFilesToolStripMenuItem
+            // 
+            this.applicationFilesToolStripMenuItem.Name = "applicationFilesToolStripMenuItem";
+            this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.applicationFilesToolStripMenuItem.Text = "Application Files";
+            this.applicationFilesToolStripMenuItem.Click += new System.EventHandler(this.applicationFilesToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -384,6 +393,7 @@
             this.trackJOProgressToolStripMenuItem.Name = "trackJOProgressToolStripMenuItem";
             this.trackJOProgressToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
+            this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
             // 
             // statusStrip1
             // 
@@ -398,6 +408,8 @@
             this.toolStripStatusLabel6,
             this.lblPing,
             this.toolStripStatusLabel9,
+            this.toolStripStatusLabel3,
+            this.toolStripStatusLabel5,
             this.lblCheckingUpdate,
             this.lblRetrieved});
             this.statusStrip1.Location = new System.Drawing.Point(5, 918);
@@ -460,6 +472,18 @@
             this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
             this.toolStripStatusLabel9.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel9.Text = "|";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(111, 17);
+            this.toolStripStatusLabel3.Text = "RECORDS COUNT : ";
+            // 
+            // toolStripStatusLabel5
+            // 
+            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
+            this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
+            this.toolStripStatusLabel5.Text = "|";
             // 
             // lblCheckingUpdate
             // 
@@ -620,6 +644,7 @@
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
+            this.dgJobOrders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgJobOrders_KeyDown);
             // 
             // panel2
             // 
@@ -824,13 +849,6 @@
             // 
             this.timer_investigator.Interval = 10000;
             // 
-            // applicationFilesToolStripMenuItem
-            // 
-            this.applicationFilesToolStripMenuItem.Name = "applicationFilesToolStripMenuItem";
-            this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.applicationFilesToolStripMenuItem.Text = "Application Files";
-            this.applicationFilesToolStripMenuItem.Click += new System.EventHandler(this.applicationFilesToolStripMenuItem_Click);
-            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -954,5 +972,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripJOProgressTracking;
         private System.Windows.Forms.ToolStripStatusLabel lblRetrieved;
         private System.Windows.Forms.ToolStripMenuItem applicationFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
     }
 }

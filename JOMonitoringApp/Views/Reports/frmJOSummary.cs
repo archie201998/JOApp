@@ -19,6 +19,7 @@ namespace JOMonitoringApp.Views.Reports
         int monthIndex;
         string particular;
         string statusFilter = "status = 4";
+        int particularID = 0;    
 
 
 
@@ -103,8 +104,13 @@ namespace JOMonitoringApp.Views.Reports
 
                 DateTime dateFrom = dtpFrom.Value;
                 DateTime dateTo = dtpTo.Value;
-
-                var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(dateFrom, dateTo, particular, statusFilter, orderBy);
+                DataTable dtJobOrders;
+                if (particularID == 0)
+                {
+                    dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(dateFrom, dateTo, particular, statusFilter, orderBy);
+                }
+                else
+                    dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(dateFrom, dateTo, particularID, statusFilter, orderBy);
 
                 int totalProgressCount = tasks.Sum(t => t.Value) + dtJobOrders.Rows.Count;
                 int progressCount = 0;
@@ -207,7 +213,7 @@ namespace JOMonitoringApp.Views.Reports
 
         private void cmbxParticular_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            particular = cmbxParticular.Text;   
+             particularID = Convert.ToInt32(cmbxParticular.SelectedValue);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -264,6 +270,11 @@ namespace JOMonitoringApp.Views.Reports
                 if (filter.StartsWith("OR"))
                     filter = filter.Substring(3).Trim(); // Remove leading "OR"
             }
+        }
+
+        private void cmbxParticular_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            particularID = Convert.ToInt32(cmbxParticular.SelectedValue);
         }
     }
 }

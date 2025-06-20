@@ -218,7 +218,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             return new JOLogsModel()
             {
-                TransactionEvent = Helper.LogMessage(isUpdate, originalValues["job_order_no"].ToString()) ,
+                TransactionEvent = Helper.LogMessage(isUpdate, originalValues["JONumber"].ToString()) ,
                 DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
                 JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId

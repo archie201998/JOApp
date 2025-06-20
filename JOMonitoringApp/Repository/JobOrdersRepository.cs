@@ -16,6 +16,7 @@ namespace JOMonitoringApp
         private GenericCommands mySqlGenericCommands;
         private readonly string tableName = "tbl_job_orders";
         private readonly string viewTableName = "view_job_orders";
+        private readonly string viewJobOrdersParticulars = "view_job_orders_particulars";
 
         public JobOrdersRepository(GenericCommands mySqlGenericCommands)
         {
@@ -130,7 +131,6 @@ namespace JOMonitoringApp
 
         public DataTable GetViewRecordsBySearch(DateTime dateFrom, DateTime dateTo, string particulars, string status, string orderBy)
         {
-
             if (particulars == "All Particulars") particulars = "%%";
 
             var parameters = new object[][]
@@ -142,6 +142,20 @@ namespace JOMonitoringApp
 
 
             string query = $"SELECT * FROM {viewTableName} WHERE ({status}) AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
+        public DataTable GetViewRecordsBySearch(DateTime dateFrom, DateTime dateTo, int particularId, string status, string orderBy)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@date_from", DbType.DateTime, dateFrom },
+                new object[] { "@date_to", DbType.DateTime, dateTo },
+                new object[] { "@particular_id", DbType.Int32, particularId },
+            };
+
+            string query = $"SELECT * FROM {viewJobOrdersParticulars} WHERE ({status}) AND particular_id = @particular_id AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

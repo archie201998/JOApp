@@ -22,7 +22,6 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.LoadFormIcon(this);
         }
 
-
         private void InvestigationForm()
         {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
@@ -36,7 +35,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (dgInvestigations.Columns[e.ColumnIndex].Name == "approval_status" && e.Value != null)
             {
                 string status = e.Value.ToString();
-
+                    
                 switch (status)
                 {
                     case "FOR INVESTIGATION":
@@ -86,15 +85,13 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxRowLimit.SelectedIndex = 1;
             cmbxStatus.SelectedValue = 6;
             GetInvestigationRecords();
-
-
         }
-
 
         private void button2_Click_1(object sender, EventArgs e)
         {
             ViewDetails();
         }
+
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
             if (Helper.UserHasPermission("INVESTIGATION_APPROVAL"))
@@ -135,7 +132,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void dgInvestigations_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+                
         }
 
         private void viewBAMToolStripMenuItem_Click(object sender, EventArgs e)

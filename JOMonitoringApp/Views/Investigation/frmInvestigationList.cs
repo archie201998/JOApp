@@ -26,6 +26,11 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_order_id"].Value);
+
+
+            //Log Print
+            _ = Factory.JOLogsRepository().Insert(Helper.LogJO("Printed", jobOrderId));
 
             _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
         }
@@ -123,6 +128,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void button3_Click(object sender, EventArgs e)
         {
             InvestigationForm();
+
         }
 
         private void lblRecordCount_Click(object sender, EventArgs e)

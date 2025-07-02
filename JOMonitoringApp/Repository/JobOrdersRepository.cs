@@ -5,6 +5,7 @@ using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Transactions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -365,6 +366,41 @@ namespace JOMonitoringApp
 
             string query = $"DELETE FROM tbl_job_orders_particular WHERE job_order_id = @job_order_id";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId, string particular, DateTime dateFrom, DateTime dateTo, int preparedBy, int accomplishedBy, bool onlyWithRemarks)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@search_text", DbType.String, $"%{searchText}%" },
+                new object[] { "@status_id", DbType.Int32, statusId},
+                new object[] { "@row_filter", DbType.Int32, rowFilter},
+                new object[] { "@particular", DbType.String, $"%{particular}%"},
+
+                //advance search parameters  
+                new object[] { "@date_from", DbType.String, dateFrom.ToString("yyyy-MM-dd")},
+                new object[] { "@date_to", DbType.String, dateTo.ToString("yyyy-MM-dd")},
+                new object[] { "@created_by", DbType.Int32, preparedBy},
+                new object[] { "@accomplished_by", DbType.Int32, accomplishedBy },
+            };
+
+            string rowFilterValue = rowFilter == 0 ? string.Empty : $"LIMIT @row_filter";
+            string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = @status_id";
+            string particularFilter = particular == "All Particulars" ? string.Empty : $"AND particular LIKE @particular";
+            string withRemarksFilter = onlyWithRemarks == true ? " AND remarks IS NOT NULL AND remarks <> '' " : string.Empty;
+            string preparedbyFilter = preparedBy == 0 ? string.Empty : "AND prepared_by_id = @created_by ";
+            string accomplishedByFilter = accomplishedBy == 0 ? string.Empty : "AND accomplished_by_id = @accomplished_by ";
+
+            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} " +
+                $"WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} " +
+                $"AND date BETWEEN @date_from AND @date_to " +
+                $"{preparedbyFilter}" + 
+                $"{accomplishedByFilter}" +
+                $"{withRemarksFilter}" +
+                $"ORDER BY id DESC {rowFilterValue}";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
     }
 }

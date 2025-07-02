@@ -18,6 +18,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
@@ -86,11 +87,41 @@ namespace JOMonitoringApp.Views.MainForm
 
         #region Search Records Functions
 
+
+        private void DisplaySearchFilter()
+        {
+            panel3.Visible = true;
+            var searchResult = new StringBuilder();
+
+            string preparedBy = Helper.advanceSearchPreparedByName == string.Empty ? "EVERYONE" : Helper.advanceSearchPreparedByName;
+            string accomplishedBy = Helper.advanceSearchAccomplishedByName == string.Empty ? "EVERYONE" : Helper.advanceSearchAccomplishedByName;
+
+            searchResult.Append($"FROM : {Helper.advanceSearchDateFrom.ToString("yyyy-MM-dd")}");
+            searchResult.Append($"\nTO : {Helper.advanceSearchDateTo.ToString("yyyy-MM-dd")}");
+            searchResult.Append($"\nPREPARED BY : {preparedBy}");
+            searchResult.Append($"\nACCOMPLISHED BY : {accomplishedBy}");
+            searchResult.Append($"\nWITH REMARKS : {Helper.advanceSearchWithRemarks}\n");
+
+            lblSearchResult.Text = searchResult.ToString();
+        }
+
+
         private void BtnSearch_Click(object sender, EventArgs e)
         {
+            btnX.Visible = true;
+            if (cbxDeepSearch.Checked)
+            {
+                _ = new frmDeepSearchFilter().ShowDialog();
+                DisplaySearchFilter();
+                LoadJobOrdersAsync();
+                return;
+            }
+
+            panel3.Visible = false;
+            LoadJobOrdersAsync();
             try
             {
-                LoadJobOrdersAsync();
+         
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -110,12 +141,31 @@ namespace JOMonitoringApp.Views.MainForm
                 // Run the data loading in a background task
                 DataTable dataTable = await Task.Run(() =>
                 {
-                    var dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
-                        searchKey,
-                        rowFilter,
-                        statusId,
-                        particular
-                    );
+                    DataTable dtJobOrders;
+                    if (cbxDeepSearch.Checked)
+                    {
+                         dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                            searchKey,
+                            rowFilter,
+                            statusId,
+                            particular,
+                            Helper.advanceSearchDateFrom,
+                            Helper.advanceSearchDateTo,
+                            Helper.advanceSearchPreparedBy,
+                            Helper.advanceSearchAccomplishedBy,
+                            Helper.advanceSearchWithRemarks
+                        );
+                    }
+                    else
+                    {
+                         dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                            searchKey,
+                            rowFilter,
+                            statusId,
+                            particular
+                        );
+                    }
+                    
 
                     var tempTable = new DataTable();
                     tempTable.Columns.AddRange(JobOrdersColumns());
@@ -1007,6 +1057,8 @@ namespace JOMonitoringApp.Views.MainForm
 
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+
+            _ = Factory.JOLogsRepository().Insert(Helper.LogJO("Printed", jobOrderId));
             _ = new frmInvestigationReport(jobOrderId, jobOrderNumber).ShowDialog();
         }
 
@@ -1026,6 +1078,7 @@ namespace JOMonitoringApp.Views.MainForm
             txtSearch.Clear();
             LoadJobOrdersAsync();
             btnX.Visible = false;
+            panel3.Visible = false;
         }
 
         private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)
@@ -1121,6 +1174,11 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 Helper.MessageBoxError($"Failed to open network folder: {ex.Message}");
             }
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -32,7 +32,7 @@
     <WebPage>publish.htm</WebPage>
     <AutorunEnabled>true</AutorunEnabled>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>237</ApplicationRevision>
+    <ApplicationRevision>240</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -336,6 +336,12 @@
     <Compile Include="Views\JobOrder\ucJoborder.Designer.cs">
       <DependentUpon>ucJoborder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainForm\frmDeepSearchFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm\frmDeepSearchFilter.Designer.cs">
+      <DependentUpon>frmDeepSearchFilter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -550,6 +556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
       <DependentUpon>ucJoborder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm\frmDeepSearchFilter.resx">
+      <DependentUpon>frmDeepSearchFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

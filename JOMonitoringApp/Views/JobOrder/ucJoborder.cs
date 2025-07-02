@@ -73,9 +73,9 @@ namespace JOMonitoringApp.Views.JobOrder
                     string originalValueString = originalValue != null ? originalValue.ToString() : "null";
                     string currentValueString = currentValue != null ? currentValue.ToString() : "null";
 
-                    if (!EqualityComparer<T>.Default.Equals(originalValue, currentValue))
+                    if (!Equals(originalValue, currentValue)) // Use !Equals to detect change
                     {
-                        Helper.changes += $"{label} : from {originalValueString} into {currentValueString}; ";
+                        Helper.changes += $"{label}: {originalValueString} => {currentValueString}\n";
                         hasChanges = true;
                     }
                 }
@@ -218,7 +218,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             return new JOLogsModel()
             {
-                TransactionEvent = Helper.LogMessage(isUpdate, originalValues["JONumber"].ToString()) ,
+                TransactionEvent = Helper.LogMessage(isUpdate, txtJONumber.Text.Trim()) ,
                 DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
                 JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
                 UserId = Helper.UserId

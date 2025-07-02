@@ -1,6 +1,7 @@
 ﻿
 using Google.Protobuf.Compiler;
 using JOMonitoringApp;
+using JOMonitoringApp.Model;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Org.BouncyCastle.Asn1.IsisMtt;
 using System;
@@ -38,6 +39,17 @@ namespace AccountingSystem
         internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
 
         internal static decimal DefaultMarkup = 0.20m; // 20% markup for materials 
+
+
+
+        internal static DateTime advanceSearchDateFrom = DateTime.Today;
+        internal static DateTime advanceSearchDateTo = DateTime.Today;
+        internal static int advanceSearchPreparedBy;
+        internal static int advanceSearchAccomplishedBy;
+        internal static bool advanceSearchWithRemarks = false;
+
+        internal static string advanceSearchPreparedByName;
+        internal static string advanceSearchAccomplishedByName;
 
 
         //Default
@@ -121,7 +133,7 @@ namespace AccountingSystem
         {
             if (isUpdate)
             {
-                return $"CHANGES : { changes }";
+                return $"Updated : { changes }";
             }
 
             return $"Added " + jobNumber;
@@ -975,5 +987,15 @@ namespace AccountingSystem
                 return 1607.200 + ((value - 50) * 46.032); // Example pattern for larger values
         }
 
+        internal static JOLogsModel LogJO(string transaction, int jobOrderId)
+        {
+            return new JOLogsModel()
+            {
+                TransactionEvent = transaction,
+                DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
+                JobOrderId = jobOrderId,
+                UserId = Helper.UserId
+            };
+        }
     }
 }

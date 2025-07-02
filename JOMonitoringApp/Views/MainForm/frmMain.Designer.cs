@@ -93,7 +93,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgJobOrders = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblSearchResult = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cbxDeepSearch = new System.Windows.Forms.CheckBox();
             this.cmbxParticulars = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -110,6 +114,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -119,6 +124,7 @@
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -539,7 +545,7 @@
             this.btnX.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnX.Image = global::JOMonitoringApp.Properties.Resources.icons8_x_24;
-            this.btnX.Location = new System.Drawing.Point(987, 8);
+            this.btnX.Location = new System.Drawing.Point(1102, 8);
             this.btnX.Name = "btnX";
             this.btnX.Size = new System.Drawing.Size(31, 23);
             this.btnX.TabIndex = 32;
@@ -620,6 +626,7 @@
             // panel6
             // 
             this.panel6.Controls.Add(this.dgJobOrders);
+            this.panel6.Controls.Add(this.panel3);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(5, 43);
             this.panel6.Name = "panel6";
@@ -634,20 +641,61 @@
             this.dgJobOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgJobOrders.ContextMenuStrip = this.contextMenuStrip1;
             this.dgJobOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgJobOrders.Location = new System.Drawing.Point(4, 4);
+            this.dgJobOrders.Location = new System.Drawing.Point(4, 101);
             this.dgJobOrders.MultiSelect = false;
             this.dgJobOrders.Name = "dgJobOrders";
             this.dgJobOrders.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgJobOrders.RowHeadersWidth = 51;
-            this.dgJobOrders.Size = new System.Drawing.Size(1157, 798);
+            this.dgJobOrders.Size = new System.Drawing.Size(1157, 701);
             this.dgJobOrders.TabIndex = 0;
             this.dgJobOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.DgJobOrders_CellFormatting);
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
             this.dgJobOrders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgJobOrders_KeyDown);
             // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.lblSearchResult);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(4, 4);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1157, 97);
+            this.panel3.TabIndex = 1;
+            this.panel3.Visible = false;
+            // 
+            // lblSearchResult
+            // 
+            this.lblSearchResult.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearchResult.AutoSize = true;
+            this.lblSearchResult.BackColor = System.Drawing.Color.White;
+            this.lblSearchResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchResult.ForeColor = System.Drawing.Color.Black;
+            this.lblSearchResult.Location = new System.Drawing.Point(132, 7);
+            this.lblSearchResult.Name = "lblSearchResult";
+            this.lblSearchResult.Size = new System.Drawing.Size(116, 15);
+            this.lblSearchResult.TabIndex = 4;
+            this.lblSearchResult.Text = "SEARCH RESULT : ";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(10, 7);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 15);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "SEARCH RESULT : ";
+            // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
+            this.panel2.AutoScrollMinSize = new System.Drawing.Size(1165, 0);
+            this.panel2.Controls.Add(this.cbxDeepSearch);
             this.panel2.Controls.Add(this.btnX);
             this.panel2.Controls.Add(this.cmbxParticulars);
             this.panel2.Controls.Add(this.label1);
@@ -664,6 +712,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1165, 38);
             this.panel2.TabIndex = 8;
+            // 
+            // cbxDeepSearch
+            // 
+            this.cbxDeepSearch.AutoSize = true;
+            this.cbxDeepSearch.Location = new System.Drawing.Point(919, 11);
+            this.cbxDeepSearch.Name = "cbxDeepSearch";
+            this.cbxDeepSearch.Size = new System.Drawing.Size(111, 19);
+            this.cbxDeepSearch.TabIndex = 1;
+            this.cbxDeepSearch.Text = "DEEP SEARCH";
+            this.cbxDeepSearch.UseVisualStyleBackColor = true;
             // 
             // cmbxParticulars
             // 
@@ -694,7 +752,7 @@
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.ForeColor = System.Drawing.Color.White;
-            this.btnSearch.Location = new System.Drawing.Point(918, 8);
+            this.btnSearch.Location = new System.Drawing.Point(1033, 8);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(70, 23);
             this.btnSearch.TabIndex = 13;
@@ -798,6 +856,7 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(450, 42);
             this.panel4.TabIndex = 5;
+            this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
             // 
             // btnCancel
             // 
@@ -849,6 +908,11 @@
             // 
             this.timer_investigator.Interval = 10000;
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -883,6 +947,8 @@
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panelInputField.ResumeLayout(false);
@@ -974,5 +1040,10 @@
         private System.Windows.Forms.ToolStripMenuItem applicationFilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.CheckBox cbxDeepSearch;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.Label lblSearchResult;
     }
 }

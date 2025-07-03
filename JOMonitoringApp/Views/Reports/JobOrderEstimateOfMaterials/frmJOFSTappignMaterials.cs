@@ -165,9 +165,7 @@ namespace JOMonitoringApp.Views.Reports.SROF
                             InStock = Convert.ToDouble(qtyText),
                             StockPrice = Convert.ToDouble(totalCost)
                         });
-
                     }
-
                 }
                 catch (Exception ex)
                 {

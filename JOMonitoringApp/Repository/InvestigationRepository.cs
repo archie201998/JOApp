@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections.Generic;
 using System.Data;
 
@@ -448,5 +449,14 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
+        public int GetInvestigationIdByJOID(int jobOrderId)
+        {
+            var parameters = new object[][]
+            {  new object[] { "@job_orders_id", DbType.Int32, jobOrderId}, };
+
+            string query = $"SELECT id FROM {tableName} WHERE job_orders_id = @job_orders_id";
+
+            return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
     }
 }

@@ -277,19 +277,19 @@
             this.viewBAMToolStripMenuItem,
             this.seeImageToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(179, 48);
             // 
             // viewBAMToolStripMenuItem
             // 
             this.viewBAMToolStripMenuItem.Name = "viewBAMToolStripMenuItem";
-            this.viewBAMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewBAMToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.viewBAMToolStripMenuItem.Text = "BAM";
             this.viewBAMToolStripMenuItem.Click += new System.EventHandler(this.viewBAMToolStripMenuItem_Click);
             // 
             // seeImageToolStripMenuItem
             // 
             this.seeImageToolStripMenuItem.Name = "seeImageToolStripMenuItem";
-            this.seeImageToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.seeImageToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
             this.seeImageToolStripMenuItem.Text = "Image Attachments";
             this.seeImageToolStripMenuItem.Click += new System.EventHandler(this.seeImageToolStripMenuItem_Click);
             // 

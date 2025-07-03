@@ -26,7 +26,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-            int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_order_id"].Value);
+            int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
 
 
             //Log Print

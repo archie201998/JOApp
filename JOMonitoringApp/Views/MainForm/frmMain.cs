@@ -1180,5 +1180,22 @@ namespace JOMonitoringApp.Views.MainForm
         {
 
         }
+
+        private void investigationDataToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                int investigationId = Factory.InvestigationRepository().GetInvestigationIdByJOID(jobOrderId);
+                var investigationForm = new frmInvestigationForm(investigationId);
+
+                investigationForm.ShowDialog();
+            }
+            catch (Exception)
+            {
+                Helper.MessageBoxSuccess("No investigation data for this particular job order.");
+            }
+        
+        }
     }
 }

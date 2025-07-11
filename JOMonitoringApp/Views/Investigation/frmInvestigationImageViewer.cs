@@ -43,7 +43,7 @@ namespace JOMonitoringApp.Views.Investigation
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
             Cursor cursor = Cursors.WaitCursor;
-            string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol"; // Replace with your shared folder path
+            string sharedFolderPath = @"\\PWCServerPag\InvestigationImage"; // Replace with your shared folder path
 
             if (Directory.Exists(sharedFolderPath))
             {
@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void ChangeImageLayout()
         {
-            if (_secondaryImageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\")
+            if (_secondaryImageFilePath == $"\\\\{Helper.serverName}\\InvestigationImage\\")
             {
                 // Make pictureBox1 fill the form
                 pictureBox1.Dock = DockStyle.Fill;
@@ -95,7 +95,6 @@ namespace JOMonitoringApp.Views.Investigation
                 pictureBox2.Visible = true;
             }
         }
-
 
         public void LoadImage()
         {

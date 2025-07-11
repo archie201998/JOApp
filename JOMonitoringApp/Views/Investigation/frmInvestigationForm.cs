@@ -38,7 +38,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 LoadSelectedRecord();
-                lblImage.Text = (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" || string.IsNullOrEmpty(imageFilePath)) ? "Attach Image" : "View Image";
+                lblImage.Text = (imageFilePath == "\\\\Helper.serverName\\InvestigationImages\\" || string.IsNullOrEmpty(imageFilePath)) ? "Attach Image" : "View Image";
 
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
@@ -265,7 +265,7 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 if (!string.IsNullOrEmpty(imageFilePath) || !string.IsNullOrEmpty(secondaryImageFilePath))
                 {
-                    string sharedFolderPath = @"\\192.168.18.68\InvestigationImages\Dacol";
+                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
 
                     if (!Directory.Exists(sharedFolderPath))
                     {
@@ -310,8 +310,8 @@ namespace JOMonitoringApp.Views.Investigation
         private InvestigationModel InvestigationModel()
         {
 
-            string folderPath = "\\\\" + Helper.serverStatisIPAddress + "\\InvestigationImages\\Dacol\\";
-            string secondFolderPath = "\\\\" + Helper.serverStatisIPAddress + "\\InvestigationImages\\Dacol\\";
+            string folderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
+            string secondFolderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
 
             var model = new InvestigationModel
             {
@@ -356,7 +356,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void label21_Click(object sender, EventArgs e)
         {
-            if (imageFilePath == "\\\\192.168.18.68\\InvestigationImages\\Dacol\\" ||  string.IsNullOrEmpty(imageFilePath)) //view file
+            if (imageFilePath == $"\\\\{Helper.serverName}\\InvestigationImages\\" ||  string.IsNullOrEmpty(imageFilePath)) //view file
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
@@ -378,7 +378,7 @@ namespace JOMonitoringApp.Views.Investigation
 
                         imageFilePath = openFileDialog.FileNames[0];
                         secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
-
+                        lblImage.Text =  "View Image";
                     }
                 }
             }

@@ -866,7 +866,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 using (var ping = new System.Net.NetworkInformation.Ping())
                 {
-                    var reply = ping.Send(Helper.serverStatisIPAddress);
+                    var reply = ping.Send(Helper.serverName);
                     if (reply.Status == System.Net.NetworkInformation.IPStatus.Success)
                     {
                         lblPing.Text = $" {reply.RoundtripTime} ms";

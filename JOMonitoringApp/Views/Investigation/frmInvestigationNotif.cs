@@ -63,7 +63,6 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void btnViewDetails_Click(object sender, EventArgs e)
         {
-            Helper.notifViewed = true;
             var investigationForm = new frmInvestigation();
 
             investigationForm.ShowDialog();

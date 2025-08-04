@@ -290,6 +290,7 @@ namespace JOMonitoringApp.Views.Investigation
                             pictureBox1.Image = new Bitmap(tempImage);
                         }
                         pictureBox1.Visible = true;
+                        btnApproved.Enabled = true;
                     }
                 }
                 updateFirstImage = true;
@@ -333,6 +334,7 @@ namespace JOMonitoringApp.Views.Investigation
                             pictureBox2.Image = new Bitmap(tempImage);
                         }
                         pictureBox2.Visible = true;
+                        btnApproved.Enabled = true;
                     }
 
                     updateSecondImage = true;
@@ -344,10 +346,41 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (Helper.MessageBoxConfirmCancel("Do you want to cancel updating images?"))
             {
+                btnApproved.Enabled = false;
                 this.Close();
             }
 
             return;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                // Clone the image to avoid modifying the original
+                using (var bmp = new Bitmap(pictureBox1.Image))
+                {
+                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    // Dispose previous image
+                    pictureBox1.Image.Dispose();
+                    pictureBox1.Image = new Bitmap(bmp);
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (pictureBox2.Image != null)
+            {
+                // Clone the image to avoid modifying the original
+                using (var bmp = new Bitmap(pictureBox2.Image))
+                {
+                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    // Dispose previous image
+                    pictureBox2.Image.Dispose();
+                    pictureBox2.Image = new Bitmap(bmp);
+                }
+            }
         }
     }
 }

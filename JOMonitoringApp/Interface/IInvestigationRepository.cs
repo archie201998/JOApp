@@ -24,5 +24,7 @@ namespace JOMonitoringApp.Interface
         bool InsertApprovalMessage(InvestigationModel investigationModel);
         string GetApprovalMessage(int investigationId);
         bool UpdateStatus(int investigationId, int statusId);
+
+        bool UpdateImage(InvestigationModel investigationModel);
     }
 }

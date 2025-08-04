@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,14 +20,19 @@ namespace JOMonitoringApp.Views.Investigation
 
         private string _imageFilePath;
         private string _secondaryImageFilePath;
+        private int _investigationId;
 
-        public frmInvestigationImageViewer(string imageFilePath, string secondaryImageFilePath)
+        private bool updateFirstImage = false;  
+        private bool updateSecondImage = false;
+
+        public frmInvestigationImageViewer(string imageFilePath, string secondaryImageFilePath, int investigationId)
         {
             InitializeComponent();
             imageFiles = new List<string>();
             currentImageIndex = 0;
             _imageFilePath = imageFilePath;
             _secondaryImageFilePath = secondaryImageFilePath;
+            _investigationId = investigationId;
 
             Helper.LoadFormIcon(this);
         }
@@ -68,7 +74,7 @@ namespace JOMonitoringApp.Views.Investigation
             }
             Cursor = Cursors.Default;
 
-            ChangeImageLayout();
+            //ChangeImageLayout();
         }
 
         private void ChangeImageLayout()
@@ -147,9 +153,8 @@ namespace JOMonitoringApp.Views.Investigation
                     //Helper.MessageBoxSuccess("No image uploaded");
                 }
             }
-
-
         }
+
         private void frmInvestigationImageViewer_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -158,9 +163,191 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+
+        private InvestigationModel InvestigationModel()
         {
 
+            string folderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
+            string secondFolderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
+
+            var model = new InvestigationModel
+            {
+                Id = _investigationId,
+                imagePath = folderPath + Path.GetFileName(_imageFilePath),
+                secondaryImagePath = secondFolderPath + Path.GetFileName(_secondaryImageFilePath),
+             
+            };
+
+            return model;
+        }
+
+        private bool UpdateImage()
+        {
+            var investigationModel = InvestigationModel();
+            var investigationResult = Factory.InvestigationRepository().UpdateImage(investigationModel);
+
+
+            return investigationResult;
+        }
+
+        private void SaveFirstImage()
+        {
+            try
+            {
+
+                if (!string.IsNullOrEmpty(_imageFilePath) && UpdateImage())
+                {
+                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
+
+                    if (!Directory.Exists(sharedFolderPath))
+                    {
+                        Helper.MessageBoxSuccess("Shared folder not found: " + sharedFolderPath);
+                        return;
+                    }
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    string destination1 = Path.Combine(sharedFolderPath, Path.GetFileName(_imageFilePath));
+                    File.Copy(_imageFilePath, destination1, true);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void SaveSecondImage()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(_secondaryImageFilePath) &&  UpdateImage())
+                {
+                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
+
+                    if (!Directory.Exists(sharedFolderPath))
+                    {
+                        Helper.MessageBoxSuccess("Shared folder not found: " + sharedFolderPath);
+                        return;
+                    }
+
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+
+                    string destination1 = Path.Combine(sharedFolderPath, Path.GetFileName(_secondaryImageFilePath));
+                    File.Copy(_secondaryImageFilePath, destination1, true);
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void btnApproved_Click(object sender, EventArgs e)
+        {
+           if (updateFirstImage) 
+                SaveFirstImage(); 
+
+           if (updateSecondImage) 
+                SaveSecondImage();
+
+            Helper.MessageBoxSuccess("Image/s successfully updated.");
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    int selectedCount = openFileDialog.FileNames.Length;
+
+                    if (selectedCount > 2)
+                    {
+                        Helper.MessageBoxSuccess("Please select only 1");
+                        return;
+                    }
+
+                    _imageFilePath = openFileDialog.FileNames[0];
+
+                    // Insert after setting _imageFilePath in btnUpdateImageOne_Click
+                    if (!string.IsNullOrEmpty(_imageFilePath))
+                    {
+                        // Dispose the previous image if any
+                        if (pictureBox1.Image != null)
+                        {
+                            pictureBox1.Image.Dispose();
+                            pictureBox1.Image = null;
+                        }
+                        using (var tempImage = Image.FromFile(_imageFilePath))
+                        {
+                            pictureBox1.Image = new Bitmap(tempImage);
+                        }
+                        pictureBox1.Visible = true;
+                    }
+                }
+                updateFirstImage = true;
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    int selectedCount = openFileDialog.FileNames.Length;
+
+                    if (selectedCount > 2)
+                    {
+                        Helper.MessageBoxSuccess("Please select only 1");
+                        return;
+                    }
+
+                    _secondaryImageFilePath = openFileDialog.FileNames[0];
+
+
+                    // Insert after setting _imageFilePath in btnUpdateImageOne_Click
+                    if (!string.IsNullOrEmpty(_secondaryImageFilePath))
+                    {
+                        // Dispose the previous image if any
+                        if (pictureBox2.Image != null)
+                        {
+                            pictureBox2.Image.Dispose();
+                            pictureBox2.Image = null;
+                        }
+                        using (var tempImage = Image.FromFile(_secondaryImageFilePath))
+                        {
+                            pictureBox2.Image = new Bitmap(tempImage);
+                        }
+                        pictureBox2.Visible = true;
+                    }
+
+                    updateSecondImage = true;
+                }
+            }
+        }
+
+        private void btnDisapproved_Click(object sender, EventArgs e)
+        {
+            if (Helper.MessageBoxConfirmCancel("Do you want to cancel updating images?"))
+            {
+                this.Close();
+            }
+
+            return;
         }
     }
 }

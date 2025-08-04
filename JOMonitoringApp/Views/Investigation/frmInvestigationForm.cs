@@ -142,7 +142,7 @@ namespace JOMonitoringApp.Views.Investigation
                 imageFilePath = dictInvestigation["image_path"]?.ToString();
                 secondaryImageFilePath = dictInvestigation["secondary_image_path"].ToString();
 
-                this.ResumeLayout();
+                    this.ResumeLayout();
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception)
@@ -384,7 +384,8 @@ namespace JOMonitoringApp.Views.Investigation
             }
             else //select file.
             {
-                _ = new frmInvestigationImageViewer(imageFilePath, secondaryImageFilePath).ShowDialog();
+
+                _ = new frmInvestigationImageViewer(imageFilePath, secondaryImageFilePath, _investigationId).ShowDialog();
             }
         }
 

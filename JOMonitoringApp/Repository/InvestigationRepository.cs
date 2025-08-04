@@ -1,7 +1,6 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System.Collections.Generic;
 using System.Data;
 
@@ -457,6 +456,24 @@ namespace JOMonitoringApp
             string query = $"SELECT id FROM {tableName} WHERE job_orders_id = @job_orders_id";
 
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
+        }
+
+        public bool UpdateImage(InvestigationModel entity)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, entity.Id },
+                new object[] { "@image_path", DbType.String, entity.imagePath },
+                new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
+            }; 
+
+            string query = $@"UPDATE {tableName} 
+                            SET 
+                                image_path = @image_path, 
+                                secondary_image_path = @secondary_image_path 
+                            WHERE id = @id";
+
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

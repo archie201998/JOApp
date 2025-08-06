@@ -475,5 +475,29 @@ namespace JOMonitoringApp
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
+
+        public Dictionary<string, string> GetImagePathByInvestigationId(int investigationId)
+        {
+            var recordDictionary = new Dictionary<string, string>();
+            var parameters = new object[][]
+            {
+                new object[] { "@id", DbType.Int32, investigationId }
+            };
+
+            string query = $"SELECT image_path, secondary_image_path FROM {tableName} WHERE id = @id";
+
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+            if (dataTable.Rows.Count > 0)
+            {
+                DataRow row = dataTable.Rows[0];
+
+                foreach (DataColumn column in dataTable.Columns)
+                    recordDictionary[column.ColumnName] = row[column].ToString();
+
+                return recordDictionary;
+            }
+            return recordDictionary;
+        }
     }
 }

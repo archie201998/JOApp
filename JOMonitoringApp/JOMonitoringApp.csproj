@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>251</ApplicationRevision>
+    <ApplicationRevision>252</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -465,6 +465,7 @@
     <None Include="Resources\icons8-circled-x-24.png" />
     <None Include="Resources\icons8-check-24.png" />
     <Content Include="Resources\icons8-delete-14.png" />
+    <None Include="Resources\icons8-edit-image-24.png" />
     <Content Include="Resources\icons8-form-14.png" />
     <None Include="Resources\icons8-give-30.png" />
     <Content Include="Resources\icons8-image-14.png" />
@@ -486,6 +487,7 @@
     <None Include="Resources\icons8-report-48.png" />
     <None Include="Resources\icons8-reports-30.png" />
     <None Include="Resources\icons8-rotate-24.png" />
+    <None Include="Resources\icons8-remove-24.png" />
     <Content Include="Resources\icons8-save-14.png" />
     <None Include="Resources\icons8-schedule-30.png" />
     <Content Include="Resources\icons8-search-14.png" />

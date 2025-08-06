@@ -25,82 +25,68 @@ namespace JOMonitoringApp.Views.Investigation
         private bool updateFirstImage = false;  
         private bool updateSecondImage = false;
 
+
+        private bool removeFirstImage = false;
+        private bool removeSecondImage = false; 
+
         public frmInvestigationImageViewer(string imageFilePath, string secondaryImageFilePath, int investigationId)
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
+
             imageFiles = new List<string>();
             currentImageIndex = 0;
-            _imageFilePath = imageFilePath;
-            _secondaryImageFilePath = secondaryImageFilePath;
-            _investigationId = investigationId;
 
-            Helper.LoadFormIcon(this);
+            _investigationId = investigationId;
+            _imageFilePath  = imageFilePath;
+            _secondaryImageFilePath = secondaryImageFilePath;
+
         }
 
-        public frmInvestigationImageViewer(string jobOrderNumber)
+        private void OnLoad()
         {
-            InitializeComponent();
-            imageFiles = new List<string>();
-            currentImageIndex = 0;
-            Helper.LoadFormIcon(this);
+            if (!string.IsNullOrEmpty(_imageFilePath) || !string.IsNullOrEmpty(_secondaryImageFilePath))
+            {
+                Cursor cursor = Cursors.WaitCursor;
+                string sharedFolderPath = @"\\PWCServerPag\InvestigationImage"; // Replace with your shared folder path
 
+                if (Directory.Exists(sharedFolderPath))
+                {
+                    imageFiles = Directory.GetFiles(sharedFolderPath, "*.*")
+                                          .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".jpeg") || file.EndsWith(".bmp") || file.EndsWith(".gif"))
+                                          .ToList();
+
+                    if (imageFiles.Count > 0)
+                    {
+                        LoadImage();
+                        LoadSecondImage();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No images found in the folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Shared folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                Cursor = Cursors.Default;
+                return;
+            }
+
+            Dictionary<string, string> GetImagePath = Factory.InvestigationRepository().GetImagePathByInvestigationId(_investigationId);
+
+            _imageFilePath = GetImagePath["image_path"];
+            _secondaryImageFilePath = GetImagePath["secondary_image_path"];
         }
 
         private void frmInvestigationImageViewer_Load(object sender, EventArgs e)
         {
-            Cursor cursor = Cursors.WaitCursor;
-            string sharedFolderPath = @"\\PWCServerPag\InvestigationImage"; // Replace with your shared folder path
-
-            if (Directory.Exists(sharedFolderPath))
-            {
-                imageFiles = Directory.GetFiles(sharedFolderPath, "*.*")
-                                      .Where(file => file.EndsWith(".png") || file.EndsWith(".jpg") || file.EndsWith(".jpeg") || file.EndsWith(".bmp") || file.EndsWith(".gif"))
-                                      .ToList();
-
-                if (imageFiles.Count > 0)
-                {
-                    LoadImage();
-                    LoadSecondImage();
-                }
-                else
-                {
-                    MessageBox.Show("No images found in the folder.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Close();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Shared folder not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            Cursor = Cursors.Default;
-
-            //ChangeImageLayout();
+            OnLoad();
         }
 
-        private void ChangeImageLayout()
-        {
-            if (_secondaryImageFilePath == $"\\\\{Helper.serverName}\\InvestigationImage\\")
-            {
-                // Make pictureBox1 fill the form
-                pictureBox1.Dock = DockStyle.Fill;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-                // Optionally hide pictureBox2
-                pictureBox2.Visible = false;
-            }
-            else
-            {
-                // Restore layout if pictureBox2 is not empty
-                pictureBox1.Dock = DockStyle.None;
-                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-                // Set your own sizes and positions
-                pictureBox1.Location = new Point(10, 10);
-                pictureBox1.Size = new Size(625, 662);
-
-                pictureBox2.Visible = true;
-            }
-        }
 
         public void LoadImage()
         {
@@ -173,8 +159,8 @@ namespace JOMonitoringApp.Views.Investigation
             var model = new InvestigationModel
             {
                 Id = _investigationId,
-                imagePath = folderPath + Path.GetFileName(_imageFilePath),
-                secondaryImagePath = secondFolderPath + Path.GetFileName(_secondaryImageFilePath),
+                imagePath = removeFirstImage ? string.Empty : folderPath + Path.GetFileName(_imageFilePath),
+                secondaryImagePath = removeSecondImage ? string.Empty : secondFolderPath + Path.GetFileName(_secondaryImageFilePath),
              
             };
 
@@ -217,6 +203,26 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
+        private void DeleteImage()
+        {
+            try
+            {
+                var investigationModel = InvestigationModel();
+                var investigationResult = Factory.InvestigationRepository().UpdateImage(investigationModel);
+
+                if (investigationResult)
+                {
+                    removeFirstImage = false;
+                    removeSecondImage = false;
+                    btnApproved.Enabled = false;
+                }
+                return;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
         private void SaveSecondImage()
         {
             try
@@ -251,10 +257,108 @@ namespace JOMonitoringApp.Views.Investigation
            if (updateSecondImage) 
                 SaveSecondImage();
 
+
+            if (removeFirstImage || removeSecondImage)
+            {
+                DeleteImage();
+            }
+
             Helper.MessageBoxSuccess("Image/s successfully updated.");
+            Helper.imagePath = _imageFilePath;
+            Helper.secondaryImagePath = _secondaryImageFilePath;    
+            this.Close();
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void btnDisapproved_Click(object sender, EventArgs e)
+        {
+            if (Helper.MessageBoxConfirmCancel("Do you want to cancel updating images?"))
+            {
+                btnApproved.Enabled = false;
+                this.Close();
+            }
+
+            return;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                // Clone the image to avoid modifying the original
+                using (var bmp = new Bitmap(pictureBox1.Image))
+                {
+                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    // Dispose previous image
+                    pictureBox1.Image.Dispose();
+                    pictureBox1.Image = new Bitmap(bmp);
+                }
+            }
+        }
+
+
+        private void btnRotateImage2_Click(object sender, EventArgs e)
+        {
+            if (pictureBox2.Image != null)
+            {
+                // Clone the image to avoid modifying the original
+                using (var bmp = new Bitmap(pictureBox2.Image))
+                {
+                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    // Dispose previous image
+                    pictureBox2.Image.Dispose();
+                    pictureBox2.Image = new Bitmap(bmp);
+                }
+            }
+        }
+
+        private void btnDeleteImage1_Click(object sender, EventArgs e)
+        {
+            if (Helper.MessageBoxConfirmCancel("Do you want to remove this first image?"))
+            {
+                if (pictureBox1.Image != null)
+                {
+                    pictureBox1.Image = null;
+                    _imageFilePath = string.Empty; // Clear the file path
+                    removeFirstImage = true;
+                    btnApproved.Enabled = true;
+                }
+                return;
+            }
+        }
+
+        private void btnDeleteImage2_Click(object sender, EventArgs e)
+        {
+            if (Helper.MessageBoxConfirmCancel("Do you want to remove this 2nd image?"))
+            {
+                if (pictureBox2.Image != null)
+                {
+                    pictureBox2.Image = null;
+                    _secondaryImageFilePath = string.Empty; // Clear the file path
+                    removeSecondImage = true;
+                    btnApproved.Enabled = true;
+
+                }
+                return;
+            }
+        }
+
+        private void frmInvestigationImageViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Helper.imagePath = _imageFilePath;
+            Helper.secondaryImagePath = _secondaryImageFilePath;
+        }
+
+        private void btnUpdateImage1_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -289,15 +393,15 @@ namespace JOMonitoringApp.Views.Investigation
                         {
                             pictureBox1.Image = new Bitmap(tempImage);
                         }
-                        pictureBox1.Visible = true;
-                        btnApproved.Enabled = true;
                     }
+                    Helper.imagePath = _imageFilePath;
+                    btnApproved.Enabled = true;
+                    updateFirstImage = true;
                 }
-                updateFirstImage = true;
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void btnUpdateImage2_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
@@ -333,52 +437,10 @@ namespace JOMonitoringApp.Views.Investigation
                         {
                             pictureBox2.Image = new Bitmap(tempImage);
                         }
-                        pictureBox2.Visible = true;
-                        btnApproved.Enabled = true;
                     }
-
+                    Helper.secondaryImagePath = _secondaryImageFilePath;
+                    btnApproved.Enabled = true;
                     updateSecondImage = true;
-                }
-            }
-        }
-
-        private void btnDisapproved_Click(object sender, EventArgs e)
-        {
-            if (Helper.MessageBoxConfirmCancel("Do you want to cancel updating images?"))
-            {
-                btnApproved.Enabled = false;
-                this.Close();
-            }
-
-            return;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (pictureBox1.Image != null)
-            {
-                // Clone the image to avoid modifying the original
-                using (var bmp = new Bitmap(pictureBox1.Image))
-                {
-                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    // Dispose previous image
-                    pictureBox1.Image.Dispose();
-                    pictureBox1.Image = new Bitmap(bmp);
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (pictureBox2.Image != null)
-            {
-                // Clone the image to avoid modifying the original
-                using (var bmp = new Bitmap(pictureBox2.Image))
-                {
-                    bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    // Dispose previous image
-                    pictureBox2.Image.Dispose();
-                    pictureBox2.Image = new Bitmap(bmp);
                 }
             }
         }

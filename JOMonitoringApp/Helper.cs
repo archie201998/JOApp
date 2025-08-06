@@ -68,6 +68,10 @@ namespace AccountingSystem
         internal static string adjustmentParticular;
 
 
+        internal static string imagePath;
+        internal static string secondaryImagePath;
+
+
         public static Color StatusColor(string status)
         {
             switch (status)

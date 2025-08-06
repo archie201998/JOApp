@@ -35,10 +35,15 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationForm_Load(object sender, EventArgs e)
         {
+            OnLoad();
+        }
+
+        private void OnLoad()
+        {
             if (!DesignMode)
             {
                 LoadSelectedRecord();
-                lblImage.Text = (imageFilePath == "\\\\Helper.serverName\\InvestigationImages\\" || string.IsNullOrEmpty(imageFilePath)) ? "Attach Image" : "View Image";
+                lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
 
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
@@ -142,7 +147,7 @@ namespace JOMonitoringApp.Views.Investigation
                 imageFilePath = dictInvestigation["image_path"]?.ToString();
                 secondaryImageFilePath = dictInvestigation["secondary_image_path"].ToString();
 
-                    this.ResumeLayout();
+                this.ResumeLayout();
                 Cursor.Current = Cursors.Default;
             }
             catch (Exception)
@@ -356,7 +361,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void label21_Click(object sender, EventArgs e)
         {
-            if (imageFilePath == $"\\\\{Helper.serverName}\\InvestigationImages\\" ||  string.IsNullOrEmpty(imageFilePath)) //view file
+            if (lblImage.Text == "Attach Image") //view file
             {
                 using (OpenFileDialog openFileDialog = new OpenFileDialog())
                 {
@@ -382,10 +387,12 @@ namespace JOMonitoringApp.Views.Investigation
                     }
                 }
             }
-            else //select file.
+            else //view image.
             {
-
                 _ = new frmInvestigationImageViewer(imageFilePath, secondaryImageFilePath, _investigationId).ShowDialog();
+                imageFilePath = Helper.imagePath;
+                secondaryImageFilePath = Helper.secondaryImagePath;
+                lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
             }
         }
 

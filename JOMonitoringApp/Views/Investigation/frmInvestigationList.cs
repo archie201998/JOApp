@@ -147,8 +147,7 @@ namespace JOMonitoringApp.Views.Investigation
         }
 
         private void seeImageToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            _ = new frmInvestigationImageViewer(string.Empty).ShowDialog();
+        { 
         }
     }
 }

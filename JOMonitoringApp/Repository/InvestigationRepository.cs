@@ -18,7 +18,22 @@ namespace JOMonitoringApp
 
         public bool Delete(List<InvestigationModel> entityList)
         {
-            throw new System.NotImplementedException();
+            bool result = true;
+            foreach (var entity in entityList)
+            {
+                var parameters = new object[][]
+                {
+                    new object[] { "@id", DbType.Int32, entity.Id }
+                };
+
+                string query = $"DELETE FROM {tableName} WHERE id = @id";
+
+                if (!mySqlGenericCommands.ExecuteNonQuery(query, parameters))
+                {
+                    result = false;
+                }
+            }
+            return result;
         }
 
         public Dictionary<string, string> GetRecordByID(int Id)

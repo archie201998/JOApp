@@ -1100,7 +1100,6 @@ namespace JOMonitoringApp.Views.MainForm
                     string status = dgJobOrders.SelectedRows[0].Cells["status"].Value.ToString();
                     string particular = dgJobOrders.SelectedRows[0].Cells["particular"].Value.ToString();
 
-
                     var frmInvestigation = new frmInvestigation();
                     frmInvestigation.ShowDialog();
                 }
@@ -1145,7 +1144,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             
         }
-
+        //
         private void applicationFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

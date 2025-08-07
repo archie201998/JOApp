@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Reports;
 using Mysqlx.Crud;
 using System;
@@ -84,12 +85,23 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationList_Load(object sender, EventArgs e)
         {
+            OnLoad();
+        }
+
+
+        private void OnLoad()
+        {
             HelperLoadRecords.InvestigationStatusCombobox(cmbxStatus);
             HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
 
             cmbxRowLimit.SelectedIndex = 1;
             cmbxStatus.SelectedValue = 6;
             GetInvestigationRecords();
+
+            if (Helper.UserId == 15)
+            {
+                dgInvestigations.MultiSelect = true;
+            }
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -148,6 +160,35 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void seeImageToolStripMenuItem_Click(object sender, EventArgs e)
         { 
+
+        }
+
+        private void dgInvestigations_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (Helper.MessageBoxConfirmDelete(dgInvestigations.SelectedRows.Count))
+                {
+                    var investigationModel = new List<InvestigationModel>();
+
+                    foreach (DataGridViewRow row in dgInvestigations.SelectedRows)
+                    {
+                        int id = Convert.ToInt32(row.Cells["id"].Value);
+                        investigationModel.Add(new InvestigationModel { Id = id });
+                    }
+
+                    bool isDeleted = Factory.InvestigationRepository().Delete(investigationModel);
+
+                    if (isDeleted)
+                    {
+                        Helper.MessageBoxSuccess("Investigation/s has been deleted.");
+                        OnLoad();
+                        return;
+                    }
+                }
+
+                return;
+            }
         }
     }
 }

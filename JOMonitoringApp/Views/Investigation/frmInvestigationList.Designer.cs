@@ -80,6 +80,7 @@
             this.dgInvestigations.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgInvestigations_CellContentClick);
             this.dgInvestigations.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgInvestigations_CellFormatting);
             this.dgInvestigations.DoubleClick += new System.EventHandler(this.dgInvestigations_DoubleClick);
+            this.dgInvestigations.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgInvestigations_KeyDown);
             // 
             // lblRecordCount
             // 

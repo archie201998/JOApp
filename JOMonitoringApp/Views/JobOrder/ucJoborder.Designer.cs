@@ -441,6 +441,7 @@
             this.txtJONumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtJONumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtJONumber.Location = new System.Drawing.Point(155, 23);
+            this.txtJONumber.MaxLength = 10;
             this.txtJONumber.Name = "txtJONumber";
             this.txtJONumber.Size = new System.Drawing.Size(200, 21);
             this.txtJONumber.TabIndex = 0;

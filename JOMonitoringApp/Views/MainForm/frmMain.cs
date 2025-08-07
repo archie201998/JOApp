@@ -366,8 +366,8 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dgJobOrders.Rows.Count == 0) return;
 
                 UpdateSettings();
-                ucJoborder.StoreOriginalValues();
                 LoadSelectedData();
+                ucJoborder.StoreOriginalValues();
             }
             catch (Exception)
             {

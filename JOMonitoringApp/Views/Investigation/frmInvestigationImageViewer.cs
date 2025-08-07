@@ -444,5 +444,10 @@ namespace JOMonitoringApp.Views.Investigation
                 }
             }
         }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

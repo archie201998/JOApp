@@ -137,7 +137,7 @@ namespace AccountingSystem
         {
             if (isUpdate)
             {
-                return $"Updated : { changes }";
+                return $"{ changes }";
             }
 
             return $"Added " + jobNumber;

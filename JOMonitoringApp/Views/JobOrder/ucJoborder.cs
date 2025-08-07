@@ -75,7 +75,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
                     if (!Equals(originalValue, currentValue)) // Use !Equals to detect change
                     {
-                        Helper.changes += $"{label}: {originalValueString} => {currentValueString}\n";
+                        Helper.changes += $" {label} : {originalValueString} => {currentValueString} \n";
                         hasChanges = true;
                     }
                 }
@@ -84,7 +84,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 CheckChange("Address", (string)originalValues["Address"], txtAddress.Text);
                 CheckChange("Account Number", (string)originalValues["AccountNumber"], txtAccountNumber.Text);
                 CheckChange("Contact Number", (string)originalValues["Contact"], txtContact.Text);
-                CheckChange("Date", ((DateTime)originalValues["Date"]).ToShortDateString(), dtpDate.Text);
+                CheckChange("Date", Convert.ToDateTime(originalValues["Date"]).ToString("MMMM dd, yyyy"), dtpDate.Text);
                 CheckChange("JO Number", (string)originalValues["JONumber"], txtJONumber.Text);
                 CheckChange("MRS Number", (string)originalValues["MRSNumber"], txtMRSNumber.Text);
                 CheckChange("WAR Number", (string)originalValues["WARNumber"], txtWARNumber.Text);

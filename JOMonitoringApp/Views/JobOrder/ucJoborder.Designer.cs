@@ -419,6 +419,7 @@
             // 
             // clBoxParticulars
             // 
+            this.clBoxParticulars.CheckOnClick = true;
             this.clBoxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clBoxParticulars.FormattingEnabled = true;
             this.clBoxParticulars.Location = new System.Drawing.Point(155, 48);
@@ -576,7 +577,7 @@
             this.radPending.AutoSize = true;
             this.radPending.Checked = true;
             this.radPending.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radPending.Location = new System.Drawing.Point(5, 49);
+            this.radPending.Location = new System.Drawing.Point(55, 52);
             this.radPending.Name = "radPending";
             this.radPending.Size = new System.Drawing.Size(80, 19);
             this.radPending.TabIndex = 0;
@@ -590,7 +591,7 @@
             // 
             this.radProcessing.AutoSize = true;
             this.radProcessing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radProcessing.Location = new System.Drawing.Point(89, 49);
+            this.radProcessing.Location = new System.Drawing.Point(55, 77);
             this.radProcessing.Name = "radProcessing";
             this.radProcessing.Size = new System.Drawing.Size(104, 19);
             this.radProcessing.TabIndex = 1;
@@ -603,7 +604,7 @@
             // 
             this.radCancel.AutoSize = true;
             this.radCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radCancel.Location = new System.Drawing.Point(192, 49);
+            this.radCancel.Location = new System.Drawing.Point(216, 52);
             this.radCancel.Name = "radCancel";
             this.radCancel.Size = new System.Drawing.Size(72, 19);
             this.radCancel.TabIndex = 2;
@@ -616,7 +617,7 @@
             // 
             this.radAccomplished.AutoSize = true;
             this.radAccomplished.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radAccomplished.Location = new System.Drawing.Point(264, 49);
+            this.radAccomplished.Location = new System.Drawing.Point(216, 77);
             this.radAccomplished.Name = "radAccomplished";
             this.radAccomplished.Size = new System.Drawing.Size(120, 19);
             this.radAccomplished.TabIndex = 3;
@@ -656,7 +657,7 @@
             this.gbStatusAndRemaarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbStatusAndRemaarks.Location = new System.Drawing.Point(10, 625);
             this.gbStatusAndRemaarks.Name = "gbStatusAndRemaarks";
-            this.gbStatusAndRemaarks.Size = new System.Drawing.Size(372, 73);
+            this.gbStatusAndRemaarks.Size = new System.Drawing.Size(372, 101);
             this.gbStatusAndRemaarks.TabIndex = 18;
             this.gbStatusAndRemaarks.TabStop = false;
             this.gbStatusAndRemaarks.Text = "STATUS AND REMARKS";

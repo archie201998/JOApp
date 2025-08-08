@@ -1,24 +1,16 @@
-﻿
-using Google.Protobuf.Compiler;
-using JOMonitoringApp;
+﻿using JOMonitoringApp;
 using JOMonitoringApp.Model;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
-using Org.BouncyCastle.Asn1.IsisMtt;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data.SqlClient;
-// TODO Although ClickOnce is supported on .NET 5+, apps do not have access to the System.Deployment.Application namespace. For more details see https://github.com/dotnet/deployment-tools/issues/27 and https://github.com/dotnet/deployment-tools/issues/53.
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
-using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Color = System.Drawing.Color;
 
@@ -32,16 +24,14 @@ namespace AccountingSystem
         public static int UserRoleId { get; internal set; }
         internal static bool temporaryAdminMode = false;
         internal static string changes;
+        public static string ServerIPAddress => ConfigurationManager.AppSettings["ServerIP"];
+        public static string ServerName => ConfigurationManager.AppSettings["ServerName"];
+        public static string CSDHead => ConfigurationManager.AppSettings["CSDHead"];
+        public static string BranchManager => ConfigurationManager.AppSettings["BranchManager"];
 
-        internal static string serverStatisIPAddress = "192.168.18.93";
-        internal static string serverName = "PWCServerPag";
-        internal static string CSDHead = "CHRISTOPHER JASON R. CABABARO";
-        internal static string BranchManager = "ENG. VIVIEL MAY B. RAMIREZ";
+
 
         internal static decimal DefaultMarkup = 0.20m; // 20% markup for materials 
-
-
-
         internal static DateTime advanceSearchDateFrom = DateTime.Today;
         internal static DateTime advanceSearchDateTo = DateTime.Today;
         internal static int advanceSearchPreparedBy;

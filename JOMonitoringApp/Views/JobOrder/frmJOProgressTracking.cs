@@ -29,7 +29,7 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private DataColumn[] JobOrdersColumns()
         {
-            return new DataColumn[]
+            return new DataColumn[]     
             {
                 new DataColumn("log_id", typeof (int)),
                 new DataColumn("date_and_time", typeof(string)),

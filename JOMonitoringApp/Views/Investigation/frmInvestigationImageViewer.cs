@@ -153,8 +153,8 @@ namespace JOMonitoringApp.Views.Investigation
         private InvestigationModel InvestigationModel()
         {
 
-            string folderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
-            string secondFolderPath = "\\\\" + Helper.serverName + "\\InvestigationImage\\";
+            string folderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
+            string secondFolderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
 
             var model = new InvestigationModel
             {

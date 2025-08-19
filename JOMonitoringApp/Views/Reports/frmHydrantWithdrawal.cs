@@ -3,14 +3,6 @@ using AccountingSystem;
 using JOMonitoringApp.Dataset;
 using Microsoft.Reporting.WinForms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
@@ -31,7 +23,7 @@ namespace JOMonitoringApp.Views.Reports
         {
             LoadReport();
         }
-
+        
         private void LoadReport()
         {
             try
@@ -53,7 +45,7 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[3] = new ReportParameter("paramContact", dictJODetails["contact_number"]);
                 parameters[4] = new ReportParameter("paramJONumber", dictJODetails["job_order_no"]);
                 parameters[5] = new ReportParameter("paramAccountNumber", string.IsNullOrEmpty(dictJODetails["account_number"]) ? "-" : dictJODetails["account_number"]);
-                parameters[6] = new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString());
+                parameters[6] = new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString());  
 
                 reportViewer1.LocalReport.DataSources.Clear();
 

@@ -588,6 +588,17 @@ namespace AccountingSystem
             return false;
         }
 
+
+        public static bool MessageBoxWarningConfirm(string confirmMessage)
+        {
+            string message = confirmMessage;
+
+            if (MessageBox.Show(message, "Message", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                return true;
+
+            return false;
+        }
+
         public static bool MessageBoxConfirmDelete(int rowCount)
         {
             string message = string.Empty;

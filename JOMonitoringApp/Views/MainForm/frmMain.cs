@@ -15,6 +15,7 @@ using JOMonitoringApp.Views.Users;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -651,18 +652,23 @@ namespace JOMonitoringApp.Views.MainForm
 
         private bool CheckPossibleDuplicateEntry()
         {
-            string accountNumber = ucJoborder.txtAcc1.Text + "-" + ucJoborder.txtAcc2.Text + "-" + ucJoborder.txtAcc3.Text + "-" + ucJoborder.txtAcc4.Text;
-            string particulars = string.Join("\\", ucJoborder.clBoxParticulars.CheckedItems.Cast<string>().ToArray());
+            string accountNumber = string.Join("-", new[] { ucJoborder.txtAcc1.Text, ucJoborder.txtAcc2.Text, ucJoborder.txtAcc3.Text, ucJoborder.txtAcc4.Text }.Select(x => x.Trim()));
+
+            string particulars = string.Join(",",
+                ucJoborder.clBoxParticulars.CheckedItems.Cast<object>().Select(x => x.ToString().Trim())
+            );
 
             bool recordFound = Factory.JobOrdersRepository().CheckPossibleDuplicate(accountNumber, particulars);
 
             if (recordFound)
-                if (Helper.MessageBoxConfirmCancel("Similar Job Order Details are found in the record. Do you want to proceed?"))
-                    return true;
-                else
+            {
+                if (Helper.MessageBoxWarningConfirm("Similar Job Order Details are found in the database. Do you want to proceed?"))
                     return false;
+                else
+                    return true;
+            }
 
-            return true;
+            return false;
         }
 
         #region Save Job orders
@@ -719,39 +725,41 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal bool SaveData()
         {
+            //check input error.
             if (!ucJoborder.ValidateChildren())
             {
                 Helper.MessageBoxError(ucJoborder.GetFormErrors());
                 return false;
             }
-
-            if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+            //check duplicate entry
+            if (CheckPossibleDuplicateEntry())
+                return false;
+            else
             {
-                using (TransactionScope scope = new TransactionScope())
+                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
-                    bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
-                    if (successInsert)
+                    using (TransactionScope scope = new TransactionScope())
                     {
-                        int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
-
-                        if (InsertJobOrderParticulars(jobOrderId))
+                        bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                        if (successInsert)
                         {
-                            scope.Complete();
-                            return true;
+                            int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
+
+                            if (InsertJobOrderParticulars(jobOrderId))
+                            {
+                                scope.Complete();
+                                return true;
+                            }
+                            else { return false; }
                         }
-                        else { return false; }
-                    }
-                    else
-                    {
-                        return false;
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
             }
 
-            //if (CheckPossibleDuplicateEntry())
-            //{
-
-            //}
             return false;
         }
 
@@ -1163,7 +1171,7 @@ namespace JOMonitoringApp.Views.MainForm
                     openFileDialog.Title = "Select a PDF file";
                     openFileDialog.Multiselect = false;
 
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) 
                     {
                         System.Diagnostics.Process.Start(openFileDialog.FileName);
                     }

@@ -52,7 +52,6 @@ namespace JOMonitoringApp.Views.Config
 
         private void frmConfiguration_Load(object sender, EventArgs e)
         {
-          
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)

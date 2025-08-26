@@ -961,7 +961,6 @@
             this.txtInvestigatorComments.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtInvestigatorComments.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtInvestigatorComments.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtInvestigatorComments.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtInvestigatorComments.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInvestigatorComments.Location = new System.Drawing.Point(8, 37);
             this.txtInvestigatorComments.MaxLength = 999999;
@@ -1000,7 +999,6 @@
             this.txtRecommendations.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtRecommendations.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtRecommendations.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRecommendations.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRecommendations.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRecommendations.Location = new System.Drawing.Point(6, 37);
             this.txtRecommendations.MaxLength = 999999;

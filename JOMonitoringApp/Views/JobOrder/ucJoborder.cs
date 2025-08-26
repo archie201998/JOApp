@@ -106,7 +106,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 return false;
             }
         }
-
+            
         
         public ucJoborder()
         {

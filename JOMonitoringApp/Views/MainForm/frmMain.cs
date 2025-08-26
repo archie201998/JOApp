@@ -1157,7 +1157,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                string networkFolderPath = @"\\192.168.18.102\scanned SA\";
+                string networkFolderPath = @"\\server02\scanned SA\";
                 if (!Directory.Exists(networkFolderPath))
                 {
                     Helper.MessageBoxError("The network folder does not exist or is unreachable.");

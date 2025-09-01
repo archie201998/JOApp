@@ -148,25 +148,25 @@
                   <Width>2.00488cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.26162cm</Width>
+                  <Width>1.78617cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.59824cm</Width>
+                  <Width>1.42964cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.49458cm</Width>
+                  <Width>1.22919cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.60042cm</Width>
+                  <Width>1.33584cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>8.72303cm</Width>
+                  <Width>6.87705cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.62347cm</Width>
+                  <Width>2.35889cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.70284cm</Width>
+                  <Width>5.72284cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>2.05337cm</Width>
@@ -543,7 +543,7 @@
                                 <TextRun>
                                   <Value>=Fields!date.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                     <Format>d</Format>
                                   </Style>
                                 </TextRun>
@@ -579,7 +579,7 @@
                                 <TextRun>
                                   <Value>=Fields!job_order_no.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -614,7 +614,7 @@
                                 <TextRun>
                                   <Value>=Fields!mris.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -649,7 +649,7 @@
                                 <TextRun>
                                   <Value>=Fields!mrs.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -684,7 +684,7 @@
                                 <TextRun>
                                   <Value>=Fields!war.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -719,7 +719,7 @@
                                 <TextRun>
                                   <Value>=Fields!account_name.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -754,7 +754,7 @@
                                 <TextRun>
                                   <Value>=Fields!account_number.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -789,7 +789,7 @@
                                 <TextRun>
                                   <Value>=Fields!particular.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -824,7 +824,7 @@
                                 <TextRun>
                                   <Value>=Fields!status.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>7pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -879,7 +879,7 @@
             <Top>2.19951cm</Top>
             <Left>0.06297cm</Left>
             <Height>1.12063cm</Height>
-            <Width>25.06245cm</Width>
+            <Width>24.79787cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>

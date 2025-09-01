@@ -20,6 +20,7 @@ namespace JOMonitoringApp
         public bool Delete(List<JobOrdersParticularsModel> entityList)
         {
             throw new System.NotImplementedException();
+
         }
 
         public bool InsertJobOrdersParticulars(int jobOrderId, int particularId)
@@ -90,5 +91,9 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
+        public DataTable GetRecordsByParticular(string particular)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

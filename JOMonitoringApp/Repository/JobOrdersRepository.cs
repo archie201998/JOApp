@@ -132,8 +132,9 @@ namespace JOMonitoringApp
 
         public DataTable GetViewRecordsBySearch(DateTime dateFrom, DateTime dateTo, string particulars, string status, string orderBy)
         {
+            string localViewTableName = viewTableName;  
             if (particulars == "All Particulars") particulars = "%%";
-
+                
             var parameters = new object[][]
             {
                 new object[] { "@date_from", DbType.DateTime, dateFrom },
@@ -141,8 +142,10 @@ namespace JOMonitoringApp
                 new object[] { "@particular", DbType.String, $"%{particulars}%" },
             };
 
+            if (particulars == "Investigation" || particulars == "Change Meter")
+                localViewTableName = "view_job_orders_particulars";  
 
-            string query = $"SELECT * FROM {viewTableName} WHERE ({status}) AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
+            string query = $"SELECT * FROM {localViewTableName} WHERE ({status}) AND particular LIKE @particular AND date BETWEEN @date_from AND @date_to AND is_deleted = 0  ORDER BY {orderBy} DESC";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

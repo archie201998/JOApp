@@ -283,6 +283,7 @@
             this.cmbxParticular.Name = "cmbxParticular";
             this.cmbxParticular.Size = new System.Drawing.Size(248, 21);
             this.cmbxParticular.TabIndex = 19;
+            this.cmbxParticular.SelectedIndexChanged += new System.EventHandler(this.cmbxParticular_SelectedIndexChanged_2);
             this.cmbxParticular.SelectionChangeCommitted += new System.EventHandler(this.cmbxParticular_SelectionChangeCommitted);
             // 
             // label4

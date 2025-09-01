@@ -100,7 +100,7 @@ namespace JOMonitoringApp.Views.Reports
                 DateTime dateFrom = dtpFrom.Value;
                 DateTime dateTo = dtpTo.Value;
                 DataTable dtJobOrders;
-                if (particularID == 0)
+                if (particularID == 0 || particularID == 100 || particularID == 101)
                 {
                     dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsBySearch(dateFrom, dateTo, particular, statusFilter, orderBy);
                 }
@@ -270,6 +270,11 @@ namespace JOMonitoringApp.Views.Reports
         private void cmbxParticular_SelectionChangeCommitted(object sender, EventArgs e)
         {
             particularID = Convert.ToInt32(cmbxParticular.SelectedValue);
+        }
+
+        private void cmbxParticular_SelectedIndexChanged_2(object sender, EventArgs e)
+        {
+            particular = cmbxParticular.Text;
         }
     }
 }

@@ -272,11 +272,17 @@ namespace JOMonitoringApp.Views.JobOrder
         internal void LoadParticular()
         {
             clBoxParticulars.Items.Clear();
+
             var dtParticulars = Factory.ParticularsRepository().GetRecords();
+            var excludedItems = new HashSet<string> { "Investigation", "Change Meter" };
 
             foreach (DataRow item in dtParticulars.Rows)
             {
-                clBoxParticulars.Items.Add(item["particular"].ToString());
+                var particular = item["particular"]?.ToString();
+                if (!string.IsNullOrEmpty(particular) && !excludedItems.Contains(particular))
+                {
+                    clBoxParticulars.Items.Add(particular);
+                }
             }
         }
 

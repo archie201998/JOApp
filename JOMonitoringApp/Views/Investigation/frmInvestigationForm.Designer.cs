@@ -428,6 +428,8 @@
             this.cmbxInvestigator.Items.AddRange(new object[] {
             "",
             "Ramil C. Dacol",
+            "Glenn Torress",
+            "Clint Stewart Amba",
             "Niel C. Macion",
             "Michael Bender"});
             this.cmbxInvestigator.Location = new System.Drawing.Point(508, 45);

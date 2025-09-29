@@ -4,6 +4,10 @@ using System;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
+
 
 namespace JOMonitoringApp.Views.Investigation
 {
@@ -38,7 +42,6 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            _ = new frmMessagePrompt().ShowDialog();
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)

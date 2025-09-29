@@ -36,6 +36,12 @@ namespace JOMonitoringApp.Views.Investigation
         private void frmInvestigationForm_Load(object sender, EventArgs e)
         {
             OnLoad();
+
+            if (radInvestigation.Checked || radReInvestigation.Checked)
+            {
+                cmbxInvestigationFindings.Visible = true;
+                LoadInvestigationFindings();
+            }
         }
 
         private void OnLoad()
@@ -44,11 +50,37 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 LoadSelectedRecord();
                 lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
-
+                
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
                 ViewAdjustment();
             }
+        }
+
+        private void LoadInvestigationFindings()
+        {
+            var dtFindings = Factory.InvestigationFindingsRepository().Reasons();
+
+            if (dtFindings != null && dtFindings.Rows.Count > 0)
+            {
+                DataRow blankRow = dtFindings.NewRow();
+                blankRow["id"] = DBNull.Value; 
+                blankRow["reason"] = "SELECT FINDINGS";
+                dtFindings.Rows.InsertAt(blankRow, 0);
+            }
+
+            cmbxInvestigationFindings.DataSource = dtFindings;
+            cmbxInvestigationFindings.DisplayMember = "reason";
+            cmbxInvestigationFindings.ValueMember = "id";
+            cmbxInvestigationFindings.SelectedIndex = 0;
+        }
+
+        private void LoadInvestigationExplanation(int reasonId)
+        {
+            int _reasonId = reasonId;
+            string explanation = Factory.InvestigationFindingsRepository().ReasonsExplanation(_reasonId);
+            
+            txtInvestigatorComments.Text = explanation;
         }
 
         private void LoadSelectedRecord()
@@ -261,7 +293,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (investigationStatusID == 1 || investigationStatusID == 2 || investigationStatusID == 3 || investigationStatusID == 5)
                 jobOrderStatus = 2;
 
-            Factory.JobOrdersRepository().UpdateStatus(0, jobOrderStatus); //TAKE NOTE OF THIS
+            Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, jobOrderStatus); 
         }
 
         private void UploadImage()
@@ -505,6 +537,22 @@ namespace JOMonitoringApp.Views.Investigation
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+       
+        }
+
+        private void cmbxInvestigationFindings_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbxInvestigationFindings.SelectedValue != null &&
+            cmbxInvestigationFindings.SelectedValue != DBNull.Value)
+            {
+                int reasonId = Convert.ToInt32(cmbxInvestigationFindings.SelectedValue);
+                if (reasonId != 0)
+                    LoadInvestigationExplanation(reasonId);
+            }
         }
     }
 }

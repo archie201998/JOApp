@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panel6 = new System.Windows.Forms.Panel();
             this.txtPending = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -73,6 +74,12 @@
             this.btnCountPending = new System.Windows.Forms.Button();
             this.cmbxCount = new System.Windows.Forms.ComboBox();
             this.cmbxPeriod = new System.Windows.Forms.ComboBox();
+            this.btnSaveAs = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -90,6 +97,7 @@
             this.panel5.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel6
@@ -478,6 +486,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.toolStrip2);
+            this.groupBox1.Controls.Add(this.toolStrip1);
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label7);
@@ -646,10 +656,62 @@
             this.cmbxPeriod.Size = new System.Drawing.Size(121, 23);
             this.cmbxPeriod.TabIndex = 15;
             // 
+            // btnSaveAs
+            // 
+            this.btnSaveAs.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSaveAs.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSaveAs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveAs.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveAs.ForeColor = System.Drawing.Color.White;
+            this.btnSaveAs.Location = new System.Drawing.Point(13, 670);
+            this.btnSaveAs.Name = "btnSaveAs";
+            this.btnSaveAs.Size = new System.Drawing.Size(89, 23);
+            this.btnSaveAs.TabIndex = 18;
+            this.btnSaveAs.Text = "Save As..";
+            this.btnSaveAs.UseVisualStyleBackColor = false;
+            this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelToolStripMenuItem,
+            this.pDFToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(101, 48);
+            // 
+            // excelToolStripMenuItem
+            // 
+            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.excelToolStripMenuItem.Text = "Excel";
+            // 
+            // pDFToolStripMenuItem
+            // 
+            this.pDFToolStripMenuItem.Name = "pDFToolStripMenuItem";
+            this.pDFToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.pDFToolStripMenuItem.Text = "PDF";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Location = new System.Drawing.Point(3, 16);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(543, 25);
+            this.toolStrip1.TabIndex = 25;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStrip2
+            // 
+            this.toolStrip2.Location = new System.Drawing.Point(3, 41);
+            this.toolStrip2.Name = "toolStrip2";
+            this.toolStrip2.Size = new System.Drawing.Size(543, 25);
+            this.toolStrip2.TabIndex = 26;
+            this.toolStrip2.Text = "toolStrip2";
+            // 
             // ucDashboardSummaryView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSaveAs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.gbParticulars);
@@ -694,6 +756,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -744,5 +807,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnSaveAs;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

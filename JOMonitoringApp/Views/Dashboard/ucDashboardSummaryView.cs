@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace JOMonitoringApp.Views.Dashboard
 {
     public partial class ucDashboardSummaryView : UserControl
@@ -27,7 +28,7 @@ namespace JOMonitoringApp.Views.Dashboard
         }
 
         internal void LoadAndDisplaySummary()
-        {
+        {   
             DateTime dateFrom = dtpFrom.Value;
             DateTime dateTo = dtpTo.Value;  
 
@@ -67,8 +68,35 @@ namespace JOMonitoringApp.Views.Dashboard
             {
                 dtpFrom.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
                 dtpTo.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month));
-                
+
+
+                ContextMenuStrip contextMenu = new ContextMenuStrip();
+
+                ToolStripMenuItem pdfItem = new ToolStripMenuItem("Save as PDF");
+                pdfItem.Click += (s, ev) => SaveAsPDF();
+
+                ToolStripMenuItem excelItem = new ToolStripMenuItem("Save as Excel");
+                excelItem.Click += (s, ev) => SaveAsExcel();
+
+                contextMenu.Items.Add(pdfItem);
+                contextMenu.Items.Add(excelItem);
+
+                btnSaveAs.ContextMenuStrip = contextMenu;
+
+                btnSaveAs.MouseHover += (s, ev) =>
+                    btnSaveAs.ContextMenuStrip.Show(btnSaveAs, new Point(0, btnSaveAs.Height));
             }
+        }
+
+        // Example functions
+        private void SaveAsPDF()
+        {
+            MessageBox.Show("Saving as PDF...");
+        }
+
+        private void SaveAsExcel()
+        {
+            MessageBox.Show("Saving as Excel...");
         }
 
         private DataColumn[] JobOrdersColumns()
@@ -230,6 +258,9 @@ namespace JOMonitoringApp.Views.Dashboard
             HelperLoadRecords.JOStatusPerParticular(dgStatPerParticular, result);
         }
 
+        private void btnSaveAs_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

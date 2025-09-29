@@ -92,6 +92,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cmbxInvestigationFindings = new System.Windows.Forms.ComboBox();
             this.lblImage = new System.Windows.Forms.Label();
             this.txtInvestigatorComments = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -928,6 +929,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.cmbxInvestigationFindings);
             this.groupBox3.Controls.Add(this.lblImage);
             this.groupBox3.Controls.Add(this.txtInvestigatorComments);
             this.groupBox3.Controls.Add(this.label20);
@@ -938,6 +940,19 @@
             this.groupBox3.Size = new System.Drawing.Size(551, 185);
             this.groupBox3.TabIndex = 86;
             this.groupBox3.TabStop = false;
+            // 
+            // cmbxInvestigationFindings
+            // 
+            this.cmbxInvestigationFindings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxInvestigationFindings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmbxInvestigationFindings.FormattingEnabled = true;
+            this.cmbxInvestigationFindings.Location = new System.Drawing.Point(181, 11);
+            this.cmbxInvestigationFindings.Name = "cmbxInvestigationFindings";
+            this.cmbxInvestigationFindings.Size = new System.Drawing.Size(262, 23);
+            this.cmbxInvestigationFindings.TabIndex = 89;
+            this.cmbxInvestigationFindings.Visible = false;
+            this.cmbxInvestigationFindings.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbxInvestigationFindings.SelectionChangeCommitted += new System.EventHandler(this.cmbxInvestigationFindings_SelectionChangeCommitted);
             // 
             // lblImage
             // 
@@ -1476,5 +1491,6 @@
         internal System.Windows.Forms.TextBox txtInvestigatorComments;
         internal System.Windows.Forms.TextBox txtRecommendations;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox cmbxInvestigationFindings;
     }
 }

@@ -213,6 +213,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_image_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_image_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_image_96 {
             get {
                 object obj = ResourceManager.GetObject("icons8_image_96", resourceCulture);
@@ -256,6 +266,16 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap icons8_investigator_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8_investigator_30", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_link_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_link_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

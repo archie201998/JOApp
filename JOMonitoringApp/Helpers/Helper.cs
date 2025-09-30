@@ -19,6 +19,9 @@ namespace AccountingSystem
 {
     public static class Helper
     {
+        public static bool attachLink = false;
+        public static string imageLink1; 
+        public static string imageLink2;
 
         public static byte UserId { get; internal set; }
         public static int UserRoleId { get; internal set; }

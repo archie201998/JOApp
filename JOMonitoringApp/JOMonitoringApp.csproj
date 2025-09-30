@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>262</ApplicationRevision>
+    <ApplicationRevision>264</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -319,6 +319,18 @@
     <Compile Include="Views\Database\frmDBBackup.Designer.cs">
       <DependentUpon>frmDBBackup.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\Attachment\frmAttachmentSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\Attachment\frmAttachmentSelector.Designer.cs">
+      <DependentUpon>frmAttachmentSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Investigation\Attachment\frmLinkAttachment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\Attachment\frmLinkAttachment.Designer.cs">
+      <DependentUpon>frmLinkAttachment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Investigation\frmInvestigation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -515,12 +527,14 @@
     <None Include="Resources\icons8-give-30.png" />
     <Content Include="Resources\icons8-image-14.png" />
     <Content Include="Resources\icons8-image-48.png" />
+    <None Include="Resources\icons8-image-50.png" />
     <Content Include="Resources\icons8-image-96.png" />
     <Content Include="Resources\icons8-information-14.png" />
     <None Include="Resources\icons8-investigation-48.png" />
     <None Include="Resources\icons8-investigation-30.png" />
     <None Include="Resources\icons8-magnifying-16.png" />
     <None Include="Resources\icons8-investigator-30.png" />
+    <None Include="Resources\icons8-link-50.png" />
     <Content Include="Resources\icons8-notification-50.png" />
     <Content Include="Resources\icons8-online-maintenance-portal-100.png" />
     <Content Include="Resources\icons8-open-box-30-download.png" />
@@ -577,6 +591,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Database\frmDBBackup.resx">
       <DependentUpon>frmDBBackup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\Attachment\frmAttachmentSelector.resx">
+      <DependentUpon>frmAttachmentSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\Attachment\frmLinkAttachment.resx">
+      <DependentUpon>frmLinkAttachment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigation.resx">
       <DependentUpon>frmInvestigation.cs</DependentUpon>

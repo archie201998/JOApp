@@ -428,7 +428,7 @@
             this.cmbxInvestigator.Items.AddRange(new object[] {
             "",
             "Ramil C. Dacol",
-            "Glenn Torress",
+            "Glenn Torres",
             "Clint Stewart Amba",
             "Niel C. Macion",
             "Michael Bender"});
@@ -942,6 +942,7 @@
             this.groupBox3.Size = new System.Drawing.Size(551, 185);
             this.groupBox3.TabIndex = 86;
             this.groupBox3.TabStop = false;
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
             // 
             // cmbxInvestigationFindings
             // 
@@ -962,13 +963,14 @@
             this.lblImage.AutoSize = true;
             this.lblImage.BackColor = System.Drawing.Color.DodgerBlue;
             this.lblImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.lblImage.ForeColor = System.Drawing.Color.White;
-            this.lblImage.Location = new System.Drawing.Point(463, 19);
+            this.lblImage.Location = new System.Drawing.Point(453, 16);
             this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(82, 13);
+            this.lblImage.Size = new System.Drawing.Size(90, 15);
             this.lblImage.TabIndex = 88;
             this.lblImage.Text = "Attach Image";
+            this.lblImage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblImage.Click += new System.EventHandler(this.label21_Click);
             // 
             // txtInvestigatorComments

@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.Investigation.Attachment;
 using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
@@ -49,8 +50,8 @@ namespace JOMonitoringApp.Views.Investigation
             if (!DesignMode)
             {
                 LoadSelectedRecord();
-                lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
-                
+                lblImage.Text = string.IsNullOrEmpty(imageFilePath) ? "Attach Image" : (imageFilePath.StartsWith("http") ? "View Link" : "View Image");
+
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
                 ViewAdjustment();
@@ -350,6 +351,16 @@ namespace JOMonitoringApp.Views.Investigation
             string folderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
             string secondFolderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
 
+            string _imagePath = string.IsNullOrEmpty(imageFilePath) ? string.Empty : folderPath + Path.GetFileName(imageFilePath);
+            string _secondaryImagePath = string.IsNullOrEmpty(secondaryImageFilePath) ? string.Empty : secondFolderPath + Path.GetFileName(secondaryImageFilePath);
+
+
+            if (Helper.attachLink)
+            {
+                _imagePath = Helper.imageLink1;
+                _secondaryImagePath = Helper.imageLink2; 
+            }
+
             var model = new InvestigationModel
             {
                 Id = _investigationId,
@@ -363,8 +374,8 @@ namespace JOMonitoringApp.Views.Investigation
                 DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDateInvestigated.Value : null,
                 ApprovalMessage = txtApprovalMessage.Text.Trim(),
                 Recommendations = txtRecommendations.Text.Trim(),
-                imagePath = string.IsNullOrEmpty(imageFilePath) ? string.Empty : folderPath + Path.GetFileName(imageFilePath),
-                secondaryImagePath = string.IsNullOrEmpty(secondaryImageFilePath) ? string.Empty : secondFolderPath + Path.GetFileName(secondaryImageFilePath),
+                imagePath = _imagePath,
+                secondaryImagePath = _secondaryImagePath,
                 IsApproved = GetInvestigationStatus(),
                 AlternativeSource = txtAlternativeSource.Text.Trim(),
                 MeterBrand = txtMeterBrand.Text,
@@ -390,41 +401,62 @@ namespace JOMonitoringApp.Views.Investigation
             return model;
         }
 
+        private void AttachImage()
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "C:\\";
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+                openFileDialog.Multiselect = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    int selectedCount = openFileDialog.FileNames.Length;
+
+                    if (selectedCount > 2)
+                    {
+                        Helper.MessageBoxSuccess("Please select only 1 or 2 images.");
+                        return;
+                    }
+
+                    imageFilePath = openFileDialog.FileNames[0];
+                    secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
+                    lblImage.Text = "View Image";
+                }
+            }
+        }   
 
         private void label21_Click(object sender, EventArgs e)
         {
             if (lblImage.Text == "Attach Image") //view file
             {
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                _ = new frmAttachmentSelector().ShowDialog();
+
+                if (Helper.attachLink)
                 {
-                    openFileDialog.InitialDirectory = "C:\\";
-                    openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
-                    openFileDialog.FilterIndex = 1;
-                    openFileDialog.RestoreDirectory = true;
-                    openFileDialog.Multiselect = true;
-
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    {
-                        int selectedCount = openFileDialog.FileNames.Length;
-
-                        if (selectedCount > 2)
-                        {
-                            Helper.MessageBoxSuccess("Please select only 1 or 2 images.");
-                            return;
-                        }
-
-                        imageFilePath = openFileDialog.FileNames[0];
-                        secondaryImageFilePath = selectedCount == 2 ? openFileDialog.FileNames[1] : null;
-                        lblImage.Text =  "View Image";
-                    }
+                    _ = new frmLinkAttachment(string.Empty, string.Empty).ShowDialog();
                 }
+                else
+                {
+                    AttachImage();
+                }
+
             }
-            else //view image.
+            else if (lblImage.Text == "View Link")
+            {
+                _ = new frmLinkAttachment(imageFilePath, secondaryImageFilePath).ShowDialog();   
+            }
+            else
             {
                 _ = new frmInvestigationImageViewer(imageFilePath, secondaryImageFilePath, _investigationId).ShowDialog();
                 imageFilePath = Helper.imagePath;
                 secondaryImageFilePath = Helper.secondaryImagePath;
                 lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
+
+                lblImage.Text = string.IsNullOrEmpty(imageFilePath) ? "Attach Image" : (imageFilePath.StartsWith("http") ? "View Link" : "View Image");
+
             }
         }
 
@@ -553,6 +585,11 @@ namespace JOMonitoringApp.Views.Investigation
                 if (reasonId != 0)
                     LoadInvestigationExplanation(reasonId);
             }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

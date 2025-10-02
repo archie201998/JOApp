@@ -103,6 +103,7 @@ internal class CustomersRepository : ICustomersRepository
             new object[] { "@search_key", DbType.String, $"%{searchKey}%" }
         };
 
+
         string query = $"SELECT TOP(10) CustomerID AS id, AccountNo AS account_number, AccountName AS account_name, Address AS address, MeterNumber AS meter_no, MeterBrand meter_brand  FROM {tableName} WHERE AccountNo LIKE @search_key OR AccountName like @search_key";
 
         var dataTable = new DataTable();

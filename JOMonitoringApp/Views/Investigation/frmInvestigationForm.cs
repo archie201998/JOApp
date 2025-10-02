@@ -370,7 +370,7 @@ namespace JOMonitoringApp.Views.Investigation
                 CustomerAddress = txtAddress.Text.Trim(),
                 CustomerAccountNumber = txtAccountNumber.Text.Trim(),
                 NatureOfComplaint = txtComplaint.Text.Trim(),
-                InvestigatorComments = txtInvestigatorComments.Text.Trim(),
+                InvestigatorComments = txtInvestigatorComments.Text,
                 DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDateInvestigated.Value : null,
                 ApprovalMessage = txtApprovalMessage.Text.Trim(),
                 Recommendations = txtRecommendations.Text.Trim(),

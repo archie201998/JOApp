@@ -1365,7 +1365,6 @@
             this.Controls.Add(this.gbAccountDetails);
             this.KeyPreview = true;
             this.Name = "frmInvestigationForm";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Investigation Data";
             this.Load += new System.EventHandler(this.frmInvestigationForm_Load);

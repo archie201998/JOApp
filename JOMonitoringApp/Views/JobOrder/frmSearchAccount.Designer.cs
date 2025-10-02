@@ -90,7 +90,6 @@
             this.txtAcc4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtAcc4.TextChanged += new System.EventHandler(this.txtAcc4_TextChanged);
             this.txtAcc4.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
-            this.txtAcc4.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAcc4_KeyPress);
             // 
             // label14
             // 
@@ -186,7 +185,6 @@
             this.dgAccounts.Size = new System.Drawing.Size(357, 241);
             this.dgAccounts.TabIndex = 5;
             this.dgAccounts.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgAccounts_CellDoubleClick);
-          
             this.dgAccounts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAcc4_KeyDown);
             // 
             // frmSearchAccount

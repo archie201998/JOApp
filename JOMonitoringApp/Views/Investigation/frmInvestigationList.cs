@@ -128,7 +128,7 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             var investigationForm = new frmInvestigationForm(investigationId);
-            investigationForm.ShowDialog();
+            investigationForm.Show();
             GetInvestigationRecords();
         }
             

@@ -672,7 +672,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.56104cm</Height>
+                  <Height>0.50812cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -686,7 +686,7 @@
                                   <Value>=Fields!item.Value</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                     <Format>d</Format>
                                   </Style>
                                 </TextRun>
@@ -723,7 +723,7 @@
                                   <Value>=IIf(Fields!qty.Value = 0, string.Empty, Fields!qty.Value)</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -756,10 +756,11 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf(Fields!unit_cost.Value = 0, string.Empty, Fields!unit_cost.Value)</Value>
+                                  <Value>=CDbl(IIf(Fields!unit_cost.Value = 0, 0, Fields!unit_cost.Value))</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -795,7 +796,8 @@
                                   <Value>=IIf(Fields!amount.Value = 0, string.Empty, Fields!amount.Value)</Value>
                                   <Style>
                                     <FontFamily>arial</FontFamily>
-                                    <FontSize>9pt</FontSize>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -822,7 +824,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.6cm</Height>
+                  <Height>0.52062cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -949,6 +951,7 @@
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>9pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
+                                    <Format>n2</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1003,7 +1006,7 @@
             <DataSetName>dsMaterials</DataSetName>
             <Top>2.30268cm</Top>
             <Left>0.28194cm</Left>
-            <Height>1.76104cm</Height>
+            <Height>1.62875cm</Height>
             <Width>10.86054cm</Width>
             <ZIndex>12</ZIndex>
             <Style>
@@ -3246,7 +3249,7 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.53492cm</Height>
+                      <Height>0.50846cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -3260,7 +3263,7 @@
                                       <Value>=Fields!item.Value</Value>
                                       <Style>
                                         <FontFamily>arial</FontFamily>
-                                        <FontSize>9pt</FontSize>
+                                        <FontSize>8pt</FontSize>
                                         <Format>d</Format>
                                       </Style>
                                     </TextRun>
@@ -3297,7 +3300,7 @@
                                       <Value>=IIf(Fields!qty.Value = 0, string.Empty, Fields!qty.Value)</Value>
                                       <Style>
                                         <FontFamily>arial</FontFamily>
-                                        <FontSize>9pt</FontSize>
+                                        <FontSize>8pt</FontSize>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3330,10 +3333,11 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIf(Fields!unit_cost.Value = 0, string.Empty, Fields!unit_cost.Value)</Value>
+                                      <Value>=CDbl(IIf(Fields!unit_cost.Value = 0, 0, Fields!unit_cost.Value))</Value>
                                       <Style>
                                         <FontFamily>arial</FontFamily>
-                                        <FontSize>9pt</FontSize>
+                                        <FontSize>8pt</FontSize>
+                                        <Format>n2</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3369,7 +3373,8 @@
                                       <Value>=IIf(Fields!amount.Value = 0, string.Empty, Fields!amount.Value)</Value>
                                       <Style>
                                         <FontFamily>arial</FontFamily>
-                                        <FontSize>9pt</FontSize>
+                                        <FontSize>8pt</FontSize>
+                                        <Format>n2</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3396,7 +3401,7 @@
                       </TablixCells>
                     </TablixRow>
                     <TablixRow>
-                      <Height>0.6cm</Height>
+                      <Height>0.52063cm</Height>
                       <TablixCells>
                         <TablixCell>
                           <CellContents>
@@ -3523,6 +3528,7 @@
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
                                         <FontWeight>Bold</FontWeight>
+                                        <Format>n2</Format>
                                       </Style>
                                     </TextRun>
                                   </TextRuns>
@@ -3577,7 +3583,7 @@
                 <DataSetName>dsMaterials</DataSetName>
                 <Top>5.43655cm</Top>
                 <Left>0.15442cm</Left>
-                <Height>1.73492cm</Height>
+                <Height>1.62909cm</Height>
                 <Width>10.86054cm</Width>
                 <ZIndex>17</ZIndex>
                 <Style>

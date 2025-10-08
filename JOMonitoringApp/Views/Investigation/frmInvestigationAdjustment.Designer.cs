@@ -62,6 +62,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
+            this.lblImage = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -237,6 +238,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.lblImage);
             this.groupBox5.Controls.Add(this.txtWaterBillAdjustment);
             this.groupBox5.Controls.Add(this.label1);
             this.groupBox5.Controls.Add(this.label11);
@@ -496,6 +498,22 @@
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
             // 
+            // lblImage
+            // 
+            this.lblImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblImage.AutoSize = true;
+            this.lblImage.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblImage.ForeColor = System.Drawing.Color.White;
+            this.lblImage.Location = new System.Drawing.Point(20, 224);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(86, 15);
+            this.lblImage.TabIndex = 89;
+            this.lblImage.Text = "View Ledger";
+            this.lblImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblImage.Click += new System.EventHandler(this.lblImage_Click);
+            // 
             // frmInvestigationAdjustment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,5 +582,6 @@
         internal System.Windows.Forms.TextBox txtWaterBillAdjustment;
         private System.Windows.Forms.Label label1;
         private MySql.Data.MySqlClient.MySqlDataAdapter mySqlDataAdapter1;
+        internal System.Windows.Forms.Label lblImage;
     }
 }

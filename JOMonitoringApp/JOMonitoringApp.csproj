@@ -307,6 +307,12 @@
     <Compile Include="Views\Config\frmConfiguration.Designer.cs">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Customers\frmCustomerLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customers\frmCustomerLedger.Designer.cs">
+      <DependentUpon>frmCustomerLedger.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Dashboard\ucDashboardSummaryView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -585,6 +591,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Config\frmConfiguration.resx">
       <DependentUpon>frmConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customers\frmCustomerLedger.resx">
+      <DependentUpon>frmCustomerLedger.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Dashboard\ucDashboardSummaryView.resx">
       <DependentUpon>ucDashboardSummaryView.cs</DependentUpon>

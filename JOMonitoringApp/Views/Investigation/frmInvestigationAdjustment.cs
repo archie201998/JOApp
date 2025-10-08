@@ -1,6 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.Customers;
 using JOMonitoringApp.Views.PromptBox;
 using Mysqlx.Crud;
 using System;
@@ -290,6 +291,11 @@ namespace JOMonitoringApp.Views.Investigation
         private void groupBox4_Enter(object sender, EventArgs e)
         {
           
+        }
+
+        private void lblImage_Click(object sender, EventArgs e)
+        {
+            _ = new frmCustomerLedger().ShowDialog();
         }
     }
 }

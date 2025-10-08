@@ -338,3 +338,4 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/JOMonitoringApp/Views/Customer/frmCustomerLedger.cs

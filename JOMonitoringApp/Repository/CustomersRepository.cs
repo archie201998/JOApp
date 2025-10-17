@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using JOMonitoringApp.Interface;
+﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
 using Org.BouncyCastle.Tls.Crypto.Impl;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 internal class CustomersRepository : ICustomersRepository
 {
@@ -311,5 +312,26 @@ internal class CustomersRepository : ICustomersRepository
         string query = $"SELECT SUM(Amount) As Amount FROM txn_PaymentDetailsOthers WHERE or_number = @or_number";
         return int.Parse(sqlGenericCommands.ExecuteScalar(query, parameters));
 
+    }
+
+    public SqlDataReader LoadLedgerByCustomerId(int customerId, DateTime from, DateTime to)
+    {
+        SqlConnection conn = new SqlConnection("Server=192.168.18.201;Database=dbs_JBCSPagadian;User id=sa;Password=Pamana#777;");
+        SqlCommand cmd = new SqlCommand(@"
+        SELECT * 
+        FROM vue_LedgerViewFinalWCons 
+        WHERE CustomerId = @CustomerId 
+          AND txnDate BETWEEN @From AND @To", conn);
+
+        cmd.Parameters.AddWithValue("@CustomerId", customerId);
+        cmd.Parameters.AddWithValue("@From", from);
+        cmd.Parameters.AddWithValue("@To", to);
+
+        cmd.CommandTimeout = 120;
+
+        conn.Open();
+        // Important: CommandBehavior.CloseConnection makes sure 
+        // the connection closes when the reader is disposed
+        return cmd.ExecuteReader(CommandBehavior.CloseConnection);
     }
 }

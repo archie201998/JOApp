@@ -15,15 +15,14 @@ namespace JOMonitoringApp.Views.Investigation
 {
     public partial class frmInvestigationApprovalForm : Form
     {
-        private int _investigationId;   
-        private int _jobOrderId;
+        private int totalSeconds = 300; 
+        private int remainingSeconds = 300;
+        private int maxPanelWidth = 0;
 
-        public frmInvestigationApprovalForm(int investigationId, int jobOrderId)
+        public frmInvestigationApprovalForm()
         {
             InitializeComponent();
-            _investigationId = investigationId;
-            _jobOrderId = jobOrderId;
-
+            maxPanelWidth = panelTimer.Width;
         }
 
         private void btnApproved_Click(object sender, EventArgs e)
@@ -31,8 +30,6 @@ namespace JOMonitoringApp.Views.Investigation
             string approvalMessage = txtMessage.Text.Trim();
             var investigationModel = new InvestigationModel
             {
-                InvestigationId = _investigationId,
-                JobOrderId = _jobOrderId,
                 ApprovalMessage = approvalMessage
             };
             bool result = Factory.InvestigationRepository().InsertApprovalMessage(investigationModel);
@@ -40,30 +37,18 @@ namespace JOMonitoringApp.Views.Investigation
             if (result)
             {
                 Helper.MessageBoxSuccess("Investigation has been approved.");
-                _ = Factory.InvestigationRepository().UpdateStatus(_investigationId, 4);
-                _ = Factory.JobOrdersRepository().UpdateStatus(_jobOrderId, 4);
                 Close();
             }
         }
 
         private void btnDisapproved_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtMessage.Text.Trim()))
-            {
-                Helper.MessageBoxError("Please provide a reason for disapproval.");
-                _ = Factory.InvestigationRepository().UpdateStatus(_investigationId, 5);
-                return;
-            }
+
         }
 
         private void frmInvestigationApprovalForm_Load(object sender, EventArgs e)
         {
-            txtMessage.Text = Factory.InvestigationRepository().GetApprovalMessage(_investigationId);
-            //admin view
-            label2.Visible = Helper.UserId == 15;
-            label3.Visible = Helper.UserId == 15;
-            label2.Text = $"Job Order ID: {_jobOrderId}";
-            label3.Text = $"Investigation ID: {_investigationId}";
+           
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -74,6 +59,55 @@ namespace JOMonitoringApp.Views.Investigation
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void approveTimer_Tick(object sender, EventArgs e)
+        {
+            remainingSeconds--;
+
+            if (remainingSeconds <= 0)
+            {
+                approveTimer.Stop();
+                remainingSeconds = 0;
+            }
+
+            UpdateDisplay();
+            UpdatePanelColor();
+            UpdatePanelWidth();
+        }
+
+        private void UpdatePanelWidth()
+        {
+            float percentage = (float)remainingSeconds / totalSeconds;
+            int newWidth = (int)(maxPanelWidth * percentage);
+
+            // Ensure minimum width of 1 pixel
+            if (newWidth < 1 && remainingSeconds > 0)
+                newWidth = 1;
+
+            panelTimer.Width = newWidth;
+        }
+
+        private void UpdateDisplay()
+        {
+            int minutes = remainingSeconds / 60;
+            int seconds = remainingSeconds % 60;
+        }
+
+        private void UpdatePanelColor()
+        {
+            if (remainingSeconds <= 80)
+            {
+                panelTimer.BackColor = Color.Tomato; 
+            }
+            else if (remainingSeconds <= 150)
+            {
+                panelTimer.BackColor = Color.Orange; 
+            }
+            else
+            {
+                panelTimer.BackColor = Color.DodgerBlue;
+            }
         }
     }
 }

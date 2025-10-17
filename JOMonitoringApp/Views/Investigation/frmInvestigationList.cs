@@ -117,7 +117,6 @@ namespace JOMonitoringApp.Views.Investigation
                 int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
                 int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
 
-                _ = new frmInvestigationApprovalForm(investigationId, jobOrderId).ShowDialog();
                 return;
             }
 

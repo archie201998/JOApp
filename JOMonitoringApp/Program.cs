@@ -1,4 +1,5 @@
 ﻿using JOMonitoringApp.Views.Config;
+using JOMonitoringApp.Views.Customers;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.Materials;
 using System;
@@ -16,7 +17,7 @@ namespace JOMonitoringApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm());
+            Application.Run(new frmInvestigationApprovalForm());
         }
     }
 }

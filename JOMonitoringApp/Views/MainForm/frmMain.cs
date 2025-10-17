@@ -736,6 +736,9 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             else
             {
+                _ = new frmInvestigationApprovalForm().ShowDialog();
+
+
                 if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
                     using (TransactionScope scope = new TransactionScope())

@@ -98,7 +98,6 @@ namespace JOMonitoringApp.Repository
 
             return dataTable;
         }
-
         public bool ExecuteNonQuery(string query, params object[][] parameters)
         {
             using (var connection = new MySqlConnection(connectionString))

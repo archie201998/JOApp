@@ -42,6 +42,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.lblImage = new System.Windows.Forms.Label();
             this.txtWaterBillAdjustment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -62,7 +63,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
-            this.lblImage = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -258,6 +258,23 @@
             this.groupBox5.Size = new System.Drawing.Size(616, 254);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
+            // 
+            // lblImage
+            // 
+            this.lblImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblImage.AutoSize = true;
+            this.lblImage.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblImage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.lblImage.ForeColor = System.Drawing.Color.White;
+            this.lblImage.Location = new System.Drawing.Point(20, 224);
+            this.lblImage.Name = "lblImage";
+            this.lblImage.Size = new System.Drawing.Size(86, 15);
+            this.lblImage.TabIndex = 89;
+            this.lblImage.Text = "View Ledger";
+            this.lblImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblImage.Visible = false;
+            this.lblImage.Click += new System.EventHandler(this.lblImage_Click);
             // 
             // txtWaterBillAdjustment
             // 
@@ -497,22 +514,6 @@
             this.mySqlDataAdapter1.InsertCommand = null;
             this.mySqlDataAdapter1.SelectCommand = null;
             this.mySqlDataAdapter1.UpdateCommand = null;
-            // 
-            // lblImage
-            // 
-            this.lblImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblImage.AutoSize = true;
-            this.lblImage.BackColor = System.Drawing.Color.DodgerBlue;
-            this.lblImage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.lblImage.ForeColor = System.Drawing.Color.White;
-            this.lblImage.Location = new System.Drawing.Point(20, 224);
-            this.lblImage.Name = "lblImage";
-            this.lblImage.Size = new System.Drawing.Size(86, 15);
-            this.lblImage.TabIndex = 89;
-            this.lblImage.Text = "View Ledger";
-            this.lblImage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblImage.Click += new System.EventHandler(this.lblImage_Click);
             // 
             // frmInvestigationAdjustment
             // 

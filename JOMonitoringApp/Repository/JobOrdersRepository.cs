@@ -303,6 +303,21 @@ namespace JOMonitoringApp
             return count > 0;
         }
 
+        public DataTable CheckPossibleDuplicateDetails(string accountNumber, string particulars)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@account_number", DbType.String, accountNumber },
+                new object[] { "@particulars", DbType.String, $"%{particulars}%" }
+            };
+
+            string query = $"SELECT job_order_no FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0";
+
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
+
         public bool JONumberExist(string joNumber)
         {
             var parameters = new object[][]

@@ -4,6 +4,7 @@ using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.Materials;
 using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.PromptBox;
@@ -19,6 +20,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -33,6 +35,7 @@ namespace JOMonitoringApp.Views.MainForm
         private List<Keys> keySequence = new List<Keys>();
         private Timer updateTimer;
         bool updateLabelVisible = false;
+        private string existingJobOrderNo;
         private readonly frmSignIn _frmSignIn;
 
         public frmMain(frmSignIn frmSignIn)
@@ -283,6 +286,8 @@ namespace JOMonitoringApp.Views.MainForm
             toolStripFS.Enabled = adminMode ? true : Helper.UserHasPermission("FS");
             investigationsToolStripMenuItem.Enabled = adminMode ? true : Helper.UserHasPermission("TRANSACTION_INVESTIGATION");
             timer_investigator.Enabled = Helper.UserHasPermission("INVESTIGATION_NOTIFICATION");
+
+            checkRequest.Enabled = Helper.UserHasPermission("APPROVED_DISAPPROVED");
 
             if (Helper.temporaryAdminMode)
             {
@@ -651,6 +656,7 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
         private bool CheckPossibleDuplicateEntry()
+
         {
             string accountNumber = string.Join("-", new[] { ucJoborder.txtAcc1.Text, ucJoborder.txtAcc2.Text, ucJoborder.txtAcc3.Text, ucJoborder.txtAcc4.Text }.Select(x => x.Trim()));
 
@@ -658,14 +664,17 @@ namespace JOMonitoringApp.Views.MainForm
                 ucJoborder.clBoxParticulars.CheckedItems.Cast<object>().Select(x => x.ToString().Trim())
             );
 
-            bool recordFound = Factory.JobOrdersRepository().CheckPossibleDuplicate(accountNumber, particulars);
+            DataTable duplicateDetails = Factory.JobOrdersRepository().CheckPossibleDuplicateDetails(accountNumber, particulars);
 
-            if (recordFound)
+            if (duplicateDetails.Rows.Count >= 1)
             {
-                if (Helper.MessageBoxWarningConfirm("Similar Job Order Details are found in the database. Do you want to proceed?"))
-                    return false;
-                else
+                existingJobOrderNo = duplicateDetails.Rows[0]["job_order_no"].ToString();
+                if (Helper.MessageBoxWarningConfirm($"WARNING : You already created the job order no. [{existingJobOrderNo}] for this customer and particular. Do you want to proceed?"))
+                {
                     return true;
+                }
+                else
+                    return false;
             }
 
             return false;
@@ -723,6 +732,32 @@ namespace JOMonitoringApp.Views.MainForm
             ButtonSaveTrigger();
         }
 
+        private bool MakeRequest(string requestType)
+        {
+            string requestDetails = string.Empty;
+            if (requestType == "Add")
+                requestDetails = $"Requested to add a possible duplicate entry for J.O No. {existingJobOrderNo} for Account No. {ucJoborder.txtAccountNumber.Text} - {ucJoborder.txtAccountName.Text}";
+
+            else if (requestType == "Update")
+                requestDetails = $"Requested to update an accomplished J.O [{ucJoborder.txtJONumber.Text}] Account No. {ucJoborder.txtAccountNumber.Text} - {ucJoborder.txtAccountName.Text}";
+            else
+                requestDetails = $"Requested to deleted record J.O [{existingJobOrderNo}].";
+           
+
+            bool requestSent = Factory.RequestRepository().CreateRequest(RequestModel(requestDetails));
+            int requestId = Factory.RequestRepository().GetLastInsertedID(Helper.UserId);   
+
+            _ = new frm_WaitingScreen(requestId).ShowDialog();
+
+            if (Helper.RequestApproved)
+            {
+                return true;
+            }
+            else
+                return false;
+        }
+
+
         internal bool SaveData()
         {
             //check input error.
@@ -733,11 +768,11 @@ namespace JOMonitoringApp.Views.MainForm
             }
             //check duplicate entry
             if (CheckPossibleDuplicateEntry())
-                return false;
+            {
+                return MakeRequest("Add");
+            }
             else
             {
-                _ = new frmInvestigationApprovalForm().ShowDialog();
-
 
                 if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                 {
@@ -766,6 +801,16 @@ namespace JOMonitoringApp.Views.MainForm
             return false;
         }
 
+        private RequestModel RequestModel(string requestDetails)
+        {
+            return new RequestModel
+            {
+                Status = 0, 
+                Details = requestDetails,
+                RequestedBy = lblCurrentUser.Text,  
+                CreatedBy = Helper.UserId
+            };
+        }
 
         private bool InsertJobOrderParticulars(int jobOrderId)
         {
@@ -1000,18 +1045,49 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void dgJobOrders_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Helper.temporaryAdminMode || Helper.UserHasPermission("DELETE_JOB_ORDER"))
-            {
-                if (e.KeyCode == Keys.Delete)
-                {
-                    if (dgJobOrders.SelectedRows.Count > 0)
-                    {
-                        var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
-                                                      "Confirm Delete",
-                                                      MessageBoxButtons.YesNo,
-                                                      MessageBoxIcon.Warning);
+            //if (Helper.temporaryAdminMode || Helper.UserHasPermission("DELETE_JOB_ORDER"))
+            //{
+            //    if (e.KeyCode == Keys.Delete)
+            //    {
+            //        if (dgJobOrders.SelectedRows.Count > 0)
+            //        {
+            //            var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
+            //                                          "Confirm Delete",
+            //                                          MessageBoxButtons.YesNo,
+            //                                          MessageBoxIcon.Warning);
 
-                        if (confirm == DialogResult.Yes)
+            //            if (confirm == DialogResult.Yes)
+            //            {
+            //                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+            //                int userId = Helper.UserId;
+            //                bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
+
+            //                if (deletedSuccessfully)
+            //                {
+            //                    Helper.MessageBoxSuccess("J.O Successfully deleted.");
+            //                    LoadJobOrdersAsync();
+            //                    ResetInputForm();
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (dgJobOrders.SelectedRows.Count > 0)
+                {
+                    var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
+                                                    "Confirm Delete",
+                                                    MessageBoxButtons.YesNo,
+                                                    MessageBoxIcon.Warning);
+
+
+
+                    if (confirm == DialogResult.Yes)
+                    {
+                        existingJobOrderNo = dgJobOrders.SelectedRows[0].Cells["id"].Value.ToString();
+                        if (MakeRequest("Delete"))
                         {
                             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
                             int userId = Helper.UserId;
@@ -1025,6 +1101,8 @@ namespace JOMonitoringApp.Views.MainForm
                             }
                         }
                     }
+                    else
+                        return;
                 }
             }
 
@@ -1097,38 +1175,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
 
-        private void investigationDataToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (dgJobOrders.SelectedRows.Count > 0)
-            {
-                try
-                {
-                    int selectedJobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                    string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
-                    string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();
-                    string accountNumber = dgJobOrders.SelectedRows[0].Cells["account_number"].Value.ToString();
-                    string address = dgJobOrders.SelectedRows[0].Cells["address"].Value.ToString();
-                    string status = dgJobOrders.SelectedRows[0].Cells["status"].Value.ToString();
-                    string particular = dgJobOrders.SelectedRows[0].Cells["particular"].Value.ToString();
 
-                    var frmInvestigation = new frmInvestigation();
-                    frmInvestigation.ShowDialog();
-                }
-                catch (Exception ex)
-                {
-                    Helper.MessageBoxError($"Error retrieving selected row data: {ex.Message}");
-                }
-            }
-            else
-            {
-                Helper.MessageBoxWarning("No row is selected.");
-            }
-        }
 
-        private void printFormToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1206,6 +1254,23 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxSuccess("No investigation data for this particular job order.");
             }
         
+        }
+
+        private void checkRequest_Tick(object sender, EventArgs e)
+        {
+            DataTable dtNewRequests = Factory.RequestRepository().GetRequestsByStatus(0);
+            if (dtNewRequests.Rows.Count > 0)
+            {
+                checkRequest.Enabled = false;
+                _ = new frmInvestigationApprovalForm(dtNewRequests).ShowDialog();
+                checkRequest.Enabled = true;    
+            }
+
+        }
+
+        private void dgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

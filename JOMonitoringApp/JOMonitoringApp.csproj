@@ -254,6 +254,7 @@
     <Compile Include="Interface\IParticularsRepository.cs" />
     <Compile Include="Interface\IPermissions.cs" />
     <Compile Include="Interface\IRepository.cs" />
+    <Compile Include="Interface\IRequestRepository.cs" />
     <Compile Include="Interface\IRoleHasPermission.cs" />
     <Compile Include="Interface\IRolesRepository.cs" />
     <Compile Include="Interface\IStatusRepository.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Model\MaterialsModel.cs" />
     <Compile Include="Model\ParticularsModel.cs" />
     <Compile Include="Model\PermissionsModel.cs" />
+    <Compile Include="Model\RequestModel.cs" />
     <Compile Include="Model\RoleHasPermissionModel.cs" />
     <Compile Include="Model\RolesModel.cs" />
     <Compile Include="Model\StatusModel.cs" />
@@ -291,6 +293,7 @@
     <Compile Include="Repository\MaterialsRepository.cs" />
     <Compile Include="Repository\ParticularsRepository.cs" />
     <Compile Include="Repository\PermissionsRepository.cs" />
+    <Compile Include="Repository\RequestRepository.cs" />
     <Compile Include="Repository\RoleHasPermissionRepository.cs" />
     <Compile Include="Repository\RolesRepository.cs" />
     <Compile Include="Repository\StatusRepository.cs" />
@@ -396,6 +399,12 @@
     </Compile>
     <Compile Include="Views\JobOrder\ucJoborder.Designer.cs">
       <DependentUpon>ucJoborder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainForm\Approval\frm_WaitingScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm\Approval\frm_WaitingScreen.Designer.cs">
+      <DependentUpon>frm_WaitingScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm\frmDeepSearchFilter.cs">
       <SubType>Form</SubType>
@@ -526,6 +535,8 @@
     <None Include="Resources\icons8-circled-x-24.png" />
     <None Include="Resources\icons8-check-24.png" />
     <None Include="Resources\icons8-check-14.png" />
+    <None Include="Resources\icons8-approve.gif" />
+    <None Include="Resources\icons8-close-window %281%29.gif" />
     <Content Include="Resources\icons8-delete-14.png" />
     <None Include="Resources\icons8-edit-image-24.png" />
     <None Include="Resources\icons8-ex-14.png" />
@@ -577,6 +588,8 @@
     <Content Include="Resources\icons824.png" />
     <Content Include="Resources\icons8241.png" />
     <Content Include="Resources\invisible-16px.png" />
+    <None Include="Resources\LoadingDotBlue.gif" />
+    <None Include="Resources\load-35.gif" />
     <Content Include="Resources\logo.ico" />
     <Content Include="Resources\logo.png" />
     <Content Include="Resources\new_system_logo.ico" />
@@ -636,6 +649,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\JobOrder\ucJoborder.resx">
       <DependentUpon>ucJoborder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm\Approval\frm_WaitingScreen.resx">
+      <DependentUpon>frm_WaitingScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm\frmDeepSearchFilter.resx">
       <DependentUpon>frmDeepSearchFilter.cs</DependentUpon>

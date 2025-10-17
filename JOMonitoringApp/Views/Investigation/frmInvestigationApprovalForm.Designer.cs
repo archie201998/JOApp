@@ -50,7 +50,7 @@
             this.btnDisapproved.ForeColor = System.Drawing.Color.White;
             this.btnDisapproved.Image = global::JOMonitoringApp.Properties.Resources.icons8_circled_x_24;
             this.btnDisapproved.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnDisapproved.Location = new System.Drawing.Point(486, 260);
+            this.btnDisapproved.Location = new System.Drawing.Point(486, 128);
             this.btnDisapproved.Name = "btnDisapproved";
             this.btnDisapproved.Size = new System.Drawing.Size(141, 32);
             this.btnDisapproved.TabIndex = 2;
@@ -68,7 +68,7 @@
             this.btnApproved.ForeColor = System.Drawing.Color.White;
             this.btnApproved.Image = global::JOMonitoringApp.Properties.Resources.icons8_check_24;
             this.btnApproved.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnApproved.Location = new System.Drawing.Point(339, 260);
+            this.btnApproved.Location = new System.Drawing.Point(339, 128);
             this.btnApproved.Name = "btnApproved";
             this.btnApproved.Size = new System.Drawing.Size(141, 32);
             this.btnApproved.TabIndex = 1;
@@ -80,19 +80,19 @@
             // txtMessage
             // 
             this.txtMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMessage.Location = new System.Drawing.Point(12, 101);
+            this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.Location = new System.Drawing.Point(12, 32);
             this.txtMessage.MaxLength = 999999;
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
-            this.txtMessage.Size = new System.Drawing.Size(615, 153);
+            this.txtMessage.Size = new System.Drawing.Size(615, 84);
             this.txtMessage.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 83);
+            this.label1.Location = new System.Drawing.Point(12, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 15);
             this.label1.TabIndex = 39;
@@ -103,7 +103,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(12, 279);
+            this.label2.Location = new System.Drawing.Point(12, 147);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 13);
             this.label2.TabIndex = 40;
@@ -115,7 +115,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(12, 260);
+            this.label3.Location = new System.Drawing.Point(12, 128);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 40;
@@ -126,7 +126,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 18);
+            this.label4.Location = new System.Drawing.Point(706, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 15);
             this.label4.TabIndex = 42;
@@ -136,7 +136,7 @@
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(12, 37);
+            this.textBox1.Location = new System.Drawing.Point(707, 129);
             this.textBox1.MaxLength = 999999;
             this.textBox1.Name = "textBox1";
             this.textBox1.PasswordChar = '*';
@@ -146,7 +146,6 @@
             // 
             // approveTimer
             // 
-            this.approveTimer.Enabled = true;
             this.approveTimer.Tick += new System.EventHandler(this.approveTimer_Tick);
             // 
             // panelTimer
@@ -161,7 +160,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 305);
+            this.ClientSize = new System.Drawing.Size(635, 168);
             this.Controls.Add(this.panelTimer);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox1);

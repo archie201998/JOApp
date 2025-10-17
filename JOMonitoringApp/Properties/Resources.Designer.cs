@@ -73,6 +73,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_approve {
+            get {
+                object obj = ResourceManager.GetObject("icons8_approve", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_check_14 {
             get {
                 object obj = ResourceManager.GetObject("icons8_check_14", resourceCulture);
@@ -106,6 +116,16 @@ namespace JOMonitoringApp.Properties {
         internal static System.Drawing.Bitmap icons8_clipboard_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8_clipboard_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_close_window__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8_close_window__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -607,6 +627,26 @@ namespace JOMonitoringApp.Properties {
             get {
                 object obj = ResourceManager.GetObject("Job_Order_e_Monitoring_System_User_Guide", resourceCulture);
                 return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap load_35 {
+            get {
+                object obj = ResourceManager.GetObject("load_35", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LoadingDotBlue {
+            get {
+                object obj = ResourceManager.GetObject("LoadingDotBlue", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -32,7 +32,7 @@ namespace AccountingSystem
         public static string CSDHead => ConfigurationManager.AppSettings["CSDHead"];
         public static string BranchManager => ConfigurationManager.AppSettings["BranchManager"];
 
-
+        public static bool RequestApproved = false;
 
         internal static decimal DefaultMarkup = 0.20m; // 20% markup for materials 
         internal static DateTime advanceSearchDateFrom = DateTime.Today;

@@ -18,37 +18,53 @@ namespace JOMonitoringApp.Views.Investigation
         private int totalSeconds = 300; 
         private int remainingSeconds = 300;
         private int maxPanelWidth = 0;
+        private DataTable dtRequests;
 
-        public frmInvestigationApprovalForm()
+        private int requestId;
+
+        public frmInvestigationApprovalForm(DataTable dtNewRequests)
         {
             InitializeComponent();
             maxPanelWidth = panelTimer.Width;
+
+            dtRequests = dtNewRequests;  
         }
 
         private void btnApproved_Click(object sender, EventArgs e)
         {
-            string approvalMessage = txtMessage.Text.Trim();
-            var investigationModel = new InvestigationModel
-            {
-                ApprovalMessage = approvalMessage
-            };
-            bool result = Factory.InvestigationRepository().InsertApprovalMessage(investigationModel);
-            
-            if (result)
-            {
-                Helper.MessageBoxSuccess("Investigation has been approved.");
+            bool approved = Factory.RequestRepository().UpdateRequestStatus(requestId, 1);
+
+            if (approved)
                 Close();
-            }
         }
 
         private void btnDisapproved_Click(object sender, EventArgs e)
         {
-
+            bool approved = Factory.RequestRepository().UpdateRequestStatus(requestId, 2);
+            if (approved)
+                Close();
         }
 
         private void frmInvestigationApprovalForm_Load(object sender, EventArgs e)
         {
-           
+            foreach (DataRow row in dtRequests.Rows)
+            {
+                requestId = Convert.ToInt32(row["id"]);
+                string requestedBy = row["requested_by"].ToString();
+                string details = row["details"].ToString();
+                DateTime dateRequested = Convert.ToDateTime(row["created_at"]);
+
+
+                label3.Text = $"REQUESTED BY : {requestedBy.ToUpper()}";
+                label2.Text = $"DATE TIME : " + dateRequested.ToString("MMMM dd, yyyy HH:MM:ss").ToUpper();
+
+                approveTimer.Enabled = true;
+                txtMessage.Text = details; 
+
+
+                // Mark the request as seen
+                //Factory.RequestRepository().UpdateRequestStatus(requestId, 2);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -86,6 +102,12 @@ namespace JOMonitoringApp.Views.Investigation
                 newWidth = 1;
 
             panelTimer.Width = newWidth;
+
+            if (remainingSeconds == 0)
+            {
+                //Mark Request as Disapproved due to timeout    
+                this.Close();
+            }
         }
 
         private void UpdateDisplay()

@@ -35,7 +35,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label26 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.cmbxRowLimit = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,12 +48,18 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewBAMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.seeImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.wholePageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.investigatorCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recommendationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adjustmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -114,7 +120,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.cmbxRowLimit);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label7);
@@ -130,23 +136,24 @@
             this.panel1.Size = new System.Drawing.Size(1131, 30);
             this.panel1.TabIndex = 29;
             // 
-            // button3
+            // btnPrint
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Image = global::JOMonitoringApp.Properties.Resources.icons8_printer_16;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(1032, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 23);
-            this.button3.TabIndex = 47;
-            this.button3.Text = "Print";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrint.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Image = global::JOMonitoringApp.Properties.Resources.icons8_printer_16;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.Location = new System.Drawing.Point(1032, 3);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(96, 23);
+            this.btnPrint.TabIndex = 47;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.button3_Click);
             // 
             // cmbxRowLimit
             // 
@@ -294,6 +301,44 @@
             this.seeImageToolStripMenuItem.Text = "Image Attachments";
             this.seeImageToolStripMenuItem.Click += new System.EventHandler(this.seeImageToolStripMenuItem_Click);
             // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wholePageToolStripMenuItem,
+            this.investigatorCommentToolStripMenuItem,
+            this.recommendationToolStripMenuItem,
+            this.adjustmentToolStripMenuItem});
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 114);
+            // 
+            // wholePageToolStripMenuItem
+            // 
+            this.wholePageToolStripMenuItem.Name = "wholePageToolStripMenuItem";
+            this.wholePageToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.wholePageToolStripMenuItem.Text = "Whole Page";
+            this.wholePageToolStripMenuItem.Click += new System.EventHandler(this.wholePageToolStripMenuItem_Click);
+            // 
+            // investigatorCommentToolStripMenuItem
+            // 
+            this.investigatorCommentToolStripMenuItem.Name = "investigatorCommentToolStripMenuItem";
+            this.investigatorCommentToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.investigatorCommentToolStripMenuItem.Text = "Investigator Findings";
+            this.investigatorCommentToolStripMenuItem.Click += new System.EventHandler(this.investigatorCommentToolStripMenuItem_Click);
+            // 
+            // recommendationToolStripMenuItem
+            // 
+            this.recommendationToolStripMenuItem.Name = "recommendationToolStripMenuItem";
+            this.recommendationToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.recommendationToolStripMenuItem.Text = "Recommendation";
+            this.recommendationToolStripMenuItem.Click += new System.EventHandler(this.recommendationToolStripMenuItem_Click);
+            // 
+            // adjustmentToolStripMenuItem
+            // 
+            this.adjustmentToolStripMenuItem.Name = "adjustmentToolStripMenuItem";
+            this.adjustmentToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.adjustmentToolStripMenuItem.Text = "Adjustment";
+            this.adjustmentToolStripMenuItem.Click += new System.EventHandler(this.adjustmentToolStripMenuItem_Click);
+            // 
             // frmInvestigationList
             // 
             this.AcceptButton = this.btnSearch;
@@ -313,6 +358,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.r)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuStrip2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -334,9 +380,14 @@
         internal System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cmbxRowLimit;
         private System.Windows.Forms.Label label4;
-        internal System.Windows.Forms.Button button3;
+        internal System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem viewBAMToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem seeImageToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.ToolStripMenuItem wholePageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem investigatorCommentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recommendationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adjustmentToolStripMenuItem;
     }
 }

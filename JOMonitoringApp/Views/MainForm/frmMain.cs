@@ -56,7 +56,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             notifyIcon = new NotifyIcon();
             notifyIcon.Icon = SystemIcons.Application;
-            notifyIcon.Icon = new Icon("../../Resources/logo.ico");
+            //notifyIcon.Icon = new Icon("../../Resources/logo.ico");
             notifyIcon.BalloonTipTitle = "J.O. Monitoring App.";
             notifyIcon.Visible = true;
             notifyIcon.Text = "New Request";
@@ -804,35 +804,39 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError(ucJoborder.GetFormErrors());
                 return false;
             }
+
             //check duplicate entry
             if (CheckPossibleDuplicateEntry())
             {
-                return MakeRequest("Add");
-            }
-            else
-            {
-
-                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                // still insert even if duplicate found if user confirm to proceed
+                if (MakeRequest("Add"))
                 {
-                    using (TransactionScope scope = new TransactionScope())
+                    if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
                     {
-                        bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
-                        if (successInsert)
+                        using (TransactionScope scope = new TransactionScope())
                         {
-                            int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
-
-                            if (InsertJobOrderParticulars(jobOrderId))
+                            bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
+                            if (successInsert)
                             {
-                                scope.Complete();
-                                return true;
+                                int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
+
+                                if (InsertJobOrderParticulars(jobOrderId))
+                                {
+                                    scope.Complete();
+                                    return true;
+                                }
+                                else { return false; }
                             }
-                            else { return false; }
-                        }
-                        else
-                        {
-                            return false;
+                            else
+                            {
+                                return false;
+                            }
                         }
                     }
+                }
+                else
+                {
+                    return false;
                 }
             }
 
@@ -1191,7 +1195,7 @@ namespace JOMonitoringApp.Views.MainForm
             string jobOrderNumber = dgJobOrders.SelectedRows[0].Cells["job_order_no"].Value.ToString();
 
             _ = Factory.JOLogsRepository().Insert(Helper.LogJO("Printed", jobOrderId));
-            _ = new frmInvestigationReport(jobOrderId, jobOrderNumber).ShowDialog();
+            _ = new frmInvestigationReport(jobOrderId, jobOrderNumber, "FULL_REPORT").ShowDialog();
         }
 
         private void investigationsToolStripMenuItem_Click(object sender, EventArgs e)

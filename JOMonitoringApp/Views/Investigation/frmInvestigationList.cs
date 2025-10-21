@@ -23,7 +23,7 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.LoadFormIcon(this);
         }
 
-        private void InvestigationForm()
+        private void InvestigationForm(string whatToPrint)
         {
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
@@ -33,7 +33,7 @@ namespace JOMonitoringApp.Views.Investigation
             //Log Print
             _ = Factory.JOLogsRepository().Insert(Helper.LogJO("Printed", jobOrderId));
 
-            _ = new frmInvestigationReport(investigationId, jobOrderNumber).ShowDialog();
+            _ = new frmInvestigationReport(investigationId, jobOrderNumber, whatToPrint).ShowDialog();
         }
 
         private void dgInvestigations_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -138,8 +138,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            InvestigationForm();
-
+            contextMenuStrip2.Show(btnPrint, new Point(0, btnPrint.Height));
         }
 
         private void lblRecordCount_Click(object sender, EventArgs e)
@@ -188,6 +187,26 @@ namespace JOMonitoringApp.Views.Investigation
 
                 return;
             }
+        }
+
+        private void wholePageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm("FULL_REPORT");
+        }
+
+        private void investigatorCommentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm("INVESTIGATOR_COMMENT");
+        }
+
+        private void recommendationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm("RECOMMENDATION");
+        }
+
+        private void adjustmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm("ADJUSTMENT");
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Reflection.Emit;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
@@ -14,14 +15,16 @@ namespace JOMonitoringApp.Views.Reports
 
         private readonly int? _jobOrderId;
         private readonly string jobOrderNumber = string.Empty;
+        private readonly string whatToPrint = string.Empty;  
 
-        public frmInvestigationReport(int? jobOrderId, string jobOrderNumber)
+        public frmInvestigationReport(int? jobOrderId, string jobOrderNumber, string whatToPrint)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
 
             _jobOrderId = jobOrderId;
             this.jobOrderNumber = jobOrderNumber;
+            this.whatToPrint = whatToPrint;
         }
 
         private void frmInvestigation_Load(object sender, EventArgs e)
@@ -29,21 +32,105 @@ namespace JOMonitoringApp.Views.Reports
             txtJONo.Text = jobOrderNumber;
 
             if (!string.IsNullOrEmpty(txtJONo.Text))
-                LoadReport();
+            {
+                switch(whatToPrint)
+                {
+                    case "FULL_REPORT":
+                        LoadWholeReport();
+                        break;
+                    case "INVESTIGATOR_COMMENT":
+                        LoadInvestigatorCommentReport();
+                        break;
+                    case "RECOMMENDATION":
+                        LoadRecommendationReport();
+                        //LoadWholeReport();
+                        break;
+                    case "ADJUSTMENT":
+                        //LoadWholeReport();
+                        break;
+                }
+            }
+            
+        }
+
+        private void LoadRecommendationReport()
+        {
+            try
+            {
+                string jobOrderNumber = txtJONo.Text;
+                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\Investigation\\investigator-recommendation.rdlc";
+                Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
+                if (dictInvestigation.Count == 0)
+                {
+                    Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                    Close();
+                    return;
+                }
+
+
+                ReportParameter[] parameters = new ReportParameter[1];
+                parameters[0] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
+
+                reportViewer1.LocalReport.SetParameters(parameters);
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
+                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+                reportViewer1.ZoomMode = ZoomMode.Percent;
+                reportViewer1.RefreshReport();
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
+                Close();
+            }
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            LoadReport();
+            LoadWholeReport();
         }
 
-        private void LoadReport()
+        private void LoadInvestigatorCommentReport()
+        {
+            try
+            {
+                string jobOrderNumber = txtJONo.Text;
+                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\Investigation\\investigator-comment.rdlc";
+                Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
+                if (dictInvestigation.Count == 0)
+                {
+                    Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                    Close();
+                    return;
+                }
+
+
+                ReportParameter[] parameters = new ReportParameter[1];
+                parameters[0] = new ReportParameter("paramComments", dictInvestigation["investigator_comments"]);
+
+                reportViewer1.LocalReport.SetParameters(parameters);
+                reportViewer1.ProcessingMode = ProcessingMode.Local;
+                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+                reportViewer1.ZoomMode = ZoomMode.Percent;
+                reportViewer1.RefreshReport();
+
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
+                Close();
+            }
+        }
+
+        private void LoadWholeReport()
         {
             try
             {
                 string jobOrderNumber = txtJONo.Text;
 
-                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\investigation-form.rdlc";
+                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\Investigation\\investigation-form.rdlc";
                 reportViewer1.LocalReport.EnableExternalImages = true;
 
                 Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
@@ -136,7 +223,7 @@ namespace JOMonitoringApp.Views.Reports
                 reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
                 reportViewer1.ZoomMode = ZoomMode.Percent;
                 reportViewer1.RefreshReport();
-          
+
             }
             catch (Exception ex)
             {

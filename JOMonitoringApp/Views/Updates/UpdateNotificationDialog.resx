@@ -121,9 +121,8 @@
     <value>## Version 1.0.0.1
 
 ### New Features
-- Accomplished Job Orders can now be modified through the Approved and Disapproved modules.
 
-- Job Orders can now be deleted, subject to the approval of the System Administrator
+- Added functionality allowing users to choose specific sections of the investigator form to print. (e.g. print only investigator comment, recommendation, or the whole page)
 
 ### Improvements
 
@@ -132,6 +131,7 @@
 ### Bug Fixes
 
 - Fixed notification form not closing even after approved by another approver.
-</value>
+
+- Fixed bug insertion of duplicate job order failed to save even approved.</value>
   </data>
 </root>

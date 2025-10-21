@@ -6,6 +6,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
 using Twilio.TwiML.Voice;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
 {
@@ -124,6 +125,18 @@ namespace JOMonitoringApp
             string query = $"UPDATE {tableName} SET  status = @status WHERE id = @id";
 
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+        }
+
+        public DataTable GetRequestsByIDAndStatus(int requestId, int status)
+        {
+            var parameter = new object[][] {
+                new object[]{"@id", DbType.Int32, requestId},
+                new object[]{"@status", DbType.String, status},
+            };
+
+            string query = $"SELECT * FROM {tableName} WHERE id = @id AND status = @status";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameter);
         }
     }
 }

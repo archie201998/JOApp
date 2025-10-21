@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>266</ApplicationRevision>
+    <ApplicationRevision>272</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -352,11 +352,11 @@
     <Compile Include="Views\Investigation\frmInvestigationAdjustment.Designer.cs">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Investigation\frmInvestigationApprovalForm.cs">
+    <Compile Include="Views\MainForm\Approval\frmRequestApprovalForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Investigation\frmInvestigationApprovalForm.Designer.cs">
-      <DependentUpon>frmInvestigationApprovalForm.cs</DependentUpon>
+    <Compile Include="Views\MainForm\Approval\frmRequestApprovalForm.Designer.cs">
+      <DependentUpon>frmRequestApprovalForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Investigation\frmInvestigationForm.cs">
       <SubType>Form</SubType>
@@ -520,6 +520,13 @@
     <Compile Include="Views\SignIn\frmSignIn.Designer.cs">
       <DependentUpon>frmSignIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Updates\UpdateNotificationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Updates\UpdateNotificationDialog.Designer.cs">
+      <DependentUpon>UpdateNotificationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Updates\UpdateNotificationManager.cs" />
     <Compile Include="Views\Users\frmUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -527,6 +534,9 @@
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
     <Content Include="adjusted-system-icon.ico" />
+    <Content Include="changelog.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\btn-search.png" />
     <None Include="Resources\icons8-clipboard-48.png" />
     <None Include="Resources\icons8-continue-16.png" />
@@ -626,8 +636,8 @@
     <EmbeddedResource Include="Views\Investigation\frmInvestigationAdjustment.resx">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Investigation\frmInvestigationApprovalForm.resx">
-      <DependentUpon>frmInvestigationApprovalForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\MainForm\Approval\frmRequestApprovalForm.resx">
+      <DependentUpon>frmRequestApprovalForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationForm.resx">
       <DependentUpon>frmInvestigationForm.cs</DependentUpon>
@@ -709,6 +719,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\SignIn\frmSignIn.resx">
       <DependentUpon>frmSignIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Updates\UpdateNotificationDialog.resx">
+      <DependentUpon>UpdateNotificationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Users\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>

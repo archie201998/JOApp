@@ -117,7 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="approveTimer.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="changelogTextBox.Text" xml:space="preserve">
+    <value>## Version 1.0.0.1
+
+### New Features
+- Accomplished Job Orders can now be modified through the Approved and Disapproved modules.
+
+- Job Orders can now be deleted, subject to the approval of the System Administrator
+
+### Improvements
+
+- Added notification balloon when there is incoming request.
+
+### Bug Fixes
+
+- Fixed notification form not closing even after approved by another approver.
+</value>
+  </data>
 </root>

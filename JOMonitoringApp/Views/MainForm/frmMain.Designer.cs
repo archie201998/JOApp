@@ -110,6 +110,10 @@
             this.panelInputField = new System.Windows.Forms.Panel();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnRequestEdit = new System.Windows.Forms.Button();
+            this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextUpdate = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -129,6 +133,7 @@
             this.panel2.SuspendLayout();
             this.panelInputField.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.contextMenuStrip3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -521,6 +526,7 @@
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // toolTip1
             // 
@@ -654,6 +660,7 @@
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
             this.dgJobOrders.DoubleClick += new System.EventHandler(this.DgJobOrders_DoubleClick);
             this.dgJobOrders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgJobOrders_KeyDown);
+            this.dgJobOrders.DpiChangedAfterParent += new System.EventHandler(this.dgJobOrders_DpiChangedAfterParent);
             // 
             // panel3
             // 
@@ -845,20 +852,60 @@
             this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
             this.ucJoborder1.Name = "ucJoborder1";
             this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(450, 812);
+            this.ucJoborder1.Size = new System.Drawing.Size(450, 811);
             this.ucJoborder1.TabIndex = 0;
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.btnRequestEdit);
             this.panel4.Controls.Add(this.btnCancel);
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 812);
+            this.panel4.Location = new System.Drawing.Point(0, 811);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(450, 42);
+            this.panel4.Size = new System.Drawing.Size(450, 43);
             this.panel4.TabIndex = 5;
             this.panel4.Paint += new System.Windows.Forms.PaintEventHandler(this.panel4_Paint);
+            // 
+            // btnRequestEdit
+            // 
+            this.btnRequestEdit.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnRequestEdit.ContextMenuStrip = this.contextMenuStrip3;
+            this.btnRequestEdit.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnRequestEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRequestEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRequestEdit.ForeColor = System.Drawing.Color.White;
+            this.btnRequestEdit.Location = new System.Drawing.Point(9, 7);
+            this.btnRequestEdit.Name = "btnRequestEdit";
+            this.btnRequestEdit.Size = new System.Drawing.Size(88, 23);
+            this.btnRequestEdit.TabIndex = 15;
+            this.btnRequestEdit.Text = "Request >";
+            this.btnRequestEdit.UseVisualStyleBackColor = false;
+            this.btnRequestEdit.Visible = false;
+            this.btnRequestEdit.Click += new System.EventHandler(this.btnRequestEdit_Click);
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextUpdate,
+            this.contextDelete});
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(153, 48);
+            // 
+            // contextUpdate
+            // 
+            this.contextUpdate.Name = "contextUpdate";
+            this.contextUpdate.Size = new System.Drawing.Size(152, 22);
+            this.contextUpdate.Text = "Update Record";
+            this.contextUpdate.Click += new System.EventHandler(this.contextUpdate_Click);
+            // 
+            // contextDelete
+            // 
+            this.contextDelete.Name = "contextDelete";
+            this.contextDelete.Size = new System.Drawing.Size(152, 22);
+            this.contextDelete.Text = "Delete Record";
+            this.contextDelete.Click += new System.EventHandler(this.contextDelete_Click);
             // 
             // btnCancel
             // 
@@ -909,6 +956,7 @@
             // timer_investigator
             // 
             this.timer_investigator.Interval = 10000;
+            this.timer_investigator.Tick += new System.EventHandler(this.timer_investigator_Tick);
             // 
             // contextMenuStrip2
             // 
@@ -961,6 +1009,7 @@
             this.panel2.PerformLayout();
             this.panelInputField.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            this.contextMenuStrip3.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1054,5 +1103,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.Label lblSearchResult;
         private System.Windows.Forms.Timer checkRequest;
+        private System.Windows.Forms.Button btnRequestEdit;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
+        private System.Windows.Forms.ToolStripMenuItem contextUpdate;
+        private System.Windows.Forms.ToolStripMenuItem contextDelete;
     }
 }

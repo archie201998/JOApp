@@ -1,10 +1,13 @@
-﻿using JOMonitoringApp.Views.Config;
+﻿using JOMonitoringApp.Views;
+using JOMonitoringApp.Views.Config;
 using JOMonitoringApp.Views.Customers;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.Materials;
+using JOMonitoringApp.Views.Updates;
 using System;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace JOMonitoringApp
 {
@@ -18,6 +21,7 @@ namespace JOMonitoringApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            UpdateNotificationManager.CheckAndShowUpdateNotification();
             Application.Run(new frmSignIn());
         }
     }

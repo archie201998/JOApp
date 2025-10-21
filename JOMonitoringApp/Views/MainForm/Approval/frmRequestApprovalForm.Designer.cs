@@ -1,6 +1,6 @@
 ﻿namespace JOMonitoringApp.Views.Investigation
 {
-    partial class frmInvestigationApprovalForm
+    partial class frmRequestApprovalForm
     {
         /// <summary>
         /// Required designer variable.
@@ -39,6 +39,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.approveTimer = new System.Windows.Forms.Timer(this.components);
             this.panelTimer = new System.Windows.Forms.Panel();
+            this.status = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnDisapproved
@@ -156,6 +157,12 @@
             this.panelTimer.Size = new System.Drawing.Size(639, 5);
             this.panelTimer.TabIndex = 43;
             // 
+            // status
+            // 
+            this.status.Enabled = true;
+            this.status.Interval = 2000;
+            this.status.Tick += new System.EventHandler(this.status_Tick);
+            // 
             // frmInvestigationApprovalForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,5 +201,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer approveTimer;
         private System.Windows.Forms.Panel panelTimer;
+        private System.Windows.Forms.Timer status;
     }
 }

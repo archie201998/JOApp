@@ -13,6 +13,7 @@ namespace JOMonitoringApp.Interface
         bool CancelRequest(int requestId);
         bool CreateRequest(RequestModel requestModel);
         int GetLastInsertedID(byte userId);
+        DataTable GetRequestsByIDAndStatus(int requestId, int v);
         DataTable GetRequestsByStatus(int requestStatus);
         DataTable GetRequestStatusById(int requestId);
         bool UpdateRequestStatus(int requestId, int v);

@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
 {
-    public partial class frmInvestigationApprovalForm : Form
+    public partial class frmRequestApprovalForm : Form
     {
         private int totalSeconds = 300; 
         private int remainingSeconds = 300;
@@ -22,7 +22,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private int requestId;
 
-        public frmInvestigationApprovalForm(DataTable dtNewRequests)
+        public frmRequestApprovalForm(DataTable dtNewRequests)
         {
             InitializeComponent();
             maxPanelWidth = panelTimer.Width;
@@ -59,11 +59,8 @@ namespace JOMonitoringApp.Views.Investigation
                 label2.Text = $"DATE TIME : " + dateRequested.ToString("MMMM dd, yyyy HH:MM:ss").ToUpper();
 
                 approveTimer.Enabled = true;
-                txtMessage.Text = details; 
+                txtMessage.Text = details;
 
-
-                // Mark the request as seen
-                //Factory.RequestRepository().UpdateRequestStatus(requestId, 2);
             }
         }
 
@@ -129,6 +126,18 @@ namespace JOMonitoringApp.Views.Investigation
             else
             {
                 panelTimer.BackColor = Color.DodgerBlue;
+            }
+
+
+        }
+
+        private void status_Tick(object sender, EventArgs e)
+        {
+            DataTable stillExist = Factory.RequestRepository().GetRequestsByIDAndStatus(requestId, 0);
+
+            if (stillExist.Rows.Count == 0)
+            {
+                this.Close();
             }
         }
     }

@@ -1,0 +1,8 @@
+﻿## Version 1.0.0.1
+
+### New Features
+- Approved/Disapproved feature when updating and deleting records
+- Added button update and delete records when double clicking on a record in the DataGridView
+
+### Improvements
+### Bug Fixes

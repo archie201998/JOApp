@@ -38,13 +38,50 @@ namespace JOMonitoringApp.Views.MainForm
         private string existingJobOrderNo;
         private readonly frmSignIn _frmSignIn;
 
+
+        private NotifyIcon notifyIcon;
+
         public frmMain(frmSignIn frmSignIn)
         {
             InitializeComponent();
+            InitializeTrayIcon();
+
             Helper.LoadFormIcon(this);
             Helper.DatagridFullRowSelectStyle(dgJobOrders, true);
             ucJoborder = ucJoborder1;
             _frmSignIn = frmSignIn;
+        }
+
+        private void InitializeTrayIcon()
+        {
+            notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = SystemIcons.Application;
+            notifyIcon.Icon = new Icon("../../Resources/logo.ico");
+            notifyIcon.BalloonTipTitle = "J.O. Monitoring App.";
+            notifyIcon.Visible = true;
+            notifyIcon.Text = "New Request";
+
+            ContextMenuStrip contextMenu = new ContextMenuStrip();
+            contextMenu.Items.Add("Show", null, ShowApp);
+            contextMenu.Items.Add("Exit", null, ExitApp);
+            notifyIcon.ContextMenuStrip = contextMenu;
+            notifyIcon.DoubleClick += (s, e) => ShowApp(s, e);
+        }
+
+        private void ShowApp(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+        private void ExitApp(object sender, EventArgs e)
+        {
+            checkRequest?.Stop();
+            checkRequest?.Dispose();
+            notifyIcon.Visible = false;
+            notifyIcon.Dispose();
+            Application.Exit();
         }
 
         #region AutoUpdate Notifcation On Background
@@ -462,6 +499,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.gbAccountDetails.Enabled = shouldEnable;
             ucJoborder.gbIssuanceAndAssignment.Enabled = shouldEnable;
             ucJoborder.gbJODetails.Enabled = shouldEnable;
+            btnRequestEdit.Visible = true;
         }
 
 
@@ -554,7 +592,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountNumber.Clear();
             ucJoborder.txtAddress.Clear();
             ucJoborder.txtContact.Clear();
-
+            btnRequestEdit.Visible = false; 
             ValidatePermissions();
 
         }
@@ -1075,38 +1113,43 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (e.KeyCode == Keys.Delete)
             {
-                if (dgJobOrders.SelectedRows.Count > 0)
-                {
-                    var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
-                                                    "Confirm Delete",
-                                                    MessageBoxButtons.YesNo,
-                                                    MessageBoxIcon.Warning);
-
-
-
-                    if (confirm == DialogResult.Yes)
-                    {
-                        existingJobOrderNo = dgJobOrders.SelectedRows[0].Cells["id"].Value.ToString();
-                        if (MakeRequest("Delete"))
-                        {
-                            int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                            int userId = Helper.UserId;
-                            bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
-
-                            if (deletedSuccessfully)
-                            {
-                                Helper.MessageBoxSuccess("J.O Successfully deleted.");
-                                LoadJobOrdersAsync();
-                                ResetInputForm();
-                            }
-                        }
-                    }
-                    else
-                        return;
-                }
+                AttemptDeleteRecord();
             }
 
             return;
+        }
+
+        private void AttemptDeleteRecord()
+        {
+            if (dgJobOrders.SelectedRows.Count > 0)
+            {
+                var confirm = MessageBox.Show("Are you sure you want to delete the selected record?",
+                                                "Confirm Delete",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Warning);
+
+
+
+                if (confirm == DialogResult.Yes)
+                {
+                    existingJobOrderNo = dgJobOrders.SelectedRows[0].Cells["id"].Value.ToString();
+                    if (MakeRequest("Delete"))
+                    {
+                        int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+                        int userId = Helper.UserId;
+                        bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
+
+                        if (deletedSuccessfully)
+                        {
+                            Helper.MessageBoxSuccess("J.O Successfully deleted.");
+                            LoadJobOrdersAsync();
+                            ResetInputForm();
+                        }
+                    }
+                }
+                else
+                    return;
+            }
         }
 
         #endregion
@@ -1168,6 +1211,8 @@ namespace JOMonitoringApp.Views.MainForm
             LoadJobOrdersAsync();
             btnX.Visible = false;
             panel3.Visible = false;
+
+            ResetInputForm();
         }
 
         private void investigationToolStripMenuItem_Click_2(object sender, EventArgs e)
@@ -1256,19 +1301,62 @@ namespace JOMonitoringApp.Views.MainForm
         
         }
 
+        private void ShowNotification(string title, string message)
+        {
+            notifyIcon.ShowBalloonTip(5000, title, message, ToolTipIcon.Info);
+
+        }
         private void checkRequest_Tick(object sender, EventArgs e)
         {
             DataTable dtNewRequests = Factory.RequestRepository().GetRequestsByStatus(0);
             if (dtNewRequests.Rows.Count > 0)
             {
                 checkRequest.Enabled = false;
-                _ = new frmInvestigationApprovalForm(dtNewRequests).ShowDialog();
+                ShowNotification("New Request Received.", $"Open the application to view.");
+                _ = new frmRequestApprovalForm(dtNewRequests).ShowDialog();
                 checkRequest.Enabled = true;    
             }
 
         }
 
         private void dgJobOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnRequestEdit_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip3.Show(btnRequestEdit, 0, contextUpdate.Height);
+            contextMenuStrip3.Show(btnRequestEdit, 1, contextDelete.Height);
+        }
+
+        private void dgJobOrders_DpiChangedAfterParent(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextUpdate_Click(object sender, EventArgs e)
+        {
+            if (MakeRequest("Update"))
+            {
+                ucJoborder.gbStatusAndRemaarks.Enabled = true;
+                ucJoborder.gbAccountDetails.Enabled = true;
+                ucJoborder.gbIssuanceAndAssignment.Enabled = true;
+                ucJoborder.gbJODetails.Enabled = true;
+            }
+        }
+
+        private void contextDelete_Click(object sender, EventArgs e)
+        {
+            AttemptDeleteRecord();
+        }
+
+        private void timer_investigator_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
         {
 
         }

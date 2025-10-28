@@ -159,8 +159,8 @@ namespace JOMonitoringApp.Views.Investigation
             var model = new InvestigationModel
             {
                 Id = _investigationId,
-                imagePath = removeFirstImage ? string.Empty : folderPath + Path.GetFileName(_imageFilePath),
-                secondaryImagePath = removeSecondImage ? string.Empty : secondFolderPath + Path.GetFileName(_secondaryImageFilePath),
+                ImagePath = removeFirstImage ? string.Empty : folderPath + Path.GetFileName(_imageFilePath),
+                SecondaryImagePath = removeSecondImage ? string.Empty : secondFolderPath + Path.GetFileName(_secondaryImageFilePath),
              
             };
 
@@ -264,8 +264,8 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             Helper.MessageBoxSuccess("Image/s successfully updated.");
-            Helper.imagePath = _imageFilePath;
-            Helper.secondaryImagePath = _secondaryImageFilePath;    
+            Helper.ImagePath = _imageFilePath;
+            Helper.SecondaryImagePath = _secondaryImageFilePath;    
             this.Close();
         }
 
@@ -354,8 +354,8 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void frmInvestigationImageViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Helper.imagePath = _imageFilePath;
-            Helper.secondaryImagePath = _secondaryImageFilePath;
+            Helper.ImagePath = _imageFilePath;
+            Helper.SecondaryImagePath = _secondaryImageFilePath;
         }
 
         private void btnUpdateImage1_Click(object sender, EventArgs e)
@@ -394,7 +394,7 @@ namespace JOMonitoringApp.Views.Investigation
                             pictureBox1.Image = new Bitmap(tempImage);
                         }
                     }
-                    Helper.imagePath = _imageFilePath;
+                    Helper.ImagePath = _imageFilePath;
                     btnApproved.Enabled = true;
                     updateFirstImage = true;
                 }
@@ -438,7 +438,7 @@ namespace JOMonitoringApp.Views.Investigation
                             pictureBox2.Image = new Bitmap(tempImage);
                         }
                     }
-                    Helper.secondaryImagePath = _secondaryImageFilePath;
+                    Helper.SecondaryImagePath = _secondaryImageFilePath;
                     btnApproved.Enabled = true;
                     updateSecondImage = true;
                 }

@@ -24,8 +24,8 @@ namespace JOMonitoringApp.Model
         public string ApprovalMessage { get; set; }
         public string InvestigatorComments { get; set; }
         public string Recommendations { get; set; }
-        public string imagePath { get; set; }
-        public string secondaryImagePath { get; set; }
+        public string ImagePath { get; set; }
+        public string SecondaryImagePath { get; set; }
 
         //amount
         public decimal WaterBill { get; set; }

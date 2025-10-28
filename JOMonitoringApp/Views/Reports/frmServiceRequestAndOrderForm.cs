@@ -231,7 +231,7 @@ namespace JOMonitoringApp.Views.Reports
                 TransactionEvent = "Printed ",
                 DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
                 JobOrderId = jobOrderId,
-                UserId = Helper.UserId
+                UserId = Helper.CurrentUserID
             };
         }
     }

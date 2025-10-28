@@ -73,7 +73,7 @@ namespace JOMonitoringApp.Views.Particulars
             {
                 string particularName = ucParticulars.txtBoxParticular.Text;
                 string particularDescription = ucParticulars.txtParticularDescription.Text;
-                int currentUserId = Helper.UserId;
+                int currentUserId = Helper.CurrentUserID;
 
                 var particularModel = new ParticularsModel
                 {

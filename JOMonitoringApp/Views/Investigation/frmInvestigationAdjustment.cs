@@ -170,7 +170,7 @@ namespace JOMonitoringApp.Views.Investigation
             var investigationModel = new InvestigationModel
             {
                 Id = _frmInvestigationForm._investigationId,
-                UpdatedBy = Helper.UserId,
+                UpdatedBy = Helper.CurrentUserID,
                 AdjustmentParticular = cmbxParticular.Text,
                 WaterBill = Convert.ToDecimal(txtWaterBill.Text.Trim()),
                 WaterBillAdjustment = Convert.ToDecimal(txtWaterBillAdjustment.Text.Trim()),

@@ -5,6 +5,7 @@ using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Transactions;
@@ -388,37 +389,92 @@ namespace JOMonitoringApp
 
         public DataTable GetViewRecordsByParameters(string searchText, int rowFilter, int statusId, string particular, DateTime dateFrom, DateTime dateTo, int preparedBy, int accomplishedBy, bool onlyWithRemarks)
         {
-            var parameters = new object[][]
+
+            var parameters = new List<object[]>
             {
                 new object[] { "@search_text", DbType.String, $"%{searchText}%" },
-                new object[] { "@status_id", DbType.Int32, statusId},
-                new object[] { "@row_filter", DbType.Int32, rowFilter},
-                new object[] { "@particular", DbType.String, $"%{particular}%"},
-
-                //advance search parameters  
-                new object[] { "@date_from", DbType.String, dateFrom.ToString("yyyy-MM-dd")},
-                new object[] { "@date_to", DbType.String, dateTo.ToString("yyyy-MM-dd")},
-                new object[] { "@created_by", DbType.Int32, preparedBy},
-                new object[] { "@accomplished_by", DbType.Int32, accomplishedBy },
+                new object[] { "@status_id", DbType.Int32, statusId },
+                new object[] { "@row_filter", DbType.Int32, rowFilter },
+                new object[] { "@particular", DbType.String, $"%{particular}%" },
+                new object[] { "@date_from", DbType.Date, dateFrom },
+                new object[] { "@date_to", DbType.Date, dateTo },
+                new object[] { "@prepared_by", DbType.Int32, preparedBy },
+                new object[] { "@accomplished_by", DbType.Int32, accomplishedBy }
             };
 
-            string rowFilterValue = rowFilter == 0 ? string.Empty : $"LIMIT @row_filter";
-            string statusFilter = statusId == 5 ? string.Empty : $"AND status_id = @status_id";
-            string particularFilter = particular == "All Particulars" ? string.Empty : $"AND particular LIKE @particular";
-            string withRemarksFilter = onlyWithRemarks == true ? " AND remarks IS NOT NULL AND remarks <> '' " : string.Empty;
-            string preparedbyFilter = preparedBy == 0 ? string.Empty : "AND prepared_by_id = @created_by ";
-            string accomplishedByFilter = accomplishedBy == 0 ? string.Empty : "AND accomplished_by_id = @accomplished_by ";
+            var whereConditions = new List<string>
+            {
+                "is_deleted = 0",
+                "date BETWEEN @date_from AND @date_to"
+            };
 
-            string query = $"SELECT id, prepared_by_id, materials_issued_by_id, particular, status_id, job_order_no, account_number, account_name, address, or_number, amount, mris, mrs, war,  date, prepared_by, materials_issued_by, status, remarks FROM {viewTableName} " +
-                $"WHERE (job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text) {statusFilter} AND is_deleted = 0 {particularFilter} " +
-                $"AND date BETWEEN @date_from AND @date_to " +
-                $"{preparedbyFilter}" + 
-                $"{accomplishedByFilter}" +
-                $"{withRemarksFilter}" +
-                $"ORDER BY id DESC {rowFilterValue}";
+            // Add search text filter (using OR for multiple columns)
+            if (!string.IsNullOrWhiteSpace(searchText))
+            {
+                whereConditions.Add("(job_order_no LIKE @search_text OR account_number LIKE @search_text OR account_name LIKE @search_text)");
+            }
 
-            var dataTable = new DataTable();
-            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+            // Add status filter
+            if (statusId != 5)
+            {
+                whereConditions.Add("status_id = @status_id");
+            }
+
+            // Add particular filter
+            if (particular != "All Particulars" && !string.IsNullOrWhiteSpace(particular))
+            {
+                whereConditions.Add("particular LIKE @particular");
+            }
+
+            // Add remarks filter
+            if (onlyWithRemarks)
+            {
+                whereConditions.Add("remarks IS NOT NULL AND remarks <> ''");
+            }
+
+            // Add prepared by filter
+            if (preparedBy > 0)
+            {
+                whereConditions.Add("prepared_by_id = @prepared_by");
+            }
+
+            // Add accomplished by filter
+            if (accomplishedBy > 0)
+            {
+                whereConditions.Add("accomplished_by_id = @accomplished_by");
+            }
+
+            // Build the query
+            var whereClause = string.Join(" AND ", whereConditions);
+            var limitClause = rowFilter > 0 ? $" LIMIT @row_filter" : string.Empty;
+
+            string query = $@"
+            SELECT 
+                id, prepared_by_id, materials_issued_by_id, particular, 
+                status_id, job_order_no, account_number, account_name, 
+                address, or_number, amount, mris, mrs, war, date, 
+                prepared_by, materials_issued_by, status, remarks 
+            FROM {viewTableName}
+            WHERE {whereClause}
+            ORDER BY id DESC
+            {limitClause}";
+
+                var dataTable = new DataTable();
+                return mySqlGenericCommands.FillBySearch(query, dataTable, parameters.ToArray());
         }
     }
+
+    public class JobOrderSearchParameters
+    {
+        public string SearchText { get; set; } = string.Empty;
+        public int StatusId { get; set; }
+        public int RowFilter { get; set; }
+        public string Particular { get; set; } = string.Empty;
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public int PreparedBy { get; set; }
+        public int AccomplishedBy { get; set; }
+        public bool OnlyWithRemarks { get; set; }
+    }
+
 }

@@ -180,7 +180,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string accountName = txtAccountName.Text.Trim();
             string accountAddress = txtAddress.Text.Trim();
             string contact = txtContact.Text.Trim();
-            int createdBy = Helper.UserId;
+            int createdBy = Helper.CurrentUserID;
 
             return new CustomersModel()
             {
@@ -220,8 +220,8 @@ namespace JOMonitoringApp.Views.JobOrder
             {
                 TransactionEvent = Helper.LogMessage(isUpdate, txtJONumber.Text.Trim()) ,
                 DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
-                JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId) : jobOrderId,
-                UserId = Helper.UserId
+                JobOrderId = jobOrderId == 0 ? Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID) : jobOrderId,
+                UserId = Helper.CurrentUserID
             };
         }
 
@@ -239,7 +239,7 @@ namespace JOMonitoringApp.Views.JobOrder
             string MRS = txtMRSNumber.Text.Trim();
             string WAR = txtWARNumber.Text.Trim();
             string remarks = txtRemarks.Text.Trim();
-            int preparedById = Helper.UserId;
+            int preparedById = Helper.CurrentUserID;
             int? materialsIssuedById = cmbxMaterialsIssuedBy.SelectedIndex == -1 || cmbxMaterialsIssuedBy.SelectedValue == null ? 0 : Convert.ToInt32(cmbxMaterialsIssuedBy.SelectedValue);
             int? accomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 || cmbxAccomplishedBy.SelectedValue == null ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             int statusId = this.statusId;
@@ -265,7 +265,7 @@ namespace JOMonitoringApp.Views.JobOrder
                 MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
                 AccomplishedBy = accomplishedBy == 0 ? null : accomplishedBy,
                 StatusId = statusId,
-                UserId = Helper.UserId
+                UserId = Helper.CurrentUserID
             };
         }
 

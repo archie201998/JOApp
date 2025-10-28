@@ -38,7 +38,6 @@ namespace JOMonitoringApp.Views.MainForm
         private string existingJobOrderNo;
         private readonly frmSignIn _frmSignIn;
 
-
         private NotifyIcon notifyIcon;
 
         public frmMain(frmSignIn frmSignIn)
@@ -134,14 +133,14 @@ namespace JOMonitoringApp.Views.MainForm
             panel3.Visible = true;
             var searchResult = new StringBuilder();
 
-            string preparedBy = Helper.advanceSearchPreparedByName == string.Empty ? "EVERYONE" : Helper.advanceSearchPreparedByName;
-            string accomplishedBy = Helper.advanceSearchAccomplishedByName == string.Empty ? "EVERYONE" : Helper.advanceSearchAccomplishedByName;
+            string preparedBy = Helper.AdvanceSearchPreparedByName == string.Empty ? "EVERYONE" : Helper.AdvanceSearchPreparedByName;
+            string accomplishedBy = Helper.AdvanceSearchAccomplishedByName == string.Empty ? "EVERYONE" : Helper.AdvanceSearchAccomplishedByName;
 
             searchResult.Append($"FROM : {Helper.advanceSearchDateFrom.ToString("yyyy-MM-dd")}");
             searchResult.Append($"\nTO : {Helper.advanceSearchDateTo.ToString("yyyy-MM-dd")}");
             searchResult.Append($"\nPREPARED BY : {preparedBy}");
             searchResult.Append($"\nACCOMPLISHED BY : {accomplishedBy}");
-            searchResult.Append($"\nWITH REMARKS : {Helper.advanceSearchWithRemarks}\n");
+            searchResult.Append($"\nWITH REMARKS : {Helper.AdvanceSearchWithRemarks}\n");
 
             lblSearchResult.Text = searchResult.ToString();
         }
@@ -192,10 +191,11 @@ namespace JOMonitoringApp.Views.MainForm
                             particular,
                             Helper.advanceSearchDateFrom,
                             Helper.advanceSearchDateTo,
-                            Helper.advanceSearchPreparedBy,
-                            Helper.advanceSearchAccomplishedBy,
-                            Helper.advanceSearchWithRemarks
+                            Helper.AdvanceSearchPreparedBy,
+                            Helper.AdvanceSearchAccomplishedBy,
+                            Helper.AdvanceSearchWithRemarks
                         );
+
                     }
                     else
                     {
@@ -276,7 +276,7 @@ namespace JOMonitoringApp.Views.MainForm
             HelperLoadRecords.StatusCombobox(cmbxStatus);
             HelperLoadRecords.ParticularsCombobox(cmbxParticulars);
 
-            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.UserId);
+            Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.CurrentUserID);
             lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             lblUserRole.Text = userDict["role_name"].ToString().ToUpper();
             cmbxStatus.SelectedValue = 5;
@@ -516,7 +516,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (result.Equals(DialogResult.Yes))
             {
-                Helper.UserId = 0;
+                Helper.CurrentUserID = 0;
                 Helper.UserRoleId = 0;
                 Helper.temporaryAdminMode = false;
 
@@ -723,7 +723,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void InsertJobOrderToInvestigation()
         {
             string accountNumber = ucJoborder.txtAccountNumber.Text;
-            int jobOrderID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
+            int jobOrderID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
 
             var meterDetails = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
 
@@ -746,7 +746,7 @@ namespace JOMonitoringApp.Views.MainForm
                 MeterBrand = meterBrand,
                 MeterSize = meterSize,
                 MeterNumber = meterNumber,
-                CreatedBy = Helper.UserId
+                CreatedBy = Helper.CurrentUserID
             };
 
             if (ucJoborder.isUpdate)
@@ -783,7 +783,7 @@ namespace JOMonitoringApp.Views.MainForm
            
 
             bool requestSent = Factory.RequestRepository().CreateRequest(RequestModel(requestDetails));
-            int requestId = Factory.RequestRepository().GetLastInsertedID(Helper.UserId);   
+            int requestId = Factory.RequestRepository().GetLastInsertedID(Helper.CurrentUserID);   
 
             _ = new frm_WaitingScreen(requestId).ShowDialog();
 
@@ -796,7 +796,7 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
 
-        internal bool SaveData()
+        private bool SaveData()
         {
             //check input error.
             if (!ucJoborder.ValidateChildren())
@@ -805,42 +805,37 @@ namespace JOMonitoringApp.Views.MainForm
                 return false;
             }
 
-            //check duplicate entry
-            if (CheckPossibleDuplicateEntry())
+            bool InsertJobOrderAsync()
             {
-                // still insert even if duplicate found if user confirm to proceed
-                if (MakeRequest("Add"))
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
-                    {
-                        using (TransactionScope scope = new TransactionScope())
-                        {
-                            bool successInsert = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
-                            if (successInsert)
-                            {
-                                int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.UserId);
+                    bool isInsertSuccessful = Factory.JobOrdersRepository().Insert(ucJoborder.JobOrderModel());
 
-                                if (InsertJobOrderParticulars(jobOrderId))
-                                {
-                                    scope.Complete();
-                                    return true;
-                                }
-                                else { return false; }
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    return false;
+                    if (!isInsertSuccessful) return false;
+
+                    int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
+                    if (!InsertJobOrderParticulars(jobOrderId)) return false;
+
+                    scope.Complete();
+                    return true;
                 }
             }
 
-            return false;
+            if (CheckPossibleDuplicateEntry())
+            {
+                if (MakeRequest("Add"))
+                {
+                    if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                        return InsertJobOrderAsync();
+                }
+
+                return false;
+            }
+            else 
+            {
+                return InsertJobOrderAsync();
+            }
+
         }
 
         private RequestModel RequestModel(string requestDetails)
@@ -850,7 +845,7 @@ namespace JOMonitoringApp.Views.MainForm
                 Status = 0, 
                 Details = requestDetails,
                 RequestedBy = lblCurrentUser.Text,  
-                CreatedBy = Helper.UserId
+                CreatedBy = Helper.CurrentUserID
             };
         }
 
@@ -1140,7 +1135,7 @@ namespace JOMonitoringApp.Views.MainForm
                     if (MakeRequest("Delete"))
                     {
                         int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-                        int userId = Helper.UserId;
+                        int userId = Helper.CurrentUserID;
                         bool deletedSuccessfully = Factory.JobOrdersRepository().SoftDelete(jobOrderId, userId);
 
                         if (deletedSuccessfully)

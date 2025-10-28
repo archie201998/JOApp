@@ -98,7 +98,7 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxStatus.SelectedValue = 6;
             GetInvestigationRecords();
 
-            if (Helper.UserId == 15)
+            if (Helper.CurrentUserID == 15)
             {
                 dgInvestigations.MultiSelect = true;
             }

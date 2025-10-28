@@ -193,12 +193,12 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[27] = new ReportParameter("paramDateComplained", dictInvestigation["created_at"]);
 
                 // Load image from file path
-                string imagePath1 = dictInvestigation["image_path"];
-                string imagePath2 = dictInvestigation["secondary_image_path"];
-                if (File.Exists(imagePath1) || File.Exists(imagePath2))
+                string ImagePath1 = dictInvestigation["image_path"];
+                string ImagePath2 = dictInvestigation["secondary_image_path"];
+                if (File.Exists(ImagePath1) || File.Exists(ImagePath2))
                 {
-                    parameters[16] = new ReportParameter("paramImage1", $"file:///{imagePath1}");
-                    parameters[17] = new ReportParameter("paramImage2", $"file:///{imagePath2}");
+                    parameters[16] = new ReportParameter("paramImage1", $"file:///{ImagePath1}");
+                    parameters[17] = new ReportParameter("paramImage2", $"file:///{ImagePath2}");
                 }
                 else
                 {

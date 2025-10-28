@@ -44,22 +44,22 @@ namespace JOMonitoringApp.Views.MainForm
 
             dtpDateFrom.Value = Helper.advanceSearchDateFrom;
             dtpDateTo.Value = Helper.advanceSearchDateTo;
-            cmbxAccomplishedBy.SelectedValue = Helper.advanceSearchAccomplishedBy;
-            cmbxPreparedBy.SelectedValue = Helper.advanceSearchPreparedBy;
-            chbxJoWithRemarks.Checked = Helper.advanceSearchWithRemarks;
+            cmbxAccomplishedBy.SelectedValue = Helper.AdvanceSearchAccomplishedBy;
+            cmbxPreparedBy.SelectedValue = Helper.AdvanceSearchPreparedBy;
+            chbxJoWithRemarks.Checked = Helper.AdvanceSearchWithRemarks;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Helper.advanceSearchPreparedBy = cmbxPreparedBy.SelectedIndex == -1 || cmbxPreparedBy.SelectedValue == DBNull.Value ? 0 : Convert.ToInt32(cmbxPreparedBy.SelectedValue);
-            Helper.advanceSearchAccomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 || cmbxAccomplishedBy.SelectedValue == DBNull.Value ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
+            Helper.AdvanceSearchPreparedBy = cmbxPreparedBy.SelectedIndex == -1 || cmbxPreparedBy.SelectedValue == DBNull.Value ? 0 : Convert.ToInt32(cmbxPreparedBy.SelectedValue);
+            Helper.AdvanceSearchAccomplishedBy = cmbxAccomplishedBy.SelectedIndex == -1 || cmbxAccomplishedBy.SelectedValue == DBNull.Value ? 0 : Convert.ToInt32(cmbxAccomplishedBy.SelectedValue);
             Helper.advanceSearchDateFrom = dtpDateFrom.Value;
             Helper.advanceSearchDateTo = dtpDateTo.Value;
-            Helper.advanceSearchWithRemarks = chbxJoWithRemarks.Checked;
+            Helper.AdvanceSearchWithRemarks = chbxJoWithRemarks.Checked;
 
 
-            Helper.advanceSearchPreparedByName = cmbxPreparedBy.Text;
-            Helper.advanceSearchAccomplishedByName = cmbxAccomplishedBy.Text;
+            Helper.AdvanceSearchPreparedByName = cmbxPreparedBy.Text;
+            Helper.AdvanceSearchAccomplishedByName = cmbxAccomplishedBy.Text;
 
             this.Close();
         }

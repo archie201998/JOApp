@@ -351,14 +351,14 @@ namespace JOMonitoringApp.Views.Investigation
             string folderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
             string secondFolderPath = "\\\\" + Helper.ServerName + "\\InvestigationImage\\";
 
-            string _imagePath = string.IsNullOrEmpty(imageFilePath) ? string.Empty : folderPath + Path.GetFileName(imageFilePath);
-            string _secondaryImagePath = string.IsNullOrEmpty(secondaryImageFilePath) ? string.Empty : secondFolderPath + Path.GetFileName(secondaryImageFilePath);
+            string _ImagePath = string.IsNullOrEmpty(imageFilePath) ? string.Empty : folderPath + Path.GetFileName(imageFilePath);
+            string _SecondaryImagePath = string.IsNullOrEmpty(secondaryImageFilePath) ? string.Empty : secondFolderPath + Path.GetFileName(secondaryImageFilePath);
 
 
             if (Helper.attachLink)
             {
-                _imagePath = Helper.imageLink1;
-                _secondaryImagePath = Helper.imageLink2; 
+                _ImagePath = Helper.imageLink1;
+                _SecondaryImagePath = Helper.imageLink2; 
             }
 
             var model = new InvestigationModel
@@ -374,8 +374,8 @@ namespace JOMonitoringApp.Views.Investigation
                 DateOfInvestigation = cbxDateOfInvestigation.Checked ? (DateTime?)dtpDateInvestigated.Value : null,
                 ApprovalMessage = txtApprovalMessage.Text.Trim(),
                 Recommendations = txtRecommendations.Text.Trim(),
-                imagePath = _imagePath,
-                secondaryImagePath = _secondaryImagePath,
+                ImagePath = _ImagePath,
+                SecondaryImagePath = _SecondaryImagePath,
                 IsApproved = GetInvestigationStatus(),
                 AlternativeSource = txtAlternativeSource.Text.Trim(),
                 MeterBrand = txtMeterBrand.Text,
@@ -395,7 +395,7 @@ namespace JOMonitoringApp.Views.Investigation
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
                 InvestigatedBy = cmbxInvestigator.Text.Trim(),
-                UpdatedBy = Helper.UserId
+                UpdatedBy = Helper.CurrentUserID
             };
 
             return model;
@@ -451,8 +451,8 @@ namespace JOMonitoringApp.Views.Investigation
             else
             {
                 _ = new frmInvestigationImageViewer(imageFilePath, secondaryImageFilePath, _investigationId).ShowDialog();
-                imageFilePath = Helper.imagePath;
-                secondaryImageFilePath = Helper.secondaryImagePath;
+                imageFilePath = Helper.ImagePath;
+                secondaryImageFilePath = Helper.SecondaryImagePath;
                 lblImage.Text = imageFilePath == string.Empty ? "Attach Image" : "View Image";
 
                 lblImage.Text = string.IsNullOrEmpty(imageFilePath) ? "Attach Image" : (imageFilePath.StartsWith("http") ? "View Link" : "View Image");

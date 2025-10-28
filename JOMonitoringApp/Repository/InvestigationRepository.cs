@@ -126,8 +126,8 @@ namespace JOMonitoringApp
                 new object[] { "@date_of_investigation", DbType.DateTime, entity.DateOfInvestigation },
                 new object[] { "@investigator_comments", DbType.String, entity.InvestigatorComments },
                 new object[] { "@recommendations", DbType.String, entity.Recommendations },
-                new object[] { "@image_path", DbType.String, entity.imagePath },
-                new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
+                new object[] { "@image_path", DbType.String, entity.ImagePath },
+                new object[] { "@secondary_image_path", DbType.String, entity.SecondaryImagePath },
                 new object[] { "@is_approved", DbType.Int32, entity.IsApproved },
                 new object[] { "@approval_message", DbType.String, entity.ApprovalMessage },
                 new object[] { "@updated_by", DbType.Int32, entity.UpdatedBy },
@@ -478,8 +478,8 @@ namespace JOMonitoringApp
             var parameters = new object[][]
             {
                 new object[] { "@id", DbType.Int32, entity.Id },
-                new object[] { "@image_path", DbType.String, entity.imagePath },
-                new object[] { "@secondary_image_path", DbType.String, entity.secondaryImagePath },
+                new object[] { "@image_path", DbType.String, entity.ImagePath },
+                new object[] { "@secondary_image_path", DbType.String, entity.SecondaryImagePath },
             }; 
 
             string query = $@"UPDATE {tableName} 

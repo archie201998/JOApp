@@ -23,7 +23,7 @@ namespace AccountingSystem
         public static string imageLink1; 
         public static string imageLink2;
 
-        public static byte UserId { get; internal set; }
+        public static byte CurrentUserID { get; internal set; }
         public static int UserRoleId { get; internal set; }
         internal static bool temporaryAdminMode = false;
         internal static string changes;
@@ -34,23 +34,21 @@ namespace AccountingSystem
 
         public static bool RequestApproved = false;
 
-        internal static decimal DefaultMarkup = 0.20m; // 20% markup for materials 
+        internal static decimal DefaultMarkup = 0.20m; 
         internal static DateTime advanceSearchDateFrom = DateTime.Today;
         internal static DateTime advanceSearchDateTo = DateTime.Today;
-        internal static int advanceSearchPreparedBy;
-        internal static int advanceSearchAccomplishedBy;
-        internal static bool advanceSearchWithRemarks = false;
+        internal static int AdvanceSearchPreparedBy;
+        internal static int AdvanceSearchAccomplishedBy;
+        internal static bool AdvanceSearchWithRemarks = false;
 
-        internal static string advanceSearchPreparedByName;
-        internal static string advanceSearchAccomplishedByName;
+        internal static string AdvanceSearchPreparedByName;
+        internal static string AdvanceSearchAccomplishedByName;
 
 
         //Default
-        internal static decimal illegalConnectionFee = 6000;
-        internal static decimal illegalConnectionFeeVAT = 720;
+        internal static decimal IllegalConnectionFee = 6000;
+        internal static decimal IllegalConnectionFeeVAT = 720;
         
-        
-
         //temporary until such time may viable ng paraan.
         internal static string previousReading;
         internal static string presentReading;
@@ -61,8 +59,8 @@ namespace AccountingSystem
         internal static string adjustmentParticular;
 
 
-        internal static string imagePath;
-        internal static string secondaryImagePath;
+        internal static string ImagePath;
+        internal static string SecondaryImagePath;
 
 
         public static Color StatusColor(string status)
@@ -378,7 +376,7 @@ namespace AccountingSystem
             var dictUser = new Dictionary<string, string>();
             try
             {
-                dictUser = Factory.UsersRepository().GetRecordByID(UserId);
+                dictUser = Factory.UsersRepository().GetRecordByID(CurrentUserID);
                 string prefix = dictUser["prefix"];
                 string suffix = dictUser["suffix"];
 
@@ -765,20 +763,16 @@ namespace AccountingSystem
 
         public static void ShowRecordTimestampMod(DataGridView dataGridView, ToolStripLabel lblCreatedAt, ToolStripLabel lblUpdatedAt)
         {
-            // Check if a row is selected
             if (dataGridView.Columns.Contains("created_at") && dataGridView.Columns.Contains("updated_at") && dataGridView.SelectedRows.Count > 0)
             {
-                // Retrieve the values from the "created_at" and "updated_at" columns
                 var createdAtValue = dataGridView.CurrentRow.Cells["created_at"].Value;
                 var updatedAtValue = dataGridView.CurrentRow.Cells["updated_at"].Value;
 
-                // Convert values to string (or handle null values appropriately)
                 lblCreatedAt.Text = !string.IsNullOrWhiteSpace(createdAtValue.ToString()) ? Convert.ToDateTime(createdAtValue).ToShortDateString() : string.Empty;
                 lblUpdatedAt.Text = !string.IsNullOrWhiteSpace(updatedAtValue.ToString()) ? Convert.ToDateTime(updatedAtValue).ToShortDateString() : string.Empty;
             }
             else
             {
-                // If no row is selected, you can handle it accordingly
                 lblCreatedAt.Text = string.Empty;
                 lblUpdatedAt.Text = string.Empty;
             }
@@ -821,10 +815,9 @@ namespace AccountingSystem
 
         internal static bool IsInvestigator()
         {
-            var userRecord = Factory.UsersRepository().GetRecordByID(Helper.UserId);
+            var userRecord = Factory.UsersRepository().GetRecordByID(Helper.CurrentUserID);
             return userRecord != null && userRecord.ContainsKey("roles_id") && (userRecord["roles_id"] == "5" || userRecord["roles_id"] == "1");
         }
-
 
         internal static string InvestigationStatusText(int statusId)
         {
@@ -845,18 +838,6 @@ namespace AccountingSystem
                 default:
                     return "Unknown";
             }
-        }
-
-        internal static decimal Domestic(int consumption)
-        {
-
-
-
-
-
-
-            return 0;
-
         }
 
         public static Dictionary<int, double> AnyWaterRates(int consumption)
@@ -1002,7 +983,7 @@ namespace AccountingSystem
                 TransactionEvent = transaction,
                 DateAndTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),
                 JobOrderId = jobOrderId,
-                UserId = Helper.UserId
+                UserId = Helper.CurrentUserID
             };
         }
     }

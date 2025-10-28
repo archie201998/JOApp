@@ -22,13 +22,10 @@ namespace JOMonitoringApp.Views.Database
             Thread.Sleep(2000);
             cts = new CancellationTokenSource();
 
-            // Start spinner animation in the label
             var spinnerTask = ShowSpinner(lblStatus, cts.Token);
 
-            // Run the batch file
             await Task.Run(() => RunBatchFile());
 
-            // Stop spinner and update label
             cts.Cancel();
             await spinnerTask;
             lblStatus.Text = "Batch file completed!";
@@ -37,7 +34,7 @@ namespace JOMonitoringApp.Views.Database
         private void RunBatchFile()
         {
             Process process = new Process();
-            process.StartInfo.FileName = @"\\192.168.18.93\J.O e-Monitoring\mysql_backup.bat";
+            process.StartInfo.FileName = @"\\PWCServerPag\J.O e-Monitoring\mysql_backup.bat";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();

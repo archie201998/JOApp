@@ -68,7 +68,6 @@
             // 
             this.btnDisapproved.BackColor = System.Drawing.Color.Red;
             this.btnDisapproved.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDisapproved.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnDisapproved.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnDisapproved.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDisapproved.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,7 +128,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.btnDisapproved;
             this.ClientSize = new System.Drawing.Size(535, 256);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label1);
@@ -138,7 +136,6 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picApproved);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_WaitingScreen";
@@ -147,9 +144,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Request Sent";
             this.Load += new System.EventHandler(this.frm_WaitingScreen_Load);
-            this.InputLanguageChanging += new System.Windows.Forms.InputLanguageChangingEventHandler(this.frm_WaitingScreen_InputLanguageChanging);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_WaitingScreen_KeyDown);
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frm_WaitingScreen_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDisapproved)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picApproved)).EndInit();

@@ -1,6 +1,5 @@
 ﻿using AccountingSystem;
 using Google.Apis.Auth.OAuth2;
-using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Investigation;
 using K4os.Compression.LZ4.Encoders;
 using System;
@@ -16,11 +15,8 @@ using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.MainForm.Approval
 {
-
     public partial class frm_WaitingScreen : Form
     {
-
-        private List<Keys> keySequence = new List<Keys>();
         int requestId = 0;
         int secondsRemaining = 5;
 
@@ -103,45 +99,6 @@ namespace JOMonitoringApp.Views.MainForm.Approval
                 timer1.Stop();
                 this.Close();
             }
-        }
-
-        private void frm_WaitingScreen_KeyPress(object sender, KeyPressEventArgs e)
-        {
-
-        }
-
-        private void frm_WaitingScreen_KeyDown(object sender, KeyEventArgs e)
-        {
-            keySequence.Add(e.KeyCode);
-
-            if (keySequence.Count > 6)
-            {
-                keySequence.RemoveAt(0);
-            }
-
-            if (keySequence.SequenceEqual(new List<Keys> { Keys.Z, Keys.Z, Keys.X, Keys.X }))
-            {
-
-                DialogResult pinMatch = new frmPassKey().ShowDialog();
-
-                if (DialogResult.OK == pinMatch)
-                {
-                    bool approved = Factory.RequestRepository().UpdateRequestStatus(requestId, 1);
-                    if (approved)
-                        Helper.MessageBoxSuccess("Approved by System Admin.");
-                }
-                else {
-                    Helper.MessageBoxSuccess("Invalid PIN.");
-                    Close();
-                    return;
-                }
-                keySequence.Clear();
-            }
-        }
-
-        private void frm_WaitingScreen_InputLanguageChanging(object sender, InputLanguageChangingEventArgs e)
-        {
-
         }
     }
 }

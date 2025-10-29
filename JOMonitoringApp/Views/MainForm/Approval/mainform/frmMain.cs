@@ -912,7 +912,7 @@ namespace JOMonitoringApp.Views.MainForm
                 keySequence.RemoveAt(0);
             }
 
-            if (keySequence.SequenceEqual(new List<Keys> { Keys.Down, Keys.Down, Keys.Up, Keys.Up }))
+            if (keySequence.SequenceEqual(new List<Keys> { Keys.D1, Keys.D2, Keys.D3, Keys.D1, Keys.D2, Keys.D3 }))
             {
 
                 DialogResult pinMatch = new frmPassKey().ShowDialog();
@@ -921,7 +921,7 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     ValidatePermissions();
                 }
-                keySequence.Clear();
+
             }
         }
 

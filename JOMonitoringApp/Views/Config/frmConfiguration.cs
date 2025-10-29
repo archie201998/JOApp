@@ -28,8 +28,6 @@ namespace JOMonitoringApp.Views.Config
 
         private void txtIpAddress_TextChanged(object sender, EventArgs e)
         {
-
-
             ToggleConnectivityIcon(true, btnShowHide);
         }
 

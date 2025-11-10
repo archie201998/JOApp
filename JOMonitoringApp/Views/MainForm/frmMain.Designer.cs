@@ -41,6 +41,8 @@
             this.toolStripMaterials = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRolesAndPermissions = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSignatories = new System.Windows.Forms.ToolStripMenuItem();
+            this.configurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripJOSummary = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,6 +122,7 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkRequest = new System.Windows.Forms.Timer(this.components);
+            this.checkSMSConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -192,7 +195,8 @@
             this.toolStripParticulars,
             this.toolStripMaterials,
             this.toolStripRolesAndPermissions,
-            this.toolStripSignatories});
+            this.toolStripSignatories,
+            this.configurationToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -231,6 +235,21 @@
             this.toolStripSignatories.Size = new System.Drawing.Size(207, 22);
             this.toolStripSignatories.Text = "Report Signatories";
             this.toolStripSignatories.Click += new System.EventHandler(this.toolStripSignatories_Click);
+            // 
+            // configurationToolStripMenuItem
+            // 
+            this.configurationToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sMSToolStripMenuItem});
+            this.configurationToolStripMenuItem.Name = "configurationToolStripMenuItem";
+            this.configurationToolStripMenuItem.Size = new System.Drawing.Size(207, 22);
+            this.configurationToolStripMenuItem.Text = "SMS";
+            this.configurationToolStripMenuItem.Click += new System.EventHandler(this.configurationToolStripMenuItem_Click);
+            // 
+            // sMSToolStripMenuItem
+            // 
+            this.sMSToolStripMenuItem.Name = "sMSToolStripMenuItem";
+            this.sMSToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.sMSToolStripMenuItem.Text = "SMS";
             // 
             // reportToolStripMenuItem
             // 
@@ -311,7 +330,7 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -319,7 +338,8 @@
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userManualToolStripMenuItem,
-            this.applicationFilesToolStripMenuItem});
+            this.applicationFilesToolStripMenuItem,
+            this.checkSMSConnectionToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
             this.helpToolStripMenuItem.Text = "Help";
@@ -327,13 +347,13 @@
             // userManualToolStripMenuItem
             // 
             this.userManualToolStripMenuItem.Name = "userManualToolStripMenuItem";
-            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.userManualToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.userManualToolStripMenuItem.Text = "User Guide";
             // 
             // applicationFilesToolStripMenuItem
             // 
             this.applicationFilesToolStripMenuItem.Name = "applicationFilesToolStripMenuItem";
-            this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.applicationFilesToolStripMenuItem.Text = "Application Files";
             this.applicationFilesToolStripMenuItem.Click += new System.EventHandler(this.applicationFilesToolStripMenuItem_Click);
             // 
@@ -969,6 +989,13 @@
             this.checkRequest.Interval = 5000;
             this.checkRequest.Tick += new System.EventHandler(this.checkRequest_Tick);
             // 
+            // checkSMSConnectionToolStripMenuItem
+            // 
+            this.checkSMSConnectionToolStripMenuItem.Name = "checkSMSConnectionToolStripMenuItem";
+            this.checkSMSConnectionToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.checkSMSConnectionToolStripMenuItem.Text = "Check SMS Connection";
+            this.checkSMSConnectionToolStripMenuItem.Click += new System.EventHandler(this.checkSMSConnectionToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -1107,5 +1134,8 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.ToolStripMenuItem contextUpdate;
         private System.Windows.Forms.ToolStripMenuItem contextDelete;
+        private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sMSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem checkSMSConnectionToolStripMenuItem;
     }
 }

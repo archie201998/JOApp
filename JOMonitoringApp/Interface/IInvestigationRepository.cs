@@ -27,5 +27,6 @@ namespace JOMonitoringApp.Interface
 
         bool UpdateImage(InvestigationModel investigationModel);
         Dictionary<string, string> GetImagePathByInvestigationId(int investigationId);
+        DataTable GetApprovedInvestigations();
     }
 }

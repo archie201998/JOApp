@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
 using System.Collections.Generic;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
 {
@@ -10,6 +11,7 @@ namespace JOMonitoringApp
     {
         private readonly GenericCommands mySqlGenericCommands;
         private readonly string tableName = "tbl_investigation";
+        private readonly string VIEW_APPROVE_INVESTIGATION = "view_approved_investigation";
 
         public InvestigationRepository(GenericCommands mySqlGenericCommands)
         {
@@ -513,6 +515,14 @@ namespace JOMonitoringApp
                 return recordDictionary;
             }
             return recordDictionary;
+        }
+
+        public DataTable GetApprovedInvestigations()
+        {
+            string query = $"SELECT account_number, account_name, job_order_no, contact_number, nature_of_complaint FROM {VIEW_APPROVE_INVESTIGATION} ORDER BY id DESC LIMIT 10";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable);
         }
     }
 }

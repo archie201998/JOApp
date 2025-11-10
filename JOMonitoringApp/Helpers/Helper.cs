@@ -557,7 +557,7 @@ namespace AccountingSystem
 
         private static string ErrorMessageForDuplicateEntry(string fieldName)
         {
-            return $"{fieldName} Alreadly in the database.";
+            return $"{fieldName} alreadly in the database.";
         }
 
         private static string ErrorMessageForEmpty(string fieldName)

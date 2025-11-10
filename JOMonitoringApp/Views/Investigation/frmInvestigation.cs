@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Views.Investigation.SMS;
 using JOMonitoringApp.Views.PromptBox;
 using System;
 using System.Drawing;
@@ -42,6 +43,16 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            bool isConnected = true; 
+            if (isConnected)
+            {
+                ShowMdiChildForm(new frmAdvisory());
+            }
+            else {
+                ShowMdiChildForm(new frmSMSConfig());
+            }
+
+            
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)

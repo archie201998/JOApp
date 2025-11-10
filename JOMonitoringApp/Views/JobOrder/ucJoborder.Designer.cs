@@ -78,6 +78,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.gbStatusAndRemaarks = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
             this.gbJODetails.SuspendLayout();
@@ -213,6 +214,7 @@
             // 
             // gbAccountDetails
             // 
+            this.gbAccountDetails.Controls.Add(this.textBox1);
             this.gbAccountDetails.Controls.Add(this.txtContact);
             this.gbAccountDetails.Controls.Add(this.label18);
             this.gbAccountDetails.Controls.Add(this.cbxNA);
@@ -245,10 +247,12 @@
             this.txtContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtContact.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContact.Location = new System.Drawing.Point(155, 124);
+            this.txtContact.Location = new System.Drawing.Point(197, 124);
+            this.txtContact.MaxLength = 10;
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(200, 21);
+            this.txtContact.Size = new System.Drawing.Size(157, 21);
             this.txtContact.TabIndex = 7;
+            this.txtContact.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label18
             // 
@@ -662,6 +666,19 @@
             this.gbStatusAndRemaarks.TabStop = false;
             this.gbStatusAndRemaarks.Text = "STATUS AND REMARKS";
             // 
+            // textBox1
+            // 
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(155, 124);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(36, 21);
+            this.textBox1.TabIndex = 34;
+            this.textBox1.Text = "+63";
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -742,5 +759,6 @@
         internal System.Windows.Forms.RadioButton radCancel;
         internal System.Windows.Forms.RadioButton radProcessing;
         internal System.Windows.Forms.RadioButton radPending;
+        internal System.Windows.Forms.TextBox textBox1;
     }
 }

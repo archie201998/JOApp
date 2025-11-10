@@ -3,6 +3,7 @@ using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Admin;
 using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
+using JOMonitoringApp.Views.Investigation.SMS;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.Materials;
@@ -15,6 +16,7 @@ using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
@@ -39,6 +41,8 @@ namespace JOMonitoringApp.Views.MainForm
         private readonly frmSignIn _frmSignIn;
 
         private NotifyIcon notifyIcon;
+
+        private int lastInsertedJOID = 0;
 
         public frmMain(frmSignIn frmSignIn)
         {
@@ -618,7 +622,7 @@ namespace JOMonitoringApp.Views.MainForm
             }
         }
 
-        //This will save job order details into investigation if the particular selected is investigation
+        //This will save job order details into investigation table if the particular selected is investigation or has investigation 
         private bool CheckIfInvestigation()
         {
             foreach (var item in ucJoborder.clBoxParticulars.CheckedItems)
@@ -639,13 +643,14 @@ namespace JOMonitoringApp.Views.MainForm
 
                 if (success)
                 {
-                    LogJOTransaction();
                     if (CheckIfInvestigation())
                         InsertJobOrderToInvestigation(); //<-- Save to investigation table
 
                     string message = ucJoborder.isUpdate
                         ? "Job Order details successfully updated."
                         : "Job Order successfully created.";
+
+                    LogJOTransaction();
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
                     LoadJobOrdersAsync();
@@ -723,7 +728,7 @@ namespace JOMonitoringApp.Views.MainForm
         private void InsertJobOrderToInvestigation()
         {
             string accountNumber = ucJoborder.txtAccountNumber.Text;
-            int jobOrderID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
+            lastInsertedJOID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
 
             var meterDetails = Factory.CustomersRepository().GetCustomerMeterDetails(accountNumber);
 
@@ -735,7 +740,7 @@ namespace JOMonitoringApp.Views.MainForm
 
             var investigation = new InvestigationModel
             {
-                JobOrderId = ucJoborder.isUpdate ? ucJoborder.jobOrderId : jobOrderID,
+                JobOrderId = ucJoborder.isUpdate ? ucJoborder.jobOrderId : lastInsertedJOID,
                 JobOrderNo = ucJoborder.txtJONumber.Text,
                 CustomerName = ucJoborder.txtAccountName.Text,
                 CustomerAddress = ucJoborder.txtAddress.Text,
@@ -813,8 +818,8 @@ namespace JOMonitoringApp.Views.MainForm
 
                     if (!isInsertSuccessful) return false;
 
-                    int jobOrderId = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
-                    if (!InsertJobOrderParticulars(jobOrderId)) return false;
+                    lastInsertedJOID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
+                    if (!InsertJobOrderParticulars(lastInsertedJOID)) return false;
 
                     scope.Complete();
                     return true;
@@ -1359,5 +1364,25 @@ namespace JOMonitoringApp.Views.MainForm
         {
 
         }
+
+        private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmSMSConfig().ShowDialog(); 
+        }
+
+        private void checkSMSConnectionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"SMS will be sent through {GetComPort()} with header '{GetDefaultHeader()}'");
+        }
+        public static string GetComPort()
+        {
+            return ConfigurationManager.AppSettings["SMS_ComPort"] ?? "COM1";
+        }
+
+        public static string GetDefaultHeader()
+        {
+            return ConfigurationManager.AppSettings["SMS_DefaultHeader"] ?? "";
+        }
+
     }
 }

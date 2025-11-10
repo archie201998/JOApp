@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>278</ApplicationRevision>
+    <ApplicationRevision>279</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -352,6 +352,18 @@
     <Compile Include="Views\Investigation\frmInvestigationAdjustment.Designer.cs">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\Investigation\SMS\frmAdvisory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\SMS\frmAdvisory.Designer.cs">
+      <DependentUpon>frmAdvisory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Investigation\SMS\frmSMSConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Investigation\SMS\frmSMSConfig.Designer.cs">
+      <DependentUpon>frmSMSConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm\Approval\frmRequestApprovalForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -641,6 +653,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Investigation\frmInvestigationAdjustment.resx">
       <DependentUpon>frmInvestigationAdjustment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\SMS\frmAdvisory.resx">
+      <DependentUpon>frmAdvisory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Investigation\SMS\frmSMSConfig.resx">
+      <DependentUpon>frmSMSConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm\Approval\frmRequestApprovalForm.resx">
       <DependentUpon>frmRequestApprovalForm.cs</DependentUpon>

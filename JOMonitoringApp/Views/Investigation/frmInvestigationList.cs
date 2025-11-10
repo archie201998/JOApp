@@ -165,26 +165,29 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (e.KeyCode == Keys.Delete)
             {
-                if (Helper.MessageBoxConfirmDelete(dgInvestigations.SelectedRows.Count))
+                if (Helper.temporaryAdminMode)
                 {
-                    var investigationModel = new List<InvestigationModel>();
-
-                    foreach (DataGridViewRow row in dgInvestigations.SelectedRows)
+                    if (Helper.MessageBoxConfirmDelete(dgInvestigations.SelectedRows.Count))
                     {
-                        int id = Convert.ToInt32(row.Cells["id"].Value);
-                        investigationModel.Add(new InvestigationModel { Id = id });
-                    }
+                        var investigationModel = new List<InvestigationModel>();
 
-                    bool isDeleted = Factory.InvestigationRepository().Delete(investigationModel);
+                        foreach (DataGridViewRow row in dgInvestigations.SelectedRows)
+                        {
+                            int id = Convert.ToInt32(row.Cells["id"].Value);
+                            investigationModel.Add(new InvestigationModel { Id = id });
+                        }
 
-                    if (isDeleted)
-                    {
-                        Helper.MessageBoxSuccess("Investigation/s has been deleted.");
-                        OnLoad();
-                        return;
+                        bool isDeleted = Factory.InvestigationRepository().Delete(investigationModel);
+
+                        if (isDeleted)
+                        {
+                            Helper.MessageBoxSuccess("Investigation/s has been deleted.");
+                            OnLoad();
+                            return;
+                        }
                     }
                 }
-
+                
                 return;
             }
         }

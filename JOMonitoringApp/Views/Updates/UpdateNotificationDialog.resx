@@ -118,20 +118,22 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="changelogTextBox.Text" xml:space="preserve">
-    <value>## Version 1.0.0.1
+    <value>## Version 1.0.0.2 (November 13, 2025 -3:00pm)
 
 ### New Features
 
-- Added functionality allowing users to choose specific sections of the investigator form to print. (e.g. print only investigator comment, recommendation, or the whole page)
+- Zoom in and out of investigator image (via windows default image viewer)
+- Sending of SMS notification for Investigation result.
 
 ### Improvements
 
-- Added notification balloon when there is incoming request.
+### Adjustments
+
+- Updated SROF account no. order 
+
+
 
 ### Bug Fixes
-
-- Fixed notification form not closing even after approved by another approver.
-
-- Fixed bug insertion of duplicate job order failed to save even approved.</value>
+</value>
   </data>
 </root>

@@ -344,12 +344,14 @@ namespace JOMonitoringApp
             dgInvestigations.Columns["nature_of_complaint"].HeaderText = "COMPLAINT";
             dgInvestigations.Columns["job_order_no"].HeaderText = "J.O. NO.";
             dgInvestigations.Columns["account_number"].HeaderText = "ACCOUNT NUMBER";
+            dgInvestigations.Columns["contact_number"].HeaderText = "CONTACT";
             dgInvestigations.Columns["customer_name"].HeaderText = "CUSTOMER";
             dgInvestigations.Columns["customer_address"].HeaderText = "ADDRESS";
             dgInvestigations.Columns["created_at"].HeaderText = "DATED COMPLAINED";
             dgInvestigations.Columns["date_of_investigation"].HeaderText = "DATE INVESTIGATED";
             dgInvestigations.Columns["date_of_investigation"].DefaultCellStyle.Format = "yyyy-MM-dd";
             dgInvestigations.Columns["created_at"].DefaultCellStyle.Format = "yyyy-MM-dd";
+            
 
             dgInvestigations.Columns["nature_of_complaint"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dgInvestigations.Columns["customer_name"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;

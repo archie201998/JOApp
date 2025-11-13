@@ -53,6 +53,7 @@
             this.investigatorCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recommendationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addToRecipientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
             this.panel3.SuspendLayout();
@@ -77,6 +78,7 @@
             // 
             this.dgInvestigations.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgInvestigations.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgInvestigations.ContextMenuStrip = this.contextMenuStrip1;
             this.dgInvestigations.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgInvestigations.Location = new System.Drawing.Point(0, 0);
             this.dgInvestigations.MultiSelect = false;
@@ -283,9 +285,10 @@
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewBAMToolStripMenuItem,
-            this.seeImageToolStripMenuItem});
+            this.seeImageToolStripMenuItem,
+            this.addToRecipientToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(179, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
             // 
             // viewBAMToolStripMenuItem
             // 
@@ -309,7 +312,7 @@
             this.recommendationToolStripMenuItem,
             this.adjustmentToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 114);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 92);
             // 
             // wholePageToolStripMenuItem
             // 
@@ -338,6 +341,13 @@
             this.adjustmentToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.adjustmentToolStripMenuItem.Text = "Adjustment";
             this.adjustmentToolStripMenuItem.Click += new System.EventHandler(this.adjustmentToolStripMenuItem_Click);
+            // 
+            // addToRecipientToolStripMenuItem
+            // 
+            this.addToRecipientToolStripMenuItem.Name = "addToRecipientToolStripMenuItem";
+            this.addToRecipientToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addToRecipientToolStripMenuItem.Text = "Add to recipient";
+            this.addToRecipientToolStripMenuItem.Click += new System.EventHandler(this.addToRecipientToolStripMenuItem_Click);
             // 
             // frmInvestigationList
             // 
@@ -389,5 +399,6 @@
         private System.Windows.Forms.ToolStripMenuItem investigatorCommentToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recommendationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adjustmentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addToRecipientToolStripMenuItem;
     }
 }

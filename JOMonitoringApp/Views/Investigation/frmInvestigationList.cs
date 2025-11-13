@@ -111,26 +111,29 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void dgInvestigations_DoubleClick(object sender, EventArgs e)
         {
-            if (Helper.UserHasPermission("INVESTIGATION_APPROVAL"))
-            {
-                // Get investigationId and jobOrderId from the selected row
-                int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-                int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
+            //if (Helper.UserHasPermission("INVESTIGATION_APPROVAL"))
+            //{
+            //    // Get investigationId and jobOrderId from the selected row
+            //    int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+            //    int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
 
-                return;
-            }
+            //    return;
+            //}
 
             ViewDetails();
         }
 
         private void ViewDetails()
         {
+            int rowIndex = dgInvestigations.CurrentRow.Index;   
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
             var investigationForm = new frmInvestigationForm(investigationId);
-            investigationForm.Show();
+            investigationForm.ShowDialog();
             GetInvestigationRecords();
+            dgInvestigations.CurrentCell = dgInvestigations.Rows[rowIndex].Cells[2];
+
         }
-            
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             GetInvestigationRecords();
@@ -211,5 +214,29 @@ namespace JOMonitoringApp.Views.Investigation
         {
             InvestigationForm("ADJUSTMENT");
         }
+
+        private void addToRecipientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Get investigationId and jobOrderId from the selected row
+            int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
+            int jobOrderId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["job_orders_id"].Value);
+            string jobOrderNumber = dgInvestigations.SelectedRows[0].Cells["job_order_no"].Value.ToString();
+            string contactNumber = dgInvestigations.SelectedRows[0].Cells["contact_number"].Value.ToString();
+            string accountName = dgInvestigations.SelectedRows[0].Cells["customer_name"].Value.ToString();
+            string accountNumber = dgInvestigations.SelectedRows[0].Cells["account_number"].Value.ToString();
+            string particular = dgInvestigations.SelectedRows[0].Cells["nature_of_complaint"].Value.ToString();
+
+            var results = Factory.InvestigationRepository().AddToRecipient(jobOrderNumber, contactNumber, accountNumber, accountName, particular);
+
+            if (results)
+            {
+                Helper.MessageBoxSuccess("Added to recipient list.");
+            }
+            else
+            {
+                Helper.MessageBoxError("Failed to add to recipient list.");
+            }
+        }
+
     }
 }

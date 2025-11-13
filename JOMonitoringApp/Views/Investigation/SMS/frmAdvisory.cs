@@ -12,18 +12,21 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Twilio.TwiML.Messaging;
+using Twilio.Types;
 
 namespace JOMonitoringApp.Views.Investigation.SMS
 {
     public partial class frmAdvisory : Form
     {
-        private SerialPort gsmPort;
+
+        private SerialPort serialPort;
         private bool isConnected = false;
-        private DataTable investigationsTable;
-        private int currentIndex = 0;
+
         public frmAdvisory()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);
         }
 
         private void frmAdvisory_Load(object sender, EventArgs e)
@@ -50,88 +53,83 @@ namespace JOMonitoringApp.Views.Investigation.SMS
 
 
 
-        private void connectToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void connectToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            if (Connect("COM6", 9600))
-            {
-                lblConnectionStatus.Text = "CONNECTED";
-                lblConnectionStatus.ForeColor = Color.Green;
-                return;
-            }
-
-            lblConnectionStatus.Text = "DISCONNECTED";
-            lblConnectionStatus.ForeColor = Color.Red;
-        }
-
-        public bool Connect(string portName, int baudRate)
-        {
             try
             {
-                // Initialize serial port
-                gsmPort = new SerialPort();
-                gsmPort.PortName = portName;
-                gsmPort.BaudRate = baudRate;
-                gsmPort.DataBits = 8;
-                gsmPort.StopBits = StopBits.One;
-                gsmPort.Parity = Parity.None;
-                gsmPort.ReadTimeout = 3000;
-                gsmPort.WriteTimeout = 3000;
-                gsmPort.Handshake = Handshake.None;
-                gsmPort.DtrEnable = true;
-                gsmPort.RtsEnable = true;
+                LogMessage($"Connecting to COM6");
 
-                // Open the port
-                gsmPort.Open();
-                Thread.Sleep(500); // Wait for modem to be ready
+                serialPort = new SerialPort
+                {
+                    PortName = "COM6",
+                    BaudRate = 57600,
+                    Parity = Parity.None,
+                    DataBits = 8,
+                    StopBits = StopBits.One,
+                    Handshake = Handshake.None,
+                    ReadTimeout = 3000,
+                    WriteTimeout = 3000
+                };
 
-                // Test connection with AT command
-                gsmPort.WriteLine("AT" + Environment.NewLine);
-                Thread.Sleep(500);
-                string response = gsmPort.ReadExisting();
+                serialPort.Open();
+                await Task.Delay(1000);
+
+                // Test connection
+                string response = await SendATCommandAsync("AT");
 
                 if (response.Contains("OK"))
                 {
-                    // Set modem to text mode for SMS
-                    gsmPort.WriteLine("AT+CMGF=1" + Environment.NewLine);
-                    Thread.Sleep(300);
-                    string textModeResponse = gsmPort.ReadExisting();
+                    response = await SendATCommandAsync("AT+CPIN?");
 
-                    if (textModeResponse.Contains("OK"))
+                    if (response.Contains("READY") || response.Contains("OK"))
                     {
+                        // Configure SMS mode
+                        await SendATCommandAsync("AT+CMGF=1");
+                        await SendATCommandAsync("AT+CSCS=\"GSM\"");
+
                         isConnected = true;
-                        return true;
+                        LogMessage("✓ Connected successfully!");
+
+                        // Check initial signal
+                        await CheckSignalStrength();
                     }
                     else
                     {
-                        gsmPort.Close();
-                        return false;
+                        throw new Exception("SIM card not ready. Please check SIM card.");
                     }
                 }
                 else
                 {
-                    gsmPort.Close();
-                    return false;
+                    throw new Exception("GSM module not responding.");
                 }
             }
             catch (Exception ex)
             {
-                if (gsmPort != null && gsmPort.IsOpen)
+                LogMessage($"✗ Connection failed: {ex.Message}");
+                MessageBox.Show($"Connection failed:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                if (serialPort != null && serialPort.IsOpen)
                 {
-                    gsmPort.Close();
+                    serialPort.Close();
                 }
-                throw new Exception("Connection failed: " + ex.Message);
+
+                connectToolStripMenuItem.Enabled = true;
+                connectToolStripMenuItem.Text = "Connect";
             }
         }
+
+       
 
 
         public void Disconnect()
         {
             try
             {
-                if (gsmPort != null && gsmPort.IsOpen)
+                if (serialPort != null && serialPort.IsOpen)
                 {
-                    gsmPort.Close();
+                    serialPort.Close();
                     isConnected = false;
                 }
             }
@@ -301,6 +299,228 @@ namespace JOMonitoringApp.Views.Investigation.SMS
             {
                 throw new Exception("Error loading approved investigations: " + ex.Message);
             }
+        }
+
+        private void LogMessage(string message)
+        {
+            string timestamp = DateTime.Now.ToString("HH:mm:ss");
+            lblSignal.Text = $"[{timestamp}] - {message}\r\n";
+        }
+
+
+        private string ReadResponse(int timeout)
+        {
+            string response = string.Empty;
+            DateTime startTime = DateTime.Now;
+
+            while ((DateTime.Now - startTime).TotalMilliseconds < timeout)
+            {
+                try
+                {
+                    if (serialPort.BytesToRead > 0)
+                    {
+                        response += serialPort.ReadExisting();
+                        Thread.Sleep(100);
+                    }
+                    else
+                    {
+                        Thread.Sleep(50);
+                    }
+                }
+                catch
+                {
+                    break;
+                }
+            }
+
+            return response;
+        }
+
+        private async Task<string> SendATCommandAsync(string command, int timeout = 2000)
+        {
+            return await Task.Run(() =>
+            {
+                try
+                {
+                    serialPort.DiscardInBuffer();
+                    serialPort.DiscardOutBuffer();
+                    serialPort.WriteLine(command);
+                    Thread.Sleep(timeout);
+                    return ReadResponse(timeout);
+                }
+                catch (Exception)
+                {
+                    return string.Empty;
+                }
+            });
+        }
+
+
+        private async void btnPrint_Click(object sender, EventArgs e)
+        {
+            string phoneNumber = string.Empty;
+            string message = string.Empty;
+
+            try
+            {
+                btnSendSMS.Enabled = false;
+                btnSendSMS.Text = "Sending...";
+
+                progressBar1.Visible = true;
+                progressBar1.Value = 0;
+
+                serialPort.DiscardInBuffer();
+                serialPort.DiscardOutBuffer();
+                serialPort.WriteLine("AT+CMGF=1\r"); // set text mode once
+                await Task.Delay(200);
+
+                int total = dgRecipients.Rows.Cast<DataGridViewRow>().Count(r => !r.IsNewRow);
+                int count = 0;
+
+                foreach (DataGridViewRow row in dgRecipients.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    // Skip the new row placeholder if it's allowed in your grid
+                    if (row.IsNewRow) continue;
+
+                    dgRecipients.ClearSelection();
+                    row.Selected = true;
+                    dgRecipients.FirstDisplayedScrollingRowIndex = row.Index;
+                    Application.DoEvents();
+
+                    //phoneNumber = row.Cells["contact_number"].Value?.ToString().Trim();
+                    phoneNumber = "+639511905651"; 
+                    message = row.Cells["account_number"].Value?.ToString().Trim();
+
+                    if (string.IsNullOrWhiteSpace(phoneNumber) || string.IsNullOrWhiteSpace(message))
+                        continue; // skip invalid rows instead of stopping loop
+
+                    LogMessage($"Sending SMS to {phoneNumber}...");
+                    LogMessage($"Message: {message}");
+
+                    serialPort.WriteLine($"AT+CMGS=\"{phoneNumber}\"\r");
+
+                    string response = ReadResponse(4000);
+                    if (!response.Contains(">"))
+                    {
+                        LogMessage("No prompt received, skipping...");
+                        continue;
+                    }
+
+                    serialPort.Write(message + char.ConvertFromUtf32(26)); // send + Ctrl+Z
+                    response = ReadResponse(6000);
+
+                    if (response.Contains("+CMGS:") || response.Contains("OK"))
+                    {
+                        LogMessage("SMS sent successfully!");
+                    }
+                    else
+                    {
+                        LogMessage("SMS send failed. Response: " + response.Trim());
+                    }
+
+                    // minimal delay to prevent modem overload
+                    await Task.Delay(300);
+
+                    // progress update
+                    count++;
+                    progressBar1.Value = (int)((count / (double)total) * 100);
+                }
+
+                LogMessage("All messages processed.");
+            }
+            catch (Exception ex)
+            {
+                LogMessage($"SMS failed: {ex.Message}");
+                MessageBox.Show($"Failed to send SMS:\n{ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnSendSMS.Enabled = true;
+                btnSendSMS.Text = "Send SMS";
+                progressBar1.Visible = false;
+            }
+        }
+
+
+        private async Task CheckSignalStrength()
+        {
+            try
+            {
+                string response = await SendATCommandAsync("AT+CSQ");
+
+                if (response.Contains("+CSQ:"))
+                {
+                    string[] parts = response.Split(new[] { "+CSQ:" }, StringSplitOptions.None);
+                    if (parts.Length > 1)
+                    {
+                        string[] values = parts[1].Split(',');
+                        if (int.TryParse(values[0].Trim(), out int rssi))
+                        {
+                            if (rssi == 99)
+                            {
+                                lblSignal.Text = "Signal: Unknown";
+                                lblSignal.ForeColor = Color.Gray;
+                            }
+                            else
+                            {
+                                int signalPercent = (rssi * 100) / 31;
+                                lblSignal.Text = $"Signal: {rssi}/31 ({signalPercent}%)";
+
+                                if (rssi < 10)
+                                    lblSignal.ForeColor = Color.Red;
+                                else if (rssi < 20)
+                                    lblSignal.ForeColor = Color.Orange;
+                                else
+                                    lblSignal.ForeColor = Color.Green;
+
+                                LogMessage($"Signal strength: {rssi}/31 ({signalPercent}%)");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                LogMessage($"Failed to check signal: {ex.Message}");
+            }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string message = string.Empty;
+            string messageHeader = "Pamana Water Corp - Pagadian:";
+
+            switch (cmbAdvisory.SelectedItem.ToString())
+            {
+                case "Adjustment":
+                    message = "Your meter has been adjusted after inspection. No further action needed. For concerns, visit our office.";
+                    break;
+                case "Change Category":
+                    message = "Your account has been reclassified after investigation. For inquiries, please visit our office.";
+                    break;
+                case "No Leaking":
+                    message = "Inspection complete. No leaks detected in your service connection. For concerns, visit our office.";
+                    break;
+                case "Leaking":
+                    message = " Leak detected in your service connection. Immediate action recommended. Please visit our office for assistance.";
+                    break;
+                case "Illegal":
+                    message = "Unauthorized connection detected in your account. Please visit our office to regularize.";
+                    break;
+                case "For calibration":
+                    message = "Your meter requires calibration. Please bring it to our office for verification.";
+                    break;
+                case "Passed in calibration":
+                    message = "Your meter has passed calibration and is in proper working condition. For inquiries, visit our office.";
+                    break;
+                case "Failed in calibration":
+                    message = "Your meter failed calibration and needs replacement/adjustment. Please visit our office for resolution.";
+                    break;
+            }
+            txtMessage.Text = messageHeader + Environment.NewLine + Environment.NewLine + message;
         }
     }
 }

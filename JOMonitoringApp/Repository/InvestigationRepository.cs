@@ -1,8 +1,10 @@
-﻿using JOMonitoringApp.Interface;
+﻿using AccountingSystem;
+using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
 using System.Collections.Generic;
 using System.Data;
+using Twilio.TwiML.Voice;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
@@ -355,7 +357,7 @@ namespace JOMonitoringApp
                            $"WHEN 3 THEN 'FOR APPROVAL' " +
                            $"WHEN 4 THEN 'APPROVED' " +
                            $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
-                           $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
+                           $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, contact_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
                            $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC {rowFilterValue}";
 
             var dataTable = new DataTable();
@@ -523,6 +525,22 @@ namespace JOMonitoringApp
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable);
+        }
+
+        public bool AddToRecipient(string jobOrderNumber, string contactNumber, string accountNumber, string accountName, string particular)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@job_order_number", DbType.String,  jobOrderNumber },
+                new object[] { "@contact_number", DbType.String,  contactNumber },
+                new object[] { "@account_name", DbType.String,  accountName },
+                new object[] { "@account_number", DbType.String,  accountNumber },
+                new object[] { "@particular", DbType.String,  particular },
+                new object[] { "@created_by", DbType.Int32,  Helper.CurrentUserID },
+            };
+
+            string query = $"INSERT INTO tbl_advisory_recipient  (job_order_number, contact_number, account_name, account_number, particular, created_by) VALUES (@job_order_number, @contact_number, @account_name, @account_number, @particular, @created_by)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
     }
 }

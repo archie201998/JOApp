@@ -30,22 +30,22 @@
         {
             this.dgRecipients = new System.Windows.Forms.DataGridView();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnSendSMS = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblSignal = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cmbAdvisory = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMessage = new System.Windows.Forms.TextBox();
+            this.txtNumber = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customizeMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.messageConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.connectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblConnectionStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgRecipients)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -54,37 +54,42 @@
             // 
             // dgRecipients
             // 
+            this.dgRecipients.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgRecipients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgRecipients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgRecipients.Location = new System.Drawing.Point(17, 20);
+            this.dgRecipients.Location = new System.Drawing.Point(17, 21);
             this.dgRecipients.MultiSelect = false;
             this.dgRecipients.Name = "dgRecipients";
-            this.dgRecipients.Size = new System.Drawing.Size(853, 436);
+            this.dgRecipients.Size = new System.Drawing.Size(853, 464);
             this.dgRecipients.TabIndex = 26;
             // 
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(4, 446);
+            this.progressBar1.Location = new System.Drawing.Point(4, 512);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(431, 5);
             this.progressBar1.TabIndex = 45;
             // 
-            // btnPrint
+            // btnSendSMS
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPrint.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.Location = new System.Drawing.Point(17, 462);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(88, 23);
-            this.btnPrint.TabIndex = 50;
-            this.btnPrint.Text = "Send";
-            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnSendSMS.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSendSMS.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSendSMS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSendSMS.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSendSMS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSendSMS.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendSMS.ForeColor = System.Drawing.Color.White;
+            this.btnSendSMS.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSendSMS.Location = new System.Drawing.Point(628, 491);
+            this.btnSendSMS.Name = "btnSendSMS";
+            this.btnSendSMS.Size = new System.Drawing.Size(88, 23);
+            this.btnSendSMS.TabIndex = 50;
+            this.btnSendSMS.Text = "Send";
+            this.btnSendSMS.UseVisualStyleBackColor = false;
+            this.btnSendSMS.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // label1
             // 
@@ -98,6 +103,7 @@
             // 
             // button1
             // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.DodgerBlue;
             this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.White;
@@ -105,7 +111,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(111, 462);
+            this.button1.Location = new System.Drawing.Point(722, 491);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(148, 23);
             this.button1.TabIndex = 51;
@@ -114,22 +120,44 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.lblSignal);
             this.groupBox1.Controls.Add(this.dgRecipients);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.btnPrint);
+            this.groupBox1.Controls.Add(this.btnSendSMS);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 44);
+            this.groupBox1.Location = new System.Drawing.Point(12, 45);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(877, 522);
+            this.groupBox1.Size = new System.Drawing.Size(877, 521);
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "RECIPIENTS";
             // 
+            // lblSignal
+            // 
+            this.lblSignal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSignal.AutoSize = true;
+            this.lblSignal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignal.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lblSignal.Location = new System.Drawing.Point(17, 495);
+            this.lblSignal.Name = "lblSignal";
+            this.lblSignal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblSignal.Size = new System.Drawing.Size(50, 15);
+            this.lblSignal.TabIndex = 57;
+            this.lblSignal.Text = "STATUS";
+            this.lblSignal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.cmbAdvisory);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.txtMessage);
+            this.groupBox2.Controls.Add(this.txtNumber);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.progressBar1);
@@ -137,73 +165,70 @@
             this.groupBox2.Location = new System.Drawing.Point(895, 45);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(439, 455);
+            this.groupBox2.Size = new System.Drawing.Size(439, 521);
             this.groupBox2.TabIndex = 53;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "SENDING STATUS";
             // 
-            // textBox2
+            // cmbAdvisory
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 91);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(301, 345);
-            this.textBox2.TabIndex = 52;
-            this.textBox2.Tag = "";
-            this.textBox2.Text = "Pamana - Pagadian Advisory:\r\n\r\n\r\n\r\nYour job order investigation is completed. You" +
-    "r account has been reclassified from Residential to Commercial. For any concern " +
-    "please visit our office. ";
+            this.cmbAdvisory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbAdvisory.FormattingEnabled = true;
+            this.cmbAdvisory.Items.AddRange(new object[] {
+            "Adjustment",
+            "Change Category",
+            "No Leaking",
+            "Leaking",
+            "Illegal",
+            "For calibration",
+            "Passed in calibration",
+            "Failed in calibration"});
+            this.cmbAdvisory.Location = new System.Drawing.Point(127, 82);
+            this.cmbAdvisory.Name = "cmbAdvisory";
+            this.cmbAdvisory.Size = new System.Drawing.Size(301, 23);
+            this.cmbAdvisory.TabIndex = 54;
+            this.cmbAdvisory.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // textBox1
+            // label3
             // 
-            this.textBox1.Location = new System.Drawing.Point(127, 45);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(150, 21);
-            this.textBox1.TabIndex = 51;
-            this.textBox1.Text = "+63511905651";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(29, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 15);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "Message Type";
+            // 
+            // txtMessage
+            // 
+            this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtMessage.Location = new System.Drawing.Point(127, 125);
+            this.txtMessage.Multiline = true;
+            this.txtMessage.Name = "txtMessage";
+            this.txtMessage.Size = new System.Drawing.Size(301, 377);
+            this.txtMessage.TabIndex = 52;
+            this.txtMessage.Tag = "";
+            this.txtMessage.Text = "Pamana - Pagadian Advisory:\r\n\r\n";
+            // 
+            // txtNumber
+            // 
+            this.txtNumber.Location = new System.Drawing.Point(127, 45);
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.Size = new System.Drawing.Size(150, 21);
+            this.txtNumber.TabIndex = 51;
+            this.txtNumber.Text = "+639511905651";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 91);
+            this.label2.Location = new System.Drawing.Point(29, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 15);
             this.label2.TabIndex = 50;
             this.label2.Text = "Message";
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(895, 506);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(82, 23);
-            this.button2.TabIndex = 54;
-            this.button2.Text = "STOP";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(983, 506);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(82, 23);
-            this.button3.TabIndex = 55;
-            this.button3.Text = "PAUSE";
-            this.button3.UseVisualStyleBackColor = false;
             // 
             // menuStrip1
             // 
@@ -223,8 +248,8 @@
             this.messageConfigToolStripMenuItem,
             this.connectToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
+            this.settingsToolStripMenuItem.Text = "SMS Configuration";
             // 
             // customizeMessageToolStripMenuItem
             // 
@@ -247,27 +272,11 @@
             this.connectToolStripMenuItem.Text = "Connect";
             this.connectToolStripMenuItem.Click += new System.EventHandler(this.connectToolStripMenuItem_Click);
             // 
-            // lblConnectionStatus
-            // 
-            this.lblConnectionStatus.AutoSize = true;
-            this.lblConnectionStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConnectionStatus.ForeColor = System.Drawing.Color.Black;
-            this.lblConnectionStatus.Location = new System.Drawing.Point(1240, 24);
-            this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lblConnectionStatus.Size = new System.Drawing.Size(54, 17);
-            this.lblConnectionStatus.TabIndex = 53;
-            this.lblConnectionStatus.Text = "STATUS";
-            this.lblConnectionStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // frmAdvisory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1346, 593);
-            this.Controls.Add(this.lblConnectionStatus);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -277,6 +286,7 @@
             this.Load += new System.EventHandler(this.frmAdvisory_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgRecipients)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -290,21 +300,21 @@
 
         private System.Windows.Forms.DataGridView dgRecipients;
         private System.Windows.Forms.ProgressBar progressBar1;
-        internal System.Windows.Forms.Button btnPrint;
+        internal System.Windows.Forms.Button btnSendSMS;
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        internal System.Windows.Forms.Button button2;
-        internal System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem customizeMessageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem messageConfigToolStripMenuItem;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtMessage;
+        private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.ToolStripMenuItem connectToolStripMenuItem;
-        private System.Windows.Forms.Label lblConnectionStatus;
+        private System.Windows.Forms.Label lblSignal;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbAdvisory;
     }
 }

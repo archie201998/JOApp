@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,7 +28,11 @@ namespace JOMonitoringApp.Views.Investigation
 
 
         private bool removeFirstImage = false;
-        private bool removeSecondImage = false; 
+        private bool removeSecondImage = false;
+
+        private float zoom = 1.0f;
+        private Point mouseDownPosition;
+        private bool isPanning = false;
 
         public frmInvestigationImageViewer(string imageFilePath, string secondaryImageFilePath, int investigationId)
         {
@@ -42,6 +47,8 @@ namespace JOMonitoringApp.Views.Investigation
             _secondaryImageFilePath = secondaryImageFilePath;
 
         }
+
+      
 
         private void OnLoad()
         {
@@ -448,6 +455,31 @@ namespace JOMonitoringApp.Views.Investigation
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            OpenImageExternally(_imageFilePath);
+        }
+
+        private void OpenImageExternally(string imagePath)
+        {
+            try
+            {
+                Process.Start(new ProcessStartInfo(imagePath)
+                {
+                    UseShellExecute = true // important to open with default app
+                });
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Unable to open image: " + ex.Message);
+            }
+        }
+
+        private void pictureBox2_DoubleClick(object sender, EventArgs e)
+        {
+            OpenImageExternally(_secondaryImageFilePath);
         }
     }
 }

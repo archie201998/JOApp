@@ -2,6 +2,7 @@
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Reports;
 using Mysqlx.Crud;
+using Org.BouncyCastle.Asn1.Crmf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -77,7 +78,8 @@ namespace JOMonitoringApp.Views.Investigation
             string searchKey = txtSearch.Text.Trim();
             int statusId = Convert.ToInt32(cmbxStatus.SelectedValue);
             int rowFilter = Convert.ToInt32(cmbxRowLimit.SelectedValue);
-            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, rowFilter, searchKey);
+            string particular = cmbxParticular.Text == "All" ? string.Empty : cmbxParticular.Text;  
+            var dtInvestigation = Factory.InvestigationRepository().GetViewRecordsBySearch(statusId, rowFilter, searchKey, particular);
    
             lblRecordCount.Text = $"{dtInvestigation.Rows.Count.ToString()} OUT OF {Factory.InvestigationRepository().RecordCount()} RECORDS.";
             HelperLoadRecords.InvestigationDatagridView(dgInvestigations, dtInvestigation);
@@ -88,6 +90,37 @@ namespace JOMonitoringApp.Views.Investigation
             OnLoad();
         }
 
+        private void LoadParticulars()
+        {
+            DataTable dtParticulars = Factory.ParticularsRepository().GetRecords();
+
+            const string investigationPrefix = "Investigation - ";
+
+            DataTable filteredParticulars = dtParticulars.Clone(); 
+
+
+            foreach (DataRow dr in dtParticulars.Rows)
+            {
+                string particular = dr["particular"]?.ToString() ?? string.Empty;
+
+                if (particular.StartsWith(investigationPrefix, StringComparison.OrdinalIgnoreCase))
+                {
+                    // Add the original row or create new row with trimmed value
+                    DataRow newRow = filteredParticulars.NewRow();
+                    newRow["id"] = dr["id"];
+                    newRow["particular"] = particular;
+                    filteredParticulars.Rows.Add(newRow);
+                }
+            }
+
+            filteredParticulars.Rows.Add(0, "All");
+            filteredParticulars.DefaultView.Sort = "id ASC";
+            cmbxParticular.DataSource = filteredParticulars;
+            cmbxParticular.DisplayMember = "particular";
+            cmbxParticular.ValueMember = "id";
+
+
+        }
 
         private void OnLoad()
         {
@@ -97,6 +130,8 @@ namespace JOMonitoringApp.Views.Investigation
             cmbxRowLimit.SelectedIndex = 1;
             cmbxStatus.SelectedValue = 6;
             GetInvestigationRecords();
+            LoadParticulars();   
+
 
             if (Helper.CurrentUserID == 15)
             {

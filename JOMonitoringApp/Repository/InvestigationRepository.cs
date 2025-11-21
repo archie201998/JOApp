@@ -310,10 +310,11 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
-        public DataTable GetViewRecordsBySearch(int statusId, int rowLimit, string searchKey)
+        public DataTable GetViewRecordsBySearch(int statusId, int rowLimit, string searchKey, string particulars)
         {
             var parameters = new object[][] { 
-                new object[] { "@search_text", DbType.String, $"%{searchKey}%" },  
+                new object[] { "@search_text", DbType.String, $"%{searchKey}%" },
+                new object[] { "@particular", DbType.String, $"%{particulars}%"},
                 new object[] { "@row_filter", DbType.Int32, rowLimit }, 
             
             };
@@ -358,7 +359,7 @@ namespace JOMonitoringApp
                            $"WHEN 4 THEN 'APPROVED' " +
                            $"WHEN 5 THEN 'FOR REINVESTIGATION' " +
                            $"ELSE 'UNKNOWN' END AS approval_status, job_order_no, customer_name, account_number, contact_number, customer_address, nature_of_complaint, date_of_investigation, created_at " +
-                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) ORDER BY created_at DESC {rowFilterValue}";
+                           $"FROM  {tableName} WHERE {statusQuery} (job_order_no  LIKE @search_text OR account_number  LIKE @search_text OR customer_name LIKE @search_text) AND nature_of_complaint LIKE @particular ORDER BY created_at DESC {rowFilterValue}";
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
@@ -541,6 +542,11 @@ namespace JOMonitoringApp
 
             string query = $"INSERT INTO tbl_advisory_recipient  (job_order_number, contact_number, account_name, account_number, particular, created_by) VALUES (@job_order_number, @contact_number, @account_name, @account_number, @particular, @created_by)";
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+        }
+
+        public DataTable GetParticularsList()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

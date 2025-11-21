@@ -15,7 +15,7 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetViewRecordByJobOrderId(int? jobOrderId);
         Dictionary<string, string> GetViewRecordByJobOrderNo(string jobOrderNumber);
         DataTable GetViewRecordsBySearch(int statusId, string searchKey);
-        DataTable GetViewRecordsBySearch(int statusId, int rowLimit, string searchKey);
+        DataTable GetViewRecordsBySearch(int statusId, int rowLimit, string searchKey, string particular);
         bool SaveComputation(InvestigationModel investigationModel);
         bool UpdateInvestigation(InvestigationModel investigationModel);
 
@@ -29,5 +29,6 @@ namespace JOMonitoringApp.Interface
         Dictionary<string, string> GetImagePathByInvestigationId(int investigationId);
         DataTable GetApprovedInvestigations();
         bool AddToRecipient(string jobOrderNumber, string accountNumber, string accountName, string particular, string particular1);
+        DataTable GetParticularsList();
     }
 }

@@ -176,7 +176,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(539, 8);
+            this.label1.Location = new System.Drawing.Point(386, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 15);
             this.label1.TabIndex = 49;
@@ -187,7 +187,7 @@
             this.cmbxParticular.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxParticular.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmbxParticular.FormattingEnabled = true;
-            this.cmbxParticular.Location = new System.Drawing.Point(626, 3);
+            this.cmbxParticular.Location = new System.Drawing.Point(473, 3);
             this.cmbxParticular.Name = "cmbxParticular";
             this.cmbxParticular.Size = new System.Drawing.Size(211, 23);
             this.cmbxParticular.TabIndex = 48;
@@ -267,7 +267,7 @@
             this.txtSearch.BackColor = System.Drawing.SystemColors.Window;
             this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(392, 4);
+            this.txtSearch.Location = new System.Drawing.Point(688, 4);
             this.txtSearch.MaxLength = 20;
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(144, 21);

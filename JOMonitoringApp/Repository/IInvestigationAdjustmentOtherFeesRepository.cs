@@ -8,18 +8,18 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace JOMonitoringApp
 {
-    internal class InvestigationAdjustmentRepository : IInvestigationAdjustmentRepository
+    internal class IInvestigationAdjustmentOtherFeesRepository : Interface.IInvestigationAdjustmentOtherFeesRepository
     {
         private GenericCommands mySqlGenericCommands;
         private readonly string tableName = "tbl_investigation_adjustment";
 
 
-        public InvestigationAdjustmentRepository(GenericCommands mySqlGenericCommands)
+        public IInvestigationAdjustmentOtherFeesRepository(GenericCommands mySqlGenericCommands)
         {
             this.mySqlGenericCommands = mySqlGenericCommands;
         }
 
-        public bool Delete(List<InvestigationAdjustmentModel> entityList)
+        public bool Delete(List<InvestigationAdjustmentOtherFeesModel> entityList)
         {
             throw new System.NotImplementedException();
         }
@@ -52,12 +52,12 @@ namespace JOMonitoringApp
             throw new System.NotImplementedException();
         }
 
-        public bool Insert(InvestigationAdjustmentModel entity)
+        public bool Insert(InvestigationAdjustmentOtherFeesModel entity)
         {
             var parameter = new object[][] {
 
-                new object[]{ "@particular", DbType.String, entity.Particular},
-                new object[]{ "@value", DbType.String, entity.Value},
+                new object[]{ "@particular", DbType.String, entity.Description},
+                new object[]{ "@value", DbType.String, entity.Amount},
                 new object[]{ "@investigation_id", DbType.Int32, entity.InvestigationId},
             };
 
@@ -65,22 +65,9 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
 
-        public bool Update(InvestigationAdjustmentModel entity)
+        public bool Update(InvestigationAdjustmentOtherFeesModel entity)
         {
             throw new System.NotImplementedException();
-        }
-
-        public string GetValueByInvestigationParticularAndID(string itemText, int selectedInvestigationID)
-        {
-            var parameters = new object[][]
-            {  
-                new object[] { "@particular", DbType.String, itemText}, 
-                new object[] { "@investigation_id", DbType.Int32, selectedInvestigationID}, 
-            };
-
-            string query = $"SELECT value FROM {tableName} WHERE particular = @particular AND investigation_id = @investigation_id";
-
-            return mySqlGenericCommands.ExecuteScalar(query, parameters).ToString();
         }
 
         public bool DeleteAdjustments(int investigationID)
@@ -94,6 +81,16 @@ namespace JOMonitoringApp
             return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
         }
 
-    
+        public DataTable GetInvestigationOtherFees(int investigationId)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@investigation_id", DbType.Int32, investigationId }
+            };
+
+            string query = $"SELECT * FROM {tableName} WHERE investigation_id = @investigation_id ORDER BY id";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
     }
 }

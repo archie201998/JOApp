@@ -370,49 +370,19 @@ namespace JOMonitoringApp
             var parameters = new object[][]
             {
                 new object[] { "@id", DbType.Int32, entity.Id },
-                new object[] { "@reading_before_test", DbType.String, entity.ReadingBeforeTest },
-                new object[] { "@reading_after_test", DbType.String, entity.ReadingAfterTest },
-                new object[] { "@calibration_result", DbType.String, entity.CalibrationResult },
-                new object[] { "@over_registration", DbType.String, entity.OverRegistration },
-                new object[] { "@under_registration", DbType.String, entity.UnderRegistration },
-                new object[] { "@leaking_after_the_meter", DbType.String, entity.LeakingAfterTheMeter },
-                new object[] { "@previous_reading", DbType.String, entity.PreviousReading },
-                new object[] { "@present_reading", DbType.String, entity.PresentReading },
-                new object[] { "@actual_reading", DbType.String, entity.ActualReading },
-                new object[] { "@present_consumption", DbType.String, entity.PresentConsumption },
-                new object[] { "@previous_consumption", DbType.String, entity.PreviousConsumption },
-                new object[] { "@actual_consumption", DbType.String, entity.ActualConsumption },
-                new object[] { "@last_three_months_consumption", DbType.String, entity.AverageConsumption },
-                new object[] { "@water_bill", DbType.String, entity.WaterBill },
-                new object[] { "@water_bill_adjustment", DbType.String, entity.WaterBillAdjustment },
-                new object[] { "@adjusted_water_bill", DbType.String, entity.AdjustedWaterBill },
-                new object[] { "@extension_fee", DbType.String, entity.ExtensionFee },
-                new object[] { "@penalty", DbType.String, entity.Penalty },
                 new object[] { "@adjustment_particular", DbType.String, entity.AdjustmentParticular },
+                new object[] { "@water_bill", DbType.String, entity.WaterBill },
+                new object[] { "@adjusted_water_bill", DbType.String, entity.AdjustedWaterBill },
+                new object[] { "@water_bill_adjustment", DbType.String, entity.WaterBillAdjustment },
                 new object[] { "@updated_by", DbType.String, entity.UpdatedBy },
 
-             };
+            };
 
             string query = $@"UPDATE {tableName} 
-                            SET reading_before_test = @reading_before_test, 
-                                reading_after_test = @reading_after_test, 
-                                calibration_result = @calibration_result, 
-                                over_registration = @over_registration, 
-                                under_registration = @under_registration, 
-                                leaking_after_the_meter = @leaking_after_the_meter, 
-                                previous_reading = @previous_reading, 
-                                present_reading = @present_reading, 
-                                actual_reading = @actual_reading, 
-                                previous_consumption = @previous_consumption, 
-                                present_consumption = @present_consumption, 
-                                actual_consumption = @actual_consumption, 
-                                last_three_months_consumption = @last_three_months_consumption,
+                            SET adjustment_particular = @adjustment_particular, 
                                 water_bill = @water_bill,
-                                water_bill_adjustment = @water_bill_adjustment, 
-                                adjustment_particular = @adjustment_particular, 
                                 adjusted_water_bill = @adjusted_water_bill, 
-                                extension_fee = @extension_fee, 
-                                penalty = @penalty, 
+                                water_bill_adjustment = @water_bill_adjustment, 
                                 updated_by = @updated_by
                             WHERE id = @id;";
 

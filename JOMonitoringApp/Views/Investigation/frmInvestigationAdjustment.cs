@@ -1,12 +1,7 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
-using JOMonitoringApp.Views.Customers;
-using JOMonitoringApp.Views.PromptBox;
-using Mysqlx.Crud;
 using System;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -21,10 +16,10 @@ namespace JOMonitoringApp.Views.Investigation
         private bool isUpdating = false;
 
 
-        public frmInvestigationAdjustment(frmInvestigationForm frmInvestigationForm)
+        public frmInvestigationAdjustment(frmInvestigation frmInvestigation, frmInvestigationForm frmInvestigationForm)
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyleEditable(dgParticularAdjustment);
+            Helper.DatagridFullRowSelectStyleEditable(dgOtherFees);
             Helper.LoadFormIcon(this);
             _frmInvestigationForm = frmInvestigationForm;
             _accountNumber = frmInvestigationForm.txtAccountNumber.Text;
@@ -33,7 +28,7 @@ namespace JOMonitoringApp.Views.Investigation
         public frmInvestigationAdjustment(string accountNo)
         {
             InitializeComponent();
-            Helper.DatagridFullRowSelectStyleEditable(dgParticularAdjustment);
+            Helper.DatagridFullRowSelectStyleEditable(dgOtherFees);
             Helper.LoadFormIcon(this);
             _accountNumber = accountNo; 
         }
@@ -41,10 +36,32 @@ namespace JOMonitoringApp.Views.Investigation
         private void frmInvestigationAdjustment_Load(object sender, EventArgs e)
         {
             LoadAccountDetails();
+            LoadOtherFees();
 
             //initial load.
             if (_frmInvestigationForm._hasAdjustment)
                 LoadAdjustments();
+        }
+
+        private void LoadOtherFees()
+        {
+            var dtOtherFees = Factory.InvestigationAdjustmentRepository().GetInvestigationOtherFees(_frmInvestigationForm._investigationId);
+            if (dtOtherFees.Rows.Count == 0)
+                return;
+
+            dgOtherFees.DataSource = null;
+            dgOtherFees.Columns.Clear(); // Clear existing columns
+            dgOtherFees.DataSource = dtOtherFees;
+
+            dgOtherFees.Columns["id"].Visible = false;
+            dgOtherFees.Columns["investigation_id"].Visible = false;
+
+            dgOtherFees.Columns["particular"].HeaderText = "Description";
+            dgOtherFees.Columns["particular"].Width = 200;
+            dgOtherFees.Columns["value"].HeaderText = "Amount";
+            dgOtherFees.Columns["value"].DefaultCellStyle.Format = "N2";
+
+            Helper.DatagridFullRowSelectStyle(dgOtherFees, true);
         }
 
         private void LoadAccountDetails()
@@ -54,9 +71,7 @@ namespace JOMonitoringApp.Views.Investigation
 
             if (dictCustomerAccountDetails.Count != 0)
             {
-                txtAccountType.Text = dictCustomerAccountDetails["Category"];
-                txtAccountName.Text = dictCustomerAccountDetails["AccountName"];
-                txtAccountNumber.Text = _accountNumber;
+
             }
         }
 
@@ -64,43 +79,22 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int investigationID = _frmInvestigationForm._investigationId;
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(investigationID);
-            var adjustmentDetails = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
 
             if (adjustments.Count != 0)
             {
-
-                decimal amountDue = !string.IsNullOrWhiteSpace(adjustments["water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill"]) : 0;
-                decimal penalty = !string.IsNullOrWhiteSpace(adjustments["penalty"]?.ToString()) ? Convert.ToDecimal(adjustments["penalty"]) : 0;
-                decimal extensionFee = !string.IsNullOrWhiteSpace(adjustments["extension_fee"]?.ToString()) ? Convert.ToDecimal(adjustments["extension_fee"]) : 0;
-                decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["water_bill_adjustment"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill_adjustment"]) : 0;
-                
                 string particular = adjustments["adjustment_particular"].ToString();
-                decimal _adjustedAmount = !string.IsNullOrWhiteSpace(adjustments["adjusted_water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["adjusted_water_bill"]) : 0;
-
+                decimal waterBill = !string.IsNullOrWhiteSpace(adjustments["water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill"]) : 0;
+                decimal adjustedAmount = !string.IsNullOrWhiteSpace(adjustments["adjusted_water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["adjusted_water_bill"]) : 0;
+                decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["water_bill_adjustment"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill_adjustment"]) : 0;
+               
                 cmbxParticular.SelectedItem = particular;
-
-                txtWaterBill.Text = amountDue.ToString("N2");
-                txtWaterBillAdjustment.Text  = adjustment.ToString("N2");
-                txtExtensionFee.Text = extensionFee.ToString("N2");
-                txtPenalty.Text = penalty.ToString("N2");
-                txtWaterBillAdjustedAamount.Text = _adjustedAmount.ToString("N2");
-                txtAdjustedWaterBill.Text = (_adjustedAmount + penalty + extensionFee).ToString("N2");
-
-
-
-                var itemsCopy = particularFactors.Items.Cast<object>().ToList();
-                foreach (var item in itemsCopy)
-                {
-                    foreach (DataRow row in adjustmentDetails.Rows)
-                    {
-                        if (row["particular"].ToString() == item.ToString())
-                        {
-                            particularFactors.SetItemChecked(particularFactors.Items.IndexOf(item), true);
-                        }
-                    }
-                }
+                txtWaterBill.Text = waterBill.ToString("N2");
+                txtAdjustedAmount.Text = adjustedAmount.ToString("N2");
+                txtAdjustment.Text = adjustment.ToString("N2");
 
             }
+
+            return;
         }
 
 
@@ -113,15 +107,19 @@ namespace JOMonitoringApp.Views.Investigation
         {
             try
             {
-                Factory.InvestigationRepository().SaveComputation(InvestigationModel());
+               
 
-                if (updateAdjustment)
-                    UpdateAdjustment();
+                bool adjustmentResult = Factory.InvestigationRepository().SaveComputation(InvestigationModel());
 
-                if (SaveAdjustment())
+                if (!SaveOtherFeesAdjustment() )
+                {
+                    Helper.MessageBoxSuccess("Failed to save other fees.");
+                }
+
+                if (adjustmentResult)
                 {
                     Helper.MessageBoxSuccess("Adjustment has been successfully saved.");
-                    Close();
+                    LoadAdjustments();
                 }
             }
             catch (Exception)
@@ -130,28 +128,34 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
-        private void UpdateAdjustment()
+        private bool RemoveOtherFees()
         {
             int investigationID = _frmInvestigationForm._investigationId;
-            if (Factory.InvestigationAdjustmentRepository().DeleteAdjustments(investigationID))
-            {
-                return;
-            }
+            if (Factory.InvestigationAdjustmentRepository().DeleteAdjustments(investigationID)) return true ;
+
+            return false;
         }
 
-        private bool SaveAdjustment()
+        private bool SaveOtherFeesAdjustment()
         {
+
+            if (!RemoveOtherFees())
+            {
+                Helper.MessageBoxSuccess("Error on removing other fees.");
+                return false;
+            }
+
             if (Helper.MessageBoxConfirmCancel("Do you confirm to save this adjustment?"))
             {
-                foreach (DataGridViewRow dgvRow in dgParticularAdjustment.Rows)
+                foreach (DataGridViewRow dgvRow in dgOtherFees.Rows)
                 {
-                    string particular = dgvRow.Cells["particular"].Value?.ToString();
-                    string value = dgvRow.Cells["_value"].Value?.ToString();
+                    string description = dgvRow.Cells["particular"].Value?.ToString();
+                    string amount = dgvRow.Cells["value"].Value?.ToString();
 
-                    var investigationAdjustmentModel = new InvestigationAdjustmentModel
+                    var investigationAdjustmentModel = new InvestigationAdjustmentOtherFeesModel
                     {
-                        Particular = particular,
-                        Value = value,
+                        Description = description,
+                        Amount = amount,
                         InvestigationId = _frmInvestigationForm._investigationId,
                     };
 
@@ -170,16 +174,13 @@ namespace JOMonitoringApp.Views.Investigation
             var investigationModel = new InvestigationModel
             {
                 Id = _frmInvestigationForm._investigationId,
-                UpdatedBy = Helper.CurrentUserID,
                 AdjustmentParticular = cmbxParticular.Text,
                 WaterBill = Convert.ToDecimal(txtWaterBill.Text.Trim()),
-                WaterBillAdjustment = Convert.ToDecimal(txtWaterBillAdjustment.Text.Trim()),
-                Penalty = Convert.ToDecimal(txtPenalty.Text.Trim()),
-                ExtensionFee = Convert.ToDecimal(txtExtensionFee.Text.Trim()),
-                AdjustedWaterBill = Convert.ToDecimal(txtWaterBillAdjustedAamount.Text.Trim())
+                AdjustedWaterBill = Convert.ToDecimal(txtAdjustedAmount.Text.Trim()),
+                WaterBillAdjustment = txtAdjustment.Text != string.Empty ? Convert.ToDecimal(txtAdjustment.Text.Trim()) : 0,
+                UpdatedBy = Helper.CurrentUserID,
             };
 
-            investigationModel.AdjustedAmount = investigationModel.WaterBill - investigationModel.WaterBillAdjustment;
             return investigationModel;
         }
 
@@ -188,114 +189,68 @@ namespace JOMonitoringApp.Views.Investigation
             this.Hide();
         }
 
-        private void txtPenalty_TextChanged(object sender, EventArgs e)
-        {
-            CalculateTotal();
-        }
-
-        private void CalculateTotal()
-        {
-            if (isUpdating) return;
-
-            try
-            {
-                isUpdating = true;
-
-                decimal waterBill = decimal.Parse(txtWaterBill.Text.Trim());
-                decimal waterBillAdjustment = decimal.Parse(txtWaterBillAdjustment.Text.Trim());
-                decimal waterBillAdjustedAmount = decimal.Parse(txtWaterBillAdjustedAamount.Text.Trim());
-                decimal penalty = decimal.Parse(txtPenalty.Text.Trim());
-                decimal extensionFee = decimal.Parse(txtExtensionFee.Text.Trim());
-
-                waterBillAdjustedAmount = waterBillAdjustedAmount + penalty + extensionFee;
-
-                decimal adjustedAmount = waterBill - waterBillAdjustedAmount;
-                decimal adjustedWaterBill = adjustedAmount + penalty + extensionFee;
-
-                txtAdjustedWaterBill.Text = waterBillAdjustedAmount.ToString("N2");
-                txtWaterBillAdjustment.Text = adjustedAmount.ToString("N2");
-
-            }
-            catch (FormatException) { }
-            finally
-            {
-                isUpdating = false;
-            }
-        }
-
-        private void particularFactors_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            string itemText = particularFactors.Items[e.Index].ToString();
-
-            if (e.NewValue == CheckState.Checked)
-            {
-                if (_frmInvestigationForm._hasAdjustment)
-                {
-                    updateAdjustment = true;
-                    dgParticularAdjustment.Rows.Add(itemText, Factory.InvestigationAdjustmentRepository().GetValueByInvestigationParticularAndID(itemText, _frmInvestigationForm._investigationId));
-                }
-                else
-                {
-                    dgParticularAdjustment.Rows.Add(itemText);
-                }
-
-            }
-            else
-            {
-                foreach (DataGridViewRow row in dgParticularAdjustment.Rows)
-                {
-                    if (row.Cells[0].Value.ToString() == itemText)
-                    {
-                        dgParticularAdjustment.Rows.Remove(row);
-                        break;
-                    }
-                }
-            }
-
-        }
-
-        private void dgParticularAdjustment_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 1)
-            {
-                // Get the value entered in the cell
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-                {
-                    string cellValue = dgParticularAdjustment.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-                    // Proceed with the rest of the logic
-                    if (!decimal.TryParse(cellValue, out decimal numericValue))
-                    {
-                        Helper.MessageBoxWarning("Please enter a valid numeric value.");
-                        dgParticularAdjustment.CancelEdit();
-                    }
-                }
-
-            }
-        }
-     
-        private void txtAdjustment_Leave(object sender, EventArgs e)
-        {
-            //txtWaterBillAdjustedAmount.Text = Convert.ToDecimal(txtWaterBillAdjustedAmount.Text).ToString("N2");
-        }
-
-        private void txtAmountDue_Leave(object sender, EventArgs e)
-        {
-            txtWaterBill.Text = Convert.ToDecimal(txtWaterBill.Text).ToString("N2");
-        }
-
-        private void txtAdjustedDue_Leave(object sender, EventArgs e)
-        {
-            txtWaterBillAdjustment.Text = Convert.ToDecimal(txtWaterBillAdjustment.Text).ToString("N2");
-        }
-
         private void groupBox4_Enter(object sender, EventArgs e)
         {
           
         }
 
-        private void lblImage_Click(object sender, EventArgs e)
+        private void btnNewOtherFees_Click(object sender, EventArgs e)
         {
-            _ = new frmCustomerLedger().ShowDialog();
+            EnableDisableOtherFees(true);
+            txtOtherFessDescription.Focus();
+        }
+
+        private void EnableDisableOtherFees(bool enable)
+        { 
+            txtOtherFeesAmount.Enabled = enable;
+            txtOtherFessDescription.Enabled = enable;
+            btnAddOtherFees.Enabled = enable;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtOtherFessDescription.Text) || string.IsNullOrEmpty(txtOtherFeesAmount.Text))
+            {
+                Helper.MessageBoxWarning("Please enter description and amount.");
+                return;
+            }
+
+            string description = txtOtherFessDescription.Text.Trim();
+            decimal amount = Convert.ToDecimal(txtOtherFeesAmount.Text.Trim()); 
+
+            dgOtherFees.Rows.Add(description, amount);
+
+            txtOtherFeesAmount.Clear();
+            txtOtherFessDescription.Clear();
+            txtOtherFessDescription.Focus();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgOtherFees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+       
+        }
+
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            byte rowIndex = (byte)dgOtherFees.CurrentCell.RowIndex; 
+            dgOtherFees.Rows.RemoveAt(rowIndex);
+            dgOtherFees.Focus();
+        }
+
+        private void dgOtherFees_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgOtherFees.SelectedRows.Count == 1 || dgOtherFees.Rows.Count != 0)
+            {
+                btnRemove.Enabled = true;
+                return;
+            }
+
+            btnRemove.Enabled = false;
         }
     }
 }

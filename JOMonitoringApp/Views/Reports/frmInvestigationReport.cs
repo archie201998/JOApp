@@ -155,28 +155,32 @@ namespace JOMonitoringApp.Views.Reports
 
                 string particulars = string.Empty;
                 string _values = string.Empty;
+                decimal waterBill = Convert.ToDecimal(dictInvestigation["water_bill"]);
+                decimal adjustedWaterBill = Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]);    
+                decimal adjustment = Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]);
+                decimal sumAdjustment = waterBill + adjustedWaterBill + adjustedWaterBill;
 
                 foreach (DataRow item in adjustments.Rows)
                 {
                     particulars += item["particular"].ToString() + "\n";
                     _values += item["value"].ToString() + "\n";
                 }
-                particulars += "\n";
-                particulars += "Water Bill " + "\n";
-                particulars += "Water Bill Adjustment " + "\n";
-                particulars += "Penalty " + "\n";
-                particulars += "Extension Fee" + "\n";
-                particulars += "Adjusted Amount" + "\n";
-                particulars += "Adjusted Water Bill" + "\n";
-                decimal adjustedAmount = Convert.ToDecimal(dictInvestigation["water_bill"]) - Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]);
-                _values += "\n";
-                _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n";
-                _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n";
-                _values += Convert.ToDecimal(dictInvestigation["penalty"]).ToString("N2") + "\n";
-                _values += Convert.ToDecimal(dictInvestigation["extension_fee"]).ToString("N2") + "\n";
-                _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n";
-                _values += (Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]) + Convert.ToDecimal(dictInvestigation["penalty"]) + Convert.ToDecimal(dictInvestigation["extension_fee"])).ToString("N2") + "\n";
 
+                if (sumAdjustment > 0)
+                {
+                    particulars += "\n";
+                    particulars += "Water Bill " + "\n\n";
+                    particulars += "Adjusted Amount " + "\n\n";
+                    particulars += "Other Fees " + "\n\n";
+                    particulars += "Adjustment" + "\n\n";
+
+                    _values += "\n";
+                    _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n\n";
+                    _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n\n";
+                    _values += 0; //other fee sum
+                    _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n\n";
+                }
+                
                 string status = Helper.InvestigationStatusText(Convert.ToInt32(dictInvestigation["is_approved"]));
 
                 parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);

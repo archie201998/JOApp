@@ -23,15 +23,29 @@ namespace JOMonitoringApp.Views.Investigation
         string secondaryImageFilePath = string.Empty;
 
         internal readonly int _investigationId;
+        private readonly frmInvestigation _frmInvestigation;
         private int _jobOrderId;
         internal bool _hasAdjustment;
         private bool _billAdjustmentIsAllowed = false;
+        private frmInvestigation frmInvestigation;
 
-        public frmInvestigationForm(int _investigationId)
+       
+        public frmInvestigationForm(frmInvestigation frmInvestigation, int investigationId)
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            this._investigationId = _investigationId;   
+
+            this.frmInvestigation = frmInvestigation;
+            _investigationId = investigationId;
+            _frmInvestigation = frmInvestigation;
+        }
+
+        public frmInvestigationForm(int investigationId)
+        {
+            _investigationId = investigationId;
+            Helper.LoadFormIcon(this);
+            _investigationId = investigationId;
+            _frmInvestigation = frmInvestigation;
         }
 
         private void frmInvestigationForm_Load(object sender, EventArgs e)
@@ -498,7 +512,8 @@ namespace JOMonitoringApp.Views.Investigation
         {
             if (_billAdjustmentIsAllowed)
             {
-                _ = new frmInvestigationAdjustment(this).ShowDialog();
+                var adjustmentForm = new frmInvestigationAdjustment(_frmInvestigation, this);
+                ShowMdiChildForm(adjustmentForm);
                 ViewAdjustment();
                 return;
             }
@@ -506,6 +521,14 @@ namespace JOMonitoringApp.Views.Investigation
             Helper.MessageBoxSuccess("Adjustments cannot be made at this time. Please wait for further recommendations before proceeding.");
         }
 
+        private void ShowMdiChildForm(Form form)
+        {
+            form.MdiParent = _frmInvestigation;
+            form.Show();
+            LayoutMdi(MdiLayout.TileHorizontal);
+        }
+
+        
         internal void ViewAdjustment()
         {
             var adjustments = Factory.InvestigationRepository().GetViewRecordById(_investigationId);
@@ -513,29 +536,20 @@ namespace JOMonitoringApp.Views.Investigation
             if (adjustments.Count != 0) 
             {
                 decimal waterBill = Convert.ToDecimal(adjustments["water_bill"]);
+                decimal waterBillAdjustedAmount = Convert.ToDecimal(adjustments["adjusted_water_bill"]);
                 decimal waterBillAdjustment = Convert.ToDecimal(adjustments["water_bill_adjustment"]);
-                decimal penalty = Convert.ToDecimal(adjustments["penalty"]);
-                decimal extensionFee = Convert.ToDecimal(adjustments["extension_fee"]);
-                decimal adjustedAmount = waterBill - waterBillAdjustment;
-                decimal adjustedWaterBill = Convert.ToDecimal(adjustments["adjusted_water_bill"]);
 
                 lblWaterBill.Text = waterBill.ToString("N2");
-                lblWaterBIllAdjustment.Text = waterBillAdjustment.ToString("N2");
-                lblExtensionFee.Text = extensionFee.ToString("N2");
-                lblPenalty.Text = penalty.ToString("N2");
-                lblAdjustedAmount.Text = adjustedAmount.ToString("N2");
-                lblAdjustedWaterBill.Text = adjustedAmount.ToString("N2");
+                lblAdjusted.Text = waterBillAdjustedAmount.ToString("N2");
+                lblAdjustment.Text = waterBillAdjustment.ToString("N2");
+                lblOtherFees.Text = "0.00";
+                return;
             }
 
-            else
-            {
-                lblWaterBill.Text = "00.00";
-                lblWaterBIllAdjustment.Text = "00.00";
-                lblExtensionFee.Text = "00.00";
-                lblPenalty.Text = "00.00";
-                lblAdjustedAmount.Text = "00.00";
-                lblAdjustedWaterBill.Text = "00.00";    
-            }
+            lblWaterBill.Text = "0.00";
+            lblAdjusted.Text = "0.00";
+            lblAdjustment.Text = "0.00";
+            lblOtherFees.Text = "0.00";
         }
 
         private void radInvestigation_CheckedChanged(object sender, EventArgs e)

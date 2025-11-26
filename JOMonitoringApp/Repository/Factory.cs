@@ -35,7 +35,7 @@ namespace JOMonitoringApp
 
         internal static IMaterials MaterialsRepository() => new MaterialsRepository(mySqlGenericCommands);
         internal static IJobOrderParticularsRepository JobOrderParticularsRepository() => new JobOrderParticularsRepository(mySqlGenericCommands);
-        internal static IInvestigationAdjustmentRepository InvestigationAdjustmentRepository() => new InvestigationAdjustmentRepository(mySqlGenericCommands);
+        internal static Interface.IInvestigationAdjustmentOtherFeesRepository InvestigationAdjustmentRepository() => new IInvestigationAdjustmentOtherFeesRepository(mySqlGenericCommands);
         internal static IInvestigationFindings InvestigationFindingsRepository() => new InvestigationFindingsRepository(mySqlGenericCommands);
         internal static IRequestRepository RequestRepository() => new RequestRepository(mySqlGenericCommands);
 

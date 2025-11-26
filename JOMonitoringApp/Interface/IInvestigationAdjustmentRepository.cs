@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace JOMonitoringApp.Interface
 {
-    internal interface IInvestigationAdjustmentRepository : IRepository<InvestigationAdjustmentModel>
+    internal interface IInvestigationAdjustmentOtherFeesRepository : IRepository<InvestigationAdjustmentOtherFeesModel>
     {
         bool DeleteAdjustments(int investigationID);
-        string GetValueByInvestigationParticularAndID(string itemText, int selectedInvestigationID);
+        DataTable GetInvestigationOtherFees(int investigationId);
     }
 }

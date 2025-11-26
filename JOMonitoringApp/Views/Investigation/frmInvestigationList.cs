@@ -17,11 +17,13 @@ namespace JOMonitoringApp.Views.Investigation
 {
     public partial class frmInvestigationList : Form
     {
-        public frmInvestigationList()
+        private readonly frmInvestigation _frmInvestigation;
+        public frmInvestigationList(frmInvestigation frmInvestigation)
         {
             InitializeComponent();
             Helper.DatagridFullRowSelectStyle(dgInvestigations);
             Helper.LoadFormIcon(this);
+            _frmInvestigation = frmInvestigation;
         }
 
         private void InvestigationForm(string whatToPrint)
@@ -162,11 +164,20 @@ namespace JOMonitoringApp.Views.Investigation
         {
             int rowIndex = dgInvestigations.CurrentRow.Index;   
             int investigationId = Convert.ToInt32(dgInvestigations.SelectedRows[0].Cells["id"].Value);
-            var investigationForm = new frmInvestigationForm(investigationId);
-            investigationForm.ShowDialog();
-            GetInvestigationRecords();
-            dgInvestigations.CurrentCell = dgInvestigations.Rows[rowIndex].Cells[2];
+            //var investigationForm = new frmInvestigationForm(investigationId);
+            //investigationForm.ShowDialog();
+            //GetInvestigationRecords();
+            //dgInvestigations.CurrentCell = dgInvestigations.Rows[rowIndex].Cells[2];
 
+            var investigationForm = new frmInvestigationForm(_frmInvestigation, investigationId);
+            ShowMdiChildForm(investigationForm);
+
+        }
+
+        private void ShowMdiChildForm(Form form)
+        {
+            form.MdiParent = _frmInvestigation;
+            form.Show();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

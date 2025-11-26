@@ -79,16 +79,12 @@
             this.gbComputation = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAdjustmentForm = new System.Windows.Forms.Label();
-            this.lblWaterBIllAdjustment = new System.Windows.Forms.Label();
-            this.lblAdjustedWaterBill = new System.Windows.Forms.Label();
-            this.lblAdjustedAmount = new System.Windows.Forms.Label();
-            this.lblExtensionFee = new System.Windows.Forms.Label();
-            this.lblPenalty = new System.Windows.Forms.Label();
+            this.lblAdjusted = new System.Windows.Forms.Label();
+            this.lblAdjustment = new System.Windows.Forms.Label();
+            this.lblOtherFees = new System.Windows.Forms.Label();
             this.lblWaterBill = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -734,16 +730,12 @@
             // 
             this.gbComputation.Controls.Add(this.label4);
             this.gbComputation.Controls.Add(this.btnAdjustmentForm);
-            this.gbComputation.Controls.Add(this.lblWaterBIllAdjustment);
-            this.gbComputation.Controls.Add(this.lblAdjustedWaterBill);
-            this.gbComputation.Controls.Add(this.lblAdjustedAmount);
-            this.gbComputation.Controls.Add(this.lblExtensionFee);
-            this.gbComputation.Controls.Add(this.lblPenalty);
+            this.gbComputation.Controls.Add(this.lblAdjusted);
+            this.gbComputation.Controls.Add(this.lblAdjustment);
+            this.gbComputation.Controls.Add(this.lblOtherFees);
             this.gbComputation.Controls.Add(this.lblWaterBill);
             this.gbComputation.Controls.Add(this.label30);
             this.gbComputation.Controls.Add(this.label31);
-            this.gbComputation.Controls.Add(this.label29);
-            this.gbComputation.Controls.Add(this.label28);
             this.gbComputation.Controls.Add(this.label25);
             this.gbComputation.Controls.Add(this.label5);
             this.gbComputation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -779,81 +771,55 @@
             this.btnAdjustmentForm.Text = "Adjustment Form";
             this.btnAdjustmentForm.Click += new System.EventHandler(this.btnAdjustmentForm_Click);
             // 
-            // lblWaterBIllAdjustment
+            // lblAdjusted
             // 
-            this.lblWaterBIllAdjustment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblWaterBIllAdjustment.AutoSize = true;
-            this.lblWaterBIllAdjustment.BackColor = System.Drawing.Color.White;
-            this.lblWaterBIllAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblWaterBIllAdjustment.ForeColor = System.Drawing.Color.Red;
-            this.lblWaterBIllAdjustment.Location = new System.Drawing.Point(219, 90);
-            this.lblWaterBIllAdjustment.Name = "lblWaterBIllAdjustment";
-            this.lblWaterBIllAdjustment.Size = new System.Drawing.Size(38, 15);
-            this.lblWaterBIllAdjustment.TabIndex = 32;
-            this.lblWaterBIllAdjustment.Text = "00.00";
+            this.lblAdjusted.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAdjusted.AutoSize = true;
+            this.lblAdjusted.BackColor = System.Drawing.Color.White;
+            this.lblAdjusted.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdjusted.ForeColor = System.Drawing.Color.Red;
+            this.lblAdjusted.Location = new System.Drawing.Point(165, 99);
+            this.lblAdjusted.Name = "lblAdjusted";
+            this.lblAdjusted.Size = new System.Drawing.Size(44, 18);
+            this.lblAdjusted.TabIndex = 32;
+            this.lblAdjusted.Text = "00.00";
             // 
-            // lblAdjustedWaterBill
+            // lblAdjustment
             // 
-            this.lblAdjustedWaterBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAdjustedWaterBill.AutoSize = true;
-            this.lblAdjustedWaterBill.BackColor = System.Drawing.Color.White;
-            this.lblAdjustedWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdjustedWaterBill.ForeColor = System.Drawing.Color.Green;
-            this.lblAdjustedWaterBill.Location = new System.Drawing.Point(214, 185);
-            this.lblAdjustedWaterBill.Name = "lblAdjustedWaterBill";
-            this.lblAdjustedWaterBill.Size = new System.Drawing.Size(43, 16);
-            this.lblAdjustedWaterBill.TabIndex = 31;
-            this.lblAdjustedWaterBill.Text = "00.00";
+            this.lblAdjustment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAdjustment.AutoSize = true;
+            this.lblAdjustment.BackColor = System.Drawing.Color.White;
+            this.lblAdjustment.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAdjustment.ForeColor = System.Drawing.Color.Red;
+            this.lblAdjustment.Location = new System.Drawing.Point(165, 173);
+            this.lblAdjustment.Name = "lblAdjustment";
+            this.lblAdjustment.Size = new System.Drawing.Size(44, 18);
+            this.lblAdjustment.TabIndex = 31;
+            this.lblAdjustment.Text = "00.00";
             // 
-            // lblAdjustedAmount
+            // lblOtherFees
             // 
-            this.lblAdjustedAmount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAdjustedAmount.AutoSize = true;
-            this.lblAdjustedAmount.BackColor = System.Drawing.Color.White;
-            this.lblAdjustedAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblAdjustedAmount.ForeColor = System.Drawing.Color.Black;
-            this.lblAdjustedAmount.Location = new System.Drawing.Point(219, 160);
-            this.lblAdjustedAmount.Name = "lblAdjustedAmount";
-            this.lblAdjustedAmount.Size = new System.Drawing.Size(38, 15);
-            this.lblAdjustedAmount.TabIndex = 31;
-            this.lblAdjustedAmount.Text = "00.00";
-            // 
-            // lblExtensionFee
-            // 
-            this.lblExtensionFee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExtensionFee.AutoSize = true;
-            this.lblExtensionFee.BackColor = System.Drawing.Color.White;
-            this.lblExtensionFee.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblExtensionFee.ForeColor = System.Drawing.Color.Red;
-            this.lblExtensionFee.Location = new System.Drawing.Point(219, 137);
-            this.lblExtensionFee.Name = "lblExtensionFee";
-            this.lblExtensionFee.Size = new System.Drawing.Size(38, 15);
-            this.lblExtensionFee.TabIndex = 31;
-            this.lblExtensionFee.Text = "00.00";
-            // 
-            // lblPenalty
-            // 
-            this.lblPenalty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPenalty.AutoSize = true;
-            this.lblPenalty.BackColor = System.Drawing.Color.White;
-            this.lblPenalty.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.lblPenalty.ForeColor = System.Drawing.Color.Red;
-            this.lblPenalty.Location = new System.Drawing.Point(219, 113);
-            this.lblPenalty.Name = "lblPenalty";
-            this.lblPenalty.Size = new System.Drawing.Size(38, 15);
-            this.lblPenalty.TabIndex = 31;
-            this.lblPenalty.Text = "00.00";
+            this.lblOtherFees.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOtherFees.AutoSize = true;
+            this.lblOtherFees.BackColor = System.Drawing.Color.White;
+            this.lblOtherFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOtherFees.ForeColor = System.Drawing.Color.Red;
+            this.lblOtherFees.Location = new System.Drawing.Point(165, 136);
+            this.lblOtherFees.Name = "lblOtherFees";
+            this.lblOtherFees.Size = new System.Drawing.Size(44, 18);
+            this.lblOtherFees.TabIndex = 31;
+            this.lblOtherFees.Text = "00.00";
             // 
             // lblWaterBill
             // 
             this.lblWaterBill.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWaterBill.AutoSize = true;
             this.lblWaterBill.BackColor = System.Drawing.Color.White;
-            this.lblWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblWaterBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWaterBill.ForeColor = System.Drawing.Color.Black;
-            this.lblWaterBill.Location = new System.Drawing.Point(219, 66);
+            this.lblWaterBill.Location = new System.Drawing.Point(165, 62);
             this.lblWaterBill.Name = "lblWaterBill";
-            this.lblWaterBill.Size = new System.Drawing.Size(38, 15);
+            this.lblWaterBill.Size = new System.Drawing.Size(44, 18);
             this.lblWaterBill.TabIndex = 30;
             this.lblWaterBill.Text = "00.00";
             // 
@@ -863,11 +829,11 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(26, 136);
+            this.label30.Location = new System.Drawing.Point(18, 173);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(102, 15);
+            this.label30.Size = new System.Drawing.Size(88, 15);
             this.label30.TabIndex = 29;
-            this.label30.Text = "EXTENSION FEE";
+            this.label30.Text = "ADJUSTMENT";
             // 
             // label31
             // 
@@ -875,35 +841,11 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(26, 112);
+            this.label31.Location = new System.Drawing.Point(18, 137);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(60, 15);
+            this.label31.Size = new System.Drawing.Size(83, 15);
             this.label31.TabIndex = 28;
-            this.label31.Text = "PENALTY";
-            // 
-            // label29
-            // 
-            this.label29.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(26, 160);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(128, 15);
-            this.label29.TabIndex = 27;
-            this.label29.Text = "ADJUSTED AMOUNT ";
-            // 
-            // label28
-            // 
-            this.label28.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(26, 184);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(146, 15);
-            this.label28.TabIndex = 25;
-            this.label28.Text = "ADJUSTED WATER BILL ";
+            this.label31.Text = "OTHER FEES";
             // 
             // label25
             // 
@@ -911,11 +853,11 @@
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(26, 88);
+            this.label25.Location = new System.Drawing.Point(18, 101);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(161, 15);
+            this.label25.Size = new System.Drawing.Size(125, 15);
             this.label25.TabIndex = 23;
-            this.label25.Text = "WATER BILL ADJUSTMENT";
+            this.label25.Text = "ADJUSTED AMOUNT";
             // 
             // label5
             // 
@@ -923,7 +865,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(26, 64);
+            this.label5.Location = new System.Drawing.Point(18, 64);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 15);
             this.label5.TabIndex = 23;
@@ -1367,6 +1309,7 @@
             this.Name = "frmInvestigationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Investigation Data";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInvestigationForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInvestigationForm_KeyDown);
             this.gbAccountDetails.ResumeLayout(false);
@@ -1447,16 +1390,12 @@
         internal System.Windows.Forms.GroupBox gbComputation;
         private System.Windows.Forms.Label label4;
         internal System.Windows.Forms.Label btnAdjustmentForm;
-        internal System.Windows.Forms.Label lblWaterBIllAdjustment;
-        internal System.Windows.Forms.Label lblAdjustedWaterBill;
-        internal System.Windows.Forms.Label lblAdjustedAmount;
-        internal System.Windows.Forms.Label lblExtensionFee;
-        internal System.Windows.Forms.Label lblPenalty;
+        internal System.Windows.Forms.Label lblAdjusted;
+        internal System.Windows.Forms.Label lblAdjustment;
+        internal System.Windows.Forms.Label lblOtherFees;
         internal System.Windows.Forms.Label lblWaterBill;
         internal System.Windows.Forms.Label label30;
         internal System.Windows.Forms.Label label31;
-        internal System.Windows.Forms.Label label29;
-        internal System.Windows.Forms.Label label28;
         internal System.Windows.Forms.Label label25;
         internal System.Windows.Forms.Label label5;
         protected System.Windows.Forms.GroupBox groupBox3;

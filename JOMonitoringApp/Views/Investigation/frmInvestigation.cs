@@ -33,7 +33,7 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            ShowMdiChildForm(new frmInvestigationList());
+            ShowMdiChildForm(new frmInvestigationList(this));
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)

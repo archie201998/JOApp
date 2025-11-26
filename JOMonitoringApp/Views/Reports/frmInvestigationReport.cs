@@ -46,7 +46,7 @@ namespace JOMonitoringApp.Views.Reports
                         //LoadWholeReport();
                         break;
                     case "ADJUSTMENT":
-                        //LoadWholeReport();
+                        LoadInvestigationAdjustment();
                         break;
                 }
             }
@@ -90,6 +90,87 @@ namespace JOMonitoringApp.Views.Reports
         private void btnSearch_Click(object sender, EventArgs e)
         {
             LoadWholeReport();
+        }
+
+        private void LoadInvestigationAdjustment()
+        {
+            string jobOrderNumber = txtJONo.Text;
+
+            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\Investigation\\investigation-form-adjustment.rdlc";
+            reportViewer1.LocalReport.EnableExternalImages = true;
+
+            Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
+
+            if (dictInvestigation.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                Close();
+                return;
+            }
+
+            ReportParameter[] parameters = new ReportParameter[5];
+
+            int investigationID = Convert.ToInt32(dictInvestigation["id"]);
+            var othersFees = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
+
+            string particulars = string.Empty;
+            string _values = string.Empty;
+
+            string otherFeesDescription = string.Empty;
+            decimal otherFeesAmountSum = 0.00M;
+            string otherFeesAmount = string.Empty;
+
+
+
+            decimal waterBill = Convert.ToDecimal(dictInvestigation["water_bill"]);
+            decimal adjustedWaterBill = Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]);
+            decimal adjustment = Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]);
+            decimal sumAdjustment = waterBill + adjustedWaterBill + adjustedWaterBill;
+
+            foreach (DataRow item in othersFees.Rows)
+            {
+                otherFeesAmount += item["value"].ToString() + "\n";
+                otherFeesAmountSum += Convert.ToDecimal(item["value"].ToString());
+                otherFeesDescription += item["particular"].ToString() + " :" + item["value"].ToString() + "\n";
+            }
+
+            if (sumAdjustment > 0)
+            {
+                particulars += "\n";
+                particulars += "Water Bill " + "\n";
+                particulars += "Adjusted Amount " + "\n";
+                particulars += "Other Fees " + "\n";
+                particulars += "Adjustment" + "\n";
+
+                _values += "\n";
+                _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n";
+                _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n";
+                _values += otherFeesAmountSum.ToString("N2") + "\n";
+                _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n";
+            }
+
+            parameters[0] = new ReportParameter("paramAdjustmentParticulars", particulars);
+            parameters[1] = new ReportParameter("paramAdjustmentValues", _values);
+            parameters[2] = new ReportParameter("paramAdjustmentParticular", dictInvestigation["adjustment_particular"]);
+            parameters[3] = new ReportParameter("paramOtherFees", otherFeesDescription);
+            parameters[4] = new ReportParameter("paramAdjustmentNote", dictInvestigation["adjustment_note"]);
+
+            reportViewer1.LocalReport.SetParameters(parameters);
+            reportViewer1.ProcessingMode = ProcessingMode.Local;
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = ZoomMode.Percent;
+            reportViewer1.RefreshReport();
+
+            try
+            {
+                
+
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
+                Close();
+            }
         }
 
         private void LoadInvestigatorCommentReport()
@@ -142,7 +223,7 @@ namespace JOMonitoringApp.Views.Reports
                     return;
                 }
 
-                ReportParameter[] parameters = new ReportParameter[28];
+                ReportParameter[] parameters = new ReportParameter[29];
                 parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
                 parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
                 parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -151,34 +232,42 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[5] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
 
                 int investigationID = Convert.ToInt32(dictInvestigation["id"]);
-                var adjustments = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
+                var othersFees = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
 
                 string particulars = string.Empty;
                 string _values = string.Empty;
+
+                string otherFeesDescription = string.Empty;
+                decimal otherFeesAmountSum = 0.00M;
+                string otherFeesAmount = string.Empty;
+
+
+
                 decimal waterBill = Convert.ToDecimal(dictInvestigation["water_bill"]);
                 decimal adjustedWaterBill = Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]);    
                 decimal adjustment = Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]);
                 decimal sumAdjustment = waterBill + adjustedWaterBill + adjustedWaterBill;
 
-                foreach (DataRow item in adjustments.Rows)
+                foreach (DataRow item in othersFees.Rows)
                 {
-                    particulars += item["particular"].ToString() + "\n";
-                    _values += item["value"].ToString() + "\n";
+                    otherFeesAmount += item["value"].ToString() + "\n";
+                    otherFeesAmountSum += Convert.ToDecimal(item["value"].ToString());
+                    otherFeesDescription += item["particular"].ToString() + " :" + item["value"].ToString() + "\n";
                 }
 
                 if (sumAdjustment > 0)
                 {
                     particulars += "\n";
-                    particulars += "Water Bill " + "\n\n";
-                    particulars += "Adjusted Amount " + "\n\n";
-                    particulars += "Other Fees " + "\n\n";
-                    particulars += "Adjustment" + "\n\n";
+                    particulars += "Water Bill " + "\n";
+                    particulars += "Adjusted Amount " + "\n";
+                    particulars += "Other Fees " + "\n";
+                    particulars += "Adjustment" + "\n";
 
                     _values += "\n";
-                    _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n\n";
-                    _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n\n";
-                    _values += 0; //other fee sum
-                    _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n\n";
+                    _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n";
+                    _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n";
+                    _values += otherFeesAmountSum.ToString("N2") + "\n";
+                    _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n";
                 }
                 
                 string status = Helper.InvestigationStatusText(Convert.ToInt32(dictInvestigation["is_approved"]));
@@ -221,6 +310,10 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[24] = new ReportParameter("paramJobOrderNumber", jobOrderNumber);
                 parameters[25] = new ReportParameter("paramContactNumber", dictInvestigation["contact_number"]);
                 parameters[26] = new ReportParameter("paramAdjustmentParticular", dictInvestigation["adjustment_particular"]);
+
+
+                parameters[27] = new ReportParameter("paramOtherFees", otherFeesDescription );
+                parameters[28] = new ReportParameter("paramAdjustmentNote", dictInvestigation["adjustment_note"]);
 
                 reportViewer1.LocalReport.SetParameters(parameters);
                 reportViewer1.ProcessingMode = ProcessingMode.Local;

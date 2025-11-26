@@ -374,6 +374,7 @@ namespace JOMonitoringApp
                 new object[] { "@water_bill", DbType.String, entity.WaterBill },
                 new object[] { "@adjusted_water_bill", DbType.String, entity.AdjustedWaterBill },
                 new object[] { "@water_bill_adjustment", DbType.String, entity.WaterBillAdjustment },
+                new object[] { "@adjustment_note", DbType.String, entity.AdjustmentNote },
                 new object[] { "@updated_by", DbType.String, entity.UpdatedBy },
 
             };
@@ -383,6 +384,7 @@ namespace JOMonitoringApp
                                 water_bill = @water_bill,
                                 adjusted_water_bill = @adjusted_water_bill, 
                                 water_bill_adjustment = @water_bill_adjustment, 
+                                adjustment_note = @adjustment_note, 
                                 updated_by = @updated_by
                             WHERE id = @id;";
 

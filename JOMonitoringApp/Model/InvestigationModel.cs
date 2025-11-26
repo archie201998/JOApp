@@ -80,5 +80,6 @@ namespace JOMonitoringApp.Model
         public string AdjustmentParticular { get; set; }
 
         public string InvestigatedBy { get; set; }
+        public string AdjustmentNote { get;  set; }
     }
 }

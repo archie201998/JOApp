@@ -1,7 +1,9 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
+using MySqlX.XDevAPI.Relational;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Investigation
@@ -86,12 +88,13 @@ namespace JOMonitoringApp.Views.Investigation
                 decimal waterBill = !string.IsNullOrWhiteSpace(adjustments["water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill"]) : 0;
                 decimal adjustedAmount = !string.IsNullOrWhiteSpace(adjustments["adjusted_water_bill"]?.ToString()) ? Convert.ToDecimal(adjustments["adjusted_water_bill"]) : 0;
                 decimal adjustment = !string.IsNullOrWhiteSpace(adjustments["water_bill_adjustment"]?.ToString()) ? Convert.ToDecimal(adjustments["water_bill_adjustment"]) : 0;
-               
+                string adjustmentNote = adjustments["adjustment_note"].ToString();
+
                 cmbxParticular.SelectedItem = particular;
                 txtWaterBill.Text = waterBill.ToString("N2");
                 txtAdjustedAmount.Text = adjustedAmount.ToString("N2");
                 txtAdjustment.Text = adjustment.ToString("N2");
-
+                txtAdjustmentNote.Text = adjustmentNote;
             }
 
             return;
@@ -107,8 +110,6 @@ namespace JOMonitoringApp.Views.Investigation
         {
             try
             {
-               
-
                 bool adjustmentResult = Factory.InvestigationRepository().SaveComputation(InvestigationModel());
 
                 if (!SaveOtherFeesAdjustment() )
@@ -138,19 +139,13 @@ namespace JOMonitoringApp.Views.Investigation
 
         private bool SaveOtherFeesAdjustment()
         {
-
-            if (!RemoveOtherFees())
-            {
-                Helper.MessageBoxSuccess("Error on removing other fees.");
-                return false;
-            }
-
+            RemoveOtherFees();
             if (Helper.MessageBoxConfirmCancel("Do you confirm to save this adjustment?"))
             {
                 foreach (DataGridViewRow dgvRow in dgOtherFees.Rows)
                 {
-                    string description = dgvRow.Cells["particular"].Value?.ToString();
-                    string amount = dgvRow.Cells["value"].Value?.ToString();
+                    string description = dgvRow.Cells["description"].Value?.ToString();
+                    string amount = dgvRow.Cells["amount"].Value?.ToString();
 
                     var investigationAdjustmentModel = new InvestigationAdjustmentOtherFeesModel
                     {
@@ -178,6 +173,7 @@ namespace JOMonitoringApp.Views.Investigation
                 WaterBill = Convert.ToDecimal(txtWaterBill.Text.Trim()),
                 AdjustedWaterBill = Convert.ToDecimal(txtAdjustedAmount.Text.Trim()),
                 WaterBillAdjustment = txtAdjustment.Text != string.Empty ? Convert.ToDecimal(txtAdjustment.Text.Trim()) : 0,
+                AdjustmentNote = txtAdjustmentNote.Text,
                 UpdatedBy = Helper.CurrentUserID,
             };
 
@@ -209,20 +205,29 @@ namespace JOMonitoringApp.Views.Investigation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtOtherFessDescription.Text) || string.IsNullOrEmpty(txtOtherFeesAmount.Text))
+            try
             {
-                Helper.MessageBoxWarning("Please enter description and amount.");
-                return;
+                dgOtherFees.DataSource = null;
+                if (string.IsNullOrEmpty(txtOtherFessDescription.Text) || string.IsNullOrEmpty(txtOtherFeesAmount.Text))
+                {
+                    Helper.MessageBoxWarning("Please enter description and amount.");
+                    return;
+                }
+
+                string description = txtOtherFessDescription.Text.Trim();
+                decimal amount = Convert.ToDecimal(txtOtherFeesAmount.Text.Trim());
+
+                dgOtherFees.Rows.Add(description, amount);
+
+                txtOtherFeesAmount.Clear();
+                txtOtherFessDescription.Clear();
+                txtOtherFessDescription.Focus();
+            }
+            catch (Exception)
+            {
+
             }
 
-            string description = txtOtherFessDescription.Text.Trim();
-            decimal amount = Convert.ToDecimal(txtOtherFeesAmount.Text.Trim()); 
-
-            dgOtherFees.Rows.Add(description, amount);
-
-            txtOtherFeesAmount.Clear();
-            txtOtherFessDescription.Clear();
-            txtOtherFessDescription.Focus();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -235,13 +240,6 @@ namespace JOMonitoringApp.Views.Investigation
        
         }
 
-        private void btnRemove_Click(object sender, EventArgs e)
-        {
-            byte rowIndex = (byte)dgOtherFees.CurrentCell.RowIndex; 
-            dgOtherFees.Rows.RemoveAt(rowIndex);
-            dgOtherFees.Focus();
-        }
-
         private void dgOtherFees_SelectionChanged(object sender, EventArgs e)
         {
             if (dgOtherFees.SelectedRows.Count == 1 || dgOtherFees.Rows.Count != 0)
@@ -251,6 +249,13 @@ namespace JOMonitoringApp.Views.Investigation
             }
 
             btnRemove.Enabled = false;
+        }
+
+        private void btnRemove_Click_1(object sender, EventArgs e)
+        {
+            byte rowIndex = (byte)dgOtherFees.CurrentCell.RowIndex;
+            dgOtherFees.Rows.RemoveAt(rowIndex);
+            dgOtherFees.Focus();
         }
     }
 }

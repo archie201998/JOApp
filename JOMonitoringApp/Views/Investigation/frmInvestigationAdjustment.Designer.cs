@@ -38,7 +38,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.btnAddOtherFees = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtAdjustmentNote = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtOtherFeesAmount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,9 +56,9 @@
             this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRemove = new System.Windows.Forms.Button();
             this.mySqlDataAdapter1 = new MySql.Data.MySqlClient.MySqlDataAdapter();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnRemove = new System.Windows.Forms.Button();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewOtherFees)).BeginInit();
@@ -155,7 +155,7 @@
             // 
             this.groupBox5.Controls.Add(this.btnAddOtherFees);
             this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.textBox3);
+            this.groupBox5.Controls.Add(this.txtAdjustmentNote);
             this.groupBox5.Controls.Add(this.label4);
             this.groupBox5.Controls.Add(this.txtOtherFeesAmount);
             this.groupBox5.Controls.Add(this.label2);
@@ -202,18 +202,18 @@
             this.label5.TabIndex = 38;
             this.label5.Text = "NOTES / REMARKS ";
             // 
-            // textBox3
+            // txtAdjustmentNote
             // 
-            this.textBox3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBox3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.ForeColor = System.Drawing.Color.Black;
-            this.textBox3.Location = new System.Drawing.Point(166, 213);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(307, 42);
-            this.textBox3.TabIndex = 37;
+            this.txtAdjustmentNote.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtAdjustmentNote.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtAdjustmentNote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAdjustmentNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.txtAdjustmentNote.ForeColor = System.Drawing.Color.Black;
+            this.txtAdjustmentNote.Location = new System.Drawing.Point(166, 213);
+            this.txtAdjustmentNote.Multiline = true;
+            this.txtAdjustmentNote.Name = "txtAdjustmentNote";
+            this.txtAdjustmentNote.Size = new System.Drawing.Size(307, 42);
+            this.txtAdjustmentNote.TabIndex = 37;
             // 
             // label4
             // 
@@ -407,17 +407,6 @@
             this.panel1.Size = new System.Drawing.Size(483, 30);
             this.panel1.TabIndex = 22;
             // 
-            // mySqlDataAdapter1
-            // 
-            this.mySqlDataAdapter1.DeleteCommand = null;
-            this.mySqlDataAdapter1.InsertCommand = null;
-            this.mySqlDataAdapter1.SelectCommand = null;
-            this.mySqlDataAdapter1.UpdateCommand = null;
-            // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // btnRemove
             // 
             this.btnRemove.BackColor = System.Drawing.Color.White;
@@ -434,6 +423,18 @@
             this.btnRemove.TabIndex = 42;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click_1);
+            // 
+            // mySqlDataAdapter1
+            // 
+            this.mySqlDataAdapter1.DeleteCommand = null;
+            this.mySqlDataAdapter1.InsertCommand = null;
+            this.mySqlDataAdapter1.SelectCommand = null;
+            this.mySqlDataAdapter1.UpdateCommand = null;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // frmInvestigationAdjustment
             // 
@@ -492,7 +493,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Label label5;
-        internal System.Windows.Forms.TextBox textBox3;
+        internal System.Windows.Forms.TextBox txtAdjustmentNote;
         private System.Windows.Forms.Button btnAddOtherFees;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;

@@ -32,20 +32,23 @@ namespace JOMonitoringApp.Views.Investigation
        
         public frmInvestigationForm(frmInvestigation frmInvestigation, int investigationId)
         {
-            InitializeComponent();
-            Helper.LoadFormIcon(this);
-
+            InitializeComponents();
             this.frmInvestigation = frmInvestigation;
+
             _investigationId = investigationId;
             _frmInvestigation = frmInvestigation;
         }
 
         public frmInvestigationForm(int investigationId)
         {
+            InitializeComponents();
             _investigationId = investigationId;
+        }
+
+        private void InitializeComponents()
+        {
+            InitializeComponent();
             Helper.LoadFormIcon(this);
-            _investigationId = investigationId;
-            _frmInvestigation = frmInvestigation;
         }
 
         private void frmInvestigationForm_Load(object sender, EventArgs e)
@@ -513,7 +516,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (_billAdjustmentIsAllowed)
             {
                 var adjustmentForm = new frmInvestigationAdjustment(_frmInvestigation, this);
-                ShowMdiChildForm(adjustmentForm);
+                adjustmentForm.ShowDialog();
                 ViewAdjustment();
                 return;
             }

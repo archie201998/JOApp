@@ -223,7 +223,7 @@ namespace JOMonitoringApp.Views.Reports
                     return;
                 }
 
-                ReportParameter[] parameters = new ReportParameter[29];
+                ReportParameter[] parameters = new ReportParameter[30];
                 parameters[0] = new ReportParameter("paramCustomer", dictInvestigation["customer_name"]);
                 parameters[1] = new ReportParameter("paramAccountNumber", dictInvestigation["account_number"]);
                 parameters[2] = new ReportParameter("paramAddress", dictInvestigation["customer_address"]);
@@ -283,7 +283,7 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[13] = new ReportParameter("paramReadingAfterTest", dictInvestigation["reading_after_test"]);
                 parameters[14] = new ReportParameter("paramCalibrationResult", dictInvestigation["calibration_result"]);
                 parameters[15] = new ReportParameter("paramImmediateMembers", dictInvestigation["immediate_members_of_fam"]);
-                parameters[27] = new ReportParameter("paramDateComplained", dictInvestigation["created_at"]);
+                parameters[29] = new ReportParameter("paramDateComplained", dictInvestigation["created_at"]);
 
                 // Load image from file path
                 string ImagePath1 = dictInvestigation["image_path"];

@@ -31,5 +31,7 @@ namespace JOMonitoringApp.Interface
 
         decimal GetApplicationPaymentAmount(string orNumber);
         SqlDataReader LoadLedgerByCustomerId(int v, DateTime value1, DateTime value2);
+        string GetChangeMeterDate(string accountNumber);
+        Dictionary<string, string> GetChangeMeterDetails(string v);
     }
 }

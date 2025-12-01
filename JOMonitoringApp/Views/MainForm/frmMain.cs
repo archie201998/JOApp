@@ -413,7 +413,6 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dgJobOrders.Rows.Count == 0) return;
 
                 UpdateSettings();
-                LoadSelectedData();
                 ucJoborder.StoreOriginalValues();
             }
             catch (Exception)
@@ -421,6 +420,7 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError("Something went wrong. Please contact the system administrator.");
             }
 
+            LoadSelectedData();
         }
 
         private void UpdateSettings()
@@ -504,6 +504,19 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.gbIssuanceAndAssignment.Enabled = shouldEnable;
             ucJoborder.gbJODetails.Enabled = shouldEnable;
             btnRequestEdit.Visible = true;
+
+
+            Dictionary<string, string> changeMetertDict = Factory.CustomersRepository().GetChangeMeterDetails(dictJobOrders["account_number"]);
+
+            if (changeMetertDict != null && changeMetertDict.Count != 0)
+            {
+                string date = changeMetertDict["txnDate"].ToString();
+                string changedBy = changeMetertDict["usercode"].ToString();
+
+                postedAt.Text = "POSTED TO BILLING AND COLLECTION SYSTEM AT : " + date + " BY " + changedBy;
+            }
+            
+
         }
 
 
@@ -943,6 +956,7 @@ namespace JOMonitoringApp.Views.MainForm
                 {
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
                     byte[] indexArray = BitConverter.GetBytes(previousSelection);
+
                 }
             }
             catch (Exception)

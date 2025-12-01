@@ -334,4 +334,43 @@ internal class CustomersRepository : ICustomersRepository
         // the connection closes when the reader is disposed
         return cmd.ExecuteReader(CommandBehavior.CloseConnection);
     }
+
+    public string GetChangeMeterDate(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT TOP 1 FROM txn_ChangeMeter WHERE AccountNo = @account_number ORDER BY txn_ChangeMeter";
+
+        object result = sqlGenericCommands.ExecuteScalar(query, parameters);
+
+        return result != null && result != DBNull.Value ? result.ToString() : "0";
+    }
+
+    public Dictionary<string, string> GetChangeMeterDetails(string accountNumber)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@account_number", DbType.String, accountNumber }
+        };
+
+        string query = $"SELECT txnDate, usercode, AccountNo FROM txn_ChangeMeter WHERE AccountNo = @account_number ORDER BY txnDate";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+
+            }
+        }
+
+        return result;
+    }
 }

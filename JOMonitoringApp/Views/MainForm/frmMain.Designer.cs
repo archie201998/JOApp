@@ -57,6 +57,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.userManualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.applicationFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkSMSConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hydrantWithdrawalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,7 +123,9 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkRequest = new System.Windows.Forms.Timer(this.components);
-            this.checkSMSConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label6 = new System.Windows.Forms.Label();
+            this.isPosted = new System.Windows.Forms.ToolStripStatusLabel();
+            this.postedAt = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -330,7 +333,7 @@
             // logoutToolStripMenuItem1
             // 
             this.logoutToolStripMenuItem1.Name = "logoutToolStripMenuItem1";
-            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.logoutToolStripMenuItem1.Size = new System.Drawing.Size(122, 22);
             this.logoutToolStripMenuItem1.Text = "Log-out";
             this.logoutToolStripMenuItem1.Click += new System.EventHandler(this.LogoutToolStripMenuItem1_Click);
             // 
@@ -356,6 +359,13 @@
             this.applicationFilesToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.applicationFilesToolStripMenuItem.Text = "Application Files";
             this.applicationFilesToolStripMenuItem.Click += new System.EventHandler(this.applicationFilesToolStripMenuItem_Click);
+            // 
+            // checkSMSConnectionToolStripMenuItem
+            // 
+            this.checkSMSConnectionToolStripMenuItem.Name = "checkSMSConnectionToolStripMenuItem";
+            this.checkSMSConnectionToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.checkSMSConnectionToolStripMenuItem.Text = "Check SMS Connection";
+            this.checkSMSConnectionToolStripMenuItem.Click += new System.EventHandler(this.checkSMSConnectionToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
@@ -443,7 +453,9 @@
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel5,
             this.lblCheckingUpdate,
-            this.lblRetrieved});
+            this.lblRetrieved,
+            this.isPosted,
+            this.postedAt});
             this.statusStrip1.Location = new System.Drawing.Point(5, 918);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1639, 22);
@@ -629,6 +641,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Controls.Add(this.panelInputField);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
@@ -989,12 +1002,24 @@
             this.checkRequest.Interval = 5000;
             this.checkRequest.Tick += new System.EventHandler(this.checkRequest_Tick);
             // 
-            // checkSMSConnectionToolStripMenuItem
+            // label6
             // 
-            this.checkSMSConnectionToolStripMenuItem.Name = "checkSMSConnectionToolStripMenuItem";
-            this.checkSMSConnectionToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.checkSMSConnectionToolStripMenuItem.Text = "Check SMS Connection";
-            this.checkSMSConnectionToolStripMenuItem.Click += new System.EventHandler(this.checkSMSConnectionToolStripMenuItem_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 15);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "label6";
+            // 
+            // isPosted
+            // 
+            this.isPosted.Name = "isPosted";
+            this.isPosted.Size = new System.Drawing.Size(0, 17);
+            // 
+            // postedAt
+            // 
+            this.postedAt.Name = "postedAt";
+            this.postedAt.Size = new System.Drawing.Size(0, 17);
             // 
             // frmMain
             // 
@@ -1027,6 +1052,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
@@ -1137,5 +1163,8 @@
         private System.Windows.Forms.ToolStripMenuItem configurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sMSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem checkSMSConnectionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel isPosted;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripStatusLabel postedAt;
     }
 }

@@ -1309,7 +1309,6 @@
             this.Name = "frmInvestigationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Investigation Data";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmInvestigationForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmInvestigationForm_KeyDown);
             this.gbAccountDetails.ResumeLayout(false);

@@ -1,11 +1,13 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace JOMonitoringApp
 {
+
     internal class JobOrderParticularsRepository : IJobOrderParticularsRepository
     {
         private GenericCommands mySqlGenericCommands;
@@ -94,6 +96,26 @@ namespace JOMonitoringApp
         public DataTable GetRecordsByParticular(string particular)
         {
             throw new System.NotImplementedException();
+        }
+
+        public DataTable GetJOSummary(JobOrdersParticularsModel parameters)
+        {
+            var _parameters = new object[][]
+            {
+                new object[] { "@starting_date", DbType.Date, parameters.StartingDate},
+                new object[] { "@ending_date", DbType.Date, parameters.EndingDate },
+                new object[] { "@particular", DbType.String, parameters.Particular },
+                new object[] { "@status", DbType.String, parameters.Status},
+
+                //Filters
+                new object[] { "@limit", DbType.Int16, parameters.Limit},
+                new object[] { "@order_by", DbType.String, parameters.OrderBy},
+            };
+
+            string query = $"SELECT date, account_number, account_name, job_order_no, particular, mris, mrs, war, status FROM view_job_orders_particulars WHERE particular = 'Change Meter - Stuck-up' AND date >= @starting_date AND date <= @ending_date ORDER BY @order_by LIMIT @limit";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, _parameters);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace JOMonitoringApp.Interface
 {
     internal interface IJobOrderParticularsRepository : IRepository<JobOrdersParticularsModel>
     {
+        DataTable GetJOSummary(JobOrdersParticularsModel parameters);
         DataTable GetParticularIdByJOId(int jobOrderId);
         DataTable GetRecordsByParticular(string particular);
         bool InsertJobOrdersParticulars(int jobOrdersId, int particularId);

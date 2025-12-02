@@ -80,8 +80,10 @@
             this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.postedAt = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblCheckingUpdate = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
+            this.isPosted = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -93,6 +95,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgJobOrders = new System.Windows.Forms.DataGridView();
@@ -123,9 +126,7 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkRequest = new System.Windows.Forms.Timer(this.components);
-            this.label6 = new System.Windows.Forms.Label();
-            this.isPosted = new System.Windows.Forms.ToolStripStatusLabel();
-            this.postedAt = new System.Windows.Forms.ToolStripStatusLabel();
+            this.jOSummaryStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -258,6 +259,7 @@
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripJOSummary,
+            this.jOSummaryStatusToolStripMenuItem,
             this.toolStripJOProgressTracking,
             this.toolStripSROF,
             this.toolStripInvestigation,
@@ -452,10 +454,10 @@
             this.toolStripStatusLabel9,
             this.toolStripStatusLabel3,
             this.toolStripStatusLabel5,
+            this.postedAt,
             this.lblCheckingUpdate,
             this.lblRetrieved,
-            this.isPosted,
-            this.postedAt});
+            this.isPosted});
             this.statusStrip1.Location = new System.Drawing.Point(5, 918);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1639, 22);
@@ -529,6 +531,13 @@
             this.toolStripStatusLabel5.Size = new System.Drawing.Size(10, 17);
             this.toolStripStatusLabel5.Text = "|";
             // 
+            // postedAt
+            // 
+            this.postedAt.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.postedAt.Name = "postedAt";
+            this.postedAt.Size = new System.Drawing.Size(83, 17);
+            this.postedAt.Text = "POST STATUS";
+            // 
             // lblCheckingUpdate
             // 
             this.lblCheckingUpdate.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -549,6 +558,11 @@
             this.lblRetrieved.Size = new System.Drawing.Size(184, 17);
             this.lblRetrieved.Text = "Retrieving Records. Please Wait....";
             this.lblRetrieved.Visible = false;
+            // 
+            // isPosted
+            // 
+            this.isPosted.Name = "isPosted";
+            this.isPosted.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripStatusLabel2
             // 
@@ -651,6 +665,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "JOB ORDERS";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 15);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "label6";
             // 
             // panel1
             // 
@@ -1002,24 +1025,12 @@
             this.checkRequest.Interval = 5000;
             this.checkRequest.Tick += new System.EventHandler(this.checkRequest_Tick);
             // 
-            // label6
+            // jOSummaryStatusToolStripMenuItem
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 38);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 15);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "label6";
-            // 
-            // isPosted
-            // 
-            this.isPosted.Name = "isPosted";
-            this.isPosted.Size = new System.Drawing.Size(0, 17);
-            // 
-            // postedAt
-            // 
-            this.postedAt.Name = "postedAt";
-            this.postedAt.Size = new System.Drawing.Size(0, 17);
+            this.jOSummaryStatusToolStripMenuItem.Name = "jOSummaryStatusToolStripMenuItem";
+            this.jOSummaryStatusToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.jOSummaryStatusToolStripMenuItem.Text = "J.O Summary Status";
+            this.jOSummaryStatusToolStripMenuItem.Click += new System.EventHandler(this.jOSummaryStatusToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1166,5 +1177,6 @@
         private System.Windows.Forms.ToolStripStatusLabel isPosted;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripStatusLabel postedAt;
+        private System.Windows.Forms.ToolStripMenuItem jOSummaryStatusToolStripMenuItem;
     }
 }

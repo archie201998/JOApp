@@ -986,5 +986,21 @@ namespace AccountingSystem
                 UserId = Helper.CurrentUserID
             };
         }
+
+
+
+        internal static string GetSelectedRadioButton(params RadioButton[] radioButtons)
+        {
+            foreach (var rb in radioButtons)
+            {
+                if (rb.Checked)
+                {
+                    return rb.Tag?.ToString() ?? rb.Text;
+                }
+            }
+            return string.Empty;
+        }
+
+
     }
 }

@@ -506,17 +506,8 @@ namespace JOMonitoringApp.Views.MainForm
             btnRequestEdit.Visible = true;
 
 
-            Dictionary<string, string> changeMetertDict = Factory.CustomersRepository().GetChangeMeterDetails(dictJobOrders["account_number"]);
-
-            if (changeMetertDict != null && changeMetertDict.Count != 0)
-            {
-                string date = changeMetertDict["txnDate"].ToString();
-                string changedBy = changeMetertDict["usercode"].ToString();
-
-                postedAt.Text = "POSTED TO BILLING AND COLLECTION SYSTEM AT : " + date + " BY " + changedBy;
-            }
+           
             
-
         }
 
 
@@ -952,7 +943,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
-                if (dgJobOrders.Rows.Count == 0 && dgJobOrders.SelectedRows.Count > 0)
+                if (dgJobOrders.Rows.Count != 0 && dgJobOrders.SelectedRows.Count > 0)
                 {
                     previousSelection = dgJobOrders.SelectedRows[0].Index;
                     byte[] indexArray = BitConverter.GetBytes(previousSelection);
@@ -1398,5 +1389,9 @@ namespace JOMonitoringApp.Views.MainForm
             return ConfigurationManager.AppSettings["SMS_DefaultHeader"] ?? "";
         }
 
+        private void jOSummaryStatusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ = new frmJOSummaryWithStatus().ShowDialog();
+        }
     }
 }

@@ -4,6 +4,7 @@ using JOMonitoringApp.Views.Customers;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.Materials;
+using JOMonitoringApp.Views.Reports;
 using JOMonitoringApp.Views.Updates;
 using System;
 using System.Windows.Forms;

@@ -349,28 +349,18 @@ internal class CustomersRepository : ICustomersRepository
         return result != null && result != DBNull.Value ? result.ToString() : "0";
     }
 
-    public Dictionary<string, string> GetChangeMeterDetails(string accountNumber)
+    public DataTable GetChangeMeterDetails(string accountNumber)
     {
         var parameters = new object[][]
         {
             new object[] { "@account_number", DbType.String, accountNumber }
         };
 
-        string query = $"SELECT txnDate, usercode, AccountNo FROM txn_ChangeMeter WHERE AccountNo = @account_number ORDER BY txnDate";
+        string query = $"SELECT AccountNo, '' AS posting_status FROM txn_ChangeMeter WHERE AccountNo = @account_number ORDER BY txnDate";
 
         var dataTable = new DataTable();
         dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
 
-        var result = new Dictionary<string, string>();
-        if (dataTable.Rows.Count > 0)
-        {
-            foreach (DataColumn column in dataTable.Columns)
-            {
-                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
-
-            }
-        }
-
-        return result;
+        return dataTable;
     }
 }

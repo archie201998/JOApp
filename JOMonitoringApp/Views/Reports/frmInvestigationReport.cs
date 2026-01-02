@@ -48,6 +48,10 @@ namespace JOMonitoringApp.Views.Reports
                     case "ADJUSTMENT":
                         LoadInvestigationAdjustment();
                         break;
+
+                    case "RECOMMENDATION_AND_ADJUSTMENT":
+                        LoadInvestigationRecommendationAndAdjustment();
+                        break;
                 }
             }
             
@@ -328,6 +332,88 @@ namespace JOMonitoringApp.Views.Reports
                 Close();
             }
 
+        }
+
+        private void LoadInvestigationRecommendationAndAdjustment()
+        {
+            string jobOrderNumber = txtJONo.Text;
+
+            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\Investigation\\investigator-recommendation-adjustment.rdlc";
+            reportViewer1.LocalReport.EnableExternalImages = true;
+
+            Dictionary<string, string> dictInvestigation = Factory.InvestigationRepository().GetViewRecordByJobOrderNo(jobOrderNumber);
+
+            if (dictInvestigation.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Investigation data unavailable. awaiting input from investigator or not applicable.");
+                Close();
+                return;
+            }
+
+            ReportParameter[] parameters = new ReportParameter[6];
+
+            int investigationID = Convert.ToInt32(dictInvestigation["id"]);
+            var othersFees = Factory.InvestigationAdjustmentRepository().GetRecordsBySearch(investigationID.ToString());
+
+            string particulars = string.Empty;
+            string _values = string.Empty;
+
+            string otherFeesDescription = string.Empty;
+            decimal otherFeesAmountSum = 0.00M;
+            string otherFeesAmount = string.Empty;
+
+
+
+            decimal waterBill = Convert.ToDecimal(dictInvestigation["water_bill"]);
+            decimal adjustedWaterBill = Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]);
+            decimal adjustment = Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]);
+            decimal sumAdjustment = waterBill + adjustedWaterBill + adjustedWaterBill;
+
+            foreach (DataRow item in othersFees.Rows)
+            {
+                otherFeesAmount += item["value"].ToString() + "\n";
+                otherFeesAmountSum += Convert.ToDecimal(item["value"].ToString());
+                otherFeesDescription += item["particular"].ToString() + " :" + item["value"].ToString() + "\n";
+            }
+
+            if (sumAdjustment > 0)
+            {
+                particulars += "\n";
+                particulars += "Water Bill " + "\n";
+                particulars += "Adjusted Amount " + "\n";
+                particulars += "Other Fees " + "\n";
+                particulars += "Adjustment" + "\n";
+
+                _values += "\n";
+                _values += Convert.ToDecimal(dictInvestigation["water_bill"]).ToString("N2") + "\n";
+                _values += Convert.ToDecimal(dictInvestigation["adjusted_water_bill"]).ToString("N2") + "\n";
+                _values += otherFeesAmountSum.ToString("N2") + "\n";
+                _values += Convert.ToDecimal(dictInvestigation["water_bill_adjustment"]).ToString("N2") + "\n";
+            }
+
+            parameters[0] = new ReportParameter("paramRecommendations", dictInvestigation["recommendations"]);
+            parameters[1] = new ReportParameter("paramAdjustmentParticulars", particulars);
+            parameters[2] = new ReportParameter("paramAdjustmentValues", _values);
+            parameters[3] = new ReportParameter("paramAdjustmentParticular", dictInvestigation["adjustment_particular"]);
+            parameters[4] = new ReportParameter("paramOtherFees", otherFeesDescription);
+            parameters[5] = new ReportParameter("paramAdjustmentNote", dictInvestigation["adjustment_note"]);
+
+            reportViewer1.LocalReport.SetParameters(parameters);
+            reportViewer1.ProcessingMode = ProcessingMode.Local;
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = ZoomMode.Percent;
+            reportViewer1.RefreshReport();
+
+            try
+            {
+
+
+            }
+            catch (Exception ex)
+            {
+                Helper.MessageBoxSuccess("Investigation data is unavailable. awaiting input from investigator or not applicable.");
+                Close();
+            }
         }
     }
 }

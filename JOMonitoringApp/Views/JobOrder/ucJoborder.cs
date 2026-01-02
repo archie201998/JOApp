@@ -475,7 +475,7 @@ namespace JOMonitoringApp.Views.JobOrder
             int selectedParticularCount = clBoxParticulars.CheckedItems.Count;
 
             if (selectedParticularCount == 0)
-            {
+            { 
                 errorProvider1.SetError(clBoxParticulars, "No particular selected.");
                 e.Cancel = true;
                 return;
@@ -483,7 +483,7 @@ namespace JOMonitoringApp.Views.JobOrder
             e.Cancel = false;
         }
 
-        private void clBoxParticulars_Validated(object sender, EventArgs e)
+        private void clBoxParticulars_Validated(object sender, EventArgs e) 
         {
             errorProvider1.SetError(clBoxParticulars, string.Empty);
         }
@@ -504,6 +504,9 @@ namespace JOMonitoringApp.Views.JobOrder
             Helper.ClearErrorTextBox(errorProvider1, txtRemarks);
         }
 
-       
+        private void label19_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel1Collapsed = true;
+        }
     }
 }

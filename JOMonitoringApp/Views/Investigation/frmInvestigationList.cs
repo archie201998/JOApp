@@ -261,6 +261,11 @@ namespace JOMonitoringApp.Views.Investigation
             InvestigationForm("ADJUSTMENT");
         }
 
+        private void recommendationAndAdjustmentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InvestigationForm("RECOMMENDATION_AND_ADJUSTMENT");
+        }
+
         private void addToRecipientToolStripMenuItem_Click(object sender, EventArgs e)
         {
             // Get investigationId and jobOrderId from the selected row
@@ -284,5 +289,6 @@ namespace JOMonitoringApp.Views.Investigation
             }
         }
 
+       
     }
 }

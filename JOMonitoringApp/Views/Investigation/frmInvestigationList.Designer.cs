@@ -56,6 +56,7 @@
             this.investigatorCommentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.recommendationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adjustmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recommendationAndAdjustmentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgInvestigations)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
@@ -341,9 +342,10 @@
             this.wholePageToolStripMenuItem,
             this.investigatorCommentToolStripMenuItem,
             this.recommendationToolStripMenuItem,
-            this.adjustmentToolStripMenuItem});
+            this.adjustmentToolStripMenuItem,
+            this.recommendationAndAdjustmentToolStripMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(185, 92);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(258, 136);
             // 
             // wholePageToolStripMenuItem
             // 
@@ -362,16 +364,23 @@
             // recommendationToolStripMenuItem
             // 
             this.recommendationToolStripMenuItem.Name = "recommendationToolStripMenuItem";
-            this.recommendationToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.recommendationToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.recommendationToolStripMenuItem.Text = "Recommendation";
             this.recommendationToolStripMenuItem.Click += new System.EventHandler(this.recommendationToolStripMenuItem_Click);
             // 
             // adjustmentToolStripMenuItem
             // 
             this.adjustmentToolStripMenuItem.Name = "adjustmentToolStripMenuItem";
-            this.adjustmentToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.adjustmentToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.adjustmentToolStripMenuItem.Text = "Adjustment";
             this.adjustmentToolStripMenuItem.Click += new System.EventHandler(this.adjustmentToolStripMenuItem_Click);
+            // 
+            // recommendationAndAdjustmentToolStripMenuItem
+            // 
+            this.recommendationAndAdjustmentToolStripMenuItem.Name = "recommendationAndAdjustmentToolStripMenuItem";
+            this.recommendationAndAdjustmentToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.recommendationAndAdjustmentToolStripMenuItem.Text = "Recommendation and Adjustment";
+            this.recommendationAndAdjustmentToolStripMenuItem.Click += new System.EventHandler(this.recommendationAndAdjustmentToolStripMenuItem_Click);
             // 
             // frmInvestigationList
             // 
@@ -426,5 +435,6 @@
         private System.Windows.Forms.ToolStripMenuItem addToRecipientToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbxParticular;
+        private System.Windows.Forms.ToolStripMenuItem recommendationAndAdjustmentToolStripMenuItem;
     }
 }

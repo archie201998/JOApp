@@ -42,6 +42,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.cbxNA = new System.Windows.Forms.CheckBox();
@@ -78,13 +79,22 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.gbStatusAndRemaarks = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
             this.gbJODetails.SuspendLayout();
             this.gbIssuanceAndAssignment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.gbStatusAndRemaarks.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -214,6 +224,7 @@
             // 
             // gbAccountDetails
             // 
+            this.gbAccountDetails.Controls.Add(this.pictureBox1);
             this.gbAccountDetails.Controls.Add(this.textBox1);
             this.gbAccountDetails.Controls.Add(this.txtContact);
             this.gbAccountDetails.Controls.Add(this.label18);
@@ -231,7 +242,6 @@
             this.gbAccountDetails.Controls.Add(this.label16);
             this.gbAccountDetails.Controls.Add(this.label14);
             this.gbAccountDetails.Controls.Add(this.label12);
-            this.gbAccountDetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbAccountDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAccountDetails.Location = new System.Drawing.Point(10, 10);
             this.gbAccountDetails.Name = "gbAccountDetails";
@@ -239,6 +249,19 @@
             this.gbAccountDetails.TabIndex = 0;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
+            // 
+            // textBox1
+            // 
+            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(155, 124);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(36, 21);
+            this.textBox1.TabIndex = 34;
+            this.textBox1.Text = "+63";
             // 
             // txtContact
             // 
@@ -250,7 +273,7 @@
             this.txtContact.Location = new System.Drawing.Point(197, 124);
             this.txtContact.MaxLength = 10;
             this.txtContact.Name = "txtContact";
-            this.txtContact.Size = new System.Drawing.Size(157, 21);
+            this.txtContact.Size = new System.Drawing.Size(130, 21);
             this.txtContact.TabIndex = 7;
             this.txtContact.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -260,9 +283,9 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(25, 124);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(62, 15);
+            this.label18.Size = new System.Drawing.Size(86, 15);
             this.label18.TabIndex = 33;
-            this.label18.Text = "CONTACT";
+            this.label18.Text = "CONTACT NO.";
             // 
             // cbxNA
             // 
@@ -412,7 +435,6 @@
             this.gbJODetails.Controls.Add(this.label4);
             this.gbJODetails.Controls.Add(this.label5);
             this.gbJODetails.Controls.Add(this.nudAmount);
-            this.gbJODetails.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbJODetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbJODetails.Location = new System.Drawing.Point(10, 164);
             this.gbJODetails.Name = "gbJODetails";
@@ -542,7 +564,6 @@
             this.gbIssuanceAndAssignment.Controls.Add(this.label11);
             this.gbIssuanceAndAssignment.Controls.Add(this.label10);
             this.gbIssuanceAndAssignment.Controls.Add(this.txtMRSNumber);
-            this.gbIssuanceAndAssignment.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbIssuanceAndAssignment.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbIssuanceAndAssignment.Location = new System.Drawing.Point(10, 457);
             this.gbIssuanceAndAssignment.Name = "gbIssuanceAndAssignment";
@@ -657,7 +678,6 @@
             this.gbStatusAndRemaarks.Controls.Add(this.radCancel);
             this.gbStatusAndRemaarks.Controls.Add(this.radProcessing);
             this.gbStatusAndRemaarks.Controls.Add(this.radPending);
-            this.gbStatusAndRemaarks.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbStatusAndRemaarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbStatusAndRemaarks.Location = new System.Drawing.Point(10, 625);
             this.gbStatusAndRemaarks.Name = "gbStatusAndRemaarks";
@@ -666,24 +686,62 @@
             this.gbStatusAndRemaarks.TabStop = false;
             this.gbStatusAndRemaarks.Text = "STATUS AND REMARKS";
             // 
-            // textBox1
+            // pictureBox1
             // 
-            this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.textBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(155, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(36, 21);
-            this.textBox1.TabIndex = 34;
-            this.textBox1.Text = "+63";
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
+            this.pictureBox1.Location = new System.Drawing.Point(331, 123);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Add more contact number.");
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Location = new System.Drawing.Point(419, 137);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.label19);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.label20);
+            this.splitContainer1.Size = new System.Drawing.Size(600, 277);
+            this.splitContainer1.SplitterDistance = 133;
+            this.splitContainer1.TabIndex = 19;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(3, 2);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(115, 16);
+            this.label19.TabIndex = 20;
+            this.label19.Text = "Account Details";
+            this.label19.Click += new System.EventHandler(this.label19_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(5, 5);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(161, 16);
+            this.label20.TabIndex = 21;
+            this.label20.Text = "JOB ORDER DETAILS";
             // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.gbStatusAndRemaarks);
             this.Controls.Add(this.gbIssuanceAndAssignment);
             this.Controls.Add(this.gbJODetails);
@@ -691,7 +749,7 @@
             this.Controls.Add(this.gbAccountDetails);
             this.Name = "ucJoborder";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(392, 739);
+            this.Size = new System.Drawing.Size(1077, 739);
             this.Load += new System.EventHandler(this.UcJoborder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.gbAccountDetails.ResumeLayout(false);
@@ -703,6 +761,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.gbStatusAndRemaarks.ResumeLayout(false);
             this.gbStatusAndRemaarks.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -760,5 +825,10 @@
         internal System.Windows.Forms.RadioButton radProcessing;
         internal System.Windows.Forms.RadioButton radPending;
         internal System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,5 +39,7 @@ namespace JOMonitoringApp.Interface
         bool SoftDelete(int jobOrderId, int userId);
         DataTable JOPhasePerPeriod(string status, int daysMultiplier);
         bool DeleteJobOrderParticulars(int jobOrderId);
+        bool InsertVicinityImage(int jobOrderId, Image imageToSave);
+        Image GetVicinityImage(int imageId);
     }
 }

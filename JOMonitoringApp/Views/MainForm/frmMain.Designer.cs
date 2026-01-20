@@ -45,6 +45,7 @@
             this.sMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripJOSummary = new System.Windows.Forms.ToolStripMenuItem();
+            this.jOSummaryStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripJOProgressTracking = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSROF = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripInvestigation = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +94,6 @@
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -114,7 +114,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelInputField = new System.Windows.Forms.Panel();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnRequestEdit = new System.Windows.Forms.Button();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -126,7 +125,10 @@
             this.timer_investigator = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkRequest = new System.Windows.Forms.Timer(this.components);
-            this.jOSummaryStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
+            this.viewVicinityMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -276,6 +278,13 @@
             this.toolStripJOSummary.Text = "J.O Summary";
             this.toolStripJOSummary.Click += new System.EventHandler(this.summaryToolStripMenuItem_Click);
             // 
+            // jOSummaryStatusToolStripMenuItem
+            // 
+            this.jOSummaryStatusToolStripMenuItem.Name = "jOSummaryStatusToolStripMenuItem";
+            this.jOSummaryStatusToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
+            this.jOSummaryStatusToolStripMenuItem.Text = "J.O Summary Status";
+            this.jOSummaryStatusToolStripMenuItem.Click += new System.EventHandler(this.jOSummaryStatusToolStripMenuItem_Click);
+            // 
             // toolStripJOProgressTracking
             // 
             this.toolStripJOProgressTracking.Name = "toolStripJOProgressTracking";
@@ -378,9 +387,10 @@
             this.toolStripMenuItem1,
             this.investigationToolStripMenuItem,
             this.toolStripSeparator1,
-            this.trackJOProgressToolStripMenuItem});
+            this.trackJOProgressToolStripMenuItem,
+            this.viewVicinityMapToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 164);
             this.contextMenuStrip1.Text = "PRINT ";
             // 
             // toolStripMenuItem2
@@ -643,16 +653,6 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ucDashboardSummaryView1
-            // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
-            this.ucDashboardSummaryView1.TabIndex = 0;
-            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label6);
@@ -900,17 +900,6 @@
             this.panelInputField.Size = new System.Drawing.Size(450, 854);
             this.panelInputField.TabIndex = 1;
             // 
-            // ucJoborder1
-            // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(450, 811);
-            this.ucJoborder1.TabIndex = 0;
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
@@ -1025,12 +1014,48 @@
             this.checkRequest.Interval = 5000;
             this.checkRequest.Tick += new System.EventHandler(this.checkRequest_Tick);
             // 
-            // jOSummaryStatusToolStripMenuItem
+            // label7
             // 
-            this.jOSummaryStatusToolStripMenuItem.Name = "jOSummaryStatusToolStripMenuItem";
-            this.jOSummaryStatusToolStripMenuItem.Size = new System.Drawing.Size(310, 22);
-            this.jOSummaryStatusToolStripMenuItem.Text = "J.O Summary Status";
-            this.jOSummaryStatusToolStripMenuItem.Click += new System.EventHandler(this.jOSummaryStatusToolStripMenuItem_Click);
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.White;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.label7.Location = new System.Drawing.Point(1500, 5);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(144, 19);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "PUBLIC CHAT ROOM";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucJoborder1.Size = new System.Drawing.Size(450, 811);
+            this.ucJoborder1.TabIndex = 0;
+            // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
+            // viewVicinityMapToolStripMenuItem
+            // 
+            this.viewVicinityMapToolStripMenuItem.Name = "viewVicinityMapToolStripMenuItem";
+            this.viewVicinityMapToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.viewVicinityMapToolStripMenuItem.Text = "View Vicinity Map";
+            this.viewVicinityMapToolStripMenuItem.Click += new System.EventHandler(this.viewVicinityMapToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1038,6 +1063,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1649, 945);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblSystemDateAndTime);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.statusStrip1);
@@ -1178,5 +1204,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStripStatusLabel postedAt;
         private System.Windows.Forms.ToolStripMenuItem jOSummaryStatusToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripMenuItem viewVicinityMapToolStripMenuItem;
     }
 }

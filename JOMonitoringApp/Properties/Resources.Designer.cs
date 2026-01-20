@@ -73,6 +73,16 @@ namespace JOMonitoringApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Drop_image_file_here {
+            get {
+                object obj = ResourceManager.GetObject("Drop image file here", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_approve {
             get {
                 object obj = ResourceManager.GetObject("icons8_approve", resourceCulture);

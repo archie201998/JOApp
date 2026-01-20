@@ -2,13 +2,17 @@
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
 using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Transactions;
+using Twilio.TwiML.Voice;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace JOMonitoringApp
@@ -462,19 +466,84 @@ namespace JOMonitoringApp
                 var dataTable = new DataTable();
                 return mySqlGenericCommands.FillBySearch(query, dataTable, parameters.ToArray());
         }
+
+        public bool InsertVicinityImage(int jobOrderId, Image imageToSave)
+        {
+            try
+            {
+                byte[] imageBytes = ImageToByteArray(imageToSave);
+
+                var parameter = new object[][]
+                {
+                     new object[] { "@tapping_vicinity_image", MySqlDbType.LongBlob, imageBytes },
+                     new object[] { "@id", DbType.Int32, jobOrderId }
+                };
+
+                string query = $"UPDATE {tableName} SET tapping_vicinity_image = @tapping_vicinity_image WHERE id = @id";
+                return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error inserting vicinity image: {ex.Message}", ex);
+            }
+        }
+
+        private byte[] ImageToByteArray(Image image)
+        {
+            if (image == null)
+                return null;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                return ms.ToArray();
+            }
+        }
+
+        public Image GetVicinityImage(int id)
+        {
+            string query = $"SELECT tapping_vicinity_image FROM {tableName} WHERE id = @id";
+
+            var parameters = new object[][]
+            {
+               new object[] { "@id", DbType.Int32, id }
+            };
+
+            byte[] imageBytes = null;
+
+            // Use DataTable instead of assuming a DataReader
+            DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+            if (dataTable.Rows.Count > 0 && dataTable.Rows[0][0] != DBNull.Value)
+            {
+                imageBytes = (byte[])dataTable.Rows[0][0];
+            }
+
+            if (imageBytes != null)
+            {
+                using (var ms = new MemoryStream(imageBytes))
+                {
+                    return Image.FromStream(ms);
+                }
+            }
+
+            return null;
+        }
+
+
+
+        private Image ByteArrayToImage(byte[] byteArray)
+        {
+            if (byteArray == null || byteArray.Length == 0)
+                return null;
+
+            using (MemoryStream ms = new MemoryStream(byteArray))
+            {
+                return Image.FromStream(ms);
+            }
+        }
+
     }
 
-    public class JobOrderSearchParameters
-    {
-        public string SearchText { get; set; } = string.Empty;
-        public int StatusId { get; set; }
-        public int RowFilter { get; set; }
-        public string Particular { get; set; } = string.Empty;
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
-        public int PreparedBy { get; set; }
-        public int AccomplishedBy { get; set; }
-        public bool OnlyWithRemarks { get; set; }
-    }
+   
 
 }

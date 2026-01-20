@@ -6,6 +6,7 @@ using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.Investigation.SMS;
 using JOMonitoringApp.Views.JobOrder;
 using JOMonitoringApp.Views.MainForm.Approval;
+using JOMonitoringApp.Views.MainForm.ChatRoom;
 using JOMonitoringApp.Views.Materials;
 using JOMonitoringApp.Views.Particulars;
 using JOMonitoringApp.Views.PromptBox;
@@ -14,6 +15,7 @@ using JOMonitoringApp.Views.Reports.SROF;
 using JOMonitoringApp.Views.RolesAndPermissions;
 using JOMonitoringApp.Views.Signatories;
 using JOMonitoringApp.Views.Users;
+using JOMonitoringApp.Views.VicinityImage;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -1392,6 +1394,24 @@ namespace JOMonitoringApp.Views.MainForm
         private void jOSummaryStatusToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ = new frmJOSummaryWithStatus().ShowDialog();
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+            _ = new frmChatRoom().ShowDialog();
+        }
+
+        private void viewVicinityMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgJobOrders.SelectedRows.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Please select 1 record.");
+                return;
+            }
+
+            int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+            string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();
+            _ = new frmVicinityImage(jobOrderId, accountName).ShowDialog();
         }
     }
 }

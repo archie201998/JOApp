@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pbImageDisplay = new System.Windows.Forms.PictureBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -44,6 +45,16 @@
             this.btnIncreasedDescriptionFont = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.btnMoveRight = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.btnMoveLeft = new System.Windows.Forms.Button();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbImageDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -121,10 +132,10 @@
             // 
             this.txtDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.txtDescription.Location = new System.Drawing.Point(16, 120);
+            this.txtDescription.Location = new System.Drawing.Point(16, 122);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(286, 148);
+            this.txtDescription.Size = new System.Drawing.Size(286, 237);
             this.txtDescription.TabIndex = 2;
             this.txtDescription.Text = "Enter Caption Details Here";
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
@@ -168,44 +179,50 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(104, 67);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(196, 64);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 23);
+            this.button2.Size = new System.Drawing.Size(42, 23);
             this.button2.TabIndex = 4;
-            this.button2.Text = "Reduce Size";
+            this.button2.Text = "A-";
+            this.toolTip1.SetToolTip(this.button2, "Reduce Font Size");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(199, 67);
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(148, 64);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(103, 23);
+            this.button3.Size = new System.Drawing.Size(42, 23);
             this.button3.TabIndex = 5;
-            this.button3.Text = "Increase Size";
+            this.button3.Text = "A+";
+            this.toolTip1.SetToolTip(this.button3, "Increase Font Size");
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // btnDecreasedDescriptionFont
             // 
             this.btnDecreasedDescriptionFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDecreasedDescriptionFont.Location = new System.Drawing.Point(104, 274);
+            this.btnDecreasedDescriptionFont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDecreasedDescriptionFont.Location = new System.Drawing.Point(212, 365);
             this.btnDecreasedDescriptionFont.Name = "btnDecreasedDescriptionFont";
-            this.btnDecreasedDescriptionFont.Size = new System.Drawing.Size(90, 23);
+            this.btnDecreasedDescriptionFont.Size = new System.Drawing.Size(42, 23);
             this.btnDecreasedDescriptionFont.TabIndex = 4;
-            this.btnDecreasedDescriptionFont.Text = "Reduce Size";
+            this.btnDecreasedDescriptionFont.Text = "A+";
             this.btnDecreasedDescriptionFont.UseVisualStyleBackColor = true;
             this.btnDecreasedDescriptionFont.Click += new System.EventHandler(this.btnDecreasedDescriptionFont_Click);
             // 
             // btnIncreasedDescriptionFont
             // 
             this.btnIncreasedDescriptionFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnIncreasedDescriptionFont.Location = new System.Drawing.Point(199, 274);
+            this.btnIncreasedDescriptionFont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIncreasedDescriptionFont.Location = new System.Drawing.Point(260, 365);
             this.btnIncreasedDescriptionFont.Name = "btnIncreasedDescriptionFont";
-            this.btnIncreasedDescriptionFont.Size = new System.Drawing.Size(103, 23);
+            this.btnIncreasedDescriptionFont.Size = new System.Drawing.Size(42, 23);
             this.btnIncreasedDescriptionFont.TabIndex = 5;
-            this.btnIncreasedDescriptionFont.Text = "Increase Size";
+            this.btnIncreasedDescriptionFont.Text = "A-";
             this.btnIncreasedDescriptionFont.UseVisualStyleBackColor = true;
             this.btnIncreasedDescriptionFont.Click += new System.EventHandler(this.btnIncreasedDescriptionFont_Click);
             // 
@@ -217,7 +234,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(582, 330);
+            this.button4.Location = new System.Drawing.Point(582, 441);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(319, 27);
             this.button4.TabIndex = 1;
@@ -228,7 +245,15 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.button8);
+            this.groupBox1.Controls.Add(this.button9);
+            this.groupBox1.Controls.Add(this.button10);
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.txtTitle);
+            this.groupBox1.Controls.Add(this.btnMoveRight);
+            this.groupBox1.Controls.Add(this.button6);
+            this.groupBox1.Controls.Add(this.btnMoveLeft);
             this.groupBox1.Controls.Add(this.btnIncreasedDescriptionFont);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.btnDecreasedDescriptionFont);
@@ -237,10 +262,122 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(582, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(319, 312);
+            this.groupBox1.Size = new System.Drawing.Size(319, 423);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MAP CAPTION";
+            // 
+            // button7
+            // 
+            this.button7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Location = new System.Drawing.Point(16, 365);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(27, 23);
+            this.button7.TabIndex = 13;
+            this.button7.Text = "▼";
+            this.toolTip1.SetToolTip(this.button7, "Move Title down");
+            this.button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            this.button8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Location = new System.Drawing.Point(82, 365);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(27, 23);
+            this.button8.TabIndex = 11;
+            this.button8.Text = "►";
+            this.toolTip1.SetToolTip(this.button8, "Move Title Right");
+            this.button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button9.Location = new System.Drawing.Point(115, 365);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(27, 23);
+            this.button9.TabIndex = 12;
+            this.button9.Text = "▲";
+            this.toolTip1.SetToolTip(this.button9, "Move Title Up");
+            this.button9.UseVisualStyleBackColor = true;
+            // 
+            // button10
+            // 
+            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.Location = new System.Drawing.Point(49, 365);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(27, 23);
+            this.button10.TabIndex = 10;
+            this.button10.Text = "◄";
+            this.toolTip1.SetToolTip(this.button10, "Move Title Left");
+            this.button10.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Location = new System.Drawing.Point(16, 64);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(27, 23);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "▲";
+            this.toolTip1.SetToolTip(this.button5, "Move Title down");
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // btnMoveRight
+            // 
+            this.btnMoveRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveRight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveRight.Location = new System.Drawing.Point(82, 64);
+            this.btnMoveRight.Name = "btnMoveRight";
+            this.btnMoveRight.Size = new System.Drawing.Size(27, 23);
+            this.btnMoveRight.TabIndex = 7;
+            this.btnMoveRight.Text = "►";
+            this.toolTip1.SetToolTip(this.btnMoveRight, "Move Title Right");
+            this.btnMoveRight.UseVisualStyleBackColor = true;
+            this.btnMoveRight.Click += new System.EventHandler(this.btnMoveRight_Click);
+            // 
+            // button6
+            // 
+            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Location = new System.Drawing.Point(115, 64);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(27, 23);
+            this.button6.TabIndex = 8;
+            this.button6.Text = "▼";
+            this.toolTip1.SetToolTip(this.button6, "Move Title Up");
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // btnMoveLeft
+            // 
+            this.btnMoveLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveLeft.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMoveLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoveLeft.Location = new System.Drawing.Point(49, 64);
+            this.btnMoveLeft.Name = "btnMoveLeft";
+            this.btnMoveLeft.Size = new System.Drawing.Size(27, 23);
+            this.btnMoveLeft.TabIndex = 6;
+            this.btnMoveLeft.Text = "◄";
+            this.toolTip1.SetToolTip(this.btnMoveLeft, "Move Title Left");
+            this.btnMoveLeft.UseVisualStyleBackColor = true;
+            this.btnMoveLeft.Click += new System.EventHandler(this.btnMoveLeft_Click);
+            // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
             // 
             // frmVicinityImage
             // 
@@ -286,5 +423,15 @@
         private System.Windows.Forms.Button btnIncreasedDescriptionFont;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button btnMoveLeft;
+        private System.Windows.Forms.Button btnMoveRight;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

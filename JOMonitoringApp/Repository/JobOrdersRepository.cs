@@ -316,7 +316,7 @@ namespace JOMonitoringApp
                 new object[] { "@particulars", DbType.String, $"%{particulars}%" }
             };
 
-            string query = $"SELECT job_order_no FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0";
+            string query = $"SELECT job_order_no FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0 AND status <> 4";
 
 
             var dataTable = new DataTable();

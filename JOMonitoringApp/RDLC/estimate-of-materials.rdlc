@@ -575,7 +575,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf(Fields!qty.Value = 0, string.Empty, Fields!qty.Value)</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -611,7 +611,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=CDbl(IIf(Fields!unit_cost.Value = 0, 0, Fields!unit_cost.Value))</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -648,7 +648,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=IIf(Fields!amount.Value = 0, string.Empty, Fields!amount.Value)</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -801,7 +801,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Sum(CDec(Fields!amount.Value))</Value>
+                                  <Value />
                                   <Style>
                                     <FontFamily>arial</FontFamily>
                                     <FontSize>9pt</FontSize>
@@ -2355,7 +2355,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.24493cm</Top>
+                <Top>4.05443cm</Top>
                 <Left>13.34241cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>1.98493cm</Width>
@@ -2391,7 +2391,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.24493cm</Top>
+                <Top>4.05443cm</Top>
                 <Left>2.33461cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>8.99894cm</Width>
@@ -2430,7 +2430,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.28058cm</Top>
+                <Top>4.09008cm</Top>
                 <Left>15.58301cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>2.97424cm</Width>
@@ -2467,7 +2467,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.30332cm</Top>
+                <Top>5.11282cm</Top>
                 <Left>0.17057cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>2.04121cm</Width>
@@ -2504,7 +2504,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.30332cm</Top>
+                <Top>5.11282cm</Top>
                 <Left>2.33461cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>8.99894cm</Width>
@@ -2541,7 +2541,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.7158cm</Top>
+                <Top>4.5253cm</Top>
                 <Left>13.34241cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>1.98493cm</Width>
@@ -2579,7 +2579,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.7158cm</Top>
+                <Top>4.5253cm</Top>
                 <Left>15.58301cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>2.97424cm</Width>
@@ -2616,7 +2616,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.24687cm</Top>
+                <Top>5.05637cm</Top>
                 <Left>13.34241cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>1.98493cm</Width>
@@ -2653,7 +2653,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.24687cm</Top>
+                <Top>5.05637cm</Top>
                 <Left>15.58301cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>2.97424cm</Width>
@@ -2690,7 +2690,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.79782cm</Top>
+                <Top>5.60732cm</Top>
                 <Left>0.17057cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>2.04121cm</Width>
@@ -2727,7 +2727,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.83439cm</Top>
+                <Top>5.64389cm</Top>
                 <Left>2.33461cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>9.00393cm</Width>
@@ -2975,7 +2975,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIf(Fields!qty.Value = 0, string.Empty, Fields!qty.Value)</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>8pt</FontSize>
@@ -3011,7 +3011,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=CDbl(IIf(Fields!unit_cost.Value = 0, 0, Fields!unit_cost.Value))</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>8pt</FontSize>
@@ -3048,7 +3048,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=IIf(Fields!amount.Value = 0, string.Empty, Fields!amount.Value)</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>8pt</FontSize>
@@ -3201,7 +3201,7 @@
                                 <Paragraph>
                                   <TextRuns>
                                     <TextRun>
-                                      <Value>=Sum(CDec(Fields!amount.Value))</Value>
+                                      <Value />
                                       <Style>
                                         <FontFamily>arial</FontFamily>
                                         <FontSize>9pt</FontSize>
@@ -3259,7 +3259,7 @@
                   </TablixMembers>
                 </TablixRowHierarchy>
                 <DataSetName>dsMaterials</DataSetName>
-                <Top>6.54761cm</Top>
+                <Top>6.35711cm</Top>
                 <Left>0.12267cm</Left>
                 <Height>1.62909cm</Height>
                 <Width>10.86054cm</Width>
@@ -3295,7 +3295,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>6.54727cm</Top>
+                <Top>6.35677cm</Top>
                 <Left>10.98384cm</Left>
                 <Height>0.58992cm</Height>
                 <Width>7.6392cm</Width>
@@ -4549,7 +4549,7 @@
                   </Textbox>
                 </ReportItems>
                 <KeepTogether>true</KeepTogether>
-                <Top>7.13242cm</Top>
+                <Top>6.94192cm</Top>
                 <Left>10.98384cm</Left>
                 <Height>7.94863cm</Height>
                 <Width>7.6392cm</Width>
@@ -4581,7 +4581,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.74426cm</Top>
+                <Top>4.55376cm</Top>
                 <Left>0.17057cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>2.0665cm</Width>
@@ -4618,7 +4618,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.75836cm</Top>
+                <Top>4.56786cm</Top>
                 <Left>2.31762cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>8.97865cm</Width>
@@ -4663,7 +4663,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.85203cm</Top>
+                <Top>5.66153cm</Top>
                 <Left>11.79702cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>3.53032cm</Width>
@@ -4700,7 +4700,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>5.83792cm</Top>
+                <Top>5.64742cm</Top>
                 <Left>15.58301cm</Left>
                 <Height>0.55929cm</Height>
                 <Width>2.97424cm</Width>
@@ -4737,7 +4737,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>4.16733cm</Top>
+                <Top>3.97683cm</Top>
                 <Left>0.18404cm</Left>
                 <Height>0.5734cm</Height>
                 <Width>2.04121cm</Width>
@@ -5129,161 +5129,11 @@
                   </Border>
                 </Style>
               </Line>
-              <Textbox Name="Textbox65">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>OR Number :</Value>
-                        <Style>
-                          <FontFamily>arial</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>15.06956cm</Top>
-                <Left>10.90636cm</Left>
-                <Height>0.5734cm</Height>
-                <Width>2.44018cm</Width>
-                <ZIndex>33</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <VerticalAlign>Middle</VerticalAlign>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox69">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!paramORNumber.Value</Value>
-                        <Style>
-                          <FontFamily>arial</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Normal</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>15.06956cm</Top>
-                <Left>13.12279cm</Left>
-                <Height>0.5734cm</Height>
-                <Width>1.93771cm</Width>
-                <ZIndex>34</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                    <Width>0.5pt</Width>
-                  </Border>
-                  <VerticalAlign>Top</VerticalAlign>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox106">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>Amount : </Value>
-                        <Style>
-                          <FontFamily>arial</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Bold</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>15.06956cm</Top>
-                <Left>15.18484cm</Left>
-                <Height>0.5734cm</Height>
-                <Width>1.79915cm</Width>
-                <ZIndex>35</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <VerticalAlign>Middle</VerticalAlign>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
-              <Textbox Name="Textbox109">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>=Parameters!paramAmount.Value</Value>
-                        <Style>
-                          <FontFamily>arial</FontFamily>
-                          <FontSize>8pt</FontSize>
-                          <FontWeight>Normal</FontWeight>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Left</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox1</rd:DefaultName>
-                <Top>15.06333cm</Top>
-                <Left>17.05455cm</Left>
-                <Height>0.5734cm</Height>
-                <Width>1.56416cm</Width>
-                <ZIndex>36</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                    <Width>0.5pt</Width>
-                  </Border>
-                  <VerticalAlign>Top</VerticalAlign>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>15.44672cm</Top>
             <Left>0.0616cm</Left>
-            <Height>15.64296cm</Height>
+            <Height>15.68529cm</Height>
             <Width>18.80921cm</Width>
             <ZIndex>15</ZIndex>
             <Visibility>
@@ -5821,7 +5671,7 @@
             </Style>
           </Line>
         </ReportItems>
-        <Height>12.26711in</Height>
+        <Height>12.2567in</Height>
         <Style />
       </Body>
       <Width>7.466in</Width>

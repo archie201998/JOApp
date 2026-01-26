@@ -65,6 +65,27 @@ namespace JOMonitoringApp.Views.VicinityImage
         {
             LoadImageFromDatabase(_jobOrderId);
             txtTitle.Text = _accountName;
+
+
+            pbImageDisplay.Focus();
+            pbImageDisplay.SizeMode = PictureBoxSizeMode.Zoom;
+            pbImageDisplay.TabStop = true;
+            pbImageDisplay.KeyDown += pbImageDisplay_KeyDown;
+        }
+
+        private void pbImageDisplay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                if (Clipboard.ContainsImage())
+                {
+                    pbImageDisplay.Image = Clipboard.GetImage();
+                }
+                else
+                {
+                    MessageBox.Show("Clipboard does not contain an image.");
+                }
+            }
         }
 
         private void LoadImage(string path)
@@ -495,5 +516,23 @@ namespace JOMonitoringApp.Views.VicinityImage
             linePen.Dispose();
         }
 
+        private void pbImageDisplay_Click(object sender, EventArgs e)
+        {
+            pbImageDisplay.Focus();
+        }
+
+        private void pbImageDisplay_MouseEnter(object sender, EventArgs e)
+        {
+            pbImageDisplay.Focus();
+        }
+
+        private void pbImageDisplay_DragLeave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbImageDisplay_MouseLeave(object sender, EventArgs e)
+        {
+        }
     }
 }

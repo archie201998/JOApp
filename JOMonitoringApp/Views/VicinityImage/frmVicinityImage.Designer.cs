@@ -73,8 +73,12 @@
             this.pbImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImageDisplay.TabIndex = 0;
             this.pbImageDisplay.TabStop = false;
+            this.pbImageDisplay.Click += new System.EventHandler(this.pbImageDisplay_Click);
             this.pbImageDisplay.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbImageDisplay_DragDrop);
             this.pbImageDisplay.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbImageDisplay_DragEnter);
+            this.pbImageDisplay.DragLeave += new System.EventHandler(this.pbImageDisplay_DragLeave);
+            this.pbImageDisplay.MouseEnter += new System.EventHandler(this.pbImageDisplay_MouseEnter);
+            this.pbImageDisplay.MouseLeave += new System.EventHandler(this.pbImageDisplay_MouseLeave);
             // 
             // btnBrowse
             // 

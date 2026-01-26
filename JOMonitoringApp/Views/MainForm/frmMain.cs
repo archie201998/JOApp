@@ -1407,7 +1407,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 Helper.MessageBoxSuccess("Please select 1 record.");
                 return;
-            }
+            } 
 
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();

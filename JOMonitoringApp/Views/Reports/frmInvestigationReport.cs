@@ -279,7 +279,7 @@ namespace JOMonitoringApp.Views.Reports
                 parameters[6] = new ReportParameter("paramRelatives", dictInvestigation["relatives"]);
                 parameters[7] = new ReportParameter("paramHouseHelpers", dictInvestigation["house_helper"]);
                 parameters[8] = new ReportParameter("paramBoarders", dictInvestigation["boarders"]);
-                parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", dictInvestigation["immediate_members_of_fam"]);
+                parameters[9] = new ReportParameter("paramOtherHHDependentsFromService", "0");
 
                 parameters[10] = new ReportParameter("paramMeterBrandAndSize", $"{dictInvestigation["meter_brand"]} - {dictInvestigation["meter_size"]} ");
                 parameters[11] = new ReportParameter("paramMeterNumber", dictInvestigation["meter_number"]);

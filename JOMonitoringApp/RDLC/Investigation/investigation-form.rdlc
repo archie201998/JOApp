@@ -1594,7 +1594,7 @@
             <Top>1.43124in</Top>
             <Left>2.66957in</Left>
             <Height>0.19417in</Height>
-            <Width>0.62293in</Width>
+            <Width>0.62294in</Width>
             <ZIndex>44</ZIndex>
             <Visibility>
               <Hidden>=Parameters!paramImmediateMembers.Value = 0</Hidden>

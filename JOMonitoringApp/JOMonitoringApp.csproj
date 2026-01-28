@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>297</ApplicationRevision>
+    <ApplicationRevision>301</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -658,9 +658,9 @@
     <Content Include="RDLC\job-order-summary-with-status.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="RDLC\Investigation\investigator-recommendation-adjustment.rdlc">
+    <Content Include="RDLC\Investigation\investigator-recommendation-adjustment.rdlc">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
     <EmbeddedResource Include="Views\Admin\frmPassKey.resx">
       <DependentUpon>frmPassKey.cs</DependentUpon>
     </EmbeddedResource>

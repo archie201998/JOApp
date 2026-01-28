@@ -130,7 +130,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
         #endregion
 
-
         #region Search Records Functions
 
 
@@ -264,7 +263,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         #endregion
 
-
         #region Form Load 
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -332,6 +330,8 @@ namespace JOMonitoringApp.Views.MainForm
 
             checkRequest.Enabled = Helper.UserHasPermission("APPROVED_DISAPPROVED");
 
+
+
             if (Helper.temporaryAdminMode)
             {
                 ucJoborder.gbStatusAndRemaarks.Enabled = true;
@@ -342,7 +342,6 @@ namespace JOMonitoringApp.Views.MainForm
            
         }
         #endregion
-
 
         #region DataGrid Processing 
 
@@ -515,7 +514,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         #endregion
 
-
         #region Logout
         private void LogoutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -542,9 +540,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         }
         #endregion
-
-
-
 
         #region Reset Input
         internal void ResetInputForm()

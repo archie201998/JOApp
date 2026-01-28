@@ -43,7 +43,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btnDecreasedDescriptionFont = new System.Windows.Forms.Button();
             this.btnIncreasedDescriptionFont = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -230,21 +230,21 @@
             this.btnIncreasedDescriptionFont.UseVisualStyleBackColor = true;
             this.btnIncreasedDescriptionFont.Click += new System.EventHandler(this.btnIncreasedDescriptionFont_Click);
             // 
-            // button4
+            // btnPrint
             // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(582, 441);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(319, 27);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Print Map";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.btnPrint_Click);
+            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrint.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnPrint.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.Location = new System.Drawing.Point(582, 441);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(319, 27);
+            this.btnPrint.TabIndex = 1;
+            this.btnPrint.Text = "Print Map";
+            this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // groupBox1
             // 
@@ -392,7 +392,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClear);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.pbImageDisplay);
@@ -425,7 +425,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnDecreasedDescriptionFont;
         private System.Windows.Forms.Button btnIncreasedDescriptionFont;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnMoveLeft;
         private System.Windows.Forms.Button btnMoveRight;

@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace JOMonitoringApp.Views.VicinityImage
 {
@@ -63,14 +64,26 @@ namespace JOMonitoringApp.Views.VicinityImage
 
         private void frmVicinityImage_Load(object sender, EventArgs e)
         {
+            ValidatePermissions();
             LoadImageFromDatabase(_jobOrderId);
-            txtTitle.Text = _accountName;
+            txtTitle.Text = _accountName;   
 
 
             pbImageDisplay.Focus();
+
             pbImageDisplay.SizeMode = PictureBoxSizeMode.Zoom;
             pbImageDisplay.TabStop = true;
             pbImageDisplay.KeyDown += pbImageDisplay_KeyDown;
+        }
+
+        private void ValidatePermissions()
+        {
+            btnBrowse.Enabled =  Helper.UserHasPermission("SAVE_VICINITY_IMAGE");
+            btnClear.Enabled = Helper.UserHasPermission("SAVE_VICINITY_IMAGE");
+            btnSave.Enabled = Helper.UserHasPermission("SAVE_VICINITY_IMAGE");
+
+            groupBox1.Enabled = Helper.UserHasPermission("UPDATE_VICINITY_IMAGE_TEXT_OVERLAY");
+            btnPrint.Enabled = Helper.UserHasPermission("PRINT_VICINITY_IMAGE");
         }
 
         private void pbImageDisplay_KeyDown(object sender, KeyEventArgs e)
@@ -292,8 +305,6 @@ namespace JOMonitoringApp.Views.VicinityImage
             if (loadedImage != null)
             {
                 pbImageDisplay.Image = loadedImage;
-                MessageBox.Show("Image loaded successfully!", "Success",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

@@ -94,7 +94,7 @@
             this.txtTotalVolume.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalVolume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalVolume.Location = new System.Drawing.Point(156, 256);
-            this.txtTotalVolume.MaxLength = 10;
+            this.txtTotalVolume.MaxLength = 50;
             this.txtTotalVolume.Name = "txtTotalVolume";
             this.txtTotalVolume.Size = new System.Drawing.Size(200, 21);
             this.txtTotalVolume.TabIndex = 7;
@@ -115,7 +115,7 @@
             this.txtCashier.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCashier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCashier.Location = new System.Drawing.Point(156, 225);
-            this.txtCashier.MaxLength = 10;
+            this.txtCashier.MaxLength = 50;
             this.txtCashier.Name = "txtCashier";
             this.txtCashier.Size = new System.Drawing.Size(200, 21);
             this.txtCashier.TabIndex = 6;
@@ -145,7 +145,7 @@
             this.txtORNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtORNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtORNumber.Location = new System.Drawing.Point(156, 132);
-            this.txtORNumber.MaxLength = 10;
+            this.txtORNumber.MaxLength = 50;
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
             this.txtORNumber.TabIndex = 3;
@@ -196,7 +196,7 @@
             this.txtRequestedBy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRequestedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRequestedBy.Location = new System.Drawing.Point(156, 101);
-            this.txtRequestedBy.MaxLength = 10;
+            this.txtRequestedBy.MaxLength = 50;
             this.txtRequestedBy.Name = "txtRequestedBy";
             this.txtRequestedBy.Size = new System.Drawing.Size(200, 21);
             this.txtRequestedBy.TabIndex = 2;
@@ -206,7 +206,7 @@
             this.txtCurrentReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCurrentReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCurrentReading.Location = new System.Drawing.Point(156, 70);
-            this.txtCurrentReading.MaxLength = 10;
+            this.txtCurrentReading.MaxLength = 50;
             this.txtCurrentReading.Name = "txtCurrentReading";
             this.txtCurrentReading.Size = new System.Drawing.Size(200, 21);
             this.txtCurrentReading.TabIndex = 1;
@@ -216,7 +216,7 @@
             this.txtPreviousReading.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPreviousReading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPreviousReading.Location = new System.Drawing.Point(156, 39);
-            this.txtPreviousReading.MaxLength = 10;
+            this.txtPreviousReading.MaxLength = 50;
             this.txtPreviousReading.Name = "txtPreviousReading";
             this.txtPreviousReading.Size = new System.Drawing.Size(200, 21);
             this.txtPreviousReading.TabIndex = 0;

@@ -512,8 +512,13 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void lblHydrant_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtJONumber.Text.Trim()))
+            {
+                Helper.MessageBoxError("Please enter J.O Number.");
+                return; 
+            }
+
             _ = new frmHydrantWithdrawalForm(txtJONumber.Text, isUpdate).ShowDialog();
-            
         }
 
         private void clBoxParticulars_ItemCheck(object sender, ItemCheckEventArgs e)

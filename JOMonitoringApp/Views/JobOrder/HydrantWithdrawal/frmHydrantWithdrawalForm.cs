@@ -25,33 +25,43 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
 
         private void txtORNumber_TextChanged(object sender, EventArgs e)
         {
-            string ornumber = txtORNumber.Text;
+            //string ornumber = txtORNumber.Text;
 
-            if (ornumber.Length > 4) { 
-                var otherPaymentDetails = Factory.CustomersRepository().GetOtherPaymentDetails(ornumber);
+            //if (ornumber.Length > 4) { 
+            //    var otherPaymentDetails = Factory.CustomersRepository().GetOtherPaymentDetails(ornumber);
 
-                if (otherPaymentDetails != null)
-                {
-                    nudAmount.Value = Convert.ToDecimal(otherPaymentDetails["TotalAmount"]);
-                    txtCashier.Text = otherPaymentDetails["eUser"].ToString();
-                    dtpDate.Text = otherPaymentDetails["PaymentDate"].ToString();
-                }
-            }
+            //    if (otherPaymentDetails != null)
+            //    {
+            //        nudAmount.Value = Convert.ToDecimal(otherPaymentDetails["TotalAmount"]);
+            //        txtCashier.Text = otherPaymentDetails["eUser"].ToString();
+            //        dtpDate.Text = otherPaymentDetails["PaymentDate"].ToString();
+            //    }
+            //}
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            string jobOrderNumber = _jobOrder;  
             string previousReading = txtPreviousReading.Text;
             string afterReading = txtCurrentReading.Text;
+            string requestedBy = txtRequestedBy.Text;   
             string orNumber = txtORNumber.Text; 
             string cashier = txtCashier.Text;
             string date = dtpDate.Text;
             string amount = nudAmount.Value.ToString(); 
-            string totalVolume = txtTotalVolume.Text;   
+            string totalVolume = txtTotalVolume.Text;
+            bool transactionSucceed = false;
 
-            bool sucecss = Factory.CustomersRepository().InsertHydrantData(previousReading, afterReading, orNumber, cashier, date, amount, totalVolume);
-            
-            if (sucecss)
+            if (!_isUpdate) //save
+            {
+                transactionSucceed = Factory.CustomersRepository().InsertHydrantData(jobOrderNumber, previousReading, afterReading, requestedBy, orNumber, cashier, date, amount, totalVolume);
+            }
+            else
+            {
+                //transactionSucceed = Factory.CustomersRepository().InsertHydrantData(previousReading, afterReading, orNumber, cashier, date, amount, totalVolume);
+            }
+
+            if (transactionSucceed)
             {
                 Helper.MessageBoxSuccess("Hydrant Withdrawal data has been saved successfully.");   
             }
@@ -64,27 +74,26 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
             if (_isUpdate)
             {
                 LoadHydrantWithdrawalData();
-
             }
         }
 
         private void LoadHydrantWithdrawalData()
         {
-            Dictionary<string, string> hwData = Factory.CustomersRepository().GetHydrantWithdrawalData("123");
+            string jobOrderNumber = _jobOrder;  
+            Dictionary<string, string> hwData = Factory.CustomersRepository().GetHydrantWithdrawalData(jobOrderNumber);
 
             if (hwData != null)
             {
 
-                txtCurrentReading.Text = hwData["job_order_number"];
-                txtPreviousReading.Text = hwData["job_order_number"];
-                txtORNumber.Text = hwData["job_order_number"];
+                txtCurrentReading.Text = hwData["previous_reading"];
+                txtPreviousReading.Text = hwData["current_reading"];
+                txtRequestedBy.Text = hwData["requested_by"];
+                txtORNumber.Text = hwData["or_number"];
                 txtCashier.Text = hwData["cashier"];
                 dtpDate.Text = hwData["date"];
                 nudAmount.Value = Convert.ToDecimal(hwData["amount"]);
                 txtTotalVolume.Text = hwData["total_volume"];
 
-
-                
             }
         }
     }

@@ -36,7 +36,7 @@ namespace JOMonitoringApp.Interface
         SqlDataReader LoadLedgerByCustomerId(int v, DateTime value1, DateTime value2);
         string GetChangeMeterDate(string accountNumber);
         DataTable GetChangeMeterDetails(string accountNumber);
-        bool InsertHydrantData(string previousReading, string afterReading, string orNumber, string cashier, string date, string amount, string totalVolume);
+        bool InsertHydrantData(string jobOrderNumber, string previousReading, string afterReading, string orNumber, string cashier, string date, string amount, string totalVolume, string totalVolume1);
         Dictionary<string, string> GetHydrantWithdrawalData(string jobOrder);
     }
 }

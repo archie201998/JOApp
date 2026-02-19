@@ -2,7 +2,9 @@
 using AccountingSystem;
 using JOMonitoringApp.Dataset;
 using Microsoft.Reporting.WinForms;
+using Mysqlx.Crud;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace JOMonitoringApp.Views.Reports
@@ -26,35 +28,50 @@ namespace JOMonitoringApp.Views.Reports
         
         private void LoadReport()
         {
+            string jobNumber = txtJONo.Text;
+            if (string.IsNullOrEmpty(jobNumber))
+                return;
+
+            var dictJODetails = Factory.JobOrdersRepository().GetViewRecordsByJONumber(Convert.ToInt32(jobNumber));
+            Dictionary<string, string> hwData = Factory.CustomersRepository().GetHydrantWithdrawalData(jobNumber);
+
+
+            reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\hydrant-withdrawal.rdlc";
+            reportViewer1.LocalReport.EnableExternalImages = true;
+
+            ReportParameter[] parameters = new ReportParameter[15];
+
+            parameters[0] = new ReportParameter("paramCSDHead", Helper.CSDHead);
+            parameters[1] = new ReportParameter("paramCustomer", dictJODetails["account_name"]);
+            parameters[2] = new ReportParameter("paramAddress", dictJODetails["address"]);
+            parameters[3] = new ReportParameter("paramContact", dictJODetails["contact_number"]);
+            parameters[4] = new ReportParameter("paramJONumber", dictJODetails["job_order_no"]);
+            parameters[5] = new ReportParameter("paramAccountNumber", string.IsNullOrEmpty(dictJODetails["account_number"]) ? "-" : dictJODetails["account_number"]);
+            parameters[6] = new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString());
+            
+            
+            parameters[7] = new ReportParameter("paramPreviousReading", hwData["previous_reading"]);
+            parameters[8] = new ReportParameter("paramCurrentReading", hwData["current_reading"]);
+            parameters[9] = new ReportParameter("paramRequestedBy", hwData["requested_by"]);
+            parameters[10] = new ReportParameter("paramORNumber", hwData["or_number"]);
+            parameters[11] = new ReportParameter("paramCashier", hwData["cashier"]);
+            parameters[12] = new ReportParameter("paramDate", hwData["date"]);
+            parameters[13] = new ReportParameter("paramAmount", hwData["amount"]);
+            parameters[14] = new ReportParameter("paramTotalVolume", hwData["total_volume"]);
+
+
+            reportViewer1.LocalReport.DataSources.Clear(); 
+
+            reportViewer1.LocalReport.SetParameters(parameters);
+            reportViewer1.ProcessingMode = ProcessingMode.Local;
+            reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
+            reportViewer1.ZoomMode = ZoomMode.Percent;
+
+            reportViewer1.RefreshReport();
+
             try
             {
-                string jobNumber = txtJONo.Text;
-                if (string.IsNullOrEmpty(jobNumber))
-                    return;
-
-                var dictJODetails = Factory.JobOrdersRepository().GetViewRecordsByJONumber(Convert.ToInt32(jobNumber));
-
-                reportViewer1.LocalReport.ReportPath = $"{Application.StartupPath}\\RDLC\\hydrant-withdrawal.rdlc";
-                reportViewer1.LocalReport.EnableExternalImages = true;
-
-                ReportParameter[] parameters = new ReportParameter[7];
-
-                parameters[0] = new ReportParameter("paramCSDHead", Helper.CSDHead);
-                parameters[1] = new ReportParameter("paramCustomer", dictJODetails["account_name"]);
-                parameters[2] = new ReportParameter("paramAddress", dictJODetails["address"]);
-                parameters[3] = new ReportParameter("paramContact", dictJODetails["contact_number"]);
-                parameters[4] = new ReportParameter("paramJONumber", dictJODetails["job_order_no"]);
-                parameters[5] = new ReportParameter("paramAccountNumber", string.IsNullOrEmpty(dictJODetails["account_number"]) ? "-" : dictJODetails["account_number"]);
-                parameters[6] = new ReportParameter("paramPrintFullPage", cbxFullPage.Checked.ToString());  
-
-                reportViewer1.LocalReport.DataSources.Clear();
-
-                reportViewer1.LocalReport.SetParameters(parameters);
-                reportViewer1.ProcessingMode = ProcessingMode.Local;
-                reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
-                reportViewer1.ZoomMode = ZoomMode.Percent;
-
-                reportViewer1.RefreshReport();
+               
             }
             catch (Exception)
             {

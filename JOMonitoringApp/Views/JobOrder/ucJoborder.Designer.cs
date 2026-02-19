@@ -42,6 +42,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -57,7 +58,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.gbJODetails = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
+            this.lblHydrant = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtJONumber = new System.Windows.Forms.TextBox();
             this.txtWARNumber = new System.Windows.Forms.TextBox();
@@ -71,7 +74,6 @@
             this.gbIssuanceAndAssignment = new System.Windows.Forms.GroupBox();
             this.cmbxAccomplishedBy = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.radPending = new System.Windows.Forms.RadioButton();
             this.radProcessing = new System.Windows.Forms.RadioButton();
             this.radCancel = new System.Windows.Forms.RadioButton();
@@ -79,22 +81,23 @@
             this.label17 = new System.Windows.Forms.Label();
             this.txtRemarks = new System.Windows.Forms.TextBox();
             this.gbStatusAndRemaarks = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
-            this.gbJODetails.SuspendLayout();
-            this.gbIssuanceAndAssignment.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            this.gbStatusAndRemaarks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.gbJODetails.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.gbIssuanceAndAssignment.SuspendLayout();
+            this.gbStatusAndRemaarks.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -111,7 +114,7 @@
             // 
             this.txtORNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtORNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtORNumber.Location = new System.Drawing.Point(155, 229);
+            this.txtORNumber.Location = new System.Drawing.Point(155, 231);
             this.txtORNumber.Name = "txtORNumber";
             this.txtORNumber.Size = new System.Drawing.Size(200, 21);
             this.txtORNumber.TabIndex = 5;
@@ -121,7 +124,7 @@
             this.dtpDate.CustomFormat = "MMMM dd, yyyy";
             this.dtpDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(155, 202);
+            this.dtpDate.Location = new System.Drawing.Point(155, 206);
             this.dtpDate.Name = "dtpDate";
             this.dtpDate.Size = new System.Drawing.Size(200, 21);
             this.dtpDate.TabIndex = 2;
@@ -140,7 +143,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 202);
+            this.label3.Location = new System.Drawing.Point(28, 206);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 6;
@@ -150,7 +153,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(28, 231);
+            this.label4.Location = new System.Drawing.Point(28, 233);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 15);
             this.label4.TabIndex = 7;
@@ -159,7 +162,7 @@
             // nudAmount
             // 
             this.nudAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudAmount.Location = new System.Drawing.Point(155, 256);
+            this.nudAmount.Location = new System.Drawing.Point(155, 258);
             this.nudAmount.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -175,7 +178,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 258);
+            this.label5.Location = new System.Drawing.Point(28, 260);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(59, 15);
             this.label5.TabIndex = 9;
@@ -249,6 +252,18 @@
             this.gbAccountDetails.TabIndex = 0;
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
+            this.pictureBox1.Location = new System.Drawing.Point(331, 123);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Add more contact number.");
             // 
             // textBox1
             // 
@@ -425,13 +440,13 @@
             // 
             // gbJODetails
             // 
-            this.gbJODetails.Controls.Add(this.clBoxParticulars);
+            this.gbJODetails.Controls.Add(this.dtpDate);
+            this.gbJODetails.Controls.Add(this.flowLayoutPanel1);
             this.gbJODetails.Controls.Add(this.label9);
             this.gbJODetails.Controls.Add(this.txtJONumber);
             this.gbJODetails.Controls.Add(this.label2);
             this.gbJODetails.Controls.Add(this.txtORNumber);
             this.gbJODetails.Controls.Add(this.label3);
-            this.gbJODetails.Controls.Add(this.dtpDate);
             this.gbJODetails.Controls.Add(this.label4);
             this.gbJODetails.Controls.Add(this.label5);
             this.gbJODetails.Controls.Add(this.nudAmount);
@@ -443,15 +458,43 @@
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.Controls.Add(this.clBoxParticulars);
+            this.flowLayoutPanel1.Controls.Add(this.lblHydrant);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(154, 50);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 154);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
             // clBoxParticulars
             // 
             this.clBoxParticulars.CheckOnClick = true;
             this.clBoxParticulars.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clBoxParticulars.FormattingEnabled = true;
-            this.clBoxParticulars.Location = new System.Drawing.Point(155, 48);
+            this.clBoxParticulars.Location = new System.Drawing.Point(3, 3);
             this.clBoxParticulars.Name = "clBoxParticulars";
-            this.clBoxParticulars.Size = new System.Drawing.Size(199, 148);
+            this.clBoxParticulars.Size = new System.Drawing.Size(199, 132);
             this.clBoxParticulars.TabIndex = 1;
+            this.clBoxParticulars.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clBoxParticulars_ItemCheck);
+            // 
+            // lblHydrant
+            // 
+            this.lblHydrant.AutoSize = true;
+            this.lblHydrant.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblHydrant.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHydrant.ForeColor = System.Drawing.SystemColors.MenuHighlight;
+            this.lblHydrant.Location = new System.Drawing.Point(3, 138);
+            this.lblHydrant.Name = "lblHydrant";
+            this.lblHydrant.Size = new System.Drawing.Size(135, 13);
+            this.lblHydrant.TabIndex = 20;
+            this.lblHydrant.Text = "Hydrant Withdrawal Details";
+            this.lblHydrant.Visible = false;
+            this.lblHydrant.Click += new System.EventHandler(this.lblHydrant_Click);
             // 
             // label9
             // 
@@ -592,11 +635,6 @@
             this.label6.TabIndex = 25;
             this.label6.Text = "ACCOMPLISHED BY";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
-            this.errorProvider1.ContainerControl = this;
-            // 
             // radPending
             // 
             this.radPending.AutoSize = true;
@@ -686,18 +724,6 @@
             this.gbStatusAndRemaarks.TabStop = false;
             this.gbStatusAndRemaarks.Text = "STATUS AND REMARKS";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
-            this.pictureBox1.Location = new System.Drawing.Point(331, 123);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "Add more contact number.");
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(419, 137);
@@ -736,6 +762,11 @@
             this.label20.TabIndex = 21;
             this.label20.Text = "JOB ORDER DETAILS";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ucJoborder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -754,20 +785,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbJODetails.ResumeLayout(false);
             this.gbJODetails.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.gbIssuanceAndAssignment.ResumeLayout(false);
             this.gbIssuanceAndAssignment.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.gbStatusAndRemaarks.ResumeLayout(false);
             this.gbStatusAndRemaarks.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -830,5 +863,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label lblHydrant;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

@@ -2,6 +2,7 @@
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
@@ -73,10 +74,12 @@ namespace JOMonitoringApp
         {
             var parameters = new object[][]
             {
-                new object[] { "@status", DbType.Int32, requestStatus }
+                new object[] { "@status", DbType.Int32, requestStatus },
+                new object[] { "@created_at_from", DbType.DateTime, DateTime.Today },
+                new object[] { "@created_at_to", DbType.DateTime, DateTime.Today.AddDays(1) }
             };
 
-            string query = $"SELECT * FROM {tableName} WHERE status = @status LIMIT 1";
+            string query = $"SELECT * FROM {tableName} WHERE status = @status AND created_at >= @created_at_from AND created_at < @created_at_to LIMIT 1";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
@@ -107,10 +110,12 @@ namespace JOMonitoringApp
         {
             var parameters = new object[][]
             {
-                new object[] { "@id", DbType.Int32, requestId }
+                new object[] { "@id", DbType.Int32, requestId },
+                new object[] { "@created_at_from", DbType.DateTime, DateTime.Today },
+                new object[] { "@created_at_to", DbType.DateTime, DateTime.Today.AddDays(1) }
             };
-
-            string query = $"SELECT * FROM {tableName} WHERE id = @id LIMIT 1";
+            
+            string query = $"SELECT * FROM {tableName} WHERE id = @id AND created_at >= @created_at_from AND created_at < @created_at_to LIMIT 1";
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }

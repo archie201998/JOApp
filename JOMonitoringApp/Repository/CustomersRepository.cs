@@ -1,12 +1,14 @@
 ﻿using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Tls.Crypto.Impl;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Twilio.TwiML.Voice;
 
 internal class CustomersRepository : ICustomersRepository
 {
@@ -362,5 +364,75 @@ internal class CustomersRepository : ICustomersRepository
         dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
 
         return dataTable;
+    }
+
+    public Dictionary<string, string> GetOtherPaymentDetails(string orNumber)
+    {
+        var parameters = new object[][]
+        {
+            new object[] { "@ornumber", DbType.String, orNumber }
+        };
+
+        //string query = $"SELECT *, SUM(UnitAmount) TotalAmount FROM  txn_PaymentDetailsOthers WHERE  ORNumber = @ornumber AND ORtype = SI GROUP BY Amount";
+        
+        string query = $"SELECT h.eUser, h.PaymentDate, h.ORNumber, h.CustomerID, h.AccountNo, h.AccountName, SUM(d.Amount) AS TotalAmount FROM txn_PaymentHeaderOthers h INNER JOIN txn_PaymentDetailsOthers d ON h.ORNumber = d.ORNumber  WHERE d.ORNumber = @ornumber GROUP BY h.ORNumber, h.CustomerID, h.AccountNo, h.AccountName, h.eUser, h.PaymentDate ORDER BY h.ORNumber DESC";
+
+        var dataTable = new DataTable();
+        dataTable = sqlGenericCommands.SQLFillBySearch(query, dataTable, parameters);
+
+        var result = new Dictionary<string, string>();
+        if (dataTable.Rows.Count > 0)
+        {
+            foreach (DataColumn column in dataTable.Columns)
+            {
+                result[column.ColumnName] = dataTable.Rows[0][column].ToString();
+            }
+        }
+
+        return result;
+    }
+
+    public bool InsertHydrantData(string previousReading, string afterReading, string orNumber, string cashier, string date, string amount, string totalVolume)
+    {
+        var parameter = new object[][] {
+            new object[]{"@previous_reading", DbType.String, previousReading},
+            new object[]{"@current_reading", DbType.String, afterReading},
+            new object[]{"@or_number", DbType.String, orNumber},
+            new object[]{"@cashier", DbType.String, cashier},
+            new object[]{"@date", DbType.String, date},
+            new object[]{"@amount", DbType.String, amount},
+            new object[]{"@total_volume", DbType.String, totalVolume},
+        };
+
+        string query = $@"INSERT INTO tbl_hydrantwithdrawal(previous_reading, current_reading, or_number, cashier, date, amount, total_volume) VALUES (@previous_reading, @current_reading, @or_number, @cashier, @date, @amount, @total_volume)";
+
+        return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+
+    }
+
+    public Dictionary<string, string> GetHydrantWithdrawalData(string jobOrder)
+    {
+        var recordDictionary = new Dictionary<string, string>();
+        var parameters = new object[][]
+         {
+            new object[] { "@job_order_number", DbType.String, jobOrder }
+         };
+
+        //string query = $"SELECT *, SUM(UnitAmount) TotalAmount FROM  txn_PaymentDetailsOthers WHERE  ORNumber = @ornumber AND ORtype = SI GROUP BY Amount";
+
+        string query = $"SELECT * FROM tbl_hydrantwithdrawal WHERE job_order_number = @job_order_number";
+
+        DataTable dataTable = mySqlGenericCommands.ExecuteReader(query, parameters);
+
+        if (dataTable.Rows.Count > 0)
+        {
+            DataRow row = dataTable.Rows[0];
+
+            foreach (DataColumn column in dataTable.Columns)
+                recordDictionary[column.ColumnName] = row[column].ToString();
+
+            return recordDictionary;
+        }
+        return recordDictionary;
     }
 }

@@ -30,8 +30,13 @@ namespace JOMonitoringApp.Interface
         string GetConsumptionUponDisconnection(string accountNumber);
 
         decimal GetApplicationPaymentAmount(string orNumber);
+
+        Dictionary<string, string> GetOtherPaymentDetails(string orNumber);
+
         SqlDataReader LoadLedgerByCustomerId(int v, DateTime value1, DateTime value2);
         string GetChangeMeterDate(string accountNumber);
         DataTable GetChangeMeterDetails(string accountNumber);
+        bool InsertHydrantData(string previousReading, string afterReading, string orNumber, string cashier, string date, string amount, string totalVolume);
+        Dictionary<string, string> GetHydrantWithdrawalData(string jobOrder);
     }
 }

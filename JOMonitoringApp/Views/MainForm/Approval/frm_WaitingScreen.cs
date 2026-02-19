@@ -30,7 +30,7 @@ namespace JOMonitoringApp.Views.MainForm.Approval
             this.requestId = requestID;
         }
 
-        private void btnDisapproved_Click(object sender, EventArgs e)
+        private void btnDisapproved_Click(object sender, EventArgs e) //cancel request 
         {
             if (!Helper.RequestApproved)
             {

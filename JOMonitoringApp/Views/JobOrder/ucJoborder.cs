@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.JobOrder.HydrantWithdrawal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -507,6 +508,30 @@ namespace JOMonitoringApp.Views.JobOrder
         private void label19_Click(object sender, EventArgs e)
         {
             splitContainer1.Panel1Collapsed = true;
+        }
+
+        private void lblHydrant_Click(object sender, EventArgs e)
+        {
+            _ = new frmHydrantWithdrawalForm(txtJONumber.Text, isUpdate).ShowDialog();
+            
+        }
+
+        private void clBoxParticulars_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            string clickedItem = clBoxParticulars.Items[e.Index].ToString();
+
+            if (clickedItem == "Hydrant Withdrawal")
+            {
+                if (e.NewValue == CheckState.Checked)
+                {
+                    lblHydrant.Visible = true;
+                }
+                else if (e.NewValue == CheckState.Unchecked)
+                {
+                    lblHydrant.Visible = false;
+                }
+            }
+
         }
     }
 }

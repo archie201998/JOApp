@@ -789,9 +789,12 @@ namespace JOMonitoringApp.Views.MainForm
            
 
             bool requestSent = Factory.RequestRepository().CreateRequest(RequestModel(requestDetails));
-            int requestId = Factory.RequestRepository().GetLastInsertedID(Helper.CurrentUserID);   
 
-            _ = new frm_WaitingScreen(requestId).ShowDialog();
+            if (requestSent)
+            {
+                int requestId = Factory.RequestRepository().GetLastInsertedID(Helper.CurrentUserID);
+                _ = new frm_WaitingScreen(requestId).ShowDialog();
+            }
 
             if (Helper.RequestApproved)
             {
@@ -800,7 +803,6 @@ namespace JOMonitoringApp.Views.MainForm
             else
                 return false;
         }
-
 
         private bool SaveData()
         {

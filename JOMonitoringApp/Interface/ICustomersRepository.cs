@@ -38,5 +38,6 @@ namespace JOMonitoringApp.Interface
         DataTable GetChangeMeterDetails(string accountNumber);
         bool InsertHydrantData(string jobOrderNumber, string previousReading, string afterReading, string orNumber, string cashier, string date, string amount, string totalVolume, string totalVolume1);
         Dictionary<string, string> GetHydrantWithdrawalData(string jobOrder);
+        bool UpdateHydrantData(string jobOrderNumber, string previousReading, string afterReading, string requestedBy, string orNumber, string cashier, string date, string amount, string totalVolume);
     }
 }

@@ -32,7 +32,7 @@
     <PublisherName>ASale%40Pamana</PublisherName>
     <WebPage>publish.htm</WebPage>
     <TrustUrlParameters>true</TrustUrlParameters>
-    <ApplicationRevision>303</ApplicationRevision>
+    <ApplicationRevision>306</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -240,6 +240,7 @@
     </Compile>
     <Compile Include="Helpers\Helper.cs" />
     <Compile Include="HelperLoadRecords.cs" />
+    <Compile Include="Interface\IChatMessageRepository.cs" />
     <Compile Include="Interface\ICustomersRepository.cs" />
     <Compile Include="Interface\IEmployeesRepository.cs" />
     <Compile Include="Interface\IError.cs" />
@@ -260,6 +261,7 @@
     <Compile Include="Interface\IStatusRepository.cs" />
     <Compile Include="Interface\IUsersrepository.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="Model\ChatMessageModel.cs" />
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />
     <Compile Include="Model\GenericModel\FilterModel.cs" />
@@ -280,6 +282,7 @@
     <Compile Include="Model\UsersModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ChatMessageRepository.cs" />
     <Compile Include="Repository\CustomersRepository.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\Error.cs" />
@@ -431,6 +434,12 @@
     <Compile Include="Views\MainForm\ChatRoom\frmChatRoom.Designer.cs">
       <DependentUpon>frmChatRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainForm\ChatRoom\ucMessageBubble.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MainForm\ChatRoom\ucMessageBubble.Designer.cs">
+      <DependentUpon>ucMessageBubble.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainForm\frmDeepSearchFilter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm\ChatRoom\frmChatRoom.resx">
       <DependentUpon>frmChatRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\MainForm\ChatRoom\ucMessageBubble.resx">
+      <DependentUpon>ucMessageBubble.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\VicinityImage\frmVicinityImage.resx">
       <DependentUpon>frmVicinityImage.cs</DependentUpon>

@@ -436,4 +436,32 @@ internal class CustomersRepository : ICustomersRepository
         }
         return recordDictionary;
     }
+
+    public bool UpdateHydrantData(string jobOrderNumber, string previousReading, string afterReading, string requestedBy, string orNumber, string cashier, string date, string amount, string totalVolume)
+    {
+        var parameter = new object[][] {
+
+            new object[]{"@job_order_number", DbType.String, jobOrderNumber},
+            new object[]{"@previous_reading", DbType.String, previousReading},
+            new object[]{"@current_reading", DbType.String, afterReading},
+            new object[]{"@requested_by", DbType.String, requestedBy},
+            new object[]{"@or_number", DbType.String, orNumber},
+            new object[]{"@cashier", DbType.String, cashier},
+            new object[]{"@date", DbType.String, date},
+            new object[]{"@amount", DbType.String, amount},
+            new object[]{"@total_volume", DbType.String, totalVolume},
+        };
+
+        string query = $@"UPDATE tbl_hydrantwithdrawal SET 
+                        previous_reading = @previous_reading, 
+                        current_reading = @current_reading, 
+                        requested_by = @requested_by, 
+                        or_number = @or_number,
+                        cashier = @cashier, 
+                        date = @date, 
+                        amount = @amount, 
+                        total_volume = @total_volume WHERE job_order_number = @job_order_number";
+
+        return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
+    }
 }

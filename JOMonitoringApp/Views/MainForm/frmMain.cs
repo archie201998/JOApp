@@ -42,6 +42,10 @@ namespace JOMonitoringApp.Views.MainForm
         private string existingJobOrderNo;
         private readonly frmSignIn _frmSignIn;
 
+
+
+        int lastChatID = 0;
+
         private NotifyIcon notifyIcon;
 
         private int lastInsertedJOID = 0;
@@ -283,6 +287,8 @@ namespace JOMonitoringApp.Views.MainForm
             Dictionary<string, string> userDict = Helper.GetUserDataById(Helper.CurrentUserID);
             lblCurrentUser.Text = userDict["user_full_name"].ToString().ToUpper();
             lblUserRole.Text = userDict["role_name"].ToString().ToUpper();
+            Helper.CurrentUser = userDict["user_full_name"].ToString().ToUpper();
+
             cmbxStatus.SelectedValue = 5;
             cmbxRowLimit.SelectedIndex = 1;
 
@@ -1366,7 +1372,18 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            CheckNewChat();
+        }
 
+        private void CheckNewChat()
+        {
+            bool hasNewChat = Factory.ChatMessageRepository().CheckNewMesage(this.lastChatID, Helper.CurrentUserID);
+
+            if (hasNewChat)
+            {
+                label7.Text = "NEW CHAT RECEIVED";
+                label7.ForeColor = Color.Red;   
+            }
         }
 
         private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1409,6 +1426,11 @@ namespace JOMonitoringApp.Views.MainForm
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();
             _ = new frmVicinityImage(jobOrderId, accountName).ShowDialog();
+        }
+
+        private void lblCurrentUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

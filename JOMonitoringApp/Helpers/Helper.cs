@@ -24,6 +24,8 @@ namespace AccountingSystem
         public static string imageLink2;
 
         public static byte CurrentUserID { get; internal set; }
+        internal static string CurrentUser;
+
         public static int UserRoleId { get; internal set; }
         internal static bool temporaryAdminMode = false;
         internal static string changes;
@@ -61,7 +63,6 @@ namespace AccountingSystem
 
         internal static string ImagePath;
         internal static string SecondaryImagePath;
-
 
         public static Color StatusColor(string status)
         {

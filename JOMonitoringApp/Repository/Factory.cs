@@ -38,7 +38,7 @@ namespace JOMonitoringApp
         internal static Interface.IInvestigationAdjustmentOtherFeesRepository InvestigationAdjustmentRepository() => new IInvestigationAdjustmentOtherFeesRepository(mySqlGenericCommands);
         internal static IInvestigationFindings InvestigationFindingsRepository() => new InvestigationFindingsRepository(mySqlGenericCommands);
         internal static IRequestRepository RequestRepository() => new RequestRepository(mySqlGenericCommands);
-
+        internal static IChatMessageRepository ChatMessageRepository() => new ChatMessageRepository(mySqlGenericCommands);
 
     }
 }

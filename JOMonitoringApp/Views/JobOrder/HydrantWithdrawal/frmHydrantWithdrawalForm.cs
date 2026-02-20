@@ -58,12 +58,16 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
             }
             else
             {
-                //transactionSucceed = Factory.CustomersRepository().InsertHydrantData(previousReading, afterReading, orNumber, cashier, date, amount, totalVolume);
+                transactionSucceed = Factory.CustomersRepository().UpdateHydrantData(jobOrderNumber, previousReading, afterReading, requestedBy, orNumber, cashier, date, amount, totalVolume);
             }
 
             if (transactionSucceed)
             {
                 Helper.MessageBoxSuccess("Hydrant Withdrawal data has been saved successfully.");   
+            }
+            else
+            {
+                Helper.MessageBoxError("An error occurred while saving the Hydrant Withdrawal data. Please contact system administrator.");
             }
 
             this.Close();

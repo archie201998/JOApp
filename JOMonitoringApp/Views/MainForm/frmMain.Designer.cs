@@ -68,6 +68,7 @@
             this.investigationDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.trackJOProgressToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewVicinityMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -86,7 +87,7 @@
             this.lblRetrieved = new System.Windows.Forms.ToolStripStatusLabel();
             this.isPosted = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tmrChatCheck = new System.Windows.Forms.Timer(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnX = new System.Windows.Forms.Button();
@@ -128,7 +129,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
-            this.viewVicinityMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -390,7 +390,7 @@
             this.trackJOProgressToolStripMenuItem,
             this.viewVicinityMapToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 164);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 142);
             this.contextMenuStrip1.Text = "PRINT ";
             // 
             // toolStripMenuItem2
@@ -449,6 +449,13 @@
             this.trackJOProgressToolStripMenuItem.Text = "Track J.O Progress";
             this.trackJOProgressToolStripMenuItem.Click += new System.EventHandler(this.trackJOProgressToolStripMenuItem_Click);
             // 
+            // viewVicinityMapToolStripMenuItem
+            // 
+            this.viewVicinityMapToolStripMenuItem.Name = "viewVicinityMapToolStripMenuItem";
+            this.viewVicinityMapToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.viewVicinityMapToolStripMenuItem.Text = "View Vicinity Map";
+            this.viewVicinityMapToolStripMenuItem.Click += new System.EventHandler(this.viewVicinityMapToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -485,6 +492,7 @@
             this.lblCurrentUser.Name = "lblCurrentUser";
             this.lblCurrentUser.Size = new System.Drawing.Size(121, 17);
             this.lblCurrentUser.Text = "System Administrator";
+            this.lblCurrentUser.Click += new System.EventHandler(this.lblCurrentUser_Click);
             // 
             // toolStripStatusLabel4
             // 
@@ -579,10 +587,11 @@
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(0, 17);
             // 
-            // timer1
+            // tmrChatCheck
             // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            this.tmrChatCheck.Enabled = true;
+            this.tmrChatCheck.Interval = 3000;
+            this.tmrChatCheck.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
             // toolTip1
             // 
@@ -1022,7 +1031,7 @@
             this.label7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.label7.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.label7.Location = new System.Drawing.Point(1500, 5);
+            this.label7.Location = new System.Drawing.Point(1497, 5);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(144, 19);
             this.label7.TabIndex = 5;
@@ -1049,13 +1058,6 @@
             this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
             this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
             this.ucDashboardSummaryView1.TabIndex = 0;
-            // 
-            // viewVicinityMapToolStripMenuItem
-            // 
-            this.viewVicinityMapToolStripMenuItem.Name = "viewVicinityMapToolStripMenuItem";
-            this.viewVicinityMapToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.viewVicinityMapToolStripMenuItem.Text = "View Vicinity Map";
-            this.viewVicinityMapToolStripMenuItem.Click += new System.EventHandler(this.viewVicinityMapToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1131,7 +1133,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripSROF;
         private System.Windows.Forms.ToolStripMenuItem toolStripInvestigation;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer tmrChatCheck;
         private System.Windows.Forms.ToolStripStatusLabel lblPing;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;

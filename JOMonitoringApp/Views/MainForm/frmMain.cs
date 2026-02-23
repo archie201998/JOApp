@@ -5,6 +5,7 @@ using JOMonitoringApp.Views.Database;
 using JOMonitoringApp.Views.Investigation;
 using JOMonitoringApp.Views.Investigation.SMS;
 using JOMonitoringApp.Views.JobOrder;
+using JOMonitoringApp.Views.JobOrder.JobOrderRepairs;
 using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.MainForm.ChatRoom;
 using JOMonitoringApp.Views.Materials;
@@ -1431,6 +1432,11 @@ namespace JOMonitoringApp.Views.MainForm
         private void lblCurrentUser_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void repairAndMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _= new frmRepairAndMaintenance().ShowDialog();
         }
     }
 }

@@ -39,6 +39,10 @@ namespace JOMonitoringApp
         internal static IInvestigationFindings InvestigationFindingsRepository() => new InvestigationFindingsRepository(mySqlGenericCommands);
         internal static IRequestRepository RequestRepository() => new RequestRepository(mySqlGenericCommands);
         internal static IChatMessageRepository ChatMessageRepository() => new ChatMessageRepository(mySqlGenericCommands);
+        internal static IPurokRepository PurokRepository() => new PurokRepository(mySqlGenericCommands);
+        internal static IBarangayRepository BarangayRepository() => new BarangayRepository(mySqlGenericCommands);
+
+
 
     }
 }

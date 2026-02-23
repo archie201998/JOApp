@@ -42,23 +42,39 @@ namespace JOMonitoringApp.Views.MainForm.ChatRoom
             foreach (var msg in conversation)
                 AddBubble(msg);
 
+            flpChat.ResumeLayout();
+
+            ScrollToBottom(); 
+
+
             if (conversation.Count > 0)
                 lastMessageID = conversation.Max(x => x.ID);
+
         }
 
         private void AddBubble(ChatMessageModel msg)
         {
             var bubble = new ucMessageBubble(msg);
 
-
             flpChat.Controls.Add(bubble);
-            
             flpChat.ScrollControlIntoView(bubble);
 
-
-
-
+            ScrollToBottom();
         }
+
+        private void ScrollToBottom()
+        {
+            if (flpChat.Controls.Count > 0)
+            {
+                flpChat.ScrollControlIntoView(
+                    flpChat.Controls[flpChat.Controls.Count - 1]
+                );
+            }
+
+            flpChat.VerticalScroll.Value = flpChat.VerticalScroll.Maximum;
+            flpChat.PerformLayout(); // refresh layout
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtMessage.Text))

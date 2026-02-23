@@ -538,5 +538,10 @@ namespace JOMonitoringApp.Views.JobOrder
             }
 
         }
+
+        private void clBoxParticulars_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

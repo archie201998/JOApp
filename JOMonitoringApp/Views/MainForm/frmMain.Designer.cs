@@ -129,6 +129,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
+            this.repairAndMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -321,7 +322,8 @@
             // transactionsToolStripMenuItem
             // 
             this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.investigationsToolStripMenuItem});
+            this.investigationsToolStripMenuItem,
+            this.repairAndMaintenanceToolStripMenuItem});
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(92, 21);
             this.transactionsToolStripMenuItem.Text = "Transactions";
@@ -329,7 +331,7 @@
             // investigationsToolStripMenuItem
             // 
             this.investigationsToolStripMenuItem.Name = "investigationsToolStripMenuItem";
-            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.investigationsToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
@@ -1059,6 +1061,13 @@
             this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
             this.ucDashboardSummaryView1.TabIndex = 0;
             // 
+            // repairAndMaintenanceToolStripMenuItem
+            // 
+            this.repairAndMaintenanceToolStripMenuItem.Name = "repairAndMaintenanceToolStripMenuItem";
+            this.repairAndMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.repairAndMaintenanceToolStripMenuItem.Text = "Repair and Maintenance";
+            this.repairAndMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.repairAndMaintenanceToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnSearch;
@@ -1208,5 +1217,6 @@
         private System.Windows.Forms.ToolStripMenuItem jOSummaryStatusToolStripMenuItem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem viewVicinityMapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem repairAndMaintenanceToolStripMenuItem;
     }
 }

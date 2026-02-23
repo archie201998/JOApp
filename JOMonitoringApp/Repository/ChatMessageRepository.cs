@@ -176,7 +176,7 @@ namespace JOMonitoringApp.Repository
                 return true;
             }
 
-            return false;
+            return true;
         }
     }
 }

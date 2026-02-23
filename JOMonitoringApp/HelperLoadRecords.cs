@@ -290,6 +290,30 @@ namespace JOMonitoringApp
             comboBox.DisplayMember = "status";
         }
 
+        internal static void BarangayCombobox(ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable = Factory.BarangayRepository().GetRecords();
+
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "barangay_name";
+        }
+
+        internal static void PurokCombobox(int barangayId, ComboBox comboBox)
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable = Factory.PurokRepository().GetPurokByBarangayId(barangayId);
+
+            comboBox.DataSource = dataTable;
+            comboBox.ValueMember = "id";
+            comboBox.DisplayMember = "purok_name";
+        }
+
+        
+
         internal static void DateImportedCombobox(ComboBox comboBox)
         {
             DataTable dataTable = new DataTable();

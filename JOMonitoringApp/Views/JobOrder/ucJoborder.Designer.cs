@@ -42,14 +42,12 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.gbAccountDetails = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.cbxNA = new System.Windows.Forms.CheckBox();
             this.txtAcc4 = new System.Windows.Forms.TextBox();
             this.txtAccountName = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.txtAcc3 = new System.Windows.Forms.TextBox();
             this.txtAcc2 = new System.Windows.Forms.TextBox();
             this.txtAcc1 = new System.Windows.Forms.TextBox();
@@ -85,10 +83,11 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).BeginInit();
             this.gbAccountDetails.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbJODetails.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.gbIssuanceAndAssignment.SuspendLayout();
@@ -97,6 +96,7 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -253,18 +253,6 @@
             this.gbAccountDetails.TabStop = false;
             this.gbAccountDetails.Text = "ACCOUNT DETAILS";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
-            this.pictureBox1.Location = new System.Drawing.Point(331, 123);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 35;
-            this.pictureBox1.TabStop = false;
-            this.toolTip1.SetToolTip(this.pictureBox1, "Add more contact number.");
-            // 
             // textBox1
             // 
             this.textBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
@@ -344,24 +332,6 @@
             this.txtAccountName.TabIndex = 5;
             this.txtAccountName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtAccountName_Validating);
             this.txtAccountName.Validated += new System.EventHandler(this.TxtAccountName_Validated);
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.BackColor = System.Drawing.Color.White;
-            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSearch.Location = new System.Drawing.Point(156, 15);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(136, 23);
-            this.btnSearch.TabIndex = 19;
-            this.btnSearch.TabStop = false;
-            this.btnSearch.Text = "Search Account  [F1]";
-            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.UseVisualStyleBackColor = false;
-            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
             // 
             // txtAcc3
             // 
@@ -481,6 +451,7 @@
             this.clBoxParticulars.Size = new System.Drawing.Size(199, 132);
             this.clBoxParticulars.TabIndex = 1;
             this.clBoxParticulars.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clBoxParticulars_ItemCheck);
+            this.clBoxParticulars.SelectedIndexChanged += new System.EventHandler(this.clBoxParticulars_SelectedIndexChanged);
             // 
             // lblHydrant
             // 
@@ -762,6 +733,36 @@
             this.label20.TabIndex = 21;
             this.label20.Text = "JOB ORDER DETAILS";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
+            this.pictureBox1.Location = new System.Drawing.Point(331, 123);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 35;
+            this.pictureBox1.TabStop = false;
+            this.toolTip1.SetToolTip(this.pictureBox1, "Add more contact number.");
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearch.BackColor = System.Drawing.Color.White;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Image = global::JOMonitoringApp.Properties.Resources.btn_search;
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSearch.Location = new System.Drawing.Point(156, 15);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(136, 23);
+            this.btnSearch.TabIndex = 19;
+            this.btnSearch.TabStop = false;
+            this.btnSearch.Text = "Search Account  [F1]";
+            this.btnSearch.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.UseVisualStyleBackColor = false;
+            this.btnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
             // errorProvider1
             // 
             this.errorProvider1.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -785,7 +786,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudAmount)).EndInit();
             this.gbAccountDetails.ResumeLayout(false);
             this.gbAccountDetails.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbJODetails.ResumeLayout(false);
             this.gbJODetails.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
@@ -800,6 +800,7 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

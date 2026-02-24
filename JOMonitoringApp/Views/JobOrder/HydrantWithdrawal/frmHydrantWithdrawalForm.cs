@@ -86,7 +86,7 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
             string jobOrderNumber = _jobOrder;  
             Dictionary<string, string> hwData = Factory.CustomersRepository().GetHydrantWithdrawalData(jobOrderNumber);
 
-            if (hwData != null)
+            if (hwData.Count != 0)
             {
 
                 txtCurrentReading.Text = hwData["previous_reading"];
@@ -99,6 +99,7 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
                 txtTotalVolume.Text = hwData["total_volume"];
 
             }
+            else { _isUpdate = false; } //treat as new entry if no data found for the job order number
         }
     }
 }

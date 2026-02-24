@@ -1,6 +1,6 @@
-﻿namespace JOMonitoringApp.Views.Purok
+﻿namespace JOMonitoringApp.Views.Barangay
 {
-    partial class frmAddPurok
+    partial class frmAddBarangay
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSave = new System.Windows.Forms.Button();
-            this.ucPurok1 = new JOMonitoringApp.Views.Purok.ucPurok();
+            this.ucBarangay1 = new JOMonitoringApp.Views.Barangay.ucBarangay();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,10 +38,10 @@
             // 
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 108);
+            this.panel1.Location = new System.Drawing.Point(0, 66);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(373, 36);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // btnSave
             // 
@@ -57,28 +57,28 @@
             this.btnSave.TabIndex = 15;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // ucPurok1
+            // ucBarangay1
             // 
-            this.ucPurok1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucPurok1.Location = new System.Drawing.Point(0, 0);
-            this.ucPurok1.Name = "ucPurok1";
-            this.ucPurok1.Size = new System.Drawing.Size(373, 108);
-            this.ucPurok1.TabIndex = 1;
+            this.ucBarangay1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucBarangay1.Location = new System.Drawing.Point(0, 0);
+            this.ucBarangay1.Name = "ucBarangay1";
+            this.ucBarangay1.Size = new System.Drawing.Size(373, 66);
+            this.ucBarangay1.TabIndex = 2;
             // 
-            // frmAddPurok
+            // frmAddBarangay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(373, 144);
-            this.Controls.Add(this.ucPurok1);
+            this.ClientSize = new System.Drawing.Size(373, 102);
+            this.Controls.Add(this.ucBarangay1);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmAddPurok";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Name = "frmAddBarangay";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Purok";
-            this.Load += new System.EventHandler(this.frmAddPurok_Load);
+            this.Text = "Add Barangay";
+            this.Load += new System.EventHandler(this.frmAddBarangay_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -87,7 +87,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private ucPurok ucPurok1;
         private System.Windows.Forms.Button btnSave;
+        private ucBarangay ucBarangay1;
     }
 }

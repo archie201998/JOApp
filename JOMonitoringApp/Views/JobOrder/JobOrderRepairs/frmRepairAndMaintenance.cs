@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccountingSystem;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
         public frmRepairAndMaintenance()
         {
             InitializeComponent();
+            Helper.LoadFormIcon(this);  
         }
 
         private void frmRepairAndMaintenance_Load(object sender, EventArgs e)

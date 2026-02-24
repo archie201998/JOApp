@@ -60,7 +60,15 @@ namespace JOMonitoringApp
 
         public bool Insert(PurokModel entity)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@purok_name", DbType.String, entity.PurokName },
+                new object[] { "@barangay_id", DbType.Int32, entity.BarangayId }
+            };
+
+            string query = $"INSERT INTO {tableName} (purok_name, barangay_id) VALUES (@purok_name, @barangay_id)";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameters);
+
         }
 
         public bool Update(PurokModel entity)

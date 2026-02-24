@@ -8,5 +8,8 @@ namespace JOMonitoringApp.Model
 {
     internal class PurokModel
     {
+        public int Id { get; set; }
+        public int BarangayId { get; set; }
+        public string PurokName { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace JOMonitoringApp.Views.Purok
+﻿namespace JOMonitoringApp.Views.Barangay
 {
-    partial class ucPurok
+    partial class ucBarangay
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,31 +32,27 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtPurokCode = new System.Windows.Forms.TextBox();
             this.txtPurokName = new System.Windows.Forms.TextBox();
-            this.cmbxBarangay = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 43);
+            this.label4.Location = new System.Drawing.Point(7, 7);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 15);
-            this.label4.TabIndex = 46;
-            this.label4.Text = "PUROK CODE";
+            this.label4.Size = new System.Drawing.Size(107, 15);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "BARANGAY CODE";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 71);
+            this.label1.Location = new System.Drawing.Point(7, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 15);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "NAME OF PUROK";
+            this.label1.Size = new System.Drawing.Size(127, 15);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "NAME OF BARANGAY";
             // 
             // txtPurokCode
             // 
@@ -65,10 +61,10 @@
             this.txtPurokCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPurokCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPurokCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtPurokCode.Location = new System.Drawing.Point(151, 43);
+            this.txtPurokCode.Location = new System.Drawing.Point(147, 7);
             this.txtPurokCode.Name = "txtPurokCode";
             this.txtPurokCode.Size = new System.Drawing.Size(92, 21);
-            this.txtPurokCode.TabIndex = 44;
+            this.txtPurokCode.TabIndex = 51;
             // 
             // txtPurokName
             // 
@@ -76,70 +72,31 @@
             this.txtPurokName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtPurokName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPurokName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtPurokName.Location = new System.Drawing.Point(151, 70);
+            this.txtPurokName.Location = new System.Drawing.Point(147, 34);
             this.txtPurokName.Name = "txtPurokName";
             this.txtPurokName.Size = new System.Drawing.Size(200, 21);
-            this.txtPurokName.TabIndex = 45;
+            this.txtPurokName.TabIndex = 52;
             // 
-            // cmbxBarangay
-            // 
-            this.cmbxBarangay.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxBarangay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.cmbxBarangay.FormattingEnabled = true;
-            this.cmbxBarangay.Location = new System.Drawing.Point(151, 14);
-            this.cmbxBarangay.Name = "cmbxBarangay";
-            this.cmbxBarangay.Size = new System.Drawing.Size(172, 23);
-            this.cmbxBarangay.TabIndex = 47;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = global::JOMonitoringApp.Properties.Resources.icons8_plus_50;
-            this.pictureBox1.Location = new System.Drawing.Point(327, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(24, 21);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 48;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(11, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 15);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "BARANGAY";
-            // 
-            // ucPurok
+            // ucBarangay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cmbxBarangay);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPurokCode);
             this.Controls.Add(this.txtPurokName);
-            this.Name = "ucPurok";
-            this.Size = new System.Drawing.Size(365, 99);
-            this.Load += new System.EventHandler(this.ucPurok_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Name = "ucBarangay";
+            this.Size = new System.Drawing.Size(360, 64);
+            this.Load += new System.EventHandler(this.ucBarangay_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         internal System.Windows.Forms.TextBox txtPurokCode;
         internal System.Windows.Forms.TextBox txtPurokName;
-        private System.Windows.Forms.Label label2;
-        internal System.Windows.Forms.ComboBox cmbxBarangay;
-        internal System.Windows.Forms.PictureBox pictureBox1;
     }
 }

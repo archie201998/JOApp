@@ -268,6 +268,7 @@
     <Compile Include="Model\CustomersModel.cs" />
     <Compile Include="Model\EmployeeModel.cs" />
     <Compile Include="Model\GenericModel\FilterModel.cs" />
+    <Compile Include="Model\HydrantWithdrawalModel.cs" />
     <Compile Include="Model\InvestigationAdjustmentModel.cs" />
     <Compile Include="Model\InvestigationFindingsModel.cs" />
     <Compile Include="Model\InvestigationModel.cs" />
@@ -313,6 +314,18 @@
     </Compile>
     <Compile Include="Views\Admin\frmPassKey.Designer.cs">
       <DependentUpon>frmPassKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Barangay\frmAddBarangay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Barangay\frmAddBarangay.Designer.cs">
+      <DependentUpon>frmAddBarangay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Barangay\ucBarangay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Barangay\ucBarangay.Designer.cs">
+      <DependentUpon>ucBarangay.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Config\frmConfiguration.cs">
       <SubType>Form</SubType>
@@ -614,6 +627,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\btn-search.png" />
+    <EmbeddedResource Include="Views\Barangay\frmAddBarangay.resx">
+      <DependentUpon>frmAddBarangay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Barangay\ucBarangay.resx">
+      <DependentUpon>ucBarangay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\JobOrder\HydrantWithdrawal\frmHydrantWithdrawalForm.resx">
       <DependentUpon>frmHydrantWithdrawalForm.cs</DependentUpon>
     </EmbeddedResource>

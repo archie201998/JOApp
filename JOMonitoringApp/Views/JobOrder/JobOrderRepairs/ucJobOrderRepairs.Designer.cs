@@ -48,10 +48,10 @@
             this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cmbxBarangayFilter = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cmbxPurokFilter = new System.Windows.Forms.ComboBox();
             this.gbJODetails = new System.Windows.Forms.GroupBox();
             this.clBoxParticulars = new System.Windows.Forms.CheckedListBox();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
@@ -226,6 +226,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 35;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // pictureBox2
             // 
@@ -264,10 +265,10 @@
             this.groupBox1.Controls.Add(this.flpStatus);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.cmbxBarangayFilter);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.cmbxPurokFilter);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(381, 3);
             this.groupBox1.Name = "groupBox1";
@@ -307,19 +308,22 @@
             this.dataGridView1.Size = new System.Drawing.Size(882, 521);
             this.dataGridView1.TabIndex = 40;
             // 
-            // comboBox3
+            // cmbxBarangayFilter
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(122, 33);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(172, 21);
-            this.comboBox3.TabIndex = 6;
+            this.cmbxBarangayFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxBarangayFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmbxBarangayFilter.FormattingEnabled = true;
+            this.cmbxBarangayFilter.Location = new System.Drawing.Point(122, 33);
+            this.cmbxBarangayFilter.Name = "cmbxBarangayFilter";
+            this.cmbxBarangayFilter.Size = new System.Drawing.Size(172, 23);
+            this.cmbxBarangayFilter.TabIndex = 6;
+            this.cmbxBarangayFilter.SelectionChangeCommitted += new System.EventHandler(this.cmbxBarangayFilter_SelectionChangeCommitted);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(306, 35);
+            this.label9.Location = new System.Drawing.Point(306, 37);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 15);
             this.label9.TabIndex = 39;
@@ -329,19 +333,21 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(25, 34);
+            this.label10.Location = new System.Drawing.Point(25, 36);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 15);
             this.label10.TabIndex = 36;
             this.label10.Text = "BARANGAY";
             // 
-            // comboBox4
+            // cmbxPurokFilter
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(372, 33);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(172, 21);
-            this.comboBox4.TabIndex = 37;
+            this.cmbxPurokFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxPurokFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmbxPurokFilter.FormattingEnabled = true;
+            this.cmbxPurokFilter.Location = new System.Drawing.Point(372, 33);
+            this.cmbxPurokFilter.Name = "cmbxPurokFilter";
+            this.cmbxPurokFilter.Size = new System.Drawing.Size(172, 23);
+            this.cmbxPurokFilter.TabIndex = 37;
             // 
             // gbJODetails
             // 
@@ -475,10 +481,10 @@
         private System.Windows.Forms.Label label5;
         internal System.Windows.Forms.TextBox txtStreet;
         internal System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbxBarangayFilter;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cmbxPurokFilter;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         internal System.Windows.Forms.GroupBox gbJODetails;

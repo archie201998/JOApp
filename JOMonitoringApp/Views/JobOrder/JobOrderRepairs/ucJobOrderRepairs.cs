@@ -1,5 +1,6 @@
 ﻿using AccountingSystem;
 using JOMonitoringApp.Model;
+using JOMonitoringApp.Views.Barangay;
 using JOMonitoringApp.Views.Purok;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             {
                 CreateStatusButtons();
                 HelperLoadRecords.BarangayCombobox(cmbxBarangay);
+                HelperLoadRecords.BarangayCombobox(cmbxBarangayFilter);
                 LoadPurok();
             }
         }
@@ -39,6 +41,9 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
         {
             int barangayId = Factory.BarangayRepository().GetIdByName(cmbxBarangay.Text);
             HelperLoadRecords.PurokCombobox(barangayId, cmbxPurok);
+
+            int barangayIdFilter = Factory.BarangayRepository().GetIdByName(cmbxBarangayFilter.Text);
+            HelperLoadRecords.PurokCombobox(barangayIdFilter, cmbxPurokFilter);
         }
 
         private void CreateStatusButtons()
@@ -176,10 +181,21 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
-            _ = new frmAddPurok().ShowDialog();
+            int barangayId = Convert.ToInt32(cmbxBarangay.SelectedValue);
+            _ = new frmAddPurok(barangayId).ShowDialog();
         }
 
         private void cmbxBarangay_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            LoadPurok();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            _ = new frmAddBarangay().ShowDialog();
+        }
+
+        private void cmbxBarangayFilter_SelectionChangeCommitted(object sender, EventArgs e)
         {
             LoadPurok();
         }

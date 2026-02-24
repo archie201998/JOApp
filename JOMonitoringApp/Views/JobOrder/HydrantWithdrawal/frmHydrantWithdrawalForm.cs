@@ -86,15 +86,15 @@ namespace JOMonitoringApp.Views.JobOrder.HydrantWithdrawal
             string jobOrderNumber = _jobOrder;  
             Dictionary<string, string> hwData = Factory.CustomersRepository().GetHydrantWithdrawalData(jobOrderNumber);
 
-            if (hwData.Count != 0)
+            if (hwData?.Count != 0)
             {
 
-                txtCurrentReading.Text = hwData["previous_reading"];
-                txtPreviousReading.Text = hwData["current_reading"];
+                txtCurrentReading.Text = hwData["current_reading"];
+                txtPreviousReading.Text = hwData["previous_reading"];
                 txtRequestedBy.Text = hwData["requested_by"];
                 txtORNumber.Text = hwData["or_number"];
                 txtCashier.Text = hwData["cashier"];
-                dtpDate.Text = hwData["date"];
+                dtpDate.Value = Convert.ToDateTime(hwData["date"]);
                 nudAmount.Value = Convert.ToDecimal(hwData["amount"]);
                 txtTotalVolume.Text = hwData["total_volume"];
 

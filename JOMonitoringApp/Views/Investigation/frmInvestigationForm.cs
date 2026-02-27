@@ -320,7 +320,7 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 if (!string.IsNullOrEmpty(imageFilePath) || !string.IsNullOrEmpty(secondaryImageFilePath))
                 {
-                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
+                    string sharedFolderPath = @"\\LT-PAG-5P2HMG3\InvestigationImage";
 
                     if (!Directory.Exists(sharedFolderPath))
                     {

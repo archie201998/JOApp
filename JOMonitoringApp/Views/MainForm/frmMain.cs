@@ -838,19 +838,33 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (CheckPossibleDuplicateEntry())
             {
-                if (MakeRequest("Add"))
-                {
-                    if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
-                        return InsertJobOrderAsync();
-                }
+                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                    return InsertJobOrderAsync();
 
                 return false;
             }
-            else 
+            else
             {
                 return InsertJobOrderAsync();
+
             }
 
+            //Old code
+            //if (CheckPossibleDuplicateEntry())
+            //{
+            //    if (MakeRequest("Add"))
+            //    {
+            //        if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+            //            return InsertJobOrderAsync();
+            //    }
+
+            //    return false;
+            //}
+            //else 
+            //{
+            //    return InsertJobOrderAsync();
+            //}
+            //old code
         }
 
         private RequestModel RequestModel(string requestDetails)

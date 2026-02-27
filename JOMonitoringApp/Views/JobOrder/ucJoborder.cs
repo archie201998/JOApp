@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
@@ -270,22 +271,7 @@ namespace JOMonitoringApp.Views.JobOrder
             };
         }
 
-        internal void LoadParticular()
-        {
-            clBoxParticulars.Items.Clear();
-
-            var dtParticulars = Factory.ParticularsRepository().GetRecords();
-            var excludedItems = new HashSet<string> { "Investigation", "Change Meter" };
-
-            foreach (DataRow item in dtParticulars.Rows)
-            {
-                var particular = item["particular"]?.ToString();
-                if (!string.IsNullOrEmpty(particular) && !excludedItems.Contains(particular))
-                {
-                    clBoxParticulars.Items.Add(particular);
-                }
-            }
-        }
+        
 
         private void UcJoborder_Load(object sender, EventArgs e)
         {
@@ -541,6 +527,45 @@ namespace JOMonitoringApp.Views.JobOrder
 
         private void clBoxParticulars_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void txtSearchParticular_TextChanged(object sender, EventArgs e)
+        {
+            LoadParticular();
+        }
+
+        internal void LoadParticular()
+        {
+            // Store checked items
+            var checkedItems = clBoxParticulars.CheckedItems
+                                .Cast<object>()
+                                .Select(x => x.ToString())
+                                .ToHashSet();
+
+            clBoxParticulars.Items.Clear();
+
+            string particularSearch = txtSearchParticular.Text.Trim();
+            var dtParticulars = Factory.ParticularsRepository()
+                                       .GetRecordsBySearch(particularSearch);
+
+            var excludedItems = new HashSet<string> { "Investigation", "Change Meter" };
+
+            foreach (DataRow item in dtParticulars.Rows)
+            {
+                var particular = item["particular"]?.ToString();
+
+                if (!string.IsNullOrEmpty(particular) && !excludedItems.Contains(particular))
+                {
+                    int index = clBoxParticulars.Items.Add(particular);
+
+                    // Restore checked state if previously checked
+                    if (checkedItems.Contains(particular))
+                    {
+                        clBoxParticulars.SetItemChecked(index, true);
+                    }
+                }
+            }
 
         }
     }

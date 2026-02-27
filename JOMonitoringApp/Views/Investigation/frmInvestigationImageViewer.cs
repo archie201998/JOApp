@@ -55,7 +55,7 @@ namespace JOMonitoringApp.Views.Investigation
             if (!string.IsNullOrEmpty(_imageFilePath) || !string.IsNullOrEmpty(_secondaryImageFilePath))
             {
                 Cursor cursor = Cursors.WaitCursor;
-                string sharedFolderPath = @"\\PWCServerPag\InvestigationImage"; // Replace with your shared folder path
+                string sharedFolderPath = @"\\LT-PAG-5P2HMG3\InvestigationImage"; // Replace with your shared folder path
 
                 if (Directory.Exists(sharedFolderPath))
                 {
@@ -190,7 +190,7 @@ namespace JOMonitoringApp.Views.Investigation
 
                 if (!string.IsNullOrEmpty(_imageFilePath) && UpdateImage())
                 {
-                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
+                    string sharedFolderPath = @"\\LT-PAG-5P2HMG3\InvestigationImage";
 
                     if (!Directory.Exists(sharedFolderPath))
                     {
@@ -236,7 +236,7 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 if (!string.IsNullOrEmpty(_secondaryImageFilePath) &&  UpdateImage())
                 {
-                    string sharedFolderPath = @"\\PWCServerPag\InvestigationImage";
+                    string sharedFolderPath = @"\\LT-PAG-5P2HMG3\InvestigationImage";
 
                     if (!Directory.Exists(sharedFolderPath))
                     {

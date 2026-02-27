@@ -52,7 +52,15 @@ namespace JOMonitoringApp
 
         public DataTable GetRecordsBySearch(string searchText)
         {
-            throw new System.NotImplementedException();
+            var parameters = new object[][]
+            {
+                new object[] { "@search_text", DbType.String, $"%{searchText}%" }
+            };  
+
+            string query = $"SELECT id, particular, description FROM {tableName} WHERE particular LIKE @search_text ORDER BY particular ASC";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
         }
 
         public bool IdExist(int id)

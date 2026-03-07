@@ -1,6 +1,7 @@
 ﻿using JOMonitoringApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,5 +14,6 @@ namespace JOMonitoringApp.Interface
         int GetUserRoleId(byte userId);
         bool HasPermission(byte userId, string permissionName);
         Byte ValidateLogin(string userName, string password);
+        DataTable GetInvestigators();
     }
 }

@@ -72,7 +72,18 @@ namespace JOMonitoringApp.Views.Investigation
                 //transfer to reset form 
                 dtpDateInvestigated.Enabled = cbxDateOfInvestigation.Checked;
                 ViewAdjustment();
+
+                //LoadInvestigator(); 
             }
+        }
+
+        private void LoadInvestigator()
+        {
+            DataTable dtInvestigators = Factory.UsersRepository().GetInvestigators();
+
+            cmbxInvestigator.DataSource = dtInvestigators;  
+            cmbxInvestigator.DisplayMember = "investigator";
+            cmbxInvestigator.ValueMember = "id";
         }
 
         private void LoadInvestigationFindings()
@@ -194,6 +205,7 @@ namespace JOMonitoringApp.Views.Investigation
                 DisplayStatus(approvalStatus);
 
                 cmbxInvestigator.Text = investigator;
+                
                 imageFilePath = dictInvestigation["image_path"]?.ToString();
                 secondaryImageFilePath = dictInvestigation["secondary_image_path"].ToString();
 
@@ -320,7 +332,7 @@ namespace JOMonitoringApp.Views.Investigation
             {
                 if (!string.IsNullOrEmpty(imageFilePath) || !string.IsNullOrEmpty(secondaryImageFilePath))
                 {
-                    string sharedFolderPath = @"\\LT-PAG-5P2HMG3\InvestigationImage";
+                    string sharedFolderPath = @"\\WIN-H0B58URBFNV\InvestigationImage";
 
                     if (!Directory.Exists(sharedFolderPath))
                     {
@@ -412,6 +424,7 @@ namespace JOMonitoringApp.Views.Investigation
                 PromoteTradeBusiness = Convert.ToBoolean(cbPromoteTrade.Checked),
                 SellToNeighbours = Convert.ToBoolean(cbSellToNeighbours.Checked),
                 InvestigatedBy = cmbxInvestigator.Text.Trim(),
+                InvestigationId = Convert.ToInt32(cmbxInvestigator.SelectedValue),
                 UpdatedBy = Helper.CurrentUserID
             };
 

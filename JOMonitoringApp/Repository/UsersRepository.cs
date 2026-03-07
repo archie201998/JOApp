@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using AccountingSystem;
 using JOMonitoringApp.Interface;
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Repository;
@@ -68,6 +69,14 @@ namespace JOMonitoringApp
         {
             string query = $"SELECT id, prefix, first_name, middle_name, suffix, last_name FROM {tableName} ORDER BY first_name";
 
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
+        }
+
+        public DataTable GetInvestigators()
+        { 
+            string query = $"SELECT CONCAT(first_name, ' ', middle_name, ' ', last_name) AS investigator, id, is_investigator FROM {viewTableName} WHERE is_investigator = 1 ";
+             
             var dataTable = new DataTable();
             return mySqlGenericCommands.Fill(query, dataTable);
         }

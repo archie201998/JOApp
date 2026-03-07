@@ -34,7 +34,7 @@ namespace JOMonitoringApp.Views.Database
         private void RunBatchFile()
         {
             Process process = new Process();
-            process.StartInfo.FileName = @"\\LT-PAG-5P2HMG3\J.O e-Monitoring\mysql_backup.bat";
+            process.StartInfo.FileName = @"\\WIN-H0B58URBFNV\J.O e-Monitoring\mysql_backup.bat";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
             process.Start();

@@ -32,16 +32,17 @@ namespace JOMonitoringApp.Views.MainForm.Approval
 
         private void btnDisapproved_Click(object sender, EventArgs e) //cancel request 
         {
-            if (!Helper.RequestApproved)
+            if (!Helper.RequestApproved) 
             {
                 bool cancelRequest = Factory.RequestRepository().CancelRequest(requestId);
                 if (cancelRequest)
                 {
                     Helper.RequestApproved = false;
-                    this.Close();
+                    Close();
                 }
             }
-            this.Close();
+
+            Close();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -96,5 +96,13 @@ namespace JOMonitoringApp
 
             return int.Parse(mySqlGenericCommands.ExecuteScalar(query, parameters));
         }
+
+
+        public DataTable GetRepairAndMaintenanceParticular()
+        {
+            string query = $"SELECT * FROM {tableName} WHERE is_repair_maintenance_job = 1 ORDER BY particular";
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.Fill(query, dataTable);
+        }
     }
 }

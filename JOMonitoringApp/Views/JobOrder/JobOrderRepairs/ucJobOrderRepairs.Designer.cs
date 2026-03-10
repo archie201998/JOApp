@@ -45,9 +45,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cmbxPurok = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbxParticularFilter = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.flpStatus = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgJobOrderRepairAndMaintenanceList = new System.Windows.Forms.DataGridView();
             this.cmbxBarangayFilter = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -64,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgJobOrderRepairAndMaintenanceList)).BeginInit();
             this.gbJODetails.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@
             this.txtLot.Location = new System.Drawing.Point(213, 34);
             this.txtLot.Name = "txtLot";
             this.txtLot.Size = new System.Drawing.Size(52, 21);
-            this.txtLot.TabIndex = 47;
+            this.txtLot.TabIndex = 1;
             // 
             // label11
             // 
@@ -126,7 +128,7 @@
             this.txtBlock.Location = new System.Drawing.Point(155, 34);
             this.txtBlock.Name = "txtBlock";
             this.txtBlock.Size = new System.Drawing.Size(52, 21);
-            this.txtBlock.TabIndex = 45;
+            this.txtBlock.TabIndex = 0;
             // 
             // label5
             // 
@@ -149,7 +151,7 @@
             this.txtMoreDetails.Multiline = true;
             this.txtMoreDetails.Name = "txtMoreDetails";
             this.txtMoreDetails.Size = new System.Drawing.Size(200, 66);
-            this.txtMoreDetails.TabIndex = 44;
+            this.txtMoreDetails.TabIndex = 6;
             // 
             // label4
             // 
@@ -169,7 +171,7 @@
             this.cmbxBarangay.Location = new System.Drawing.Point(155, 61);
             this.cmbxBarangay.Name = "cmbxBarangay";
             this.cmbxBarangay.Size = new System.Drawing.Size(172, 23);
-            this.cmbxBarangay.TabIndex = 6;
+            this.cmbxBarangay.TabIndex = 2;
             this.cmbxBarangay.SelectionChangeCommitted += new System.EventHandler(this.cmbxBarangay_SelectionChangeCommitted);
             // 
             // label1
@@ -192,7 +194,7 @@
             this.txtStreet.Location = new System.Drawing.Point(155, 116);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(200, 21);
-            this.txtStreet.TabIndex = 5;
+            this.txtStreet.TabIndex = 4;
             // 
             // txtLandMark
             // 
@@ -258,13 +260,15 @@
             this.cmbxPurok.Location = new System.Drawing.Point(155, 88);
             this.cmbxPurok.Name = "cmbxPurok";
             this.cmbxPurok.Size = new System.Drawing.Size(172, 23);
-            this.cmbxPurok.TabIndex = 37;
+            this.cmbxPurok.TabIndex = 3;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbxParticularFilter);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.flpStatus);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.dataGridView1);
+            this.groupBox1.Controls.Add(this.dgJobOrderRepairAndMaintenanceList);
             this.groupBox1.Controls.Add(this.cmbxBarangayFilter);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label10);
@@ -276,6 +280,26 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "REPAIR AND MAINTENANCE LIST";
+            // 
+            // cmbxParticularFilter
+            // 
+            this.cmbxParticularFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbxParticularFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cmbxParticularFilter.FormattingEnabled = true;
+            this.cmbxParticularFilter.Location = new System.Drawing.Point(126, 33);
+            this.cmbxParticularFilter.Name = "cmbxParticularFilter";
+            this.cmbxParticularFilter.Size = new System.Drawing.Size(227, 23);
+            this.cmbxParticularFilter.TabIndex = 44;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(29, 36);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(89, 15);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "PARTICULARS";
             // 
             // flpStatus
             // 
@@ -293,27 +317,28 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(550, 32);
+            this.button1.Location = new System.Drawing.Point(829, 32);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(81, 23);
             this.button1.TabIndex = 17;
             this.button1.Text = "Search";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // dataGridView1
+            // dgJobOrderRepairAndMaintenanceList
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(28, 107);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(882, 521);
-            this.dataGridView1.TabIndex = 40;
+            this.dgJobOrderRepairAndMaintenanceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgJobOrderRepairAndMaintenanceList.Location = new System.Drawing.Point(28, 107);
+            this.dgJobOrderRepairAndMaintenanceList.Name = "dgJobOrderRepairAndMaintenanceList";
+            this.dgJobOrderRepairAndMaintenanceList.Size = new System.Drawing.Size(882, 521);
+            this.dgJobOrderRepairAndMaintenanceList.TabIndex = 40;
             // 
             // cmbxBarangayFilter
             // 
             this.cmbxBarangayFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxBarangayFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmbxBarangayFilter.FormattingEnabled = true;
-            this.cmbxBarangayFilter.Location = new System.Drawing.Point(122, 33);
+            this.cmbxBarangayFilter.Location = new System.Drawing.Point(435, 33);
             this.cmbxBarangayFilter.Name = "cmbxBarangayFilter";
             this.cmbxBarangayFilter.Size = new System.Drawing.Size(172, 23);
             this.cmbxBarangayFilter.TabIndex = 6;
@@ -323,7 +348,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(306, 37);
+            this.label9.Location = new System.Drawing.Point(615, 37);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 15);
             this.label9.TabIndex = 39;
@@ -333,7 +358,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(25, 36);
+            this.label10.Location = new System.Drawing.Point(359, 36);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 15);
             this.label10.TabIndex = 36;
@@ -344,9 +369,9 @@
             this.cmbxPurokFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbxPurokFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cmbxPurokFilter.FormattingEnabled = true;
-            this.cmbxPurokFilter.Location = new System.Drawing.Point(372, 33);
+            this.cmbxPurokFilter.Location = new System.Drawing.Point(681, 33);
             this.cmbxPurokFilter.Name = "cmbxPurokFilter";
-            this.cmbxPurokFilter.Size = new System.Drawing.Size(172, 23);
+            this.cmbxPurokFilter.Size = new System.Drawing.Size(98, 23);
             this.cmbxPurokFilter.TabIndex = 37;
             // 
             // gbJODetails
@@ -361,7 +386,7 @@
             this.gbJODetails.Location = new System.Drawing.Point(3, 260);
             this.gbJODetails.Name = "gbJODetails";
             this.gbJODetails.Size = new System.Drawing.Size(372, 218);
-            this.gbJODetails.TabIndex = 17;
+            this.gbJODetails.TabIndex = 0;
             this.gbJODetails.TabStop = false;
             this.gbJODetails.Text = "JOB ORDER DETAILS";
             // 
@@ -436,10 +461,10 @@
             this.btnSave.Location = new System.Drawing.Point(158, 484);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(200, 32);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Save [Ctrl + S]";
             this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
             // 
             // ucJobOrderRepairs
             // 
@@ -458,7 +483,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgJobOrderRepairAndMaintenanceList)).EndInit();
             this.gbJODetails.ResumeLayout(false);
             this.gbJODetails.PerformLayout();
             this.ResumeLayout(false);
@@ -485,7 +510,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbxPurokFilter;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         internal System.Windows.Forms.GroupBox gbJODetails;
         internal System.Windows.Forms.DateTimePicker dtpDate;
@@ -499,5 +523,8 @@
         private System.Windows.Forms.Label label11;
         internal System.Windows.Forms.TextBox txtBlock;
         private System.Windows.Forms.Button btnSave;
+        internal System.Windows.Forms.DataGridView dgJobOrderRepairAndMaintenanceList;
+        private System.Windows.Forms.ComboBox cmbxParticularFilter;
+        private System.Windows.Forms.Label label12;
     }
 }

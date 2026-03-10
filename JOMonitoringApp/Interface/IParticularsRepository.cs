@@ -1,4 +1,5 @@
 ﻿using JOMonitoringApp.Model;
+using Microsoft.Reporting.Map.WebForms.BingMaps;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,5 +12,6 @@ namespace JOMonitoringApp.Interface
     public interface IParticularsRepository : IRepository<ParticularsModel>
     {
         int GetIdByParticularName(string particularName);
+        DataTable GetRepairAndMaintenanceParticular();
     }
 }

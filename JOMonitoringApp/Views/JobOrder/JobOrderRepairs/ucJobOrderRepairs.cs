@@ -2,6 +2,7 @@
 using JOMonitoringApp.Model;
 using JOMonitoringApp.Views.Barangay;
 using JOMonitoringApp.Views.Purok;
+using Org.BouncyCastle.Asn1.Crmf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
     public partial class ucJobOrderRepairs : UserControl
     {
         private bool isUpdate = false;
+        private int _radStatusId;
+        private int lastInsertedJOID = 0;
 
         public ucJobOrderRepairs()
         {
@@ -33,8 +36,58 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
                 CreateStatusButtons();
                 HelperLoadRecords.BarangayCombobox(cmbxBarangay);
                 HelperLoadRecords.BarangayCombobox(cmbxBarangayFilter);
+                HelperLoadRecords.ParticularComboboxRepairAndMaintenance(cmbxParticularFilter);    
                 LoadPurok();
+                LoadParticulars();
+                
+                LoadRepairsAndMaintenance();
             }
+        }
+
+        internal void LoadParticulars()
+        {
+            // Store checked items
+            var checkedItems = clBoxParticulars.CheckedItems
+                                .Cast<object>()
+                                .Select(x => x.ToString())
+                                .ToHashSet();
+
+            clBoxParticulars.Items.Clear();
+
+            var dtParticulars = Factory.ParticularsRepository().GetRepairAndMaintenanceParticular();
+
+            var excludedItems = new HashSet<string> { "Investigation", "Change Meter" };
+
+            foreach (DataRow item in dtParticulars.Rows)
+            {
+                var particular = item["particular"]?.ToString();
+
+                if (!string.IsNullOrEmpty(particular) && !excludedItems.Contains(particular))
+                {
+                    int index = clBoxParticulars.Items.Add(particular);
+
+                    // Restore checked state if previously checked
+                    if (checkedItems.Contains(particular))
+                    {
+                        clBoxParticulars.SetItemChecked(index, true);
+                    }
+                }
+            }
+
+        }
+        private void LoadRepairsAndMaintenance()
+        {
+            string particulars = clBoxParticulars.Text;
+            //address filter
+            string barangay = cmbxBarangayFilter.Text;
+            string purok = cmbxBarangayFilter.Text;
+
+            string completeAddress = barangay + " " + purok;
+            int status = _radStatusId;
+
+            DataTable dtRepairAndMaintenance = Factory.JobOrdersRepository().GetAllRepairAndMaintenanceRecords(status, particulars, completeAddress);
+            dgJobOrderRepairAndMaintenanceList.DataSource = dtRepairAndMaintenance;
+
         }
 
         private void LoadPurok()
@@ -49,11 +102,11 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
         private void CreateStatusButtons()
         {
             // Create buttons
-            RadioButton rbAll = CreateRadioButton("All");
-            RadioButton rbPending = CreateRadioButton("Pending");
-            RadioButton rbProcessing = CreateRadioButton("Processing");
-            RadioButton rbCancelled = CreateRadioButton("Cancelled");
-            RadioButton rbAccomplished = CreateRadioButton("Accomplished");
+            RadioButton rbAll = CreateRadioButton("All", 5);
+            RadioButton rbPending = CreateRadioButton("Pending", 1);
+            RadioButton rbProcessing = CreateRadioButton("Processing", 2);
+            RadioButton rbCancelled = CreateRadioButton("Cancelled", 3);
+            RadioButton rbAccomplished = CreateRadioButton("Accomplished", 4);
 
             // Add to FlowLayoutPanel
             flpStatus.Controls.Add(rbAll);
@@ -66,7 +119,7 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             rbAll.Checked = true;
         }
 
-        private RadioButton CreateRadioButton(string text)
+        private RadioButton CreateRadioButton(string text, int statusTag)
         {
             RadioButton rb = new RadioButton();
 
@@ -80,7 +133,7 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             rb.FlatAppearance.BorderSize = 1;
             rb.Font = new Font("Segoe UI", 8, FontStyle.Regular);
             rb.AutoCheck = true;
-
+            rb.Tag= statusTag;
             rb.CheckedChanged += Status_CheckedChanged;
 
             StyleButton(rb, false);
@@ -96,12 +149,14 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             {
                 rb.Text = "✔ " + rb.Text.Replace("✔ ", "");
                 StyleButton(rb, true);
+                _radStatusId = Convert.ToInt32(rb.Tag);
             }
             else
             {
                 rb.Text = rb.Text.Replace("✔ ", "");
                 StyleButton(rb, false);
             }
+
         }
 
         private void StyleButton(RadioButton rb, bool isChecked)
@@ -118,8 +173,32 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             }
         }
 
+        private string GetSelectedParticulars()
+        {
+            StringBuilder particularsBuilder = new StringBuilder();
+            bool moreThanOneItem = clBoxParticulars.CheckedItems.Count > 1;
+
+            foreach (var item in clBoxParticulars.CheckedItems)
+            {
+                particularsBuilder.Append($"{item.ToString()}");
+
+                if (moreThanOneItem)
+                    particularsBuilder.Append("\\");
+            }
+
+            string particular = particularsBuilder.ToString().TrimEnd();
+
+            if (moreThanOneItem)
+                particular = particular.Substring(0, particular.Length - 2);
+
+            return particular;
+        }
+
         internal JobOrdersModel JobOrderModel()
         {
+            string accountNumber = string.Empty;
+            string accountName = string.Empty;
+
             string lot = txtLot.Text.Trim();
             string block = txtBlock.Text.Trim();
             string barangay = cmbxBarangay.Text.Trim();
@@ -130,29 +209,78 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
 
             string address = $"{lot} {block}, {street}, {purok}, {barangay}, {landMark}, {moreDetails}";
             DateTime date = dtpDate.Value;
-            string jobOrderNumber = txtJobOrderNumber.Text;
+
+            string contact = string.Empty;
+            string jobOrderNumber = txtJobOrderNumber.Text.Trim();
+            string orNumber = string.Empty;
+            decimal amount = 0;
+            string MRIS = string.Empty;
+            string MRS = string.Empty;
+            string WAR = string.Empty; 
+            string remarks = string.Empty;
+            int preparedById = Helper.CurrentUserID;
+            int? materialsIssuedById = 0;
+            int? accomplishedBy = 0;
+            int statusId = 1;
+            string particular = GetSelectedParticulars();
+
 
             return new JobOrdersModel()
             {
-                Address = address,  
-                Date = date,
+                AccountNumber = accountNumber,
+                AccountName = address,
+                Address = string.Empty,
+                ContactNumber = contact,
+                PreparedBy = preparedById,
                 JONUmber = jobOrderNumber,
-                PreparedBy = Helper.CurrentUserID,
+                Date = date,
+                ORNumber = orNumber,
+                Amount = amount,
+                MRIS = MRIS,
+                MRS = MRS,
+                WAR = WAR,
+                Remarks = remarks,
+                MaterialsIssuedBy = materialsIssuedById == 0 ? null : materialsIssuedById,
+                AccomplishedBy = accomplishedBy == 0 ? null : accomplishedBy,
+                StatusId = statusId,
+                UserId = Helper.CurrentUserID
             };
         }
 
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
-            bool isInsertSuccessful = Factory.JobOrdersRepository().Insert(JobOrderModel());
+            if (Save())
+            {
+                Helper.MessageBoxSuccess("Repair and Maintenance Job Order successfully created.");
+                LoadRepairsAndMaintenance();
+            }
+        }
+
+        private bool Save()
+        {
+            bool InsertJobOrderAsync()
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    bool isInsertSuccessful = Factory.JobOrdersRepository().Insert(JobOrderModel());
+
+                    if (!isInsertSuccessful) return false;
+
+                    lastInsertedJOID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
+                    if (!InsertJobOrderParticulars(lastInsertedJOID)) return false;
+
+                    scope.Complete();
+                    return true;
+                }
+            }
 
 
-            if (!isInsertSuccessful) return ;
-
-
-            int lastInsertedJOID = Factory.JobOrdersRepository().GetLastInsertedID(Helper.CurrentUserID);
-            if (!InsertJobOrderParticulars(lastInsertedJOID)) return ;
-
+            if (InsertJobOrderAsync())
+            {
+                return true;
+            }
+            return false;
         }
 
         private bool InsertJobOrderParticulars(int jobOrderId)
@@ -199,5 +327,12 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
         {
             LoadPurok();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            LoadRepairsAndMaintenance();
+        }
+
+   
     }
 }

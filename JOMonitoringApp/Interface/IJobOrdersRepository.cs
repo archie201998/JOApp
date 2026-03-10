@@ -41,5 +41,6 @@ namespace JOMonitoringApp.Interface
         bool DeleteJobOrderParticulars(int jobOrderId);
         bool InsertVicinityImage(int jobOrderId, Image imageToSave);
         Image GetVicinityImage(int imageId);
+        DataTable GetAllRepairAndMaintenanceRecords(int status, string particular, string address);
     }
 }

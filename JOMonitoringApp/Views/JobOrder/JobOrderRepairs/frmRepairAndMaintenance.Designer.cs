@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ucJobOrderRepairs1 = new JOMonitoringApp.Views.JobOrder.JobOrderRepairs.ucJobOrderRepairs();
+                
             this.SuspendLayout();
             // 
             // ucJobOrderRepairs1
@@ -38,6 +39,7 @@
             this.ucJobOrderRepairs1.Name = "ucJobOrderRepairs1";
             this.ucJobOrderRepairs1.Size = new System.Drawing.Size(1319, 664);
             this.ucJobOrderRepairs1.TabIndex = 0;
+            this.ucJobOrderRepairs1.Load += new System.EventHandler(this.ucJobOrderRepairs1_Load);
             // 
             // frmRepairAndMaintenance
             // 

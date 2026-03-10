@@ -158,20 +158,20 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            btnX.Visible = true;
-            if (cbxDeepSearch.Checked)
-            {
-                _ = new frmDeepSearchFilter().ShowDialog();
-                DisplaySearchFilter();
-                LoadJobOrdersAsync();
-                return;
-            }
-
-            panel3.Visible = false;
-            LoadJobOrdersAsync();
             try
             {
-         
+                btnX.Visible = true;
+                if (cbxDeepSearch.Checked)
+                {
+                    _ = new frmDeepSearchFilter().ShowDialog();
+                    DisplaySearchFilter();
+                    LoadJobOrdersAsync();
+                    return;
+                }
+
+                panel3.Visible = false;
+                LoadJobOrdersAsync();
+
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
         }
@@ -194,29 +194,29 @@ namespace JOMonitoringApp.Views.MainForm
                     DataTable dtJobOrders;
                     if (cbxDeepSearch.Checked)
                     {
-                         dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
-                            searchKey,
-                            rowFilter,
-                            statusId,
-                            particular,
-                            Helper.advanceSearchDateFrom,
-                            Helper.advanceSearchDateTo,
-                            Helper.AdvanceSearchPreparedBy,
-                            Helper.AdvanceSearchAccomplishedBy,
-                            Helper.AdvanceSearchWithRemarks
-                        );
+                        dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                           searchKey,
+                           rowFilter,
+                           statusId,
+                           particular,
+                           Helper.advanceSearchDateFrom,
+                           Helper.advanceSearchDateTo,
+                           Helper.AdvanceSearchPreparedBy,
+                           Helper.AdvanceSearchAccomplishedBy,
+                           Helper.AdvanceSearchWithRemarks
+                       );
 
                     }
                     else
                     {
-                         dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
-                            searchKey,
-                            rowFilter,
-                            statusId,
-                            particular
-                        );
+                        dtJobOrders = Factory.JobOrdersRepository().GetViewRecordsByParameters(
+                           searchKey,
+                           rowFilter,
+                           statusId,
+                           particular
+                       );
                     }
-                    
+
 
                     var tempTable = new DataTable();
                     tempTable.Columns.AddRange(JobOrdersColumns());
@@ -346,7 +346,7 @@ namespace JOMonitoringApp.Views.MainForm
                 ucJoborder.gbIssuanceAndAssignment.Enabled = true;
                 ucJoborder.gbJODetails.Enabled = true;
             }
-           
+
         }
         #endregion
 
@@ -506,16 +506,13 @@ namespace JOMonitoringApp.Views.MainForm
             bool isAdmin = Helper.temporaryAdminMode;
 
             bool shouldEnable = !isAccomplished || isAdmin;
-            
+
             ucJoborder.gbStatusAndRemaarks.Enabled = shouldEnable;
             ucJoborder.gbAccountDetails.Enabled = shouldEnable;
             ucJoborder.gbIssuanceAndAssignment.Enabled = shouldEnable;
             ucJoborder.gbJODetails.Enabled = shouldEnable;
             btnRequestEdit.Visible = true;
 
-
-           
-            
         }
 
 
@@ -604,7 +601,7 @@ namespace JOMonitoringApp.Views.MainForm
             ucJoborder.txtAccountNumber.Clear();
             ucJoborder.txtAddress.Clear();
             ucJoborder.txtContact.Clear();
-            btnRequestEdit.Visible = false; 
+            btnRequestEdit.Visible = false;
             ValidatePermissions();
 
         }
@@ -707,7 +704,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
 
         private bool CheckPossibleDuplicateEntry()
-
         {
             string accountNumber = string.Join("-", new[] { ucJoborder.txtAcc1.Text, ucJoborder.txtAcc2.Text, ucJoborder.txtAcc3.Text, ucJoborder.txtAcc4.Text }.Select(x => x.Trim()));
 
@@ -717,18 +713,10 @@ namespace JOMonitoringApp.Views.MainForm
 
             DataTable duplicateDetails = Factory.JobOrdersRepository().CheckPossibleDuplicateDetails(accountNumber, particulars);
 
-            if (duplicateDetails.Rows.Count >= 1)
-            {
-                existingJobOrderNo = duplicateDetails.Rows[0]["job_order_no"].ToString();
-                if (Helper.MessageBoxWarningConfirm($"WARNING : You already created the job order no. [{existingJobOrderNo}] for this customer and particular. Do you want to proceed?"))
-                {
-                    return true;
-                }
-                else
-                    return false;
-            }
-
-            return false;
+            if (duplicateDetails.Rows.Count != 0)
+                return true;
+            else
+                return false;
         }
 
         #region Save Job orders
@@ -793,7 +781,7 @@ namespace JOMonitoringApp.Views.MainForm
                 requestDetails = $"Requested to update an accomplished J.O [{ucJoborder.txtJONumber.Text}] Account No. {ucJoborder.txtAccountNumber.Text} - {ucJoborder.txtAccountName.Text}";
             else
                 requestDetails = $"Requested to deleted record J.O [{existingJobOrderNo}].";
-           
+
 
             bool requestSent = Factory.RequestRepository().CreateRequest(RequestModel(requestDetails));
 
@@ -813,7 +801,6 @@ namespace JOMonitoringApp.Views.MainForm
 
         private bool SaveData()
         {
-            //check input error.
             if (!ucJoborder.ValidateChildren())
             {
                 Helper.MessageBoxError(ucJoborder.GetFormErrors());
@@ -838,35 +825,23 @@ namespace JOMonitoringApp.Views.MainForm
 
             if (CheckPossibleDuplicateEntry())
             {
-                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                if (Helper.MessageBoxWarningConfirm($"Same job order already exist. Do you want to proceed?"))
+                {
                     return InsertJobOrderAsync();
-
-                return false;
+                }
+                else
+                    return false;
             }
             else
             {
-                return InsertJobOrderAsync();
+                if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
+                    return InsertJobOrderAsync();
 
             }
 
-            //Old code
-            //if (CheckPossibleDuplicateEntry())
-            //{
-            //    if (MakeRequest("Add"))
-            //    {
-            //        if (Helper.MessageBoxConfirmCancel("Do you confirm to create J.O No. " + ucJoborder.txtJONumber.Text))
-            //            return InsertJobOrderAsync();
-            //    }
-
-            //    return false;
-            //}
-            //else 
-            //{
-            //    return InsertJobOrderAsync();
-            //}
-            //old code
+            return false;
         }
-
+    
         private RequestModel RequestModel(string requestDetails)
         {
             return new RequestModel

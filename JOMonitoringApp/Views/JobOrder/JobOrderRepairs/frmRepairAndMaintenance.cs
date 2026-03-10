@@ -13,15 +13,27 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
 {
     public partial class frmRepairAndMaintenance : Form
     {
+        private ucJobOrderRepairs ucJoborder;
+
         public frmRepairAndMaintenance()
         {
             InitializeComponent();
-            Helper.LoadFormIcon(this);  
+            ucJoborder = ucJobOrderRepairs1;
+            Helper.LoadFormIcon(this);
+            Helper.DatagridFullRowSelectStyle(ucJoborder.dgJobOrderRepairAndMaintenanceList);
         }
 
         private void frmRepairAndMaintenance_Load(object sender, EventArgs e)
         {
 
         }
+
+        private void ucJobOrderRepairs1_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+    
+
     }
 }

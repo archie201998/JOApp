@@ -316,7 +316,7 @@ namespace JOMonitoringApp
                 new object[] { "@particulars", DbType.String, $"%{particulars}%" }
             };
 
-            string query = $"SELECT job_order_no FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0 AND status <> 4";
+            string query = $"SELECT job_order_no FROM {viewTableName} WHERE account_number = @account_number AND particular LIKE @particulars AND is_deleted = 0 AND status_id <> 4";
 
 
             var dataTable = new DataTable();
@@ -529,8 +529,6 @@ namespace JOMonitoringApp
             return null;
         }
 
-
-
         private Image ByteArrayToImage(byte[] byteArray)
         {
             if (byteArray == null || byteArray.Length == 0)
@@ -542,6 +540,36 @@ namespace JOMonitoringApp
             }
         }
 
+        public DataTable GetAllRepairAndMaintenanceRecords(int statusId, string particular, string completeAddress)
+        {
+            var parameters = new object[][]
+            {
+                new object[] { "@status_id", DbType.Int32, statusId == 5 ? DBNull.Value : (object)statusId },
+                new object[] { "@particular", DbType.String, $"%{particular}%" },
+                new object[] { "@complete_address", DbType.String, $"%{completeAddress}%" }
+            };
+
+            string query = "SELECT id, " +
+                           "job_order_no, " +
+                           "account_number, " +
+                           "account_name, " +
+                           "date, " +
+                           "status_id, " +
+                           "prepared_by, " +
+                           "accomplished_by, " +
+                           "is_repair_maintenance_job, " +
+                           "created_at " +
+                           $"FROM {tableName} " +
+                           "WHERE is_deleted = 0 " +
+                           "AND is_repair_maintenance_job = 1 " +
+                           "AND (@status_id IS NULL OR status_id = @status_id) " +
+                           "OR address LIKE @complete_address " +
+                           "ORDER BY id DESC " +
+                           "LIMIT 10";
+
+            var dataTable = new DataTable();
+            return mySqlGenericCommands.FillBySearch(query, dataTable, parameters);
+        }
     }
 
    

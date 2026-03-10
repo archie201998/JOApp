@@ -2,6 +2,7 @@
 using JOMonitoringApp.Views.Config;
 using JOMonitoringApp.Views.Customers;
 using JOMonitoringApp.Views.Investigation;
+using JOMonitoringApp.Views.JobOrder.JobOrderRepairs;
 using JOMonitoringApp.Views.MainForm.Approval;
 using JOMonitoringApp.Views.Materials;
 using JOMonitoringApp.Views.Reports;

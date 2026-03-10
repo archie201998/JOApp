@@ -221,6 +221,19 @@ namespace JOMonitoringApp
             cmbx.DisplayMember = "particular";
         }
 
+        internal static void ParticularComboboxRepairAndMaintenance(ComboBox cmbx)
+        {
+            var dataTable = Factory.ParticularsRepository().GetRepairAndMaintenanceParticular();
+            DataRow newRow = dataTable.NewRow();
+
+            newRow["id"] = "0";
+            newRow["particular"] = "All Particulars";
+            dataTable.Rows.InsertAt(newRow, 0);
+
+            cmbx.DataSource = dataTable;
+            cmbx.ValueMember = "id";
+            cmbx.DisplayMember = "particular";
+        }
         internal static void EmployeeCombobox(ComboBox cmbxEmployee, DataTable dataTable, string valueMember, string displayMember)
         {
             cmbxEmployee.DataSource = dataTable;

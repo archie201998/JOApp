@@ -55,6 +55,7 @@
             this.btnMoveLeft = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbImageDisplay)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -69,7 +70,7 @@
             this.pbImageDisplay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pbImageDisplay.Location = new System.Drawing.Point(12, 12);
             this.pbImageDisplay.Name = "pbImageDisplay";
-            this.pbImageDisplay.Size = new System.Drawing.Size(564, 516);
+            this.pbImageDisplay.Size = new System.Drawing.Size(564, 514);
             this.pbImageDisplay.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbImageDisplay.TabIndex = 0;
             this.pbImageDisplay.TabStop = false;
@@ -383,10 +384,24 @@
             // 
             this.printDialog1.UseEXDialog = true;
             // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(480, 534);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 7;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmVicinityImage
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(913, 575);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textBox1);
@@ -396,10 +411,11 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.pbImageDisplay);
+            this.Controls.Add(this.btnClose);
             this.MinimizeBox = false;
             this.Name = "frmVicinityImage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Tapping Vicinity Image";
+            this.Text = "FS / Tapping Vinicity Map";
             this.Load += new System.EventHandler(this.frmVicinityImage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbImageDisplay)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -437,5 +453,6 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.Button btnClose;
     }
 }

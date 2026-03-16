@@ -36,10 +36,9 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
                 CreateStatusButtons();
                 HelperLoadRecords.BarangayCombobox(cmbxBarangay);
                 HelperLoadRecords.BarangayCombobox(cmbxBarangayFilter);
-                HelperLoadRecords.ParticularComboboxRepairAndMaintenance(cmbxParticularFilter);    
+                HelperLoadRecords.ParticularComboboxRepairAndMaintenance(cmbxParticularFilter);   
                 LoadPurok();
                 LoadParticulars();
-                
                 LoadRepairsAndMaintenance();
             }
         }
@@ -88,6 +87,7 @@ namespace JOMonitoringApp.Views.JobOrder.JobOrderRepairs
             DataTable dtRepairAndMaintenance = Factory.JobOrdersRepository().GetAllRepairAndMaintenanceRecords(status, particulars, completeAddress);
             dgJobOrderRepairAndMaintenanceList.DataSource = dtRepairAndMaintenance;
 
+            HelperLoadRecords.RepairAndMaintenanceDatagridView(dgJobOrderRepairAndMaintenanceList, dtRepairAndMaintenance);
         }
 
         private void LoadPurok()

@@ -551,15 +551,15 @@ namespace JOMonitoringApp
 
             string query = "SELECT id, " +
                            "job_order_no, " +
-                           "account_number, " +
-                           "account_name, " +
+                           "address, " +
+                           "particular, " +
                            "date, " +
                            "status_id, " +
                            "prepared_by, " +
                            "accomplished_by, " +
                            "is_repair_maintenance_job, " +
                            "created_at " +
-                           $"FROM {tableName} " +
+                           $"FROM {viewTableName} " +
                            "WHERE is_deleted = 0 " +
                            "AND is_repair_maintenance_job = 1 " +
                            "AND (@status_id IS NULL OR status_id = @status_id) " +

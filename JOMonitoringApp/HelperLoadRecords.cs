@@ -139,6 +139,7 @@ namespace JOMonitoringApp
             dataGridView.Columns["address"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["address"].HeaderText = "ADDRESS";
 
+
             dataGridView.Columns["job_order_no"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridView.Columns["job_order_no"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["job_order_no"].HeaderText = "J.O NO.";
@@ -359,6 +360,40 @@ namespace JOMonitoringApp
             comboBox.DataSource = dataTable;
             comboBox.ValueMember = "id";
             comboBox.DisplayMember = "status";
+        }
+
+        internal static void RepairAndMaintenanceDatagridView(DataGridView dgView, DataTable dtRecords)
+        {
+            if (dgView.InvokeRequired)
+            {
+                dgView.Invoke(new Action(() => dgView.DataSource = dgView));
+            }
+            else
+            {
+                dgView.DataSource = dtRecords;
+            }
+
+
+            dgView.Columns["id"].Visible = false;
+            dgView.Columns["status_id"].Visible = false;
+            dgView.Columns["prepared_by"].Visible = false;
+            dgView.Columns["accomplished_by"].Visible = false;
+            dgView.Columns["is_repair_maintenance_job"].Visible = false;
+            dgView.Columns["created_at"].Visible = false;
+
+            dgView.Columns["job_order_no"].HeaderText = "J.O. NO.";
+            dgView.Columns["job_order_no"].Width = 10;
+            dgView.Columns["particular"].HeaderText = "PARTICULAR";
+            dgView.Columns["address"].HeaderText = "LOCATION";
+            dgView.Columns["address"].Width = 500;
+            dgView.Columns["date"].HeaderText = "DATE STARTED";
+
+
+            foreach (DataGridViewColumn column in dgView.Columns)
+            {
+                column.HeaderText = column.HeaderText.ToUpper();
+                column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
         }
 
 

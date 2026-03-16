@@ -308,8 +308,9 @@ namespace JOMonitoringApp.Views.VicinityImage
             }
             else
             {
-                MessageBox.Show("No image found for this record.", "Not Found",
+                MessageBox.Show("No vicinity image found for this record.", "Not Found",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
             }
         
         }
@@ -544,6 +545,11 @@ namespace JOMonitoringApp.Views.VicinityImage
 
         private void pbImageDisplay_MouseLeave(object sender, EventArgs e)
         {
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

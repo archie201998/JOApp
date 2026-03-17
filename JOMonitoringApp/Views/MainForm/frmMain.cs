@@ -21,11 +21,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
@@ -39,16 +37,10 @@ namespace JOMonitoringApp.Views.MainForm
         private int previousSelection = 0;
         private List<Keys> keySequence = new List<Keys>();
         private Timer updateTimer;
-        bool updateLabelVisible = false;
         private string existingJobOrderNo;
         private readonly frmSignIn _frmSignIn;
-
-
-
         int lastChatID = 0;
-
         private NotifyIcon notifyIcon;
-
         private int lastInsertedJOID = 0;
 
         public frmMain(frmSignIn frmSignIn)
@@ -244,6 +236,7 @@ namespace JOMonitoringApp.Views.MainForm
                         newRow["remarks"] = row["remarks"].ToString();
                         newRow["prepared_by"] = row["prepared_by"].ToString();
                         newRow["materials_issued_by"] = row["materials_issued_by"].ToString();
+                        newRow["receiver"] = row["receiver"].ToString();
 
                         tempTable.Rows.Add(newRow);
                     }
@@ -251,7 +244,7 @@ namespace JOMonitoringApp.Views.MainForm
                     return tempTable;
                 });
                 toolStripStatusLabel3.Text = $"RECORDS COUNT : {dataTable.Rows.Count}";
-                // Load into DataGridView
+
                 HelperLoadRecords.JobOrdersDataGridView(dgJobOrders, dataTable);
             }
             catch (Exception ex)
@@ -274,6 +267,7 @@ namespace JOMonitoringApp.Views.MainForm
         {
             try
             {
+
                 OnLoad();
             }
             catch (Exception ex) { Helper.MessageBoxError(ex.Message); }
@@ -281,6 +275,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         internal void OnLoad()
         {
+            //Pre-Load
             HelperLoadRecords.ComboboxRowLimitFilter(cmbxRowLimit);
             HelperLoadRecords.StatusCombobox(cmbxStatus);
             HelperLoadRecords.ParticularsCombobox(cmbxParticulars);
@@ -292,12 +287,10 @@ namespace JOMonitoringApp.Views.MainForm
 
             cmbxStatus.SelectedValue = 5;
             cmbxRowLimit.SelectedIndex = 1;
-
             ValidatePermissions();
             StartUpdateTimer();
-            LoadJobOrdersAsync();
             ucJoborder.OnLoad();
-
+            LoadJobOrdersAsync();
         }
 
         #endregion
@@ -406,6 +399,7 @@ namespace JOMonitoringApp.Views.MainForm
                 new DataColumn("prepared_by", typeof(string)),
                 new DataColumn("materials_issued_by", typeof(string)),
                 new DataColumn("remarks", typeof(string)),
+                new DataColumn("receiver", typeof(string)),
 
             };
         }
@@ -421,6 +415,7 @@ namespace JOMonitoringApp.Views.MainForm
                 if (dgJobOrders.Rows.Count == 0) return;
 
                 UpdateSettings();
+                LoadSelectedData();
                 ucJoborder.StoreOriginalValues();
             }
             catch (Exception)
@@ -428,7 +423,6 @@ namespace JOMonitoringApp.Views.MainForm
                 Helper.MessageBoxError("Something went wrong. Please contact the system administrator.");
             }
 
-            LoadSelectedData();
         }
 
         private void UpdateSettings()
@@ -608,11 +602,11 @@ namespace JOMonitoringApp.Views.MainForm
         #endregion
 
 
-        private void LogJOTransaction()
+        private void LogJOTransaction(JOLogsModel jOLogsModel)
         {
             try
             {
-                bool setLogRest = Factory.JOLogsRepository().Insert(ucJoborder.JOLogsModel());
+                bool setLogRest = Factory.JOLogsRepository().Insert(jOLogsModel);
 
                 if (!setLogRest)
                 {
@@ -655,7 +649,7 @@ namespace JOMonitoringApp.Views.MainForm
                         ? "Job Order details successfully updated."
                         : "Job Order successfully created.";
 
-                    LogJOTransaction();
+                    LogJOTransaction(ucJoborder.JOLogsModel());
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
                     LoadJobOrdersAsync();
@@ -841,14 +835,14 @@ namespace JOMonitoringApp.Views.MainForm
 
             return false;
         }
-    
+
         private RequestModel RequestModel(string requestDetails)
         {
             return new RequestModel
             {
-                Status = 0, 
+                Status = 0,
                 Details = requestDetails,
-                RequestedBy = lblCurrentUser.Text,  
+                RequestedBy = lblCurrentUser.Text,
                 CreatedBy = Helper.CurrentUserID
             };
         }
@@ -956,7 +950,7 @@ namespace JOMonitoringApp.Views.MainForm
             _ = new frmUsers().ShowDialog();
         }
 
-        
+
         #region Server Pinging
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -1001,8 +995,8 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void toolStripMaterials_Click(object sender, EventArgs e)
         {
-           var frmMaterials = new frmMaterials();
-           frmMaterials.Show();
+            var frmMaterials = new frmMaterials();
+            frmMaterials.Show();
         }
 
         private void manualToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1240,7 +1234,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void summaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmJOStatusSummary().ShowDialog();  
+            _ = new frmJOStatusSummary().ShowDialog();
         }
 
         private void toolStripMaterials_Click_1(object sender, EventArgs e)
@@ -1250,7 +1244,7 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void investigationFormToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
         //
         private void applicationFilesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1271,7 +1265,7 @@ namespace JOMonitoringApp.Views.MainForm
                     openFileDialog.Title = "Select a PDF file";
                     openFileDialog.Multiselect = false;
 
-                    if (openFileDialog.ShowDialog() == DialogResult.OK) 
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
                         System.Diagnostics.Process.Start(openFileDialog.FileName);
                     }
@@ -1302,7 +1296,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 Helper.MessageBoxSuccess("No investigation data for this particular job order.");
             }
-        
+
         }
 
         private void ShowNotification(string title, string message)
@@ -1318,7 +1312,7 @@ namespace JOMonitoringApp.Views.MainForm
                 checkRequest.Enabled = false;
                 ShowNotification("New Request Received.", $"Open the application to view.");
                 _ = new frmRequestApprovalForm(dtNewRequests).ShowDialog();
-                checkRequest.Enabled = true;    
+                checkRequest.Enabled = true;
             }
 
         }
@@ -1372,13 +1366,13 @@ namespace JOMonitoringApp.Views.MainForm
             if (hasNewChat)
             {
                 label7.Text = "NEW CHAT RECEIVED";
-                label7.ForeColor = Color.Red;   
+                label7.ForeColor = Color.Red;
             }
         }
 
         private void configurationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ = new frmSMSConfig().ShowDialog(); 
+            _ = new frmSMSConfig().ShowDialog();
         }
 
         private void checkSMSConnectionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1411,7 +1405,7 @@ namespace JOMonitoringApp.Views.MainForm
             {
                 Helper.MessageBoxSuccess("Please select 1 record.");
                 return;
-            } 
+            }
 
             int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
             string accountName = dgJobOrders.SelectedRows[0].Cells["account_name"].Value.ToString();
@@ -1425,7 +1419,87 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void repairAndMaintenanceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _= new frmRepairAndMaintenance().ShowDialog();
+            _ = new frmRepairAndMaintenance().ShowDialog();
+        }
+
+        private void kharizToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Ailyne");
+        }
+
+        private void archieToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Archie");
+        }
+        private void bernaleighToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Bernaleigh");
+        }
+
+        private void christopherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Christopher");
+        }
+
+        private void deciryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Deciry");
+        }
+
+        private void kharizToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Khariz");
+        }
+
+        private void realizaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Realiza");
+        }
+
+        private void rheaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument("Rhea");
+        }
+
+        private void ForwardDocument(string receiver)
+        {
+            //string _receiver = dgJobOrders.SelectedRows[0].Cells["receiver"].ToString();
+
+            //if (_receiver == receiver || _receiver == "")
+            //{
+                if (dgJobOrders.SelectedRows.Count == 0)
+                {
+                    Helper.MessageBoxSuccess("Please select 1 record.");
+                    return;
+                }
+
+                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+
+                string sender = lblCurrentUser.Text;
+                bool forwardDocument = Factory.JobOrderParticularsRepository().ForwardDocument(jobOrderId, sender, receiver);
+
+                if (forwardDocument)
+                {
+                    JOLogsModel log = new JOLogsModel
+                    {
+                        JobOrderId = jobOrderId,
+                        TransactionEvent = $"Document forwarded to {receiver}",
+                        UserId = Helper.CurrentUserID,
+                        DateAndTime = DateTime.Now.ToString()
+                    };
+
+                    LogJOTransaction(log);
+                }
+                else
+                {
+                    Helper.MessageBoxError("Failed to forward document. Please try again.");
+                }
+            //}
+            //else
+            //{
+            //    Helper.MessageBoxError("You can't forward document if the document has not been sent to you.");
+            //}
+           
         }
     }
 }

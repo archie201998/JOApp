@@ -23,7 +23,7 @@ namespace JOMonitoringApp.Views.JobOrder
         internal string accountName = string.Empty;
         internal bool isUpdate = false;
 
-        private Dictionary<string, object> originalValues = new Dictionary<string, object>();
+        internal Dictionary<string, object> originalValues = new Dictionary<string, object>();
 
         internal void StoreOriginalValues()
         {
@@ -78,6 +78,7 @@ namespace JOMonitoringApp.Views.JobOrder
                     if (!Equals(originalValue, currentValue)) // Use !Equals to detect change
                     {
                         Helper.changes += $" {label} : {originalValueString} => {currentValueString} \n";
+
                         hasChanges = true;
                     }
                 }
@@ -278,6 +279,7 @@ namespace JOMonitoringApp.Views.JobOrder
             if (!DesignMode)
             {
                 txtAcc1.Focus();
+
             }
         }
 

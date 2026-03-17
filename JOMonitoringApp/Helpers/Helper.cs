@@ -171,6 +171,66 @@ namespace AccountingSystem
             form.Icon = JOMonitoringApp.Properties.Resources.new_system_logo;
         }
 
+        public static void DatagridFullRowSelectStyleJOProgressTrack(DataGridView dgv, bool Fill = false, bool isReadOnly = true, bool showRowHeader = false)
+        {
+            // === Layout & Behavior ===
+            dgv.RowHeadersVisible = showRowHeader;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToOrderColumns = false;
+            dgv.AllowUserToResizeColumns = true;
+            dgv.AllowUserToResizeRows = false;
+            dgv.ReadOnly = isReadOnly;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.BorderStyle = BorderStyle.None;
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dgv.RowHeadersWidth = 25;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+            // === Sizing ===
+            dgv.RowTemplate.Height = 28;
+            dgv.ColumnHeadersHeight = 34;
+
+            // === Background ===
+            dgv.BackgroundColor = Color.FromArgb(245, 247, 250);   // light cool gray
+            dgv.GridColor = Color.FromArgb(220, 225, 232);          // soft separator lines
+
+            // === Column Header Style ===
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromKnownColor(KnownColor.White);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(226, 232, 240);    // light text
+            dgv.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.White);
+            dgv.ColumnHeadersDefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 8f, FontStyle.Bold);
+            dgv.ColumnHeadersDefaultCellStyle.Padding = new Padding(6, 0, 0, 0);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Single;
+
+            // === Row Header Style ===
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 41, 59);
+            dgv.RowHeadersDefaultCellStyle.SelectionBackColor = Color.FromArgb(51, 65, 85);
+            dgv.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            // === Default Cell Style ===
+            dgv.DefaultCellStyle.BackColor = Color.White;
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);          // dark navy text
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+            dgv.DefaultCellStyle.Padding = new Padding(6, 0, 0, 0);
+
+            // === Selection Style ===
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(14, 165, 233);   // sky blue accent
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            // === Alternating Row Style ===
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);  // faint stripe
+            dgv.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(30, 41, 59);
+            dgv.AlternatingRowsDefaultCellStyle.Font = new Font("Segoe UI", 8.5f, FontStyle.Regular);
+
+            // === Auto Column Sizing ===
+            if (Fill) dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
         public static void DatagridFullRowSelectStyle(DataGridView dgv, bool Fill = false, bool isReadOnly = true, bool showRowHeader = false)
         {
             dgv.RowHeadersVisible = showRowHeader;

@@ -101,9 +101,9 @@ namespace JOMonitoringApp
             }
             dataGridView.DataSource = dataTable;
 
-            dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
-            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
-            dataGridView.EnableHeadersVisualStyles = false;
+            //dataGridView.DefaultCellStyle.Font = new Font("Segiou", 8);
+            //dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Segiou", 8, FontStyle.Regular);
+            //dataGridView.EnableHeadersVisualStyles = false;
 
             dataGridView.Columns["id"].Visible = true;
             dataGridView.Columns["id"].HeaderText = "ID";
@@ -187,6 +187,12 @@ namespace JOMonitoringApp
             dataGridView.Columns["remarks"].HeaderText = "REMARKS";
             dataGridView.Columns["remarks"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView.Columns["remarks"].MinimumWidth = 120;
+
+
+            dataGridView.Columns["receiver"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView.Columns["receiver"].HeaderText = "RECEIVER";
+            dataGridView.Columns["receiver"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns["receiver"].MinimumWidth = 120;
         }
 
         public static void AccountsDataGridView(DataGridView dataGridView, DataTable dataTable)

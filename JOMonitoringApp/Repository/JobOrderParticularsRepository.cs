@@ -4,6 +4,7 @@ using JOMonitoringApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Twilio.TwiML.Voice;
 
 namespace JOMonitoringApp
 {
@@ -116,6 +117,18 @@ namespace JOMonitoringApp
 
             var dataTable = new DataTable();
             return mySqlGenericCommands.FillBySearch(query, dataTable, _parameters);
+        }
+
+        public bool ForwardDocument(int jobOrderId, string sender, string receiver)
+        {
+            var parameter = new object[][] {
+                new object[]{ "@id", DbType.Int32, jobOrderId},
+                new object[]{ "@sender", DbType.String, sender},
+                new object[]{ "@receiver", DbType.String, receiver}
+            };
+
+            string query = $"UPDATE tbl_job_orders SET  sender = @sender, receiver = @receiver WHERE id = @id";
+            return mySqlGenericCommands.ExecuteNonQuery(query, parameter);
         }
     }
 }

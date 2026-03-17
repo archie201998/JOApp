@@ -14,7 +14,7 @@ namespace JOMonitoringApp.Views.JobOrder
         {
             InitializeComponent();
             Helper.LoadFormIcon(this);
-            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails);
+            Helper.DatagridFullRowSelectStyle(dgJobOrderStatusDetails, true);
             _joNumber = jobOrderNumber;
         }
 

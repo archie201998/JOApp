@@ -53,6 +53,7 @@
             this.hydrantWithdrawToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.investigationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.repairAndMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,6 +96,7 @@
             this.lblSystemDateAndTime = new System.Windows.Forms.Label();
             this.timerSystemDateAndTime = new System.Windows.Forms.Timer(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -115,6 +117,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelInputField = new System.Windows.Forms.Panel();
+            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
             this.panel4 = new System.Windows.Forms.Panel();
             this.btnRequestEdit = new System.Windows.Forms.Button();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -127,9 +130,16 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.checkRequest = new System.Windows.Forms.Timer(this.components);
             this.label7 = new System.Windows.Forms.Label();
-            this.ucJoborder1 = new JOMonitoringApp.Views.JobOrder.ucJoborder();
-            this.ucDashboardSummaryView1 = new JOMonitoringApp.Views.Dashboard.ucDashboardSummaryView();
-            this.repairAndMaintenanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.fowardedDocumentsToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kharizToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.archieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bernaleighToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.christopherToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deciryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kharizToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.realizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rheaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -335,6 +345,13 @@
             this.investigationsToolStripMenuItem.Text = "Investigations";
             this.investigationsToolStripMenuItem.Click += new System.EventHandler(this.investigationsToolStripMenuItem_Click);
             // 
+            // repairAndMaintenanceToolStripMenuItem
+            // 
+            this.repairAndMaintenanceToolStripMenuItem.Name = "repairAndMaintenanceToolStripMenuItem";
+            this.repairAndMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.repairAndMaintenanceToolStripMenuItem.Text = "Repair and Maintenance";
+            this.repairAndMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.repairAndMaintenanceToolStripMenuItem_Click);
+            // 
             // sessionToolStripMenuItem
             // 
             this.sessionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -390,9 +407,11 @@
             this.investigationToolStripMenuItem,
             this.toolStripSeparator1,
             this.trackJOProgressToolStripMenuItem,
-            this.viewVicinityMapToolStripMenuItem});
+            this.viewVicinityMapToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.fowardedDocumentsToToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 142);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 192);
             this.contextMenuStrip1.Text = "PRINT ";
             // 
             // toolStripMenuItem2
@@ -664,6 +683,16 @@
             this.tabPage2.Text = "SUMMARY";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ucDashboardSummaryView1
+            // 
+            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
+            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
+            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
+            this.ucDashboardSummaryView1.TabIndex = 0;
+            // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.label6);
@@ -911,6 +940,17 @@
             this.panelInputField.Size = new System.Drawing.Size(450, 854);
             this.panelInputField.TabIndex = 1;
             // 
+            // ucJoborder1
+            // 
+            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
+            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
+            this.ucJoborder1.Name = "ucJoborder1";
+            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
+            this.ucJoborder1.Size = new System.Drawing.Size(450, 811);
+            this.ucJoborder1.TabIndex = 0;
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.White;
@@ -1040,33 +1080,81 @@
             this.label7.Text = "PUBLIC CHAT ROOM";
             this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
-            // ucJoborder1
+            // toolStripSeparator2
             // 
-            this.ucJoborder1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ucJoborder1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucJoborder1.Location = new System.Drawing.Point(0, 0);
-            this.ucJoborder1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucJoborder1.Name = "ucJoborder1";
-            this.ucJoborder1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucJoborder1.Size = new System.Drawing.Size(450, 811);
-            this.ucJoborder1.TabIndex = 0;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(209, 6);
             // 
-            // ucDashboardSummaryView1
+            // fowardedDocumentsToToolStripMenuItem
             // 
-            this.ucDashboardSummaryView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ucDashboardSummaryView1.Location = new System.Drawing.Point(3, 3);
-            this.ucDashboardSummaryView1.Margin = new System.Windows.Forms.Padding(4);
-            this.ucDashboardSummaryView1.Name = "ucDashboardSummaryView1";
-            this.ucDashboardSummaryView1.Padding = new System.Windows.Forms.Padding(10);
-            this.ucDashboardSummaryView1.Size = new System.Drawing.Size(1625, 1944);
-            this.ucDashboardSummaryView1.TabIndex = 0;
+            this.fowardedDocumentsToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kharizToolStripMenuItem,
+            this.archieToolStripMenuItem,
+            this.bernaleighToolStripMenuItem,
+            this.christopherToolStripMenuItem,
+            this.deciryToolStripMenuItem,
+            this.kharizToolStripMenuItem1,
+            this.realizaToolStripMenuItem,
+            this.rheaToolStripMenuItem});
+            this.fowardedDocumentsToToolStripMenuItem.Name = "fowardedDocumentsToToolStripMenuItem";
+            this.fowardedDocumentsToToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.fowardedDocumentsToToolStripMenuItem.Text = "Forward Document To";
             // 
-            // repairAndMaintenanceToolStripMenuItem
+            // kharizToolStripMenuItem
             // 
-            this.repairAndMaintenanceToolStripMenuItem.Name = "repairAndMaintenanceToolStripMenuItem";
-            this.repairAndMaintenanceToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.repairAndMaintenanceToolStripMenuItem.Text = "Repair and Maintenance";
-            this.repairAndMaintenanceToolStripMenuItem.Click += new System.EventHandler(this.repairAndMaintenanceToolStripMenuItem_Click);
+            this.kharizToolStripMenuItem.Name = "kharizToolStripMenuItem";
+            this.kharizToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kharizToolStripMenuItem.Text = "Ailyne ";
+            this.kharizToolStripMenuItem.Click += new System.EventHandler(this.kharizToolStripMenuItem_Click);
+            // 
+            // archieToolStripMenuItem
+            // 
+            this.archieToolStripMenuItem.Name = "archieToolStripMenuItem";
+            this.archieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.archieToolStripMenuItem.Text = "Archie";
+            this.archieToolStripMenuItem.Click += new System.EventHandler(this.archieToolStripMenuItem_Click);
+            // 
+            // bernaleighToolStripMenuItem
+            // 
+            this.bernaleighToolStripMenuItem.Name = "bernaleighToolStripMenuItem";
+            this.bernaleighToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.bernaleighToolStripMenuItem.Text = "Bernaleigh";
+            this.bernaleighToolStripMenuItem.Click += new System.EventHandler(this.bernaleighToolStripMenuItem_Click);
+            // 
+            // christopherToolStripMenuItem
+            // 
+            this.christopherToolStripMenuItem.Name = "christopherToolStripMenuItem";
+            this.christopherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.christopherToolStripMenuItem.Text = "Christopher";
+            this.christopherToolStripMenuItem.Click += new System.EventHandler(this.christopherToolStripMenuItem_Click);
+            // 
+            // deciryToolStripMenuItem
+            // 
+            this.deciryToolStripMenuItem.Name = "deciryToolStripMenuItem";
+            this.deciryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deciryToolStripMenuItem.Text = "Deciry";
+            this.deciryToolStripMenuItem.Click += new System.EventHandler(this.deciryToolStripMenuItem_Click);
+            // 
+            // kharizToolStripMenuItem1
+            // 
+            this.kharizToolStripMenuItem1.Name = "kharizToolStripMenuItem1";
+            this.kharizToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.kharizToolStripMenuItem1.Text = "Khariz";
+            this.kharizToolStripMenuItem1.Click += new System.EventHandler(this.kharizToolStripMenuItem1_Click);
+            // 
+            // realizaToolStripMenuItem
+            // 
+            this.realizaToolStripMenuItem.Name = "realizaToolStripMenuItem";
+            this.realizaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.realizaToolStripMenuItem.Text = "Realiza";
+            this.realizaToolStripMenuItem.Click += new System.EventHandler(this.realizaToolStripMenuItem_Click);
+            // 
+            // rheaToolStripMenuItem
+            // 
+            this.rheaToolStripMenuItem.Name = "rheaToolStripMenuItem";
+            this.rheaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rheaToolStripMenuItem.Text = "Rhea";
+            this.rheaToolStripMenuItem.Click += new System.EventHandler(this.rheaToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -1218,5 +1306,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem viewVicinityMapToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem repairAndMaintenanceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem fowardedDocumentsToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kharizToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem archieToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bernaleighToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem christopherToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deciryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kharizToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem realizaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem rheaToolStripMenuItem;
     }
 }

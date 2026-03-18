@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
+using Twilio.TwiML.Fax;
 
 namespace JOMonitoringApp.Views.Investigation
 {
@@ -303,6 +304,18 @@ namespace JOMonitoringApp.Views.Investigation
                     UpdateJobOrderStatus();
                     UploadImage();
                     scope.Complete();
+
+                    JOLogsModel log = new JOLogsModel
+                    {
+                        JobOrderId = +_jobOrderId,
+                        TransactionEvent = $"Updated Investigation details.",
+                        UserId = Helper.CurrentUserID,
+                        DateAndTime = DateTime.Now.ToString()
+                    };
+
+                    Helper.LogJOTransaction(log);
+
+
                     return true;
                 }
                 else

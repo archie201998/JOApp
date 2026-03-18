@@ -601,26 +601,6 @@ namespace JOMonitoringApp.Views.MainForm
         }
         #endregion
 
-
-        private void LogJOTransaction(JOLogsModel jOLogsModel)
-        {
-            try
-            {
-                bool setLogRest = Factory.JOLogsRepository().Insert(jOLogsModel);
-
-                if (!setLogRest)
-                {
-                    Helper.MessageBoxError("Failed to saved transaction log.");
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Helper.MessageBoxError(ex.Message);
-                return;
-            }
-        }
-
         //This will save job order details into investigation table if the particular selected is investigation or has investigation 
         private bool CheckIfInvestigation()
         {
@@ -649,7 +629,7 @@ namespace JOMonitoringApp.Views.MainForm
                         ? "Job Order details successfully updated."
                         : "Job Order successfully created.";
 
-                    LogJOTransaction(ucJoborder.JOLogsModel());
+                    Helper.LogJOTransaction(ucJoborder.JOLogsModel());
                     Helper.MessageBoxSuccess(message);
                     ResetInputForm();
                     LoadJobOrdersAsync();
@@ -1424,82 +1404,112 @@ namespace JOMonitoringApp.Views.MainForm
 
         private void kharizToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Ailyne");
+            ForwardDocument(kharizToolStripMenuItem.Text);
         }
 
         private void archieToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Archie");
+            ForwardDocument(archieToolStripMenuItem.Text);
         }
         private void bernaleighToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Bernaleigh");
+            ForwardDocument(bernaleighToolStripMenuItem.Text);
         }
 
         private void christopherToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Christopher");
+            ForwardDocument(christopherToolStripMenuItem.Text);
         }
 
         private void deciryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Deciry");
+            ForwardDocument(deciryToolStripMenuItem.Text);
         }
 
         private void kharizToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Khariz");
+            ForwardDocument(kharizToolStripMenuItem1.Text);
         }
 
         private void realizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Realiza");
+            ForwardDocument(realizaToolStripMenuItem.Text);
         }
 
         private void rheaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ForwardDocument("Rhea");
+            ForwardDocument(rheaToolStripMenuItem.Text);
         }
 
-        private void ForwardDocument(string receiver)
+        private void marconyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //string _receiver = dgJobOrders.SelectedRows[0].Cells["receiver"].ToString();
+            ForwardDocument(marconyToolStripMenuItem.Text);
+        }
+        private void forFillingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ForwardDocument(forFillingToolStripMenuItem.Text, true);
+        }
 
-            //if (_receiver == receiver || _receiver == "")
-            //{
-                if (dgJobOrders.SelectedRows.Count == 0)
+        private void txtCustomName_KeyDown(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void ForwardDocument(string receiver, bool forFilling = false)
+        {
+
+            if (dgJobOrders.SelectedRows.Count == 0)
+            {
+                Helper.MessageBoxSuccess("Please select 1 record.");
+                return;
+            }
+
+            int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
+
+            string sender = lblCurrentUser.Text;
+            bool forwardDocument = Factory.JobOrderParticularsRepository().ForwardDocument(jobOrderId, sender, receiver);
+
+            if (forwardDocument)
+            {
+                JOLogsModel log = new JOLogsModel
                 {
-                    Helper.MessageBoxSuccess("Please select 1 record.");
-                    return;
-                }
+                    JobOrderId = jobOrderId,
+                    TransactionEvent = forFilling ? $"Document marked as {receiver}" : $"Document forwarded to {receiver}",
+                    UserId = Helper.CurrentUserID,
+                    DateAndTime = DateTime.Now.ToString()
+                };
 
-                int jobOrderId = Convert.ToInt32(dgJobOrders.SelectedRows[0].Cells["id"].Value);
-
-                string sender = lblCurrentUser.Text;
-                bool forwardDocument = Factory.JobOrderParticularsRepository().ForwardDocument(jobOrderId, sender, receiver);
-
-                if (forwardDocument)
-                {
-                    JOLogsModel log = new JOLogsModel
-                    {
-                        JobOrderId = jobOrderId,
-                        TransactionEvent = $"Document forwarded to {receiver}",
-                        UserId = Helper.CurrentUserID,
-                        DateAndTime = DateTime.Now.ToString()
-                    };
-
-                    LogJOTransaction(log);
-                }
-                else
-                {
-                    Helper.MessageBoxError("Failed to forward document. Please try again.");
-                }
-            //}
-            //else
-            //{
-            //    Helper.MessageBoxError("You can't forward document if the document has not been sent to you.");
-            //}
+                Helper.LogJOTransaction(log);
+                Helper.MessageBoxSuccess(log.TransactionEvent);
+            }
+            else
+            {
+                Helper.MessageBoxError("Failed to forward document. Please try again.");
+            }
            
+        }
+
+        private void txtCustomName_Leave(object sender, EventArgs e)
+        {
+            txtCustomName.Text = "Type name here";
+        }
+
+        private void txtCustomName_MouseEnter(object sender, EventArgs e)
+        {
+            txtCustomName.Clear();
+        }
+
+        private void txtCustomName_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCustomName_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                ForwardDocument(txtCustomName.Text);
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AccountingSystem;
+using JOMonitoringApp.Model;
 using JOMonitoringApp.Properties;
 using Microsoft.Reporting.Map.WebForms.BingMaps;
 using Nancy.Routing.Trie;
@@ -14,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using Twilio.TwiML.Fax;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace JOMonitoringApp.Views.VicinityImage
@@ -234,7 +236,16 @@ namespace JOMonitoringApp.Views.VicinityImage
                 {
                     MessageBox.Show("Vicinity Image Saved.", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
-                   
+
+                    JOLogsModel log = new JOLogsModel
+                    {
+                        JobOrderId = _jobOrderId,
+                        TransactionEvent = $"Attached vicinity map",
+                        UserId = Helper.CurrentUserID,
+                        DateAndTime = DateTime.Now.ToString()
+                    };
+
+                    Helper.LogJOTransaction(log);
                 }
                 else
                 {
@@ -291,7 +302,6 @@ namespace JOMonitoringApp.Views.VicinityImage
 
         private void LoadImageFromDatabase(int imageId)
         {
-
             // Dispose previous image to free memory
             if (pbImageDisplay.Image != null)
             {
@@ -306,13 +316,6 @@ namespace JOMonitoringApp.Views.VicinityImage
             {
                 pbImageDisplay.Image = loadedImage;
             }
-            else
-            {
-                MessageBox.Show("No vicinity image found for this record.", "Not Found",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
-            }
-        
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -337,6 +340,16 @@ namespace JOMonitoringApp.Views.VicinityImage
             if (printDialog1.ShowDialog() == DialogResult.OK)
             {
                 printDocument1.Print();
+
+                JOLogsModel log = new JOLogsModel
+                {
+                    JobOrderId = _jobOrderId,
+                    TransactionEvent = $"Printed Vicinity Map",
+                    UserId = Helper.CurrentUserID,
+                    DateAndTime = DateTime.Now.ToString()
+                };
+
+                Helper.LogJOTransaction(log);
             }
 
             // Optional: Show print preview instead
